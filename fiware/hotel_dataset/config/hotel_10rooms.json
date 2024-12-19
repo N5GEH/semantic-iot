@@ -1,0 +1,46 @@
+{
+  "name": "hotel:aachen:002",
+  "rooms":
+    {
+    "room:101": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:102": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:103": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:104": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:105": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:201": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:202": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:203": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:204": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:205": {
+        "instance_id": 1,
+        "version": "v2"
+    }
+ }
+}

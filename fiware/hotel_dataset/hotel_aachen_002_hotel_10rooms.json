@@ -1,0 +1,1000 @@
+[
+  {
+    "id": "Hotel:hotel:aachen:002",
+    "type": "Hotel",
+    "name": {
+      "type": "Text",
+      "value": "hotel:aachen:002",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "AmbientTemperatureSensor",
+    "type": "AmbientTemperatureSensor",
+    "temperatureAmb": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "HotelRoom:room:101",
+    "type": "HotelRoom",
+    "hasLocation": {
+      "type": "Text",
+      "value": "Hotel:fiware",
+      "metadata": {}
+    },
+    "name": {
+      "type": "Text",
+      "value": "room:101",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "TemperatureSensor:room:101",
+    "type": "TemperatureSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:101",
+      "metadata": {}
+    },
+    "temperature": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CO2Sensor:room:101",
+    "type": "CO2Sensor",
+    "co2": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:101",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "PresenceSensor:room:101",
+    "type": "PresenceSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:101",
+      "metadata": {}
+    },
+    "pir": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "FreshAirVentilation:room:101",
+    "type": "FreshAirVentilation",
+    "airFlowSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:101",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "RadiatorThermostat:room:101",
+    "type": "RadiatorThermostat",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:101",
+      "metadata": {}
+    },
+    "temperatureSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CoolingCoil:room:101",
+    "type": "CoolingCoil",
+    "fanSpeed": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:101",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "HotelRoom:room:102",
+    "type": "HotelRoom",
+    "hasLocation": {
+      "type": "Text",
+      "value": "Hotel:fiware",
+      "metadata": {}
+    },
+    "name": {
+      "type": "Text",
+      "value": "room:102",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "TemperatureSensor:room:102",
+    "type": "TemperatureSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:102",
+      "metadata": {}
+    },
+    "temperature": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CO2Sensor:room:102",
+    "type": "CO2Sensor",
+    "co2": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:102",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "PresenceSensor:room:102",
+    "type": "PresenceSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:102",
+      "metadata": {}
+    },
+    "pir": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "FreshAirVentilation:room:102",
+    "type": "FreshAirVentilation",
+    "airFlowSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:102",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "RadiatorThermostat:room:102",
+    "type": "RadiatorThermostat",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:102",
+      "metadata": {}
+    },
+    "temperatureSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CoolingCoil:room:102",
+    "type": "CoolingCoil",
+    "fanSpeed": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:102",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "HotelRoom:room:103",
+    "type": "HotelRoom",
+    "hasLocation": {
+      "type": "Text",
+      "value": "Hotel:fiware",
+      "metadata": {}
+    },
+    "name": {
+      "type": "Text",
+      "value": "room:103",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "TemperatureSensor:room:103",
+    "type": "TemperatureSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:103",
+      "metadata": {}
+    },
+    "temperature": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CO2Sensor:room:103",
+    "type": "CO2Sensor",
+    "co2": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:103",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "PresenceSensor:room:103",
+    "type": "PresenceSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:103",
+      "metadata": {}
+    },
+    "pir": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "FreshAirVentilation:room:103",
+    "type": "FreshAirVentilation",
+    "airFlowSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:103",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "RadiatorThermostat:room:103",
+    "type": "RadiatorThermostat",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:103",
+      "metadata": {}
+    },
+    "temperatureSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CoolingCoil:room:103",
+    "type": "CoolingCoil",
+    "fanSpeed": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:103",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "HotelRoom:room:104",
+    "type": "HotelRoom",
+    "hasLocation": {
+      "type": "Text",
+      "value": "Hotel:fiware",
+      "metadata": {}
+    },
+    "name": {
+      "type": "Text",
+      "value": "room:104",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "TemperatureSensor:room:104",
+    "type": "TemperatureSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:104",
+      "metadata": {}
+    },
+    "temperature": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CO2Sensor:room:104",
+    "type": "CO2Sensor",
+    "co2": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:104",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "PresenceSensor:room:104",
+    "type": "PresenceSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:104",
+      "metadata": {}
+    },
+    "pir": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "FreshAirVentilation:room:104",
+    "type": "FreshAirVentilation",
+    "airFlowSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:104",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "RadiatorThermostat:room:104",
+    "type": "RadiatorThermostat",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:104",
+      "metadata": {}
+    },
+    "temperatureSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CoolingCoil:room:104",
+    "type": "CoolingCoil",
+    "fanSpeed": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:104",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "HotelRoom:room:105",
+    "type": "HotelRoom",
+    "hasLocation": {
+      "type": "Text",
+      "value": "Hotel:fiware",
+      "metadata": {}
+    },
+    "name": {
+      "type": "Text",
+      "value": "room:105",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "TemperatureSensor:room:105",
+    "type": "TemperatureSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:105",
+      "metadata": {}
+    },
+    "temperature": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CO2Sensor:room:105",
+    "type": "CO2Sensor",
+    "co2": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:105",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "PresenceSensor:room:105",
+    "type": "PresenceSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:105",
+      "metadata": {}
+    },
+    "pir": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "FreshAirVentilation:room:105",
+    "type": "FreshAirVentilation",
+    "airFlowSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:105",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "RadiatorThermostat:room:105",
+    "type": "RadiatorThermostat",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:105",
+      "metadata": {}
+    },
+    "temperatureSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CoolingCoil:room:105",
+    "type": "CoolingCoil",
+    "fanSpeed": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:105",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "HotelRoom:room:201",
+    "type": "HotelRoom",
+    "hasLocation": {
+      "type": "Text",
+      "value": "Hotel:fiware",
+      "metadata": {}
+    },
+    "name": {
+      "type": "Text",
+      "value": "room:201",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "TemperatureSensor:room:201",
+    "type": "TemperatureSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:201",
+      "metadata": {}
+    },
+    "temperature": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CO2Sensor:room:201",
+    "type": "CO2Sensor",
+    "co2": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:201",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "PresenceSensor:room:201",
+    "type": "PresenceSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:201",
+      "metadata": {}
+    },
+    "pir": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "FreshAirVentilation:room:201",
+    "type": "FreshAirVentilation",
+    "airFlowSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:201",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "RadiatorThermostat:room:201",
+    "type": "RadiatorThermostat",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:201",
+      "metadata": {}
+    },
+    "temperatureSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CoolingCoil:room:201",
+    "type": "CoolingCoil",
+    "fanSpeed": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:201",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "HotelRoom:room:202",
+    "type": "HotelRoom",
+    "hasLocation": {
+      "type": "Text",
+      "value": "Hotel:fiware",
+      "metadata": {}
+    },
+    "name": {
+      "type": "Text",
+      "value": "room:202",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "TemperatureSensor:room:202",
+    "type": "TemperatureSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:202",
+      "metadata": {}
+    },
+    "temperature": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CO2Sensor:room:202",
+    "type": "CO2Sensor",
+    "co2": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:202",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "PresenceSensor:room:202",
+    "type": "PresenceSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:202",
+      "metadata": {}
+    },
+    "pir": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "FreshAirVentilation:room:202",
+    "type": "FreshAirVentilation",
+    "airFlowSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:202",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "RadiatorThermostat:room:202",
+    "type": "RadiatorThermostat",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:202",
+      "metadata": {}
+    },
+    "temperatureSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CoolingCoil:room:202",
+    "type": "CoolingCoil",
+    "fanSpeed": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:202",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "HotelRoom:room:203",
+    "type": "HotelRoom",
+    "hasLocation": {
+      "type": "Text",
+      "value": "Hotel:fiware",
+      "metadata": {}
+    },
+    "name": {
+      "type": "Text",
+      "value": "room:203",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "TemperatureSensor:room:203",
+    "type": "TemperatureSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:203",
+      "metadata": {}
+    },
+    "temperature": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CO2Sensor:room:203",
+    "type": "CO2Sensor",
+    "co2": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:203",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "PresenceSensor:room:203",
+    "type": "PresenceSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:203",
+      "metadata": {}
+    },
+    "pir": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "FreshAirVentilation:room:203",
+    "type": "FreshAirVentilation",
+    "airFlowSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:203",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "RadiatorThermostat:room:203",
+    "type": "RadiatorThermostat",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:203",
+      "metadata": {}
+    },
+    "temperatureSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CoolingCoil:room:203",
+    "type": "CoolingCoil",
+    "fanSpeed": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:203",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "HotelRoom:room:204",
+    "type": "HotelRoom",
+    "hasLocation": {
+      "type": "Text",
+      "value": "Hotel:fiware",
+      "metadata": {}
+    },
+    "name": {
+      "type": "Text",
+      "value": "room:204",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "TemperatureSensor:room:204",
+    "type": "TemperatureSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:204",
+      "metadata": {}
+    },
+    "temperature": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CO2Sensor:room:204",
+    "type": "CO2Sensor",
+    "co2": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:204",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "PresenceSensor:room:204",
+    "type": "PresenceSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:204",
+      "metadata": {}
+    },
+    "pir": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "FreshAirVentilation:room:204",
+    "type": "FreshAirVentilation",
+    "airFlowSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:204",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "RadiatorThermostat:room:204",
+    "type": "RadiatorThermostat",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:204",
+      "metadata": {}
+    },
+    "temperatureSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CoolingCoil:room:204",
+    "type": "CoolingCoil",
+    "fanSpeed": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:204",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "HotelRoom:room:205",
+    "type": "HotelRoom",
+    "hasLocation": {
+      "type": "Text",
+      "value": "Hotel:fiware",
+      "metadata": {}
+    },
+    "name": {
+      "type": "Text",
+      "value": "room:205",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "TemperatureSensor:room:205",
+    "type": "TemperatureSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:205",
+      "metadata": {}
+    },
+    "temperature": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CO2Sensor:room:205",
+    "type": "CO2Sensor",
+    "co2": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:205",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "PresenceSensor:room:205",
+    "type": "PresenceSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:205",
+      "metadata": {}
+    },
+    "pir": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "FreshAirVentilation:room:205",
+    "type": "FreshAirVentilation",
+    "airFlowSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:205",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "RadiatorThermostat:room:205",
+    "type": "RadiatorThermostat",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:205",
+      "metadata": {}
+    },
+    "temperatureSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CoolingCoil:room:205",
+    "type": "CoolingCoil",
+    "fanSpeed": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:room:205",
+      "metadata": {}
+    }
+  }
+]

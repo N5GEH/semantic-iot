@@ -1,0 +1,406 @@
+{
+  "name": "hotel:aachen:004",
+  "rooms":
+  {
+    "room:B101": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B102": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B103": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B104": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B105": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B106": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B107": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B108": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B109": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B110": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B201": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B202": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B203": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B204": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B205": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B206": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B207": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B208": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B209": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B210": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:B301": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:B302": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:B303": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:B304": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:B305": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:B306": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:B307": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:B308": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:B309": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:B310": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:B401": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:B402": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:B403": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:B404": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:B405": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:B406": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:B407": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:B408": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:B409": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:B410": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:B501": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:B502": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:B503": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:B504": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:B505": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:B506": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:B507": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:B508": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:B509": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:B510": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:A101": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A102": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A103": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A104": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A105": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A106": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A107": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A108": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A109": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A110": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A201": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A202": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A203": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A204": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A205": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A206": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A207": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A208": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A209": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A210": {
+        "instance_id": 1,
+        "version": "v2"
+    },
+    "room:A301": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:A302": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:A303": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:A304": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:A305": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:A306": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:A307": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:A308": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:A309": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:A310": {
+        "instance_id": 2,
+        "version": "v2"
+    },
+    "room:A401": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:A402": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:A403": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:A404": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:A405": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:A406": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:A407": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:A408": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:A409": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:A410": {
+        "instance_id": 3,
+        "version": "v2"
+    },
+    "room:A501": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:A502": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:A503": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:A504": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:A505": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:A506": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:A507": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:A508": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:A509": {
+        "instance_id": 4,
+        "version": "v2"
+    },
+    "room:A510": {
+        "instance_id": 4,
+        "version": "v2"
+    }
+  }
+}
