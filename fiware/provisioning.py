@@ -77,13 +77,13 @@ if __name__ == '__main__':
 
             print(f"Successfully created entity for {room_name}\n")
 
-            # save all entities in a file
-            all_entities = cbc.get_entity_list()
-            all_entities_serialize = [entity.model_dump() for entity in all_entities]
-            meta_info = config_file.split(".")[0]
-            dataset_file_name = f"{hotel_name}_{meta_info}.json".replace(":", "_")
-            hotel_dataset_path = os.path.join(config.project_root_path, "fiware",
-                                              "hotel_dataset",
-                                              dataset_file_name)
-            with open(hotel_dataset_path, "w") as f:
-                json.dump(all_entities_serialize, f, indent=2)
+        # save all entities in a file
+        all_entities = cbc.get_entity_list()
+        all_entities_serialize = [entity.model_dump() for entity in all_entities]
+        meta_info = config_file.split(".")[0]
+        dataset_file_name = f"{hotel_name}_{meta_info}.json".replace(":", "_")
+        hotel_dataset_path = os.path.join(config.project_root_path, "fiware",
+                                          "hotel_dataset",
+                                          dataset_file_name)
+        with open(hotel_dataset_path, "w") as f:
+            json.dump(all_entities_serialize, f, indent=2)
