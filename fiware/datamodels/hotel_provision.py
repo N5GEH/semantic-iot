@@ -302,6 +302,6 @@ if __name__ == '__main__':
     all_entities = cbc.get_entity_list()
     all_entities_serialize = [entity.model_dump() for entity in all_entities]
     hotel_dataset_path = os.path.join(config.project_root_path, "fiware",
-                                      "datamodels", "example_hotel.json")
+                                      "kgcp", "example_hotel.json")
     with open(hotel_dataset_path, "w") as f:
         json.dump(all_entities_serialize, f, indent=2)
