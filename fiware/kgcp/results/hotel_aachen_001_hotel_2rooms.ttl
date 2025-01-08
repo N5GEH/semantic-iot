@@ -24,8 +24,6 @@
 <http://example.com/FreshAirVentilation/FreshAirVentilation:room:102> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room:102> .
 
-<http://example.com/Hotel/Hotel:hotel:aachen:001> a <https://w3id.org/rec#Building> .
-
 <http://example.com/PresenceSensor/PresenceSensor:room:101> a brick:Occupancy_Count_Sensor ;
     rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room:101/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room:101> .
@@ -48,7 +46,11 @@
     rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room:102/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room:102> .
 
-<http://example.com/HotelRoom/HotelRoom:room:101> a <https://w3id.org/rec#Room> .
+<http://example.com/Hotel/Hotel:hotel:aachen:001> a <https://w3id.org/rec#Building> .
 
-<http://example.com/HotelRoom/HotelRoom:room:102> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:101> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room:102> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 

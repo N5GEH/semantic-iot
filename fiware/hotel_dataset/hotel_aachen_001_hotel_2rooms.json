@@ -21,8 +21,8 @@
     "id": "HotelRoom:room:101",
     "type": "HotelRoom",
     "hasLocation": {
-      "type": "Text",
-      "value": "Hotel:fiware",
+      "type": "Relationship",
+      "value": "Hotel:hotel:aachen:001",
       "metadata": {}
     },
     "name": {
@@ -119,8 +119,8 @@
     "id": "HotelRoom:room:102",
     "type": "HotelRoom",
     "hasLocation": {
-      "type": "Text",
-      "value": "Hotel:fiware",
+      "type": "Relationship",
+      "value": "Hotel:hotel:aachen:001",
       "metadata": {}
     },
     "name": {

@@ -424,8 +424,6 @@
 <http://example.com/FreshAirVentilation/FreshAirVentilation:room:510> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room:510> .
 
-<http://example.com/Hotel/Hotel:hotel:aachen:003> a <https://w3id.org/rec#Building> .
-
 <http://example.com/PresenceSensor/PresenceSensor:room:101> a brick:Occupancy_Count_Sensor ;
     rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room:101/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room:101> .
@@ -896,103 +894,155 @@
     rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room:510/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room:510> .
 
-<http://example.com/HotelRoom/HotelRoom:room:501> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:501> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:502> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:502> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:503> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:503> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:504> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:504> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:505> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:505> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:506> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:506> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:507> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:507> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:508> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:508> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:509> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:509> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:510> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:510> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:301> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:301> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:302> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:302> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:303> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:303> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:304> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:304> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:305> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:305> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:306> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:306> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:307> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:307> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:308> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:308> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:309> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:309> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:310> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:310> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:401> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:401> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:402> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:402> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:403> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:403> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:404> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:404> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:405> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:405> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:406> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:406> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:407> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:407> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:408> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:408> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:409> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:409> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:410> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:410> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:101> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:101> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:102> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:102> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:103> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:103> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:104> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:104> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:105> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:105> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:106> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:106> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:107> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:107> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:108> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:108> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:109> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:109> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:110> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:110> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:201> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:201> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:202> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:202> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:203> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:203> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:204> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:204> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:205> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:205> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:206> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:206> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:207> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:207> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:208> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:208> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:209> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:209> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
 
-<http://example.com/HotelRoom/HotelRoom:room:210> a <https://w3id.org/rec#Room> .
+<http://example.com/HotelRoom/HotelRoom:room:210> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:003> .
+
+<http://example.com/Hotel/Hotel:hotel:aachen:003> a <https://w3id.org/rec#Building> .
 

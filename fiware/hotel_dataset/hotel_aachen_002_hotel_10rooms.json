@@ -21,8 +21,8 @@
     "id": "HotelRoom:room:101",
     "type": "HotelRoom",
     "hasLocation": {
-      "type": "Text",
-      "value": "Hotel:fiware",
+      "type": "Relationship",
+      "value": "Hotel:hotel:aachen:002",
       "metadata": {}
     },
     "name": {
@@ -119,8 +119,8 @@
     "id": "HotelRoom:room:102",
     "type": "HotelRoom",
     "hasLocation": {
-      "type": "Text",
-      "value": "Hotel:fiware",
+      "type": "Relationship",
+      "value": "Hotel:hotel:aachen:002",
       "metadata": {}
     },
     "name": {
@@ -217,8 +217,8 @@
     "id": "HotelRoom:room:103",
     "type": "HotelRoom",
     "hasLocation": {
-      "type": "Text",
-      "value": "Hotel:fiware",
+      "type": "Relationship",
+      "value": "Hotel:hotel:aachen:002",
       "metadata": {}
     },
     "name": {
@@ -315,8 +315,8 @@
     "id": "HotelRoom:room:104",
     "type": "HotelRoom",
     "hasLocation": {
-      "type": "Text",
-      "value": "Hotel:fiware",
+      "type": "Relationship",
+      "value": "Hotel:hotel:aachen:002",
       "metadata": {}
     },
     "name": {
@@ -413,8 +413,8 @@
     "id": "HotelRoom:room:105",
     "type": "HotelRoom",
     "hasLocation": {
-      "type": "Text",
-      "value": "Hotel:fiware",
+      "type": "Relationship",
+      "value": "Hotel:hotel:aachen:002",
       "metadata": {}
     },
     "name": {
@@ -511,8 +511,8 @@
     "id": "HotelRoom:room:201",
     "type": "HotelRoom",
     "hasLocation": {
-      "type": "Text",
-      "value": "Hotel:fiware",
+      "type": "Relationship",
+      "value": "Hotel:hotel:aachen:002",
       "metadata": {}
     },
     "name": {
@@ -609,8 +609,8 @@
     "id": "HotelRoom:room:202",
     "type": "HotelRoom",
     "hasLocation": {
-      "type": "Text",
-      "value": "Hotel:fiware",
+      "type": "Relationship",
+      "value": "Hotel:hotel:aachen:002",
       "metadata": {}
     },
     "name": {
@@ -707,8 +707,8 @@
     "id": "HotelRoom:room:203",
     "type": "HotelRoom",
     "hasLocation": {
-      "type": "Text",
-      "value": "Hotel:fiware",
+      "type": "Relationship",
+      "value": "Hotel:hotel:aachen:002",
       "metadata": {}
     },
     "name": {
@@ -805,8 +805,8 @@
     "id": "HotelRoom:room:204",
     "type": "HotelRoom",
     "hasLocation": {
-      "type": "Text",
-      "value": "Hotel:fiware",
+      "type": "Relationship",
+      "value": "Hotel:hotel:aachen:002",
       "metadata": {}
     },
     "name": {
@@ -903,8 +903,8 @@
     "id": "HotelRoom:room:205",
     "type": "HotelRoom",
     "hasLocation": {
-      "type": "Text",
-      "value": "Hotel:fiware",
+      "type": "Relationship",
+      "value": "Hotel:hotel:aachen:002",
       "metadata": {}
     },
     "name": {

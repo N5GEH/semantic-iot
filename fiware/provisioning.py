@@ -65,12 +65,13 @@ if __name__ == '__main__':
             room_type = instance_dict[instance_id]
             entities_in_room = initialize_room_entities(
                 room_name=room_name,
-                room_type=room_type)
+                room_type=room_type,
+                hotel_id=hotel_fiware.id,
+            )
 
             # Post entities to context broker
-            for entity in entities_in_room:
-                cbc.post_entity(entity=entity, key_values=True)
-                print(f"Successfully posted {entity.id}")
+            cbc.update(entities=entities_in_room, action_type="append",
+                       update_format="keyValues")
 
             # Add relationships to the entities
             add_relationships(entities=entities_in_room, cb_client=cbc)
