@@ -49,7 +49,7 @@ if __name__ == '__main__':
         kg_generator = RDFGenerator(
             mapping_file=f"{project_root_path}/fiware/kgcp/fiware_hotel_rml.ttl",
             source_file=f"{project_root_path}/fiware/hotel_dataset/{hotel}.json",
-            destination_file=f"{project_root_path}/fiware/kgcp/{hotel}.ttl",
+            destination_file=f"{project_root_path}/fiware/kgcp/results/{hotel}.ttl",
             engine="morph-kgc"
         )
         kg_generator.generate_rdf()
