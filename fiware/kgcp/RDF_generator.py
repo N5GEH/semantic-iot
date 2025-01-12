@@ -7,10 +7,21 @@ from memory_profiler import memory_usage
 
 class RDFGenerator:
     def __init__(self,
-                 mapping_file,
-                 source_file,
-                 destination_file,
-                 engine="morph-kgc"):
+                 mapping_file: str,
+                 source_file: str,
+                 destination_file: str,
+                 engine: str = "morph-kgc"):
+        """
+        Generate RDF knowledge graph from a JSON data using RML mapping file.
+        Currently, [morph-kgc, ] RML engines are supported.
+
+        Args:
+            mapping_file: path to the RML mapping file.
+            source_file: path to the JSON data file. It will override the local path or
+                        URL provided in the mapping files.
+            destination_file: path to the output RDF file.
+            engine: name of the RML engine. Default is "morph-kgc".
+        """
         self.mapping_file = mapping_file
         self.source_file = source_file
         self.destination_file = destination_file
@@ -78,6 +89,13 @@ def measure_performance(kg_gen, repetitions=20):
 
 if __name__ == '__main__':
     metrics = dict()
+    # hotel = "hotel_aachen_001_hotel_2rooms"
+    # kg_generator = RDFGenerator(
+    #     mapping_file=f"{project_root_path}/fiware/kgcp/rml/fiware_hotel_rml.ttl",
+    #     source_file=f"{project_root_path}/fiware/hotel_dataset/{hotel}.json",
+    #     destination_file=f"{project_root_path}/fiware/kgcp/results/{hotel}.ttl",
+    #     engine="morph-kgc"
+    # )
 
     for hotel in ("hotel_aachen_004_hotel_100rooms", "hotel_aachen_003_hotel_50rooms",
                   "hotel_aachen_002_hotel_10rooms", "hotel_aachen_001_hotel_2rooms"):
