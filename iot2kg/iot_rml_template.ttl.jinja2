@@ -1,0 +1,46 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix ex: <http://example.com#> .
+@prefix semantic_oh: <http://semantic-openhab.com#> .
+{% for prefix, uri in context.items() -%}
+@prefix {{ prefix }}: <{{ uri }}> .
+{% endfor -%}
+
+{% for relationship in relationships %}
+# Mapping for {{ relationship.nodetype }}
+ex:Mapping{{ relationship.nodetype }}
+    a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "{{ entities_file }}" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator '{{ relationship.iterator }}' ;
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/{{ relationship.nodetype }}/{{'{'}}{{ relationship.identifier }}{{'}'}}" ;
+        rr:class {{ relationship.class }} ;
+    ] ;
+    {% for rel in relationship.hasRelationship -%}
+    {% if rel.relatedAttribute -%}
+    rr:predicateObjectMap [
+        rr:predicate {{ rel.relatedAttribute }} ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:Mapping{{ rel.relatedNodeType }} ;
+            rr:joinCondition [
+                rr:child "{{ rel.rawdataidentifier }}" ;
+                rr:parent "{{ relationship.identifier }}" ;
+            ] ;
+        ] ;
+    ] ;
+    {% endif -%}
+    {% endfor -%}
+    {% if relationship.link -%}
+    rr:predicateObjectMap [
+        rr:predicate rdf:value ;
+        rr:objectMap [
+            rr:template "{{ relationship.link }}" ;
+        ] ;
+    ] ;
+    {% endif -%}
+.
+{% endfor %}
