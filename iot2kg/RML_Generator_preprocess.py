@@ -12,6 +12,7 @@ class MappingPreprocess:
     def __init__(self,
                  json_file_path: str = None,
                  ontology_file_paths: list = None,
+                 preprocessed_file_path: str = None,
                  rdf_node_relationship_file_path: str = None,
                  unique_identifier_key: str = None,
                  entity_type_keys: list = None,
@@ -25,6 +26,7 @@ class MappingPreprocess:
         Args:
             json_file_path: Path to the JSON file containing the entities.
             ontology_file_paths: Paths of ontology  to be used for the mapping.
+            preprocessed_file_path: Path to the preprocessed JSON file.
             unique_identifier_key: unique key to identify node instances, e.g., 'id'. It
                     is assumed that the keys for id are located in the root level of the
                     JSON data. Other cases are not supported yet.
@@ -35,6 +37,13 @@ class MappingPreprocess:
                     node types.
         """
         self.json_file_path = json_file_path
+        if not preprocessed_file_path:
+            # get the path of the json file, change file name to preprocessed.json
+            base_directory = os.path.dirname(
+                self.json_file_path)
+            self.preprocessed_file_path = os.path.join(
+                base_directory,
+                'entities_preprocessed.json')
         if not rdf_node_relationship_file_path:
             # get the path of the json file, change file name to node_relationship.json
             base_directory = os.path.dirname(
@@ -145,6 +154,11 @@ class MappingPreprocess:
                     self.entity_types.add(extra_entity["type"])
         self.entities = new_entities
 
+        # Save the preprocess file
+        with open(self.preprocessed_file_path, 'w') as preprocessed_file:
+            json.dump(self.entities_for_mapping, preprocessed_file, indent=4)
+        print(f"Preprocessed file generated as '{self.preprocessed_file_path}'")
+
     def suggest_class(self, entity_type, uri_to_prefix):
         keyword = entity_type.split("_")[0] if "_" in entity_type else entity_type
         top_matches = []
@@ -192,6 +206,8 @@ class MappingPreprocess:
                                   f"{self.rdf_node_relationship_file_path}. "
                                   f"Set overwrite=True to overwrite the file."
                                   )
+        # drop duplicates
+        self.drop_duplicates()
 
         # create namespaces from ontology prefixes
         context = {}
@@ -234,6 +250,7 @@ if __name__ == '__main__':
     ONTOLOGY_PATHS = [
         f"{project_root_path}/ontologies/Brick.ttl"]
 
+    OUT_PUT_PREPROCESSED_FILE_PATH = None
     # output files
     OUTPUT_FILE_PATH = None
 
