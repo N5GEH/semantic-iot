@@ -3,28 +3,9 @@ import os
 import re
 from rapidfuzz import fuzz
 from rdflib import Graph, RDF, RDFS, OWL
-from settings.config import project_root_path, Controller_index
 from jsonpath_ng import parse
 # from results.eval_computing_resource import ResourceMonitor
 # from utils import validate_folder_path
-
-# input files
-INPUT_FILE_PATH = "D:\Git\ESWC2025_Semantic_IoT\\fiware\kgcp\\rml\example_hotel.json"
-# TODO should support urls
-ONTOLOGY_PATHS = [
-    f"{project_root_path}/ontologies/Brick.ttl"]
-
-# output files
-OUTPUT_FILE_PATH = None
-
-# input parameters
-FORCE = True  # regenerate the RDF node relationship file
-ID_KEY = 'id'  # unique key to identify node instances (e.g., 'id')
-TYPE_KEYS = ['type']  # key(s) to identify node types (e.g.,['category', 'tags'])
-
-# JSON path of specific attributes to create extra node types. For example,
-# ['$..co2','$..temperature', '$..fanSpeed']).
-JSONPATH_EXTRA_NODES = ['fanSpeed','airFlowSetpoint','temperatureSetpoint']
 
 
 class MappingPreprocess:
@@ -246,6 +227,25 @@ class MappingPreprocess:
 
 
 if __name__ == '__main__':
+    from settings.config import project_root_path, Controller_index
+    # input files
+    INPUT_FILE_PATH = "D:\Git\ESWC2025_Semantic_IoT\\fiware\kgcp\\rml\example_hotel.json"
+    # TODO should support urls
+    ONTOLOGY_PATHS = [
+        f"{project_root_path}/ontologies/Brick.ttl"]
+
+    # output files
+    OUTPUT_FILE_PATH = None
+
+    # input parameters
+    FORCE = True  # regenerate the RDF node relationship file
+    ID_KEY = 'id'  # unique key to identify node instances (e.g., 'id')
+    TYPE_KEYS = ['type']  # key(s) to identify node types (e.g.,['category', 'tags'])
+
+    # JSON path of specific attributes to create extra node types. For example,
+    # ['$..co2','$..temperature', '$..fanSpeed']).
+    JSONPATH_EXTRA_NODES = ['fanSpeed', 'airFlowSetpoint', 'temperatureSetpoint']
+
     # Define JSON path, unique identifier key, entity type key(s), and ontology file path
 
     # # Create a ResourceMonitor instance
