@@ -4,10 +4,6 @@ from jinja2 import Environment, FileSystemLoader
 # from results.eval_computing_resource import ResourceMonitor
 # from utils import validate_folder_path
 
-# Define Paths
-INPUT_RNR_FILE_PATH = f"D:\Git\ESWC2025_Semantic_IoT\\fiware\kgcp\\rml\RDF_node_relationship_1_v1.json"
-OUTPUT_RML_FILE_PATH = f"D:\Git\ESWC2025_Semantic_IoT\\fiware\kgcp\\rml\\test.ttl"
-
 
 class RMLMappingGenerator:
     def __init__(self,
@@ -84,32 +80,32 @@ class RMLMappingGenerator:
         print(f"RML Mapping file generated as '{self.output_file}'")
 
 
-if __name__ == '__main__':
-
-    # # Create a ResourceMonitor instance
-    # monitor = ResourceMonitor(log_interval=1,
-    #                           cpu_measure_interval=1)  # Log every 1 second and measure CPU usage over 1 second
-
-    # Start resource monitoring
-    # monitor.start_evaluation()
-
-    # Initialize RMLMappingGenerator class
-    rml_generator = RMLMappingGenerator(
-        rdf_relationship_file=INPUT_RNR_FILE_PATH,
-        output_file=OUTPUT_RML_FILE_PATH
-    )
-
-    # Load RDF relationships and entities
-    rml_generator.load_rdf_node_relationships()
-
-    # Generate mapping file
-    rml_generator.create_mapping_file()
-
-    # # Stop evaluation (record the end time)
-    # monitor.stop_evaluation()
-    #
-    # # Validate and create directory if necessary
-    # validate_folder_path(monitor_resource_dir)
-    #
-    # # Save the logged resources to a CSV file
-    # monitor.save_resources_to_csv(monitor_resource_path)
+# if __name__ == '__main__':
+#
+#     # # Create a ResourceMonitor instance
+#     # monitor = ResourceMonitor(log_interval=1,
+#     #                           cpu_measure_interval=1)  # Log every 1 second and measure CPU usage over 1 second
+#
+#     # Start resource monitoring
+#     # monitor.start_evaluation()
+#
+#     # Initialize RMLMappingGenerator class
+#     rml_generator = RMLMappingGenerator(
+#         rdf_relationship_file=INPUT_RNR_FILE_PATH,
+#         output_file=OUTPUT_RML_FILE_PATH
+#     )
+#
+#     # Load RDF relationships and entities
+#     rml_generator.load_rdf_node_relationships()
+#
+#     # Generate mapping file
+#     rml_generator.create_mapping_file()
+#
+#     # # Stop evaluation (record the end time)
+#     # monitor.stop_evaluation()
+#     #
+#     # # Validate and create directory if necessary
+#     # validate_folder_path(monitor_resource_dir)
+#     #
+#     # # Save the logged resources to a CSV file
+#     # monitor.save_resources_to_csv(monitor_resource_path)

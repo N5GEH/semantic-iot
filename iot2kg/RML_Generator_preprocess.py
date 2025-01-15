@@ -242,61 +242,60 @@ class MappingPreprocess:
               f"{self.rdf_node_relationship_file_path}")
 
 
-if __name__ == '__main__':
-    from settings.config import project_root_path, Controller_index
-    # input files
-    INPUT_FILE_PATH = "D:\Git\ESWC2025_Semantic_IoT\\fiware\kgcp\\rml\example_hotel.json"
-    # TODO should support urls
-    ONTOLOGY_PATHS = [
-        f"{project_root_path}/ontologies/Brick.ttl"]
-
-    OUT_PUT_PREPROCESSED_FILE_PATH = None
-    # output files
-    OUTPUT_FILE_PATH = None
-
-    # input parameters
-    FORCE = True  # regenerate the RDF node relationship file
-    ID_KEY = 'id'  # unique key to identify node instances (e.g., 'id')
-    TYPE_KEYS = ['type']  # key(s) to identify node types (e.g.,['category', 'tags'])
-
-    # JSON path of specific attributes to create extra node types. For example,
-    # ['$..co2','$..temperature', '$..fanSpeed']).
-    JSONPATH_EXTRA_NODES = ['fanSpeed', 'airFlowSetpoint', 'temperatureSetpoint']
-
-    # Define JSON path, unique identifier key, entity type key(s), and ontology file path
-
-    # # Create a ResourceMonitor instance
-    # monitor = ResourceMonitor(log_interval=0.25,
-    #                           cpu_measure_interval=0.25)  # Log every 1 second and measure CPU usage over 1 second
-    #
-    # # Start resource monitoring
-    # monitor.start_evaluation()
-
-    # Initialize the MappingPreprocess class
-    processor = MappingPreprocess(
-        json_file_path=INPUT_FILE_PATH,
-        rdf_node_relationship_file_path=OUTPUT_FILE_PATH,
-        ontology_file_paths=ONTOLOGY_PATHS,
-        unique_identifier_key=ID_KEY,
-        entity_type_keys=TYPE_KEYS,
-        extra_entity_node=JSONPATH_EXTRA_NODES)
-
-    # Load JSON and ontologies
-    processor.load_json_data()
-    processor.load_ontology_prefixes()
-    processor.load_ontology_classes()
-
-    # Preprocess extra nodes
-    processor.preprocess_extra_entities()
-
-    # Generate RDF node relationship file if required
-    processor.create_rdf_node_relationship_file(overwrite=True)
-
-    # # Stop evaluation (record the end time)
-    # monitor.stop_evaluation()
-    #
-    # # Validate and create directory if necessary
-    # validate_folder_path(monitor_resource_dir)
-    #
-    # # Save the logged resources to a CSV file
-    # monitor.save_resources_to_csv(monitor_resource_path)
+# if __name__ == '__main__':
+#     from settings.config import project_root_path, Controller_index
+#     # input files
+#     INPUT_FILE_PATH = "D:\Git\ESWC2025_Semantic_IoT\\fiware\kgcp\\rml\example_hotel.json"
+#     ONTOLOGY_PATHS = [
+#         f"{project_root_path}/ontologies/Brick.ttl"]
+#
+#     OUT_PUT_PREPROCESSED_FILE_PATH = None
+#     # output files
+#     OUTPUT_FILE_PATH = None
+#
+#     # input parameters
+#     FORCE = True  # regenerate the RDF node relationship file
+#     ID_KEY = 'id'  # unique key to identify node instances (e.g., 'id')
+#     TYPE_KEYS = ['type']  # key(s) to identify node types (e.g.,['category', 'tags'])
+#
+#     # JSON path of specific attributes to create extra node types. For example,
+#     # ['$..co2','$..temperature', '$..fanSpeed']).
+#     JSONPATH_EXTRA_NODES = ['fanSpeed', 'airFlowSetpoint', 'temperatureSetpoint']
+#
+#     # Define JSON path, unique identifier key, entity type key(s), and ontology file path
+#
+#     # # Create a ResourceMonitor instance
+#     # monitor = ResourceMonitor(log_interval=0.25,
+#     #                           cpu_measure_interval=0.25)  # Log every 1 second and measure CPU usage over 1 second
+#     #
+#     # # Start resource monitoring
+#     # monitor.start_evaluation()
+#
+#     # Initialize the MappingPreprocess class
+#     processor = MappingPreprocess(
+#         json_file_path=INPUT_FILE_PATH,
+#         rdf_node_relationship_file_path=OUTPUT_FILE_PATH,
+#         ontology_file_paths=ONTOLOGY_PATHS,
+#         unique_identifier_key=ID_KEY,
+#         entity_type_keys=TYPE_KEYS,
+#         extra_entity_node=JSONPATH_EXTRA_NODES)
+#
+#     # Load JSON and ontologies
+#     processor.load_json_data()
+#     processor.load_ontology_prefixes()
+#     processor.load_ontology_classes()
+#
+#     # Preprocess extra nodes
+#     processor.preprocess_extra_entities()
+#
+#     # Generate RDF node relationship file if required
+#     processor.create_rdf_node_relationship_file(overwrite=True)
+#
+#     # # Stop evaluation (record the end time)
+#     # monitor.stop_evaluation()
+#     #
+#     # # Validate and create directory if necessary
+#     # validate_folder_path(monitor_resource_dir)
+#     #
+#     # # Save the logged resources to a CSV file
+#     # monitor.save_resources_to_csv(monitor_resource_path)
