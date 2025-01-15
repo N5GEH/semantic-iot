@@ -260,7 +260,9 @@ def create_connections(entities: List[ContextEntityKeyValues],
 
 
 if __name__ == '__main__':
-
+    """
+    Create the example dataset to set up the KG construction pipeline for FIWARE
+    """
     # initialize clients
     fiware_header = FiwareHeader(service=config.FIWARE_SERVICE,
                                  service_path=config.FIWARE_SERVICE_PATH)
@@ -283,9 +285,9 @@ if __name__ == '__main__':
     # create connections
     add_relationships(entities=entities_hotel, cb_client=cbc)
 
-    room_name = "example_room"
+    example_room_name = "example_room"
     entities_in_room = initialize_room_entities(
-        room_name=room_name,
+        room_name=example_room_name,
         room_type="base")
 
     # Post entities to context broker
@@ -296,7 +298,7 @@ if __name__ == '__main__':
     # Add relationships to the entities
     add_relationships(entities=entities_in_room, cb_client=cbc)
 
-    print(f"Successfully created entity for {room_name}\n")
+    print(f"Successfully created entity for {example_room_name}\n")
 
     # save all entities in a file
     all_entities = cbc.get_entity_list()

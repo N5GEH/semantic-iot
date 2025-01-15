@@ -1,0 +1,9 @@
+{
+  "name": "hotel:aachen:001",
+  "rooms":{
+    "room_type_1": 200,
+    "room_type_2": 100,
+    "room_type_3": 100,
+    "room_type_4": 100
+  }
+}
