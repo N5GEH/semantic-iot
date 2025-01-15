@@ -1,0 +1,2008 @@
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> a brick:Outside_Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:1026/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_1> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_1/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_10> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_10/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_11> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_11/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_11> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_12> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_12/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_12> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_13> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_13/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_13> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_14> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_14/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_14> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_15> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_15/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_15> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_16> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_16/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_16> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_17> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_17/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_17> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_18> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_18/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_18> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_19> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_19/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_19> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_2> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_2/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_20> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_20/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_20> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_21> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_21/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_21> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_22> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_22/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_22> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_23> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_23/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_23> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_24> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_24/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_24> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_25> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_25/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_25> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_3> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_3/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_4> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_4/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_5> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_5/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_6> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_6/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_7> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_7/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_8> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_8/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_9> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_9/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_1> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_1/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_1> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_10> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_10/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_10> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_11> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_11/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_11> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_12> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_12/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_12> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_13> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_13/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_13> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_14> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_14/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_14> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_15> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_15/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_15> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_16> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_16/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_16> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_17> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_17/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_17> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_18> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_18/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_18> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_19> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_19/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_19> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_2> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_2/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_2> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_20> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_20/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_20> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_21> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_21/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_21> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_22> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_22/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_22> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_23> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_23/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_23> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_24> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_24/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_24> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_25> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_25/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_25> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_3> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_3/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_3> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_4> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_4/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_4> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_5> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_5/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_5> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_6> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_6/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_6> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_7> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_7/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_7> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_8> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_8/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_8> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_co2_9> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_9/attrs/co2/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_9> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_10> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_11> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_11> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_12> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_12> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_13> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_13> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_14> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_14> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_15> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_15> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_16> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_16> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_17> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_17> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_18> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_18> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_19> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_19> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_2> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_20> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_20> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_21> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_21> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_22> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_22> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_23> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_23> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_24> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_24> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_25> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_25> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_3> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_4> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_5> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_6> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_7> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_8> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_9> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_1> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_10> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_10> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_11> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_11> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_12> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_12> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_13> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_13> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_14> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_14> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_15> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_15> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_16> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_16> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_17> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_17> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_18> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_18> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_19> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_19> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_2> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_2> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_20> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_20> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_21> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_21> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_22> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_22> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_23> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_23> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_24> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_24> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_25> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_25> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_3> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_3> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_4> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_4> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_5> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_5> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_6> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_6> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_7> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_7> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_8> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_8> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_co2_9> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_9> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_1> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_10> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_10> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_11> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_11> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_12> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_12> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_13> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_13> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_14> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_14> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_15> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_15> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_16> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_16> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_17> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_17> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_18> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_18> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_19> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_19> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_2> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_2> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_20> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_20> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_21> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_21> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_22> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_22> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_23> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_23> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_24> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_24> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_25> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_25> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_3> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_3> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_4> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_4> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_5> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_5> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_6> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_6> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_7> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_7> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_8> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_8> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_presence_9> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_9> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_1> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_10> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_10> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_11> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_11> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_12> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_12> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_13> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_13> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_14> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_14> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_15> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_15> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_16> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_16> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_17> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_17> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_18> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_18> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_19> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_19> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_2> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_2> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_20> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_20> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_21> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_21> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_22> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_22> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_23> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_23> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_24> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_24> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_25> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_25> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_3> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_3> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_4> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_4> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_5> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_5> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_6> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_6> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_7> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_7> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_8> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_8> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_timetable_9> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_9> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_10> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_11> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_11> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_12> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_12> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_13> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_13> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_14> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_14> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_15> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_15> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_16> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_16> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_17> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_17> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_18> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_18> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_19> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_19> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_2> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_20> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_20> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_21> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_21> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_22> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_22> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_23> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_23> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_24> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_24> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_25> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_25> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_3> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_4> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_5> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_6> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_7> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_8> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_9> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_1> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_10> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_10> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_11> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_11> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_12> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_12> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_13> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_13> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_14> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_14> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_15> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_15> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_16> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_16> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_17> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_17> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_18> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_18> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_19> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_19> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_2> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_2> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_20> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_20> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_21> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_21> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_22> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_22> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_23> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_23> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_24> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_24> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_25> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_25> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_3> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_3> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_4> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_4> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_5> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_5> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_6> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_6> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_7> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_7> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_8> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_8> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_9> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_9> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_1> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_10> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_10> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_11> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_11> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_12> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_12> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_13> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_13> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_14> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_14> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_15> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_15> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_16> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_16> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_17> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_17> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_18> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_18> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_19> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_19> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_2> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_2> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_20> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_20> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_21> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_21> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_22> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_22> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_23> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_23> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_24> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_24> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_25> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_25> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_3> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_3> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_4> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_4> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_5> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_5> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_6> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_6> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_7> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_7> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_8> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_8> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_9> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_9> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_1> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_10> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_10> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_11> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_11> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_12> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_12> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_13> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_13> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_14> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_14> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_15> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_15> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_16> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_16> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_17> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_17> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_18> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_18> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_19> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_19> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_2> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_2> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_20> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_20> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_21> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_21> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_22> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_22> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_23> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_23> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_24> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_24> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_25> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_25> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_3> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_3> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_4> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_4> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_5> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_5> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_6> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_6> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_7> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_7> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_8> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_8> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_9> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_9> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_1/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_10> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_10/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_11> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_11/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_11> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_12> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_12/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_12> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_13> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_13/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_13> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_14> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_14/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_14> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_15> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_15/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_15> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_16> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_16/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_16> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_17> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_17/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_17> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_18> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_18/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_18> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_19> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_19/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_19> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_2> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_2/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_20> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_20/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_20> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_21> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_21/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_21> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_22> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_22/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_22> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_23> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_23/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_23> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_24> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_24/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_24> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_25> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_25/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_25> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_3> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_3/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_4> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_4/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_5> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_5/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_6> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_6/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_7> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_7/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_8> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_8/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_9> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_9/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_1/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_1> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_10> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_10/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_10> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_11> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_11/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_11> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_12> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_12/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_12> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_13> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_13/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_13> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_14> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_14/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_14> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_15> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_15/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_15> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_16> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_16/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_16> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_17> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_17/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_17> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_18> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_18/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_18> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_19> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_19/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_19> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_2> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_2/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_2> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_20> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_20/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_20> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_21> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_21/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_21> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_22> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_22/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_22> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_23> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_23/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_23> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_24> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_24/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_24> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_25> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_25/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_25> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_3> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_3/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_3> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_4> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_4/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_4> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_5> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_5/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_5> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_6> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_6/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_6> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_7> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_7/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_7> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_8> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_8/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_8> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_presence_9> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_9/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_9> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_10> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_11> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_11> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_12> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_12> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_13> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_13> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_14> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_14> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_15> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_15> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_16> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_16> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_17> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_17> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_18> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_18> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_19> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_19> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_2> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_20> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_20> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_21> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_21> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_22> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_22> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_23> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_23> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_24> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_24> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_25> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_25> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_3> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_4> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_5> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_6> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_7> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_8> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_9> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_1> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_10> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_10> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_11> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_11> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_12> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_12> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_13> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_13> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_14> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_14> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_15> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_15> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_16> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_16> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_17> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_17> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_18> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_18> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_19> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_19> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_2> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_2> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_20> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_20> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_21> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_21> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_22> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_22> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_23> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_23> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_24> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_24> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_25> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_25> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_3> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_3> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_4> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_4> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_5> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_5> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_6> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_6> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_7> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_7> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_8> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_8> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_9> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_co2_9> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_1> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_10> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_10> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_11> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_11> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_12> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_12> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_13> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_13> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_14> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_14> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_15> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_15> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_16> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_16> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_17> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_17> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_18> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_18> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_19> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_19> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_2> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_2> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_20> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_20> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_21> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_21> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_22> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_22> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_23> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_23> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_24> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_24> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_25> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_25> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_3> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_3> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_4> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_4> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_5> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_5> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_6> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_6> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_7> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_7> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_8> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_8> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_9> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_presence_9> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_1> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_10> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_10> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_11> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_11> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_12> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_12> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_13> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_13> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_14> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_14> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_15> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_15> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_16> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_16> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_17> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_17> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_18> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_18> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_19> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_19> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_2> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_2> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_20> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_20> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_21> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_21> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_22> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_22> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_23> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_23> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_24> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_24> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_25> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_25> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_3> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_3> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_4> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_4> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_5> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_5> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_6> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_6> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_7> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_7> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_8> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_8> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_9> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_9> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_10> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_10/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_11> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_11/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_11> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_12> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_12/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_12> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_13> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_13/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_13> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_14> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_14/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_14> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_15> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_15/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_15> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_16> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_16/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_16> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_17> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_17/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_17> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_18> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_18/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_18> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_19> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_19/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_19> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_2> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_20> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_20/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_20> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_21> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_21/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_21> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_22> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_22/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_22> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_23> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_23/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_23> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_24> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_24/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_24> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_25> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_25/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_25> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_3> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_3/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_4> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_4/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_5> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_5/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_6> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_6/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_7> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_7/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_8> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_8/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_9> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_9/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_1/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_1> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_10> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_10/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_10> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_11> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_11/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_11> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_12> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_12/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_12> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_13> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_13/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_13> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_14> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_14/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_14> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_15> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_15/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_15> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_16> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_16/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_16> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_17> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_17/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_17> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_18> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_18/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_18> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_19> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_19/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_19> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_2> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_2/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_2> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_20> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_20/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_20> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_21> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_21/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_21> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_22> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_22/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_22> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_23> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_23/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_23> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_24> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_24/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_24> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_25> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_25/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_25> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_3> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_3/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_3> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_4> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_4/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_4> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_5> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_5/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_5> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_6> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_6/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_6> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_7> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_7/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_7> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_8> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_8/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_8> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_co2_9> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_9/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_9> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_1/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_1> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_10> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_10/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_10> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_11> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_11/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_11> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_12> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_12/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_12> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_13> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_13/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_13> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_14> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_14/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_14> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_15> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_15/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_15> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_16> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_16/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_16> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_17> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_17/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_17> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_18> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_18/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_18> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_19> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_19/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_19> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_2> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_2/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_2> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_20> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_20/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_20> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_21> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_21/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_21> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_22> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_22/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_22> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_23> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_23/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_23> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_24> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_24/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_24> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_25> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_25/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_25> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_3> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_3/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_3> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_4> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_4/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_4> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_5> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_5/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_5> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_6> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_6/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_6> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_7> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_7/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_7> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_8> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_8/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_8> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_presence_9> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_9/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_9> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_1/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_1> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_10> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_10/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_10> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_11> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_11/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_11> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_12> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_12/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_12> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_13> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_13/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_13> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_14> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_14/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_14> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_15> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_15/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_15> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_16> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_16/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_16> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_17> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_17/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_17> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_18> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_18/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_18> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_19> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_19/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_19> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_2> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_2/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_2> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_20> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_20/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_20> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_21> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_21/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_21> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_22> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_22/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_22> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_23> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_23/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_23> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_24> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_24/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_24> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_25> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_25/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_25> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_3> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_3/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_3> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_4> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_4/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_4> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_5> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_5/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_5> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_6> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_6/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_6> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_7> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_7/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_7> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_8> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_8/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_8> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_9> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_9/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_9> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_1> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_10> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_11> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_12> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_13> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_14> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_15> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_16> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_17> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_18> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_19> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_2> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_20> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_21> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_22> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_23> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_24> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_25> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_3> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_4> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_5> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_6> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_7> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_8> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_timetable_9> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_1> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_10> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_11> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_12> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_13> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_14> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_15> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_16> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_17> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_18> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_19> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_2> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_20> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_21> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_22> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_23> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_24> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_25> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_3> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_4> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_5> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_6> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_7> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_8> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_co2_9> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_1> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_10> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_11> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_12> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_13> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_14> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_15> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_16> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_17> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_18> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_19> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_2> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_20> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_21> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_22> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_23> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_24> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_25> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_3> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_4> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_5> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_6> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_7> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_8> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_presence_9> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_1> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_10> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_11> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_12> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_13> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_14> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_15> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_16> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_17> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_18> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_19> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_2> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_20> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_21> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_22> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_23> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_24> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_25> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_3> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_4> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_5> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_6> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_7> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_8> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_9> a <https://w3id.org/rec#Room> ;
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/Hotel/Hotel:hotel:aachen:001> a <https://w3id.org/rec#Building> .
+
