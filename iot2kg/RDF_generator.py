@@ -25,7 +25,7 @@ class RDFGenerator:
         """
         self.mapping_file = mapping_file
         self.source_file = source_file
-        self.preprocess_file = "./temp.json"
+        self.preprocess_file = os.path.dirname(__file__) + "\\preprocessed.json"
         self.destination_file = destination_file
         self.engine = engine
         self.json_processor = JSONPreprocessorHandler(
@@ -37,6 +37,7 @@ class RDFGenerator:
     def pre_process(self):
         self.json_processor.load_json_data()
         self.json_processor.preprocess_extra_entities()
+        self.json_processor.save_preprocessed_data()
 
     def clean_up(self):
         # remove file self.preprocess_file

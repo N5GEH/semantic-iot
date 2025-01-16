@@ -38,6 +38,8 @@ def measure_performance(kg_gen, repetitions=20):
 
 if __name__ == '__main__':
 
+    measure_metrics = False
+
     metrics = dict()
 
     for hotel in (
@@ -52,26 +54,29 @@ if __name__ == '__main__':
             mapping_file=f"{project_root_path}/fiware/kgcp/rml/fiware_hotel_rml.ttl",
             source_file=f"{project_root_path}/fiware/hotel_dataset/{hotel}.json",
             destination_file=f"{project_root_path}/fiware/kgcp/results/{hotel}.ttl",
-            engine="morph-kgc"
+            engine="morph-kgc",
+            platform_config=f"{project_root_path}/fiware/kgcp/fiware_config.json"
         )
 
-        repeat = 20
-        m_usage, time_usage = measure_performance(kg_generator,
-                                                  repetitions=repeat)
+        if measure_metrics:
+            repeat = 20
+            m_usage, time_usage = measure_performance(kg_generator,
+                                                      repetitions=repeat)
 
-        print(f"memory usage for {hotel} in MiB")
-        print(f"Average: {sum(m_usage)/len(m_usage)}")
-        print(f"Max: {max(m_usage)}")
-        print(f"Min: {min(m_usage)}")
+            print(f"memory usage for {hotel} in MiB")
+            print(f"Average: {sum(m_usage)/len(m_usage)}")
+            print(f"Max: {max(m_usage)}")
+            print(f"Min: {min(m_usage)}")
 
-        print(f"Time usage for {hotel} in second")
-        print(f"Total: {time_usage}")
-        print(f"Average: {time_usage/repeat}")
+            print(f"Time usage for {hotel} in second")
+            print(f"Total: {time_usage}")
+            print(f"Average: {time_usage/repeat}")
 
-        metrics[hotel] = {"memory": m_usage,
-                          "time": time_usage,
-                          "repetitions": repeat}
-        # save metrics as JSON file
-        with open(f"{project_root_path}/fiware/kgcp/results/metrics.json", "w") as f:
-            json.dump(metrics, f, indent=2)
-
+            metrics[hotel] = {"memory": m_usage,
+                              "time": time_usage,
+                              "repetitions": repeat}
+            # save metrics as JSON file
+            with open(f"{project_root_path}/fiware/kgcp/results/metrics.json", "w") as f:
+                json.dump(metrics, f, indent=2)
+        else:
+            kg_generator.generate_rdf()

@@ -185,3 +185,9 @@ class MappingPreprocess:
             json.dump(json_ld_data, preprocessed_file, indent=4)
         print(f"RDF node relationship file generated as "
               f"{self.rdf_node_relationship_file_path}")
+
+    def pre_process(self, **kwargs):
+        self.load_ontology_prefixes()
+        self.load_ontology_classes()
+        self.create_rdf_node_relationship_file(**kwargs)
+
