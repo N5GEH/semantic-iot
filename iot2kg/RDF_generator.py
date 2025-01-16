@@ -1,5 +1,8 @@
+import os
+
 import morph_kgc
 from rdflib import URIRef
+from iot2kg.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandler
 
 
 class RDFGenerator:
@@ -7,6 +10,7 @@ class RDFGenerator:
                  mapping_file: str,
                  source_file: str,
                  destination_file: str,
+                 platform_config: str,
                  engine: str = "morph-kgc"):
         """
         Generate RDF knowledge graph from a JSON data using RML mapping file.
@@ -21,12 +25,28 @@ class RDFGenerator:
         """
         self.mapping_file = mapping_file
         self.source_file = source_file
+        self.preprocess_file = "./temp.json"
         self.destination_file = destination_file
         self.engine = engine
+        self.json_processor = JSONPreprocessorHandler(
+            json_file_path=self.source_file,
+            preprocessed_file_path=self.preprocess_file,
+            platform_config=platform_config
+        ).json_preprocessor
+
+    def pre_process(self):
+        self.json_processor.load_json_data()
+        self.json_processor.preprocess_extra_entities()
+
+    def clean_up(self):
+        # remove file self.preprocess_file
+        os.remove(self.preprocess_file)
 
     def generate_rdf(self):
         if self.engine == "morph-kgc":
+            self.pre_process()
             self.morph_kgc_mapper()
+            self.clean_up()
         else:
             raise ValueError("Invalid engine. Please use 'morph-kgc'")
 
@@ -34,7 +54,7 @@ class RDFGenerator:
         config = f"""
                  [DataSourceJSON]
                  mappings: {self.mapping_file}
-                 file_path: {self.source_file}
+                 file_path: {self.preprocess_file}
              """
         g = morph_kgc.materialize(config)
 
