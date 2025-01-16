@@ -12,6 +12,46 @@
     rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_2/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
 
+<http://example.com/PresenceSensor/PresenceSensor:room_base_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_1/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_2> a brick:Occupancy_Count_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_2/attrs/pir/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_2> a brick:Air_Temperature_Sensor ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value> ;
+    brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_1> .
+
+<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_2> a brick:Air_Flow_Setpoint ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value> ;
+    brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_2> .
+
+<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_1> a brick:Fan_Speed_Command ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_1/attrs/fanSpeed/value> ;
+    brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_1> .
+
+<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_2> a brick:Fan_Speed_Command ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_2/attrs/fanSpeed/value> ;
+    brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_2> .
+
+<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_1> a brick:Temperature_Setpoint ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_1/attrs/temperatureSetpoint/value> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_1> .
+
+<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_2> a brick:Temperature_Setpoint ;
+    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_2/attrs/temperatureSetpoint/value> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_2> .
+
 <http://example.com/CoolingCoil/CoolingCoil:room_base_1> a brick:Cooling_Coil ;
     brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_1> .
 
@@ -24,27 +64,11 @@
 <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_2> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_2> .
 
-<http://example.com/PresenceSensor/PresenceSensor:room_base_1> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_1/attrs/pir/value> ;
-    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
-
-<http://example.com/PresenceSensor/PresenceSensor:room_base_2> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_2/attrs/pir/value> ;
-    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
-
 <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_1> a brick:Thermostat ;
     brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_1> .
 
 <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_2> a brick:Thermostat ;
     brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_2> .
-
-<http://example.com/TemperatureSensor/TemperatureSensor:room_base_1> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value> ;
-    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
-
-<http://example.com/TemperatureSensor/TemperatureSensor:room_base_2> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value> ;
-    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
 
 <http://example.com/Hotel/Hotel:hotel:aachen:001> a <https://w3id.org/rec#Building> .
 
