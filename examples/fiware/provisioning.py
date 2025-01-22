@@ -6,8 +6,8 @@ from filip.models import FiwareHeader
 from filip.utils.cleanup import clear_all
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
-import settings.config as config
-from fiware.datamodels.hotel_provision import initialize_room_entities, \
+import examples.fiware.config as config
+from examples.fiware.datamodels.hotel_provision import initialize_room_entities, \
     add_relationships, TemperatureSensorAmbFiware, HotelFiware
 
 CB_URL = config.CB_URL

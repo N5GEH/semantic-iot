@@ -1,6 +1,6 @@
 import json
 from iot2kg import RDFGenerator
-from settings.config import project_root_path
+from examples.fiware.config import project_root_path
 import time
 from memory_profiler import memory_usage
 
@@ -38,7 +38,7 @@ def measure_performance(kg_gen, repetitions=20):
 
 if __name__ == '__main__':
 
-    measure_metrics = False
+    measure_metrics = True
 
     metrics = dict()
 
@@ -59,6 +59,13 @@ if __name__ == '__main__':
         )
 
         if measure_metrics:
+            # # Create a ResourceMonitor instance
+            # monitor = ResourceMonitor(log_interval=1,
+            #                           cpu_measure_interval=1)  # Log every 1 second, measure cpu percent based on 1s average
+            #
+            # # Start resource monitoring
+            # monitor.start_evaluation()
+
             repeat = 20
             m_usage, time_usage = measure_performance(kg_generator,
                                                       repetitions=repeat)
@@ -78,5 +85,8 @@ if __name__ == '__main__':
             # save metrics as JSON file
             with open(f"{project_root_path}/fiware/kgcp/results/metrics.json", "w") as f:
                 json.dump(metrics, f, indent=2)
+
+            # monitor.stop_evaluation()
+
         else:
             kg_generator.generate_rdf()

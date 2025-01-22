@@ -1,7 +1,7 @@
 from iot2kg import MappingPreprocess
-from settings.config import project_root_path
+from examples.fiware.config import project_root_path
 # input files
-INPUT_FILE_PATH = "D:\Git\ESWC2025_Semantic_IoT\\fiware\kgcp\\rml\example_hotel.json"
+INPUT_FILE_PATH = "/examples/fiware/kgcp/rml/example_hotel.json"
 # TODO should support urls
 ONTOLOGY_PATHS = [
     f"{project_root_path}/ontologies/Brick.ttl"]
