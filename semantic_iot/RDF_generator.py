@@ -8,28 +8,20 @@ from semantic_iot.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandl
 class RDFGenerator:
     def __init__(self,
                  mapping_file: str,
-                 source_file: str,
-                 destination_file: str,
-                 platform_config: str,
-                 engine: str = "morph-kgc"):
+                 platform_config: str):
         """
         Generate RDF knowledge graph from a JSON data using RML mapping file.
-        Currently, [morph-kgc, ] RML engines are supported.
+        Currently, [morph-kgc, ...] RML engines are supported.
 
         Args:
             mapping_file: path to the RML mapping file.
-            source_file: path to the JSON data file. It will override the local path or
-                        URL provided in the mapping files.
-            destination_file: path to the output RDF file.
-            engine: name of the RML engine. Default is "morph-kgc".
+            platform_config: path to the platform configuration file. Check
+                JSONPreprocessor for more details.
         """
         self.mapping_file = mapping_file
-        self.source_file = source_file
         self.preprocess_file = os.path.dirname(__file__) + "\\preprocessed.json"
-        self.destination_file = destination_file
-        self.engine = engine
-        self.json_processor = JSONPreprocessorHandler(
-            json_file_path=self.source_file,
+
+        self.json_processor: JSONPreprocessor = JSONPreprocessorHandler(
             preprocessed_file_path=self.preprocess_file,
             platform_config=platform_config
         ).json_preprocessor
@@ -43,15 +35,21 @@ class RDFGenerator:
         # remove file self.preprocess_file
         os.remove(self.preprocess_file)
 
-    def generate_rdf(self):
-        if self.engine == "morph-kgc":
+    def generate_rdf(self,
+                     source_file: str,
+                     destination_file: str,
+                     engine: str = "morph-kgc"
+                     ):
+        self.json_processor.json_file_path = source_file
+        if engine == "morph-kgc":
             self.pre_process()
-            self.morph_kgc_mapper()
+            self.morph_kgc_mapper(destination_file=destination_file)
             self.clean_up()
         else:
             raise ValueError("Invalid engine. Please use 'morph-kgc'")
 
-    def morph_kgc_mapper(self):
+    def morph_kgc_mapper(self,
+                         destination_file: str):
         config = f"""
                  [DataSourceJSON]
                  mappings: {self.mapping_file}
@@ -66,8 +64,8 @@ class RDFGenerator:
             g.remove((s, p, o))
             g.add((new_s, new_p, new_o))
 
-        g.serialize(destination=self.destination_file, format="turtle")
-        print(f"Namespaces have been added and saved to {self.destination_file}")
+        g.serialize(destination=destination_file, format="turtle")
+        print(f"Namespaces have been added and saved to {destination_file}")
 
     @staticmethod
     def decode_uri(uri):
