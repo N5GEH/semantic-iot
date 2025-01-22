@@ -1,1 +1,4 @@
 /build/
+/examples/fiware/kgcp/rml/rdf_node_relationship.json
+local_test/
+/semantic_iot.egg-info/
