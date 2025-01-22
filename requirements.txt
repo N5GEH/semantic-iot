@@ -5,3 +5,4 @@ rdflib==7.1.1
 reasonable==0.2.6
 Requests==2.32.3
 jsonpath-ng==1.7.0
+morph_kgc==2.8.1
