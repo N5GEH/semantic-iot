@@ -1,5 +1,18 @@
+# Semantic-IoT
+Semantic-IoT is an innovative framework for generating knowledge graphs from data provisioned in IoT platforms.
+It aims to enhance the interoperability across different IoT platforms.
+This framework utilizes the [RDF Mapping Language (RML)](https://rml.io/specs/rml/) to facilitate the mapping of heterogeneous IoT data into structured and expressive knowledge graphs. 
 
-### Docker
+[//]: # (TODO a brief overview of the readme)
+
+
+### Framework Overview
+
+
+### Usage with Python
+...
+
+### Usage with Docker
 For RML preprocessor
 ````shell
 docker run --mount type=bind,source=YOUR_LOCAL_PATH,target=/app/data iot2kg preprocessor \
@@ -21,5 +34,6 @@ docker run \
   --output_rml_file /app/data/output_mapping.ttl
 ````
 
-### Python Environment
-...
+### Demonstration
+
+
