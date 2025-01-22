@@ -110,6 +110,12 @@ class JSONPreprocessorHandler:
                  platform_config: str = None,
                  **keyword_args
                  ):
+        """
+        Parse the platform configuration from json file and instantiate JSONPreprocessor
+
+        Args:
+            platform_config: path to the platform configuration file
+        """
         self.platform_config = platform_config
 
         # load platform config from json file

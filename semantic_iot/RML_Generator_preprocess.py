@@ -4,6 +4,7 @@ import re
 from rapidfuzz import fuzz
 from rdflib import Graph, RDF, RDFS, OWL
 from semantic_iot.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandler
+from pathlib import Path
 
 
 class MappingPreprocess:
@@ -73,6 +74,7 @@ class MappingPreprocess:
     def load_ontology_prefixes(self):
         prefixes = []
         for file_path in self.ontology_file_paths:
+            file_path = Path(file_path)
             with open(file_path, 'r') as file:
                 for line in file:
                     line = line.strip()
