@@ -1,12 +1,15 @@
 # FIWARE settings
 from pathlib import Path
-CB_URL = "http://134.130.166.184:1026"
-FIWARE_SERVICE = 'eswc2025'
+
+# TODO change to valide url to access Orion Context Broker (NGSIv2) of FIWARE
+CB_URL = "http://localhost:1026"
+
+FIWARE_SERVICE = 'fiware_demo'
 FIWARE_SERVICE_PATH = '/'
 
 # others
 LOG_LEVEL = "INFO"
-project_root_path = Path(__file__).parent.parent
+project_root_path = Path(__file__).parent
 
 
 instance_dict = {"room_type_1": "base",

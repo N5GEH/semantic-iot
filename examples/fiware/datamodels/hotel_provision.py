@@ -4,7 +4,7 @@ from filip.models.ngsi_v2.context import ContextEntityKeyValues, \
     ContextAttribute, ContextEntity
 from filip.models.ngsi_v2.subscriptions import Subscription
 from requests import HTTPError
-from examples.fiware.datamodels.pydantic_models import HotelRoomFiware, TemperatureSensorFiware, \
+from datamodels.pydantic_models import HotelRoomFiware, TemperatureSensorFiware, \
     CO2SensorFiware, PresenceSensorFiware, FreshAirVentilationFiware, \
     RadiatorThermostatFiware, CoolingCoilFiware, SensorFiware, ActuatorFiware, \
     HotelFiware, TemperatureSensorAmbFiware
@@ -14,7 +14,7 @@ from filip.clients.ngsi_v2.cb import ContextBrokerClient
 from filip.clients.ngsi_v2.iota import IoTAClient
 from filip.models import FiwareHeader
 from filip.utils.cleanup import clear_all
-import examples.fiware.config as config
+import config as config
 
 
 def initialize_room_entities(room_name: str,
@@ -303,7 +303,7 @@ if __name__ == '__main__':
     # save all entities in a file
     all_entities = cbc.get_entity_list()
     all_entities_serialize = [entity.model_dump() for entity in all_entities]
-    hotel_dataset_path = os.path.join(config.project_root_path, "fiware",
+    hotel_dataset_path = os.path.join(config.project_root_path,
                                       "kgcp", "example_hotel.json")
     with open(hotel_dataset_path, "w") as f:
         json.dump(all_entities_serialize, f, indent=2)

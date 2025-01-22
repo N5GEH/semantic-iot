@@ -1,0 +1,1195 @@
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix ns1: <http://qudt.org/schema/qudt/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/rec#Building> a rdfs:Class,
+        rdfs:Resource,
+        sh:NodeShape ;
+    rdfs:label "Building"^^xsd:string,
+        "Building"@en ;
+    rdfs:comment "A confined building structure."^^xsd:string ;
+    rdfs:subClassOf rdfs:Resource,
+        <https://w3id.org/rec#Architecture>,
+        <https://w3id.org/rec#Building>,
+        <https://w3id.org/rec#Space> .
+
+<https://w3id.org/rec#Room> a rdfs:Class,
+        rdfs:Resource,
+        sh:NodeShape ;
+    rdfs:label "Room"^^xsd:string,
+        "Room"@en ;
+    rdfs:subClassOf rdfs:Resource,
+        <https://w3id.org/rec#Architecture>,
+        <https://w3id.org/rec#Room>,
+        <https://w3id.org/rec#Space> .
+
+<http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> a rdfs:Resource,
+        brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Outside_Air_Temperature_Sensor,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_1> a rdfs:Resource,
+        brick:Air_Quality_Sensor,
+        brick:CO2_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_1/attrs/co2/value> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_10> a rdfs:Resource,
+        brick:Air_Quality_Sensor,
+        brick:CO2_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_10/attrs/co2/value> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_2> a rdfs:Resource,
+        brick:Air_Quality_Sensor,
+        brick:CO2_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_2/attrs/co2/value> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_3> a rdfs:Resource,
+        brick:Air_Quality_Sensor,
+        brick:CO2_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_3/attrs/co2/value> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_4> a rdfs:Resource,
+        brick:Air_Quality_Sensor,
+        brick:CO2_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_4/attrs/co2/value> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_5> a rdfs:Resource,
+        brick:Air_Quality_Sensor,
+        brick:CO2_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_5/attrs/co2/value> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_6> a rdfs:Resource,
+        brick:Air_Quality_Sensor,
+        brick:CO2_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_6/attrs/co2/value> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_7> a rdfs:Resource,
+        brick:Air_Quality_Sensor,
+        brick:CO2_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_7/attrs/co2/value> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_8> a rdfs:Resource,
+        brick:Air_Quality_Sensor,
+        brick:CO2_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_8/attrs/co2/value> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_9> a rdfs:Resource,
+        brick:Air_Quality_Sensor,
+        brick:CO2_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_9/attrs/co2/value> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_1> a rdfs:Resource,
+        brick:Class,
+        brick:Coil,
+        brick:Cooling_Coil,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:Heat_Exchanger,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_10> a rdfs:Resource,
+        brick:Class,
+        brick:Coil,
+        brick:Cooling_Coil,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:Heat_Exchanger,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_2> a rdfs:Resource,
+        brick:Class,
+        brick:Coil,
+        brick:Cooling_Coil,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:Heat_Exchanger,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_3> a rdfs:Resource,
+        brick:Class,
+        brick:Coil,
+        brick:Cooling_Coil,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:Heat_Exchanger,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_4> a rdfs:Resource,
+        brick:Class,
+        brick:Coil,
+        brick:Cooling_Coil,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:Heat_Exchanger,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_5> a rdfs:Resource,
+        brick:Class,
+        brick:Coil,
+        brick:Cooling_Coil,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:Heat_Exchanger,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_6> a rdfs:Resource,
+        brick:Class,
+        brick:Coil,
+        brick:Cooling_Coil,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:Heat_Exchanger,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_7> a rdfs:Resource,
+        brick:Class,
+        brick:Coil,
+        brick:Cooling_Coil,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:Heat_Exchanger,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_8> a rdfs:Resource,
+        brick:Class,
+        brick:Coil,
+        brick:Cooling_Coil,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:Heat_Exchanger,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_9> a rdfs:Resource,
+        brick:Class,
+        brick:Coil,
+        brick:Cooling_Coil,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:Heat_Exchanger,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_1> a rdfs:Resource,
+        brick:Air_System,
+        brick:Class,
+        brick:Collection,
+        brick:Entity,
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        <https://w3id.org/rec#Collection> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_10> a rdfs:Resource,
+        brick:Air_System,
+        brick:Class,
+        brick:Collection,
+        brick:Entity,
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        <https://w3id.org/rec#Collection> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_2> a rdfs:Resource,
+        brick:Air_System,
+        brick:Class,
+        brick:Collection,
+        brick:Entity,
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        <https://w3id.org/rec#Collection> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_3> a rdfs:Resource,
+        brick:Air_System,
+        brick:Class,
+        brick:Collection,
+        brick:Entity,
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        <https://w3id.org/rec#Collection> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_4> a rdfs:Resource,
+        brick:Air_System,
+        brick:Class,
+        brick:Collection,
+        brick:Entity,
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        <https://w3id.org/rec#Collection> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_5> a rdfs:Resource,
+        brick:Air_System,
+        brick:Class,
+        brick:Collection,
+        brick:Entity,
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        <https://w3id.org/rec#Collection> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_6> a rdfs:Resource,
+        brick:Air_System,
+        brick:Class,
+        brick:Collection,
+        brick:Entity,
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        <https://w3id.org/rec#Collection> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_7> a rdfs:Resource,
+        brick:Air_System,
+        brick:Class,
+        brick:Collection,
+        brick:Entity,
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        <https://w3id.org/rec#Collection> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_8> a rdfs:Resource,
+        brick:Air_System,
+        brick:Class,
+        brick:Collection,
+        brick:Entity,
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        <https://w3id.org/rec#Collection> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_9> a rdfs:Resource,
+        brick:Air_System,
+        brick:Class,
+        brick:Collection,
+        brick:Entity,
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        <https://w3id.org/rec#Collection> .
+
+<http://example.com/Hotel/Hotel:hotel:aachen:001> a rdfs:Resource,
+        <https://w3id.org/rec#Architecture>,
+        <https://w3id.org/rec#Building>,
+        <https://w3id.org/rec#Space> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_1> a rdfs:Resource,
+        <https://w3id.org/rec#Architecture>,
+        <https://w3id.org/rec#Room>,
+        <https://w3id.org/rec#Space> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_10> a rdfs:Resource,
+        <https://w3id.org/rec#Architecture>,
+        <https://w3id.org/rec#Room>,
+        <https://w3id.org/rec#Space> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_2> a rdfs:Resource,
+        <https://w3id.org/rec#Architecture>,
+        <https://w3id.org/rec#Room>,
+        <https://w3id.org/rec#Space> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_3> a rdfs:Resource,
+        <https://w3id.org/rec#Architecture>,
+        <https://w3id.org/rec#Room>,
+        <https://w3id.org/rec#Space> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_4> a rdfs:Resource,
+        <https://w3id.org/rec#Architecture>,
+        <https://w3id.org/rec#Room>,
+        <https://w3id.org/rec#Space> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_5> a rdfs:Resource,
+        <https://w3id.org/rec#Architecture>,
+        <https://w3id.org/rec#Room>,
+        <https://w3id.org/rec#Space> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_6> a rdfs:Resource,
+        <https://w3id.org/rec#Architecture>,
+        <https://w3id.org/rec#Room>,
+        <https://w3id.org/rec#Space> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_7> a rdfs:Resource,
+        <https://w3id.org/rec#Architecture>,
+        <https://w3id.org/rec#Room>,
+        <https://w3id.org/rec#Space> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_8> a rdfs:Resource,
+        <https://w3id.org/rec#Architecture>,
+        <https://w3id.org/rec#Room>,
+        <https://w3id.org/rec#Space> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_9> a rdfs:Resource,
+        <https://w3id.org/rec#Architecture>,
+        <https://w3id.org/rec#Room>,
+        <https://w3id.org/rec#Space> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_1> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Occupancy_Count_Sensor,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_1/attrs/pir/value> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_10> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Occupancy_Count_Sensor,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_10/attrs/pir/value> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_2> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Occupancy_Count_Sensor,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_2/attrs/pir/value> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_3> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Occupancy_Count_Sensor,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_3/attrs/pir/value> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_4> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Occupancy_Count_Sensor,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_4/attrs/pir/value> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_5> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Occupancy_Count_Sensor,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_5/attrs/pir/value> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_6> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Occupancy_Count_Sensor,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_6/attrs/pir/value> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_7> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Occupancy_Count_Sensor,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_7/attrs/pir/value> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_8> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Occupancy_Count_Sensor,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_8/attrs/pir/value> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_9> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Occupancy_Count_Sensor,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_9/attrs/pir/value> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_1> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:ICT_Equipment,
+        brick:Sensor_Equipment,
+        brick:Thermostat,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_10> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:ICT_Equipment,
+        brick:Sensor_Equipment,
+        brick:Thermostat,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_2> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:ICT_Equipment,
+        brick:Sensor_Equipment,
+        brick:Thermostat,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_3> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:ICT_Equipment,
+        brick:Sensor_Equipment,
+        brick:Thermostat,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_4> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:ICT_Equipment,
+        brick:Sensor_Equipment,
+        brick:Thermostat,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_5> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:ICT_Equipment,
+        brick:Sensor_Equipment,
+        brick:Thermostat,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_6> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:ICT_Equipment,
+        brick:Sensor_Equipment,
+        brick:Thermostat,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_7> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:ICT_Equipment,
+        brick:Sensor_Equipment,
+        brick:Thermostat,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_8> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:ICT_Equipment,
+        brick:Sensor_Equipment,
+        brick:Thermostat,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_9> a rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:ICT_Equipment,
+        brick:Sensor_Equipment,
+        brick:Thermostat,
+        <https://w3id.org/rec#Asset> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_1> a rdfs:Resource,
+        brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_10> a rdfs:Resource,
+        brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_10/attrs/temperature/value> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_2> a rdfs:Resource,
+        brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_3> a rdfs:Resource,
+        brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_3/attrs/temperature/value> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_4> a rdfs:Resource,
+        brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_4/attrs/temperature/value> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_5> a rdfs:Resource,
+        brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_5/attrs/temperature/value> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_6> a rdfs:Resource,
+        brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_6/attrs/temperature/value> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_7> a rdfs:Resource,
+        brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_7/attrs/temperature/value> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_8> a rdfs:Resource,
+        brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_8/attrs/temperature/value> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_9> a rdfs:Resource,
+        brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_9/attrs/temperature/value> .
+
+brick:Ablutions_Room brick:Relationship <https://w3id.org/rec#Room> ;
+    brick:isReplacedBy <https://w3id.org/rec#Room> .
+
+brick:Air_Wet_Bulb_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Average_Zone_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Building brick:Relationship <https://w3id.org/rec#Building> ;
+    brick:isReplacedBy <https://w3id.org/rec#Building> .
+
+brick:CO2_Differential_Sensor rdfs:subClassOf brick:CO2_Sensor .
+
+brick:CO2_Level_Sensor rdfs:subClassOf brick:CO2_Sensor .
+
+brick:Chilled_Water_Coil rdfs:subClassOf brick:Cooling_Coil .
+
+brick:Coldest_Zone_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Detention_Room brick:Relationship <https://w3id.org/rec#Room> ;
+    brick:isReplacedBy <https://w3id.org/rec#Room> .
+
+brick:Direct_Expansion_Cooling_Coil rdfs:subClassOf brick:Cooling_Coil .
+
+brick:Discharge_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Exhaust_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Freezer brick:Relationship <https://w3id.org/rec#Room> ;
+    brick:isReplacedBy <https://w3id.org/rec#Room> .
+
+brick:Gatehouse brick:Relationship <https://w3id.org/rec#Building> ;
+    brick:isReplacedBy <https://w3id.org/rec#Building> .
+
+brick:Hazardous_Materials_Storage brick:Relationship <https://w3id.org/rec#Room> ;
+    brick:isReplacedBy <https://w3id.org/rec#Room> .
+
+brick:Hospitality_Box brick:Relationship <https://w3id.org/rec#Room> ;
+    brick:isReplacedBy <https://w3id.org/rec#Room> .
+
+brick:Hot_Box brick:Relationship <https://w3id.org/rec#Room> ;
+    brick:isReplacedBy <https://w3id.org/rec#Room> .
+
+brick:Intake_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor,
+        brick:Outside_Air_Temperature_Sensor .
+
+brick:Low_Outside_Air_Temperature_Enable_Differential_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor,
+        brick:Outside_Air_Temperature_Sensor .
+
+brick:Mixed_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Outside_Air_CO2_Sensor rdfs:subClassOf brick:CO2_Sensor .
+
+brick:Outside_Air_Temperature_Enable_Differential_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor,
+        brick:Outside_Air_Temperature_Sensor .
+
+brick:Outside_Air_Wet_Bulb_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor,
+        brick:Outside_Air_Temperature_Sensor .
+
+brick:Parking_Structure brick:Relationship <https://w3id.org/rec#Building> ;
+    brick:isReplacedBy <https://w3id.org/rec#Building> .
+
+brick:Preheat_Discharge_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Preheat_Supply_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Return_Air_CO2_Sensor rdfs:subClassOf brick:CO2_Sensor .
+
+brick:Return_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Riser brick:Relationship <https://w3id.org/rec#Room> ;
+    brick:isReplacedBy <https://w3id.org/rec#Room> .
+
+brick:Room brick:Relationship <https://w3id.org/rec#Room> ;
+    brick:isReplacedBy <https://w3id.org/rec#Room> .
+
+brick:Stage_Riser brick:Relationship <https://w3id.org/rec#Room> ;
+    brick:isReplacedBy <https://w3id.org/rec#Room> .
+
+brick:Supply_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Ticketing_Booth brick:Relationship <https://w3id.org/rec#Building> ;
+    brick:isReplacedBy <https://w3id.org/rec#Building> .
+
+brick:Tunnel brick:Relationship <https://w3id.org/rec#Room> ;
+    brick:isReplacedBy <https://w3id.org/rec#Room> .
+
+brick:Underfloor_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Vertical_Space brick:Relationship <https://w3id.org/rec#Room> ;
+    brick:isReplacedBy <https://w3id.org/rec#Room> .
+
+brick:Warmest_Zone_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Zone_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Zone_CO2_Level_Sensor rdfs:subClassOf brick:CO2_Sensor .
+
+<https://w3id.org/rec#AdmittingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Atrium> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Auditorium> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#BackOffice> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#BarRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Bathroom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Bedroom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#BicycleGarage> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Cabinet> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#CableRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#CafeteriaRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Cinema> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Classroom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#CleaningRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ClimateControlRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#CloakRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ConferenceRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ConversationRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#CookingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#CopyingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#DataServerRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#DiningRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#DisabledToilet> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#DishingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#DressingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#EducationalRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ElectricityRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ElevatorRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ElevatorShaft> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Entrance> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ExerciseRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ExhibitionRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#FittingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#FoodHandlingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Garage> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#GroupRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Hallway> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#HealthcareRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Hospital> rdfs:subClassOf <https://w3id.org/rec#Building> .
+
+<https://w3id.org/rec#Kitchenette> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Laboratory> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#LaboratoryDry> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#LaboratoryWet> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#LaundryRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Library> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#LivingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#LoadingReceivingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Lobby> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#LockerRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Lounge> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#MailRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#MainEntrance> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#MeditationRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Morgue> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#MothersRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#MultiPurposeRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#NeonatalNursingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Office> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#OfficeLandscape> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#OfficeRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#OperatingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#OutpatientServicesRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Pantry> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#PersonalHygiene> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#PharmacyRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#PhoneBooth> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#RadiologyRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Reception> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#RecordingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#RecreationalRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#RestingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#RetailRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Sauna> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#School> rdfs:subClassOf <https://w3id.org/rec#Building> .
+
+<https://w3id.org/rec#SecurityRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ServiceEntrance> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ServiceShaft> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Shelter> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ShelterGasLock> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ShelterRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ShoppingMall> rdfs:subClassOf <https://w3id.org/rec#Building> .
+
+<https://w3id.org/rec#ShowerRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#SmallStudyRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#SprinklerRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Stadium> rdfs:subClassOf <https://w3id.org/rec#Building> .
+
+<https://w3id.org/rec#StaffRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Stairwell> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Storage> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#TeamRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#TelecommunicationRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Theater> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#TherapyRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#ThermostatEquipment> brick:Relationship brick:Thermostat ;
+    brick:isReplacedBy brick:Thermostat .
+
+<https://w3id.org/rec#Toilet> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#TreatmentRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#TreatmentWaitingRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#UtilitiesRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#VirtualBuilding> rdfs:subClassOf <https://w3id.org/rec#Building> .
+
+<https://w3id.org/rec#WasteManagementRoom> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://w3id.org/rec#Workshop> rdfs:subClassOf <https://w3id.org/rec#Room> .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_1/attrs/co2/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_10/attrs/co2/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_2/attrs/co2/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_3/attrs/co2/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_4/attrs/co2/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_5/attrs/co2/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_6/attrs/co2/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_7/attrs/co2/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_8/attrs/co2/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_9/attrs/co2/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_1/attrs/pir/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_10/attrs/pir/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_2/attrs/pir/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_3/attrs/pir/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_4/attrs/pir/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_5/attrs/pir/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_6/attrs/pir/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_7/attrs/pir/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_8/attrs/pir/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_9/attrs/pir/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_10/attrs/temperature/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_3/attrs/temperature/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_4/attrs/temperature/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_5/attrs/temperature/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_6/attrs/temperature/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_7/attrs/temperature/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_8/attrs/temperature/value> a rdfs:Resource .
+
+<https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_9/attrs/temperature/value> a rdfs:Resource .
+
+brick:Outside_Air_Temperature_Sensor a rdfs:Resource,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Outside Air Temperature Sensor"@en ;
+    ns1:hasQuantityKind brick:Temperature ;
+    rdfs:subClassOf brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    skos:definition "Measures the temperature of outside air"@en ;
+    sh:rule [ ],
+        [ ],
+        [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship brick:Outside_Air,
+        brick:Temperature,
+        <https://brickschema.org/schema/BrickTag#Air>,
+        <https://brickschema.org/schema/BrickTag#Outside>,
+        <https://brickschema.org/schema/BrickTag#Point>,
+        <https://brickschema.org/schema/BrickTag#Sensor>,
+        <https://brickschema.org/schema/BrickTag#Temperature> ;
+    brick:hasAssociatedTag <https://brickschema.org/schema/BrickTag#Air>,
+        <https://brickschema.org/schema/BrickTag#Outside>,
+        <https://brickschema.org/schema/BrickTag#Point>,
+        <https://brickschema.org/schema/BrickTag#Sensor>,
+        <https://brickschema.org/schema/BrickTag#Temperature> ;
+    brick:hasQuantity brick:Temperature ;
+    brick:hasSubstance brick:Outside_Air .
+
+brick:Occupancy_Count_Sensor a rdfs:Resource,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Occupancy Count Sensor"@en ;
+    ns1:hasQuantityKind brick:Occupancy_Count ;
+    rdfs:subClassOf brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor ;
+    skos:definition "Sensors measuring the number of people in an area"@en ;
+    sh:property [ ] ;
+    sh:rule [ ],
+        [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship brick:Occupancy_Count,
+        <https://brickschema.org/schema/BrickTag#Count>,
+        <https://brickschema.org/schema/BrickTag#Occupancy>,
+        <https://brickschema.org/schema/BrickTag#Point>,
+        <https://brickschema.org/schema/BrickTag#Sensor> ;
+    brick:hasAssociatedTag <https://brickschema.org/schema/BrickTag#Count>,
+        <https://brickschema.org/schema/BrickTag#Occupancy>,
+        <https://brickschema.org/schema/BrickTag#Point>,
+        <https://brickschema.org/schema/BrickTag#Sensor> ;
+    brick:hasQuantity brick:Occupancy_Count .
+
+brick:Ventilation_Air_System a rdfs:Resource,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Ventilation Air System"@en ;
+    rdfs:subClassOf rdfs:Resource,
+        brick:Air_System,
+        brick:Class,
+        brick:Collection,
+        brick:Entity,
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        <https://w3id.org/rec#Collection> ;
+    skos:definition "The equipment, devices, and conduits that handle the introduction and distribution of ventilation air in the building"@en ;
+    sh:rule [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship <https://brickschema.org/schema/BrickTag#Air>,
+        <https://brickschema.org/schema/BrickTag#System>,
+        <https://brickschema.org/schema/BrickTag#Ventilation> ;
+    brick:hasAssociatedTag <https://brickschema.org/schema/BrickTag#Air>,
+        <https://brickschema.org/schema/BrickTag#System>,
+        <https://brickschema.org/schema/BrickTag#Ventilation> .
+
+brick:Cooling_Coil a rdfs:Resource,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Cooling Coil"@en ;
+    rdfs:subClassOf rdfs:Resource,
+        brick:Class,
+        brick:Coil,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:Heat_Exchanger,
+        <https://w3id.org/rec#Asset> ;
+    skos:definition "A cooling element made of pipe or tube that removes heat from equipment, machines or airflows. Typically filled with either refrigerant or cold water."@en ;
+    sh:rule [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship <https://brickschema.org/schema/BrickTag#Coil>,
+        <https://brickschema.org/schema/BrickTag#Cool>,
+        <https://brickschema.org/schema/BrickTag#Equipment> ;
+    brick:hasAssociatedTag <https://brickschema.org/schema/BrickTag#Coil>,
+        <https://brickschema.org/schema/BrickTag#Cool>,
+        <https://brickschema.org/schema/BrickTag#Equipment> .
+
+brick:Thermostat a rdfs:Resource,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Thermostat"^^xsd:string,
+        "Thermostat"@en ;
+    rdfs:subClassOf rdfs:Resource,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:ICT_Equipment,
+        brick:Sensor_Equipment,
+        <https://w3id.org/rec#Asset> ;
+    skos:definition "An automatic control device used to maintain temperature at a fixed or adjustable setpoint."@en ;
+    sh:rule [ ],
+        [ ] ;
+    brick:Relationship <https://brickschema.org/schema/BrickTag#Equipment>,
+        <https://brickschema.org/schema/BrickTag#Thermostat> ;
+    brick:hasAssociatedTag <https://brickschema.org/schema/BrickTag#Equipment>,
+        <https://brickschema.org/schema/BrickTag#Thermostat> .
+
+brick:CO2_Sensor a rdfs:Resource,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:label "CO2 Sensor"@en ;
+    ns1:hasQuantityKind brick:CO2_Concentration ;
+    rdfs:subClassOf brick:Air_Quality_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor ;
+    skos:definition "Measures properties of CO2 in air"@en ;
+    sh:rule [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship brick:Air,
+        brick:CO2_Concentration,
+        <https://brickschema.org/schema/BrickTag#CO2>,
+        <https://brickschema.org/schema/BrickTag#Point>,
+        <https://brickschema.org/schema/BrickTag#Sensor> ;
+    brick:hasAssociatedTag <https://brickschema.org/schema/BrickTag#CO2>,
+        <https://brickschema.org/schema/BrickTag#Point>,
+        <https://brickschema.org/schema/BrickTag#Sensor> ;
+    brick:hasQuantity brick:CO2_Concentration ;
+    brick:hasSubstance brick:Air .
+
+brick:Air_Temperature_Sensor a rdfs:Resource,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Air Temperature Sensor"@en ;
+    ns1:hasQuantityKind brick:Temperature ;
+    rdfs:subClassOf brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    skos:definition "Measures the temperature of air"@en ;
+    sh:rule [ ],
+        [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship brick:Air,
+        brick:Temperature,
+        <https://brickschema.org/schema/BrickTag#Air>,
+        <https://brickschema.org/schema/BrickTag#Point>,
+        <https://brickschema.org/schema/BrickTag#Sensor>,
+        <https://brickschema.org/schema/BrickTag#Temperature> ;
+    brick:hasAssociatedTag <https://brickschema.org/schema/BrickTag#Air>,
+        <https://brickschema.org/schema/BrickTag#Point>,
+        <https://brickschema.org/schema/BrickTag#Sensor>,
+        <https://brickschema.org/schema/BrickTag#Temperature> ;
+    brick:hasQuantity brick:Temperature ;
+    brick:hasSubstance brick:Air .
+
+[] sh:class <https://w3id.org/rec#Room> .
+

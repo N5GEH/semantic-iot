@@ -1,3 +1,9 @@
+"""
+This script utilizes the datamodels and provision entities based on the configuration for
+hotel dataset in ./hotel_dataset/config. After creating all entities in FIWARE, the data
+will be downloaded to ./hotel_dataset.
+
+"""
 import os
 import json
 import requests
@@ -6,8 +12,8 @@ from filip.models import FiwareHeader
 from filip.utils.cleanup import clear_all
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
-import examples.fiware.config as config
-from examples.fiware.datamodels.hotel_provision import initialize_room_entities, \
+import config as config
+from datamodels.hotel_provision import initialize_room_entities, \
     add_relationships, TemperatureSensorAmbFiware, HotelFiware
 
 CB_URL = config.CB_URL
@@ -25,7 +31,7 @@ if __name__ == '__main__':
     ]
     for config_file in config_files:
         # load config
-        hotels_config_path = os.path.join(config.project_root_path, "fiware",
+        hotels_config_path = os.path.join(config.project_root_path,
                                           "hotel_dataset", "config", config_file)
         with open(hotels_config_path, "r") as f:
             hotel_config = json.load(f)
@@ -95,7 +101,7 @@ if __name__ == '__main__':
         all_entities_serialize = [entity.model_dump() for entity in all_entities]
         meta_info = config_file.split(".")[0]
         dataset_file_name = f"fiware_entities_{meta_info}.json".replace(":", "_")
-        hotel_dataset_path = os.path.join(config.project_root_path, "fiware",
+        hotel_dataset_path = os.path.join(config.project_root_path,
                                           "hotel_dataset",
                                           dataset_file_name)
         with open(hotel_dataset_path, "w") as f:
