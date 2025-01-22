@@ -1,39 +1,36 @@
 # Semantic-IoT
 Semantic-IoT is an innovative framework for generating knowledge graphs from data provisioned in IoT platforms.
 It aims to enhance the interoperability across different IoT platforms.
-This framework utilizes the [RDF Mapping Language (RML)](https://rml.io/specs/rml/) to facilitate the mapping of heterogeneous IoT data into structured and expressive knowledge graphs. 
-
-[//]: # (TODO a brief overview of the readme)
-
+This framework utilizes the [RDF Mapping Language (RML)](https://rml.io/specs/rml/) to facilitate the mapping of heterogeneous IoT data into structured and expressive knowledge graphs.
 
 ### Framework Overview
+Following image gives an overview of the Semantic-IoT framework.
 
+![](.\figures\framework_overview.png "Framework overview")
 
-### Usage with Python
-...
+Its main components are:
 
-### Usage with Docker
-For RML preprocessor
-````shell
-docker run --mount type=bind,source=YOUR_LOCAL_PATH,target=/app/data iot2kg preprocessor \
-    --input_file /app/data/hotel_aachen_004_hotel_100rooms.json \
-    --output_file /app/data/output_rdf_node_relationship.json \
-    --ontology_paths /app/data/Brick.ttl \
-    --force \
-    --id_key id \
-    --type_keys type \
-    --extra_nodes fanSpeed airFlowSetpoint temperatureSetpoint
-````
+**RML Generation**
+- **RML Processor**: processes example dataset of an IoT platform to generate an intermediate document for further usage. This document need to be manually validated and completed.
+- **RML Generator**: generate RML mapping file based on the manual validated document.
 
-For RML generator
-````shell
-docker run \
-  --mount type=bind,source=YOUR_LOCAL_PATH,target=/app/data \
-  iot2kg generator \
-  --input_rnr_file /app/data/YOUR_INPUT_FILE.json \
-  --output_rml_file /app/data/output_mapping.ttl
-````
+**Knowledge Graph Construction Pipeline**
+- **RDF Generator**: utilize the RML mapping file to generate knowledge graphs for any data provisioned in IoT platforms (most likely different platform instances).
 
-### Demonstration
+### Work with Python
+
+#### Installation
+```bash
+git clone https://github.com/N5GEH/semantic-iot.git
+cd semantic-iot
+pip install .
+```
+
+#### Usage
+Please check the [example](examples/fiware) for a detailed instruction on how to use the Semantic-IoT framework with Python. A FIWARE platform specialized for smart hotel use cases is demonstrated. 
+
+### Work with Docker
+Coming soon...
+
 
 
