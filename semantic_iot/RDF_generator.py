@@ -2,7 +2,7 @@ import os
 
 import morph_kgc
 from rdflib import URIRef
-from iot2kg.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandler
+from semantic_iot.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandler
 
 
 class RDFGenerator:

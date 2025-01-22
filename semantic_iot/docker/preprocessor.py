@@ -1,5 +1,5 @@
 import argparse
-from iot2kg import MappingPreprocess
+from semantic_iot import MappingPreprocess
 
 
 def main():

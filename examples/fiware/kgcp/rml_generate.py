@@ -1,4 +1,4 @@
-from iot2kg import RMLMappingGenerator
+from semantic_iot import RMLMappingGenerator
 
 # Define Paths
 INPUT_RNR_FILE_PATH = f"/examples/fiware/kgcp/rml/RDF_node_relationship_validated.json"

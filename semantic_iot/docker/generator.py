@@ -1,5 +1,5 @@
 import argparse
-from iot2kg import RMLMappingGenerator
+from semantic_iot import RMLMappingGenerator
 
 
 def main():

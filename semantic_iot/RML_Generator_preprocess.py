@@ -3,7 +3,7 @@ import os
 import re
 from rapidfuzz import fuzz
 from rdflib import Graph, RDF, RDFS, OWL
-from iot2kg.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandler
+from semantic_iot.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandler
 
 
 class MappingPreprocess:
