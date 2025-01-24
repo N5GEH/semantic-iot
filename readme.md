@@ -6,12 +6,12 @@ This framework utilizes the [RDF Mapping Language (RML)](https://rml.io/specs/rm
 ### Framework Overview
 Following image gives an overview of the Semantic-IoT framework.
 
-![](.\figures\framework_overview.png "Framework overview")
+![](./figures/framework_overview.png)
 
-Its main components are:
+The framework mainly contains:
 
 **RML Generation**
-- **RML Processor**: processes example dataset of an IoT platform to generate an intermediate document for further usage. This document need to be manually validated and completed.
+- **RML Preprocessor**: processes example dataset of an IoT platform to generate an intermediate document for further usage. This document need to be manually validated and completed.
 - **RML Generator**: generate RML mapping file based on the manual validated document.
 
 **Knowledge Graph Construction Pipeline**
