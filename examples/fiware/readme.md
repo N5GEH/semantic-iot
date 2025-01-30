@@ -14,7 +14,7 @@ Additional data sets, representing different IoT systems of the same specialized
 Install semantic-iot framework
 ```bash
 git clone ...
-cd semantic-iot TODO
+cd semantic-iot
 pip install .
 ```
 
