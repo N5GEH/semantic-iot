@@ -169,9 +169,7 @@ class MappingPreprocess:
         for entity in self.entities_for_mapping:
             suggested_class = self.suggest_class(entity['type'], uri_to_prefix)
             relationship = {
-                "identifier": "id",
                 "nodetype": entity['type'],
-                "extraNode": entity['extraNode'],
                 "iterator": f"$[?(@.type=='{entity['type']}')]",
                 "class": f"**TODO: PLEASE CHECK** {suggested_class}",
                 "hasRelationship": [{"relatedNodeType": None,

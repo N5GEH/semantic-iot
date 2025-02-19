@@ -5,7 +5,7 @@ import time
 from memory_profiler import memory_usage
 
 # Flag to decide whether to measure performance metrics
-measure_metrics = True
+measure_metrics = False
 # If measure_metrics is True, the number of repetitions for the performance measurement
 repeat = 20
 
@@ -59,11 +59,11 @@ if __name__ == '__main__':
 
     for hotel in (
             "fiware_entities_2rooms",
-            "fiware_entities_10rooms",
-            "fiware_entities_50rooms",
-            "fiware_entities_100rooms",
-            "fiware_entities_500rooms",
-            "fiware_entities_1000rooms"
+            #"fiware_entities_10rooms",
+            #"fiware_entities_50rooms",
+            #"fiware_entities_100rooms",
+            #"fiware_entities_500rooms",
+            #"fiware_entities_1000rooms"
     ):
         if measure_metrics:
             m_usage, time_usage = measure_performance(

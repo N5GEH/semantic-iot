@@ -59,7 +59,6 @@ class JSONPreprocessor:
                     entity['id'] = entity[self.unique_identifier_key]
                 entity_type = '_'.join(entity_type_values)
                 entity['type'] = entity_type
-                entity['extraNode'] = False
                 entities_for_mapping.append(entity)
                 entity_types.add(entity_type)
             else:
@@ -89,7 +88,6 @@ class JSONPreprocessor:
                     extra_entity = {
                         "id": f"{match.path.fields[0]}_{entity['id']}",
                         "type": f"{match.path.fields[0]}_{entity['type']}",
-                        "extraNode": True,
                         "relatedTo": {"value": entity['id']},
                         match.path.fields[0]: match.value
                     }

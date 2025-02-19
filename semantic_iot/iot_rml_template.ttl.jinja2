@@ -16,7 +16,7 @@ ex:Mapping{{ relationship.nodetype }}
         rml:iterator '{{ relationship.iterator }}' ;
     ] ;
     rr:subjectMap [
-        rr:template "http://example.com/{{ relationship.nodetype }}/{{'{'}}{{ relationship.identifier }}{{'}'}}" ;
+        rr:template "http://example.com/{{ relationship.nodetype }}/{id}" ;
         rr:class {{ relationship.class }} ;
     ] ;
     {% for rel in relationship.hasRelationship -%}
@@ -27,7 +27,7 @@ ex:Mapping{{ relationship.nodetype }}
             rr:parentTriplesMap ex:Mapping{{ rel.relatedNodeType }} ;
             rr:joinCondition [
                 rr:child "{{ rel.rawdataidentifier }}" ;
-                rr:parent "{{ relationship.identifier }}" ;
+                rr:parent "id" ;
             ] ;
         ] ;
     ] ;
