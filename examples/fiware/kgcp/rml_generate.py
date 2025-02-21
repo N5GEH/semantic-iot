@@ -1,13 +1,28 @@
 from semantic_iot import RMLMappingGenerator
-import config
+from pathlib import Path
 import os
 
-# Define Paths
-INPUT_RNR_FILE_PATH = os.path.join(config.project_root_path,
-                                   "kgcp\\rml\\rdf_node_relationship_validated.json")
-OUTPUT_RML_FILE_PATH = os.path.join(config.project_root_path,
-                                    "kgcp\\rml\\fiware_hotel_rml.ttl")
+# Define available validated RDF node relationship files
+VALIDATED_RNR_FILES = {
+    "brick": f"{Path(__file__).resolve().parent.parent}/kgcp/rml/rdf_node_relationship_validated_brick.json",
+    "saref4bldg": f"{Path(__file__).resolve().parent.parent}/kgcp/rml/rdf_node_relationship_validated_saref4bldg.json"
+}
 
+# Ask the user to choose the ontology-related JSON file
+print("Available validated RDF node relationship files:")
+for key in VALIDATED_RNR_FILES.keys():
+    print(f"- {key}")
+
+selected_rnr = input("Enter the RDF node relationship file you want to use (brick/saref4bldg): ").strip().lower()
+
+if selected_rnr not in VALIDATED_RNR_FILES:
+    print(f"Invalid choice. Defaulting to 'brick'.")
+    selected_rnr = "brick"
+
+INPUT_RNR_FILE_PATH = VALIDATED_RNR_FILES[selected_rnr]
+
+# Define output path
+OUTPUT_RML_FILE_PATH = f"{Path(__file__).resolve().parent.parent}/kgcp/rml/fiware_hotel_rml.ttl"
 
 # Initialize RMLMappingGenerator class
 rml_generator = RMLMappingGenerator(
@@ -20,3 +35,5 @@ rml_generator.load_rdf_node_relationships()
 
 # Generate mapping file
 rml_generator.create_mapping_file()
+
+print(f"RML mapping file successfully created using {selected_rnr} ontology!")

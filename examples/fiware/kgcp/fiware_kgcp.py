@@ -1,6 +1,6 @@
 import json
 from semantic_iot import RDFGenerator
-from config import project_root_path
+from pathlib import Path
 import time
 from memory_profiler import memory_usage
 
@@ -53,8 +53,8 @@ if __name__ == '__main__':
 
     # Load the created mapping file and platform configuration to build KGCP for FIWARE
     fiware_kgcp = RDFGenerator(
-        mapping_file=f"{project_root_path}/kgcp/rml/fiware_hotel_rml.ttl",
-        platform_config=f"{project_root_path}/kgcp/fiware_config.json"
+        mapping_file=f"{Path(__file__).resolve().parent.parent}/kgcp/rml/fiware_hotel_rml.ttl",
+        platform_config=f"{Path(__file__).resolve().parent.parent}/kgcp/fiware_config.json"
     )
 
     for hotel in (
@@ -69,8 +69,8 @@ if __name__ == '__main__':
             m_usage, time_usage = measure_performance(
                 rdf_gen=fiware_kgcp,
                 repetitions=repeat,
-                source_file=f"{project_root_path}/hotel_dataset/{hotel}.json",
-                destination_file=f"{project_root_path}/kgcp/results/{hotel}.ttl",
+                source_file=f"{Path(__file__).resolve().parent.parent}/hotel_dataset/{hotel}.json",
+                destination_file=f"{Path(__file__).resolve().parent.parent}/kgcp/results/{hotel}.ttl",
                 engine="morph-kgc"
             )
 
@@ -89,13 +89,13 @@ if __name__ == '__main__':
 
         else:
             fiware_kgcp.generate_rdf(
-                source_file=f"{project_root_path}/hotel_dataset/{hotel}.json",
-                destination_file=f"{project_root_path}/kgcp/results/{hotel}.ttl",
+                source_file=f"{Path(__file__).resolve().parent.parent}/hotel_dataset/{hotel}.json",
+                destination_file=f"{Path(__file__).resolve().parent.parent}/kgcp/results/{hotel}.ttl",
                 engine="morph-kgc"
             )
 
     # Save metrics as JSON file
     time_stamp = time.strftime("%Y_%m_%d-%H_%M_%S")  # current timestamp
     if measure_metrics:
-        with open(f"{project_root_path}/kgcp/results/metrics_{time_stamp}.json", "w") as f:
+        with open(f"{Path(__file__).resolve().parent.parent}/kgcp/results/metrics_{time_stamp}.json", "w") as f:
             json.dump(metrics, f, indent=2)
