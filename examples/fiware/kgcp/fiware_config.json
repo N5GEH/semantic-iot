@@ -6,6 +6,10 @@
     "JSONPATH_EXTRA_NODES": [
         "$..fanSpeed",
         "$..airFlowSetpoint",
-        "$..temperatureSetpoint"
+        "$..temperatureSetpoint",
+        "$..temperature",
+        "$..co2",
+        "$..pir",
+        "$..temperatureAmb"
     ]
 }
