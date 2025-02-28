@@ -29,8 +29,9 @@ pip install .
 #### Usage
 Please check the [example](examples/fiware) for a detailed instruction on how to use the Semantic-IoT framework with Python. A FIWARE platform specialized for smart hotel use cases is demonstrated. 
 
-### Work with Docker
-Coming soon...
+[//]: # (### Work with Docker)
+
+[//]: # (Coming soon...)
 
 
 
