@@ -1,5 +1,5 @@
 from semantic_iot import MappingPreprocess
-import config as config
+import examples.fiware.config as config
 # input files
 INPUT_FILE_PATH = f"{config.project_root_path}/kgcp/rml/example_hotel.json"
 # TODO should support urls

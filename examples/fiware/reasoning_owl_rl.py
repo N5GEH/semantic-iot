@@ -1,6 +1,6 @@
 import rdflib
 import owlrl
-from config import project_root_path
+from examples.fiware.config import project_root_path
 from pathlib import Path
 
 targ_kg = Path(project_root_path).joinpath("kgcp/results/fiware_entities_10rooms.ttl")

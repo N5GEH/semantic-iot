@@ -1,5 +1,5 @@
 from semantic_iot import RMLMappingGenerator
-import config
+import examples.fiware.config as config
 import os
 
 # Define Paths

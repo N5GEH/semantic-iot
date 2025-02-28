@@ -1,6 +1,6 @@
 import json
 from semantic_iot import RDFGenerator
-from config import project_root_path
+from examples.fiware.config import project_root_path
 import time
 from memory_profiler import memory_usage
 

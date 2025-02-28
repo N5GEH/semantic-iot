@@ -4,7 +4,8 @@ from filip.models.ngsi_v2.context import ContextEntityKeyValues, \
     ContextAttribute, ContextEntity
 from filip.models.ngsi_v2.subscriptions import Subscription
 from requests import HTTPError
-from datamodels.pydantic_models import HotelRoomFiware, TemperatureSensorFiware, \
+from examples.fiware.datamodels.pydantic_models import HotelRoomFiware, \
+    TemperatureSensorFiware, \
     CO2SensorFiware, PresenceSensorFiware, FreshAirVentilationFiware, \
     RadiatorThermostatFiware, CoolingCoilFiware, SensorFiware, ActuatorFiware, \
     HotelFiware, TemperatureSensorAmbFiware
@@ -14,7 +15,7 @@ from filip.clients.ngsi_v2.cb import ContextBrokerClient
 from filip.clients.ngsi_v2.iota import IoTAClient
 from filip.models import FiwareHeader
 from filip.utils.cleanup import clear_all
-import config as config
+import examples.fiware.config as config
 
 
 def initialize_room_entities(room_name: str,
