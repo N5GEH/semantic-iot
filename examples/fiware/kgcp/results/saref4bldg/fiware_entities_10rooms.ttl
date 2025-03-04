@@ -1,0 +1,462 @@
+@prefix ns1: <https://saref.etsi.org/core/> .
+@prefix ns2: <https://saref.etsi.org/saref4bldg/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_1> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_1> .
+
+<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_10> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_10> .
+
+<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_2> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_2> .
+
+<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_3> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_3> .
+
+<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_4> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_4> .
+
+<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_5> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_5> .
+
+<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_6> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_6> .
+
+<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_7> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_7> .
+
+<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_8> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_8> .
+
+<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_9> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_9> .
+
+<http://example.com/co2_CO2Sensor/co2_CO2Sensor:room_base_1> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/co2_CO2Sensor:room_base_1/attrs/co2/value> ;
+    ns1:isObservedBy <http://example.com/CO2Sensor/CO2Sensor:room_base_1> .
+
+<http://example.com/co2_CO2Sensor/co2_CO2Sensor:room_base_10> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/co2_CO2Sensor:room_base_10/attrs/co2/value> ;
+    ns1:isObservedBy <http://example.com/CO2Sensor/CO2Sensor:room_base_10> .
+
+<http://example.com/co2_CO2Sensor/co2_CO2Sensor:room_base_2> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/co2_CO2Sensor:room_base_2/attrs/co2/value> ;
+    ns1:isObservedBy <http://example.com/CO2Sensor/CO2Sensor:room_base_2> .
+
+<http://example.com/co2_CO2Sensor/co2_CO2Sensor:room_base_3> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/co2_CO2Sensor:room_base_3/attrs/co2/value> ;
+    ns1:isObservedBy <http://example.com/CO2Sensor/CO2Sensor:room_base_3> .
+
+<http://example.com/co2_CO2Sensor/co2_CO2Sensor:room_base_4> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/co2_CO2Sensor:room_base_4/attrs/co2/value> ;
+    ns1:isObservedBy <http://example.com/CO2Sensor/CO2Sensor:room_base_4> .
+
+<http://example.com/co2_CO2Sensor/co2_CO2Sensor:room_base_5> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/co2_CO2Sensor:room_base_5/attrs/co2/value> ;
+    ns1:isObservedBy <http://example.com/CO2Sensor/CO2Sensor:room_base_5> .
+
+<http://example.com/co2_CO2Sensor/co2_CO2Sensor:room_base_6> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/co2_CO2Sensor:room_base_6/attrs/co2/value> ;
+    ns1:isObservedBy <http://example.com/CO2Sensor/CO2Sensor:room_base_6> .
+
+<http://example.com/co2_CO2Sensor/co2_CO2Sensor:room_base_7> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/co2_CO2Sensor:room_base_7/attrs/co2/value> ;
+    ns1:isObservedBy <http://example.com/CO2Sensor/CO2Sensor:room_base_7> .
+
+<http://example.com/co2_CO2Sensor/co2_CO2Sensor:room_base_8> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/co2_CO2Sensor:room_base_8/attrs/co2/value> ;
+    ns1:isObservedBy <http://example.com/CO2Sensor/CO2Sensor:room_base_8> .
+
+<http://example.com/co2_CO2Sensor/co2_CO2Sensor:room_base_9> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/co2_CO2Sensor:room_base_9/attrs/co2/value> ;
+    ns1:isObservedBy <http://example.com/CO2Sensor/CO2Sensor:room_base_9> .
+
+<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_1> a ns2:Fan ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_1/attrs/fanSpeed/value> ;
+    ns2:isContainedIn <http://example.com/CoolingCoil/CoolingCoil:room_base_1> .
+
+<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_10> a ns2:Fan ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_10/attrs/fanSpeed/value> ;
+    ns2:isContainedIn <http://example.com/CoolingCoil/CoolingCoil:room_base_10> .
+
+<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_2> a ns2:Fan ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_2/attrs/fanSpeed/value> ;
+    ns2:isContainedIn <http://example.com/CoolingCoil/CoolingCoil:room_base_2> .
+
+<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_3> a ns2:Fan ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_3/attrs/fanSpeed/value> ;
+    ns2:isContainedIn <http://example.com/CoolingCoil/CoolingCoil:room_base_3> .
+
+<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_4> a ns2:Fan ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_4/attrs/fanSpeed/value> ;
+    ns2:isContainedIn <http://example.com/CoolingCoil/CoolingCoil:room_base_4> .
+
+<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_5> a ns2:Fan ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_5/attrs/fanSpeed/value> ;
+    ns2:isContainedIn <http://example.com/CoolingCoil/CoolingCoil:room_base_5> .
+
+<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_6> a ns2:Fan ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_6/attrs/fanSpeed/value> ;
+    ns2:isContainedIn <http://example.com/CoolingCoil/CoolingCoil:room_base_6> .
+
+<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_7> a ns2:Fan ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_7/attrs/fanSpeed/value> ;
+    ns2:isContainedIn <http://example.com/CoolingCoil/CoolingCoil:room_base_7> .
+
+<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_8> a ns2:Fan ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_8/attrs/fanSpeed/value> ;
+    ns2:isContainedIn <http://example.com/CoolingCoil/CoolingCoil:room_base_8> .
+
+<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_9> a ns2:Fan ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_9/attrs/fanSpeed/value> ;
+    ns2:isContainedIn <http://example.com/CoolingCoil/CoolingCoil:room_base_9> .
+
+<http://example.com/pir_PresenceSensor/pir_PresenceSensor:room_base_1> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/pir_PresenceSensor:room_base_1/attrs/pir/value> ;
+    ns1:isObservedBy <http://example.com/PresenceSensor/PresenceSensor:room_base_1> .
+
+<http://example.com/pir_PresenceSensor/pir_PresenceSensor:room_base_10> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/pir_PresenceSensor:room_base_10/attrs/pir/value> ;
+    ns1:isObservedBy <http://example.com/PresenceSensor/PresenceSensor:room_base_10> .
+
+<http://example.com/pir_PresenceSensor/pir_PresenceSensor:room_base_2> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/pir_PresenceSensor:room_base_2/attrs/pir/value> ;
+    ns1:isObservedBy <http://example.com/PresenceSensor/PresenceSensor:room_base_2> .
+
+<http://example.com/pir_PresenceSensor/pir_PresenceSensor:room_base_3> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/pir_PresenceSensor:room_base_3/attrs/pir/value> ;
+    ns1:isObservedBy <http://example.com/PresenceSensor/PresenceSensor:room_base_3> .
+
+<http://example.com/pir_PresenceSensor/pir_PresenceSensor:room_base_4> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/pir_PresenceSensor:room_base_4/attrs/pir/value> ;
+    ns1:isObservedBy <http://example.com/PresenceSensor/PresenceSensor:room_base_4> .
+
+<http://example.com/pir_PresenceSensor/pir_PresenceSensor:room_base_5> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/pir_PresenceSensor:room_base_5/attrs/pir/value> ;
+    ns1:isObservedBy <http://example.com/PresenceSensor/PresenceSensor:room_base_5> .
+
+<http://example.com/pir_PresenceSensor/pir_PresenceSensor:room_base_6> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/pir_PresenceSensor:room_base_6/attrs/pir/value> ;
+    ns1:isObservedBy <http://example.com/PresenceSensor/PresenceSensor:room_base_6> .
+
+<http://example.com/pir_PresenceSensor/pir_PresenceSensor:room_base_7> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/pir_PresenceSensor:room_base_7/attrs/pir/value> ;
+    ns1:isObservedBy <http://example.com/PresenceSensor/PresenceSensor:room_base_7> .
+
+<http://example.com/pir_PresenceSensor/pir_PresenceSensor:room_base_8> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/pir_PresenceSensor:room_base_8/attrs/pir/value> ;
+    ns1:isObservedBy <http://example.com/PresenceSensor/PresenceSensor:room_base_8> .
+
+<http://example.com/pir_PresenceSensor/pir_PresenceSensor:room_base_9> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/pir_PresenceSensor:room_base_9/attrs/pir/value> ;
+    ns1:isObservedBy <http://example.com/PresenceSensor/PresenceSensor:room_base_9> .
+
+<http://example.com/temperatureAmb_AmbientTemperatureSensor/temperatureAmb_AmbientTemperatureSensor> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/temperatureAmb_AmbientTemperatureSensor/attrs/temperatureAmb/value> ;
+    ns1:isObservedBy <http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> .
+
+<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_1> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_1/attrs/temperatureSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_1> .
+
+<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_10> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_10/attrs/temperatureSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_10> .
+
+<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_2> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_2/attrs/temperatureSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_2> .
+
+<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_3> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_3/attrs/temperatureSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_3> .
+
+<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_4> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_4/attrs/temperatureSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_4> .
+
+<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_5> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_5/attrs/temperatureSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_5> .
+
+<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_6> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_6/attrs/temperatureSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_6> .
+
+<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_7> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_7/attrs/temperatureSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_7> .
+
+<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_8> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_8/attrs/temperatureSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_8> .
+
+<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_9> a ns2:Actuator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_9/attrs/temperatureSetpoint/value> ;
+    ns2:isContainedIn <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_9> .
+
+<http://example.com/temperature_TemperatureSensor/temperature_TemperatureSensor:room_base_1> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/temperature_TemperatureSensor:room_base_1/attrs/temperature/value> ;
+    ns1:isObservedBy <http://example.com/TemperatureSensor/TemperatureSensor:room_base_1> .
+
+<http://example.com/temperature_TemperatureSensor/temperature_TemperatureSensor:room_base_10> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/temperature_TemperatureSensor:room_base_10/attrs/temperature/value> ;
+    ns1:isObservedBy <http://example.com/TemperatureSensor/TemperatureSensor:room_base_10> .
+
+<http://example.com/temperature_TemperatureSensor/temperature_TemperatureSensor:room_base_2> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/temperature_TemperatureSensor:room_base_2/attrs/temperature/value> ;
+    ns1:isObservedBy <http://example.com/TemperatureSensor/TemperatureSensor:room_base_2> .
+
+<http://example.com/temperature_TemperatureSensor/temperature_TemperatureSensor:room_base_3> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/temperature_TemperatureSensor:room_base_3/attrs/temperature/value> ;
+    ns1:isObservedBy <http://example.com/TemperatureSensor/TemperatureSensor:room_base_3> .
+
+<http://example.com/temperature_TemperatureSensor/temperature_TemperatureSensor:room_base_4> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/temperature_TemperatureSensor:room_base_4/attrs/temperature/value> ;
+    ns1:isObservedBy <http://example.com/TemperatureSensor/TemperatureSensor:room_base_4> .
+
+<http://example.com/temperature_TemperatureSensor/temperature_TemperatureSensor:room_base_5> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/temperature_TemperatureSensor:room_base_5/attrs/temperature/value> ;
+    ns1:isObservedBy <http://example.com/TemperatureSensor/TemperatureSensor:room_base_5> .
+
+<http://example.com/temperature_TemperatureSensor/temperature_TemperatureSensor:room_base_6> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/temperature_TemperatureSensor:room_base_6/attrs/temperature/value> ;
+    ns1:isObservedBy <http://example.com/TemperatureSensor/TemperatureSensor:room_base_6> .
+
+<http://example.com/temperature_TemperatureSensor/temperature_TemperatureSensor:room_base_7> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/temperature_TemperatureSensor:room_base_7/attrs/temperature/value> ;
+    ns1:isObservedBy <http://example.com/TemperatureSensor/TemperatureSensor:room_base_7> .
+
+<http://example.com/temperature_TemperatureSensor/temperature_TemperatureSensor:room_base_8> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/temperature_TemperatureSensor:room_base_8/attrs/temperature/value> ;
+    ns1:isObservedBy <http://example.com/TemperatureSensor/TemperatureSensor:room_base_8> .
+
+<http://example.com/temperature_TemperatureSensor/temperature_TemperatureSensor:room_base_9> a ns1:PropertyValue ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/temperature_TemperatureSensor:room_base_9/attrs/temperature/value> ;
+    ns1:isObservedBy <http://example.com/TemperatureSensor/TemperatureSensor:room_base_9> .
+
+<http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> a ns2:Sensor .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_1> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_10> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_2> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_3> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_4> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_5> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_6> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_7> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_8> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+
+<http://example.com/CO2Sensor/CO2Sensor:room_base_9> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_1> a ns2:Coil ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_10> a ns2:Coil ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_2> a ns2:Coil ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_3> a ns2:Coil ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_4> a ns2:Coil ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_5> a ns2:Coil ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_6> a ns2:Coil ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_7> a ns2:Coil ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_8> a ns2:Coil ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+
+<http://example.com/CoolingCoil/CoolingCoil:room_base_9> a ns2:Coil ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_1> a ns2:Fan ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_10> a ns2:Fan ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_2> a ns2:Fan ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_3> a ns2:Fan ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_4> a ns2:Fan ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_5> a ns2:Fan ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_6> a ns2:Fan ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_7> a ns2:Fan ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_8> a ns2:Fan ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_9> a ns2:Fan ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_1> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_10> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_2> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_3> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_4> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_5> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_6> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_7> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_8> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+
+<http://example.com/PresenceSensor/PresenceSensor:room_base_9> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_1> a ns2:UnitaryControlElement ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_10> a ns2:UnitaryControlElement ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_2> a ns2:UnitaryControlElement ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_3> a ns2:UnitaryControlElement ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_4> a ns2:UnitaryControlElement ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_5> a ns2:UnitaryControlElement ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_6> a ns2:UnitaryControlElement ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_7> a ns2:UnitaryControlElement ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_8> a ns2:UnitaryControlElement ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_9> a ns2:UnitaryControlElement ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_1> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_10> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_2> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_3> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_4> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_5> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_6> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_7> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_8> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_9> a ns2:Sensor ;
+    ns2:isContainedIn <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_1> a ns2:BuildingSpace ;
+    ns2:isSpaceOf <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_10> a ns2:BuildingSpace ;
+    ns2:isSpaceOf <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_2> a ns2:BuildingSpace ;
+    ns2:isSpaceOf <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_3> a ns2:BuildingSpace ;
+    ns2:isSpaceOf <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_4> a ns2:BuildingSpace ;
+    ns2:isSpaceOf <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_5> a ns2:BuildingSpace ;
+    ns2:isSpaceOf <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_6> a ns2:BuildingSpace ;
+    ns2:isSpaceOf <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_7> a ns2:BuildingSpace ;
+    ns2:isSpaceOf <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_8> a ns2:BuildingSpace ;
+    ns2:isSpaceOf <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/HotelRoom/HotelRoom:room_base_9> a ns2:BuildingSpace ;
+    ns2:isSpaceOf <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+
+<http://example.com/Hotel/Hotel:hotel:aachen:001> a ns2:Building .
+
