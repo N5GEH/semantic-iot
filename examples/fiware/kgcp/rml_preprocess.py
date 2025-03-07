@@ -1,16 +1,14 @@
 from semantic_iot import MappingPreprocess
-from pathlib import Path
-project_root_path = Path(__file__).parent.parent
-
+import examples.fiware.config as config
 # input files
-INPUT_FILE_PATH = f"{project_root_path}/kgcp/rml/example_hotel.json"
+INPUT_FILE_PATH = f"{config.project_root_path}/kgcp/rml/example_hotel.json"
 # TODO should support urls
 ONTOLOGY_PATHS = [
-    f"{project_root_path}/ontologies/Brick.ttl"]
+    f"{config.project_root_path}/ontologies/Brick.ttl"]
 # default file name will be used and in the same folder as the input file
 OUTPUT_FILE_PATH = None
 # input parameters
-PLATTFORM_CONFIG = f"{project_root_path}\kgcp\\fiware_config.json"
+PLATTFORM_CONFIG = f"{config.project_root_path}\kgcp\\fiware_config.json"
 
 if __name__ == '__main__':
     # Initialize the MappingPreprocess class
