@@ -74,6 +74,11 @@ class RDFGenerator:
 
     @staticmethod
     def add_namespace(g):
+        """
+        Register extra namespaces, that are not known by the rdflib.
+        If one namespace does not occur in the RDF graph, it
+        will not show up in the final RDF file.
+        """
         # Add missing Namespace for the Knowledge Graph
         semantic_oh = Namespace("http://semantic-openhab.com#")
         rec = Namespace("https://w3id.org/rec#")

@@ -36,6 +36,14 @@ print("Triples number after reasoning:", len(g))
 
 # Filter triples in the reasoned graph based on nodes from the original graph
 g_filtered = rdflib.Graph()
+# TODO figure out why the namespaces are ignored by rdflib. Because they are unknown to the library?
+# Add missing Namespace for the Knowledge Graph
+semantic_oh = rdflib.Namespace("http://semantic-openhab.com#")
+rec = rdflib.Namespace("https://w3id.org/rec#")
+
+g_filtered.bind("rec", rec)
+g_filtered.bind("semantic_oh", semantic_oh)
+
 for s, p, o in g:
     if s in nodes_in_original or o in nodes_in_original:
         g_filtered.add((s, p, o))

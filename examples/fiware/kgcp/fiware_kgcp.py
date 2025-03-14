@@ -59,11 +59,11 @@ if __name__ == '__main__':
 
     for hotel in (
             "fiware_entities_2rooms",
-            #"fiware_entities_10rooms",
-            #"fiware_entities_50rooms",
-            #"fiware_entities_100rooms",
-            #"fiware_entities_500rooms",
-            #"fiware_entities_1000rooms"
+            "fiware_entities_10rooms",
+            "fiware_entities_50rooms",
+            "fiware_entities_100rooms",
+            "fiware_entities_500rooms",
+            "fiware_entities_1000rooms"
     ):
         if measure_metrics:
             m_usage, time_usage = measure_performance(
