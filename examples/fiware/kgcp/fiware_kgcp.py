@@ -1,8 +1,9 @@
 import json
 from semantic_iot import RDFGenerator
-from config import project_root_path
 import time
 from memory_profiler import memory_usage
+from pathlib import Path
+project_root_path = Path(__file__).parent.parent
 
 # Flag to decide whether to measure performance metrics
 measure_metrics = False
