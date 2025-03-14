@@ -11,20 +11,19 @@ In this demonstration, we provide this example data set in JSON format as `./kgc
 Additional data sets, representing different IoT systems of the same specialized IoT platform can be provisioned to a running FIWARE platform via the script `datamodels/hotel_provision.py`. For quick start, we provide a pre-provisioned data under `./hotel_dataset`. If you do like to provision the data by yourself, please deploy the FIWARE platform locally. You can use the docker configuration in `./deployment`.
 
 ### Prerequisites
-Install semantic-iot framework
+Install the semantic-iot framework:
 ```bash
-git clone ...
+git clone https://github.com/N5GEH/semantic-iot.git
 cd semantic-iot
 pip install .
 ```
 
-Please change the working directory to this folder and install dependencies for this demonstration.
+Install extra dependencies needed for this demonstration.
 
 ```bash
-cd examples/fiware
-pip install -r requirements.txt
+pip install -r examples/fiware/requirements.txt
 ```
-> Note: This demonstration currently has dependency issues with the semantic-iot framework. Therefore, you will see some warnings when installing the requirements. However, **you can ignore them**. We are working on fixing this issue.
+> **Note**: This demonstration currently has dependency issues with the `semantic-iot` framework. Therefore, you may see some warnings when installing the requirements. However, **you can ignore them**. We are working on fixing this issue.
 
 ### Step 1 data model identification & vocabulary mapping
 Set up the FIWARE platform specific configuration is the first step.

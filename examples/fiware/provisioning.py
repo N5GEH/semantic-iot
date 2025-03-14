@@ -12,13 +12,18 @@ from filip.models import FiwareHeader
 from filip.utils.cleanup import clear_all
 from requests.adapters import HTTPAdapter
 from urllib3 import Retry
-import config as config
 from datamodels.hotel_provision import initialize_room_entities, \
     add_relationships, TemperatureSensorAmbFiware, HotelFiware
+from pathlib import Path
 
-CB_URL = config.CB_URL
-FIWARE_SERVICE = config.FIWARE_SERVICE
-FIWARE_SERVICE_PATH = config.FIWARE_SERVICE_PATH
+CB_URL = "http://localhost:1026"  # TODO change to valide url to access Orion Context Broker (NGSIv2) of FIWARE
+FIWARE_SERVICE = 'fiware_demo'
+FIWARE_SERVICE_PATH = '/'
+project_root_path = Path(__file__).parent
+instance_dict = {"room_type_1": "base",
+                 "room_type_2": "co2",
+                 "room_type_3": "presence",
+                 "room_type_4": "timetable"}
 
 if __name__ == '__main__':
     config_files = [
@@ -31,7 +36,7 @@ if __name__ == '__main__':
     ]
     for config_file in config_files:
         # load config
-        hotels_config_path = os.path.join(config.project_root_path,
+        hotels_config_path = os.path.join(project_root_path,
                                           "hotel_dataset", "config", config_file)
         with open(hotels_config_path, "r") as f:
             hotel_config = json.load(f)
@@ -80,7 +85,7 @@ if __name__ == '__main__':
         # initialize entities in rooms
         # create dict of type1: base, type2: co2, type3: presence, type4: timetable
         for room_type_id, num in rooms.items():
-            room_type = config.instance_dict[room_type_id]
+            room_type = instance_dict[room_type_id]
             for i in range(1, num + 1):
                 room_name = f"room_{room_type}_{i}"
                 entities_in_room = initialize_room_entities(
@@ -101,7 +106,7 @@ if __name__ == '__main__':
         all_entities_serialize = [entity.model_dump() for entity in all_entities]
         meta_info = config_file.split(".")[0]
         dataset_file_name = f"fiware_entities_{meta_info}.json".replace(":", "_")
-        hotel_dataset_path = os.path.join(config.project_root_path,
+        hotel_dataset_path = os.path.join(project_root_path,
                                           "hotel_dataset",
                                           dataset_file_name)
         with open(hotel_dataset_path, "w") as f:
