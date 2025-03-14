@@ -6,7 +6,7 @@ from pathlib import Path
 project_root_path = Path(__file__).parent.parent
 
 # Flag to decide whether to measure performance metrics
-measure_metrics = True
+measure_metrics = False
 # If measure_metrics is True, the number of repetitions for the performance measurement
 repeat = 20
 

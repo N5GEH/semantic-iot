@@ -50,6 +50,16 @@ ex:MappingAmbientTemperatureSensor
         rr:class brick:Outside_Air_Temperature_Sensor ;
     ] ;
     rr:predicateObjectMap [
+        rr:predicate brick:isPointOf ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:MappingHotel ;
+            rr:joinCondition [
+                rr:child "hasLocation.value" ;
+                rr:parent "id" ;
+            ] ;
+        ] ;
+    ] ;
+    rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
             rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value" ;

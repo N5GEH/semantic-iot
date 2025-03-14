@@ -75,7 +75,8 @@ if __name__ == '__main__':
         # initialize hotel entities
         hotel_fiware = HotelFiware(id=f"Hotel:{hotel_name}", name=hotel_name)
         entities_hotel = [hotel_fiware,
-                          TemperatureSensorAmbFiware(id="AmbientTemperatureSensor")]
+                          TemperatureSensorAmbFiware(id="AmbientTemperatureSensor",
+                                                     hasLocation=hotel_fiware.id)]
         # Post entities to context broker
         cbc.update(entities=entities_hotel, action_type="append",
                    update_format="keyValues")

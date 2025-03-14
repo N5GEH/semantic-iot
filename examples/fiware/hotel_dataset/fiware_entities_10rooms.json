@@ -17,8 +17,8 @@
     "id": "AmbientTemperatureSensor",
     "type": "AmbientTemperatureSensor",
     "hasLocation": {
-      "type": "None",
-      "value": null,
+      "type": "Relationship",
+      "value": "Hotel:hotel:aachen:001",
       "metadata": {}
     },
     "temperatureAmb": {

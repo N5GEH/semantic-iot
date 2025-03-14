@@ -15,6 +15,11 @@
       "type": "Number",
       "value": 0.0,
       "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "Hotel:example_hotel",
+      "metadata": {}
     }
   },
   {
