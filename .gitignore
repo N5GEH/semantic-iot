@@ -2,4 +2,4 @@
 /examples/fiware/kgcp/rml/rdf_node_relationship.json
 local_test/
 /semantic_iot.egg-info/
-/LLM/ANTHROPIC_API_KEY
+/semantic_iot/ANTHROPIC_API_KEY

@@ -5,12 +5,12 @@ import json
 from typing import Dict, Any
 
 from pathlib import Path
-project_root_path = Path(__file__).parent.parent
+project_root_path = Path(__file__).parent
 
 sleep = 5
 
 class ClaudeAPIProcessor:
-    def __init__(self, api_key: str, model: str = "claude-3-5-sonnet-20241022"):
+    def __init__(self, api_key: str = "", model: str = "claude-3-5-sonnet-20241022", use_api: bool = True):
         """
         Initialize the Claude API processor
 
@@ -19,14 +19,21 @@ class ClaudeAPIProcessor:
             model: Claude model to use
         """
         # Get API key
-        if api_key:
-            self.api_key = api_key
-        else:
-            try:
-                with open(f"{project_root_path}/LLM/ANTHROPIC_API_KEY", "r") as f:
-                    self.api_key = f.read().strip()
-            except FileNotFoundError:
-                self.api_key = input("Enter your Anthropic API key: ")
+        self.use_api = use_api
+        if self.use_api:
+            if api_key:
+                self.api_key = api_key
+            else:
+                try:
+                    with open(f"{project_root_path}/ANTHROPIC_API_KEY", "r") as f:
+                        self.api_key = f.read().strip()
+                except FileNotFoundError:
+                    self.api_key = input("Enter your Anthropic API key: ")
+        
+        else: 
+            print("API not used")
+            return
+
 
         self.model = model
         self.base_url = "https://api.anthropic.com/v1/messages"
@@ -42,7 +49,7 @@ class ClaudeAPIProcessor:
 
     def query(self,
                      prompt: str,
-                     step_name: str,
+                     step_name: str = 0,
                      max_retry: int = 5,
                      conversation_history=None) -> Dict[str, Any]:
         """
@@ -57,6 +64,24 @@ class ClaudeAPIProcessor:
         Returns:
             The JSON response from Claude
         """
+        # Check if API is used
+        if not self.use_api:
+            print("Prompt:")
+            print(prompt)
+            response = input("Enter the response: ")
+            result = {
+                "content": [
+                    {
+                        "text": response
+                    }
+                ],
+                "usage": {
+                    "output_tokens": len(response),
+                    "input_tokens": len(prompt)    
+                }
+            }
+            return result
+
         # Use provided conversation history or the instance's history
         messages = conversation_history if conversation_history \
             else self.conversation_history.copy()
@@ -113,6 +138,7 @@ class ClaudeAPIProcessor:
             self.conversation_history = messages
 
         return result
+
 
     def bulk_query(self, prompts_file_path : str, output_file_path : str = "results.json") -> None:
         # Load prompt template

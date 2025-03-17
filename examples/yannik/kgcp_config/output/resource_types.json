@@ -1,0 +1,13 @@
+{
+    "resource_types": [
+        "Hotel",
+        "AmbientTemperatureSensor",
+        "HotelRoom",
+        "TemperatureSensor",
+        "CO2Sensor",
+        "PresenceSensor",
+        "FreshAirVentilation",
+        "RadiatorThermostat",
+        "CoolingCoil"
+    ]
+}

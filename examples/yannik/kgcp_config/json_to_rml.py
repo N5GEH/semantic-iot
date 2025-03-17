@@ -1,117 +1,256 @@
-
-import kgcp.rml_preprocess # input: json example dataset, domain ontology, platform configuration
-import validate # validation: how??
-import kgcp.rml_generate # input: validated json
-
 from pathlib import Path
-project_root_path = Path(__file__).parent.parent
+project_root_path = Path(__file__).parent.parent.parent.parent
+
+# from LLM.claude import ClaudeAPIProcessor
+from semantic_iot.claude import ClaudeAPIProcessor
+claude = ClaudeAPIProcessor(api_key="removed")
+
+from rdflib import Graph, RDF, RDFS, OWL
+import json
+
+"""
+1. Resourcentyp erkennen
+
+2. RML Struktur
+    rml:iterator
+    joinCondition
+
+3. Terminologie mapping input -> Ziel
+    class, predicate (Expertenwissen)
+"""
+
+# Input, Output
+INPUT_JSON_EXAMPLE = f"{project_root_path}/examples/yannik/kgcp_config./input/example_hotel.json"
+INPUT_ONTOLOGIES = [f"{project_root_path}/examples/yannik/kgcp_config/input/Brick.ttl"]
+INPUT_PLATFORM_CONFIG = f"{project_root_path}/examples/yannik/kgcp_config/input/fiware_config.json"
+
+OUTPUT_RML = f"{project_root_path}/examples/yannik/kgcp_config/output/output_rml.ttl"
 
 
-# 1. RML_Generator_Preprocess.py
-# 2. RML_Generator.py
+used_tokens = []
 
-kgcp.rml_preprocess.generate_rnr()
+def calc_min_tokens ():
+    '''Calculate the minimum number of tokens for the input text.'''
+    pass
 
-validate.validate_rdf_node_relationships()
+# JSON Daten verstehen & visualiseren
 
-kgcp.rml_generate.generate_rml()
+def write_to_json_file(data, file_path):
+    with open(file_path, 'w') as file:
+        json.dump(data, file, indent=4)
 
 
-###############
 
 
-from semantic_iot import MappingPreprocess
-from pathlib import Path
-project_root_path = Path(__file__).parent.parent
 
-from LLM.claude import ClaudeAPIProcessor
-claude = ClaudeAPIProcessor()
 
-INPUT_FILE_PATH = f"{project_root_path}/kgcp/rml/example_hotel.json"
-OUTPUT_FILE_PATH = None
-
-ONTOLOGY_PATHS = [f"{project_root_path}/semantic-iot/examples/fiware/ontologies/Brick.ttl"]
-PLATTFORM_CONFIG = f"{project_root_path}\kgcp\\fiware_config.json"
-
-# TODO eigenes LLM aus vorgegebener AI, für Use Case statt Claude API, trainieren?
-# TODO einzelne Schritte mit LLM *zusammenfassen* / Input / Output
-# TODO Tokens abhängig von Textlänge??
-# TODO JSON Daten verstehen & visualiseren
-
-'''
-Preprocess the JSON data to create an 
-"RDF node relationship" file in JSON-LD
-    format. This file will need manual validation and completion. After that, it
-    can be used to generate the RML mapping file with the RMLGenerator.
-
-    Args:
-        json_file_path: Path to the JSON file containing the entities.
-        ontology_file_paths: Paths of ontology  to be used for the mapping.
-        rdf_node_relationship_file_path: Path of the created node relationship file.
-        platform_config: Path to the platform configuration file, in which the
-            following parameters are defined:
-            - unique_identifier_key: unique key to identify node instances, e.g., 'id'. It
-                is assumed that the keys for id are located in the root level of the
-                JSON data. Other cases are not supported yet.
-            - entity_type_keys: key(s) to identify node type, e.g.,['category', 'tags']. It
-                is assumed that the keys for node types are located in the root level
-                of the JSON data. Other cases are not supported yet.
-            - extra_entity_node: JSON path of specific attributes to create extra
-                node types.
-'''
-
-# Step 1: Load Ontology Prefixes
+# Load Ontology
 
 def load_ontology_prefixes() -> str:
-    '''Load the ontology prefixes from the ontology files.'''
-    
-    ontology = []
-    for file_path in ONTOLOGY_PATHS:
+    prefixes = []
+    for file_path in INPUT_ONTOLOGIES:
         file_path = Path(file_path)
-        with open(file_path, 'r', encoding='utf-8') as file:
-            ontology.append(file.read())
-    ontology = "\n".join(ontology)
-    print(ontology)
-
-    prompt = f'''
-        I will give you an ontology. 
-        Extract prefexes from the ontology into a JSON-LD file. 
-        As a response, give me the JSON-LD code, but just containing the prefexes. 
-        This is the ontology: {ontology}
-        '''
-    print(prompt)
-
-    ontology_prefixes = claude.query(
-        prompt=prompt, 
-        step_name="1",
-        conversation_history=None)
-    print(ontology_prefixes)
-    
+        with open(file_path, 'r') as file:
+            for line in file:
+                line = line.strip()
+                if line.startswith('@prefix'):
+                    prefixes.append(line)
+                elif line == '':
+                    break
+    ontology_prefixes = '\n'.join(prefixes)
     return ontology_prefixes
 
+def load_ontology_classes() -> dict:
+    brick_graph = Graph()
+    for file in INPUT_ONTOLOGIES:
+        brick_graph.parse(file, format="ttl")
+
+    ontology_classes = {}
+    for s, p, o in brick_graph.triples((None, RDF.type, OWL.Class)):
+        label = brick_graph.value(subject=s, predicate=RDFS.label)
+        if label:
+            ontology_classes[str(label).lower()] = str(s)
+        else:
+            local_name = s.split("#")[-1] if "#" in s else s.split("/")[-1]
+            ontology_classes[local_name.lower()] = str(s)
+    return ontology_classes
+
+def load_ontology_properties() -> dict:
+    brick_graph = Graph()
+    for file in INPUT_ONTOLOGIES:
+        brick_graph.parse(file, format="ttl")
+
+    ontology_properties = {}
+    for s, p, o in brick_graph.triples((None, RDF.type, OWL.ObjectProperty)):
+        label = brick_graph.value(subject=s, predicate=RDFS.label)
+        if label:
+            ontology_properties[str(label).lower()] = str(s)
+        else:
+            local_name = s.split("#")[-1] if "#" in s else s.split("/")[-1]
+            ontology_properties[local_name.lower()] = str(s)
+    return ontology_properties
 
 ontology_prefixes = load_ontology_prefixes()
-print(ontology_prefixes)
+ontology_classes = load_ontology_classes()
+ontology_properties = load_ontology_properties()
+
+print(f"Ontology Classes: {ontology_classes}")
+print(f"Ontology Properties: {ontology_properties}")
+
+output_path = f"{project_root_path}/examples/yannik/kgcp_config/output/ontology_classes.json"
+write_to_json_file(ontology_classes, output_path)
 
 
 
-# Step 2: Load Ontology Classes
 
+
+
+
+# Load JSON Data
+
+
+
+
+
+def identify_resource_types () -> list:
+    '''Identify the resource types in the JSON data.'''
+    with open(INPUT_JSON_EXAMPLE, 'r') as file:
+        entities = json.load(file)
+    
+    with open(INPUT_PLATFORM_CONFIG, 'r') as file:
+        config = json.load(file)
+    extra_entity_nodes = config.get("JSONPATH_EXTRA_NODES")
+
+    print(f"Extra Entity Nodes: {extra_entity_nodes}")
+
+    goal = "Identify and categorize all resource types present in the provided JSON data structure."
+    context = f"JSON data: {json.dumps(entities, indent=2)} \nExtra Entity Nodes: {extra_entity_nodes}" #f"\nOntology classes available: {list(ontology_classes.keys())[:10]}..."
+    format = "Return exclusively a JSON object with the following structure: {\"resource_types\": [\"type1\", \"type2\", ...]}. Do not return any other text or information."
+    examples = "For example, if the JSON contains temperature sensors and lighting equipment, return: {\"resource_types\": [\"temperature_sensor\", \"lighting\"]}"
+    constraints = "Only identify types that meaningfully represent entities in the data, ignoring generic structural elements."
+    target = "This information will be used for RML mapping generation."
+    role = "Act as an expert in knowledge graph creation and data modeling."
+
+    prompt = f"""
+        GOAL:
+        {goal}
+        
+        CONTEXT:
+        {context}
+        
+        RESPONSE FORMAT:
+        {format}
+        
+        EXAMPLES:
+        {examples}
+        
+        CONSTRAINTS:
+        {constraints}
+        
+        TARGET USE:
+        {target}
+        
+        ROLE:
+        {role}
+        """
+
+    response = claude.query(prompt)
+
+    text = response["content"][0]["text"]
+    tokens = response["usage"]["output_tokens"] + response["usage"]["input_tokens"]
+    
+    try:
+        used_tokens.append(tokens)
+    except:
+        pass
+
+    write_to_json_file(text, f"{project_root_path}/examples/yannik/kgcp_config/output/resource_types.json")
+    return text
+
+relation_types = identify_resource_types()
+
+print(f"Used Tokens: {used_tokens}")
+
+
+
+
+def match_classes () -> dict:
+    '''Match the resource types to the ontology classes.'''
+
+    resource_types = identify_resource_types()
+    ontology_classes = load_ontology_classes()
+
+    # compare 
+    keyword = entity_type.split("_")[0] if "_" in entity_type else entity_type
+    top_matches = []
+
+    for label, uri in self.ontology_classes.items():
+        score = fuzz.ratio(keyword.lower(), label)
+    
+
+    # convert to prefixed URIs
+    def convert_to_prefixed(uri):
+        for prefix_uri, prefix in uri_to_prefix.items():
+            if uri.startswith(prefix_uri):
+                return uri.replace(prefix_uri, prefix + ":")
+        return uri
+
+    context = {}
+    uri_to_prefix = {}  # converted from context
+    prefix_pattern = re.compile(r"@prefix\s+([^:]+):\s*<([^>]+)>")
+    for line in self.ontology_prefixes.splitlines():
+        match = prefix_pattern.match(line)
+        if match:
+            prefix, uri = match.groups()
+            context[prefix] = uri
+            uri_to_prefix[uri] = prefix
+
+
+
+
+    
+    # save to file
+    write_to_json_file(matched_classes, f"{project_root_path}/examples/yannik/kgcp_config/output/matched_classes.json")
+    return matched_classes
+
+
+
+def create_RML():
+
+    def logical_source (type):
+        '''Source: JSON file; select only entities of a specific type.'''
+        rml_source = "placeholder.json"
+        rml_referenceFormulation = "JSONPath"
+        rml_iterator = f'$[?(@.type=="{type}")]' # TODO: rml:iterator eintragen
+        return rml_source, rml_referenceFormulation, rml_iterator
+
+    def subject_map (ont_class):
+        '''Map the JSON entities to RDF subjects.'''
+        template = ""
+        ont_class = ont_class # TODO class # TODO brick or rec namespace
+        return template, ont_class
+
+    def predicate_object_map (relation, object):
+        predicate = relation
+        object = object
+
+        # TODO join Conditions
+
+    # Sensors (Temperature, CO2, Presence) follow one pattern then Control points (fanSpeed, airFlowSetpoint, temperatureSetpoint) follow a different pattern
+
+
+    def object_map ():
+        pass
+
+    def join_condition ():
+        pass
+
+
+    for type in relation_types:
+        
+        pass
+        
+
+# validation
+# rml_generate
 # Step 3: Create RDF Node Relationship File
-
-
-
-
-
-# # Initialize the MappingPreprocess class
-# processor = MappingPreprocess(
-#     json_file_path=INPUT_FILE_PATH,
-#     rdf_node_relationship_file_path=OUTPUT_FILE_PATH,
-#     ontology_file_paths=ONTOLOGY_PATHS,
-#     platform_config=PLATTFORM_CONFIG,
-#     )
-
-# # Load JSON and ontologies
-# processor.pre_process(overwrite=True)
-
-# print("rdf_node_relationship.json generated successfully")
