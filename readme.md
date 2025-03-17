@@ -33,5 +33,11 @@ Please check the [example](examples/fiware) for a detailed instruction on how to
 
 [//]: # (Coming soon...)
 
+## Acknowledgments
 
+We gratefully acknowledge the financial support of the Federal Ministry <br /> 
+for Economic Affairs and Climate Action (BMWK), promotional references 03EN1030B.
+
+<a href="https://www.bmwi.de/Navigation/EN/Home/home.html"> <img alt="BMWK" 
+src="https://raw.githubusercontent.com/RWTH-EBC/FiLiP/master/docs/logos/bmwi_logo_en.png" height="100"> </a>
 
