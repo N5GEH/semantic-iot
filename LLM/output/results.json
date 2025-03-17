@@ -1,0 +1,10 @@
+{
+  "initialize": {
+    "prompt": "What is 1+1?",
+    "response": "1+1 = 2"
+  },
+  "merge_configurations": {
+    "prompt": "What is 2+2?",
+    "response": "2+2 = 4"
+  }
+}
