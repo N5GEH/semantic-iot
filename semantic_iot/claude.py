@@ -92,7 +92,9 @@ class ClaudeAPIProcessor:
         data = {
             "model": self.model,
             "messages": messages,
-            "max_tokens": 4000
+            "max_tokens": 4000,
+            "temperature": 1.0 # "top_p": 1.0
+            
         }
 
         result = None

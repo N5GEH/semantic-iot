@@ -1,46 +1,9 @@
-
-from datetime import datetime
-current_time = datetime.now().strftime("%Y_%m_%d_%H_%M")
-
-from pathlib import Path
-project_root_path = Path(__file__).parent.parent # "Code" Folder
-
 from semantic_iot.claude import ClaudeAPIProcessor
-processor = ClaudeAPIProcessor()
+claude = ClaudeAPIProcessor(api_key="", use_api=True)
 
-result = processor.query(prompt="What is the temperature in the living room?", step_name="1")
+response = claude.query("do you know what data format a get request from the openhub IoT platform is? from where do you have the information? do you understand the information?", step_name="test")
+
+result = response["content"][0]["text"]
+
+# print(response)
 print(result)
-
-PROMPTS = f"{project_root_path}/yannik/LLM/prompts_copy.json"
-OUTPUT = f"{project_root_path}/yannik/LLM/output/results.json"
-
-# processor.bulk_query(
-#     prompts_file_path=PROMPTS, 
-#     output_file_path=OUTPUT)
-
-
-text = result["content"][0]["text"]
-tokens = result["usage"]["output_tokens"] + result["usage"]["input_tokens"]
-
-print("")
-print(text)
-print(tokens)
-
-
-''' Step Results
-{
-'id': 'msg_0183XbAzFGc8MXT5fQstNN7C', 
-'type': 'message', 
-'role': 'assistant', 
-'model': 'claude-3-5-sonnet-20241022', 
-'content': [{
-    'type': 'text', 
-    'text': "I am not able to detect the temperature in your living room or any physical location. I don't have access to temperature sensors or real-time environmental data. To check the temperature in your living room, you would need to look at a thermometer or temperature gauge in that room."}], 
-    'stop_reason': 'end_turn', 
-    'stop_sequence': None, 
-    'usage': {
-        'input_tokens': 16, 
-        'cache_creation_input_tokens': 0, 
-        'cache_read_input_tokens': 0, 
-        'output_tokens': 60}}'
-'''
