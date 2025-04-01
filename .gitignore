@@ -3,3 +3,5 @@
 local_test/
 /semantic_iot.egg-info/
 /semantic_iot/ANTHROPIC_API_KEY
+/bfg.jar
+/patterns.txt
