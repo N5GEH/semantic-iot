@@ -16,7 +16,7 @@ INPUT_PLATFORM_CONFIG = f"{project_root_path}/examples/yannik/kgcp_config/input/
 
 OUTPUT_RML = f"{project_root_path}/examples/yannik/kgcp_config/output/output_rml.ttl"
 
-claude = ClaudeAPIProcessor(api_key="", use_api=False)
+claude = ClaudeAPIProcessor(api_key="", use_api=True)
 used_tokens = []
 
 def calc_min_tokens ():
