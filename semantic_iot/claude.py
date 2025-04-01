@@ -9,6 +9,8 @@ project_root_path = Path(__file__).parent
 
 sleep = 5
 
+# py -m pip install .
+
 class ClaudeAPIProcessor:
     def __init__(self, api_key: str = "", model: str = "claude-3-5-sonnet-20241022", use_api: bool = True):
         """
@@ -28,7 +30,7 @@ class ClaudeAPIProcessor:
                     with open(f"{project_root_path}/ANTHROPIC_API_KEY", "r") as f:
                         self.api_key = f.read().strip()
                 except FileNotFoundError:
-                    self.api_key = input("Enter your Anthropic API key: ")
+                    self.api_key = input(f"Couldn't find API key in {project_root_path}/ANTHROPIC_API_KEY\nEnter your Anthropic API key: ")
         
         else: 
             print("API not used")

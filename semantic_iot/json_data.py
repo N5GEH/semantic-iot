@@ -13,7 +13,7 @@
 import json
 from semantic_iot.claude import ClaudeAPIProcessor
 
-claude = ClaudeAPIProcessor(api_key="", use_api=False)
+claude = ClaudeAPIProcessor(use_api=True)
 
 class JsonData:
     def __init__(self, input_json_path, config_path):
@@ -35,18 +35,14 @@ class JsonData:
 
         prompt = f"""
             GOAL:
-            I will give you a JSON data containing the information of a room. This JSON data is
-            a response of a GET request to the API of an IoT platform, which contains all the
-            available sensors and actuators. Your task is to convert this JSON data into a
-            configuration file for the IoT platform. I will first give you the JSON data and then
-            I will ask you some questions to test your understanding of the JSON data.
-            After that I will introduce you the concepts of the use case and the template I need as
-            end result.
-
-            The provided JSON data structure contains information about a building and its systematic components.
+            I will give you a JSON data containing the information of a building and its systematic components. 
+            This JSON data is a response of a GET request to the API of an IoT platform, which contains all the
+            available sensors and actuators. 
 
             The overall goal is to convert this data in an RDF Format, consisting of 
-            subject, predicate, object. In the following there is a need to generate an RML mapping file with which a RDF graph can be generated.
+            subject, predicate, object. 
+            In the following your task is to generate an RML mapping file 
+            with which a RDF graph can be generated. The file will be processed with morph_kgc.
 
             The information contains uniquely identifiable entities.
             Every entity is an instance of a resource type.
@@ -59,17 +55,18 @@ class JsonData:
             
 
             TASKS:
+            Act as an expert in knowledge graph creation and data modeling.
             Analyse the provided JSON data structure and indentify:
             1. All unique Resource types
             2. For every Resource types the unique types of Relations
-            3. the word that is in front of every unique identifier of an entity
-
-            Identify all resource types present in the provided JSON data structure.
+            3. the word that is in front of every ...
+                ... unique identifier of an entity but not just a special character, but a whole word and
+                ... unique type of relation that this resource has
 
 
             RESPONSE FORMAT:
             Return exclusively a list with two values 
-                the first value is a string that contains the word that is in front of every unique identifier of an entity
+                the first value is a list of two strings from Task 3.
                 the second value is a python dictionary object with
                     the resource types as keys and
                     every unique type of relation that this resource has
@@ -77,22 +74,12 @@ class JsonData:
             
             Do not return any other text or information. 
             Remain case sensitive. 
-
-            CONTEXT:
-            Buildings, building systems
             
 
             DATA:
             JSON data: {json.dumps(entities, indent=2)}
             Extra Entity Nodes: {extra_entity_nodes}
-
             
-            CONSTRAINTS:
-            Only identify types that meaningfully represent entities in the data, 
-            ignoring generic structural elements.
-            
-            ROLE:
-            "Act as an expert in knowledge graph creation and data modeling."
             """
 
         response = claude.query(prompt)
@@ -101,19 +88,89 @@ class JsonData:
         tokens = [response["usage"]["input_tokens"], response["usage"]["output_tokens"]]
         self.used_tokens.append(tokens)    
 
+        print(data)
+        print(tokens)
 
-        self.selector = data[0]
+        y = input("Continue? (Y/N)")
 
-        content_string = data[1].replace("'", "\"")
-        self.content = json.loads(content_string)
 
-        self.resource_types = list(self.content.keys())
+        prompt = f"""
+            Use the information from the previous prompt to create a RML file that can be used to generate a RDF graph.
 
-        self.selector = "type"
-        self.resource_types = """
-            ["Hotel", "AmbientTemperatureSensor", "HotelRoom", "TemperatureSensor", "CO2Sensor", "PresenceSensor", "FreshAirVentilation", "RadiatorThermostat", "CoolingCoil"]}
-            """
+            1. Target ontology: 
+                Brick Schema (prefix: brick, URI: https://brickschema.org/schema/Brick#)
 
-        print(f"Selector: {self.selector}")
-        print(f"Resource Types: {self.resource_types}")
-        print(f"Used Tokens: {self.used_tokens}")
+            2. Base URI pattern:
+                http://example.com/
+                entity identification pattern: http://example.com/{{entityType}}/{{entityID}}
+
+            3. Relationship mappings: # TODO 
+                Relationships between two entities use Brick ontology predicates.
+                and are implemented using rml:joinCondition
+
+            4. Sensors:
+                Sensor values as direct properties using rdf:value predicates that point to URIs
+                Values are accessed via template URLs: https://fiware.eonerc.rwth-aachen.de/v2/entities/{{id}}/attrs/{{attribute}}/value
+            
+            5. Classes mappings:
+                Entity types are mapped to specific Brick classes (e.g., "TemperatureSensor" → brick)
+
+            6. Output format preferences:
+                mapping using standard R2RML / RML syntax
+                RML generation tool: morph_kgc
+                Output format: .ttl file
+
+            7. Source data access method:
+                Source is specified as "placeholder.json" in each logical source
+                Implement the logical source using rml:iterator
+
+            8. Execution environment:
+                morph_kgc is installed and available in the execution environment
+                JSONPath is used as the reference formulation (ql)
+                Iterators are defined to select entities by type
+
+            Try to generate the RML file with the given information.
+            
+            Regarding the corresponding Brick classes and properties:
+            An engineer needs to know the exact classes and properties matching the entities and relationships in the JSON data.
+            Make a list of every entity type and relation type that you need a matching class or property for.
+            In the generated RML file add a placeholder instead of the class or property.
+            The engineer will replace the placeholder with the correct class or property.
+
+            
+            If there is any doubt or missing information, ask for clarification.
+            Proceed anyways and output the results.
+
+        """
+
+        response = claude.query(prompt)
+
+        data = response["content"][0]["text"]
+        tokens = [response["usage"]["input_tokens"], response["usage"]["output_tokens"]]
+        self.used_tokens.append(tokens)
+
+        print(data)
+        print(tokens)
+
+        # self.selector = data[0]
+
+        # content_string = data[1].replace("'", "\"")
+        # self.content = json.loads(content_string)
+
+        # self.resource_types = list(self.content.keys())
+
+        # self.selector = "type"
+        # self.resource_types = """
+        #     ["Hotel", "AmbientTemperatureSensor", "HotelRoom", "TemperatureSensor", "CO2Sensor", "PresenceSensor", "FreshAirVentilation", "RadiatorThermostat", "CoolingCoil"]}
+        #     """
+
+        # print(f"Selector: {self.selector}")
+        # print(f"Resource Types: {self.resource_types}")
+        # print(f"Used Tokens: {self.used_tokens}")
+
+if __name__ == "__main__":
+    INPUT_JSON_EXAMPLE = f"examples/yannik/kgcp_config/input/example_hotel.json"
+    INPUT_PLATFORM_CONFIG = f"examples/yannik/kgcp_config/input/fiware_config.json"
+
+    json_data = JsonData(input_json_path=INPUT_JSON_EXAMPLE, config_path=INPUT_PLATFORM_CONFIG)
+    json_data.identify_resource_types()
