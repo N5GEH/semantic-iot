@@ -7,7 +7,7 @@ project_root_path = Path(__file__).parent.parent.parent.parent
 from semantic_iot.claude import ClaudeAPIProcessor
 from semantic_iot.ontology_loader import OntologyData
 from semantic_iot.json_data import JsonData
-from semantic_iot.map_json_to_ont import mapJsonToOnt
+from semantic_iot.terminology_mapping import termMapping
 from semantic_iot.rml_generator_ import RMLGenerator
 
 INPUT_JSON_EXAMPLE = f"{project_root_path}/examples/yannik/kgcp_config./input/example_hotel.json"
