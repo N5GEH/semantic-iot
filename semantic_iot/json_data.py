@@ -59,8 +59,8 @@ class JsonData:
             Analyse the provided JSON data structure and indentify:
             1. All unique Resource types
             2. For every Resource types the unique types of Relations
-            3. the word that is in front of every ...
-                ... unique identifier of an entity but not just a special character, but a whole word and
+            3. the name of the ...
+                ... unique identifier of an entity
                 ... unique type of relation that this resource has
 
 
@@ -104,12 +104,13 @@ class JsonData:
                 http://example.com/
                 entity identification pattern: http://example.com/{{entityType}}/{{entityID}}
 
-            3. Relationship mappings: # TODO 
-                Relationships between two entities use Brick ontology predicates.
-                and are implemented using rml:joinCondition
+            3. Relationship mappings:
+                Relationships use Brick ontology predicates.
+                Relationships between two entities are implemented using a parentTriplesMap with a rml:joinCondition,
+                  so that the nodes of the knowledge graph are connected.
 
             4. Sensors:
-                Sensor values as direct properties using rdf:value predicates that point to URIs
+                Implement sensor values as direct properties using rdf:value predicates that point to URIs
                 Values are accessed via template URLs: https://fiware.eonerc.rwth-aachen.de/v2/entities/{{id}}/attrs/{{attribute}}/value
             
             5. Classes mappings:
@@ -129,7 +130,8 @@ class JsonData:
                 JSONPath is used as the reference formulation (ql)
                 Iterators are defined to select entities by type
 
-            Try to generate the RML file with the given information.
+            Generate the RML file with the given information.
+            Follow a correct syntax and structure for the RML file.
             
             Regarding the corresponding Brick classes and properties:
             An engineer needs to know the exact classes and properties matching the entities and relationships in the JSON data.
@@ -169,7 +171,8 @@ class JsonData:
         # print(f"Used Tokens: {self.used_tokens}")
 
 if __name__ == "__main__":
-    INPUT_JSON_EXAMPLE = f"examples/yannik/kgcp_config/input/example_hotel.json"
+    INPUT_JSON_EXAMPLE = f"examples\yannik\kgcp_config\input\example_fiware_v1.json"
+    
     INPUT_PLATFORM_CONFIG = f"examples/yannik/kgcp_config/input/fiware_config.json"
 
     json_data = JsonData(input_json_path=INPUT_JSON_EXAMPLE, config_path=INPUT_PLATFORM_CONFIG)

@@ -3,6 +3,7 @@
 @prefix rml: <http://semweb.mmlab.be/ns/rml#>.
 @prefix ql: <http://semweb.mmlab.be/ns/ql#>.
 @prefix brick: <https://brickschema.org/schema/Brick#>.
+@prefix ex: <http://example.com/>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 
@@ -14,11 +15,38 @@
     ];
     rr:subjectMap [
         rr:template "http://example.com/Hotel/{id}";
-        rr:class brick:BRICK_HOTEL_CLASS
+        rr:class BRICK_HOTEL_CLASS
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_NAME_PROPERTY;
+        rr:predicate BRICK_NAME_PROPERTY;
         rr:objectMap [ rml:reference "name.value" ]
+    ].
+
+<#AmbientTemperatureSensorMapping>
+    rml:logicalSource [
+        rml:source "placeholder.json";
+        rml:referenceFormulation ql:JSONPath;
+        rml:iterator "$[?(@.type=='AmbientTemperatureSensor')]"
+    ];
+    rr:subjectMap [
+        rr:template "http://example.com/AmbientTemperatureSensor/{id}";
+        rr:class BRICK_AMBIENT_TEMPERATURE_SENSOR_CLASS
+    ];
+    rr:predicateObjectMap [
+        rr:predicate BRICK_HAS_LOCATION_PROPERTY;
+        rr:objectMap [
+            rr:parentTriplesMap <#HotelMapping>;
+            rr:joinCondition [
+                rr:child "hasLocation.value";
+                rr:parent "id"
+            ]
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate rdf:value;
+        rr:objectMap [
+            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value"
+        ]
     ].
 
 <#HotelRoomMapping>
@@ -29,10 +57,20 @@
     ];
     rr:subjectMap [
         rr:template "http://example.com/HotelRoom/{id}";
-        rr:class brick:BRICK_HOTELROOM_CLASS
+        rr:class BRICK_HOTEL_ROOM_CLASS
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_NAME_PROPERTY;
+        rr:predicate BRICK_HAS_LOCATION_PROPERTY;
+        rr:objectMap [
+            rr:parentTriplesMap <#HotelMapping>;
+            rr:joinCondition [
+                rr:child "hasLocation.value";
+                rr:parent "id"
+            ]
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate BRICK_NAME_PROPERTY;
         rr:objectMap [ rml:reference "name.value" ]
     ].
 
@@ -44,16 +82,20 @@
     ];
     rr:subjectMap [
         rr:template "http://example.com/TemperatureSensor/{id}";
-        rr:class brick:BRICK_TEMPERATURESENSOR_CLASS
+        rr:class BRICK_TEMPERATURE_SENSOR_CLASS
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_HASLOCATION_PROPERTY;
+        rr:predicate BRICK_HAS_LOCATION_PROPERTY;
         rr:objectMap [
-            rr:template "http://example.com/HotelRoom/{hasLocation.value}";
+            rr:parentTriplesMap <#HotelRoomMapping>;
+            rr:joinCondition [
+                rr:child "hasLocation.value";
+                rr:parent "id"
+            ]
         ]
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_TEMPERATURE_PROPERTY;
+        rr:predicate rdf:value;
         rr:objectMap [
             rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
         ]
@@ -67,16 +109,20 @@
     ];
     rr:subjectMap [
         rr:template "http://example.com/CO2Sensor/{id}";
-        rr:class brick:BRICK_CO2SENSOR_CLASS
+        rr:class BRICK_CO2_SENSOR_CLASS
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_HASLOCATION_PROPERTY;
+        rr:predicate BRICK_HAS_LOCATION_PROPERTY;
         rr:objectMap [
-            rr:template "http://example.com/HotelRoom/{hasLocation.value}";
+            rr:parentTriplesMap <#HotelRoomMapping>;
+            rr:joinCondition [
+                rr:child "hasLocation.value";
+                rr:parent "id"
+            ]
         ]
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_CO2_PROPERTY;
+        rr:predicate rdf:value;
         rr:objectMap [
             rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value"
         ]
@@ -90,16 +136,20 @@
     ];
     rr:subjectMap [
         rr:template "http://example.com/PresenceSensor/{id}";
-        rr:class brick:BRICK_PRESENCESENSOR_CLASS
+        rr:class BRICK_PRESENCE_SENSOR_CLASS
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_HASLOCATION_PROPERTY;
+        rr:predicate BRICK_HAS_LOCATION_PROPERTY;
         rr:objectMap [
-            rr:template "http://example.com/HotelRoom/{hasLocation.value}";
+            rr:parentTriplesMap <#HotelRoomMapping>;
+            rr:joinCondition [
+                rr:child "hasLocation.value";
+                rr:parent "id"
+            ]
         ]
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_PIR_PROPERTY;
+        rr:predicate rdf:value;
         rr:objectMap [
             rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value"
         ]
@@ -113,19 +163,21 @@
     ];
     rr:subjectMap [
         rr:template "http://example.com/FreshAirVentilation/{id}";
-        rr:class brick:BRICK_FRESHAIRVENTILATION_CLASS
+        rr:class BRICK_FRESH_AIR_VENTILATION_CLASS
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_HASLOCATION_PROPERTY;
+        rr:predicate BRICK_HAS_LOCATION_PROPERTY;
         rr:objectMap [
-            rr:template "http://example.com/HotelRoom/{hasLocation.value}";
+            rr:parentTriplesMap <#HotelRoomMapping>;
+            rr:joinCondition [
+                rr:child "hasLocation.value";
+                rr:parent "id"
+            ]
         ]
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_AIRFLOWSETPOINT_PROPERTY;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/airFlowSetpoint/value"
-        ]
+        rr:predicate BRICK_AIR_FLOW_SETPOINT_PROPERTY;
+        rr:objectMap [ rml:reference "airFlowSetpoint.value" ]
     ].
 
 <#RadiatorThermostatMapping>
@@ -136,19 +188,21 @@
     ];
     rr:subjectMap [
         rr:template "http://example.com/RadiatorThermostat/{id}";
-        rr:class brick:BRICK_RADIATORTHERMOSTAT_CLASS
+        rr:class BRICK_RADIATOR_THERMOSTAT_CLASS
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_HASLOCATION_PROPERTY;
+        rr:predicate BRICK_HAS_LOCATION_PROPERTY;
         rr:objectMap [
-            rr:template "http://example.com/HotelRoom/{hasLocation.value}";
+            rr:parentTriplesMap <#HotelRoomMapping>;
+            rr:joinCondition [
+                rr:child "hasLocation.value";
+                rr:parent "id"
+            ]
         ]
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_TEMPERATURESETPOINT_PROPERTY;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureSetpoint/value"
-        ]
+        rr:predicate BRICK_TEMPERATURE_SETPOINT_PROPERTY;
+        rr:objectMap [ rml:reference "temperatureSetpoint.value" ]
     ].
 
 <#CoolingCoilMapping>
@@ -157,34 +211,21 @@
         rml:referenceFormulation ql:JSONPath;
         rml:iterator "$[?(@.type=='CoolingCoil')]"
     ];
-    rml:logicalSource [
-        rml:source "placeholder.json";
-        rml:referenceFormulation ql:JSONPath;
-        rml:iterator "$[?(@.type=='CoolingCoil')]"
-    ];
-        rml:source "placeholder.json";
-        rml:referenceFormulation ql:JSONPath;
-        rml:iterator "$[?(@.type=='CoolingCoil')]"
-    ];
-        rml:referenceFormulation ql:JSONPath;
-        rml:iterator "$[?(@.type=='CoolingCoil')]"
-    ];
-        rml:iterator "$[?(@.type=='CoolingCoil')]"
-    ];
-    ];
     rr:subjectMap [
         rr:template "http://example.com/CoolingCoil/{id}";
-        rr:class brick:BRICK_COOLINGCOIL_CLASS
+        rr:class BRICK_COOLING_COIL_CLASS
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_HASLOCATION_PROPERTY;
+        rr:predicate BRICK_HAS_LOCATION_PROPERTY;
         rr:objectMap [
-            rr:template "http://example.com/HotelRoom/{hasLocation.value}";
+            rr:parentTriplesMap <#HotelRoomMapping>;
+            rr:joinCondition [
+                rr:child "hasLocation.value";
+                rr:parent "id"
+            ]
         ]
     ];
     rr:predicateObjectMap [
-        rr:predicate brick:BRICK_FANSPEED_PROPERTY;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/fanSpeed/value"
-        ]
+        rr:predicate BRICK_FAN_SPEED_PROPERTY;
+        rr:objectMap [ rml:reference "fanSpeed.value" ]
     ].

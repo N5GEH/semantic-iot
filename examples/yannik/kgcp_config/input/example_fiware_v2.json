@@ -1,0 +1,128 @@
+[
+    {
+        "id": "Hotel:hotel",
+        "type": "Hotel",
+        "name": {
+            "type": "Text",
+            "value": "hotel",
+            "metadata": {}
+        }
+    },
+    {
+        "id": "AmbientTemperatureSensor",
+        "type": "AmbientTemperatureSensor",
+        "hasLocation": {
+            "type": "Relationship",
+            "value": "Hotel:hotel",
+            "metadata": {}
+        },
+        "temperatureAmb": {
+            "type": "Number",
+            "value": 0.0,
+            "metadata": {}
+        }
+    },
+    {
+        "id": "AirHandlingUnitFiware:fiware",
+        "type": "AirHandlingUnit",
+        "hasLocation": {
+            "type": "Relationship",
+            "value": "Hotel:hotel",
+            "metadata": {}
+        }
+    },
+    {
+        "id": "HotelRoom:fiware_room_base_1_v2",
+        "type": "HotelRoom",
+        "co2": {
+            "type": "Number",
+            "value": 0.0,
+            "metadata": {}
+        },
+        "hasLocation": {
+            "type": "Relationship",
+            "value": "Hotel:hotel",
+            "metadata": {}
+        },
+        "name": {
+            "type": "Text",
+            "value": "fiware_room_base_1_v2",
+            "metadata": {}
+        },
+        "temperature": {
+            "type": "Number",
+            "value": 0.0,
+            "metadata": {}
+        }
+    },
+    {
+        "id": "PresenceSensor:fiware_room_base_1_v2",
+        "type": "PresenceSensor",
+        "hasLocation": {
+            "type": "Relationship",
+            "value": "HotelRoom:fiware_room_base_1_v2",
+            "metadata": {}
+        },
+        "pir": {
+            "type": "Number",
+            "value": 0.0,
+            "metadata": {}
+        }
+    },
+    {
+        "id": "VariableAirVolumeBox:fiware_room_base_1_v2",
+        "type": "VariableAirVolumeBox",
+        "airFlowSetpoint": {
+            "type": "Number",
+            "value": 0.0,
+            "metadata": {}
+        },
+        "hasLocation": {
+            "type": "Relationship",
+            "value": "HotelRoom:fiware_room_base_1_v2",
+            "metadata": {}
+        },
+        "isFedBy": {
+            "type": "Relationship",
+            "value": "AirHandlingUnitFiware:fiware",
+            "metadata": {}
+        }
+    },
+    {
+        "id": "RadiatorThermostat:fiware_room_base_1_v2",
+        "type": "RadiatorThermostat",
+        "hasLocation": {
+            "type": "Relationship",
+            "value": "HotelRoom:fiware_room_base_1_v2",
+            "metadata": {}
+        },
+        "temperatureSetpoint": {
+            "type": "Number",
+            "value": 0.0,
+            "metadata": {}
+        }
+    },
+    {
+        "id": "CoolingCoil:fiware_room_base_1_v2",
+        "type": "CoolingCoil",
+        "hasLocation": {
+            "type": "Relationship",
+            "value": "HotelRoom:fiware_room_base_1_v2",
+            "metadata": {}
+        }
+    },
+    {
+        "id": "Fan:CoolingCoil:fiware_room_base_1_v2",
+        "type": "Fan",
+        "fanSpeed": {
+            "type": "Number",
+            "value": 0.0,
+            "metadata": {}
+        },
+        "isPartOf": {
+            "type": "Relationship",
+            "value": "CoolingCoil:fiware_room_base_1_v2",
+            "metadata": {}
+        }
+    }
+]
