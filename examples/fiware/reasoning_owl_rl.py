@@ -37,6 +37,9 @@ for s, p, o in g:
         g_filtered.add((s, p, o))
 print("Triples number in filtered graph:", len(g_filtered))
 
+# bind namespaces
+for prefix, namespace_uri in g.namespaces():
+    g_filtered.bind(prefix, namespace_uri)
 
 g_filtered.serialize(extended_kg,
                      format="turtle")
