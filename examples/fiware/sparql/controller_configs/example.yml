@@ -1,0 +1,6 @@
+- controller_function: Ventilation
+  controller_mode: <...>  # co2/presence/timetable
+  inputs:
+    sensor_access: <...>  # URL to access the sensor data
+  outputs:
+    actuation_access: <...>  # URL to access the actuation function
