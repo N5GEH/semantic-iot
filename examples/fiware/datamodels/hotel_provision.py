@@ -1,3 +1,4 @@
+from opcode import haslocal
 from typing import List, Union, Literal
 from filip.models.ngsi_v2.iot import Device, DeviceAttribute, ServiceGroup
 from filip.models.ngsi_v2.context import ContextEntityKeyValues, \
@@ -284,7 +285,7 @@ if __name__ == '__main__':
     hotel_name = "example_hotel"
     hotel_fiware = HotelFiware(id=f"Hotel:{hotel_name}", name=hotel_name)
     entities_hotel = [hotel_fiware,
-                      TemperatureSensorAmbFiware(id="AmbientTemperatureSensor")]
+                      TemperatureSensorAmbFiware(id="AmbientTemperatureSensor",hasLocation=hotel_fiware.id)]
     # Post entities to context broker
     for entity in entities_hotel:
         cbc.post_entity(entity=entity, key_values=True)
