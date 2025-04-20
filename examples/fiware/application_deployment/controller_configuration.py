@@ -2,7 +2,6 @@ import os
 import yaml
 import rdflib
 from pathlib import Path
-project_root_path = Path(__file__).parent.parent.parent.parent
 
 # Provide your SPARQL endpoint URL here
 ENDPOINT_URL = "http://example.org/sparql"
@@ -159,8 +158,7 @@ class ControllerConfiguration:
 
 
 if __name__ == "__main__":
-    RDF_KG_PATH = f"{project_root_path}/examples/fiware/kgcp/results" \
-                  f"/fiware_entities_10rooms_inferred.ttl"
+    RDF_KG_PATH = "./fiware_entities_10rooms_inferred.ttl"
     # load to path object
     RDF_KG_PATH = Path(RDF_KG_PATH)
     rdf_kg_file_name = os.path.basename(RDF_KG_PATH).split(".")[0]
