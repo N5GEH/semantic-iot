@@ -88,7 +88,7 @@ class JSONPreprocessor:
                     extra_entity = {
                         "id": f"{match.path.fields[0]}_{entity['id']}",
                         "type": f"{match.path.fields[0]}_{entity['type']}",
-                        "relatedTo": {"value": entity['id']},
+                        "relatedTo": {"value": entity['id']},  # TODO remove the extra structure, e.g. "relatedTo": entity['id']
                         match.path.fields[0]: match.value
                     }
                     new_entities.append(extra_entity)

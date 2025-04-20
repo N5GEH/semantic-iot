@@ -31,7 +31,6 @@ query_ventilation_devices = """
 
       OPTIONAL {
         ?actuation a ?actuation_type ;
-                   brick:isPointOf ?airSystem ;
                    rdf:value ?actuation_access .
         VALUES ?actuation_type { brick:Setpoint brick:Command }
       }
