@@ -38,7 +38,8 @@ To evaluate the feasibility of the KGCP for practical use, we measure the RAM us
 The original datasets scale from 4.7 KB to 1.8 MB,
 resulting in generated KGs with 55 and 23,003 triples, respectively.
 
-![](./figures/memory_time_measurement.png)
+<img src="./figures/memory_time_measurement.png" alt="Performance metrics" style="width:400px;"/>
+
 
 The results show that the required memory and time grow linearly with the data volumes, so that the KGCP is scalable for large datasets.
 Besides, the memory usage is significantly smaller than the memory required for an IoT-platform (e.g., 1 GB for a typical FIWARE platform).
