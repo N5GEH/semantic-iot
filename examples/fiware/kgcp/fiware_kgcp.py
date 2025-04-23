@@ -116,7 +116,7 @@ if __name__ == '__main__':
         else:
             fiware_kgcp.generate_rdf(
                 source_file=f"{Path(__file__).resolve().parent.parent}/hotel_dataset/{hotel}.json",
-                destination_file=f"{Path(__file__).resolve().parent.parent}/kgcp/results/{hotel}.ttl",
+                destination_file=destination_file,
                 engine="morph-kgc"
             )
 

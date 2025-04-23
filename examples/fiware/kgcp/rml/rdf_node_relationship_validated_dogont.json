@@ -1,0 +1,276 @@
+{
+    "@context": {
+        "xml": "http://www.w3.org/XML/1998/namespace",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "dogont": "http://elite.polito.it/ontologies/dogont.owl#",
+        "owl": "http://www.w3.org/2002/07/owl#"
+    },
+  "@data": [
+    {
+      "identifier": "id",
+      "nodetype": "Hotel",
+      "extraNode": false,
+      "iterator": "$[?(@.type=='Hotel')]",
+      "class": "dogont:Building",
+      "hasRelationship": [
+        {
+          "relatedNodeType": null,
+          "relatedAttribute": null,
+          "rawdataidentifier": null
+        }
+      ],
+      "link": null
+    },
+    {
+      "identifier": "id",
+      "nodetype": "AmbientTemperatureSensor",
+      "extraNode": false,
+      "iterator": "$[?(@.type=='AmbientTemperatureSensor')]",
+      "class": "dogont:TemperatureSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "temperatureAmb_AmbientTemperatureSensor",
+          "relatedAttribute": "dogont:hasState",
+          "rawdataidentifier": "relatedTo.value"
+        }
+      ],
+      "link": null
+    },
+    {
+      "identifier": "id",
+      "nodetype": "HotelRoom",
+      "extraNode": false,
+      "iterator": "$[?(@.type=='HotelRoom')]",
+      "class": "dogont:Room",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "Hotel",
+          "relatedAttribute": "dogont:isIn",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "link": null
+    },
+    {
+      "identifier": "id",
+      "nodetype": "TemperatureSensor",
+      "extraNode": false,
+      "iterator": "$[?(@.type=='TemperatureSensor')]",
+      "class": "dogont:SingleTemperatureSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "relatedAttribute": "dogont:isIn",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperature_TemperatureSensor",
+          "relatedAttribute": "dogont:hasState",
+          "rawdataidentifier": "relatedTo.value"
+        }
+      ],
+      "link": null
+    },
+    {
+      "identifier": "id",
+      "nodetype": "CO2Sensor",
+      "extraNode": false,
+      "iterator": "$[?(@.type=='CO2Sensor')]",
+      "class": "dogont:Co2Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "relatedAttribute": "dogont:isIn",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "co2_CO2Sensor",
+          "relatedAttribute": "dogont:hasState",
+          "rawdataidentifier": "relatedTo.value"
+        }
+      ],
+      "link": null
+    },
+    {
+      "identifier": "id",
+      "nodetype": "PresenceSensor",
+      "extraNode": false,
+      "iterator": "$[?(@.type=='PresenceSensor')]",
+      "class": "dogont:PresenceSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "relatedAttribute": "dogont:isIn",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "pir_PresenceSensor",
+          "relatedAttribute": "dogont:hasState",
+          "rawdataidentifier": "relatedTo.value"
+        }
+      ],
+      "link": null
+    },
+    {
+      "identifier": "id",
+      "nodetype": "FreshAirVentilation",
+      "extraNode": false,
+      "iterator": "$[?(@.type=='FreshAirVentilation')]",
+      "class": "dogont:Fan",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "relatedAttribute": "dogont:isIn",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "airFlowSetpoint_FreshAirVentilation",
+          "relatedAttribute": "dogont:hasFunctionality",
+          "rawdataidentifier": "relatedTo.value"
+        }
+      ],
+      "link": null
+    },
+    {
+      "identifier": "id",
+      "nodetype": "RadiatorThermostat",
+      "extraNode": false,
+      "iterator": "$[?(@.type=='RadiatorThermostat')]",
+      "class": "dogont:Thermostat",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "relatedAttribute": "dogont:isIn",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperatureSetpoint_RadiatorThermostat",
+          "relatedAttribute": "dogont:hasFunctionality",
+          "rawdataidentifier": "relatedTo.value"
+        }
+      ],
+      "link": null
+    },
+    {
+      "identifier": "id",
+      "nodetype": "CoolingCoil",
+      "extraNode": false,
+      "iterator": "$[?(@.type=='CoolingCoil')]",
+      "class": "dogont:AirConditioningSystem",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "relatedAttribute": "dogont:isIn",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "CoolingCoil",
+          "relatedAttribute": "dogont:hasFunctionality",
+          "rawdataidentifier": "relatedTo.value"
+        }
+      ],
+      "link": null
+    },
+    {
+      "identifier": "id",
+      "nodetype": "fanSpeed_CoolingCoil",
+      "extraNode": true,
+      "iterator": "$[?(@.type=='fanSpeed_CoolingCoil')]",
+      "class": "dogont:FanControlFunctionality",
+      "hasRelationship": [],
+      "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
+    },
+    {
+      "identifier": "id",
+      "nodetype": "airFlowSetpoint_FreshAirVentilation",
+      "extraNode": true,
+      "iterator": "$[?(@.type=='airFlowSetpoint_FreshAirVentilation')]",
+      "class": "dogont:FanControlFunctionality",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "FreshAirVentilation",
+          "relatedAttribute": "dogont:hasFunctionality",
+          "rawdataidentifier": "relatedTo.value"
+        }
+      ],
+      "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
+    },
+    {
+      "identifier": "id",
+      "nodetype": "temperatureSetpoint_RadiatorThermostat",
+      "extraNode": true,
+      "iterator": "$[?(@.type=='temperatureSetpoint_RadiatorThermostat')]",
+      "class": "dogont:ThermostatControlFunctionality",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "RadiatorThermostat",
+          "relatedAttribute": "dogont:hasFunctionality",
+          "rawdataidentifier": "relatedTo.value"
+        }
+      ],
+      "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
+    },
+    {
+      "identifier": "id",
+      "nodetype": "temperature_TemperatureSensor",
+      "extraNode": true,
+      "iterator": "$[?(@.type=='temperature_TemperatureSensor')]",
+      "class": "dogont:TemperatureState",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "TemperatureSensor",
+          "relatedAttribute": "dogont:hasState",
+          "rawdataidentifier": "relatedTo.value"
+        }
+      ],
+      "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
+    },
+    {
+      "identifier": "id",
+      "nodetype": "co2_CO2Sensor",
+      "extraNode": true,
+      "iterator": "$[?(@.type=='co2_CO2Sensor')]",
+      "class": "dogont:CO2MeasurementState",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "CO2Sensor",
+          "relatedAttribute": "dogont:hasState",
+          "rawdataidentifier": "relatedTo.value"
+        }
+      ],
+      "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value"
+    },
+    {
+      "identifier": "id",
+      "nodetype": "pir_PresenceSensor",
+      "extraNode": true,
+      "iterator": "$[?(@.type=='pir_PresenceSensor')]",
+      "class": "dogont:PresenceState",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "PresenceSensor",
+          "relatedAttribute": "dogont:hasState",
+          "rawdataidentifier": "relatedTo.value"
+        }
+      ],
+      "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value"
+    },
+    {
+      "identifier": "id",
+      "nodetype": "temperatureAmb_AmbientTemperatureSensor",
+      "extraNode": true,
+      "iterator": "$[?(@.type=='temperatureAmb_AmbientTemperatureSensor')]",
+      "class": "dogont:TemperatureState",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "AmbientTemperatureSensor",
+          "relatedAttribute": "dogont:hasState",
+          "rawdataidentifier": "relatedTo.value"
+        }
+      ],
+      "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value"
+    }
+  ]
+}

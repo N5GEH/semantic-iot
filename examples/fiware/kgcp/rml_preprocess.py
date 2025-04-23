@@ -1,6 +1,5 @@
 from semantic_iot import MappingPreprocess
 from pathlib import Path
-import config as config
 
 # Define input files
 INPUT_FILE_PATH = f"{Path(__file__).resolve().parent.parent}/kgcp/rml/example_hotel.json"
@@ -8,7 +7,8 @@ INPUT_FILE_PATH = f"{Path(__file__).resolve().parent.parent}/kgcp/rml/example_ho
 # Available ontology choices
 ONTOLOGY_OPTIONS = {
     "brick": f"{Path(__file__).resolve().parent.parent}/ontologies/Brick.ttl",
-    "saref4bldg": f"{Path(__file__).resolve().parent.parent}/ontologies/saref4bldg.ttl"
+    "saref4bldg": f"{Path(__file__).resolve().parent.parent}/ontologies/saref4bldg.ttl",
+    "dogont": f"{Path(__file__).resolve().parent.parent}/ontologies/DogOnt.ttl"
 }
 
 # Ask the user to choose an ontology
@@ -16,7 +16,7 @@ print("Available ontologies:")
 for key in ONTOLOGY_OPTIONS.keys():
     print(f"- {key}")
 
-selected_ontology = input("Enter the ontology you want to use (brick/saref4bldg): ").strip().lower()
+selected_ontology = input("Enter the ontology you want to use (brick/saref4bldg/dogont): ").strip().lower()
 
 if selected_ontology not in ONTOLOGY_OPTIONS:
     print(f"Invalid choice. Defaulting to 'brick' ontology.")

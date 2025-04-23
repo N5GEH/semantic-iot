@@ -6,7 +6,6 @@ from rdflib import Graph, RDF, RDFS, OWL
 from semantic_iot.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandler
 from pathlib import Path
 
-
 class MappingPreprocess:
     def __init__(self,
                  json_file_path: str = None,
@@ -48,6 +47,7 @@ class MappingPreprocess:
         self.ontology_file_paths = ontology_file_paths
         self.ontology_classes = None
         self.ontology_prefixes = None
+        self.ontology_context = None
 
         # intermediate variables
         self.entities = []
@@ -72,17 +72,36 @@ class MappingPreprocess:
         return value
 
     def load_ontology_prefixes(self):
-        prefixes = []
-        for file_path in self.ontology_file_paths:
-            file_path = Path(file_path)
-            with open(file_path, 'r') as file:
-                for line in file:
-                    line = line.strip()
-                    if line.startswith('@prefix'):
-                        prefixes.append(line)
-                    elif line == '':
-                        break
-        self.ontology_prefixes = '\n'.join(prefixes)
+        g = Graph()
+        for fp in self.ontology_file_paths:
+            g.parse(str(fp), format="ttl")
+
+        context = {}
+        prefix_lines = []
+
+        for prefix, uri in g.namespaces():
+            if prefix:
+                # normal, named prefix
+                context[prefix] = str(uri)
+                prefix_lines.append(f"@prefix {prefix}: <{uri}> .")
+            else:
+                # default/base namespace -> auto-derive a prefix
+                # e.g. uri="http://…/dogont.owl#" -> basename="dogont"
+                last = uri.rstrip('#/').split('/')[-1]
+                name = os.path.splitext(last)[0]
+
+                # avoid collisions: if “name” already in context, append a counter
+                candidate = name
+                i = 1
+                while candidate in context:
+                    candidate = f"{name}{i}"
+                    i += 1
+
+                context[candidate] = str(uri)
+                prefix_lines.append(f"@prefix {candidate}: <{uri}> .")
+
+        self.ontology_context = context
+        self.ontology_prefixes = "\n".join(prefix_lines)
 
     def load_ontology_classes(self):
         brick_graph = Graph()
@@ -154,34 +173,27 @@ class MappingPreprocess:
         # drop duplicates
         self.drop_duplicates()
 
-        # create namespaces from ontology prefixes
-        context = {}
-        uri_to_prefix = {}  # converted from context
-        prefix_pattern = re.compile(r"@prefix\s+([^:]+):\s*<([^>]+)>")
-        for line in self.ontology_prefixes.splitlines():
-            match = prefix_pattern.match(line)
-            if match:
-                prefix, uri = match.groups()
-                context[prefix] = uri
-                uri_to_prefix[uri] = prefix
+        # build reverse map for prefixes
+        uri_to_prefix = {uri: prefix for prefix, uri in self.ontology_context.items()}
 
-        rdf_node_relationships = []
+        rdf_nodes = []
         for entity in self.entities_for_mapping:
-            suggested_class = self.suggest_class(entity['type'], uri_to_prefix)
-            relationship = {
+            suggested = self.suggest_class(entity['type'], uri_to_prefix)
+            rdf_nodes.append({
                 "identifier": "id",
                 "nodetype": entity['type'],
                 "extraNode": entity['extraNode'],
                 "iterator": f"$[?(@.type=='{entity['type']}')]",
-                "class": f"**TODO: PLEASE CHECK** {suggested_class}",
-                "hasRelationship": [{"relatedNodeType": None,
-                                     "relatedAttribute": None,
-                                     "rawdataidentifier": None}],
+                "class": f"**TODO: PLEASE CHECK** {suggested}",
+                "hasRelationship": [
+                    {"relatedNodeType": None,
+                     "relatedAttribute": None,
+                     "rawdataidentifier": None}
+                ],
                 "link": None
-            }
-            rdf_node_relationships.append(relationship)
+            })
 
-        json_ld_data = {"@context": context, "@data": rdf_node_relationships}
+        json_ld_data = {"@context": self.ontology_context, "@data": rdf_nodes}
         # Save the preprocess file
         with open(self.rdf_node_relationship_file_path, 'w') as preprocessed_file:
             json.dump(json_ld_data, preprocessed_file, indent=4)

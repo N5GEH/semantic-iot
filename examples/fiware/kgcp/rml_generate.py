@@ -5,7 +5,8 @@ import os
 # Define available validated RDF node relationship files
 VALIDATED_RNR_FILES = {
     "brick": f"{Path(__file__).resolve().parent.parent}/kgcp/rml/rdf_node_relationship_validated_brick.json",
-    "saref4bldg": f"{Path(__file__).resolve().parent.parent}/kgcp/rml/rdf_node_relationship_validated_saref4bldg.json"
+    "saref4bldg": f"{Path(__file__).resolve().parent.parent}/kgcp/rml/rdf_node_relationship_validated_saref4bldg.json",
+    "dogont": f"{Path(__file__).resolve().parent.parent}/kgcp/rml/rdf_node_relationship_validated_dogont.json",
 }
 
 # Ask the user to choose the ontology-related JSON file
@@ -13,7 +14,7 @@ print("Available validated RDF node relationship files:")
 for key in VALIDATED_RNR_FILES.keys():
     print(f"- {key}")
 
-selected_rnr = input("Enter the RDF node relationship file you want to use (brick/saref4bldg): ").strip().lower()
+selected_rnr = input("Enter the RDF node relationship file you want to use (brick/saref4bldg/dogont): ").strip().lower()
 
 if selected_rnr not in VALIDATED_RNR_FILES:
     print(f"Invalid choice. Defaulting to 'brick'.")

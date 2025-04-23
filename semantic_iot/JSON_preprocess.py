@@ -79,24 +79,35 @@ class JSONPreprocessor:
         """Preprocess entities to add extra nodes and save to file."""
         new_entities = []
 
+        for entity in self.entities:
+            if "relatedTo" not in entity:
+                entity["relatedTo"] = []
+
         for jsonpath_expression in self.extra_entity_node:
             jsonpath_expr = parse(jsonpath_expression)
             for entity in self.entities:
+                # preserve the original entity in the new list
                 new_entities.append(entity)
                 matches = jsonpath_expr.find(entity)
 
                 for match in matches:
+                    extra_id = f"{match.path.fields[0]}_{entity['id']}"
+                    extra_type = f"{match.path.fields[0]}_{entity['type']}"
                     extra_entity = {
-                        "id": f"{match.path.fields[0]}_{entity['id']}",
-                        "type": f"{match.path.fields[0]}_{entity['type']}",
+                        "id": extra_id,
+                        "type": extra_type,
                         "extraNode": True,
                         "relatedTo": {"value": entity['id']},
                         match.path.fields[0]: match.value
                     }
                     new_entities.append(extra_entity)
                     self.entities_for_mapping.append(extra_entity)
-                    self.entity_types.add(extra_entity["type"])
+                    self.entity_types.add(extra_type)
 
+                    # append back into super-entity.relatedTo
+                    entity["relatedTo"].append({"value": extra_id})
+
+        # replace entities so downstream sees both originals + extras
         self.entities = new_entities
 
     def save_preprocessed_data(self):
