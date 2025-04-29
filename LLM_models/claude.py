@@ -67,6 +67,9 @@ class ClaudeAPIProcessor:
         Returns:
             The JSON response from Claude
         """
+
+        print ("✨ Generating with Claude...")
+
         # Check if API is used
         if not self.use_api:
             print("Prompt:")
@@ -128,7 +131,7 @@ class ClaudeAPIProcessor:
                                     "API request failed with status code 429")
                 
             elif response.status_code == 529: # The service is overloaded
-                raise Exception(f"API is temporarily overloaded")
+                raise Exception(f"⌚ API is temporarily overloaded, try again later")
                 
     
             else:
@@ -153,7 +156,7 @@ class ClaudeAPIProcessor:
         if not conversation_history:
             self.conversation_history = messages
 
-        return result
+        return result["content"][0]["text"]
     
     def regenerate (self, error_message) -> None:
         '''
@@ -167,17 +170,16 @@ class ClaudeAPIProcessor:
             {error_message}
         """
         
-        response = self.claude.query(prompt)
+        response = self.query(prompt)
 
-        data = response["content"][0]["text"]
-        tokens = [response["usage"]["input_tokens"], response["usage"]["output_tokens"]]
-        self.used_tokens.append(tokens)
+        # tokens = [response["usage"]["input_tokens"], response["usage"]["output_tokens"]]
+        # self.used_tokens.append(tokens)
 
         print("PROMPT: \n", prompt)
-        print("DATA: \n", data)
-        print("TOKENS: ", tokens)
+        print("DATA: \n", response)
+        # print("TOKENS: ", tokens)
 
-        return data
+        return response
 
 
     def save_results(self, output_file: str) -> None:

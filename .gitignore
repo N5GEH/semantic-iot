@@ -3,3 +3,4 @@
 local_test/
 /semantic_iot.egg-info/
 **/ANTHROPIC_API_KEY
+**/__pycache__/

@@ -610,7 +610,7 @@ class OntologyProcessor:
 # Usage example
 if __name__ == "__main__":
     # Path to your ontology file
-    ontology_path = "../examples/LLM/kgcp_config/input/Brick.ttl"
+    ontology_path = r"C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\Brick.ttl"
     
     # Process the ontology
     processor = OntologyProcessor(ontology_path)

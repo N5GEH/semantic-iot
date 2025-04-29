@@ -1,8 +1,3 @@
-
-
-
-
-
 # Create Config file
 
 """
@@ -90,12 +85,17 @@ A validated and completed "resource node relationship" document for this example
 
 
 from pathlib import Path
+import sys
+sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
 from claude import ClaudeAPIProcessor
+import json
+
+
 
 # AI Temperature = 0.0 ?? for all
 
 class LLMAssistant:
-    def __init__(self, example_json_path: str, temperature: float = 1):
+    def __init__(self, example_json_path: str, temperature: float = 1, debug: bool = True):
         """
         Initialize the LLM Assistant.
         Args:
@@ -106,6 +106,7 @@ class LLMAssistant:
         self.claude = ClaudeAPIProcessor()
         self.temperature = temperature
         self.used_tokens = []
+        self.debug = debug
 
         with open(example_json_path, 'r') as file:
             self.example_json = file.read()
@@ -113,7 +114,76 @@ class LLMAssistant:
 
     def create_config (self):
 
-        self.claude.query(
+        def val_keys (self, keys_str: str, retry = 0):
+            print (f"Validating keys: {keys_str}")
+
+            try: # find two strings in every entity
+                keys = json.loads(keys_str)
+                if len(keys) != 2:
+                    raise Exception("Output format is not a list with two strings")
+                
+                for entity in eval(self.example_json):
+                    if keys[0] not in entity or keys[1] not in entity:
+                        raise Exception(f"Keys {keys} not found in entity {entity}")
+                    
+                print(f"✅ Keys validated: {keys[0]}, {keys[1]}")
+                return keys
+
+            except Exception as error:
+                print(f"❌ Error validating keys: {error}")
+                if retry > 5:
+                    print("Max retries reached. Exiting.")
+                    return False
+                val_keys(self, self.claude.regenerate(error), retry + 1)
+                
+
+        def val_extra_nodes (self, extra_nodes_str, retry = 0):
+            print (f"Validating extra nodes: {extra_nodes_str}")
+
+            try:
+                # TODO implement validation of extra nodes
+                extra_nodes = json.loads(extra_nodes_str)
+            
+                print(f"✅ Extra Nodes validated: {extra_nodes}")
+                return extra_nodes
+
+            except Exception as error:
+                print(f"❌ Error validating extra nodes: {error}")
+                if retry > 5:
+                    print("Max retries reached. Exiting.")
+                    return False
+                val_extra_nodes(self, self.claude.regenerate(error), retry + 1)
+
+        def val_config (self, config_str, retry = 0):
+
+            print (f"Validating config: {config_str}")
+
+            try:
+                config = json.loads(config_str)
+
+                if "ID_KEY" not in config or "TYPE_KEYS" not in config or "JSONPATH_EXTRA_NODES" not in config:
+                    raise Exception('Config is not valid: "ID_KEY" not in config or "TYPE_KEYS" not in config or "JSONPATH_EXTRA_NODES" not in config')
+                if not isinstance(config["ID_KEY"], str) or not isinstance(config["TYPE_KEYS"], list) or not isinstance(config["JSONPATH_EXTRA_NODES"], list):
+                    raise Exception('Config is not valid: not isinstance(config["ID_KEY"], str) or not isinstance(config["TYPE_KEYS"], list) or not isinstance(config["JSONPATH_EXTRA_NODES"], list)')
+                if len(config["TYPE_KEYS"]) == 0 or len(config["JSONPATH_EXTRA_NODES"]) == 0:
+                    raise Exception('Config is not valid: len(config["TYPE_KEYS"]) == 0 or len(config["JSONPATH_EXTRA_NODES"]) == 0')
+                if config["ID_KEY"] == "" or config["TYPE_KEYS"] == [] or config["JSONPATH_EXTRA_NODES"] == []:
+                    raise Exception('Config is not valid: config["ID_KEY"] == "" or config["TYPE_KEYS"] == [] or config["JSONPATH_EXTRA_NODES"] == []')
+                if config["ID_KEY"] not in self.example_json or config["TYPE_KEYS"][0] not in self.example_json or config["JSONPATH_EXTRA_NODES"][0] not in self.example_json:
+                    raise Exception('Congig is not valid: config["ID_KEY"] not in self.example_json or config["TYPE_KEYS"][0] not in self.example_json or config["JSONPATH_EXTRA_NODES"][0] not in self.example_json')
+                
+                print(f"✅ Config validated: {config}")
+                return config
+
+            except Exception as error:
+                print(f"❌ Error validating config: {error}")
+                if retry > 5:
+                    print("Max retries reached. Exiting.")
+                    return False
+                val_config(self, self.claude.regenerate(error), retry + 1)
+
+
+        keys_str = self.claude.query(
             prompt = f"""
 
             GOAL:
@@ -134,7 +204,7 @@ class LLMAssistant:
             Act as an expert in knowledge graph creation and data modeling.
             Analyse the provided JSON data structure and indentify the name of the ...
             ... unique identifier of an entity
-            ... unique type of relation that this resource has
+            ... unique identifier of a type of the entity
 
 
             RESPONSE FORMAT:
@@ -145,29 +215,37 @@ class LLMAssistant:
             The JSON dataset is as follows:
             {self.example_json}
         """)
+        val_keys(self, keys_str)
 
-        self.claude.query(
+        
+
+        extra_nodes_str = self.claude.query(
             prompt = f"""
             Please analyze the provided JSON dataset and identify properties that should be modeled as separate resource types (extra nodes) in the knowledge graph rather than just attributes of their parent entities.
 
             Consider the following characteristics when identifying these properties:
             1. Properties that represent controllable settings or setpoints
             2. Properties that could be manipulated independently of their parent entity
-            3. Properties that might be referenced by multiple entities or systems
-            4. Properties that represent physical components or subsystems
-            5. Properties that have their own behaviors, states, or relationships
+            
 
             For each identified property, please give the number of the characteristic above as a reason for its classification as an extra node.
         """)
 
-        self.claude.query(
+        # 3. Properties that might be referenced by multiple entities or systems
+        # 4. Properties that represent physical components or subsystems
+        # 5. Properties that have their own behaviors, states, or relationships
+
+        val_extra_nodes(self, extra_nodes_str)
+
+
+        config_str = self.claude.query(
             prompt = f"""
             Based on the previous analysis, create a configuration file for further use in the knowledge graph creation process with the following format:
 
             {{
-                "ID_KEY": "id",
+                "ID_KEY": "uniqueIdentifierOfAnEntity",
                 "TYPE_KEYS": [
-                    "type"
+                    "uniqueIdentifierOfAnTypeOfTheEntity"
                 ],
                 "JSONPATH_EXTRA_NODES": [
                     "$..nameOfExtraNode1",
@@ -177,9 +255,15 @@ class LLMAssistant:
             }}
         """)
 
+        config = val_config(self, config_str)
 
 
 
+        config_path = Path(__file__).parent / "fiware_config_generated.json"
+        with open(config_path, 'w') as file:
+            file.write(config)
+            print(f"Configuration saved to {config_path}")
+        
 
 
     
@@ -187,6 +271,42 @@ class LLMAssistant:
         """
         complete the input data using the LLM.
         """
+
+        interralationships = self.claude.query(
+            prompt = f"""
+            Complete the interrelationship information between resource types. 
+            For example, TemperatureSensor is related to HotelRoom via the predicate brick:isPointOf.
+
+            COMPLETE RELATIONSHIP INFORMATION:
+            - Fill in the empty "hasRelationship" array with appropriate related node types
+            - For each relationship, determine:
+                a) The related node type (e.g., "HotelRoom")
+                    this is the value of the type of node in the JSON data
+                b) The appropriate predicate/relationship (e.g., "brick:isPointOf")
+                    this is the relationship in the JSON data
+                c) The rawdataidentifier that connects them (e.g., "hasLocation.value")
+                    this is the value of the relationship in the JSON data
+
+
+        """)
+
+        link = self.claude.query(
+            prompt = f"""
+            Complete the "link" for accessing the data.
+            For example, the link for TemperatureSensor should be https://<host>/v2/entities/{{id}}/attrs/temperature/value.
+
+            3. COMPLETE API ACCESS LINK:
+            - Provide the appropriate API endpoint for accessing the resource's data
+            - The link should follow the pattern: "https://<host>/v2/entities/{id}/attrs/<attribute>/value"
+            - Use the resource type to determine the appropriate attribute in the link
+        """)
+
+        terminology_mapping = self.claude.query(
+            prompt = f"""
+            Verify the terminology-mappings.
+            For example, the correct mapping for PresenceSensor should be brick:Occupancy_Count_Sensor.
+        """)
+
 
         with open(input_file, 'r') as file:
             data = file.read()
@@ -230,26 +350,25 @@ class LLMAssistant:
 
         response = self.claude.query(prompt)
         
-        data = response["content"][0]["text"]
-        tokens = [response["usage"]["input_tokens"], response["usage"]["output_tokens"]]
-        self.used_tokens.append(tokens)  
-        print(f"Used tokens: {tokens}")
 
         input_file = Path(input_file)
         validated_path = input_file.parent / f"{input_file.stem}_LLMvalidated{input_file.suffix}"
 
         with open(validated_path, 'w') as file:
-            file.write(data)
+            file.write(response)
             print (f"Validated data saved to {validated_path}")
 
 
 
-    
-
 if __name__ == "__main__":
-    project_root_path = Path(__file__).parent.parent.parent
-    resource_node_relationship = f"{project_root_path}/examples/fiware/kgcp/rml/rdf_node_relationship.json"
+    root_path = Path(__file__).parent
+    print (root_path)
+    resource_node_relationship = f"{root_path}/examples/fiware/kgcp/rml/rdf_node_relationship.json"
     
+    example_json_path = f"{root_path}/example_hotel.json"
 
-    assistant = LLMAssistant()
-    assistant.complete(resource_node_relationship)
+    assistant = LLMAssistant(example_json_path)
+
+    assistant.create_config()
+
+    # assistant.complete(resource_node_relationship)
