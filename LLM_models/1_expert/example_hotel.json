@@ -1,0 +1,123 @@
+[
+  {
+    "id": "Hotel:example_hotel",
+    "type": "Hotel",
+    "name": {
+      "type": "Text",
+      "value": "example_hotel",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "AmbientTemperatureSensor",
+    "type": "AmbientTemperatureSensor",
+    "temperatureAmb": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "Hotel:example_hotel",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "HotelRoom:example_room",
+    "type": "HotelRoom",
+    "hasLocation": {
+      "type": "Text",
+      "value": "Hotel:fiware",
+      "metadata": {}
+    },
+    "name": {
+      "type": "Text",
+      "value": "example_room",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "TemperatureSensor:example_room",
+    "type": "TemperatureSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:example_room",
+      "metadata": {}
+    },
+    "temperature": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CO2Sensor:example_room",
+    "type": "CO2Sensor",
+    "co2": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:example_room",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "PresenceSensor:example_room",
+    "type": "PresenceSensor",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:example_room",
+      "metadata": {}
+    },
+    "pir": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "FreshAirVentilation:example_room",
+    "type": "FreshAirVentilation",
+    "airFlowSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:example_room",
+      "metadata": {}
+    }
+  },
+  {
+    "id": "RadiatorThermostat:example_room",
+    "type": "RadiatorThermostat",
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:example_room",
+      "metadata": {}
+    },
+    "temperatureSetpoint": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    }
+  },
+  {
+    "id": "CoolingCoil:example_room",
+    "type": "CoolingCoil",
+    "fanSpeed": {
+      "type": "Number",
+      "value": 0.0,
+      "metadata": {}
+    },
+    "hasLocation": {
+      "type": "Relationship",
+      "value": "HotelRoom:example_room",
+      "metadata": {}
+    }
+  }
+]
