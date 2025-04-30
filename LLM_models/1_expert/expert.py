@@ -132,7 +132,7 @@ class LLMAssistant:
             except Exception as error:
                 print(f"❌ Error validating keys: {error}")
                 if retry > 5:
-                    print("Max retries reached. Exiting.")
+                    print("🛑 Max retries reached. Exiting.")
                     return False
                 val_keys(self, self.claude.regenerate(error), retry + 1)
                 
@@ -142,15 +142,16 @@ class LLMAssistant:
 
             try:
                 # TODO implement validation of extra nodes
-                extra_nodes = json.loads(extra_nodes_str)
-            
+                # extra_nodes = json.loads(extra_nodes_str)
+                extra_nodes = extra_nodes_str
+
                 print(f"✅ Extra Nodes validated: {extra_nodes}")
                 return extra_nodes
 
             except Exception as error:
                 print(f"❌ Error validating extra nodes: {error}")
                 if retry > 5:
-                    print("Max retries reached. Exiting.")
+                    print("🛑 Max retries reached. Exiting.")
                     return False
                 val_extra_nodes(self, self.claude.regenerate(error), retry + 1)
 
@@ -169,8 +170,6 @@ class LLMAssistant:
                     raise Exception('Config is not valid: len(config["TYPE_KEYS"]) == 0 or len(config["JSONPATH_EXTRA_NODES"]) == 0')
                 if config["ID_KEY"] == "" or config["TYPE_KEYS"] == [] or config["JSONPATH_EXTRA_NODES"] == []:
                     raise Exception('Config is not valid: config["ID_KEY"] == "" or config["TYPE_KEYS"] == [] or config["JSONPATH_EXTRA_NODES"] == []')
-                if config["ID_KEY"] not in self.example_json or config["TYPE_KEYS"][0] not in self.example_json or config["JSONPATH_EXTRA_NODES"][0] not in self.example_json:
-                    raise Exception('Congig is not valid: config["ID_KEY"] not in self.example_json or config["TYPE_KEYS"][0] not in self.example_json or config["JSONPATH_EXTRA_NODES"][0] not in self.example_json')
                 
                 print(f"✅ Config validated: {config}")
                 return config
@@ -178,9 +177,10 @@ class LLMAssistant:
             except Exception as error:
                 print(f"❌ Error validating config: {error}")
                 if retry > 5:
-                    print("Max retries reached. Exiting.")
+                    print("🛑 Max retries reached. Exiting.")
                     return False
                 val_config(self, self.claude.regenerate(error), retry + 1)
+                # TODO put retry loop in claude class
 
 
         keys_str = self.claude.query(
@@ -256,12 +256,13 @@ class LLMAssistant:
         """)
 
         config = val_config(self, config_str)
+        print (f"Config: {config}", type (config))
 
 
 
         config_path = Path(__file__).parent / "fiware_config_generated.json"
         with open(config_path, 'w') as file:
-            file.write(config)
+            file.write(json.dumps(config, indent=4))
             print(f"Configuration saved to {config_path}")
         
 

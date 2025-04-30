@@ -1,10 +1,11 @@
 import rdflib
-from rdflib import Graph, RDF, RDFS, OWL, URIRef
+from rdflib import Graph, RDF, RDFS, OWL, URIRef, SKOS
 import json
 import os
 import numpy as np
 from typing import Dict, List, Any, Optional, Tuple
 import re
+from pathlib import Path
 
 class OntologyProcessor:
     """
@@ -98,12 +99,17 @@ class OntologyProcessor:
         # Get basic class information
         label = self._get_first_literal(class_uri, RDFS.label)
         comment = self._get_first_literal(class_uri, RDFS.comment)
+        definition = self._get_first_literal(class_uri, SKOS.definition)
+        # description = self._get_first_literal(class_uri, DCTERMS.description)
         
+        if "room" in class_uri.lower(): 
+            print(f"Processing class: {class_uri}, \n definition: {definition} \n comment: {comment} \n label: {label}")
+
         # Store class information
         self.index["classes"][class_id] = {
             "uri": str(class_uri),
             "label": label,
-            "description": comment,
+            "description": definition, # or comment
             "superclasses": [],
             "subclasses": [],
             "equivalent_classes": [],
@@ -145,6 +151,8 @@ class OntologyProcessor:
         # Get basic property information
         label = self._get_first_literal(prop_uri, RDFS.label)
         comment = self._get_first_literal(prop_uri, RDFS.comment)
+        definition = self._get_first_literal(prop_uri, SKOS.definition)
+        # TODO SKOS.definition not in every ontology? Get definition identifier from example ontology
         
         # Determine property type
         if (prop_uri, RDF.type, OWL.ObjectProperty) in self.graph:
@@ -158,7 +166,7 @@ class OntologyProcessor:
         self.index["properties"][prop_id] = {
             "uri": str(prop_uri),
             "label": label,
-            "description": comment,
+            "description": definition, # or comment
             "type": prop_type,
             "domains": [],
             "ranges": [],
@@ -219,7 +227,10 @@ class OntologyProcessor:
     def _get_first_literal(self, subject: URIRef, predicate) -> Optional[str]:
         """Get the first literal value for a subject-predicate pair"""
         for obj in self.graph.objects(subject, predicate):
-            return str(obj)
+            if hasattr(obj, 'value'):
+                return str(obj.value)  # Get the value without language tag
+            else:
+                return str(obj)
         return None
     
     def _get_property_characteristics(self, prop_uri: URIRef) -> List[str]:
@@ -529,7 +540,11 @@ class OntologyProcessor:
         """
         try:
             from anthropic import Anthropic
-            client = Anthropic()
+            current_dir = Path(__file__).parent
+            with open(current_dir / "ANTHROPIC_API_KEY", "r") as f:
+                api_key = f.read().strip()
+
+            client = Anthropic(api_key=api_key)
             message = client.messages.create(
                 model=model,
                 max_tokens=1000,
@@ -555,6 +570,7 @@ class OntologyProcessor:
             Dict with entity naming information
         """
         prompt = self.generate_llm_prompt(entity_description, task_type="entity_naming")
+        print (f"Prompt for LLM:\n{prompt}\n-------")
         response = self.query_claude(prompt)
         
         try:
@@ -610,7 +626,7 @@ class OntologyProcessor:
 # Usage example
 if __name__ == "__main__":
     # Path to your ontology file
-    ontology_path = r"C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\Brick.ttl"
+    ontology_path = r"C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\RAG\Brick.ttl"
     
     # Process the ontology
     processor = OntologyProcessor(ontology_path)
@@ -623,13 +639,14 @@ if __name__ == "__main__":
     
     # Example usage: Name an entity
     print("\nExample: Naming an entity")
-    entity_desc = "A sensor that measures the ambient temperature in room 101"
+    # entity_desc = "A sensor that measures the ambient temperature in a room"
+    entity_desc = "HotelRoom"
     entity_result = processor.name_entity(entity_desc)
     print(json.dumps(entity_result, indent=2))
     
-    # Example usage: Name a relation
-    print("\nExample: Naming a relation")
-    relation_desc = "The temperature sensor TS-101 is physically located within Room 101"
-    relation_result = processor.name_relation(relation_desc)
-    print(json.dumps(relation_result, indent=2))
+    # # Example usage: Name a relation
+    # print("\nExample: Naming a relation")
+    # relation_desc = "The temperature sensor TS-101 is physically located within Room 101"
+    # relation_result = processor.name_relation(relation_desc)
+    # print(json.dumps(relation_result, indent=2))
 
