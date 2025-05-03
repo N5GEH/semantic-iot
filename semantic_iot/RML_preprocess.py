@@ -1,6 +1,8 @@
 import json
 import os
 import re
+from typing import List, Any
+
 from rapidfuzz import fuzz
 from rdflib import Graph, RDF, RDFS, OWL
 from semantic_iot.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandler
@@ -129,7 +131,10 @@ class MappingPreprocess:
         else:
             return top_matches_prefixed[0][0]
 
-    def drop_duplicates(self):
+    def drop_duplicates(self, node_relationships: List[dict]):
+        """
+        Drop duplicated resource types in node relationship file.
+        """
         # Remove duplicate entities of the same type
         unique_entities = []
         seen_types = set()
@@ -137,7 +142,99 @@ class MappingPreprocess:
             if entity['type'] not in seen_types:
                 unique_entities.append(entity)
                 seen_types.add(entity['type'])
-        self.entities_for_mapping = unique_entities
+        unique_node_relationships = []
+        for entity in unique_entities:
+            matched_items = [item for item in node_relationships
+                             if item.get("nodetype") == entity['type']]
+            if matched_items:
+                unique_node_relationships.append(matched_items[0]) # get the first matched item
+            # assert that all matched items are the same
+            if not all(d == matched_items[0] for d in matched_items):
+                print("Warning: difference are found in the node relationship file.")
+                for d in matched_items:
+                    print(json.dumps(d, indent=2))
+            # assert all(d == matched_items[0] for d in matched_items)
+        return unique_node_relationships
+
+    @staticmethod
+    def find_relationships(entity: dict, entity_list: List[dict]):
+        """
+        Find relationships of the given entity with other entities in the list by recursively scanning the JSON structure.
+
+        This function handles two cases:
+          1. When a key maps directly to a scalar value, e.g. "key": "value".
+          2. When a key maps to a list of scalar values, e.g. "key": ["value1", "value2", ...].
+
+        For each scalar value encountered, if it matches the 'id' of another entity (i.e. not the given one),
+        the function registers a relationship, including the JSON path where it was found and the other entity’s type.
+
+        Parameters:
+          entity: The JSON dict to search for relationships.
+          entity_list: A list of all entities (dictionaries), including the one being examined.
+
+        Returns:
+          A list of dicts. Each dict contains:
+             - "path": the JSON path to the found value.
+             - "related_type": the type of the related entity.
+        """
+        def _traverse(data: Any, path: str = "$"):
+            """
+            Recursively yield (json_path, value) pairs for each scalar value in the JSON-like structure.
+
+            For dictionary entries, the path is extended with ".key", and for list items the path is extended
+            with "[index]".
+            """
+            # If it's a dictionary, iterate its items.
+            if isinstance(data, dict):
+                for key, value in data.items():
+                    current_path = f"{path}.{key}"
+                    if isinstance(value, (str, int, float, bool)) or value is None:
+                        yield current_path, value
+                    elif isinstance(value, list):
+                        # For a list, look at each element.
+                        for idx, item in enumerate(value):
+                            item_path = f"{current_path}"  # for list, keep the path to locate the list
+                            if isinstance(item, (str, int, float, bool)) or item is None:
+                                yield item_path, item
+                            else:
+                                yield from _traverse(item, item_path)
+                    else:
+                        # If the value is a nested dict (or another non-scalar type), recurse.
+                        yield from _traverse(value, current_path)
+            # If it is a list at the root level.
+            elif isinstance(data, list):
+                for idx, item in enumerate(data):
+                    current_path = f"{path}"  # for list, keep the path to locate the list
+                    if isinstance(item, (str, int, float, bool)) or item is None:
+                        yield current_path, item
+                    else:
+                        yield from _traverse(item, current_path)
+
+        # 1. Drop the entity from the entity_list
+        filtered_entity_list = [e for e in entity_list if e != entity]
+
+        # Create a fast lookup from ID to entity type.
+        id_to_type = {other_entity.get('id'): other_entity.get('type') for other_entity in
+                      filtered_entity_list}
+
+        relationships = []
+
+        # Use the recursive iterator to search for possible relationships.
+        for json_path, val in _traverse(entity):
+            if val in id_to_type:
+                relationships.append({
+                    "path": json_path.removeprefix("$."), # Remove the leading "$.", since in RML it use the relative path of the json object
+                    "related_type": id_to_type[val]
+                })
+
+        # drop the duplicates by related_type
+        seen = set()
+        unique_relationships = []
+        for relationship in relationships:
+            if relationship['related_type'] not in seen:
+                unique_relationships.append(relationship)
+                seen.add(relationship['related_type'])
+        return unique_relationships
 
     def create_rdf_node_relationship_file(self, overwrite: bool = False):
         # preprocess the json data
@@ -151,8 +248,6 @@ class MappingPreprocess:
                                   f"{self.rdf_node_relationship_file_path}. "
                                   f"Set overwrite=True to overwrite the file."
                                   )
-        # drop duplicates
-        self.drop_duplicates()
 
         # create namespaces from ontology prefixes
         context = {}
@@ -165,19 +260,31 @@ class MappingPreprocess:
                 context[prefix] = uri
                 uri_to_prefix[uri] = prefix
 
+        # populate the rdf_node_relationships
         rdf_node_relationships = []
         for entity in self.entities_for_mapping:
-            suggested_class = self.suggest_class(entity['type'], uri_to_prefix)
-            relationship = {
+            # find relationships
+            relationships = self.find_relationships(entity, self.entities_for_mapping)
+            resource = {
                 "nodetype": entity['type'],
                 "iterator": f"$[?(@.type=='{entity['type']}')]",
-                "class": f"**TODO: PLEASE CHECK** {suggested_class}",
-                "hasRelationship": [{"relatedNodeType": None,
+                "class": None,
+                "hasRelationship": [{"relatedNodeType": relationship["related_type"],
                                      "relatedAttribute": None,
-                                     "rawdataidentifier": None}],
+                                     "rawdataidentifier": relationship["path"]}
+                                    for relationship in relationships],
                 "link": None
             }
-            rdf_node_relationships.append(relationship)
+            rdf_node_relationships.append(resource)
+
+        # drop duplicates from the rdf_node_relationships
+        rdf_node_relationships = self.drop_duplicates(rdf_node_relationships)
+
+        # terminology mapping
+        for resource in rdf_node_relationships:
+            resource_type = resource['nodetype']
+            suggested_class = self.suggest_class(resource_type, uri_to_prefix)
+            resource["class"] = f"**TODO: PLEASE CHECK** {suggested_class}"
 
         json_ld_data = {"@context": context, "@data": rdf_node_relationships}
         # Save the preprocess file
