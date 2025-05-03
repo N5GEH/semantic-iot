@@ -1,9 +1,10 @@
 import json
+import logging
 import os
 from typing import List, Any
 from rapidfuzz import fuzz
-from rapidfuzz.distance.Prefix import similarity
 from rdflib import Graph, RDF, RDFS, OWL
+from sentence_transformers import SentenceTransformer, util
 from semantic_iot.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandler
 
 
@@ -13,6 +14,7 @@ class MappingPreprocess:
                  ontology_file_paths: list = None,
                  rdf_node_relationship_file_path: str = None,
                  platform_config: str = None,
+                 similarity_mode: str = "string"  # ["string", "semantic"]
                  ):
         """
         Preprocess the JSON data to create an "RDF node relationship" file in JSON-LD
@@ -33,7 +35,10 @@ class MappingPreprocess:
                     of the JSON data. Other cases are not supported yet.
                 - extra_entity_node: JSON path of specific attributes to create extra
                     node types.
-
+            similarity_mode: The similarity mode to be used for the mapping. It can be either
+                - "string" (default): Uses levenstein distance to compute string similarity
+                - "semantic" (beta): Use "all-MiniLM-L6-v2" embedding model to compute semantic similarity.
+                              More information in https://github.com/UKPLab/sentence-transformers
         """
         self.json_file_path = json_file_path
         if not rdf_node_relationship_file_path:
@@ -50,6 +55,16 @@ class MappingPreprocess:
         self.ontology_property_classes = None
         self.ontology_prefixes = None
         # self.ontology_prefixes_convert = None
+
+        if similarity_mode not in ["string", "semantic"]:
+            logging.warning(f"Invalid similarity mode: {similarity_mode}. "
+                             f"Choose either 'string' or 'semantic'.\n"
+                            f"The default mode 'string' will be used.")
+            similarity_mode = "string"
+        self.similarity_mode = similarity_mode
+        # load embedding model
+        if self.similarity_mode == "semantic":
+            self.embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
 
         # intermediate variables
         self.entities = []
@@ -106,8 +121,23 @@ class MappingPreprocess:
 
     @staticmethod
     def string_similarity(str1: str, str2: str):
+        """
+        Compute the string similarity between two strings using Levenshtein distance.
+        """
         score = fuzz.ratio(str1.lower(), str2.lower())
         return score
+
+    def semantic_similarity(self, str1: str, str2: str):
+        """
+        (Beta) Compute the semantic similarity between two strings using the embedding model.
+        """
+        # Encode the strings
+        embeddings_1 = self.embedding_model.encode(str1)
+        embeddings_2 = self.embedding_model.encode(str2)
+        # Compute the cosine similarity
+        similarity = util.cos_sim(embeddings_1, embeddings_2).item()
+        # print("Similarity between '", str1, "' and '", str2, "'", ": ", similarity)
+        return similarity * 100  # Convert to percentage
 
     def suggestion_condition_top_matches(self, n: int, mappings: List[tuple]):
         """
@@ -153,8 +183,12 @@ class MappingPreprocess:
         keyword = entity_type.replace("_", " ")
 
         # compute similarity scores for all ontology property classes
-        mappings = [(iri, self.string_similarity(keyword, label))
-                    for label, iri in self.ontology_property_classes.items()]
+        if self.similarity_mode == "string":
+            mappings = [(iri, self.string_similarity(keyword, label))
+                        for label, iri in self.ontology_classes.items()]
+        elif self.similarity_mode == "semantic":
+            mappings = [(iri, self.semantic_similarity(keyword, label))
+                        for label, iri in self.ontology_classes.items()]
 
         return self.suggestion_condition_top_matches(n=3, mappings=mappings)
 
@@ -166,8 +200,12 @@ class MappingPreprocess:
         keyword = attribute_path.replace("_", " ").replace(".", " ")
 
         # compute similarity scores for all ontology property classes
-        mappings = [(iri, self.string_similarity(keyword, label))
-                    for label, iri in self.ontology_property_classes.items()]
+        if self.similarity_mode == "string":
+            mappings = [(iri, self.string_similarity(keyword, label))
+                        for label, iri in self.ontology_property_classes.items()]
+        elif self.similarity_mode == "semantic":
+            mappings = [(iri, self.semantic_similarity(keyword, label))
+                        for label, iri in self.ontology_property_classes.items()]
 
         return self.suggestion_condition_top_matches(n=3, mappings=mappings)
 
