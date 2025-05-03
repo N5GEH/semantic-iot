@@ -2,6 +2,7 @@ import json
 import os
 from typing import List, Any
 from rapidfuzz import fuzz
+from rapidfuzz.distance.Prefix import similarity
 from rdflib import Graph, RDF, RDFS, OWL
 from semantic_iot.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandler
 
@@ -108,6 +109,33 @@ class MappingPreprocess:
         score = fuzz.ratio(str1.lower(), str2.lower())
         return score
 
+    def suggestion_condition_top_matches(self, n: int, mappings: List[tuple]):
+        """
+        Suggest a class for the given entity type based on the ontology classes.
+        n: number of top matches to consider
+        mappings: list of tuples (iri, score)
+        """
+        # sort the mappings by score
+        mappings.sort(key=lambda x: x[1], reverse=True)
+
+        # keep the top n matches
+        top_matches = mappings[:n]
+
+        # use the prefix for the top matches
+        top_matches_prefixed = [(self.convert_to_prefixed(iri), score)
+                                for iri, score in top_matches]
+        best_match, highest_score = top_matches_prefixed[0]
+        third_highest_score = top_matches_prefixed[2][1] if len(
+            top_matches_prefixed) > 2 else 0
+
+        # return condition
+        if highest_score > 90:
+            return top_matches_prefixed[0][0]
+        elif highest_score - third_highest_score <= 10:
+            return [match[0] for match in top_matches_prefixed]
+        else:
+            return top_matches_prefixed[0][0]
+
     def convert_to_prefixed(self, iri):
         """
         Convert an IRI to a prefixed format using the ontology prefixes.
@@ -122,29 +150,26 @@ class MappingPreprocess:
         """
         Suggest a class for the given entity type based on the ontology classes.
         """
-        keyword = entity_type.split("_")[0] if "_" in entity_type else entity_type
-        top_matches = []
+        keyword = entity_type.replace("_", " ")
 
-        for label, iri in self.ontology_classes.items():
-            similarity_score = self.string_similarity(keyword, label)
-            if len(top_matches) < 3:
-                top_matches.append((iri, similarity_score))
-                top_matches.sort(key=lambda x: x[1], reverse=True)
-            elif similarity_score > top_matches[-1][1]:
-                top_matches[-1] = (iri, similarity_score)
-                top_matches.sort(key=lambda x: x[1], reverse=True)
+        # compute similarity scores for all ontology property classes
+        mappings = [(iri, self.string_similarity(keyword, label))
+                    for label, iri in self.ontology_property_classes.items()]
 
-        # use the prefix for the top matches
-        top_matches_prefixed = [(self.convert_to_prefixed(iri), score) for iri, score in top_matches]
-        best_match, highest_score = top_matches_prefixed[0]
-        third_highest_score = top_matches_prefixed[2][1] if len(top_matches_prefixed) > 2 else 0
+        return self.suggestion_condition_top_matches(n=3, mappings=mappings)
 
-        if highest_score > 90:
-            return top_matches_prefixed[0][0]
-        elif highest_score - third_highest_score <= 10:
-            return [match[0] for match in top_matches_prefixed]
-        else:
-            return top_matches_prefixed[0][0]
+
+    def suggest_property_class(self, attribute_path:str):
+        """
+        Suggest a property class for the given attribute path based on the ontology classes.
+        """
+        keyword = attribute_path.replace("_", " ").replace(".", " ")
+
+        # compute similarity scores for all ontology property classes
+        mappings = [(iri, self.string_similarity(keyword, label))
+                    for label, iri in self.ontology_property_classes.items()]
+
+        return self.suggestion_condition_top_matches(n=3, mappings=mappings)
 
     def drop_duplicates(self, node_relationships: List[dict]):
         """
@@ -172,7 +197,7 @@ class MappingPreprocess:
         return unique_node_relationships
 
     @staticmethod
-    def find_relationships(entity: dict, entity_list: List[dict]):
+    def find_relationships(entity: dict, entity_list: List[dict]) -> List[dict]:
         """
         Find relationships of the given entity with other entities in the list by recursively scanning the JSON structure.
 
@@ -274,7 +299,7 @@ class MappingPreprocess:
                 "iterator": f"$[?(@.type=='{entity['type']}')]",
                 "class": None,
                 "hasRelationship": [{"relatedNodeType": relationship["related_type"],
-                                     "relatedAttribute": None,
+                                     "relatedAttribute": f"**TODO: PLEASE CHECK** {self.suggest_class(relationship['path'])}",
                                      "rawdataidentifier": relationship["path"]}
                                     for relationship in relationships],
                 "link": None
