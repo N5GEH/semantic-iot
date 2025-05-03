@@ -1,12 +1,9 @@
 import json
 import os
-import re
 from typing import List, Any
-
 from rapidfuzz import fuzz
 from rdflib import Graph, RDF, RDFS, OWL
 from semantic_iot.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandler
-from pathlib import Path
 
 
 class MappingPreprocess:
@@ -49,7 +46,9 @@ class MappingPreprocess:
             self.rdf_node_relationship_file_path = rdf_node_relationship_file_path
         self.ontology_file_paths = ontology_file_paths
         self.ontology_classes = None
+        self.ontology_property_classes = None
         self.ontology_prefixes = None
+        # self.ontology_prefixes_convert = None
 
         # intermediate variables
         self.entities = []
@@ -73,27 +72,15 @@ class MappingPreprocess:
 
         return value
 
-    def load_ontology_prefixes(self):
-        prefixes = []
-        for file_path in self.ontology_file_paths:
-            file_path = Path(file_path)
-            with open(file_path, 'r') as file:
-                for line in file:
-                    line = line.strip()
-                    if line.startswith('@prefix'):
-                        prefixes.append(line)
-                    elif line == '':
-                        break
-        self.ontology_prefixes = '\n'.join(prefixes)
-
-    def load_ontology_classes(self):
-        brick_graph = Graph()
+    def load_ontology(self):
+        _graph = Graph()
         for file in self.ontology_file_paths:
-            brick_graph.parse(file, format="ttl")
+            _graph.parse(file, format="ttl")
 
+        # Extracting ontology classes
         ontology_classes = {}
-        for s, p, o in brick_graph.triples((None, RDF.type, OWL.Class)):
-            label = brick_graph.value(subject=s, predicate=RDFS.label)
+        for s, p, o in _graph.triples((None, RDF.type, OWL.Class)):
+            label = _graph.value(subject=s, predicate=RDFS.label)
             if label:
                 ontology_classes[str(label).lower()] = str(s)
             else:
@@ -101,26 +88,54 @@ class MappingPreprocess:
                 ontology_classes[local_name.lower()] = str(s)
         self.ontology_classes = ontology_classes
 
-    def suggest_class(self, entity_type, uri_to_prefix):
+        # Extracting property classes
+        property_classes = {}
+        for s, p, o in _graph.triples((None, RDF.type, OWL.ObjectProperty)):
+            label = _graph.value(subject=s, predicate=RDFS.label)
+            if label:
+                property_classes[str(label).lower()] = str(s)
+            else:
+                local_name = s.split("#")[-1] if "#" in s else s.split("/")[-1]
+                property_classes[local_name.lower()] = str(s)
+        self.ontology_property_classes = property_classes
+
+        # load namespaces
+        self.ontology_prefixes = {p: str(ns) for p, ns in _graph.namespaces()}
+        # self.ontology_prefixes_convert = {v: k for k, v in self.ontology_prefixes.items()}
+
+    @staticmethod
+    def string_similarity(str1: str, str2: str):
+        score = fuzz.ratio(str1.lower(), str2.lower())
+        return score
+
+    def convert_to_prefixed(self, iri):
+        """
+        Convert an IRI to a prefixed format using the ontology prefixes.
+        """
+        for prefix, prefix_iri in self.ontology_prefixes.items():
+            if iri.startswith(prefix_iri):
+                return iri.replace(prefix_iri, prefix + ":")
+        # If no prefix matches, return the original IRI
+        return iri
+
+    def suggest_class(self, entity_type):
+        """
+        Suggest a class for the given entity type based on the ontology classes.
+        """
         keyword = entity_type.split("_")[0] if "_" in entity_type else entity_type
         top_matches = []
 
-        for label, uri in self.ontology_classes.items():
-            score = fuzz.ratio(keyword.lower(), label)
+        for label, iri in self.ontology_classes.items():
+            similarity_score = self.string_similarity(keyword, label)
             if len(top_matches) < 3:
-                top_matches.append((uri, score))
+                top_matches.append((iri, similarity_score))
                 top_matches.sort(key=lambda x: x[1], reverse=True)
-            elif score > top_matches[-1][1]:
-                top_matches[-1] = (uri, score)
+            elif similarity_score > top_matches[-1][1]:
+                top_matches[-1] = (iri, similarity_score)
                 top_matches.sort(key=lambda x: x[1], reverse=True)
 
-        def convert_to_prefixed(uri):
-            for prefix_uri, prefix in uri_to_prefix.items():
-                if uri.startswith(prefix_uri):
-                    return uri.replace(prefix_uri, prefix + ":")
-            return uri
-
-        top_matches_prefixed = [(convert_to_prefixed(uri), score) for uri, score in top_matches]
+        # use the prefix for the top matches
+        top_matches_prefixed = [(self.convert_to_prefixed(iri), score) for iri, score in top_matches]
         best_match, highest_score = top_matches_prefixed[0]
         third_highest_score = top_matches_prefixed[2][1] if len(top_matches_prefixed) > 2 else 0
 
@@ -249,17 +264,6 @@ class MappingPreprocess:
                                   f"Set overwrite=True to overwrite the file."
                                   )
 
-        # create namespaces from ontology prefixes
-        context = {}
-        uri_to_prefix = {}  # converted from context
-        prefix_pattern = re.compile(r"@prefix\s+([^:]+):\s*<([^>]+)>")
-        for line in self.ontology_prefixes.splitlines():
-            match = prefix_pattern.match(line)
-            if match:
-                prefix, uri = match.groups()
-                context[prefix] = uri
-                uri_to_prefix[uri] = prefix
-
         # populate the rdf_node_relationships
         rdf_node_relationships = []
         for entity in self.entities_for_mapping:
@@ -283,9 +287,12 @@ class MappingPreprocess:
         # terminology mapping
         for resource in rdf_node_relationships:
             resource_type = resource['nodetype']
-            suggested_class = self.suggest_class(resource_type, uri_to_prefix)
+            suggested_class = self.suggest_class(resource_type)
             resource["class"] = f"**TODO: PLEASE CHECK** {suggested_class}"
 
+        # create namespaces from ontology prefixes
+        context = self.ontology_prefixes
+        # populate the report
         json_ld_data = {"@context": context, "@data": rdf_node_relationships}
         # Save the preprocess file
         with open(self.rdf_node_relationship_file_path, 'w') as preprocessed_file:
@@ -294,7 +301,6 @@ class MappingPreprocess:
               f"{self.rdf_node_relationship_file_path}")
 
     def pre_process(self, **kwargs):
-        self.load_ontology_prefixes()
-        self.load_ontology_classes()
+        self.load_ontology()
         self.create_rdf_node_relationship_file(**kwargs)
 
