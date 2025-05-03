@@ -1,0 +1,438 @@
+[
+  {
+    "name": "air_temperature_openhab_room_base_1_v2_1",
+    "type": "Number",
+    "link": null,
+    "category": "temperature",
+    "state": null,
+    "tags": [
+      "Point"
+    ],
+    "groupNames": [
+      "openhab_room_base_1_v2",
+      "openhab_room_base_2_v2"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "temperature air_temperature_openhab_room_base_1_v2_1"
+  },
+  {
+    "name": "co2_openhab_room_base_1_v2_1",
+    "type": "Number",
+    "link": null,
+    "category": "carbondioxide",
+    "state": null,
+    "tags": [
+      "Point"
+    ],
+    "groupNames": [
+      "openhab_room_base_1_v2",
+      "openhab_room_base_2_v2"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "carbondioxide co2_openhab_room_base_1_v2_1"
+  },
+  {
+    "name": "presence_openhab_room_base_1_v2_1",
+    "type": "Number",
+    "link": null,
+    "category": "presence",
+    "state": null,
+    "tags": [
+      "Point"
+    ],
+    "groupNames": [
+      "presence_sensor_openhab_room_base_1_v2_1"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "presence presence_openhab_room_base_1_v2_1"
+  },
+  {
+    "name": "presence_sensor_openhab_room_base_1_v2_1",
+    "type": "Group",
+    "link": null,
+    "category": "PresenceSensor",
+    "state": null,
+    "tags": [
+      "Equipment"
+    ],
+    "groupNames": [
+      "openhab_room_base_1_v2",
+      "openhab_room_base_2_v2"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "PresenceSensor presence_sensor_openhab_room_base_1_v2_1"
+  },
+  {
+    "name": "fan_speed_openhab_room_base_1_v2_1",
+    "type": "Number",
+    "link": null,
+    "category": "fan",
+    "state": null,
+    "tags": [
+      "Setpoint"
+    ],
+    "groupNames": [
+      "fan_openhab_room_base_1_v2_1"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "fan fan_speed_openhab_room_base_1_v2_1"
+  },
+  {
+    "name": "fan_openhab_room_base_1_v2_1",
+    "type": "Group",
+    "link": null,
+    "category": "Fan",
+    "state": null,
+    "tags": [
+      "Equipment"
+    ],
+    "groupNames": [
+      "cooling_coil_openhab_room_base_1_v2_1"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "Fan fan_openhab_room_base_1_v2_1"
+  },
+  {
+    "name": "cooling_coil_openhab_room_base_1_v2_1",
+    "type": "Group",
+    "link": null,
+    "category": "CoolingCoil",
+    "state": null,
+    "tags": [
+      "Equipment"
+    ],
+    "groupNames": [
+      "openhab_room_base_1_v2",
+      "openhab_room_base_2_v2"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "CoolingCoil cooling_coil_openhab_room_base_1_v2_1"
+  },
+  {
+    "name": "air_temp_setpoint_openhab_room_base_1_v2_1",
+    "type": "Number",
+    "link": null,
+    "category": "temperature",
+    "state": null,
+    "tags": [
+      "Setpoint"
+    ],
+    "groupNames": [
+      "radiator_thermostat_openhab_room_base_1_v2_1"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "temperature air_temp_setpoint_openhab_room_base_1_v2_1"
+  },
+  {
+    "name": "radiator_thermostat_openhab_room_base_1_v2_1",
+    "type": "Group",
+    "link": null,
+    "category": "RadiatorThermostat",
+    "state": null,
+    "tags": [
+      "Equipment"
+    ],
+    "groupNames": [
+      "openhab_room_base_1_v2",
+      "openhab_room_base_2_v2"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "RadiatorThermostat radiator_thermostat_openhab_room_base_1_v2_1"
+  },
+  {
+    "name": "air_flow_setpoint_openhab_room_base_1_v2_1",
+    "type": "Number",
+    "link": null,
+    "category": "flow",
+    "state": null,
+    "tags": [
+      "Setpoint"
+    ],
+    "groupNames": [
+      "variable_air_volume_box_openhab_room_base_1_v2_1"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "flow air_flow_setpoint_openhab_room_base_1_v2_1"
+  },
+  {
+    "name": "variable_air_volume_box_openhab_room_base_1_v2_1",
+    "type": "Group",
+    "link": null,
+    "category": "VariableAirVolumeBox",
+    "state": null,
+    "tags": [
+      "Equipment"
+    ],
+    "groupNames": [
+      "openhab_room_base_1_v2",
+      "openhab_room_base_2_v2"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "VariableAirVolumeBox variable_air_volume_box_openhab_room_base_1_v2_1"
+  },
+  {
+    "name": "openhab_room_base_1_v2",
+    "type": "Group",
+    "link": null,
+    "category": "Room",
+    "state": null,
+    "tags": [
+      "Location"
+    ],
+    "groupNames": [
+      "oh_hotel"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "Room openhab_room_base_1_v2"
+  },
+  {
+    "name": "air_temperature_openhab_room_base_2_v2_1",
+    "type": "Number",
+    "link": null,
+    "category": "temperature",
+    "state": null,
+    "tags": [
+      "Point"
+    ],
+    "groupNames": [
+      "openhab_room_base_2_v2"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "temperature air_temperature_openhab_room_base_2_v2_1"
+  },
+  {
+    "name": "co2_openhab_room_base_2_v2_1",
+    "type": "Number",
+    "link": null,
+    "category": "carbondioxide",
+    "state": null,
+    "tags": [
+      "Point"
+    ],
+    "groupNames": [
+      "openhab_room_base_2_v2"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "carbondioxide co2_openhab_room_base_2_v2_1"
+  },
+  {
+    "name": "presence_openhab_room_base_2_v2_1",
+    "type": "Number",
+    "link": null,
+    "category": "presence",
+    "state": null,
+    "tags": [
+      "Point"
+    ],
+    "groupNames": [
+      "presence_sensor_openhab_room_base_2_v2_1"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "presence presence_openhab_room_base_2_v2_1"
+  },
+  {
+    "name": "presence_sensor_openhab_room_base_2_v2_1",
+    "type": "Group",
+    "link": null,
+    "category": "PresenceSensor",
+    "state": null,
+    "tags": [
+      "Equipment"
+    ],
+    "groupNames": [
+      "openhab_room_base_2_v2"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "PresenceSensor presence_sensor_openhab_room_base_2_v2_1"
+  },
+  {
+    "name": "fan_speed_openhab_room_base_2_v2_1",
+    "type": "Number",
+    "link": null,
+    "category": "fan",
+    "state": null,
+    "tags": [
+      "Setpoint"
+    ],
+    "groupNames": [
+      "fan_openhab_room_base_2_v2_1"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "fan fan_speed_openhab_room_base_2_v2_1"
+  },
+  {
+    "name": "fan_openhab_room_base_2_v2_1",
+    "type": "Group",
+    "link": null,
+    "category": "Fan",
+    "state": null,
+    "tags": [
+      "Equipment"
+    ],
+    "groupNames": [
+      "cooling_coil_openhab_room_base_2_v2_1"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "Fan fan_openhab_room_base_2_v2_1"
+  },
+  {
+    "name": "cooling_coil_openhab_room_base_2_v2_1",
+    "type": "Group",
+    "link": null,
+    "category": "CoolingCoil",
+    "state": null,
+    "tags": [
+      "Equipment"
+    ],
+    "groupNames": [
+      "openhab_room_base_2_v2"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "CoolingCoil cooling_coil_openhab_room_base_2_v2_1"
+  },
+  {
+    "name": "air_temp_setpoint_openhab_room_base_2_v2_1",
+    "type": "Number",
+    "link": null,
+    "category": "temperature",
+    "state": null,
+    "tags": [
+      "Setpoint"
+    ],
+    "groupNames": [
+      "radiator_thermostat_openhab_room_base_2_v2_1"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "temperature air_temp_setpoint_openhab_room_base_2_v2_1"
+  },
+  {
+    "name": "radiator_thermostat_openhab_room_base_2_v2_1",
+    "type": "Group",
+    "link": null,
+    "category": "RadiatorThermostat",
+    "state": null,
+    "tags": [
+      "Equipment"
+    ],
+    "groupNames": [
+      "openhab_room_base_2_v2"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "RadiatorThermostat radiator_thermostat_openhab_room_base_2_v2_1"
+  },
+  {
+    "name": "air_flow_setpoint_openhab_room_base_2_v2_1",
+    "type": "Number",
+    "link": null,
+    "category": "flow",
+    "state": null,
+    "tags": [
+      "Setpoint"
+    ],
+    "groupNames": [
+      "variable_air_volume_box_openhab_room_base_2_v2_1"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "flow air_flow_setpoint_openhab_room_base_2_v2_1"
+  },
+  {
+    "name": "variable_air_volume_box_openhab_room_base_2_v2_1",
+    "type": "Group",
+    "link": null,
+    "category": "VariableAirVolumeBox",
+    "state": null,
+    "tags": [
+      "Equipment"
+    ],
+    "groupNames": [
+      "openhab_room_base_2_v2"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "VariableAirVolumeBox variable_air_volume_box_openhab_room_base_2_v2_1"
+  },
+  {
+    "name": "openhab_room_base_2_v2",
+    "type": "Group",
+    "link": null,
+    "category": "Room",
+    "state": null,
+    "tags": [
+      "Location"
+    ],
+    "groupNames": [
+      "oh_hotel"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "Room openhab_room_base_2_v2"
+  },
+  {
+    "name": "outside_air_temperature",
+    "type": "Number",
+    "link": null,
+    "category": "outsidetemperature",
+    "state": null,
+    "tags": [
+      "Point"
+    ],
+    "groupNames": [
+      "oh_hotel"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "outsidetemperature outside_air_temperature"
+  },
+  {
+    "name": "ahu",
+    "type": "Group",
+    "link": null,
+    "category": "AirHandlingUnit",
+    "state": null,
+    "tags": [
+      "Equipment"
+    ],
+    "groupNames": [
+      "oh_hotel"
+    ],
+    "groupType": null,
+    "function": null,
+    "label": "AirHandlingUnit ahu"
+  },
+  {
+    "name": "oh_hotel",
+    "type": "Group",
+    "link": null,
+    "category": "Hotel",
+    "state": null,
+    "tags": [
+      "Location"
+    ],
+    "groupNames": null,
+    "groupType": null,
+    "function": null,
+    "label": "Hotel oh_hotel"
+  }
+]
