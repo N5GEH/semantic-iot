@@ -1,11 +1,12 @@
 import json
 import logging
 import os
+import time
 from typing import List, Any
 from rapidfuzz import fuzz
-from rdflib import Graph, RDF, RDFS, OWL
+from rdflib import Graph, RDF, RDFS, OWL, SKOS, DC
 from sentence_transformers import SentenceTransformer, util
-from semantic_iot.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandler
+from semantic_iot.JSON_preprocess import JSONPreprocessorHandler
 
 
 class MappingPreprocess:
@@ -55,6 +56,9 @@ class MappingPreprocess:
         self.ontology_property_classes = None
         self.ontology_prefixes = None
         # self.ontology_prefixes_convert = None
+        # only for semantic mode
+        self.ontology_classes_semantic_info = None
+        self.ontology_property_classes_semantic_info = None
 
         if similarity_mode not in ["string", "semantic"]:
             logging.warning(f"Invalid similarity mode: {similarity_mode}. "
@@ -98,10 +102,10 @@ class MappingPreprocess:
         for s, p, o in _graph.triples((None, RDF.type, OWL.Class)):
             label = _graph.value(subject=s, predicate=RDFS.label)
             if label:
-                ontology_classes[str(label).lower()] = str(s)
+                ontology_classes[str(label).lower()] = s
             else:
                 local_name = s.split("#")[-1] if "#" in s else s.split("/")[-1]
-                ontology_classes[local_name.lower()] = str(s)
+                ontology_classes[local_name.lower()] = s
         self.ontology_classes = ontology_classes
 
         # Extracting property classes
@@ -109,15 +113,60 @@ class MappingPreprocess:
         for s, p, o in _graph.triples((None, RDF.type, OWL.ObjectProperty)):
             label = _graph.value(subject=s, predicate=RDFS.label)
             if label:
-                property_classes[str(label).lower()] = str(s)
+                property_classes[str(label).lower()] = s
             else:
                 local_name = s.split("#")[-1] if "#" in s else s.split("/")[-1]
-                property_classes[local_name.lower()] = str(s)
+                property_classes[local_name.lower()] = s
         self.ontology_property_classes = property_classes
 
         # load namespaces
         self.ontology_prefixes = {p: str(ns) for p, ns in _graph.namespaces()}
         # self.ontology_prefixes_convert = {v: k for k, v in self.ontology_prefixes.items()}
+
+        # (beta) create embedding from ontology classes
+        # Build semantic info for ontology classes
+        if self.similarity_mode == "semantic":
+            print("Building semantic info for ontology classes...")
+            start_time = time.perf_counter()
+            self.ontology_classes_semantic_info = self._build_semantic_info(
+                self.ontology_classes, _graph)
+            # Build semantic info for ontology property classes
+            self.ontology_property_classes_semantic_info = self._build_semantic_info(
+                self.ontology_property_classes, _graph)
+            print("Embeddings are built.")
+            end_time = time.perf_counter()
+            print(f"Time taken to build semantic info: {end_time - start_time:.2f} seconds")
+
+    def _build_semantic_info(self, classes_dict, _graph):
+        """
+        For each label and its corresponding IRI in the given dictionary,
+        retrieve the descriptive text from the graph (using _graph and RDFS.comment),
+        build the semantic string, and compute its embedding.
+        """
+        semantic_info = {}
+        for label, iri in classes_dict.items():
+            # Find possible descriptive text from the graph
+            description1 = _graph.value(subject=iri, predicate=RDFS.comment)
+            description2 = _graph.value(subject=iri, predicate=SKOS.definition)
+            description3 = _graph.value(subject=iri, predicate=DC.description)
+
+            # use the one that is not None
+            description = description1 or description2 or description3 or None
+
+            if description:
+                combined_string = f"{label.lower()}: {str(description).lower()}"
+            else:
+                combined_string = label.lower()
+
+            # Encode the combined string
+            embedding = self.embedding_model.encode(combined_string)
+
+            semantic_info[label] = {
+                "iri": iri,
+                "string": combined_string,
+                "embedding": embedding
+            }
+        return semantic_info
 
     @staticmethod
     def string_similarity(str1: str, str2: str):
@@ -127,17 +176,33 @@ class MappingPreprocess:
         score = fuzz.ratio(str1.lower(), str2.lower())
         return score
 
-    def semantic_similarity(self, str1: str, str2: str):
+    def semantic_similarity_mappings(self, semantic_info: dict, string: str) -> List[tuple]:
         """
-        (Beta) Compute the semantic similarity between two strings using the embedding model.
+        Compute the semantic similarity between the string and all ontology classes.
         """
-        # Encode the strings
-        embeddings_1 = self.embedding_model.encode(str1)
-        embeddings_2 = self.embedding_model.encode(str2)
-        # Compute the cosine similarity
-        similarity = util.cos_sim(embeddings_1, embeddings_2).item()
-        # print("Similarity between '", str1, "' and '", str2, "'", ": ", similarity)
-        return similarity * 100  # Convert to percentage
+        mappings = []
+        embeddings_string = self.embedding_model.encode(string)
+        for label, info in semantic_info.items():
+            # Compute the cosine similarity
+            similarity = util.cos_sim(embeddings_string, info["embedding"]).item()
+            # Convert to percentage
+            similarity = similarity * 100
+            mappings.append((semantic_info[label]["iri"], similarity))
+        return mappings
+
+    def class_semantic_similarity_mappings(self, resource_type: str) -> List[tuple]:
+        """
+        (Beta) Compute the semantic similarity between the resource type and all ontology classes.
+        """
+        return self.semantic_similarity_mappings(semantic_info=self.ontology_classes_semantic_info,
+                                                 string=resource_type)
+
+    def property_semantic_similarity_mappings(self, property_str: str) -> List[tuple]:
+        """
+        (Beta) Compute the semantic similarity between the property string and all ontology property classes.
+        """
+        return self.semantic_similarity_mappings(semantic_info=self.ontology_property_classes_semantic_info,
+                                                 string=property_str)
 
     def suggestion_condition_top_matches(self, n: int, mappings: List[tuple]):
         """
@@ -187,11 +252,12 @@ class MappingPreprocess:
             mappings = [(iri, self.string_similarity(keyword, label))
                         for label, iri in self.ontology_classes.items()]
         elif self.similarity_mode == "semantic":
-            mappings = [(iri, self.semantic_similarity(keyword, label))
-                        for label, iri in self.ontology_classes.items()]
+            mappings = self.class_semantic_similarity_mappings(resource_type=keyword)
+        else:
+            raise ValueError(f"Invalid similarity mode: {self.similarity_mode}. "
+                             f"Choose either 'string' or 'semantic'.")
 
         return self.suggestion_condition_top_matches(n=3, mappings=mappings)
-
 
     def suggest_property_class(self, attribute_path:str):
         """
@@ -204,8 +270,10 @@ class MappingPreprocess:
             mappings = [(iri, self.string_similarity(keyword, label))
                         for label, iri in self.ontology_property_classes.items()]
         elif self.similarity_mode == "semantic":
-            mappings = [(iri, self.semantic_similarity(keyword, label))
-                        for label, iri in self.ontology_property_classes.items()]
+            mappings = self.property_semantic_similarity_mappings(property_str=keyword)
+        else:
+            raise ValueError(f"Invalid similarity mode: {self.similarity_mode}. "
+                             f"Choose either 'string' or 'semantic'.")
 
         return self.suggestion_condition_top_matches(n=3, mappings=mappings)
 
@@ -352,6 +420,10 @@ class MappingPreprocess:
             resource_type = resource['nodetype']
             suggested_class = self.suggest_class(resource_type)
             resource["class"] = f"**TODO: PLEASE CHECK** {suggested_class}"
+            for relationship in resource["hasRelationship"]:
+                attribute_path = relationship["rawdataidentifier"]
+                suggested_property_class = self.suggest_property_class(attribute_path)
+                relationship["propertyClass"] = f"**TODO: PLEASE CHECK** {suggested_property_class}"
 
         # create namespaces from ontology prefixes
         context = self.ontology_prefixes
