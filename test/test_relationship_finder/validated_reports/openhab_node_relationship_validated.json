@@ -30,7 +30,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Room_Location",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -43,7 +43,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Room_Location",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -56,7 +56,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "PresenceSensor_Equipment",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -69,7 +69,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Room_Location",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -82,7 +82,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Fan_Equipment",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -95,7 +95,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "CoolingCoil_Equipment",
-                    "relatedAttribute": "brick:isPartOf",
+                    "propertyClass": "brick:isPartOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -108,7 +108,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Room_Location",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -121,7 +121,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "RadiatorThermostat_Equipment",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -134,7 +134,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Room_Location",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -147,7 +147,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "VariableAirVolumeBox_Equipment",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -160,7 +160,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Room_Location",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -173,7 +173,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel_Location",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -186,7 +186,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel_Location",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -199,7 +199,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel_Location",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "groupNames"
                 }
             ],
@@ -212,7 +212,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": null,
-                    "relatedAttribute": null,
+                    "propertyClass": null,
                     "rawdataidentifier": null
                 }
             ],

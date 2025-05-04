@@ -65,7 +65,7 @@ For the resource type `TemperatureSensor`, this is the generated **"resource nod
     "hasRelationship": [
         {
             "relatedNodeType": null,
-            "relatedAttribute": null,
+            "propertyClass": null,
             "rawdataidentifier": null
         }
     ],
@@ -84,7 +84,7 @@ And after validation and completion, it should look like this:
     "hasRelationship": [
         {
             "relatedNodeType": "HotelRoom",
-            "relatedAttribute": "brick:isPointOf",
+            "propertyClass": "brick:isPointOf",
             "rawdataidentifier": "hasLocation.value"
         }
     ],

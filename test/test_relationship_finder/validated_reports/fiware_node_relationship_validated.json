@@ -29,7 +29,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": null,
-                    "relatedAttribute": null,
+                    "propertyClass": null,
                     "rawdataidentifier": null
                 }
             ],
@@ -42,7 +42,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
@@ -55,7 +55,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
@@ -68,7 +68,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
@@ -81,7 +81,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
@@ -94,7 +94,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
@@ -107,7 +107,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
@@ -120,7 +120,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
@@ -133,7 +133,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
@@ -146,7 +146,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "CoolingCoil",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
@@ -159,7 +159,7 @@
             "hasRelationship": [
                 {
                 "relatedNodeType": "FreshAirVentilation",
-                "relatedAttribute": "brick:isPointOf",
+                "propertyClass": "brick:isPointOf",
                 "rawdataidentifier": "relatedTo.value"
                     }
             ],
@@ -172,7 +172,7 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "RadiatorThermostat",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],

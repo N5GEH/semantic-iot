@@ -20,9 +20,9 @@ ex:Mapping{{ relationship.nodetype }}
         rr:class {{ relationship.class }} ;
     ] ;
     {% for rel in relationship.hasRelationship -%}
-    {% if rel.relatedAttribute -%}
+    {% if rel.propertyClass -%}
     rr:predicateObjectMap [
-        rr:predicate {{ rel.relatedAttribute }} ;
+        rr:predicate {{ rel.propertyClass }} ;
         rr:objectMap [
             rr:parentTriplesMap ex:Mapping{{ rel.relatedNodeType }} ;
             rr:joinCondition [

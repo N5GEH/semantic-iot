@@ -337,7 +337,7 @@ class MappingPreprocess:
                 "iterator": f"$[?(@.type=='{entity['type']}')]",
                 "class": None,
                 "hasRelationship": [{"relatedNodeType": relationship["related_type"],
-                                     "relatedAttribute": f"**TODO: PLEASE CHECK** {self.suggest_class(relationship['path'])}",
+                                     "propertyClass": None,
                                      "rawdataidentifier": relationship["path"]}
                                     for relationship in relationships],
                 "link": None
