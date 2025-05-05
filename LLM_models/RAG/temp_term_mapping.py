@@ -89,34 +89,33 @@ class OntologyProcessor:
         return self.index
     
     def _process_class(self, class_uri: URIRef) -> None:
-        """Process a class and add it to the index"""
+        """Process a class and add it to the index, merging information from different sources"""
         class_id = self._get_local_name(class_uri)
         
-        # Skip if already processed
-        if class_id in self.index["classes"]:
-            return
-            
         # Get basic class information
         label = self._get_first_literal(class_uri, RDFS.label)
         comment = self._get_first_literal(class_uri, RDFS.comment)
         definition = self._get_first_literal(class_uri, SKOS.definition)
-        # description = self._get_first_literal(class_uri, DCTERMS.description)
-        
-        if "room" in class_uri.lower(): 
-            print(f"Processing class: {class_uri}, \n definition: {definition} \n comment: {comment} \n label: {label}")
 
-        # Store class information
-        self.index["classes"][class_id] = {
-            "uri": str(class_uri),
-            "label": label,
-            "description": definition, # or comment
-            "superclasses": [],
-            "subclasses": [],
-            "equivalent_classes": [],
-            "properties": [],  # Properties with this class as domain
-            "in_range_of": []  # Properties with this class as range
-        }
+        # Check if the class has already been processed
+        if class_id in self.index["classes"]:
+            # Merge new information with existing entry
+            self._merge_class_info(class_id, class_uri, label, comment, definition)
+        else:
+            # Create a new entry
+            self.index["classes"][class_id] = {
+                "uri": str(class_uri),
+                "label": label,
+                "description": definition or comment,  # Prefer definition, fallback to comment
+                "sources": [str(class_uri)],  # Track information sources
+                "superclasses": [],
+                "subclasses": [],
+                "equivalent_classes": [],
+                "properties": [],
+                "in_range_of": []
+            }
         
+        # Continue with superclass and equivalent class processing as before
         # Get superclasses
         for parent in self.graph.objects(class_uri, RDFS.subClassOf):
             if isinstance(parent, URIRef):
@@ -133,26 +132,45 @@ class OntologyProcessor:
                     if class_id not in self.index["classes"][parent_id]["subclasses"]:
                         self.index["classes"][parent_id]["subclasses"].append(class_id)
         
-        # Get equivalent classes
+        # Process equivalent classes
         for eq_class in self.graph.objects(class_uri, OWL.equivalentClass):
             if isinstance(eq_class, URIRef):
                 eq_class_id = self._get_local_name(eq_class)
                 if eq_class_id not in self.index["classes"][class_id]["equivalent_classes"]:
                     self.index["classes"][class_id]["equivalent_classes"].append(eq_class_id)
+
+    def _merge_class_info(self, class_id, class_uri, label, comment, definition):
+        """Merge new class information with existing entry"""
+        # Add source URI if not already present
+        if str(class_uri) not in self.index["classes"][class_id]["sources"]:
+            self.index["classes"][class_id]["sources"].append(str(class_uri))
+        
+        # Update label if not already set and new label is available
+        if not self.index["classes"][class_id]["label"] and label:
+            self.index["classes"][class_id]["label"] = label
+        
+        # Update description with priority to definition
+        if definition:
+            # If there was no description or the previous one was from a comment
+            if not self.index["classes"][class_id]["description"] or \
+               (comment and self.index["classes"][class_id]["description"] == comment):
+                self.index["classes"][class_id]["description"] = definition
+        # Use comment as fallback if no description exists
+        elif comment and not self.index["classes"][class_id]["description"]:
+            self.index["classes"][class_id]["description"] = comment
     
     def _process_property(self, prop_uri: URIRef) -> None:
-        """Process a property and add it to the index"""
+        """Process a property and add it to the index, merging information from different sources"""
         prop_id = self._get_local_name(prop_uri)
         
-        # Skip if already processed
-        if prop_id in self.index["properties"]:
-            return
-            
         # Get basic property information
         label = self._get_first_literal(prop_uri, RDFS.label)
         comment = self._get_first_literal(prop_uri, RDFS.comment)
         definition = self._get_first_literal(prop_uri, SKOS.definition)
-        # TODO SKOS.definition not in every ontology? Get definition identifier from example ontology
+        
+        # Debug output for selected properties
+        if "location" in str(prop_uri).lower(): 
+            print(f"Processing property: {prop_uri}, \n definition: {definition} \n comment: {comment} \n label: {label}")
         
         # Determine property type
         if (prop_uri, RDF.type, OWL.ObjectProperty) in self.graph:
@@ -162,17 +180,23 @@ class OntologyProcessor:
         else:
             prop_type = "Property"
         
-        # Store property information
-        self.index["properties"][prop_id] = {
-            "uri": str(prop_uri),
-            "label": label,
-            "description": definition, # or comment
-            "type": prop_type,
-            "domains": [],
-            "ranges": [],
-            "inverses": [],
-            "characteristics": self._get_property_characteristics(prop_uri)
-        }
+        # Check if the property has already been processed
+        if prop_id in self.index["properties"]:
+            # Merge new information with existing entry
+            self._merge_property_info(prop_id, prop_uri, label, comment, definition, prop_type)
+        else:
+            # Create a new entry
+            self.index["properties"][prop_id] = {
+                "uri": str(prop_uri),
+                "label": label,
+                "description": definition or comment,  # Prefer definition, fallback to comment
+                "type": prop_type,
+                "sources": [str(prop_uri)],  # Track information sources
+                "domains": [],
+                "ranges": [],
+                "inverses": [],
+                "characteristics": self._get_property_characteristics(prop_uri)
+            }
         
         # Get domains
         for domain in self.graph.objects(prop_uri, RDFS.domain):
@@ -198,6 +222,34 @@ class OntologyProcessor:
                         self._process_class(range_obj)
                     except:
                         pass  # It might be a datatype or something else
+
+    def _merge_property_info(self, prop_id, prop_uri, label, comment, definition, prop_type):
+        """Merge new property information with existing entry"""
+        # Add source URI if not already present
+        if "sources" not in self.index["properties"][prop_id]:
+            self.index["properties"][prop_id]["sources"] = [self.index["properties"][prop_id]["uri"]]
+        
+        if str(prop_uri) not in self.index["properties"][prop_id]["sources"]:
+            self.index["properties"][prop_id]["sources"].append(str(prop_uri))
+        
+        # Update label if not already set and new label is available
+        if not self.index["properties"][prop_id]["label"] and label:
+            self.index["properties"][prop_id]["label"] = label
+        
+        # Update description with priority to definition
+        if definition:
+            # If there was no description or the previous one was from a comment
+            if not self.index["properties"][prop_id]["description"] or \
+               (comment and self.index["properties"][prop_id]["description"] == comment):
+                self.index["properties"][prop_id]["description"] = definition
+        # Use comment as fallback if no description exists
+        elif comment and not self.index["properties"][prop_id]["description"]:
+            self.index["properties"][prop_id]["description"] = comment
+        
+        # Update property type if a more specific type is found
+        current_type = self.index["properties"][prop_id]["type"]
+        if current_type == "Property" and prop_type in ["ObjectProperty", "DatatypeProperty"]:
+            self.index["properties"][prop_id]["type"] = prop_type
     
     def _link_properties_to_classes(self) -> None:
         """Create bidirectional links between classes and properties"""
@@ -445,8 +497,8 @@ class OntologyProcessor:
             
         # Fall back to semantic search
         else:
-            class_results = self.semantic_search_classes(query, top_k=3)
-            prop_results = self.semantic_search_properties(query, top_k=3)
+            class_results = self.semantic_search_classes(query, top_k=150)
+            prop_results = self.semantic_search_properties(query, top_k=5)
             
             context_str = "### Relevant Classes\n"
             for class_id, score, info in class_results:

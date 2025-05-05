@@ -89,7 +89,7 @@ import sys
 sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
 from claude import ClaudeAPIProcessor
 import json
-
+import re
 
 
 # AI Temperature = 0.0 ?? for all
@@ -111,6 +111,20 @@ class LLMAssistant:
         with open(example_json_path, 'r') as file:
             self.example_json = file.read()
         self.context = self.example_json
+
+    def exract_json (self, response: str, format: str = "json"):
+        try:
+            # Extract JSON from response (it might be wrapped in markdown code blocks)
+            json_match = re.search(r'```json\s*(.*?)\s*```', response, re.DOTALL)
+            if json_match:
+                json_str = json_match.group(1)
+            else:
+                json_str = response
+                
+            result = json.loads(json_str)
+            return result
+        except:
+            return {"error": "Failed to parse LLM response", "raw_response": response}
 
     def create_config (self):
 
@@ -142,6 +156,9 @@ class LLMAssistant:
 
             try:
                 # TODO implement validation of extra nodes
+
+                # follow jsonpath syntax
+
                 # extra_nodes = json.loads(extra_nodes_str)
                 extra_nodes = extra_nodes_str
 
@@ -217,7 +234,10 @@ class LLMAssistant:
         """)
         val_keys(self, keys_str)
 
-        
+        # Mit anderem Datenmodeell testen, 
+        # welche extra entity nodes heraussuchen?
+        # json path syntax für extra nodes
+        # da wo mehrere infos in einem json object sind
 
         extra_nodes_str = self.claude.query(
             prompt = f"""
@@ -234,6 +254,10 @@ class LLMAssistant:
         # 3. Properties that might be referenced by multiple entities or systems
         # 4. Properties that represent physical components or subsystems
         # 5. Properties that have their own behaviors, states, or relationships
+
+        # FIWARE-NGSI Sepecification nehmen, um Link Maske zu wissen
+        # große dateien, nur paths oder und descriptions
+        # Bahjar arbeitet auch an diesem Dokument, welche Packages nutzen dafür um zu analysieren?
 
         val_extra_nodes(self, extra_nodes_str)
 
@@ -273,41 +297,86 @@ class LLMAssistant:
         complete the input data using the LLM.
         """
 
+        print(f"Completing the input data: {input_file}")
+
+        with open(input_file, 'r') as file:
+            data = file.read()
+
+
         interralationships = self.claude.query(
             prompt = f"""
-            Complete the interrelationship information between resource types. 
-            For example, TemperatureSensor is related to HotelRoom via the predicate brick:isPointOf.
+            Source JSON file:
+            {self.example_json}
 
-            COMPLETE RELATIONSHIP INFORMATION:
+            This In-Between file handles all unique resource types from the source JSON file: 
+            {data}
+
+            Complete the interrelationship information between resource types. 
+
+            COMPLETE RELATIONSHIP INFORMATION, based on the JSON data:
             - Fill in the empty "hasRelationship" array with appropriate related node types
             - For each relationship, determine:
-                a) The related node type (e.g., "HotelRoom")
+                a) The related node type
                     this is the value of the type of node in the JSON data
-                b) The appropriate predicate/relationship (e.g., "brick:isPointOf")
-                    this is the relationship in the JSON data
-                c) The rawdataidentifier that connects them (e.g., "hasLocation.value")
-                    this is the value of the relationship in the JSON data
+                b) The appropriate predicate/relationship from the ontology
+                    this is the relationship in the JSON data in ontology format
+                    because you don't know the ontology for now, add a placeholder here
+                c) The rawdataidentifier that connects them
+                    this is the identifier, that leads from the nodetype to the value of the relationship in the JSON data
 
-
+            - Ensure every entity has its proper hierarchical relationship defined
         """)
+        print(interralationships)
+
+
+        platform = self.claude.query(
+            prompt = f"""
+            Based on the provided JSON dataset, identify the IoT-platform that is used to collect the data.
+        """)
+        print(platform)
+
 
         link = self.claude.query(
             prompt = f"""
             Complete the "link" for accessing the data.
-            For example, the link for TemperatureSensor should be https://<host>/v2/entities/{{id}}/attrs/temperature/value.
 
             3. COMPLETE API ACCESS LINK:
-            - Provide the appropriate API endpoint for accessing the resource's data
-            - The link should follow the pattern: "https://<host>/v2/entities/{id}/attrs/<attribute>/value"
-            - Use the resource type to determine the appropriate attribute in the link
+            - Provide 
+            - The link should follow the pattern: "https://<host>/v2/entities/{{id}}/attrs/<attribute>/value"
+            - Do not replace the "{{id}}" placeholder in the link, as it will be replaced by the actual ID of the entity when accessed.
+            - Replace only the "<attribute>" placeholder with the appropriate attribute name from the JSON data.
+            - Replace <host> with the appropriate API endpoint for accessing the resource's data of the platform, which you identified in the previous step.
+
         """)
+        print(link)
+        # TODO how to know fiware.eonerc.rwth-aachen.de ?
 
         terminology_mapping = self.claude.query(
             prompt = f"""
             Verify the terminology-mappings.
-            For example, the correct mapping for PresenceSensor should be brick:Occupancy_Count_Sensor.
-        """)
+            For now, add a placeholder here
 
+            Replace only the "**TODO: PLEASE CHECK** and following" field in "class"
+        """)
+        print(terminology_mapping)
+
+        result = self.claude.query(
+            prompt=f"""
+            Based on the previous analysis, create a validated and completed 
+            "resource node relationship" document for the provided JSON dataset 
+            with the format of the original document
+        """)
+        json_data = self.exract_json(result)
+        print("Result: \n", result)
+        print("JSON_Data: \n", json_data)
+
+        output_file = Path(input_file).parent / f"{Path(input_file).stem}_LLMvalidated{Path(input_file).suffix}"
+        with open(output_file, 'w') as file:
+            file.write(json.dumps(json_data, indent=4)) 
+            print(f"Validated data saved to {output_file}")
+        
+
+        return
 
         with open(input_file, 'r') as file:
             data = file.read()
@@ -364,12 +433,12 @@ class LLMAssistant:
 if __name__ == "__main__":
     root_path = Path(__file__).parent
     print (root_path)
-    resource_node_relationship = f"{root_path}/examples/fiware/kgcp/rml/rdf_node_relationship.json"
+    resource_node_relationship = f"{root_path}/rdf_node_relationship.json"
     
     example_json_path = f"{root_path}/example_hotel.json"
 
     assistant = LLMAssistant(example_json_path)
 
-    assistant.create_config()
+    # assistant.create_config()
 
-    # assistant.complete(resource_node_relationship)
+    assistant.complete(resource_node_relationship)
