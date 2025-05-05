@@ -4,7 +4,6 @@ project_root_path = Path(__file__).parent.parent
 
 # input files
 INPUT_FILE_PATH = f"{project_root_path}/kgcp/rml/example_hotel.json"
-# TODO should support urls
 ONTOLOGY_PATHS = [
     f"{project_root_path}/ontologies/Brick.ttl"]
 # default file name will be used and in the same folder as the input file
