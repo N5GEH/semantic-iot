@@ -1,0 +1,8 @@
+{
+    "ID_KEY": "name",
+    "TYPE_KEYS": [
+        "category",
+        "tags"
+    ],
+    "JSONPATH_EXTRA_NODES": []
+}

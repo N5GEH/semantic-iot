@@ -1,12 +1,11 @@
 import rdflib
 import owlrl
-from config import project_root_path
 from pathlib import Path
+project_root_path = Path(__file__).parent
 
-targ_kg = Path(project_root_path).joinpath("kgcp/results/fiware_entities_10rooms.ttl")
-ontology = Path(project_root_path).joinpath("ontologies/Brick.ttl")
-extended_kg = str(targ_kg).replace(".ttl", "_inferred.ttl")
-
+targ_kg = Path(project_root_path).joinpath("../kgcp/results/fiware_entities_10rooms.ttl")
+ontology = Path(project_root_path).joinpath("../ontologies/Brick.ttl")
+extended_kg = targ_kg.name.replace(".ttl", "_inferred.ttl")
 
 g = rdflib.Graph()
 # load kg
@@ -37,6 +36,9 @@ for s, p, o in g:
         g_filtered.add((s, p, o))
 print("Triples number in filtered graph:", len(g_filtered))
 
+# bind namespaces
+for prefix, namespace_uri in g.namespaces():
+    g_filtered.bind(prefix, namespace_uri)
 
 g_filtered.serialize(extended_kg,
                      format="turtle")

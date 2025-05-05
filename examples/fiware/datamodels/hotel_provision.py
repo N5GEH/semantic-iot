@@ -1,10 +1,12 @@
+from opcode import haslocal
 from typing import List, Union, Literal
 from filip.models.ngsi_v2.iot import Device, DeviceAttribute, ServiceGroup
 from filip.models.ngsi_v2.context import ContextEntityKeyValues, \
     ContextAttribute, ContextEntity
 from filip.models.ngsi_v2.subscriptions import Subscription
 from requests import HTTPError
-from datamodels.pydantic_models import HotelRoomFiware, TemperatureSensorFiware, \
+from examples.fiware.datamodels.pydantic_models import HotelRoomFiware, \
+    TemperatureSensorFiware, \
     CO2SensorFiware, PresenceSensorFiware, FreshAirVentilationFiware, \
     RadiatorThermostatFiware, CoolingCoilFiware, SensorFiware, ActuatorFiware, \
     HotelFiware, TemperatureSensorAmbFiware
@@ -14,7 +16,13 @@ from filip.clients.ngsi_v2.cb import ContextBrokerClient
 from filip.clients.ngsi_v2.iota import IoTAClient
 from filip.models import FiwareHeader
 from filip.utils.cleanup import clear_all
-import config as config
+from pathlib import Path
+
+project_root_path = Path(__file__).parent
+CB_URL = "http://localhost:1026"  # TODO change to valide url to access Orion Context Broker (NGSIv2) of FIWARE
+FIWARE_SERVICE = 'fiware_demo'
+FIWARE_SERVICE_PATH = '/'
+
 
 
 def initialize_room_entities(room_name: str,
@@ -264,9 +272,9 @@ if __name__ == '__main__':
     Create the example dataset to set up the KG construction pipeline for FIWARE
     """
     # initialize clients
-    fiware_header = FiwareHeader(service=config.FIWARE_SERVICE,
-                                 service_path=config.FIWARE_SERVICE_PATH)
-    cbc = ContextBrokerClient(url=config.CB_URL,
+    fiware_header = FiwareHeader(service=FIWARE_SERVICE,
+                                 service_path=FIWARE_SERVICE_PATH)
+    cbc = ContextBrokerClient(url=CB_URL,
                               fiware_header=fiware_header)
 
     # clear iotagent and orion
@@ -277,7 +285,7 @@ if __name__ == '__main__':
     hotel_name = "example_hotel"
     hotel_fiware = HotelFiware(id=f"Hotel:{hotel_name}", name=hotel_name)
     entities_hotel = [hotel_fiware,
-                      TemperatureSensorAmbFiware(id="AmbientTemperatureSensor")]
+                      TemperatureSensorAmbFiware(id="AmbientTemperatureSensor",hasLocation=hotel_fiware.id)]
     # Post entities to context broker
     for entity in entities_hotel:
         cbc.post_entity(entity=entity, key_values=True)
@@ -303,7 +311,7 @@ if __name__ == '__main__':
     # save all entities in a file
     all_entities = cbc.get_entity_list()
     all_entities_serialize = [entity.model_dump() for entity in all_entities]
-    hotel_dataset_path = os.path.join(config.project_root_path,
+    hotel_dataset_path = os.path.join(project_root_path,
                                       "kgcp", "example_hotel.json")
     with open(hotel_dataset_path, "w") as f:
         json.dump(all_entities_serialize, f, indent=2)
