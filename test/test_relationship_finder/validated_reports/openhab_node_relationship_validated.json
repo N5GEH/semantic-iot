@@ -34,7 +34,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": "http://137.226.248.250:8080/rest/items/{id}/state"
+            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}/state"
         },
         {
             "nodetype": "carbondioxide_Point",
@@ -47,7 +47,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": "http://137.226.248.250:8080/rest/items/{id}/state"
+            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}/state"
         },
         {
             "nodetype": "presence_Point",
@@ -60,7 +60,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": "http://137.226.248.250:8080/rest/items/{id}/state"
+            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}/state"
         },
         {
             "nodetype": "PresenceSensor_Equipment",
@@ -73,7 +73,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "fan_Setpoint",
@@ -86,7 +86,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": "http://137.226.248.250:8080/rest/items/{id}"
+            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}"
         },
         {
             "nodetype": "Fan_Equipment",
@@ -99,7 +99,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "CoolingCoil_Equipment",
@@ -112,7 +112,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "temperature_Setpoint",
@@ -125,7 +125,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": "http://137.226.248.250:8080/rest/items/{id}"
+            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}"
         },
         {
             "nodetype": "RadiatorThermostat_Equipment",
@@ -138,7 +138,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "flow_Setpoint",
@@ -151,7 +151,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": "http://137.226.248.250:8080/rest/items/{id}"
+            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}"
         },
         {
             "nodetype": "VariableAirVolumeBox_Equipment",
@@ -164,7 +164,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "Room_Location",
@@ -177,7 +177,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "outsidetemperature_Point",
@@ -190,7 +190,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": "http://137.226.248.250:8080/rest/items/{id}/state"
+            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}/state"
         },
         {
             "nodetype": "AirHandlingUnit_Equipment",
@@ -203,7 +203,7 @@
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "Hotel_Location",
@@ -216,7 +216,7 @@
                     "rawdataidentifier": null
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         }
     ]
 }

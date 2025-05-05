@@ -408,7 +408,7 @@ class MappingPreprocess:
                                      "propertyClass": None,
                                      "rawdataidentifier": relationship["path"]}
                                     for relationship in relationships],
-                "link": None
+                "hasDataAccess": None
             }
             rdf_node_relationships.append(resource)
 
