@@ -52,7 +52,7 @@ In this document, the data models are identified as different **resource types**
 Manual validation and completion are now required for:
 1. Verify the terminology-mappings. For example, the correct mapping for `PresenceSensor` should be `brick:Occupancy_Count_Sensor`.
 2. Complete the interrelationship information between resource types. For example, `TemperatureSensor` is related to `HotelRoom` via the predicate `brick:isPointOf`.
-3. Complete the "link" for accessing the data. For example, the link for `TemperatureSensor` should be `https://<host>/v2/entities/{id}/attrs/temperature/value`.
+3. Complete the "hasDataAccess" for accessing the data. For example, the link for `TemperatureSensor` should be `https://<host>/v2/entities/{id}/attrs/temperature/value`.
 
 For the resource type `TemperatureSensor`, this is the generated **"resource node relationship"** document:
 ````json
@@ -65,11 +65,11 @@ For the resource type `TemperatureSensor`, this is the generated **"resource nod
     "hasRelationship": [
         {
             "relatedNodeType": null,
-            "relatedAttribute": null,
+            "propertyClass": null,
             "rawdataidentifier": null
         }
     ],
-    "link": null
+    "hasDataAccess": null
 }
 ````
 
@@ -84,12 +84,12 @@ And after validation and completion, it should look like this:
     "hasRelationship": [
         {
             "relatedNodeType": "HotelRoom",
-            "relatedAttribute": "brick:isPointOf",
+            "propertyClass": "brick:isPointOf",
             "rawdataidentifier": "hasLocation.value"
         }
     ],
     
-    "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
+    "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
 }
 ````
 
