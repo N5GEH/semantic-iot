@@ -1,21 +1,26 @@
 import json
 
-from examples.fiware.kgcp.rml_preprocess import ONTOLOGY_PATHS
+# from examples.fiware.kgcp.rml_preprocess import ONTOLOGY_PATHS
 
+from pathlib import Path
+project_root_path = Path(__file__).parent
+
+ONTOLOGY_PATHS = [
+    f"{project_root_path}/Brick.ttl"]
 
 def load_example_datasets():
     files = {
         "fiware": {
-            "path": "./test_relationship_finder/fiware.json",
-            "config": "./test_relationship_finder/fiware_config.json",
+            "path": f"{project_root_path}/test_relationship_finder/fiware.json",
+            "config": f"{project_root_path}/test_relationship_finder/fiware_config.json",
         },
         "openhab": {
-            "path": "./test_relationship_finder/openhab.json",
-            "config": "./test_relationship_finder/oh_config.json",
+            "path": f"{project_root_path}/test_relationship_finder/openhab.json",
+            "config": f"{project_root_path}/test_relationship_finder/oh_config.json",
         },
         "openhab_mm": {
-            "path": "./test_relationship_finder/openhab_multiple_members.json",
-            "config": "./test_relationship_finder/oh_config.json",
+            "path": f"{project_root_path}/test_relationship_finder/openhab_multiple_members.json",
+            "config": f"{project_root_path}/test_relationship_finder/oh_config.json",
         }
     }
 
@@ -46,7 +51,7 @@ def rml_preprocess(json_file_path, ontology_file_paths, platform_config):
 
 if __name__ == '__main__':
     ONTOLOGY_PATHS = [
-        "../examples/fiware/ontologies/Brick.ttl"
+        "../Code/semantic-iot/examples/fiware/ontologies/Brick.ttl"
     ]
     test_datasets = load_example_datasets()
     for dataset_name, dataset in test_datasets.items():

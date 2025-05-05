@@ -4,8 +4,6 @@
     class, predicate (Expertenwissen)
 '''
 
-# TODO Definition von Klassen / properties in brick nutzen
-# TODO Relations untereinander als Kontext in brick nutzen
 
 import json
 from semantic_iot.LLM.claude import ClaudeAPIProcessor
