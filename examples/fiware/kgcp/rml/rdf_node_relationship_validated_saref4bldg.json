@@ -21,11 +21,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": null,
-                    "relatedAttribute": null,
+                    "propertyClass": null,
                     "rawdataidentifier": null
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "identifier": "id",
@@ -36,11 +36,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": null,
-                    "relatedAttribute": null,
+                    "propertyClass": null,
                     "rawdataidentifier": null
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "identifier": "id",
@@ -51,11 +51,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel",
-                    "relatedAttribute": "s4bldg:isSpaceOf",
+                    "propertyClass": "s4bldg:isSpaceOf",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "identifier": "id",
@@ -66,11 +66,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "s4bldg:isContainedIn",
+                    "propertyClass": "s4bldg:isContainedIn",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "identifier": "id",
@@ -81,11 +81,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "s4bldg:isContainedIn",
+                    "propertyClass": "s4bldg:isContainedIn",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "identifier": "id",
@@ -96,11 +96,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "s4bldg:isContainedIn",
+                    "propertyClass": "s4bldg:isContainedIn",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "identifier": "id",
@@ -111,11 +111,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "s4bldg:isContainedIn",
+                    "propertyClass": "s4bldg:isContainedIn",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "identifier": "id",
@@ -126,11 +126,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "s4bldg:isContainedIn",
+                    "propertyClass": "s4bldg:isContainedIn",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "identifier": "id",
@@ -141,11 +141,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "s4bldg:isContainedIn",
+                    "propertyClass": "s4bldg:isContainedIn",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "identifier": "id",
@@ -156,11 +156,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "CoolingCoil",
-                    "relatedAttribute": "s4bldg:isContainedIn",
+                    "propertyClass": "s4bldg:isContainedIn",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
         },
         {
             "identifier": "id",
@@ -171,11 +171,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "FreshAirVentilation",
-                    "relatedAttribute": "s4bldg:isContainedIn",
+                    "propertyClass": "s4bldg:isContainedIn",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
         },
         {
             "identifier": "id",
@@ -186,11 +186,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "RadiatorThermostat",
-                    "relatedAttribute": "s4bldg:isContainedIn",
+                    "propertyClass": "s4bldg:isContainedIn",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
         },
         {
             "identifier": "id",
@@ -201,11 +201,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "TemperatureSensor",
-                    "relatedAttribute": "saref:isObservedBy",
+                    "propertyClass": "saref:isObservedBy",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
         },
         {
             "identifier": "id",
@@ -216,11 +216,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "CO2Sensor",
-                    "relatedAttribute": "saref:isObservedBy",
+                    "propertyClass": "saref:isObservedBy",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value"
         },
         {
             "identifier": "id",
@@ -231,11 +231,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "PresenceSensor",
-                    "relatedAttribute": "saref:isObservedBy",
+                    "propertyClass": "saref:isObservedBy",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value"
         },
         {
             "identifier": "id",
@@ -246,11 +246,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "AmbientTemperatureSensor",
-                    "relatedAttribute": "saref:isObservedBy",
+                    "propertyClass": "saref:isObservedBy",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value"
         }
     ]
 }
