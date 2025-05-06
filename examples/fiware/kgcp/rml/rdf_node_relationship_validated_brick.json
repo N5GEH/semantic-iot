@@ -33,7 +33,7 @@
                     "rawdataidentifier": null
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "AmbientTemperatureSensor",
@@ -47,7 +47,7 @@
                 }
             ],
             
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value"
         },
         {
             "nodetype": "HotelRoom",
@@ -61,7 +61,7 @@
                 }
             ],
             
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "TemperatureSensor",
@@ -75,7 +75,7 @@
                 }
             ],
             
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
         },
         {
             "nodetype": "CO2Sensor",
@@ -88,7 +88,7 @@
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value"
         },
         {
             "nodetype": "PresenceSensor",
@@ -102,7 +102,7 @@
                 }
             ],
             
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value"
         },
         {
             "nodetype": "FreshAirVentilation",
@@ -116,7 +116,7 @@
                 }
             ],
             
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "RadiatorThermostat",
@@ -130,7 +130,7 @@
                 }
             ],
             
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "CoolingCoil",
@@ -143,7 +143,7 @@
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "fanSpeed_CoolingCoil",
@@ -157,7 +157,7 @@
                 }
             ],
 
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
         },
         {
             "nodetype": "airFlowSetpoint_FreshAirVentilation",
@@ -171,7 +171,7 @@
                     }
             ],
             
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
         },
         {
             "nodetype": "temperatureSetpoint_RadiatorThermostat",
@@ -185,7 +185,7 @@
                 }
             ],
             
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
         }
     ]
 }
