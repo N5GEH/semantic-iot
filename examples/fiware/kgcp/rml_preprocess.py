@@ -18,6 +18,7 @@ if __name__ == '__main__':
         rdf_node_relationship_file_path=OUTPUT_FILE_PATH,
         ontology_file_paths=ONTOLOGY_PATHS,
         platform_config=PLATTFORM_CONFIG,
+        # similarity_mode="semantic",
         )
 
     # Load JSON and ontologies

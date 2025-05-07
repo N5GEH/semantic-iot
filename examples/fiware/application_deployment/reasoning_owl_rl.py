@@ -3,7 +3,7 @@ import owlrl
 from pathlib import Path
 project_root_path = Path(__file__).parent
 
-targ_kg = Path(project_root_path).joinpath("../kgcp/results/fiware_entities_10rooms.ttl")
+targ_kg = Path(project_root_path).joinpath("../kgcp/results/brick/fiware_entities_10rooms.ttl")
 ontology = Path(project_root_path).joinpath("../ontologies/Brick.ttl")
 extended_kg = targ_kg.name.replace(".ttl", "_inferred.ttl")
 
