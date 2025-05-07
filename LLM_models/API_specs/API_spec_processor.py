@@ -7,6 +7,25 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+
+
+
+
+
+
+# TODO Die beste hälfte von den top matches neue semantischen suche nehmen und das alles mit Beschreibung der LLM geben
+# TODO Anderes Embedding Modell verwenden
+# TODO Confidence score von anthropic ausgeben lassen? 
+
+
+
+
+
+
+
+
+
+
 class APISpecProcessor:
     """
     Generic processor for OpenAPI/Swagger API specification files.

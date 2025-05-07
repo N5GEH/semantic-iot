@@ -133,10 +133,11 @@ class LLMAssistant:
 
             try: # find two strings in every entity
                 keys = json.loads(keys_str)
+                print (f"Keys: {keys}")
                 if len(keys) != 2:
                     raise Exception("Output format is not a list with two strings")
                 
-                for entity in eval(self.example_json):
+                for entity in json.loads(self.example_json):
                     if keys[0] not in entity or keys[1] not in entity:
                         raise Exception(f"Keys {keys} not found in entity {entity}")
                     
@@ -250,15 +251,6 @@ class LLMAssistant:
 
             For each identified property, please give the number of the characteristic above as a reason for its classification as an extra node.
         """)
-
-        # 3. Properties that might be referenced by multiple entities or systems
-        # 4. Properties that represent physical components or subsystems
-        # 5. Properties that have their own behaviors, states, or relationships
-
-        # FIWARE-NGSI Sepecification nehmen, um Link Maske zu wissen
-        # große dateien, nur paths oder und descriptions
-        # Bahjar arbeitet auch an diesem Dokument, welche Packages nutzen dafür um zu analysieren?
-
         val_extra_nodes(self, extra_nodes_str)
 
 
@@ -283,8 +275,15 @@ class LLMAssistant:
         print (f"Config: {config}", type (config))
 
 
+        platform = self.claude.query(
+            prompt = f"""
+            Based on the provided JSON dataset, identify the IoT-platform that is used to collect the data.
+            Only return the name of the platform, without any other text or information.
+        """)
+        print(f"Plattform: {platform}")
 
-        config_path = Path(__file__).parent / "fiware_config_generated.json"
+
+        config_path = Path(__file__).parent / f"output/config_{platform.lower()}_generated.json"
         with open(config_path, 'w') as file:
             file.write(json.dumps(config, indent=4))
             print(f"Configuration saved to {config_path}")
@@ -299,61 +298,51 @@ class LLMAssistant:
 
         print(f"Completing the input data: {input_file}")
 
+        # Source JSON file:
+        # {self.example_json}
+
+        # This In-Between file handles all unique resource types from the source JSON file:
+        # {data}
+
         with open(input_file, 'r') as file:
             data = file.read()
 
+        # TODO new context or dont give JSON again?
 
-        interralationships = self.claude.query(
+
+
+        # TODO implement a function to get the host from the platform name
+
+        # spec_processor = APISpecProcessor()
+        # get_link_proposals = spec_processor.match_query_to_endpoint
+
+        link_pattern = self.claude.query(
             prompt = f"""
-            Source JSON file:
-            {self.example_json}
-
-            This In-Between file handles all unique resource types from the source JSON file: 
-            {data}
-
-            Complete the interrelationship information between resource types. 
-
-            COMPLETE RELATIONSHIP INFORMATION, based on the JSON data:
-            - Fill in the empty "hasRelationship" array with appropriate related node types
-            - For each relationship, determine:
-                a) The related node type
-                    this is the value of the type of node in the JSON data
-                b) The appropriate predicate/relationship from the ontology
-                    this is the relationship in the JSON data in ontology format
-                    because you don't know the ontology for now, add a placeholder here
-                c) The rawdataidentifier that connects them
-                    this is the identifier, that leads from the nodetype to the value of the relationship in the JSON data
-
-            - Ensure every entity has its proper hierarchical relationship defined
+            with which link do I get a sensor value with this IoT-plattform? Give me the link pattern
+            Return only the link pattern, without any other text or information.
         """)
-        print(interralationships)
+        # "https://<host>/v2/entities/{{id}}/attrs/<attribute>/value"
 
-
-        platform = self.claude.query(
-            prompt = f"""
-            Based on the provided JSON dataset, identify the IoT-platform that is used to collect the data.
-        """)
-        print(platform)
-
+        host = input ("Enter the host for the platform: ")
+        host = "fiware.eonerc.rwth-aachen.de"
 
         link = self.claude.query(
             prompt = f"""
             Complete the "link" for accessing the data.
 
-            3. COMPLETE API ACCESS LINK:
-            - Provide 
-            - The link should follow the pattern: "https://<host>/v2/entities/{{id}}/attrs/<attribute>/value"
+            COMPLETE API ACCESS LINK:
+            - The link should follow the pattern: {link_pattern}
             - Do not replace the "{{id}}" placeholder in the link, as it will be replaced by the actual ID of the entity when accessed.
-            - Replace only the "<attribute>" placeholder with the appropriate attribute name from the JSON data.
-            - Replace <host> with the appropriate API endpoint for accessing the resource's data of the platform, which you identified in the previous step.
+            - Replace the appropriate attribute name from the JSON data.
+            - Complete the host with the appropriate API endpoint for accessing the resource's data of the platform, which you identified in the previous step.
+            - The host is: {host}
 
         """)
         print(link)
-        # TODO how to know fiware.eonerc.rwth-aachen.de ?
 
         terminology_mapping = self.claude.query(
             prompt = f"""
-            Verify the terminology-mappings.
+            Verify the terminology-mappings of 
             For now, add a placeholder here
 
             Replace only the "**TODO: PLEASE CHECK** and following" field in "class"
@@ -374,71 +363,83 @@ class LLMAssistant:
         with open(output_file, 'w') as file:
             file.write(json.dumps(json_data, indent=4)) 
             print(f"Validated data saved to {output_file}")
-        
 
-        return
+def run (file_path: str):
+    with open (file_path) as f:
+        code = f.read()
+    exec(code)
 
-        with open(input_file, 'r') as file:
-            data = file.read()
-        
-        print(data)
+def rml_preprocess():
+    
+    from semantic_iot import MappingPreprocess
+    from pathlib import Path
+    project_root_path = Path(__file__).parent
 
-        prompt = f"""
-            Complete the following data: {data}
-            Please check if the data is correct and follows the expected format.
-            Add missing values
-            
+    print (project_root_path)
 
-            1. Terminology Mapping of Classes and Properties
+    # input files
+    INPUT_FILE_PATH = f"{project_root_path}/input/fiware_example.json"
 
-            2. Relationship Connections
-
-            3. Link to the data in the FIWARE context broker
-            
-
-            OUTPUT FORMAT EXAMPLE:
-
-            {{
-                "identifier": "id",
-                "nodetype": "TemperatureSensor",
-                "extraNode": false,
-                "iterator": "$[?(@.type=='TemperatureSensor')]",
-                "class": "brick:Air_Temperature_Sensor",
-                "hasRelationship": [
-                    {{
-                        "relatedNodeType": "HotelRoom",
-                        "relatedAttribute": "brick:isPointOf",
-                        "rawdataidentifier": "hasLocation.value"
-                    }}
-                ],
-
-                "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
-            }}
+    ONTOLOGY_PATHS = [
+        f"{project_root_path}/input/ontologies/Brick.ttl"]
+    # default file name will be used and in the same folder as the input file
+    OUTPUT_FILE_PATH = None
+    # input parameters
+    PLATTFORM_CONFIG = f"{project_root_path}\output\\fiware_config.json"
 
 
-        """
+    # Initialize the MappingPreprocess class
+    processor = MappingPreprocess(
+        json_file_path=INPUT_FILE_PATH,
+        rdf_node_relationship_file_path=OUTPUT_FILE_PATH,
+        ontology_file_paths=ONTOLOGY_PATHS,
+        platform_config=PLATTFORM_CONFIG,
+        )
 
-        response = self.claude.query(prompt)
-        
-
-        input_file = Path(input_file)
-        validated_path = input_file.parent / f"{input_file.stem}_LLMvalidated{input_file.suffix}"
-
-        with open(validated_path, 'w') as file:
-            file.write(response)
-            print (f"Validated data saved to {validated_path}")
+    # Load JSON and ontologies
+    processor.pre_process(overwrite=True)
 
 
 
 if __name__ == "__main__":
     root_path = Path(__file__).parent
-    print (root_path)
-    resource_node_relationship = f"{root_path}/rdf_node_relationship.json"
     
-    example_json_path = f"{root_path}/example_hotel.json"
+    # input data
+    example_json_path = f"{root_path}/input/fiware_example.json"
+    example_json_path = f"{root_path}/input/openhab_example.json"
 
+
+    # LLM Assistant
+
+    print("Starting LLM Assistant...")
     assistant = LLMAssistant(example_json_path)
 
-    # assistant.create_config()
+    print("\nSTEP 1: data model identification & vocabulary mapping")
+    print("     Creating config file...")
+    assistant.create_config()
+    input("Press Enter to continue...")
 
+    print("Run ./kgcp/rml/rml_preprocess.py")
+    rml_preprocess()
+    resource_node_relationship = f"{root_path}/rdf_node_relationship.json"
+    input("Press Enter to continue...")
+
+    print("\nSTEP 2: validation and completion")
+    print("     Validating and completing the resource node relationship document...")
     assistant.complete(resource_node_relationship)
+    input("Press Enter to continue...")
+
+    print("\nSTEP 3: generate mapping file to build KGCP")
+    print("     Run ./kgcp/rml/rml_generate.py")
+    run(f"{root_path}/rml_generate.py")
+
+    print ("RML file Generated. Now continue with Steps 4 and 5")
+
+
+
+    
+
+
+    
+
+

@@ -121,7 +121,7 @@ class ClaudeAPIProcessor:
                 break
             elif response.status_code == 429: # Too many requests
                 if i < max_retry - 1:
-                    print(f"Received 429 error. Retrying... ({i + 1}/{max_retry})")
+                    print(f"Received 429 error: Too many requests. Retrying... ({i + 1}/{max_retry})")
                     time.sleep(61)
                     continue
                 else:

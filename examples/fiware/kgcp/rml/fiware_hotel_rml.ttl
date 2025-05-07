@@ -59,12 +59,6 @@ ex:MappingAmbientTemperatureSensor
             ] ;
         ] ;
     ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value" ;
-        ] ;
-    ] ;
     .
 
 # Mapping for HotelRoom
@@ -113,12 +107,6 @@ ex:MappingTemperatureSensor
             ] ;
         ] ;
     ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value" ;
-        ] ;
-    ] ;
     .
 
 # Mapping for CO2Sensor
@@ -143,12 +131,6 @@ ex:MappingCO2Sensor
             ] ;
         ] ;
     ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value" ;
-        ] ;
-    ] ;
     .
 
 # Mapping for PresenceSensor
@@ -171,12 +153,6 @@ ex:MappingPresenceSensor
                 rr:child "hasLocation.value" ;
                 rr:parent "id" ;
             ] ;
-        ] ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value" ;
         ] ;
     ] ;
     .
@@ -275,12 +251,6 @@ ex:MappingfanSpeed_CoolingCoil
             ] ;
         ] ;
     ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/fanSpeed/value" ;
-        ] ;
-    ] ;
     .
 
 # Mapping for airFlowSetpoint_FreshAirVentilation
@@ -305,12 +275,6 @@ ex:MappingairFlowSetpoint_FreshAirVentilation
             ] ;
         ] ;
     ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value" ;
-        ] ;
-    ] ;
     .
 
 # Mapping for temperatureSetpoint_RadiatorThermostat
@@ -333,12 +297,6 @@ ex:MappingtemperatureSetpoint_RadiatorThermostat
                 rr:child "relatedTo.value" ;
                 rr:parent "id" ;
             ] ;
-        ] ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value" ;
         ] ;
     ] ;
     .

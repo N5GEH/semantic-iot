@@ -1,1047 +1,787 @@
 @prefix brick: <https://brickschema.org/schema/Brick#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rec: <https://w3id.org/rec#> .
 
 <http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> a brick:Outside_Air_Temperature_Sensor ;
-    rdf:value <http://137.226.248.250:1026/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value> .
+    brick:isPointOf <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_1> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_1/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_10> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_10/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_10> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_11> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_11/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_11> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_12> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_12/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_12> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_13> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_13/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_13> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_14> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_14/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_14> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_15> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_15/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_15> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_16> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_16/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_16> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_17> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_17/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_17> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_18> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_18/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_18> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_19> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_19/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_19> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_2> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_2/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_20> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_20/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_20> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_3> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_3/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_3> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_4> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_4/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_4> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_5> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_5/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_5> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_6> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_6/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_6> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_7> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_7/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_7> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_8> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_8/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_8> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_base_9> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_base_9/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_9> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_co2_1> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_1/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_1> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_co2_10> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_10/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_10> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_co2_2> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_2/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_2> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_co2_3> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_3/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_3> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_co2_4> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_4/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_4> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_co2_5> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_5/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_5> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_co2_6> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_6/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_6> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_co2_7> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_7/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_7> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_co2_8> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_8/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_8> .
 
 <http://example.com/CO2Sensor/CO2Sensor:room_co2_9> a brick:CO2_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/CO2Sensor:room_co2_9/attrs/co2/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_9> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_1> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_1/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_10> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_10/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_10> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_11> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_11/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_11> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_12> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_12/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_12> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_13> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_13/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_13> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_14> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_14/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_14> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_15> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_15/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_15> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_16> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_16/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_16> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_17> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_17/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_17> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_18> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_18/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_18> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_19> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_19/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_19> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_2> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_2/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_20> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_20/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_20> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_3> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_3/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_3> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_4> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_4/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_4> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_5> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_5/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_5> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_6> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_6/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_6> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_7> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_7/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_7> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_8> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_8/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_8> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_base_9> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_base_9/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_9> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_presence_1> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_1/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_1> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_presence_10> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_10/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_10> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_presence_2> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_2/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_2> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_presence_3> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_3/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_3> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_presence_4> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_4/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_4> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_presence_5> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_5/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_5> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_presence_6> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_6/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_6> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_presence_7> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_7/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_7> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_presence_8> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_8/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_8> .
 
 <http://example.com/PresenceSensor/PresenceSensor:room_presence_9> a brick:Occupancy_Count_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/PresenceSensor:room_presence_9/attrs/pir/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_9> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_1> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_10> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_10/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_10> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_11> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_11/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_11> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_12> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_12/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_12> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_13> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_13/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_13> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_14> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_14/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_14> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_15> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_15/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_15> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_16> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_16/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_16> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_17> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_17/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_17> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_18> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_18/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_18> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_19> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_19/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_19> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_2> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_20> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_20/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_20> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_3> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_3/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_3> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_4> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_4/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_4> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_5> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_5/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_5> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_6> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_6/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_6> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_7> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_7/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_7> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_8> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_8/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_8> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_base_9> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_9/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_9> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_co2_1> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_1/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_1> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_co2_10> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_10/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_10> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_co2_2> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_2/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_2> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_co2_3> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_3/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_3> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_co2_4> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_4/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_4> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_co2_5> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_5/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_5> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_co2_6> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_6/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_6> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_co2_7> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_7/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_7> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_co2_8> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_8/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_8> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_co2_9> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_co2_9/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_co2_9> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_presence_1> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_1/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_1> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_presence_10> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_10/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_10> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_presence_2> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_2/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_2> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_presence_3> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_3/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_3> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_presence_4> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_4/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_4> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_presence_5> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_5/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_5> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_presence_6> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_6/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_6> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_presence_7> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_7/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_7> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_presence_8> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_8/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_8> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_presence_9> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_presence_9/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_presence_9> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_1> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_1/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_1> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_10> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_10/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_10> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_2> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_2/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_2> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_3> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_3/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_3> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_4> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_4/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_4> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_5> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_5/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_5> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_6> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_6/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_6> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_7> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_7/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_7> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_8> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_8/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_8> .
 
 <http://example.com/TemperatureSensor/TemperatureSensor:room_timetable_9> a brick:Air_Temperature_Sensor ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/TemperatureSensor:room_timetable_9/attrs/temperature/value> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_timetable_9> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_1> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_1> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_10> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_10> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_11> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_11/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_11> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_12> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_12/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_12> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_13> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_13/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_13> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_14> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_14/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_14> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_15> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_15/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_15> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_16> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_16/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_16> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_17> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_17/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_17> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_18> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_18/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_18> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_19> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_19/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_19> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_2> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_2> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_20> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_20/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_20> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_3> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_3> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_4> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_4> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_5> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_5> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_6> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_6> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_7> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_7> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_8> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_8> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_9> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_9> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_co2_1> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_co2_1/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_1> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_co2_10> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_co2_10/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_10> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_co2_2> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_co2_2/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_2> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_co2_3> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_co2_3/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_3> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_co2_4> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_co2_4/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_4> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_co2_5> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_co2_5/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_5> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_co2_6> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_co2_6/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_6> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_co2_7> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_co2_7/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_7> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_co2_8> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_co2_8/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_8> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_co2_9> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_co2_9/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_co2_9> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_presence_1> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_presence_1/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_1> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_presence_10> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_presence_10/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_10> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_presence_2> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_presence_2/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_2> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_presence_3> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_presence_3/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_3> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_presence_4> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_presence_4/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_4> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_presence_5> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_presence_5/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_5> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_presence_6> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_presence_6/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_6> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_presence_7> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_presence_7/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_7> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_presence_8> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_presence_8/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_8> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_presence_9> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_presence_9/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_presence_9> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_timetable_1> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_timetable_1/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_1> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_timetable_10> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_timetable_10/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_10> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_timetable_2> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_timetable_2/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_2> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_timetable_3> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_timetable_3/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_3> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_timetable_4> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_timetable_4/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_4> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_timetable_5> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_timetable_5/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_5> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_timetable_6> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_timetable_6/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_6> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_timetable_7> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_timetable_7/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_7> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_timetable_8> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_timetable_8/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_8> .
 
 <http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_timetable_9> a brick:Air_Flow_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/airFlowSetpoint_FreshAirVentilation:room_timetable_9/attrs/airFlowSetpoint/value> ;
     brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_timetable_9> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_1> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_1/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_1> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_10> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_10/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_10> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_11> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_11/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_11> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_12> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_12/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_12> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_13> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_13/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_13> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_14> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_14/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_14> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_15> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_15/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_15> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_16> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_16/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_16> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_17> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_17/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_17> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_18> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_18/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_18> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_19> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_19/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_19> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_2> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_2/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_2> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_20> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_20/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_20> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_3> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_3/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_3> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_4> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_4/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_4> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_5> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_5/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_5> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_6> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_6/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_6> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_7> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_7/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_7> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_8> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_8/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_8> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_9> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_base_9/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_9> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_co2_1> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_co2_1/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_co2_1> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_co2_10> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_co2_10/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_co2_10> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_co2_2> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_co2_2/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_co2_2> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_co2_3> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_co2_3/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_co2_3> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_co2_4> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_co2_4/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_co2_4> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_co2_5> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_co2_5/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_co2_5> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_co2_6> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_co2_6/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_co2_6> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_co2_7> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_co2_7/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_co2_7> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_co2_8> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_co2_8/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_co2_8> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_co2_9> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_co2_9/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_co2_9> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_presence_1> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_presence_1/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_presence_1> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_presence_10> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_presence_10/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_presence_10> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_presence_2> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_presence_2/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_presence_2> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_presence_3> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_presence_3/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_presence_3> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_presence_4> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_presence_4/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_presence_4> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_presence_5> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_presence_5/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_presence_5> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_presence_6> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_presence_6/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_presence_6> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_presence_7> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_presence_7/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_presence_7> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_presence_8> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_presence_8/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_presence_8> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_presence_9> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_presence_9/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_presence_9> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_timetable_1> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_timetable_1/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_timetable_1> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_timetable_10> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_timetable_10/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_timetable_10> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_timetable_2> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_timetable_2/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_timetable_2> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_timetable_3> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_timetable_3/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_timetable_3> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_timetable_4> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_timetable_4/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_timetable_4> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_timetable_5> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_timetable_5/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_timetable_5> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_timetable_6> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_timetable_6/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_timetable_6> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_timetable_7> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_timetable_7/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_timetable_7> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_timetable_8> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_timetable_8/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_timetable_8> .
 
 <http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_timetable_9> a brick:Fan_Speed_Command ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/fanSpeed_CoolingCoil:room_timetable_9/attrs/fanSpeed/value> ;
     brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_timetable_9> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_1> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_1/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_1> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_10> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_10/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_10> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_11> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_11/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_11> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_12> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_12/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_12> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_13> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_13/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_13> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_14> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_14/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_14> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_15> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_15/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_15> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_16> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_16/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_16> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_17> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_17/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_17> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_18> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_18/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_18> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_19> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_19/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_19> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_2> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_2/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_2> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_20> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_20/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_20> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_3> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_3/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_3> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_4> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_4/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_4> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_5> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_5/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_5> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_6> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_6/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_6> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_7> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_7/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_7> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_8> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_8/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_8> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_9> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_base_9/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_9> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_co2_1> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_co2_1/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_1> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_co2_10> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_co2_10/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_10> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_co2_2> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_co2_2/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_2> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_co2_3> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_co2_3/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_3> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_co2_4> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_co2_4/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_4> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_co2_5> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_co2_5/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_5> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_co2_6> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_co2_6/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_6> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_co2_7> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_co2_7/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_7> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_co2_8> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_co2_8/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_8> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_co2_9> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_co2_9/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_co2_9> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_presence_1> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_presence_1/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_1> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_presence_10> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_presence_10/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_10> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_presence_2> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_presence_2/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_2> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_presence_3> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_presence_3/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_3> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_presence_4> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_presence_4/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_4> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_presence_5> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_presence_5/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_5> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_presence_6> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_presence_6/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_6> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_presence_7> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_presence_7/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_7> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_presence_8> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_presence_8/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_8> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_presence_9> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_presence_9/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_presence_9> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_timetable_1> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_timetable_1/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_1> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_timetable_10> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_timetable_10/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_10> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_timetable_2> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_timetable_2/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_2> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_timetable_3> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_timetable_3/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_3> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_timetable_4> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_timetable_4/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_4> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_timetable_5> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_timetable_5/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_5> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_timetable_6> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_timetable_6/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_6> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_timetable_7> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_timetable_7/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_7> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_timetable_8> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_timetable_8/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_8> .
 
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_timetable_9> a brick:Temperature_Setpoint ;
-    rdf:value <https://fiware.rwth-aachen.de/v2/entities/temperatureSetpoint_RadiatorThermostat:room_timetable_9/attrs/temperatureSetpoint/value> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_9> .
 
 <http://example.com/CoolingCoil/CoolingCoil:room_base_1> a brick:Cooling_Coil ;
@@ -1494,155 +1234,155 @@
 <http://example.com/RadiatorThermostat/RadiatorThermostat:room_timetable_9> a brick:Thermostat ;
     brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_timetable_9> .
 
-<http://example.com/HotelRoom/HotelRoom:room_timetable_1> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_timetable_1> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_timetable_10> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_timetable_10> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_timetable_2> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_timetable_2> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_timetable_3> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_timetable_3> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_timetable_4> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_timetable_4> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_timetable_5> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_timetable_5> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_timetable_6> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_timetable_6> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_timetable_7> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_timetable_7> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_timetable_8> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_timetable_8> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_timetable_9> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_timetable_9> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_co2_1> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_co2_1> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_co2_10> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_co2_10> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_co2_2> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_co2_2> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_co2_3> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_co2_3> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_co2_4> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_co2_4> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_co2_5> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_co2_5> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_co2_6> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_co2_6> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_co2_7> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_co2_7> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_co2_8> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_co2_8> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_co2_9> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_co2_9> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_presence_1> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_presence_1> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_presence_10> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_presence_10> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_presence_2> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_presence_2> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_presence_3> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_presence_3> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_presence_4> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_presence_4> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_presence_5> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_presence_5> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_presence_6> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_presence_6> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_presence_7> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_presence_7> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_presence_8> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_presence_8> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_presence_9> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_presence_9> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_1> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_1> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_10> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_10> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_11> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_11> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_12> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_12> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_13> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_13> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_14> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_14> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_15> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_15> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_16> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_16> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_17> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_17> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_18> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_18> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_19> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_19> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_2> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_2> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_20> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_20> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_3> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_3> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_4> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_4> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_5> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_5> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_6> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_6> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_7> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_7> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_8> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_8> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/HotelRoom/HotelRoom:room_base_9> a <https://w3id.org/rec#Room> ;
+<http://example.com/HotelRoom/HotelRoom:room_base_9> a rec:Room ;
     brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/Hotel/Hotel:hotel:aachen:001> a <https://w3id.org/rec#Building> .
+<http://example.com/Hotel/Hotel:hotel:aachen:001> a rec:Building .
 
