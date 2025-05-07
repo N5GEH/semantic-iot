@@ -1,38 +1,15 @@
 import json
-import os
 from semantic_iot import RDFGenerator
-from pathlib import Path
 import time
 from memory_profiler import memory_usage
+from pathlib import Path
+project_root_path = Path(__file__).parent.parent
 
 # Flag to decide whether to measure performance metrics
-measure_metrics = True
+measure_metrics = False
 # If measure_metrics is True, the number of repetitions for the performance measurement
 repeat = 20
 
-# Define the path to the RML mapping file
-RML_MAPPING_FILE = f"{Path(__file__).resolve().parent.parent}/kgcp/rml/fiware_hotel_rml.ttl"
-
-# Function to determine ontology from the RML mapping file content
-def detect_ontology(rml_file):
-    with open(rml_file, "r") as file:
-        content = file.read()
-        if "s4bldg:" in content or "saref:" in content:
-            return "saref4bldg"
-        elif "brick:" in content:
-            return "brick"
-        elif "dogont:" in content:
-            return "dogont"
-    return "other"  # Fallback if no known ontology is detected
-
-# Detect the ontology used
-selected_ontology = detect_ontology(RML_MAPPING_FILE)
-
-# Set the results directory based on the detected ontology
-results_folder = f"{Path(__file__).resolve().parent.parent}/kgcp/results/{selected_ontology}"
-
-# Ensure the directory exists
-os.makedirs(results_folder, exist_ok=True)
 
 def profile_generate_rdf(rdf_gen: RDFGenerator, repetitions=20, **kwargs):
     """
@@ -77,8 +54,8 @@ if __name__ == '__main__':
 
     # Load the created mapping file and platform configuration to build KGCP for FIWARE
     fiware_kgcp = RDFGenerator(
-        mapping_file=f"{Path(__file__).resolve().parent.parent}/kgcp/rml/fiware_hotel_rml.ttl",
-        platform_config=f"{Path(__file__).resolve().parent.parent}/kgcp/fiware_config.json"
+        mapping_file=f"{project_root_path}/kgcp/rml/brick/fiware_hotel_rml.ttl",
+        platform_config=f"{project_root_path}/kgcp/rml/brick/fiware_config.json"
     )
 
     for hotel in (
@@ -89,14 +66,12 @@ if __name__ == '__main__':
             "fiware_entities_500rooms",
             "fiware_entities_1000rooms"
     ):
-        destination_file = f"{results_folder}/{hotel}.ttl"
-
         if measure_metrics:
             m_usage, time_usage = measure_performance(
                 rdf_gen=fiware_kgcp,
                 repetitions=repeat,
-                source_file=f"{Path(__file__).resolve().parent.parent}/hotel_dataset/{hotel}.json",
-                destination_file=destination_file,
+                source_file=f"{project_root_path}/hotel_dataset/{hotel}.json",
+                destination_file=f"{project_root_path}/kgcp/results/{hotel}.ttl",
                 engine="morph-kgc"
             )
 
@@ -115,15 +90,13 @@ if __name__ == '__main__':
 
         else:
             fiware_kgcp.generate_rdf(
-                source_file=f"{Path(__file__).resolve().parent.parent}/hotel_dataset/{hotel}.json",
-                destination_file=destination_file,
+                source_file=f"{project_root_path}/hotel_dataset/{hotel}.json",
+                destination_file=f"{project_root_path}/kgcp/results/brick/{hotel}.ttl",
                 engine="morph-kgc"
             )
 
-    # Save metrics JSON in the corresponding ontology folder
-    time_stamp = time.strftime("%Y_%m_%d-%H_%M_%S")
-    metrics_file = f"{results_folder}/metrics_{time_stamp}.json"
-
+    # Save metrics as JSON file
+    time_stamp = time.strftime("%Y_%m_%d-%H_%M_%S")  # current timestamp
     if measure_metrics:
-        with open(metrics_file, "w") as f:
+        with open(f"{project_root_path}/kgcp/results/metrics_{time_stamp}.json", "w") as f:
             json.dump(metrics, f, indent=2)

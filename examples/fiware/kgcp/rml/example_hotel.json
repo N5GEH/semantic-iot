@@ -27,7 +27,7 @@
     "type": "HotelRoom",
     "hasLocation": {
       "type": "Text",
-      "value": "Hotel:fiware",
+      "value": "Hotel:example_hotel",
       "metadata": {}
     },
     "name": {

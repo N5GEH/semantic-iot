@@ -64,9 +64,9 @@ For the resource type `TemperatureSensor`, this is the generated **"resource nod
     "class": "**TODO: PLEASE CHECK** brick:Temperature_Sensor",
     "hasRelationship": [
         {
-            "relatedNodeType": null,
-            "propertyClass": null,
-            "rawdataidentifier": null
+            "relatedNodeType": "HotelRoom",
+            "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation",
+            "rawdataidentifier": "hasLocation.value"
         }
     ],
     "hasDataAccess": null
@@ -98,7 +98,7 @@ A validated and completed **"resource node relationship"** document for this exa
 ### Step 3 generate mapping file to build KGCP
 Based on the completed **"resource node relationship"** document, we can generate the RML mapping file for the KGCP.
 In this demonstration, this step can be conducted by running the script [`./kgcp/rml_generate.py`](./kgcp/rml_generate.py).
-The generated RML mapping file can be found in [`./kgcp/rml/fiware_hotel_rml.ttl`](./kgcp/rml/fiware_hotel_rml.ttl).
+The generated RML mapping file can be found in [`./kgcp/rml/fiware_hotel_rml.ttl`](kgcp/rml/brick/fiware_hotel_rml.ttl).
 
 ### Step 4 apply KGCP
 So far, we have collected all required information to build the KGCP.

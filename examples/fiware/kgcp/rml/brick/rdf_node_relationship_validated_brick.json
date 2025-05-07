@@ -1,5 +1,9 @@
 {
     "@context": {
+        "xml": "http://www.w3.org/XML/1998/namespace",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
         "bacnet": "http://data.ashrae.org/bacnet/2020#",
         "brick": "https://brickschema.org/schema/Brick#",
         "bsh": "https://brickschema.org/schema/BrickShape#",
@@ -7,8 +11,6 @@
         "owl": "http://www.w3.org/2002/07/owl#",
         "qudt": "http://qudt.org/schema/qudt/",
         "qudtqk": "http://qudt.org/vocab/quantitykind/",
-        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
         "rec": "https://w3id.org/rec#",
         "ref": "https://brickschema.org/schema/Brick/ref#",
         "s223": "http://data.ashrae.org/standard223#",
@@ -18,21 +20,14 @@
         "sosa": "http://www.w3.org/ns/sosa/",
         "tag": "https://brickschema.org/schema/BrickTag#",
         "unit": "http://qudt.org/vocab/unit/",
-        "vcard": "http://www.w3.org/2006/vcard/ns#",
-        "xsd": "http://www.w3.org/2001/XMLSchema#"
+        "vcard": "http://www.w3.org/2006/vcard/ns#"
     },
     "@data": [
         {
             "nodetype": "Hotel",
             "iterator": "$[?(@.type=='Hotel')]",
             "class": "rec:Building",
-            "hasRelationship": [
-                {
-                    "relatedNodeType": null,
-                    "propertyClass": null,
-                    "rawdataidentifier": null
-                }
-            ],
+            "hasRelationship": [],
             "hasDataAccess": null
         },
         {
@@ -46,7 +41,6 @@
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            
             "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value"
         },
         {
@@ -74,7 +68,6 @@
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            
             "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
         },
         {
@@ -101,7 +94,6 @@
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            
             "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value"
         },
         {
@@ -156,7 +148,6 @@
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-
             "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
         },
         {
@@ -170,7 +161,6 @@
                 "rawdataidentifier": "relatedTo.value"
                     }
             ],
-            
             "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
         },
         {
@@ -184,7 +174,6 @@
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-            
             "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
         }
     ]

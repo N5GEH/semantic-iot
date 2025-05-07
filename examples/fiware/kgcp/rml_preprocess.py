@@ -7,9 +7,9 @@ INPUT_FILE_PATH = f"{project_root_path}/kgcp/rml/example_hotel.json"
 ONTOLOGY_PATHS = [
     f"{project_root_path}/ontologies/Brick.ttl"]
 # default file name will be used and in the same folder as the input file
-OUTPUT_FILE_PATH = None
+OUTPUT_FILE_PATH = f"{project_root_path}/kgcp/rml/brick/rdf_node_relationship_brick.json"
 # input parameters
-PLATTFORM_CONFIG = f"{project_root_path}\kgcp\\fiware_config.json"
+PLATTFORM_CONFIG = f"{project_root_path}\kgcp\\rml\\brick\\fiware_config.json"
 
 if __name__ == '__main__':
     # Initialize the MappingPreprocess class
