@@ -1,0 +1,256 @@
+{
+    "@context": {
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "xml": "http://www.w3.org/XML/1998/namespace",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "prov": "http://www.w3.org/ns/prov#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "vann": "http://purl.org/vocab/vann/",
+        "s4bldg": "https://saref.etsi.org/saref4bldg/",
+        "saref": "https://saref.etsi.org/core/",
+        "dcterms": "http://purl.org/dc/terms/"
+    },
+    "@data": [
+        {
+            "identifier": "id",
+            "nodetype": "Hotel",
+            "extraNode": false,
+            "iterator": "$[?(@.type=='Hotel')]",
+            "class": "s4bldg:Building",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": null,
+                    "propertyClass": null,
+                    "rawdataidentifier": null
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "identifier": "id",
+            "nodetype": "AmbientTemperatureSensor",
+            "extraNode": false,
+            "iterator": "$[?(@.type=='AmbientTemperatureSensor')]",
+            "class": "s4bldg:Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": null,
+                    "propertyClass": null,
+                    "rawdataidentifier": null
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "identifier": "id",
+            "nodetype": "HotelRoom",
+            "extraNode": false,
+            "iterator": "$[?(@.type=='HotelRoom')]",
+            "class": "s4bldg:BuildingSpace",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Hotel",
+                    "propertyClass": "s4bldg:isSpaceOf",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "identifier": "id",
+            "nodetype": "TemperatureSensor",
+            "extraNode": false,
+            "iterator": "$[?(@.type=='TemperatureSensor')]",
+            "class": "s4bldg:Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "s4bldg:isContainedIn",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "identifier": "id",
+            "nodetype": "CO2Sensor",
+            "extraNode": false,
+            "iterator": "$[?(@.type=='CO2Sensor')]",
+            "class": "s4bldg:Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "s4bldg:isContainedIn",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "identifier": "id",
+            "nodetype": "PresenceSensor",
+            "extraNode": false,
+            "iterator": "$[?(@.type=='PresenceSensor')]",
+            "class": "s4bldg:Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "s4bldg:isContainedIn",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "identifier": "id",
+            "nodetype": "FreshAirVentilation",
+            "extraNode": false,
+            "iterator": "$[?(@.type=='FreshAirVentilation')]",
+            "class": "s4bldg:Fan",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "s4bldg:isContainedIn",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "identifier": "id",
+            "nodetype": "RadiatorThermostat",
+            "extraNode": false,
+            "iterator": "$[?(@.type=='RadiatorThermostat')]",
+            "class": "s4bldg:UnitaryControlElement",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "s4bldg:isContainedIn",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "identifier": "id",
+            "nodetype": "CoolingCoil",
+            "extraNode": false,
+            "iterator": "$[?(@.type=='CoolingCoil')]",
+            "class": "s4bldg:Coil",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "s4bldg:isContainedIn",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "identifier": "id",
+            "nodetype": "fanSpeed_CoolingCoil",
+            "extraNode": true,
+            "iterator": "$[?(@.type=='fanSpeed_CoolingCoil')]",
+            "class": "s4bldg:Fan",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "CoolingCoil",
+                    "propertyClass": "s4bldg:isContainedIn",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
+        },
+        {
+            "identifier": "id",
+            "nodetype": "airFlowSetpoint_FreshAirVentilation",
+            "extraNode": true,
+            "iterator": "$[?(@.type=='airFlowSetpoint_FreshAirVentilation')]",
+            "class": "s4bldg:Actuator",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "FreshAirVentilation",
+                    "propertyClass": "s4bldg:isContainedIn",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
+        },
+        {
+            "identifier": "id",
+            "nodetype": "temperatureSetpoint_RadiatorThermostat",
+            "extraNode": true,
+            "iterator": "$[?(@.type=='temperatureSetpoint_RadiatorThermostat')]",
+            "class": "s4bldg:Actuator",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "RadiatorThermostat",
+                    "propertyClass": "s4bldg:isContainedIn",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
+        },
+        {
+            "identifier": "id",
+            "nodetype": "temperature_TemperatureSensor",
+            "extraNode": true,
+            "iterator": "$[?(@.type=='temperature_TemperatureSensor')]",
+            "class": "saref:PropertyValue",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "TemperatureSensor",
+                    "propertyClass": "saref:isObservedBy",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
+        },
+        {
+            "identifier": "id",
+            "nodetype": "co2_CO2Sensor",
+            "extraNode": true,
+            "iterator": "$[?(@.type=='co2_CO2Sensor')]",
+            "class": "saref:PropertyValue",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "CO2Sensor",
+                    "propertyClass": "saref:isObservedBy",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value"
+        },
+        {
+            "identifier": "id",
+            "nodetype": "pir_PresenceSensor",
+            "extraNode": true,
+            "iterator": "$[?(@.type=='pir_PresenceSensor')]",
+            "class": "saref:PropertyValue",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "PresenceSensor",
+                    "propertyClass": "saref:isObservedBy",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value"
+        },
+        {
+            "identifier": "id",
+            "nodetype": "temperatureAmb_AmbientTemperatureSensor",
+            "extraNode": true,
+            "iterator": "$[?(@.type=='temperatureAmb_AmbientTemperatureSensor')]",
+            "class": "saref:PropertyValue",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "AmbientTemperatureSensor",
+                    "propertyClass": "saref:isObservedBy",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value"
+        }
+    ]
+}

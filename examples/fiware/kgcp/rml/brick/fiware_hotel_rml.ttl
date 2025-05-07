@@ -2,6 +2,10 @@
 @prefix rml: <http://semweb.mmlab.be/ns/rml#> .
 @prefix ql: <http://semweb.mmlab.be/ns/ql#> .
 @prefix ex: <http://example.com#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix bacnet: <http://data.ashrae.org/bacnet/2020#> .
 @prefix brick: <https://brickschema.org/schema/Brick#> .
 @prefix bsh: <https://brickschema.org/schema/BrickShape#> .
@@ -9,8 +13,6 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix qudtqk: <http://qudt.org/vocab/quantitykind/> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rec: <https://w3id.org/rec#> .
 @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
 @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -21,7 +23,6 @@
 @prefix tag: <https://brickschema.org/schema/BrickTag#> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # Mapping for Hotel
 ex:MappingHotel

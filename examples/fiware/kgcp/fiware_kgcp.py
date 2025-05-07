@@ -54,8 +54,8 @@ if __name__ == '__main__':
 
     # Load the created mapping file and platform configuration to build KGCP for FIWARE
     fiware_kgcp = RDFGenerator(
-        mapping_file=f"{project_root_path}/kgcp/rml/fiware_hotel_rml.ttl",
-        platform_config=f"{project_root_path}/kgcp/fiware_config.json"
+        mapping_file=f"{project_root_path}/kgcp/rml/brick/fiware_hotel_rml.ttl",
+        platform_config=f"{project_root_path}/kgcp/rml/brick/fiware_config.json"
     )
 
     for hotel in (
@@ -91,7 +91,7 @@ if __name__ == '__main__':
         else:
             fiware_kgcp.generate_rdf(
                 source_file=f"{project_root_path}/hotel_dataset/{hotel}.json",
-                destination_file=f"{project_root_path}/kgcp/results/{hotel}.ttl",
+                destination_file=f"{project_root_path}/kgcp/results/brick/{hotel}.ttl",
                 engine="morph-kgc"
             )
 
