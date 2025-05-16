@@ -6,6 +6,11 @@ import numpy as np
 from typing import Dict, List, Any, Optional, Tuple
 import re
 from pathlib import Path
+from semantic_iot.claude import ClaudeAPIProcessor
+
+# TODO fine tuning with temperature
+
+# TODO gerichtete graphen beachten, mit reasoning! rausfiltern mit LLM welche richtige richtung haben (siehe test)
 
 class OntologyProcessor:
     """
@@ -311,6 +316,8 @@ class OntologyProcessor:
         except ImportError:
             raise ImportError("Please install sentence-transformers: pip install sentence-transformers")
         
+        # TODO wie genau machen? Ausblick
+
         # Build embeddings for classes
         for class_id, class_info in self.index["classes"].items():
             text = f"{class_id} {class_info['label'] or ''} {class_info['description'] or ''}"
@@ -497,7 +504,7 @@ class OntologyProcessor:
             
         # Fall back to semantic search
         else:
-            class_results = self.semantic_search_classes(query, top_k=150)
+            class_results = self.semantic_search_classes(query, top_k=50)
             prop_results = self.semantic_search_properties(query, top_k=5)
             
             context_str = "### Relevant Classes\n"
@@ -623,7 +630,10 @@ class OntologyProcessor:
         """
         prompt = self.generate_llm_prompt(entity_description, task_type="entity_naming")
         print (f"Prompt for LLM:\n{prompt}\n-------")
-        response = self.query_claude(prompt)
+
+        claude = ClaudeAPIProcessor(temperature=0.0)
+        response = claude.query(prompt)
+        # response = self.query_claude(prompt)
         
         try:
             # Extract JSON from response (it might be wrapped in markdown code blocks)
@@ -649,7 +659,11 @@ class OntologyProcessor:
             Dict with relation naming information
         """
         prompt = self.generate_llm_prompt(relation_description, task_type="relation_naming")
-        response = self.query_claude(prompt)
+        print (f"Prompt for LLM:\n{prompt}\n-------")
+
+        claude = ClaudeAPIProcessor(temperature=0.0)
+        response = claude.query(prompt)
+        # response = self.query_claude(prompt)
         
         try:
             # Extract JSON from response (it might be wrapped in markdown code blocks)
@@ -677,10 +691,10 @@ class OntologyProcessor:
 
 # Usage example
 if __name__ == "__main__":
-    # Path to your ontology file
+
     ontology_path = r"C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\RAG\Brick.ttl"
     
-    # Process the ontology
+
     processor = OntologyProcessor(ontology_path)
     print("Loading and indexing ontology...")
     processor.build_index()
@@ -689,12 +703,14 @@ if __name__ == "__main__":
     processor.save_index("ontology_index.json")
     print("Saved ontology index to ontology_index.json")
     
+
     # Example usage: Name an entity
     print("\nExample: Naming an entity")
-    # entity_desc = "A sensor that measures the ambient temperature in a room"
-    entity_desc = "HotelRoom"
-    entity_result = processor.name_entity(entity_desc)
+    # entity_query = "A sensor that measures the ambient temperature in a room"
+    entity_query = "HotelRoom"
+    entity_result = processor.name_entity(entity_query)
     print(json.dumps(entity_result, indent=2))
+    
     
     # # Example usage: Name a relation
     # print("\nExample: Naming a relation")

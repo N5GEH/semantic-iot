@@ -45,107 +45,121 @@
         {
             "nodetype": "Hotel",
             "iterator": "$[?(@.type=='Hotel')]",
-            "class": "**TODO: PLEASE CHECK** ['brick:Hot_Deck', 'brick:Shower', 'brick:Tunnel']",
+            "class": "brick:Building",
             "hasRelationship": [],
             "hasDataAccess": null
         },
         {
             "nodetype": "AmbientTemperatureSensor",
             "iterator": "$[?(@.type=='AmbientTemperatureSensor')]",
-            "class": "**TODO: PLEASE CHECK** ['brick:Air_Temperature_Sensor', 'brick:Temperature_Sensor', 'brick:Water_Temperature_Sensor']",
+            "class": "brick:Temperature_Sensor",
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel",
-                    "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": null
+            "hasDataAccess": {
+                "apilink": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value"
+            }
         },
         {
             "nodetype": "HotelRoom",
             "iterator": "$[?(@.type=='HotelRoom')]",
-            "class": "**TODO: PLEASE CHECK** ['brick:Control_Room', 'brick:Team_Room', 'brick:Telecom_Room']",
+            "class": "brick:Room",
             "hasRelationship": [],
             "hasDataAccess": null
         },
         {
             "nodetype": "TemperatureSensor",
             "iterator": "$[?(@.type=='TemperatureSensor')]",
-            "class": "**TODO: PLEASE CHECK** brick:Temperature_Sensor",
+            "class": "brick:Temperature_Sensor",
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": null
+            "hasDataAccess": {
+                "apilink": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
+            }
         },
         {
             "nodetype": "CO2Sensor",
             "iterator": "$[?(@.type=='CO2Sensor')]",
-            "class": "**TODO: PLEASE CHECK** brick:CO2_Sensor",
+            "class": "brick:CO2_Sensor",
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": null
+            "hasDataAccess": {
+                "apilink": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value"
+            }
         },
         {
             "nodetype": "PresenceSensor",
             "iterator": "$[?(@.type=='PresenceSensor')]",
-            "class": "**TODO: PLEASE CHECK** ['brick:Pressure_Sensor', 'brick:Frequency_Sensor', 'brick:Speed_Sensor']",
+            "class": "brick:Occupancy_Sensor",
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": null
+            "hasDataAccess": {
+                "apilink": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value"
+            }
         },
         {
             "nodetype": "FreshAirVentilation",
             "iterator": "$[?(@.type=='FreshAirVentilation')]",
-            "class": "**TODO: PLEASE CHECK** ['brick:Fresh_Air_Fan', 'brick:Fresh_Air_Setpoint_Limit', 'brick:Max_Fresh_Air_Setpoint_Limit']",
+            "class": "brick:Ventilation_Equipment",
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": null
+            "hasDataAccess": {
+                "apilink": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/airFlowSetpoint/value"
+            }
         },
         {
             "nodetype": "RadiatorThermostat",
             "iterator": "$[?(@.type=='RadiatorThermostat')]",
-            "class": "**TODO: PLEASE CHECK** brick:Thermostat",
+            "class": "brick:Thermostat",
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": null
+            "hasDataAccess": {
+                "apilink": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureSetpoint/value"
+            }
         },
         {
             "nodetype": "CoolingCoil",
             "iterator": "$[?(@.type=='CoolingCoil')]",
-            "class": "**TODO: PLEASE CHECK** brick:Cooling_Coil",
+            "class": "brick:Cooling_Coil",
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": null
+            "hasDataAccess": {
+                "apilink": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/fanSpeed/value"
+            }
         }
     ]
 }

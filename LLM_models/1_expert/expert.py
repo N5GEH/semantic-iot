@@ -87,30 +87,63 @@ A validated and completed "resource node relationship" document for this example
 from pathlib import Path
 import sys
 sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
-from claude import ClaudeAPIProcessor
+from semantic_iot.claude import ClaudeAPIProcessor
 import json
 import re
+import jsonpath_ng
+from semantic_iot import MappingPreprocess
+from semantic_iot.API_spec_processor import APISpecProcessor
+from semantic_iot.metrics_eval import MetricsEval
 
 
-# AI Temperature = 0.0 ?? for all
+
+
+# TODO AI Temperature = 0.0 ?? for all
 
 class LLMAssistant:
-    def __init__(self, example_json_path: str, temperature: float = 1, debug: bool = True):
+    def __init__(self, 
+                 INPUT_FILE_PATH: str, 
+                 ONTOLOGY_PATHS: str, 
+                 OUTPUT_FILE_PATH: str = None, 
+                 PLATTFORM_CONFIG: str = None, 
+                 temperature: float = 1, 
+                 debug: bool = True):
         """
         Initialize the LLM Assistant.
         Args:
             temperature (float): Sampling temperature for the model. Higher values
                 make the output more random, while lower values make it more focused.
         """
-    
-        self.claude = ClaudeAPIProcessor()
+
+        self.input_file_path = INPUT_FILE_PATH
+        self.ontology_paths = ONTOLOGY_PATHS
+        self.output_file_path = OUTPUT_FILE_PATH
+        self.platform_config = PLATTFORM_CONFIG
+
         self.temperature = temperature
         self.used_tokens = []
         self.debug = debug
 
-        with open(example_json_path, 'r') as file:
-            self.example_json = file.read()
-        self.context = self.example_json
+        with open(self.input_file_path, 'r') as file:
+            self.input_file = file.read()
+        self.context = self.input_file
+
+        self.metrics = {}
+
+        
+    def json_preprocess (self):
+        print("Run JSON Preprocessor")
+        
+        if not self.config_path:
+            raise Exception("No platform config provided. Please provide a platform config file.")
+
+        self.json_processor = MappingPreprocess(
+            json_file_path=self.input_file_path,
+            rdf_node_relationship_file_path=self.output_file_path,
+            ontology_file_paths=self.ontology_paths,
+            platform_config=self.config_path,
+            )
+        self.json_processor.pre_process(overwrite=True)
 
     def exract_json (self, response: str, format: str = "json"):
         try:
@@ -127,17 +160,17 @@ class LLMAssistant:
             return {"error": "Failed to parse LLM response", "raw_response": response}
 
     def create_config (self):
+        claude = ClaudeAPIProcessor()
 
         def val_keys (self, keys_str: str, retry = 0):
-            print (f"Validating keys: {keys_str}")
+            # print (f"Validating keys: {keys_str}")
 
             try: # find two strings in every entity
                 keys = json.loads(keys_str)
-                print (f"Keys: {keys}")
                 if len(keys) != 2:
                     raise Exception("Output format is not a list with two strings")
                 
-                for entity in json.loads(self.example_json):
+                for entity in json.loads(self.input_file):
                     if keys[0] not in entity or keys[1] not in entity:
                         raise Exception(f"Keys {keys} not found in entity {entity}")
                     
@@ -149,33 +182,61 @@ class LLMAssistant:
                 if retry > 5:
                     print("🛑 Max retries reached. Exiting.")
                     return False
-                val_keys(self, self.claude.regenerate(error), retry + 1)
+                val_keys(self, claude.regenerate(error), retry + 1)
                 
-
         def val_extra_nodes (self, extra_nodes_str, retry = 0):
-            print (f"Validating extra nodes: {extra_nodes_str}")
+            # print (f"Validating extra nodes: {extra_nodes_str}")
 
             try:
-                # TODO implement validation of extra nodes
+                # extra_nodes_str is expected to be a list of JSONPath expressions (as strings)
+                if isinstance(extra_nodes_str, str):
+                    try:
+                        extra_nodes = json.loads(extra_nodes_str)
+                    except Exception:
+                        # Handle the case where the string is just "[]"
+                        if extra_nodes_str.strip() == "[]":
+                            extra_nodes = []
+                        else:
+                            raise Exception("Failed to parse extra_nodes_str as JSON. Make sure it is a valid JSON list.")
+                else:
+                    extra_nodes = extra_nodes_str
 
-                # follow jsonpath syntax
+                if not isinstance(extra_nodes, list):
+                    raise Exception("Extra nodes should be a list of JSONPath expressions.")
 
-                # extra_nodes = json.loads(extra_nodes_str)
-                extra_nodes = extra_nodes_str
+                # If the list is empty, that's valid
+                if len(extra_nodes) == 0:
+                    print(f"✅ Extra Nodes validated: [] (no extra nodes found)")
+                    return extra_nodes
+
+                for node in extra_nodes:
+                    try:
+                        # Validate JSONPath syntax
+                        jsonpath_ng.parse(node)
+                    except Exception as e:
+                        import jsonpath_ng.exceptions
+                        if isinstance(e, jsonpath_ng.exceptions.JsonPathParserError):
+                            raise Exception(f"Invalid JSONPath syntax in: {node}. Error: {e}")
+                        else:
+                            raise
 
                 print(f"✅ Extra Nodes validated: {extra_nodes}")
                 return extra_nodes
 
             except Exception as error:
                 print(f"❌ Error validating extra nodes: {error}")
+                # If the error is a JSONPathParserError, raise immediately
+                import jsonpath_ng.exceptions
+                if isinstance(error, jsonpath_ng.exceptions.JsonPathParserError):
+                    raise Exception(f"JSONPathParserError: {error}")
                 if retry > 5:
                     print("🛑 Max retries reached. Exiting.")
                     return False
-                val_extra_nodes(self, self.claude.regenerate(error), retry + 1)
+                val_extra_nodes(self, claude.regenerate(error), retry + 1)
 
         def val_config (self, config_str, retry = 0):
 
-            print (f"Validating config: {config_str}")
+            # print (f"Validating config: {config_str}")
 
             try:
                 config = json.loads(config_str)
@@ -184,10 +245,10 @@ class LLMAssistant:
                     raise Exception('Config is not valid: "ID_KEY" not in config or "TYPE_KEYS" not in config or "JSONPATH_EXTRA_NODES" not in config')
                 if not isinstance(config["ID_KEY"], str) or not isinstance(config["TYPE_KEYS"], list) or not isinstance(config["JSONPATH_EXTRA_NODES"], list):
                     raise Exception('Config is not valid: not isinstance(config["ID_KEY"], str) or not isinstance(config["TYPE_KEYS"], list) or not isinstance(config["JSONPATH_EXTRA_NODES"], list)')
-                if len(config["TYPE_KEYS"]) == 0 or len(config["JSONPATH_EXTRA_NODES"]) == 0:
-                    raise Exception('Config is not valid: len(config["TYPE_KEYS"]) == 0 or len(config["JSONPATH_EXTRA_NODES"]) == 0')
-                if config["ID_KEY"] == "" or config["TYPE_KEYS"] == [] or config["JSONPATH_EXTRA_NODES"] == []:
-                    raise Exception('Config is not valid: config["ID_KEY"] == "" or config["TYPE_KEYS"] == [] or config["JSONPATH_EXTRA_NODES"] == []')
+                if len(config["TYPE_KEYS"]) == 0:
+                    raise Exception('Config is not valid: len(config["TYPE_KEYS"]) == 0')
+                if config["ID_KEY"] == "" or config["TYPE_KEYS"] == []:
+                    raise Exception('Config is not valid: config["ID_KEY"] == "" or config["TYPE_KEYS"] == []')
                 
                 print(f"✅ Config validated: {config}")
                 return config
@@ -197,12 +258,15 @@ class LLMAssistant:
                 if retry > 5:
                     print("🛑 Max retries reached. Exiting.")
                     return False
-                val_config(self, self.claude.regenerate(error), retry + 1)
+                val_config(self, claude.regenerate(error), retry + 1)
                 # TODO put retry loop in claude class
 
 
-        keys_str = self.claude.query(
+
+        keys_str = claude.query(step_name="STEP 1.1: Search Keys", thinking=True,
             prompt = f"""
+            The JSON dataset is as follows:
+            <data>{self.input_file}</data>
 
             GOAL:
             I will give you a JSON data containing the information of a building and its systematic components. 
@@ -230,33 +294,39 @@ class LLMAssistant:
             Do not return any other text or information. 
             Remain case sensitive. 
 
-            The JSON dataset is as follows:
-            {self.example_json}
+
+            
         """)
         val_keys(self, keys_str)
 
-        # Mit anderem Datenmodeell testen, 
-        # welche extra entity nodes heraussuchen?
-        # json path syntax für extra nodes
-        # da wo mehrere infos in einem json object sind
 
-        extra_nodes_str = self.claude.query(
+        extra_nodes_str = claude.query(step_name="STEP 1.2: Search Extra Nodes", thinking=True,
             prompt = f"""
             Please analyze the provided JSON dataset and identify properties that should be modeled as separate resource types (extra nodes) in the knowledge graph rather than just attributes of their parent entities.
 
             Consider the following characteristics when identifying these properties:
             1. Properties that represent controllable settings or setpoints
             2. Properties that could be manipulated independently of their parent entity
-            
+
+            If the property is already a separate entity, do not include it in the list.
+            Only include properties that are not already separate entities in the JSON dataset.
+
+            Decide carefully whether a property should be modeled or not, just do it if it makes sense in the context.
+            It is possible, that there are no properties that should be modeled as extra nodes.
 
             For each identified property, please give the number of the characteristic above as a reason for its classification as an extra node.
+            Give the identified properties in a list of JSONPath expressions.
+
         """)
-        val_extra_nodes(self, extra_nodes_str)
+        # val_extra_nodes(self, extra_nodes_str)
+        # print (f"Extra Nodes: {extra_nodes_str}")
 
 
-        config_str = self.claude.query(
+        config_str = claude.query(step_name="STEP 1.3: Create Config", thinking=True,
             prompt = f"""
             Based on the previous analysis, create a configuration file for further use in the knowledge graph creation process with the following format:
+
+            The String of the Extra Nodes should be in jsonpath format, so that they point to the correct child object in the JSON dataset.
 
             {{
                 "ID_KEY": "uniqueIdentifierOfAnEntity",
@@ -264,83 +334,82 @@ class LLMAssistant:
                     "uniqueIdentifierOfAnTypeOfTheEntity"
                 ],
                 "JSONPATH_EXTRA_NODES": [
-                    "$..nameOfExtraNode1",
-                    "$..nameOfExtraNode2",
-                    "$..nameOfExtraNode3"
+                    "JSONPathOfExtraNode1",
+                    "JSONPathOfExtraNode2",
+                    "JSONPathOfExtraNode3"
                 ]
             }}
         """)
+                    # "$..nameOfExtraNode1",
+                    # "$..nameOfExtraNode2",
+                    # "$..nameOfExtraNode3"
 
         config = val_config(self, config_str)
-        print (f"Config: {config}", type (config))
+        # print (f"Config: {config}", type (config))
 
 
-        platform = self.claude.query(
+        self.platform = claude.query(step_name="STEP 1.4: Identify Platform", thinking=True,
             prompt = f"""
             Based on the provided JSON dataset, identify the IoT-platform that is used to collect the data.
             Only return the name of the platform, without any other text or information.
         """)
-        print(f"Plattform: {platform}")
+        # print(f"Plattform: {self.platform}")
 
 
-        config_path = Path(__file__).parent / f"output/config_{platform.lower()}_generated.json"
-        with open(config_path, 'w') as file:
+        self.config_path = Path(__file__).parent / f"output/config_{self.platform.lower()}_generated.json"
+        with open(self.config_path, 'w') as file:
             file.write(json.dumps(config, indent=4))
-            print(f"Configuration saved to {config_path}")
+            print(f"⬇️  Configuration saved to {self.config_path}")
+
+        self.metrics = self.metrics | claude.metrics
         
 
 
     
-    def complete (self, input_file: str):
+    def complete (self, resource_node_relationship_path: str):
         """
-        complete the input data using the LLM.
+        complete the resource node relationship file with using the LLM.
         """
 
-        print(f"Completing the input data: {input_file}")
+        claude = ClaudeAPIProcessor()
+        # print(f"Completing the input data: {resource_node_relationship_path}")
 
-        # Source JSON file:
-        # {self.example_json}
-
-        # This In-Between file handles all unique resource types from the source JSON file:
-        # {data}
-
-        with open(input_file, 'r') as file:
-            data = file.read()
-
-        # TODO new context or dont give JSON again?
+        with open(resource_node_relationship_path, 'r') as file:
+            resource_node_relationship = file.read()
 
 
-
-        # TODO implement a function to get the host from the platform name
-
-        # spec_processor = APISpecProcessor()
-        # get_link_proposals = spec_processor.match_query_to_endpoint
-
-        link_pattern = self.claude.query(
+        link_pattern = claude.query(step_name="STEP 2.1: Get Link Pattern",
             prompt = f"""
+            Source JSON file of {self.platform} IoT platform:
+            {self.input_file}
+
+            This In-Between file handles all unique resource types from the source JSON file:
+            {resource_node_relationship}
+
             with which link do I get a sensor value with this IoT-plattform? Give me the link pattern
             Return only the link pattern, without any other text or information.
         """)
-        # "https://<host>/v2/entities/{{id}}/attrs/<attribute>/value"
+        print(f"Link pattern: {link_pattern}")
 
-        host = input ("Enter the host for the platform: ")
-        host = "fiware.eonerc.rwth-aachen.de"
+        # Get Path pattern
+        spec_processor = APISpecProcessor(API_SPEC_PATH, HOST_PATH)
+        user_query = "Get Sensor Value"
+        endpoint_path = spec_processor.get_endpoint(user_query)['full_path']
 
-        link = self.claude.query(
+        link = claude.query(step_name="STEP 2.2: Get Link",
             prompt = f"""
             Complete the "link" for accessing the data.
 
             COMPLETE API ACCESS LINK:
-            - The link should follow the pattern: {link_pattern}
+            - The link should follow the pattern: {endpoint_path}
             - Do not replace the "{{id}}" placeholder in the link, as it will be replaced by the actual ID of the entity when accessed.
             - Replace the appropriate attribute name from the JSON data.
-            - Complete the host with the appropriate API endpoint for accessing the resource's data of the platform, which you identified in the previous step.
-            - The host is: {host}
 
         """)
         print(link)
 
-        terminology_mapping = self.claude.query(
+        # TODO terminology mapping
+        terminology_mapping = claude.query(step_name="STEP 2.3: Get Terminology Mapping",
             prompt = f"""
             Verify the terminology-mappings of 
             For now, add a placeholder here
@@ -349,97 +418,78 @@ class LLMAssistant:
         """)
         print(terminology_mapping)
 
-        result = self.claude.query(
+        result = claude.query(step_name="STEP 2.4: Validate and Complete",
             prompt=f"""
             Based on the previous analysis, create a validated and completed 
             "resource node relationship" document for the provided JSON dataset 
             with the format of the original document
         """)
         json_data = self.exract_json(result)
-        print("Result: \n", result)
-        print("JSON_Data: \n", json_data)
+        # print("Result: \n", result)
+        # print("JSON_Data: \n", json_data)
 
-        output_file = Path(input_file).parent / f"{Path(input_file).stem}_LLMvalidated{Path(input_file).suffix}"
+        output_file = Path(resource_node_relationship_path).parent / f"{Path(resource_node_relationship_path).stem}_LLMvalidated{Path(resource_node_relationship_path).suffix}"
         with open(output_file, 'w') as file:
             file.write(json.dumps(json_data, indent=4)) 
-            print(f"Validated data saved to {output_file}")
+            print(f"⬇️  Validated data saved to {output_file}")
 
-def run (file_path: str):
-    with open (file_path) as f:
-        code = f.read()
-    exec(code)
-
-def rml_preprocess():
-    
-    from semantic_iot import MappingPreprocess
-    from pathlib import Path
-    project_root_path = Path(__file__).parent
-
-    print (project_root_path)
-
-    # input files
-    INPUT_FILE_PATH = f"{project_root_path}/input/fiware_example.json"
-
-    ONTOLOGY_PATHS = [
-        f"{project_root_path}/input/ontologies/Brick.ttl"]
-    # default file name will be used and in the same folder as the input file
-    OUTPUT_FILE_PATH = None
-    # input parameters
-    PLATTFORM_CONFIG = f"{project_root_path}\output\\fiware_config.json"
+        self.metrics = self.metrics | claude.metrics
 
 
-    # Initialize the MappingPreprocess class
-    processor = MappingPreprocess(
-        json_file_path=INPUT_FILE_PATH,
-        rdf_node_relationship_file_path=OUTPUT_FILE_PATH,
-        ontology_file_paths=ONTOLOGY_PATHS,
-        platform_config=PLATTFORM_CONFIG,
-        )
-
-    # Load JSON and ontologies
-    processor.pre_process(overwrite=True)
 
 
 
 if __name__ == "__main__":
     root_path = Path(__file__).parent
     
-    # input data
-    example_json_path = f"{root_path}/input/fiware_example.json"
-    example_json_path = f"{root_path}/input/openhab_example.json"
+    # Input data
+    INPUT_FILE_PATH = f"{root_path}/input/fiware_example.json"
+    # INPUT_FILE_PATH = f"{root_path}/input/openhab_example.json"
+
+    ONTOLOGY_PATHS = [
+        f"{root_path}/input/ontologies/Brick.ttl"]
+
+    HOST_PATH = "https://fiware.eonerc.rwth-aachen.de/"
+    API_SPEC_PATH = "LLM_models/API_specs/openhab_API_spec.json"
+    API_SPEC_PATH = "LLM_models\API_specs\FIWAR_ngsiV2_API_spec.json"
+
+    # Output paths
+
+    resource_node_relationship = f"{root_path}/output/rdf_node_relationship.json"
+
 
 
     # LLM Assistant
 
-    print("Starting LLM Assistant...")
-    assistant = LLMAssistant(example_json_path)
+    assistant = LLMAssistant(INPUT_FILE_PATH, ONTOLOGY_PATHS, OUTPUT_FILE_PATH=resource_node_relationship)
+    m = MetricsEval()
 
-    print("\nSTEP 1: data model identification & vocabulary mapping")
-    print("     Creating config file...")
+
     assistant.create_config()
+    print(m.quantify_thinking(assistant.metrics))
     input("Press Enter to continue...")
 
-    print("Run ./kgcp/rml/rml_preprocess.py")
-    rml_preprocess()
-    resource_node_relationship = f"{root_path}/rdf_node_relationship.json"
+    assistant.json_preprocess()
+    print(m.quantify_thinking(assistant.metrics))
     input("Press Enter to continue...")
 
-    print("\nSTEP 2: validation and completion")
-    print("     Validating and completing the resource node relationship document...")
     assistant.complete(resource_node_relationship)
+    print(m.quantify_thinking(assistant.metrics))
     input("Press Enter to continue...")
+
+
 
     print("\nSTEP 3: generate mapping file to build KGCP")
     print("     Run ./kgcp/rml/rml_generate.py")
-    run(f"{root_path}/rml_generate.py")
+    # run(f"{root_path}/rml_generate.py")
 
     print ("RML file Generated. Now continue with Steps 4 and 5")
 
 
 
-    
 
 
-    
+
+
 
 

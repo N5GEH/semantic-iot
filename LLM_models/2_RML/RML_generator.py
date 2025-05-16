@@ -1,7 +1,7 @@
 
 
 import json
-from claude import ClaudeAPIProcessor
+from semantic_iot.claude import ClaudeAPIProcessor
 # from semantic_iot.LLM.RDF_generator_LLM import RDFGeneratorLLM
 
 

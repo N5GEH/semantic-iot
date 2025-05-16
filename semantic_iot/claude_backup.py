@@ -11,7 +11,11 @@ root_path = Path(__file__).parent
 # py -m pip install .
 
 class ClaudeAPIProcessor:
-    def __init__(self, api_key: str = "", model: str = "claude-3-5-sonnet-20241022", use_api: bool = True, temperature: float = 1.0):
+    def __init__(self, 
+                 api_key: str = "", 
+                 model: str = "claude-3-7-sonnet-20250219", 
+                 use_api: bool = True, 
+                 temperature: float = 1.0):
         """
         Initialize the Claude API processor
 
@@ -46,15 +50,16 @@ class ClaudeAPIProcessor:
         }
         self.conversation_history = []
 
-        # Dictionary to store step responses
         self.step_results = {}
+        self.metrics = {}
 
     def query(self,
-                     prompt: str,
-                     step_name: str = 0,
-                     max_retry: int = 5,
-                     conversation_history=None,
-                     temperature: float = None) -> Dict[str, Any]:
+                    prompt: str,
+                    step_name: str = 0,
+                    max_retry: int = 5,
+                    conversation_history = None,
+                    temperature: float = None,
+                    thinking: bool = False) -> Dict[str, Any]:
         """
         Send a query to Claude API
 
@@ -63,12 +68,12 @@ class ClaudeAPIProcessor:
             step_name: The name of the step
             max_retry: Maximum number of retries in case of a 429 error
             conversation_history: Optional conversation history to use for this query
+            temperature: Optional temperature parameter to override the instance setting
+            thinking: Enable thinking mode if the model supports it
 
         Returns:
             The JSON response from Claude
         """
-
-        print ("✨ Generating with Claude...")
 
         # Check if API is used
         if not self.use_api:
@@ -87,6 +92,8 @@ class ClaudeAPIProcessor:
                 }
             }
             return result
+        
+        print (f"✨ Generating with Claude... ({step_name})")
 
         # Get temperature from instance or use provided temperature
         if temperature is None:
@@ -104,10 +111,17 @@ class ClaudeAPIProcessor:
         data = {
             "model": self.model,
             "messages": messages,
-            "max_tokens": 4000,
+            "max_tokens": 20000,
+            "system": "You are an expert in engineering who is specialized in developing knowledge graphps for building automation with IoT platforms. Be precise and concise.", # TODO make it not generically but as a parameter in the constructor?
             "temperature": self.temperature # "top_p": 1.0
-            
         }
+
+        # Add thinking parameter only if thinking is set to True
+        if thinking:
+            data["thinking"] = {
+                "type": "enabled",
+                "budget_tokens": 16000
+            }
 
         result = None
         for i in range(max_retry):
@@ -140,23 +154,55 @@ class ClaudeAPIProcessor:
 
                 raise Exception(f"API request failed with "
                                 f"status code {response.status_code}")
+                
+        # Process thinking content if present
+        thinking_text = None
+        response_text = None
+        
+        if result and "content" in result:
+            for block in result["content"]:
+                if "type" in block and block["type"] == "thinking" and "thinking" in block:
+                    thinking_text = block["thinking"]
+                elif "type" in block and block["type"] == "text" and "text" in block:
+                    response_text = block["text"]
+                # For backwards compatibility with older API responses
+                elif "text" in block:
+                    response_text = block["text"]
+
+        # If no structured content types found, fallback to first content block
+        if response_text is None and result and "content" in result and len(result["content"]) > 0:
+            # Handle case where response doesn't use the structured format
+            if "text" in result["content"][0]:
+                response_text = result["content"][0]["text"]
+        
         # Add assistant response to the provided messages list
-        messages.append({
-            "role": "assistant",
-            "content": result["content"][0]["text"]
-        })
+        if response_text:
+            messages.append({
+                "role": "assistant",
+                "content": response_text
+            })
 
         # Save the step results
         self.step_results[step_name] = {
             "prompt": prompt,
-            "response": result["content"][0]["text"]
+            "response": response_text
         }
-
+            
         # Update instance conversation history if using it
         if not conversation_history:
             self.conversation_history = messages
 
-        return result["content"][0]["text"]
+
+        self.metrics[step_name] = {
+            "tokens": result.get("usage", {}),
+            "input_tokens": result["usage"]["input_tokens"],
+            "output_tokens": result["usage"]["output_tokens"]
+        }
+        if thinking_text:
+            self.step_results[step_name]["thinking"] = thinking_text
+            self.metrics[step_name]["thinking"] = thinking_text
+
+        return response_text
     
     def regenerate (self, error_message) -> None:
         '''
@@ -193,4 +239,14 @@ class ClaudeAPIProcessor:
             json.dump(self.step_results, f, indent=2)
 
         print(f"\nResults saved to {output_file}")
+
+    def get_metrics(self) -> Dict[str, Any]:
+        """
+        Get the metrics of the pipeline
+
+        Returns:
+            The metrics of the pipeline
+        """
+        print(f"📐 Metrics: {self.metrics}")
+        return self.metrics
 

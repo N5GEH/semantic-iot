@@ -146,6 +146,45 @@
                 }
             ],
             "hasDataAccess": null
+        },
+        {
+            "nodetype": "fanSpeed_CoolingCoil",
+            "iterator": "$[?(@.type=='fanSpeed_CoolingCoil')]",
+            "class": "**TODO: PLEASE CHECK** ['brick:Cooling_Coil', 'brick:Fan_Speed_Command', 'brick:Direct_Expansion_Cooling_Coil']",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "CoolingCoil",
+                    "propertyClass": "**TODO: PLEASE CHECK** rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "nodetype": "airFlowSetpoint_FreshAirVentilation",
+            "iterator": "$[?(@.type=='airFlowSetpoint_FreshAirVentilation')]",
+            "class": "**TODO: PLEASE CHECK** ['brick:Air_Flow_Setpoint_Limit', 'brick:Max_Air_Flow_Setpoint_Limit', 'brick:Min_Air_Flow_Setpoint_Limit']",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "FreshAirVentilation",
+                    "propertyClass": "**TODO: PLEASE CHECK** rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "nodetype": "temperatureSetpoint_RadiatorThermostat",
+            "iterator": "$[?(@.type=='temperatureSetpoint_RadiatorThermostat')]",
+            "class": "**TODO: PLEASE CHECK** ['brick:Air_Temperature_Setpoint_Limit', 'brick:Max_Temperature_Setpoint_Limit', 'brick:Min_Temperature_Setpoint_Limit']",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "RadiatorThermostat",
+                    "propertyClass": "**TODO: PLEASE CHECK** rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": null
         }
     ]
 }
