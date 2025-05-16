@@ -6,3 +6,4 @@ Requests==2.32.3
 jsonpath-ng==1.7.0
 morph_kgc==2.8.1
 sentence-transformers==4.1.0
+anthropic>=0.51.0
