@@ -2,20 +2,16 @@ import time
 from datetime import datetime
 import requests
 import json
+import re
 import anthropic
 from typing import Dict, Any, List, Optional, Union
 from memory_profiler import memory_usage
 
+from semantic_iot.tools import get_tool, get_tools, execute_tool
+
 from pathlib import Path
 root_path = Path(__file__).parent
 print(f"Root path: {root_path}")
-
-# Import the tools module
-try:
-    from semantic_iot.tools import get_tool, get_tools, execute_tool
-except ImportError:
-    from tools import get_tool, get_tools, execute_tool
-import re
 
 
 # py -m pip install .
@@ -23,9 +19,9 @@ import re
 class ClaudeAPIProcessor:    
     def __init__(self, 
                  api_key: str = "", 
-                 model: str = "claude-3-7-sonnet-20250219", 
-                 use_api: bool = True, 
+                 model: str = "claude-3-7-sonnet-20250219",  
                  temperature: float = 1.0,
+                 system_prompt: str = "You are an expert in engineering who is specialized in developing knowledge graphps for building automation with IoT platforms. Be precise and concise.",
                  tool_names: Optional[List[str]] = None):
         """
         Initialize the Claude API processor
@@ -38,38 +34,31 @@ class ClaudeAPIProcessor:
             tool_names: Names of tools to make available to Claude
         """
         # Get API key
-        self.use_api = use_api
-        if self.use_api:
-            if api_key:
-                self.api_key = api_key
-            else:
-                try:
-                    with open(f"{root_path}/ANTHROPIC_API_KEY", "r") as f:
-                        self.api_key = f.read().strip()
-                except FileNotFoundError:
-                    self.api_key = input(f"Couldn't find API key in {root_path}/ANTHROPIC_API_KEY\nEnter your Anthropic API key: ")
         
-        else: 
-            print("API not used")
-            return
-
-
+        if api_key: self.api_key = api_key
+        else:
+            try:
+                with open(f"{root_path}/ANTHROPIC_API_KEY", "r") as f:
+                    self.api_key = f.read().strip()
+            except FileNotFoundError:
+                self.api_key = input(f"Couldn't find API key in {root_path}/ANTHROPIC_API_KEY\nEnter your Anthropic API key: ")
+    
         self.model = model
         self.temperature = temperature
+        self.system_prompt = system_prompt
+
         self.base_url = "https://api.anthropic.com/v1/messages"
         self.headers = {
             "x-api-key": self.api_key,
             "anthropic-version": "2023-06-01",
             "content-type": "application/json"
         }
+        
         self.conversation_history = []
 
         self.step_results = {}
         self.metrics = {}
-        
-        # Store tool names and get tool definitions if provided
         self.tool_names = tool_names
-        self.tools = get_tools(tool_names) if tool_names else []
 
     def query(self,
                     prompt: str,
@@ -95,32 +84,13 @@ class ClaudeAPIProcessor:
             The JSON response from Claude
         """    
         
-        # Check if API is used
-        if not self.use_api:
-            print("Prompt:")
-            print(prompt)
-            response = input("Enter the response: ")
-            result = {
-                "content": [
-                    {
-                        "text": response
-                    }
-                ],
-                "usage": {
-                    "output_tokens": len(response),
-                    "input_tokens": len(prompt)    
-                }
-            }
-            return result
         
         print (f"✨ Generating with Claude... ({step_name})")
         
+        # Setup Request
 
-        # Get temperature from instance or use provided temperature
         if temperature is None:
             temperature = self.temperature
-        else:
-            self.temperature = temperature
         
         # Use provided conversation history or the instance's history
         messages = conversation_history if conversation_history \
@@ -133,7 +103,7 @@ class ClaudeAPIProcessor:
             "model": self.model,
             "messages": messages,
             "max_tokens": 20000,
-            "system": "You are an expert in engineering who is specialized in developing knowledge graphps for building automation with IoT platforms. Be precise and concise.", # TODO make it not generically but as a parameter in the constructor?
+            "system": self.system_prompt,
             "temperature": self.temperature # "top_p": 1.0
         }
 
@@ -157,12 +127,13 @@ class ClaudeAPIProcessor:
                 data=json.dumps(data)
             )
             end_time = time.time()
+
             if response.status_code == 200: # Request successful
                 result = response.json()
                 break
             elif response.status_code == 429: # Too many requests
                 if i < max_retry - 1:
-                    print(f"Received 429 error: Too many requests. Retrying... ({i + 1}/{max_retry})")
+                    print(f"Received 429 error: Too many requests. Retrying in one minute... ({i + 1}/{max_retry})")
                     time.sleep(61)
                     continue
                 else:
@@ -181,6 +152,7 @@ class ClaudeAPIProcessor:
 
                 raise Exception(f"API request failed with "
                                 f"status code {response.status_code}")        # Use streaming for tool calls if we have tools available
+        
         if use_tools and self.tools:
             # Create an Anthropic client
             client = anthropic.Anthropic(api_key=self.api_key)
@@ -286,6 +258,8 @@ class ClaudeAPIProcessor:
                     use_tools=False  # Disable tools to prevent infinite recursion
                 )
         
+        
+        
         # Process thinking content if present
         thinking_text = None
         response_text = None
@@ -306,6 +280,8 @@ class ClaudeAPIProcessor:
             if "text" in result["content"][0]:
                 response_text = result["content"][0]["text"]
         
+        
+        
         # Add assistant response to the provided messages list
         if response_text:
             messages.append({
@@ -321,12 +297,16 @@ class ClaudeAPIProcessor:
             
         # Update instance conversation history if using it
         if not conversation_history:
-            self.conversation_history = messages        # Store metrics - handle streaming case where tokens may not be available
+            self.conversation_history = messages
         
 
 
 
         # METRICS        
+
+        # TODO implement time to first token metric
+        # TODO implement time per token metric
+        # TODO implement memory usage metric
 
         self.metrics[step_name] = {
             "goal": None,
@@ -385,25 +365,13 @@ class ClaudeAPIProcessor:
         '''
         Correct generated content based on error messages.
         '''
-        
-        prompt = f"""
+        response = self.query(f"""
             The goal of this prompt is the same as the previous one. Now consider the error message.
 
             ERROR MESSAGE:
             {error_message}
-        """
-        
-        response = self.query(prompt)
-
-        # tokens = [response["usage"]["input_tokens"], response["usage"]["output_tokens"]]
-        # self.used_tokens.append(tokens)
-
-        print("PROMPT: \n", prompt)
-        print("DATA: \n", response)
-        # print("TOKENS: ", tokens)
-
+        """)
         return response
-
 
     def save_results(self, output_file: str) -> None:
         """
@@ -427,3 +395,10 @@ class ClaudeAPIProcessor:
         print(f"📐 Metrics: {self.metrics}")
         return self.metrics
 
+    def extract_tag(text, tag):
+        pattern = fr'<{tag}>(.*?)</{tag}>'
+        match = re.search(pattern, text, re.DOTALL)
+        if match:
+            return match.group(1)
+        else:
+            return None
