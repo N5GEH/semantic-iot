@@ -414,6 +414,9 @@ class LLMAssistant:
             Verify the terminology-mappings of 
             For now, add a placeholder here
 
+            Map the nodetype to the class of the ontology.
+            Map the Relationships to the class of the ontology.
+
             Replace only the "**TODO: PLEASE CHECK** and following" field in "class"
         """)
         print(terminology_mapping)

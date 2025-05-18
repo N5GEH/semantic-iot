@@ -25,6 +25,8 @@ class OntologyProcessor:
             ontology_file_path: Path to the ontology file (e.g., .ttl, .owl, .rdf)
         """
         self.ontology_file = ontology_file_path
+        self.index_file = os.path.splitext(self.ontology_file)[0] + "_index.json"
+
         self.graph = None
         self.index = {
             "classes": {},
@@ -174,8 +176,8 @@ class OntologyProcessor:
         definition = self._get_first_literal(prop_uri, SKOS.definition)
         
         # Debug output for selected properties
-        if "location" in str(prop_uri).lower(): 
-            print(f"Processing property: {prop_uri}, \n definition: {definition} \n comment: {comment} \n label: {label}")
+        # if "location" in str(prop_uri).lower(): 
+        #     print(f"Processing property: {prop_uri}, \n definition: {definition} \n comment: {comment} \n label: {label}")
         
         # Determine property type
         if (prop_uri, RDF.type, OWL.ObjectProperty) in self.graph:
@@ -480,160 +482,92 @@ class OntologyProcessor:
             return formatted
         return str(data)
     
-    def get_ontology_context_for_llm(self, query: str, max_tokens: int = 2000) -> str:
-        """
-        Prepare relevant ontology information for an LLM prompt
-        
-        Args:
-            query: User query or entity description
-            max_tokens: Maximum tokens to include in context
+    def get_ontology_context_for_llm(self, query: str, task_type: str, max_tokens: int = 20000) -> str:
+        # Try direct lookup for class or property
+        query_term = query.strip().split()[-1] # Try the last word as a potential class name
+
+        if task_type == "class":
+            if query_term in self.index["classes"]:
+                context = self.get_class_with_context(query_term)
+                context_str = f"### Class Information\n{self.format_for_llm(context)}"
+            else: # Fallback to semantic search
+                class_results = self.semantic_search_classes(query, top_k=50)
+                context_str = "### Relevant Classes\n"
+                for class_id, score, info in class_results:
+                    description = info.get("description", "")
+                    context_str += f"- ({score:.2f}) {class_id}"              # {info.get('label', '')}
+                    context_str += f": {description}\n" if description else "\n"
             
-        Returns:
-            Formatted context string
-        """
-        # First try direct lookup for class
-        query_term = query.strip().split()[-1]  # Try the last word as a potential class name
-        if query_term in self.index["classes"]:
-            context = self.get_class_with_context(query_term)
-            context_str = f"### Class Information\n{self.format_for_llm(context)}"
-            
-        # Try direct lookup for property
-        elif query_term in self.index["properties"]:
-            context = self.get_property_with_context(query_term)
-            context_str = f"### Property Information\n{self.format_for_llm(context)}"
-            
-        # Fall back to semantic search
-        else:
-            class_results = self.semantic_search_classes(query, top_k=50)
-            prop_results = self.semantic_search_properties(query, top_k=5)
-            
-            context_str = "### Relevant Classes\n"
-            for class_id, score, info in class_results:
-                context_str += f"- **{class_id}** ({score:.2f}): {info.get('label', '')}\n"
-                context_str += f"  Description: {info.get('description', 'No description')}\n"
-                
-            context_str += "\n### Relevant Properties\n"
-            for prop_id, score, info in prop_results:
-                context_str += f"- **{prop_id}** ({score:.2f}): {info.get('label', '')}\n"
-                context_str += f"  Description: {info.get('description', 'No description')}\n"
-                
+        if task_type == "property":
+            if query_term in self.index["properties"]:
+                context = self.get_property_with_context(query_term)
+                context_str = f"### Property Information\n{self.format_for_llm(context)}"
+            else: # Fallback to semantic search
+                prop_results = self.semantic_search_properties(query, top_k=50)
+                context_str = "### Relevant Properties\n"
+                for prop_id, score, info in prop_results:
+                    description = info.get("description", "")
+                    context_str += f"- ({score:.2f}) {prop_id}"           # {info.get('label', '')}
+                    context_str += f": {description}\n" if description else "\n"
+                    
         # Ensure the context fits within token limits
         if len(context_str.split()) > max_tokens:
             context_str = " ".join(context_str.split()[:max_tokens]) + "..."
             
+        print(f"Context for LLM:\n{context_str}\n-------")
         return context_str
     
-    def generate_llm_prompt(self, query: str, task_type: str = "entity_naming") -> str:
-        """
-        Generate a prompt for the LLM
-        
-        Args:
-            query: User query or entity description
-            task_type: Type of task (entity_naming, relation_naming)
-            
-        Returns:
-            Complete prompt for LLM
-        """
-        context = self.get_ontology_context_for_llm(query)
-        
-        if task_type == "entity_naming":
-            prompt = f"""
-            # Ontology-Based Entity Naming Task
-            
-            ## Ontology Context Information
-            {context}
-            
-            ## Entity Description
-            {query}
-            
-            ## Instructions
-            Based on the entity description above and the ontology information provided:
-            1. Identify the most appropriate ontology class for this entity
-            2. Create a properly formatted entity name using the pattern: <ClassName>_<InstanceIdentifier>
-            3. Provide a brief explanation for your choice
-            
-            Return your response as a JSON object with the following structure:
-            {{
-              "selected_class": "The selected ontology class name",
-              "entity_name": "The formatted entity name",
-              "reasoning": "Brief explanation for the selection"
-            }}
-            """
-            
-        elif task_type == "relation_naming":
-            prompt = f"""
-            # Ontology-Based Relation Naming Task
-            
-            ## Ontology Context Information
-            {context}
-            
-            ## Relation Description
-            {query}
-            
-            ## Instructions
-            Based on the relation description above and the ontology information provided:
-            1. Identify the most appropriate ontology property for this relation
-            2. Create a properly formatted relation name using the pattern: <PropertyName>_<RelationIdentifier>
-            3. Provide a brief explanation for your choice
-            
-            Return your response as a JSON object with the following structure:
-            {{
-              "selected_property": "The selected ontology property name",
-              "relation_name": "The formatted relation name",
-              "reasoning": "Brief explanation for the selection"
-            }}
-            """
-        
-        return prompt.strip()
-    
-    def query_claude(self, prompt: str, model: str = "claude-3-5-sonnet-20240620") -> str:
-        """
-        Send a prompt to Claude and get a response
-        
-        Args:
-            prompt: The prompt to send to Claude
-            model: The Claude model to use
-            
-        Returns:
-            Claude's response
-        """
-        try:
-            from anthropic import Anthropic
-            current_dir = Path(__file__).parent
-            with open(current_dir / "ANTHROPIC_API_KEY", "r") as f:
-                api_key = f.read().strip()
+    def generate_llm_prompt(self, query: str, task_type: str) -> str:
 
-            client = Anthropic(api_key=api_key)
-            message = client.messages.create(
-                model=model,
-                max_tokens=1000,
-                temperature=0.0,  # Lower temperature for more deterministic responses
-                system="You are an ontology expert that helps map domain entities to appropriate ontology classes and predicates.",
-                messages=[
-                    {"role": "user", "content": prompt}
-                ]
-            )
-            
-            return message.content[0].text
-        except Exception as e:
-            return f"Error querying Claude: {str(e)}"
-    
-    def name_entity(self, entity_description: str) -> Dict:
+        context = self.get_ontology_context_for_llm(query, task_type)
+
+        prompt = f"""
+        You are an ontology expert that helps map domain entities to appropriate ontology classes and predicates.
+
+        # Ontology-Based Naming Task
+
+        ## Ontology Context Information
+        <data>{context}</data>
+
+        ## {'Entity' if task_type == 'class' else 'Relation'} Description
+        {query}
+
+        ## Instructions
+        <instructions>
+        Based on the {'entity' if task_type == 'class' else 'relation'} description above and the ontology information provided:
+        1. Identify the most appropriate ontology {'class' if task_type == 'class' else 'property'} for this {'entity' if task_type == 'class' else 'relation'}
+        2. Provide a brief explanation for your choice
+        </instructions>
+
+        Return your response as a JSON object with the following structure:
+        {{
+          "{'selected_class' if task_type == 'class' else 'selected_property'}": "The selected ontology {'class name' if task_type == 'class' else 'property name'}",
+          "reasoning": "Brief explanation for the selection"
+        }}
         """
-        Generate an entity name based on ontology
+
+        return prompt.strip()    
+
+    def map_term(self, term_description: str, task_type: str) -> Dict:
+
+        print(f"Mapping the term '{term_description}' to an ontology {task_type}...")
+
+        if task_type not in ["class", "property"]:
+            raise ValueError("task_type must be either 'class' or 'property'")
         
-        Args:
-            entity_description: Description of the entity
-            
-        Returns:
-            Dict with entity naming information
-        """
-        prompt = self.generate_llm_prompt(entity_description, task_type="entity_naming")
-        print (f"Prompt for LLM:\n{prompt}\n-------")
+        # Check if an ontology index exists, otherwise build it
+        if self.index_file and os.path.exists(self.index_file):
+            self.load_index()
+            print(f"Ontology index loaded from {self.index_file}")
+        else:
+            self.build_index()
+            self.save_index()
+            print(f"Ontology index saved to {self.index_file}")
+
+        prompt = self.generate_llm_prompt(term_description, task_type=task_type)
 
         claude = ClaudeAPIProcessor(temperature=0.0)
         response = claude.query(prompt)
-        # response = self.query_claude(prompt)
         
         try:
             # Extract JSON from response (it might be wrapped in markdown code blocks)
@@ -647,45 +581,15 @@ class OntologyProcessor:
             return result
         except:
             return {"error": "Failed to parse LLM response", "raw_response": response}
-    
-    def name_relation(self, relation_description: str) -> Dict:
-        """
-        Generate a relation name based on ontology
         
-        Args:
-            relation_description: Description of the relation
-            
-        Returns:
-            Dict with relation naming information
-        """
-        prompt = self.generate_llm_prompt(relation_description, task_type="relation_naming")
-        print (f"Prompt for LLM:\n{prompt}\n-------")
-
-        claude = ClaudeAPIProcessor(temperature=0.0)
-        response = claude.query(prompt)
-        # response = self.query_claude(prompt)
-        
-        try:
-            # Extract JSON from response (it might be wrapped in markdown code blocks)
-            json_match = re.search(r'```json\s*(.*?)\s*```', response, re.DOTALL)
-            if json_match:
-                json_str = json_match.group(1)
-            else:
-                json_str = response
-                
-            result = json.loads(json_str)
-            return result
-        except:
-            return {"error": "Failed to parse LLM response", "raw_response": response}
-    
-    def save_index(self, file_path: str) -> None:
+    def save_index(self) -> None:
         """Save the ontology index to a file"""
-        with open(file_path, 'w') as f:
+        with open(self.index_file, 'w') as f:
             json.dump(self.index, f, indent=2)
     
-    def load_index(self, file_path: str) -> None:
+    def load_index(self) -> None:
         """Load the ontology index from a file"""
-        with open(file_path, 'r') as f:
+        with open(self.index_file, 'r') as f:
             self.index = json.load(f)
 
 
@@ -693,28 +597,11 @@ class OntologyProcessor:
 if __name__ == "__main__":
 
     ontology_path = r"C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\RAG\Brick.ttl"
-    
 
-    processor = OntologyProcessor(ontology_path)
     print("Loading and indexing ontology...")
-    processor.build_index()
+    processor = OntologyProcessor(ontology_path)
     
-    # Save the index for future use (to avoid reprocessing)
-    processor.save_index("ontology_index.json")
-    print("Saved ontology index to ontology_index.json")
-    
-
     # Example usage: Name an entity
-    print("\nExample: Naming an entity")
-    # entity_query = "A sensor that measures the ambient temperature in a room"
-    entity_query = "HotelRoom"
-    entity_result = processor.name_entity(entity_query)
+    entity_result = processor.map_term(term_description="HotelRoom", task_type="class")
     print(json.dumps(entity_result, indent=2))
-    
-    
-    # # Example usage: Name a relation
-    # print("\nExample: Naming a relation")
-    # relation_desc = "The temperature sensor TS-101 is physically located within Room 101"
-    # relation_result = processor.name_relation(relation_desc)
-    # print(json.dumps(relation_result, indent=2))
 

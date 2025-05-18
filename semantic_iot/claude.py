@@ -7,21 +7,23 @@ import anthropic
 from typing import Dict, Any, List, Optional, Union
 from memory_profiler import memory_usage
 
-from semantic_iot.tools import get_tool, get_tools, execute_tool
+from semantic_iot.tools import TOOLS, execute_tool
 
 from pathlib import Path
 root_path = Path(__file__).parent
-print(f"Root path: {root_path}")
 
 
-# py -m pip install .
 
 class ClaudeAPIProcessor:    
     def __init__(self, 
                  api_key: str = "", 
                  model: str = "claude-3-7-sonnet-20250219",  
                  temperature: float = 1.0,
-                 system_prompt: str = "You are an expert in engineering who is specialized in developing knowledge graphps for building automation with IoT platforms. Be precise and concise.",
+                 system_prompt: str = """
+                    You are an expert in engineering who is specialized in developing knowledge graphps 
+                    for building automation with IoT platforms. Be precise and concise.
+                    You can use tools, only call them when needed.
+                    Put the relevant output data in <output> tags.""",
                  tool_names: Optional[List[str]] = None):
         """
         Initialize the Claude API processor
@@ -34,7 +36,6 @@ class ClaudeAPIProcessor:
             tool_names: Names of tools to make available to Claude
         """
         # Get API key
-        
         if api_key: self.api_key = api_key
         else:
             try:
@@ -55,19 +56,17 @@ class ClaudeAPIProcessor:
         }
         
         self.conversation_history = []
-
-        self.step_results = {}
         self.metrics = {}
         self.tool_names = tool_names
+        self.tools = TOOLS
 
     def query(self,
-                    prompt: str,
+                    prompt: str = "",
                     step_name: str = 0,
                     max_retry: int = 5,
                     conversation_history = None,
                     temperature: float = None,
-                    thinking: bool = False,
-                    use_tools: bool = False) -> Dict[str, Any]:
+                    thinking: bool = False) -> Dict[str, Any]:
         """
         Send a query to Claude API
 
@@ -78,45 +77,44 @@ class ClaudeAPIProcessor:
             conversation_history: Optional conversation history to use for this query
             temperature: Optional temperature parameter to override the instance setting
             thinking: Enable thinking mode if the model supports it
-            use_tools: Whether to use tools in this query
 
         Returns:
             The JSON response from Claude
         """    
         
         
-        print (f"✨ Generating with Claude... ({step_name})")
+        print (f"✨ Claude generating... ({step_name})")
         
-        # Setup Request
+        # SETUP =========================================================================
 
-        if temperature is None:
-            temperature = self.temperature
+        # Use instance data or default values
+        temperature = temperature if temperature is not None \
+            else self.temperature
         
-        # Use provided conversation history or the instance's history
         messages = conversation_history if conversation_history \
             else self.conversation_history.copy()
 
-        # Add user message to messages
-        messages.append({"role": "user", "content": prompt})
+        if prompt: # Add user message to messages
+            messages.append({"role": "user", "content": prompt})
 
         data = {
             "model": self.model,
             "messages": messages,
             "max_tokens": 20000,
             "system": self.system_prompt,
-            "temperature": self.temperature # "top_p": 1.0
+            "temperature": self.temperature, # "top_p": 1.0
+            "tools": self.tools,
+            "tool_choice": {"type": "auto"} # default
         }
 
-        # Add thinking parameter only if thinking is set to True
         if thinking:
             data["thinking"] = {
                 "type": "enabled",
                 "budget_tokens": 16000
             }
-            
-        # Add tools if available and requested
-        if use_tools and self.tools:
-            data["tools"] = self.tools
+
+
+        # QUERY ========================================================================
 
         result = None
         for i in range(max_retry):
@@ -141,124 +139,14 @@ class ClaudeAPIProcessor:
                     print(response.text)
                     raise Exception("Max retries reached. "
                                     "API request failed with status code 429")
-                
             elif response.status_code == 529: # The service is overloaded
                 raise Exception(f"⌚ API is temporarily overloaded, try again later")
-                
-    
             else:
                 print(f"Error: {response.status_code}")
                 print(response.text)
 
                 raise Exception(f"API request failed with "
                                 f"status code {response.status_code}")        # Use streaming for tool calls if we have tools available
-        
-        if use_tools and self.tools:
-            # Create an Anthropic client
-            client = anthropic.Anthropic(api_key=self.api_key)
-            
-            print(f"\nStarting streaming request with tools...")
-            
-            # Convert our messages format to Anthropic's format
-            formatted_messages = []
-            for msg in messages:
-                formatted_messages.append({
-                    "role": msg["role"],
-                    "content": msg["content"]
-                })
-              # Start streaming with tools
-            try:
-                with client.messages.stream(
-                    model=self.model,
-                    max_tokens=20000,
-                    system="You are an expert in engineering who is specialized in developing knowledge graphps for building automation with IoT platforms. Be precise and concise.",
-                    messages=formatted_messages,
-                    tools=self.tools,
-                    temperature=temperature
-                ) as stream:
-                    message_content = []
-                    response_text = ""
-                    thinking_text = None
-                    
-                    # Process the stream
-                    for text in stream.text_stream:
-                        print(text, end="", flush=True)
-                        response_text += text
-                        
-                    # Check for tool calls in the message
-                    if stream.message.tool_calls:
-                        for tool_call in stream.message.tool_calls:
-                            # Claude wants to use a tool
-                            print(f"\n\nClaude wants to use the {tool_call.name} tool:")
-                            print(f"Input: {json.dumps(tool_call.input, indent=2)}")
-                            
-                            try:
-                                # Execute the tool
-                                tool_result = execute_tool(tool_call.name, tool_call.input)
-                                print(f"Tool result: {json.dumps(tool_result, indent=2)}")
-                                
-                                # Send the tool output back to Claude
-                                # Define the tool outputs to send
-                                tool_outputs = [{
-                                    "tool_call_id": tool_call.id,
-                                    "output": tool_result
-                                }]
-                                
-                                # Create a new stream with the tool outputs
-                                with client.messages.stream(
-                                    model=self.model,
-                                    max_tokens=20000,
-                                    system="You are an expert in engineering who is specialized in developing knowledge graphps for building automation with IoT platforms. Be precise and concise.",
-                                    messages=formatted_messages + [
-                                        {"role": "assistant", "content": [{"type": "text", "text": response_text}], "tool_calls": [tool_call.model_dump()]}
-                                    ],
-                                    tool_outputs=tool_outputs,
-                                    tools=self.tools,
-                                    temperature=temperature
-                                ) as tool_stream:
-                                    # Continue the conversation with the tool outputs
-                                    response_text = ""
-                                    for text in tool_stream.text_stream:
-                                        print(text, end="", flush=True)
-                                        response_text += text
-                            except Exception as e:
-                                print(f"Error executing tool: {str(e)}")
-                                # Continue without tool results if there was an error
-                      # Create a result object compatible with the rest of the code
-                    result = {
-                        "content": [{"text": response_text}],
-                        "usage": {
-                            "input_tokens": 0,  # These will be estimated
-                            "output_tokens": 0  # These will be estimated
-                        }
-                    }
-                    
-                    # Check if thinking is available in the message response
-                    if hasattr(stream.message, "thinking") and stream.message.thinking:
-                        thinking_text = stream.message.thinking
-                        result["content"].append({
-                            "type": "thinking",
-                            "thinking": thinking_text
-                        })
-                    
-                    print("\nStreaming completed")
-            
-            except Exception as e:
-                print(f"Error in streaming: {str(e)}")
-                # Fall back to non-streaming approach
-                print("Falling back to non-streaming approach...")
-                # Continue with the original non-streaming code below
-                return self.query(
-                    prompt=prompt,
-                    step_name=step_name,
-                    max_retry=max_retry,
-                    conversation_history=conversation_history,
-                    temperature=temperature,
-                    thinking=thinking,
-                    use_tools=False  # Disable tools to prevent infinite recursion
-                )
-        
-        
         
         # Process thinking content if present
         thinking_text = None
@@ -270,96 +158,108 @@ class ClaudeAPIProcessor:
                     thinking_text = block["thinking"]
                 elif "type" in block and block["type"] == "text" and "text" in block:
                     response_text = block["text"]
-                # For backwards compatibility with older API responses
                 elif "text" in block:
                     response_text = block["text"]
 
         # If no structured content types found, fallback to first content block
         if response_text is None and result and "content" in result and len(result["content"]) > 0:
-            # Handle case where response doesn't use the structured format
-            if "text" in result["content"][0]:
+            if "text" in result["content"][0]: # Handle case where response doesn't use the structured format
                 response_text = result["content"][0]["text"]
         
         
-        
-        # Add assistant response to the provided messages list
-        if response_text:
-            messages.append({
-                "role": "assistant",
-                "content": response_text
-            })
-
-        # Save the step results
-        self.step_results[step_name] = {
-            "prompt": prompt,
-            "response": response_text
-        }
-            
-        # Update instance conversation history if using it
-        if not conversation_history:
-            self.conversation_history = messages
+        # Add assistant response to messages and update conversation history
+        # print(f"Claude result: {result}")
+        messages.append({"role": "assistant", "content": result["content"]})
+        # messages.append({"role": "assistant", "content": response_text})
+        self.conversation_history = messages
         
 
-
-
-        # METRICS        
+        # METRICS ======================================================== 
 
         # TODO implement time to first token metric
         # TODO implement time per token metric
         # TODO implement memory usage metric
 
         self.metrics[step_name] = {
+            "prompt": prompt,
             "goal": None,
             "thinking": None,
+            "response": response_text,
             "performance": {
                 "time_seconds": None,
-                "tokens": {
-                    "input_tokens": None,
-                    "output_tokens": None
-                },
+                "tokens": None,
                 "memory": None
             },
             "evaluation": None,
         }
 
-        # Extract goal text between <goal> and </goal> if present
+        # Goal
         match = re.search(r"<goal>(.*?)</goal>", prompt, re.DOTALL)
         goal = match.group(1).strip() if match else prompt
 
-        # Extract instructions if present
         match = re.search(r"<instructions>(.*?)</instructions>", prompt, re.DOTALL)
         instructions = match.group(1).strip() if match else prompt
 
-        # Save goal text if available
-        if goal:
-            self.metrics[step_name]["goal"] = goal
-        else: 
-            self.metrics[step_name]["goal"] = prompt
+        if goal: self.metrics[step_name]["goal"] = goal
+        else:    self.metrics[step_name]["goal"] = prompt
 
-        # Save thinking text if available
-        if thinking_text:
-            self.step_results[step_name]["thinking"] = thinking_text
-            self.metrics[step_name]["thinking"] = thinking_text
-        else:
-            self.metrics[step_name]["thinking"] = instructions
+        # Thinking
+        if thinking_text: self.metrics[step_name]["thinking"] = thinking_text
+        else:             self.metrics[step_name]["thinking"] = instructions
 
-        # Add timing information to metrics
+        # Time
         elapsed_time = end_time - start_time
         self.metrics[step_name]["performance"]["time_seconds"] = elapsed_time
-        print(f"⌛ Query time: {elapsed_time:.2f} seconds")
+        # print(f"⌛ Query time: {elapsed_time:.2f} seconds")
 
-        # Get token usage metrics
-        try:
-            self.metrics[step_name]["performance"]["tokens"] = result.get("usage", {})
-            self.metrics[step_name]["performance"]["input_tokens"] = result.get("usage", {}).get("input_tokens", 0)
-            self.metrics[step_name]["performance"]["output_tokens"] = result.get("usage", {}).get("output_tokens", 0)
-        except (KeyError, TypeError): # If token counts aren't available (like in streaming), estimate them
-            print("⚠️ Warning: Token counts not available in the response. Estimating...")
-            self.metrics[step_name]["performance"]["tokens"] = {}
-            self.metrics[step_name]["performance"]["input_tokens"] = len(prompt) // 4  # Rough estimate
-            self.metrics[step_name]["performance"]["output_tokens"] = len(response_text) // 4  # Rough estimate
+        # Tokens
+        # self.metrics[step_name]["performance"]["tokens"] = result.get("usage", {})
+        self.metrics[step_name]["performance"]["input_tokens"] = result.get("usage", {}).get("input_tokens", 0)
+        self.metrics[step_name]["performance"]["output_tokens"] = result.get("usage", {}).get("output_tokens", 0)
         
-        return response_text
+        print(f"📐 Metrics: \n  {json.dumps(self.metrics[step_name], indent=2)}")
+
+
+        # TOOL USE =========================================================
+
+        if result.get("stop_reason") == "tool_use":
+            tool_use = result.get("content")[-1] # TODO assuming only one tool is called at a time
+            tool_name = tool_use.get("name")
+            tool_input = tool_use.get("input")
+
+            print(f"🛠️  Tool use... ({tool_name})")
+            tool_result = execute_tool(tool_name, tool_input)
+            print(f"Tool result: {tool_result}")
+
+            messages.append(
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "tool_result",
+                            "tool_use_id": tool_use.get("id"),
+                            "content": str(tool_result)
+                        }
+                    ],
+                },
+            )
+            self.conversation_history = messages
+
+            # self.metrics[step_name]["tool_use"] = {
+            #     "tool_name": tool_name,
+            #     "tool_input": tool_input,
+            #     "tool_result": tool_result
+            # }
+
+            self.query(step_name=f"{step_name}_follow_up", thinking=thinking)
+
+        elif result.get("stop_reason") == "end_turn":
+            model_reply = self.extract_tag(response_text, "output")
+            print(f"↪️  Claude reply: {response_text}")
+            return response_text
+
+        else: raise Exception("Unknown stop reason")
+        
     
     def regenerate (self, error_message) -> None:
         '''
@@ -381,7 +281,7 @@ class ClaudeAPIProcessor:
             output_file: Path to the output JSON file
         """
         with open(output_file, 'w') as f:
-            json.dump(self.step_results, f, indent=2)
+            json.dump(self.metrics, f, indent=2)
 
         print(f"\nResults saved to {output_file}")
 
@@ -395,7 +295,7 @@ class ClaudeAPIProcessor:
         print(f"📐 Metrics: {self.metrics}")
         return self.metrics
 
-    def extract_tag(text, tag):
+    def extract_tag(self, text, tag):
         pattern = fr'<{tag}>(.*?)</{tag}>'
         match = re.search(pattern, text, re.DOTALL)
         if match:

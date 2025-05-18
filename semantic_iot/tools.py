@@ -8,7 +8,7 @@ from typing import Dict, Any, List, Optional, Callable, Union
 ###################################################################################
 # Tool definitions
 
-tools = [
+TOOLS = [
     {
         "name": "calculator",
         "description": "A simple calculator that can perform basic arithmetic operations.",
@@ -88,86 +88,16 @@ def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
 
 ###############################################################################
 
-import anthropic
-import json
-import re
+if __name__ == "__main__":
 
-with open(r"C:\Users\\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\ANTHROPIC_API_KEY", "r") as f:
-    api_key = f.read().strip()
+    # Example usage of tools
+    from pathlib import Path
+    import sys
+    sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
+    from semantic_iot.claude import ClaudeAPIProcessor
 
-client = anthropic.Client(api_key=api_key)
+    claude = ClaudeAPIProcessor()
 
-
-def extract_tagged_text(text, tag):
-    pattern = fr'<{tag}>(.*?)</{tag}>'
-    match = re.search(pattern, text, re.DOTALL)
-    if match:
-        return match.group(1)
-    else:
-        return None
-
-
-def prompt_claude(prompt):
-
-    # Configuration
-    if isinstance(prompt, list) and all(isinstance(m, dict) and "role" in m and "content" in m for m in prompt):
-        print("↪️  Next Iteration")
-        messages = prompt
-    else:
-        messages = [{"role": "user", "content": prompt}]
-
-    # Request to Claude
-    response = client.messages.create(
-        model="claude-3-haiku-20240307",
-        system=""" You will be asked a question by the user. 
-            If answering the question requires data you were not trained on, you can use tools. 
-            If you can answer the question without needing to get more information, please do so. 
-            Only call the tool when needed. 
-            Put the response in <output> tags""",
-        messages=messages,
-        max_tokens=1000,
-        tools=tools,
-    )
-
-    messages.append({"role": "assistant", "content": response.content})
-
-    # Tool use handling
-    if response.stop_reason == "tool_use":
-        tool_use = response.content[-1] # TODO assuming only one tool is called at a time
-        tool_name = tool_use.name
-        tool_input = tool_use.input
-
-        print("🛠️  Tool use:", tool_name)
-        tool_result = execute_tool(tool_name, tool_input)
-
-        messages.append(
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "tool_result",
-                        "tool_use_id": tool_use.id,
-                        "content": str(tool_result)
-                    }
-                ],
-            },
-        )
-
-        prompt_claude(messages)
-
-    elif response.stop_reason == "end_turn":
-        print("Claude didn't want to use a tool")
-        model_reply = extract_tagged_text(response.content[0].text, "output")
-        print(f"Claude responded with: {model_reply}")
-
-
-
-
-prompt = """
-    Can you help me map this text to another string? The tesxt is: 'hello world' after you map it, map also the output you get from there
-"""
-
-# prompt = "how many legs does a octopus have?"
-
-prompt_claude(prompt)
-
+    response = claude.query(
+        prompt="What is the mapping of: 'Hello World'? And what is the mapping of the result?", 
+        thinking=True)

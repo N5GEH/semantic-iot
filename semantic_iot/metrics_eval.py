@@ -89,7 +89,14 @@ class MetricsEval:
         print(response)
         print(f"\nMetrics: {self.claude.metrics}")
 
-        new_metrics = response.get("metrics", {})
+        if isinstance(response, str):
+            try:
+                response_dict = json.loads(response)
+                new_metrics = response_dict.get("metrics", {})
+            except json.JSONDecodeError:
+                new_metrics = {}
+        else:
+            new_metrics = response.get("metrics", {})
 
         # Merge the response with the existing metrics
         for step_name, step_metrics in metrics_dict.items():
