@@ -145,7 +145,7 @@ class LLMAssistant:
             )
         self.json_processor.pre_process(overwrite=True)
 
-    def exract_json (self, response: str, format: str = "json"):
+    def extract_json (self, response: str, format: str = "json"):
         try:
             # Extract JSON from response (it might be wrapped in markdown code blocks)
             json_match = re.search(r'```json\s*(.*?)\s*```', response, re.DOTALL)
@@ -239,7 +239,10 @@ class LLMAssistant:
             # print (f"Validating config: {config_str}")
 
             try:
-                config = json.loads(config_str)
+                # config = json.loads(config_str)
+                config = self.extract_json(config_str)
+
+                return config # TODO 
 
                 if "ID_KEY" not in config or "TYPE_KEYS" not in config or "JSONPATH_EXTRA_NODES" not in config:
                     raise Exception('Config is not valid: "ID_KEY" not in config or "TYPE_KEYS" not in config or "JSONPATH_EXTRA_NODES" not in config')
@@ -263,7 +266,7 @@ class LLMAssistant:
 
 
 
-        keys_str = claude.query(step_name="STEP 1.1: Search Keys", thinking=True,
+        keys_str = claude.query(step_name="STEP 1.1: Search Keys",
             prompt = f"""
             The JSON dataset is as follows:
             <data>{self.input_file}</data>
@@ -300,7 +303,7 @@ class LLMAssistant:
         val_keys(self, keys_str)
 
 
-        extra_nodes_str = claude.query(step_name="STEP 1.2: Search Extra Nodes", thinking=True,
+        extra_nodes_str = claude.query(step_name="STEP 1.2: Search Extra Nodes",
             prompt = f"""
             Please analyze the provided JSON dataset and identify properties that should be modeled as separate resource types (extra nodes) in the knowledge graph rather than just attributes of their parent entities.
 
@@ -322,7 +325,7 @@ class LLMAssistant:
         # print (f"Extra Nodes: {extra_nodes_str}")
 
 
-        config_str = claude.query(step_name="STEP 1.3: Create Config", thinking=True,
+        config_str = claude.query(step_name="STEP 1.3: Create Config",
             prompt = f"""
             Based on the previous analysis, create a configuration file for further use in the knowledge graph creation process with the following format:
 
@@ -343,12 +346,13 @@ class LLMAssistant:
                     # "$..nameOfExtraNode1",
                     # "$..nameOfExtraNode2",
                     # "$..nameOfExtraNode3"
-
+        print (f"Config: {config_str}")
         config = val_config(self, config_str)
-        # print (f"Config: {config}", type (config))
+        # TODO save config to file
 
 
-        self.platform = claude.query(step_name="STEP 1.4: Identify Platform", thinking=True,
+
+        self.platform = claude.query(step_name="STEP 1.4: Identify Platform",
             prompt = f"""
             Based on the provided JSON dataset, identify the IoT-platform that is used to collect the data.
             Only return the name of the platform, without any other text or information.
@@ -412,12 +416,9 @@ class LLMAssistant:
         terminology_mapping = claude.query(step_name="STEP 2.3: Get Terminology Mapping",
             prompt = f"""
             Verify the terminology-mappings of 
-            For now, add a placeholder here
 
-            Map the nodetype to the class of the ontology.
-            Map the Relationships to the class of the ontology.
-
-            Replace only the "**TODO: PLEASE CHECK** and following" field in "class"
+            Map the nodetype term to the class of the ontology.
+            Map the Relationship terms to the class of the ontology.
         """)
         print(terminology_mapping)
 

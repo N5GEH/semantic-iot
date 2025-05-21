@@ -7,8 +7,6 @@ import anthropic
 from typing import Dict, Any, List, Optional, Union
 from memory_profiler import memory_usage
 
-from semantic_iot.tools import TOOLS, execute_tool
-
 from pathlib import Path
 root_path = Path(__file__).parent
 
@@ -23,8 +21,8 @@ class ClaudeAPIProcessor:
                     You are an expert in engineering who is specialized in developing knowledge graphps 
                     for building automation with IoT platforms. Be precise and concise.
                     You can use tools, only call them when needed.
-                    Put the relevant output data in <output> tags.""",
-                 tool_names: Optional[List[str]] = None):
+                    Put the relevant output data in <output> tags.
+                    The parent of 'LLM_models' folder is the project root."""):
         """
         Initialize the Claude API processor
 
@@ -57,8 +55,6 @@ class ClaudeAPIProcessor:
         
         self.conversation_history = []
         self.metrics = {}
-        self.tool_names = tool_names
-        self.tools = TOOLS
 
     def query(self,
                     prompt: str = "",
@@ -66,7 +62,8 @@ class ClaudeAPIProcessor:
                     max_retry: int = 5,
                     conversation_history = None,
                     temperature: float = None,
-                    thinking: bool = False) -> Dict[str, Any]:
+                    thinking: bool = True,
+                    tool_use: bool = True) -> Dict[str, Any]: # TODO add tool selection
         """
         Send a query to Claude API
 
@@ -90,6 +87,7 @@ class ClaudeAPIProcessor:
         # Use instance data or default values
         temperature = temperature if temperature is not None \
             else self.temperature
+        if thinking: temperature = 1.0
         
         messages = conversation_history if conversation_history \
             else self.conversation_history.copy()
@@ -102,9 +100,7 @@ class ClaudeAPIProcessor:
             "messages": messages,
             "max_tokens": 20000,
             "system": self.system_prompt,
-            "temperature": self.temperature, # "top_p": 1.0
-            "tools": self.tools,
-            "tool_choice": {"type": "auto"} # default
+            "temperature": self.temperature # "top_p": 1.0
         }
 
         if thinking:
@@ -112,6 +108,13 @@ class ClaudeAPIProcessor:
                 "type": "enabled",
                 "budget_tokens": 16000
             }
+        
+        if tool_use:
+            from semantic_iot.tools import TOOLS, execute_tool
+            self.tools = TOOLS
+
+            data["tools"] = self.tools
+            data["tool_choice"] = {"type": "auto"} # default
 
 
         # QUERY ========================================================================
@@ -180,7 +183,10 @@ class ClaudeAPIProcessor:
         # TODO implement time per token metric
         # TODO implement memory usage metric
 
+        # TODO add claude instance 
+
         self.metrics[step_name] = {
+            "step_name": step_name,
             "prompt": prompt,
             "goal": None,
             "thinking": None,
@@ -205,7 +211,7 @@ class ClaudeAPIProcessor:
 
         # Thinking
         if thinking_text: self.metrics[step_name]["thinking"] = thinking_text
-        else:             self.metrics[step_name]["thinking"] = instructions
+        else:             self.metrics[step_name]["thinking"] = "No Thinking" # instructions
 
         # Time
         elapsed_time = end_time - start_time
@@ -217,18 +223,26 @@ class ClaudeAPIProcessor:
         self.metrics[step_name]["performance"]["input_tokens"] = result.get("usage", {}).get("input_tokens", 0)
         self.metrics[step_name]["performance"]["output_tokens"] = result.get("usage", {}).get("output_tokens", 0)
         
-        print(f"📐 Metrics: \n  {json.dumps(self.metrics[step_name], indent=2)}")
+        # print(f"📐 Metrics: \n  {json.dumps(self.metrics[step_name], indent=2)}")
+        self.save_metrics(step_name)
 
 
         # TOOL USE =========================================================
 
-        if result.get("stop_reason") == "tool_use":
+        if tool_use and result.get("stop_reason") == "tool_use":
             tool_use = result.get("content")[-1] # TODO assuming only one tool is called at a time
             tool_name = tool_use.get("name")
             tool_input = tool_use.get("input")
 
             print(f"🛠️  Tool use... ({tool_name})")
-            tool_result = execute_tool(tool_name, tool_input)
+            try:
+                tool_result = execute_tool(tool_name, tool_input)
+            except Exception as e:
+                raise Exception(f"Error executing tool '{tool_name}': {e}")
+                # TODO handle tool errors
+                print(f"Error executing tool '{tool_name}': {e}")
+                return self.regenerate(str(e))
+
             print(f"Tool result: {tool_result}")
 
             messages.append(
@@ -245,17 +259,25 @@ class ClaudeAPIProcessor:
             )
             self.conversation_history = messages
 
-            # self.metrics[step_name]["tool_use"] = {
-            #     "tool_name": tool_name,
-            #     "tool_input": tool_input,
-            #     "tool_result": tool_result
-            # }
+            self.metrics[tool_name] = {
+                "tool_name": tool_name,
+                "tool_input": tool_input,
+                "tool_result": tool_result
+            }
+            self.save_metrics(tool_name)
 
-            self.query(step_name=f"{step_name}_follow_up", thinking=thinking)
+            # TODO does this works?
+            try:
+                step_name, number = step_name.split("(")
+                step_name = step_name + f"({int(number) + 1})"
+            except Exception as e:
+                raise Exception(f"Error parsing step name '{step_name}': {e}")
+            self.query(step_name=f"{step_name}", thinking=thinking)
 
         elif result.get("stop_reason") == "end_turn":
-            model_reply = self.extract_tag(response_text, "output")
-            print(f"↪️  Claude reply: {response_text}")
+            model_reply = self.extract_tag(response_text, "output")            
+            if model_reply: response_text = model_reply
+            print(f"✨↪️  Model reply: {response_text}")
             return response_text
 
         else: raise Exception("Unknown stop reason")
@@ -270,20 +292,36 @@ class ClaudeAPIProcessor:
 
             ERROR MESSAGE:
             {error_message}
-        """)
+        """, step_name="regenerate_response")
         return response
 
-    def save_results(self, output_file: str) -> None:
+    def save_metrics(self, step_name: str, output_file: str="LLM_models/metrics.json") -> None:
         """
-        Save the pipeline results to a JSON file
+        Save the pipeline results to a JSON file, appending or updating the dict.
 
         Args:
             output_file: Path to the output JSON file
         """
-        with open(output_file, 'w') as f:
-            json.dump(self.metrics, f, indent=2)
+        # Try to load existing metrics
+        try:
+            with open(output_file, 'r') as f:
+                all_metrics = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            all_metrics = {}
 
-        print(f"\nResults saved to {output_file}")
+        # Update or add the current step's metrics
+        if step_name in all_metrics:
+            new_step_name = f"{step_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        else: 
+            new_step_name = step_name
+
+        all_metrics[new_step_name] = self.metrics[step_name]
+
+        # Write back the updated metrics
+        with open(output_file, 'w') as f:
+            json.dump(all_metrics, f, indent=4)
+
+        print(f"⬇️ 📐 Metrics saved to {output_file}")
 
     def get_metrics(self) -> Dict[str, Any]:
         """
@@ -292,7 +330,7 @@ class ClaudeAPIProcessor:
         Returns:
             The metrics of the pipeline
         """
-        print(f"📐 Metrics: {self.metrics}")
+        print(f"📐 Metrics: \n{self.metrics}")
         return self.metrics
 
     def extract_tag(self, text, tag):

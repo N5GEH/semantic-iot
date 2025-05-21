@@ -29,7 +29,7 @@ class MetricsEval:
             str: The response from the Claude API
         """
 
-        print(f"Metrics Dictionary: {metrics_dict}")
+        # print(f"Metrics Dictionary: {metrics_dict}")
 
         prompt = f"""
             Based on the thinking process of each different step in the metrics <data>{metrics_dict}</data>, 
@@ -84,10 +84,10 @@ class MetricsEval:
             
         """
         
-        response = self.claude.query(step_name="📐 Compare Metrics", thinking=True, prompt=prompt)
+        response = self.claude.query(step_name="📐 Compare Metrics", prompt=prompt)
 
         print(response)
-        print(f"\nMetrics: {self.claude.metrics}")
+        # print(f"\nMetrics: {self.claude.metrics}")
 
         if isinstance(response, str):
             try:
@@ -453,13 +453,13 @@ if __name__ == "__main__":
     claude = ClaudeAPIProcessor()
 
     print("Generating example data...")
-    response = claude.query("What is 1+2", thinking=True, step_name="Step 1")
+    response = claude.query("What is 1+2", step_name="Step 1")
     print(f"Step 1 response: {response}")
 
-    response = claude.query("What is sum of natural numbers less than three?", thinking=True, step_name="Step 2")
+    response = claude.query("What is sum of natural numbers less than three?", step_name="Step 2")
     print(f"Step 2 response: {response}")
 
-    response = claude.query("What are the first five prime numbers?", thinking=True, step_name="Step 3")
+    response = claude.query("What are the first five prime numbers?", step_name="Step 3")
     print(f"Step 3 response: {response}")
 
     print("Example data generated.")

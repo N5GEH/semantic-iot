@@ -6,7 +6,8 @@ import numpy as np
 from typing import Dict, List, Any, Optional, Tuple
 import re
 from pathlib import Path
-from semantic_iot.claude import ClaudeAPIProcessor
+import time
+
 
 # TODO fine tuning with temperature
 
@@ -407,54 +408,45 @@ class OntologyProcessor:
                 
         return result
     
-    def semantic_search_classes(self, query: str, top_k: int = 5) -> List[Tuple[str, float, Dict]]:
+    def semantic_search(self, query: str, term_type: str = "", top_k: int = 5) -> List[Tuple[str, float, Dict]]:
         """
-        Find classes semantically related to the query
-        
+        Find ontology classes or properties semantically related to the query.
+
         Args:
             query: Search query
+            term_type: "class" or "property"
             top_k: Number of top results to return
-            
+
         Returns:
-            List of tuples (class_id, similarity_score, class_info)
+            List of tuples (id, similarity_score, info)
         """
+        print(f"🔍⏳ Semantic search... (ontology {term_type} for '{query}')")
+        start_time = time.time()
+
         if not self.embedding_model:
             self.build_embeddings()
-            
+
         query_embedding = self.embedding_model.encode(query)
-        
+
+        if term_type == "class":
+            items = self.embeddings["classes"].items()
+            index = self.index["classes"]
+        elif term_type == "property":
+            items = self.embeddings["properties"].items()
+            index = self.index["properties"]
+        else:
+            raise ValueError("term_type must be either 'class' or 'property'")
+
         results = []
-        for class_id, embedding in self.embeddings["classes"].items():
+        for item_id, embedding in items:
             similarity = np.dot(query_embedding, embedding) / (
                 np.linalg.norm(query_embedding) * np.linalg.norm(embedding))
-            results.append((class_id, similarity, self.index["classes"][class_id]))
-        
+            results.append((item_id, similarity, index[item_id]))
+
         results.sort(key=lambda x: x[1], reverse=True)
-        return results[:top_k]
-    
-    def semantic_search_properties(self, query: str, top_k: int = 5) -> List[Tuple[str, float, Dict]]:
-        """
-        Find properties semantically related to the query
-        
-        Args:
-            query: Search query
-            top_k: Number of top results to return
-            
-        Returns:
-            List of tuples (property_id, similarity_score, property_info)
-        """
-        if not self.embedding_model:
-            self.build_embeddings()
-            
-        query_embedding = self.embedding_model.encode(query)
-        
-        results = []
-        for prop_id, embedding in self.embeddings["properties"].items():
-            similarity = np.dot(query_embedding, embedding) / (
-                np.linalg.norm(query_embedding) * np.linalg.norm(embedding))
-            results.append((prop_id, similarity, self.index["properties"][prop_id]))
-        
-        results.sort(key=lambda x: x[1], reverse=True)
+
+        end_time = time.time()
+        print(f"🔍✅ Semantic search completed in {end_time - start_time:.2f} seconds")
         return results[:top_k]
     
     def format_for_llm(self, data: Any) -> str:
@@ -482,44 +474,27 @@ class OntologyProcessor:
             return formatted
         return str(data)
     
-    def get_ontology_context_for_llm(self, query: str, task_type: str, max_tokens: int = 20000) -> str:
+    def get_ontology_context_for_llm(self, query: str, term_type: str, max_tokens: int = 20000) -> str:
         # Try direct lookup for class or property
-        query_term = query.strip().split()[-1] # Try the last word as a potential class name
 
-        if task_type == "class":
-            if query_term in self.index["classes"]:
-                context = self.get_class_with_context(query_term)
-                context_str = f"### Class Information\n{self.format_for_llm(context)}"
-            else: # Fallback to semantic search
-                class_results = self.semantic_search_classes(query, top_k=50)
-                context_str = "### Relevant Classes\n"
-                for class_id, score, info in class_results:
-                    description = info.get("description", "")
-                    context_str += f"- ({score:.2f}) {class_id}"              # {info.get('label', '')}
-                    context_str += f": {description}\n" if description else "\n"
+        results = self.semantic_search(query, term_type=term_type, top_k=50)
+        context_str = "### Relevant Classes\n" if term_type == "class" else "### Relevant Properties\n"
+        for id, score, info in results:
+            description = info.get("description", "")
+            context_str += f"- ({score:.2f}) {id}"              # {info.get('label', '')}
+            context_str += f": {description}\n" if description else "\n"
             
-        if task_type == "property":
-            if query_term in self.index["properties"]:
-                context = self.get_property_with_context(query_term)
-                context_str = f"### Property Information\n{self.format_for_llm(context)}"
-            else: # Fallback to semantic search
-                prop_results = self.semantic_search_properties(query, top_k=50)
-                context_str = "### Relevant Properties\n"
-                for prop_id, score, info in prop_results:
-                    description = info.get("description", "")
-                    context_str += f"- ({score:.2f}) {prop_id}"           # {info.get('label', '')}
-                    context_str += f": {description}\n" if description else "\n"
-                    
+        print(f"Context for LLM: \n{context_str}")
+
         # Ensure the context fits within token limits
         if len(context_str.split()) > max_tokens:
             context_str = " ".join(context_str.split()[:max_tokens]) + "..."
             
-        print(f"Context for LLM:\n{context_str}\n-------")
         return context_str
     
-    def generate_llm_prompt(self, query: str, task_type: str) -> str:
+    def generate_llm_prompt(self, query: str, term_type: str) -> str:
 
-        context = self.get_ontology_context_for_llm(query, task_type)
+        context = self.get_ontology_context_for_llm(query, term_type)
 
         prompt = f"""
         You are an ontology expert that helps map domain entities to appropriate ontology classes and predicates.
@@ -529,31 +504,27 @@ class OntologyProcessor:
         ## Ontology Context Information
         <data>{context}</data>
 
-        ## {'Entity' if task_type == 'class' else 'Relation'} Description
+        ## {'Entity' if term_type == 'class' else 'Relation'} Description
         {query}
 
         ## Instructions
         <instructions>
-        Based on the {'entity' if task_type == 'class' else 'relation'} description above and the ontology information provided:
-        1. Identify the most appropriate ontology {'class' if task_type == 'class' else 'property'} for this {'entity' if task_type == 'class' else 'relation'}
+        Based on the {'entity' if term_type == 'class' else 'relation'} description above and the ontology information provided:
+        1. Identify the most appropriate ontology {'class' if term_type == 'class' else 'property'} for this {'entity' if term_type == 'class' else 'relation'}
         2. Provide a brief explanation for your choice
         </instructions>
 
-        Return your response as a JSON object with the following structure:
-        {{
-          "{'selected_class' if task_type == 'class' else 'selected_property'}": "The selected ontology {'class name' if task_type == 'class' else 'property name'}",
-          "reasoning": "Brief explanation for the selection"
-        }}
+        Return the selected term in the terminology as an output
         """
 
         return prompt.strip()    
 
-    def map_term(self, term_description: str, task_type: str) -> Dict:
+    def map_term(self, term_description: str, term_type: str) -> Dict:
 
-        print(f"Mapping the term '{term_description}' to an ontology {task_type}...")
+        print(f"Mapping the term '{term_description}' to an ontology {term_type}...")
 
-        if task_type not in ["class", "property"]:
-            raise ValueError("task_type must be either 'class' or 'property'")
+        if term_type not in ["class", "property"]:
+            raise ValueError("term_type must be either 'class' or 'property'")
         
         # Check if an ontology index exists, otherwise build it
         if self.index_file and os.path.exists(self.index_file):
@@ -564,23 +535,15 @@ class OntologyProcessor:
             self.save_index()
             print(f"Ontology index saved to {self.index_file}")
 
-        prompt = self.generate_llm_prompt(term_description, task_type=task_type)
+        prompt = self.generate_llm_prompt(term_description, term_type=term_type)
 
-        claude = ClaudeAPIProcessor(temperature=0.0)
-        response = claude.query(prompt)
-        
-        try:
-            # Extract JSON from response (it might be wrapped in markdown code blocks)
-            json_match = re.search(r'```json\s*(.*?)\s*```', response, re.DOTALL)
-            if json_match:
-                json_str = json_match.group(1)
-            else:
-                json_str = response
-                
-            result = json.loads(json_str)
-            return result
-        except:
-            return {"error": "Failed to parse LLM response", "raw_response": response}
+        from semantic_iot.claude import ClaudeAPIProcessor
+        claude = ClaudeAPIProcessor()
+        response = claude.query(
+            prompt, 
+            step_name="find_match", 
+            tool_use=False)
+        return response
         
     def save_index(self) -> None:
         """Save the ontology index to a file"""
@@ -602,6 +565,45 @@ if __name__ == "__main__":
     processor = OntologyProcessor(ontology_path)
     
     # Example usage: Name an entity
-    entity_result = processor.map_term(term_description="HotelRoom", task_type="class")
+    entity_result = processor.map_term(term_description="HotelRoom", term_type="class")
     print(json.dumps(entity_result, indent=2))
 
+
+
+
+
+# TODO use this prompt description?
+
+"""
+GOAL:
+Match resource types from JSON data to ontology classes, 
+finding the most semantically appropriate matches.
+
+Resource types to match: {self.resource_types}
+Available ontology classes: {self.ont_classes_names}
+
+CONTEXT:
+This is in a context of building automatization, 
+Internet of Things, building systems, 
+building components, sensors, and their relationships.
+
+RESPONSE FORMAT:
+Return a JSON dictionary where 
+    keys are resource types and 
+    values are arrays with 
+    [ontology_classes, confidence_score]. 
+    As ontology_classes use exclusively words from the given input ontology classes. 
+    The confidence_score should be between 0 and 1 and should tell the proximity of how likely this is a correct match. 
+    Example: \"CO2Sensor\": [\"CO2_Sensor\", 0.95]. 
+Do not output any other explaination or text.
+
+CONSTRAINTS:
+Use semantic matching, considering synonyms and related terms. 
+Prioritize exact matches, then partial matches.
+
+TARGET USE:
+The matches will be used to create RML mappings for knowledge graph generation.
+
+ROLE:
+Act as an expert in ontology matching and semantic alignment.
+"""

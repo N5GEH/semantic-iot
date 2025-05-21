@@ -17,30 +17,6 @@ class RMLGenerator:
         self.max_retry = max_retry
 
 
-    def correct_generation(self, error_message):
-        '''
-        Correct generated content based on error messages.
-        '''
-        
-        prompt = f"""
-            The goal of this prompt is the same as the previous one. Now consider the error messages.
-
-            ERROR MESSAGE:
-            {error_message}
-        """
-        
-        response = self.claude.query(prompt)
-        data = response["content"][0]["text"]
-        tokens = [response["usage"]["input_tokens"], response["usage"]["output_tokens"]]
-        self.used_tokens.append(tokens)
-
-        print("PROMPT: \n", prompt)
-        print("DATA: \n", data)
-        print("TOKENS: ", tokens)
-
-        return data
-
-
     def understanding_json (self):
         with open(self.input_json_path, 'r') as file:
             entities = json.load(file)
@@ -163,6 +139,9 @@ class RMLGenerator:
         prompt = f"""
             Use the information from the previous prompt to create a RML file that can be used to generate a RDF graph.
 
+            0. Extra Entity Nodes:
+                # TODO
+            
             1. Target ontology: 
                 Brick Schema (prefix: brick, URI: https://brickschema.org/schema/Brick#)
                 @prefix rec: <https://w3id.org/rec#> .
@@ -268,30 +247,7 @@ class RMLGenerator:
     
     
 
-    def replace_terms(self):
-        """
-        Replace the placeholder in the RML file with the terms from the terms file.
-        """
 
-        with open(self.output_rml, 'r') as file:
-            rml_content = file.read()
-
-        with open(self.output_terms, 'r') as file:
-            terms = file.read()
-
-        # Replace Terms
-        for term in terms.splitlines():
-            print(term)
-            term = term.strip()
-            print(term)
-            rml_content = rml_content.replace(term.split(" => ")[0], term.split(" => ")[1])
-            
-        # Replace JSON input placeholder
-        # rml_content = rml_content.replace("placeholder.json", self.input_json_path)
-
-        with open(self.output_rml, 'w') as file:
-            file.write(rml_content)
-            print(f"+ All terms have been replaced in {self.output_rml}")
 
     def validate_syntax(self):
             
