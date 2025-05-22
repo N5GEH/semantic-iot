@@ -3111,8 +3111,6 @@ brick:Pressurization_Fan rdfs:subClassOf brick:Fan .
 
 brick:RTU rdfs:subClassOf brick:Air_Handling_Unit .
 
-brick:RVAV rdfs:subClassOf brick:Variable_Air_Volume_Box .
-
 brick:Radiant_Panel_Temperature_Setpoint rdfs:subClassOf brick:Temperature_Setpoint .
 
 brick:Relief_Fan rdfs:subClassOf brick:Fan .
@@ -3229,8 +3227,6 @@ brick:Unoccupied_Supply_Air_Temperature_Setpoint rdfs:subClassOf brick:Temperatu
 brick:Unoccupied_Target_Zone_Air_Temperature_Setpoint rdfs:subClassOf brick:Temperature_Setpoint .
 
 brick:Unoccupied_Zone_Air_Temperature_Setpoint rdfs:subClassOf brick:Temperature_Setpoint .
-
-brick:Variable_Air_Volume_Box_With_Reheat rdfs:subClassOf brick:Variable_Air_Volume_Box .
 
 brick:Vertical_Space brick:Relationship rec:Room ;
     brick:isReplacedBy rec:Room .
@@ -3977,9 +3973,6 @@ brick:AHU owl:equivalentClass brick:Air_Handling_Unit ;
 
 brick:Air_Handler_Unit owl:equivalentClass brick:Air_Handling_Unit ;
     brick:aliasOf brick:Air_Handling_Unit .
-
-brick:VAV owl:equivalentClass brick:Variable_Air_Volume_Box ;
-    brick:aliasOf brick:Variable_Air_Volume_Box .
 
 <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_10_v2_1> a rdfs:Resource,
         brick:Class,
@@ -5832,552 +5825,602 @@ brick:VAV owl:equivalentClass brick:Variable_Air_Volume_Box ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_9_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_10_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_10_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_10_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_11_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_11_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_11_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_12_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_12_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_12_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_13_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_13_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_13_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_14_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_14_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_14_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_15_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_15_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_15_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_16_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_16_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_16_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_17_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_17_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_17_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_18_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_18_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_18_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_19_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_19_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_19_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_1_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_1_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_1_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_20_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_20_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_20_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_2_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_2_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_2_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_3_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_3_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_3_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_4_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_4_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_4_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_5_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_5_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_5_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_6_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_6_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_6_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_7_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_7_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_7_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_8_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_8_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_8_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_9_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_base_9_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_9_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_10_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_co2_10_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_10_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_1_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_co2_1_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_1_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_2_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_co2_2_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_2_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_3_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_co2_3_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_3_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_4_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_co2_4_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_4_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_5_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_co2_5_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_5_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_6_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_co2_6_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_6_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_7_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_co2_7_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_7_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_8_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_co2_8_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_8_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_9_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_co2_9_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_9_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_10_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_presence_10_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_10_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_1_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_presence_1_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_1_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_2_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_presence_2_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_2_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_3_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_presence_3_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_3_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_4_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_presence_4_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_4_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_5_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_presence_5_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_5_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_6_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_presence_6_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_6_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_7_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_presence_7_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_7_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_8_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_presence_8_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_8_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_9_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_presence_9_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_9_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_10_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_timetable_10_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_10_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_1_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_timetable_1_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_1_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_2_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_timetable_2_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_2_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_3_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_timetable_3_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_3_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_4_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_timetable_4_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_4_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_5_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_timetable_5_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_5_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_6_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_timetable_6_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_6_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_7_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_timetable_7_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_7_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_8_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_timetable_8_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_8_v2> .
 
 <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_9_v2_1> a rdfs:Resource,
+        brick:Air_System,
         brick:Class,
+        brick:Collection,
         brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        brick:Ventilation_Air_System,
+        rec:Collection ;
     brick:Relationship <http://example.com/Room_Location/openhab_room_timetable_9_v2> ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_9_v2> .
 
@@ -6870,6 +6913,29 @@ brick:Fan_Speed_Command a rdfs:Resource,
         tag:Point,
         tag:Speed .
 
+brick:Ventilation_Air_System a rdfs:Resource,
+        owl:Class,
+        sh:NodeShape ;
+    rdfs:label "Ventilation Air System"@en ;
+    rdfs:subClassOf rdfs:Resource,
+        brick:Air_System,
+        brick:Class,
+        brick:Collection,
+        brick:Entity,
+        brick:Heating_Ventilation_Air_Conditioning_System,
+        brick:System,
+        rec:Collection ;
+    skos:definition "The equipment, devices, and conduits that handle the introduction and distribution of ventilation air in the building"@en ;
+    sh:rule [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship tag:Air,
+        tag:System,
+        tag:Ventilation ;
+    brick:hasAssociatedTag tag:Air,
+        tag:System,
+        tag:Ventilation .
+
 brick:Cooling_Coil a rdfs:Resource,
         owl:Class,
         sh:NodeShape ;
@@ -6913,36 +6979,6 @@ brick:Thermostat a rdfs:Resource,
         tag:Thermostat ;
     brick:hasAssociatedTag tag:Equipment,
         tag:Thermostat .
-
-brick:Variable_Air_Volume_Box a rdfs:Resource,
-        owl:Class,
-        sh:NodeShape ;
-    rdfs:label "Variable Air Volume Box"@en ;
-    rdfs:seeAlso <https://en.wikipedia.org/wiki/Variable_air_volume> ;
-    rdfs:subClassOf rdfs:Resource,
-        brick:Class,
-        brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        rec:Asset ;
-    owl:equivalentClass brick:VAV ;
-    skos:definition "A device that regulates the volume and temperature of air delivered to a zone by opening or closing a damper"@en ;
-    sh:rule [ ],
-        [ ],
-        [ ],
-        [ ],
-        [ ] ;
-    brick:Relationship tag:Box,
-        tag:Equipment,
-        tag:VAV,
-        tag:Variable,
-        tag:Volume ;
-    brick:hasAssociatedTag tag:Box,
-        tag:Equipment,
-        tag:VAV,
-        tag:Variable,
-        tag:Volume .
 
 brick:Fan a rdfs:Resource,
         owl:Class,

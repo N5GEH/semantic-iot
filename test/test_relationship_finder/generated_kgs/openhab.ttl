@@ -1590,154 +1590,154 @@
 <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_9_v2_1> a brick:Thermostat ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_9_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_10_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_10_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_10_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_11_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_11_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_11_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_12_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_12_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_12_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_13_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_13_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_13_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_14_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_14_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_14_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_15_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_15_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_15_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_16_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_16_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_16_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_17_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_17_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_17_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_18_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_18_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_18_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_19_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_19_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_19_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_1_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_1_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_1_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_20_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_20_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_20_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_2_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_2_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_2_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_3_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_3_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_3_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_4_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_4_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_4_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_5_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_5_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_5_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_6_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_6_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_6_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_7_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_7_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_7_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_8_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_8_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_8_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_9_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_9_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_base_9_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_10_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_10_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_10_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_1_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_1_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_1_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_2_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_2_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_2_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_3_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_3_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_3_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_4_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_4_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_4_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_5_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_5_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_5_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_6_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_6_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_6_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_7_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_7_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_7_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_8_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_8_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_8_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_9_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_9_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_9_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_10_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_10_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_10_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_1_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_1_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_1_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_2_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_2_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_2_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_3_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_3_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_3_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_4_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_4_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_4_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_5_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_5_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_5_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_6_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_6_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_6_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_7_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_7_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_7_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_8_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_8_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_8_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_9_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_9_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_9_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_10_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_10_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_10_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_1_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_1_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_1_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_2_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_2_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_2_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_3_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_3_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_3_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_4_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_4_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_4_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_5_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_5_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_5_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_6_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_6_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_6_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_7_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_7_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_7_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_8_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_8_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_8_v2> .
 
-<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_9_v2_1> a brick:Variable_Air_Volume_Box ;
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_9_v2_1> a brick:Ventilation_Air_System ;
     brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_9_v2> .
 
 <http://example.com/Room_Location/openhab_room_timetable_10_v2> a rec:Room ;

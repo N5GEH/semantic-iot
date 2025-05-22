@@ -310,7 +310,7 @@ ex:MappingVariableAirVolumeBox_Equipment
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/VariableAirVolumeBox_Equipment/{id}" ;
-        rr:class brick:Variable_Air_Volume_Box ;
+        rr:class brick:Ventilation_Air_System ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate brick:hasLocation ;
