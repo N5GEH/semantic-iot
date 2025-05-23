@@ -59,7 +59,9 @@ def inference_owlrl(
     print(f"Triples number before reasoning: {len(g)}")
 
     # Perform RDFS inference
-    owlrl.RDFS_Semantics(g, axioms=False, daxioms=False, rdfs=True).closure()
+    # owlrl.RDFS_Semantics(g, axioms=True, daxioms=False, rdfs=True).closure()
+    owlrl.DeductiveClosure(owlrl.OWLRL_Semantics).expand(g)
+
     print(f"Triples number after reasoning: {len(g)}")
 
     # Filter triples in the reasoned graph based on nodes from the original graph

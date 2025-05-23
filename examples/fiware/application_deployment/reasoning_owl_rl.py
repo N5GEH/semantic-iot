@@ -10,4 +10,7 @@ if __name__ == "__main__":
     extended_kg = targ_kg.name.replace(".ttl", "_inferred.ttl").split("/")[-1]
 
     # The inferred graph will also be saved in the same directory as the input file by default
-    extended_kg_path = inference_owlrl(targ_kg, ontology)
+    extended_kg_path = inference_owlrl(targ_kg_path=targ_kg,
+                                       ontology_path=ontology,
+                                       output_filename=extended_kg
+                                       )
