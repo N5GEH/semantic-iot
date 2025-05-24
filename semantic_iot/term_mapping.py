@@ -481,7 +481,7 @@ class OntologyProcessor:
         context_str = "### Relevant Classes\n" if term_type == "class" else "### Relevant Properties\n"
         for id, score, info in results:
             description = info.get("description", "")
-            context_str += f"- ({score:.2f}) {id}"              # {info.get('label', '')}
+            context_str += f"- {id}"              # ({score:.2f}) {info.get('label', '')}
             context_str += f": {description}\n" if description else "\n"
             
         print(f"Context for LLM: \n{context_str}")

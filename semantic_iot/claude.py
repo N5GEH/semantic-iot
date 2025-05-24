@@ -19,8 +19,10 @@ class ClaudeAPIProcessor:
                  temperature: float = 1.0,
                  system_prompt: str = """
                     You are an expert in engineering who is specialized in developing knowledge graphps 
-                    for building automation with IoT platforms. Be precise and concise.
-                    You can use tools, only call them when needed.
+                    for building automation with IoT platforms. 
+                    Be precise and concise.
+                    You can use tools, only call them when needed. 
+                    When you call a tool, you will receive its output in the next interaction.
                     Put the relevant output data in <output> tags.
                     The parent of 'LLM_models' folder is the project root."""):
         """
@@ -52,13 +54,15 @@ class ClaudeAPIProcessor:
             "anthropic-version": "2023-06-01",
             "content-type": "application/json"
         }
+
+        # self.client = anthropic.Client(self.api_key) # TODO 
         
         self.conversation_history = []
         self.metrics = {}
 
     def query(self,
                     prompt: str = "",
-                    step_name: str = 0,
+                    step_name: str = "default_step",
                     max_retry: int = 5,
                     conversation_history = None,
                     temperature: float = None,
@@ -78,7 +82,16 @@ class ClaudeAPIProcessor:
         Returns:
             The JSON response from Claude
         """    
-        
+
+        try: # increase step name number
+            try:
+                step_name, number = step_name.split("(")
+                number = number.split(")")
+                step_name = step_name + f"({int(number[0]) + 1})"
+            except Exception as e:
+                step_name = f"{step_name}_(0)"
+        except Exception as e:
+            raise Exception(f"Error parsing step name '{step_name}': {e}")
         
         print (f"✨ Claude generating... ({step_name})")
         
@@ -121,6 +134,7 @@ class ClaudeAPIProcessor:
 
         result = None
         for i in range(max_retry):
+        # try: TODO return the error and regenerate
             start_time = time.time()
             response = requests.post(
                 self.base_url,
@@ -128,6 +142,7 @@ class ClaudeAPIProcessor:
                 data=json.dumps(data)
             )
             end_time = time.time()
+            elapsed_time = end_time - start_time
 
             if response.status_code == 200: # Request successful
                 result = response.json()
@@ -144,6 +159,8 @@ class ClaudeAPIProcessor:
                                     "API request failed with status code 429")
             elif response.status_code == 529: # The service is overloaded
                 raise Exception(f"⌚ API is temporarily overloaded, try again later")
+            elif response.status_code == 502: # Bad Gateway 
+                raise Exception(f"⌚ Bad Gateway from API server, try again later")
             else:
                 print(f"Error: {response.status_code}")
                 print(response.text)
@@ -151,7 +168,8 @@ class ClaudeAPIProcessor:
                 raise Exception(f"API request failed with "
                                 f"status code {response.status_code}")        # Use streaming for tool calls if we have tools available
         
-        # Process thinking content if present
+        # PROCESSING =========================================================
+
         thinking_text = None
         response_text = None
         
@@ -179,51 +197,24 @@ class ClaudeAPIProcessor:
 
         # METRICS ======================================================== 
 
-        # TODO implement time to first token metric
-        # TODO implement time per token metric
-        # TODO implement memory usage metric
-
+        # TODO implement time to first token metric -> antropic stream
         # TODO add claude instance 
 
         self.metrics[step_name] = {
             "step_name": step_name,
             "prompt": prompt,
-            "goal": None,
-            "thinking": None,
+            "thinking": thinking_text if thinking_text else "No Thinking",
             "response": response_text,
             "performance": {
-                "time_seconds": None,
-                "tokens": None,
-                "memory": None
-            },
-            "evaluation": None,
-        }
-
-        # Goal
-        match = re.search(r"<goal>(.*?)</goal>", prompt, re.DOTALL)
-        goal = match.group(1).strip() if match else prompt
-
-        match = re.search(r"<instructions>(.*?)</instructions>", prompt, re.DOTALL)
-        instructions = match.group(1).strip() if match else prompt
-
-        if goal: self.metrics[step_name]["goal"] = goal
-        else:    self.metrics[step_name]["goal"] = prompt
-
-        # Thinking
-        if thinking_text: self.metrics[step_name]["thinking"] = thinking_text
-        else:             self.metrics[step_name]["thinking"] = "No Thinking" # instructions
-
-        # Time
-        elapsed_time = end_time - start_time
-        self.metrics[step_name]["performance"]["time_seconds"] = elapsed_time
-        # print(f"⌛ Query time: {elapsed_time:.2f} seconds")
-
-        # Tokens
-        # self.metrics[step_name]["performance"]["tokens"] = result.get("usage", {})
-        self.metrics[step_name]["performance"]["input_tokens"] = result.get("usage", {}).get("input_tokens", 0)
-        self.metrics[step_name]["performance"]["output_tokens"] = result.get("usage", {}).get("output_tokens", 0)
-        
-        # print(f"📐 Metrics: \n  {json.dumps(self.metrics[step_name], indent=2)}")
+                "time": {
+                    "latency": round(elapsed_time, 2),
+                    "tpot": round(elapsed_time / result.get("usage", {}).get("output_tokens", 1), 4),
+                    "ttft": None
+                },
+                "tokens": result.get("usage", {})
+            }
+            # "evaluation": None, # TODO add absolute evaluation based on ... ??
+        }      
         self.save_metrics(step_name)
 
 
@@ -243,7 +234,7 @@ class ClaudeAPIProcessor:
                 print(f"Error executing tool '{tool_name}': {e}")
                 return self.regenerate(str(e))
 
-            print(f"Tool result: {tool_result}")
+            print(f"🛠️↪️ Tool result: \n{json.dumps(tool_result, indent=2)}")
 
             messages.append(
                 {
@@ -259,6 +250,7 @@ class ClaudeAPIProcessor:
             )
             self.conversation_history = messages
 
+            # METRICS
             self.metrics[tool_name] = {
                 "tool_name": tool_name,
                 "tool_input": tool_input,
@@ -266,12 +258,7 @@ class ClaudeAPIProcessor:
             }
             self.save_metrics(tool_name)
 
-            # TODO does this works?
-            try:
-                step_name, number = step_name.split("(")
-                step_name = step_name + f"({int(number) + 1})"
-            except Exception as e:
-                raise Exception(f"Error parsing step name '{step_name}': {e}")
+            # FOLLOW UP
             self.query(step_name=f"{step_name}", thinking=thinking)
 
         elif result.get("stop_reason") == "end_turn":
@@ -283,7 +270,7 @@ class ClaudeAPIProcessor:
         else: raise Exception("Unknown stop reason")
         
     
-    def regenerate (self, error_message) -> None:
+    def regenerate (self, error_message) -> None: # TODO replace throug try: in query
         '''
         Correct generated content based on error messages.
         '''
@@ -295,13 +282,15 @@ class ClaudeAPIProcessor:
         """, step_name="regenerate_response")
         return response
 
-    def save_metrics(self, step_name: str, output_file: str="LLM_models/metrics.json") -> None:
+    def save_metrics(self, step_name: str, output_file: str="LLM_models/metrics/metrics.json") -> None:
         """
         Save the pipeline results to a JSON file, appending or updating the dict.
 
         Args:
             output_file: Path to the output JSON file
         """
+        # TODO copy metrics to a new file
+
         # Try to load existing metrics
         try:
             with open(output_file, 'r') as f:
@@ -321,7 +310,7 @@ class ClaudeAPIProcessor:
         with open(output_file, 'w') as f:
             json.dump(all_metrics, f, indent=4)
 
-        print(f"⬇️ 📐 Metrics saved to {output_file}")
+        # print(f"⬇️ 📐 Metrics saved to {output_file}")
 
     def get_metrics(self) -> Dict[str, Any]:
         """

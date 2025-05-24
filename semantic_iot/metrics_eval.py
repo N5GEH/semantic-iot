@@ -84,7 +84,7 @@ class MetricsEval:
             
         """
         
-        response = self.claude.query(step_name="📐 Compare Metrics", prompt=prompt)
+        response = self.claude.query(step_name="Compare Metrics", prompt=prompt)
 
         print(response)
         # print(f"\nMetrics: {self.claude.metrics}")

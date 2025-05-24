@@ -1,0 +1,7 @@
+{
+    "ID_KEY": "id",
+    "TYPE_KEYS": [
+        "type"
+    ],
+    "JSONPATH_EXTRA_NODES": []
+}

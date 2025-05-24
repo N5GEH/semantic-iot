@@ -91,6 +91,7 @@ from semantic_iot.claude import ClaudeAPIProcessor
 import json
 import re
 import jsonpath_ng
+
 from semantic_iot import MappingPreprocess
 from semantic_iot.API_spec_processor import APISpecProcessor
 from semantic_iot.metrics_eval import MetricsEval
@@ -470,11 +471,11 @@ if __name__ == "__main__":
 
 
     assistant.create_config()
-    print(m.quantify_thinking(assistant.metrics))
+    # print(m.quantify_thinking(assistant.metrics))
     input("Press Enter to continue...")
 
     assistant.json_preprocess()
-    print(m.quantify_thinking(assistant.metrics))
+    # print(m.quantify_thinking(assistant.metrics))
     input("Press Enter to continue...")
 
     assistant.complete(resource_node_relationship)

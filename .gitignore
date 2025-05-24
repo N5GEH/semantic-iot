@@ -7,3 +7,4 @@ local_test/
 /test/test_relationship_finder/fiware_node_relationship.json
 **/ANTHROPIC_API_KEY
 **/__pycache__/
+/doc/
