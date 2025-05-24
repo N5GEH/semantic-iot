@@ -35,11 +35,11 @@ setup(
     long_description_content_type='text/markdown',
     url='https://github.com/N5GEH/semantic-iot',
     packages=find_packages(
-        exclude=["tests", "test", "docker", "Dockerfile", "examples", "utils*"]
+        exclude=["tests", "test", "docker", "Dockerfile", "examples"]
     ),
     include_package_data=True,  # Include non-Python files specified in MANIFEST.in
     package_data={
-        # Include any data files in the 'iot2kg' package
+        # Include any data files in the 'semantic_iot' package
         'semantic_iot': ['*.ttl.jinja2'],
     },
     install_requires=read_requirements(),

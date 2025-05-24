@@ -1,6 +1,7 @@
 import os
 
 import morph_kgc
+import rdflib
 from rdflib import URIRef, Namespace
 from semantic_iot.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandler
 
@@ -72,18 +73,17 @@ class RDFGenerator:
     def decode_uri(uri):
         return uri.replace("%3A", ":")
 
-    @staticmethod
-    def add_namespace(g):
+    def add_namespace(self, g):
         """
-        Register extra namespaces, that are not known by the rdflib.
-        If one namespace does not occur in the RDF graph, it
-        will not show up in the final RDF file.
+        Register all namespaces found in RML rules to the generated graph
         """
-        # Add missing Namespace for the Knowledge Graph
-        semantic_oh = Namespace("http://semantic-openhab.com#")
-        rec = Namespace("https://w3id.org/rec#")
+        # load rml file
+        g_rml = rdflib.Graph()
+        g_rml.load(self.mapping_file, format="turtle")
+        namespaces = g_rml.namespaces()
 
-        g.bind("rec", rec)
-        g.bind("semantic_oh", semantic_oh)
+        # bind namespaces found in RML file
+        for prefix, namespace_uri in g_rml.namespaces():
+            g.bind(prefix, namespace_uri)
 
         return g

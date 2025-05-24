@@ -33,11 +33,11 @@ ex:Mapping{{ relationship.nodetype }}
     ] ;
     {% endif -%}
     {% endfor -%}
-    {% if relationship.link -%}
+    {% if relationship.hasDataAccess -%}
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "{{ relationship.link }}" ;
+            rr:template "{{ relationship.hasDataAccess }}" ;
         ] ;
     ] ;
     {% endif -%}
