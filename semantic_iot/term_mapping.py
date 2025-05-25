@@ -70,6 +70,12 @@ class OntologyProcessor:
         """
         if not self.graph:
             self.load_ontology()
+
+        # Extract prefixes from the ontology
+        self.index["prefixes"] = {}
+        for prefix, namespace in self.graph.namespace_manager.namespaces():
+            self.index["prefixes"][str(prefix)] = str(namespace)
+        print(f"Extracted {len(self.index['prefixes'])} prefixes from the ontology")
             
         # Process classes
         for class_uri in self.graph.subjects(RDF.type, RDFS.Class):
@@ -408,7 +414,7 @@ class OntologyProcessor:
                 
         return result
     
-    def semantic_search(self, query: str, term_type: str = "", top_k: int = 5) -> List[Tuple[str, float, Dict]]:
+    def semantic_search(self, query: str, term_type: str = "", top_k: int = 10) -> List[Tuple[str, float, Dict]]:
         """
         Find ontology classes or properties semantically related to the query.
 
@@ -484,7 +490,7 @@ class OntologyProcessor:
             context_str += f"- {id}"              # ({score:.2f}) {info.get('label', '')}
             context_str += f": {description}\n" if description else "\n"
             
-        print(f"Context for LLM: \n{context_str}")
+        # print(f"Context for LLM: \n{context_str}")
 
         # Ensure the context fits within token limits
         if len(context_str.split()) > max_tokens:
@@ -514,14 +520,14 @@ class OntologyProcessor:
         2. Provide a brief explanation for your choice
         </instructions>
 
-        Return the selected term in the terminology as an output
+        Return the selected term in the terminology as an output.
         """
 
         return prompt.strip()    
 
     def map_term(self, term_description: str, term_type: str) -> Dict:
 
-        print(f"Mapping the term '{term_description}' to an ontology {term_type}...")
+        # print(f"Mapping the term '{term_description}' to an ontology {term_type}...")
 
         if term_type not in ["class", "property"]:
             raise ValueError("term_type must be either 'class' or 'property'")
@@ -529,13 +535,15 @@ class OntologyProcessor:
         # Check if an ontology index exists, otherwise build it
         if self.index_file and os.path.exists(self.index_file):
             self.load_index()
-            print(f"Ontology index loaded from {self.index_file}")
+            print(f"\nOntology index loaded from {self.index_file}")
         else:
             self.build_index()
             self.save_index()
-            print(f"Ontology index saved to {self.index_file}")
+            print(f"\nOntology index saved to {self.index_file}")
 
         prompt = self.generate_llm_prompt(term_description, term_type=term_type)
+
+        # TODO add system prompt for term matching (including <background> from prompts.py)
 
         from semantic_iot.claude import ClaudeAPIProcessor
         claude = ClaudeAPIProcessor()
@@ -543,7 +551,70 @@ class OntologyProcessor:
             prompt, 
             step_name="find_match", 
             tool_use=False)
-        return response
+        
+        # Parse the response to extract the selected term name
+        term_name = None
+        response_text = response.strip()
+
+        # Determine which index to search based on term_type
+        index_to_search = self.index["classes"] if term_type == "class" else self.index["properties"]
+
+        # First try to find any term from our index directly mentioned in the response
+        for term_id in index_to_search:
+            if term_id == response_text:
+                term_name = term_id
+                break
+
+        # If no direct match, try to find terms that might be quoted or formatted
+        if not term_name:
+            # Look for terms surrounded by quotes, backticks, or other markers
+            patterns = [r'"([^"]+)"', r'`([^`]+)`', r"'([^']+)'", r"\b([A-Z][a-zA-Z0-9_]+)\b"]
+            
+            for pattern in patterns:
+                matches = re.findall(pattern, response_text)
+                for match in matches:
+                    if match in index_to_search:
+                        term_name = match
+                        break
+                if term_name:
+                    break
+
+        # Get the URI if we found a term
+        uri = None
+        if term_name and term_name in index_to_search:
+            uri = index_to_search[term_name]["uri"]
+
+        # Extract the prefix from the URI
+        prefix = None
+        if uri:
+            # Get the namespace part of the URI
+            if '#' in uri:
+                namespace = uri.split('#')[0] + '#'
+            elif '/' in uri:
+                namespace = '/'.join(uri.split('/')[:-1]) + '/'
+            else:
+                namespace = uri
+
+            # print(f"\n🔍 Extracted namespace: {namespace}")
+            
+            # Find the prefix for this namespace
+            for prefix_name, prefix_uri in self.index.get("prefixes", {}).items():
+                # print(f"🔍 Checking prefix: {prefix_name}, {prefix_uri}")
+                if prefix_uri == namespace:
+                    prefix = prefix_name
+                    break
+
+        # Return both the original response and the extracted information
+        result = {
+            "llm_response": response,
+            "selected_term": term_name,
+            "uri": uri,
+            "prefix": prefix
+        }
+
+        print(f"🔍 Prefix found: {prefix}:{term_name} (URI: {uri})")
+
+        return f"{prefix}:{term_name}" if prefix and term_name else response
         
     def save_index(self) -> None:
         """Save the ontology index to a file"""
@@ -561,7 +632,6 @@ if __name__ == "__main__":
 
     ontology_path = r"C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\RAG\Brick.ttl"
 
-    print("Loading and indexing ontology...")
     processor = OntologyProcessor(ontology_path)
     
     # Example usage: Name an entity

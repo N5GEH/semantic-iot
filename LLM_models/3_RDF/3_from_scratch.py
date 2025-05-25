@@ -1,33 +1,29 @@
 
-from semantic_iot.prompts import input_files
+from semantic_iot.utils.prompts import input_files, background
 
-prompt = """
+prompt = f"""
 
-GOAL:
+<context> {background} </context>
 
-The provided JSON data of a GET request to a specific IoT platform should be converted into a knowledge graph.
-The overall goal is to generate a RDF knowledge graph out of this specific JSON data.
+<instructions>
+Generate the RDF knowledge graph from the provided JSON data of a GET request to the FIWARE IoT platform.
+After generation, build the controller configuration file and compare the results with the expected output.
+Your working directory is "3_RDF".
+</instructions>
 
-In this case, the IoT platform is: FIWARE.
-
-INSTRUCTIONS:
-
+<rules>
 - You can access the inputs via the corresponding tool calls.
 - Do not directly generate the file, but reach the goal step by step.
 - Behind every tool call, there will automatically be a follow up call of claude.
-
-IMPORTANT: When you call a tool, you will receive its output in the next interaction.
-For example, after you call read_file(), wait for my next message which will contain the file contents.
-
-
+</rules>
 
 <context> {input_files} </context>
 
-OUTPUT:
+<output>
     file: RDF Knowlede Graph file
-        description:
+        description: 
             The file should be in RDF format.
-    
+</output>
 
 """
 

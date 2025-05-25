@@ -9,7 +9,7 @@ from semantic_iot.JSON_preprocess import JSONPreprocessor, JSONPreprocessorHandl
 class RDFGenerator:
     def __init__(self,
                  mapping_file: str,
-                 platform_config: str):
+                 platform_config: str = None):
         """
         Generate RDF knowledge graph from a JSON data using RML mapping file.
         Currently, [morph-kgc, ...] RML engines are supported.
@@ -22,10 +22,11 @@ class RDFGenerator:
         self.mapping_file = mapping_file
         self.preprocess_file = os.path.dirname(__file__) + "\\preprocessed.json"
 
-        self.json_processor: JSONPreprocessor = JSONPreprocessorHandler(
-            preprocessed_file_path=self.preprocess_file,
-            platform_config=platform_config
-        ).json_preprocessor
+        if platform_config:
+            self.json_processor: JSONPreprocessor = JSONPreprocessorHandler(
+                preprocessed_file_path=self.preprocess_file,
+                platform_config=platform_config
+            ).json_preprocessor
 
     def pre_process(self):
         self.json_processor.load_json_data()
@@ -34,20 +35,32 @@ class RDFGenerator:
 
     def clean_up(self):
         # remove file self.preprocess_file
-        os.remove(self.preprocess_file)
+        try:
+            os.remove(self.preprocess_file)
+        except FileNotFoundError as e:
+            pass
+        
 
     def generate_rdf(self,
                      source_file: str,
                      destination_file: str,
                      engine: str = "morph-kgc"
                      ):
-        self.json_processor.json_file_path = source_file
+        
+        # Conditionally preprocess the JSON data
+        if hasattr(self, 'json_processor'):
+            self.json_processor.json_file_path = source_file
+            self.pre_process() # save preprocessed data to self.preprocess_file
+        else:
+            self.preprocess_file = source_file
+
+        # Run Engine
         if engine == "morph-kgc":
-            self.pre_process()
             self.morph_kgc_mapper(destination_file=destination_file)
-            self.clean_up()
         else:
             raise ValueError("Invalid engine. Please use 'morph-kgc'")
+        
+        self.clean_up()
 
     def morph_kgc_mapper(self,
                          destination_file: str):
@@ -79,7 +92,7 @@ class RDFGenerator:
         """
         # load rml file
         g_rml = rdflib.Graph()
-        g_rml.load(self.mapping_file, format="turtle")
+        g_rml.parse(self.mapping_file, format="turtle")
         namespaces = g_rml.namespaces()
 
         # bind namespaces found in RML file

@@ -17,14 +17,14 @@ class ClaudeAPIProcessor:
                  api_key: str = "", 
                  model: str = "claude-3-7-sonnet-20250219",  
                  temperature: float = 1.0,
-                 system_prompt: str = """
+                 system_prompt: str = """ 
                     You are an expert in engineering who is specialized in developing knowledge graphps 
                     for building automation with IoT platforms. 
                     Be precise and concise.
                     You can use tools, only call them when needed. 
                     When you call a tool, you will receive its output in the next interaction.
                     Put the relevant output data in <output> tags.
-                    The parent of 'LLM_models' folder is the project root."""):
+                    The parent of 'LLM_models' folder is the project root."""): # TODO include <background> from prompts.py
         """
         Initialize the Claude API processor
 
@@ -93,7 +93,7 @@ class ClaudeAPIProcessor:
         except Exception as e:
             raise Exception(f"Error parsing step name '{step_name}': {e}")
         
-        print (f"✨ Claude generating... ({step_name})")
+        print (f"\n✨ Claude generating... ({step_name})")
         
         # SETUP =========================================================================
 
@@ -123,8 +123,8 @@ class ClaudeAPIProcessor:
             }
         
         if tool_use:
-            from semantic_iot.tools import TOOLS, execute_tool
-            self.tools = TOOLS
+            from semantic_iot.tools import TOOLS, execute_tool, VAL_TOOLS
+            self.tools = TOOLS + VAL_TOOLS
 
             data["tools"] = self.tools
             data["tool_choice"] = {"type": "auto"} # default
@@ -149,7 +149,7 @@ class ClaudeAPIProcessor:
                 break
             elif response.status_code == 429: # Too many requests
                 if i < max_retry - 1:
-                    print(f"Received 429 error: Too many requests. Retrying in one minute... ({i + 1}/{max_retry})")
+                    print(f"⌚ Received 429 error: Too many requests. Retrying in one minute... ({i + 1}/{max_retry})")
                     time.sleep(61)
                     continue
                 else:
@@ -158,9 +158,15 @@ class ClaudeAPIProcessor:
                     raise Exception("Max retries reached. "
                                     "API request failed with status code 429")
             elif response.status_code == 529: # The service is overloaded
-                raise Exception(f"⌚ API is temporarily overloaded, try again later")
+                print("⌚ API is temporarily overloaded, try again later")
+                time.sleep(60)  # Wait for a minute before retrying
+                continue
+                # response = {"content": [{"type": "tool_use", "id": datetime.now().strftime('%Y%m%d_%H%M%S'), "name": "wait_for_sec", "input": {"seconds": 60}}], "stop_reason": "tool_use"}
             elif response.status_code == 502: # Bad Gateway 
-                raise Exception(f"⌚ Bad Gateway from API server, try again later")
+                print("⌚ Bad Gateway from API server, try again later")
+                time.sleep(60)  # Wait for a minute before retrying
+                continue
+                # response = {"content": [{"type": "tool_use", "id": datetime.now().strftime('%Y%m%d_%H%M%S'), "name": "wait_for_sec", "input": {"seconds": 60}}], "stop_reason": "tool_use"}
             else:
                 print(f"Error: {response.status_code}")
                 print(response.text)
@@ -225,14 +231,23 @@ class ClaudeAPIProcessor:
             tool_name = tool_use.get("name")
             tool_input = tool_use.get("input")
 
-            print(f"🛠️  Tool use... ({tool_name})")
+            print(f"\n🛠️  Tool use... ({tool_name})")
             try:
                 tool_result = execute_tool(tool_name, tool_input)
             except Exception as e:
-                raise Exception(f"Error executing tool '{tool_name}': {e}")
-                # TODO handle tool errors
-                print(f"Error executing tool '{tool_name}': {e}")
-                return self.regenerate(str(e))
+                error_message = f"Error executing tool '{tool_name}': {e}"
+                print(error_message)
+
+                # if input("Do you want to regenerate the response? (y/n): ").strip().lower() == 'n':
+                #     raise e
+                
+                tool_result = {
+                    "error": True,
+                    "message": error_message,
+                    "details": str(e)
+                }
+                
+                # Don't raise the exception, just continue with the error result
 
             print(f"🛠️↪️ Tool result: \n{json.dumps(tool_result, indent=2)}")
 

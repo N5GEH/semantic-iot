@@ -1,5 +1,5 @@
 
-from semantic_iot.prompts import input_files
+from semantic_iot.utils.prompts import input_files
 
 prompt = """
 

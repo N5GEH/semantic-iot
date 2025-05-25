@@ -1,0 +1,60 @@
+- controller_function: Ventilation
+  controller_mode: co2
+  inputs:
+    sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_1/attrs/co2/value
+  outputs:
+    actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value
+- controller_function: Ventilation
+  controller_mode: co2
+  inputs:
+    sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_10/attrs/co2/value
+  outputs:
+    actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value
+- controller_function: Ventilation
+  controller_mode: co2
+  inputs:
+    sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_2/attrs/co2/value
+  outputs:
+    actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value
+- controller_function: Ventilation
+  controller_mode: co2
+  inputs:
+    sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_3/attrs/co2/value
+  outputs:
+    actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value
+- controller_function: Ventilation
+  controller_mode: co2
+  inputs:
+    sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_4/attrs/co2/value
+  outputs:
+    actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value
+- controller_function: Ventilation
+  controller_mode: co2
+  inputs:
+    sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_5/attrs/co2/value
+  outputs:
+    actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value
+- controller_function: Ventilation
+  controller_mode: co2
+  inputs:
+    sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_6/attrs/co2/value
+  outputs:
+    actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value
+- controller_function: Ventilation
+  controller_mode: co2
+  inputs:
+    sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_7/attrs/co2/value
+  outputs:
+    actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value
+- controller_function: Ventilation
+  controller_mode: co2
+  inputs:
+    sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_8/attrs/co2/value
+  outputs:
+    actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value
+- controller_function: Ventilation
+  controller_mode: co2
+  inputs:
+    sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_9/attrs/co2/value
+  outputs:
+    actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value

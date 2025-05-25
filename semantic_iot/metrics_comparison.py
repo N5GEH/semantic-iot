@@ -4,10 +4,11 @@ import json
 sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
 
 from semantic_iot.claude import ClaudeAPIProcessor
-from semantic_iot.prompts import human_effort_metrics
+from semantic_iot.utils.prompts import human_effort_metrics
 
-METRIC_ONE_PATH = "LLM_models\metrics_I_example.json"
-METRIC_TWO_PATH = "LLM_models\metrics_II_example.json"
+METRIC_ONE_PATH = "LLM_models\metrics\metrics_I_example.json"
+METRIC_TWO_PATH = "LLM_models\metrics\metrics_II_example.json"
+METRIC_THREE_PATH = "LLM_models\metrics\metrics_III_example.json"
 
 def load_metrics(metric_path):
     with open(metric_path, 'r') as file:
@@ -116,27 +117,35 @@ if __name__ == "__main__":
 
     m1 = load_metrics(METRIC_ONE_PATH)
     m2 = load_metrics(METRIC_TWO_PATH)
+    m3 = load_metrics(METRIC_THREE_PATH)
 
     m1_t = get_total_performance(m1)
     m2_t = get_total_performance(m2)
+    m3_t = get_total_performance(m3)
 
     m1_tokens = get_token_per_steps(m1)
     m2_tokens = get_token_per_steps(m2)
+    m3_tokens = get_token_per_steps(m3)
 
     m1_thinking_length = get_len_of_thinking_per_steps(m1)
     m2_thinking_length = get_len_of_thinking_per_steps(m2)
+    m3_thinking_length = get_len_of_thinking_per_steps(m3)
 
     m1_thinking = extract_thinking(forget_find_match_steps(m1))
     m2_thinking = extract_thinking(forget_find_match_steps(m2))
+    m3_thinking = extract_thinking(forget_find_match_steps(m3))
 
     print (f"Token sum for metric I: {m1_t}")
     print (f"Token sum for metric II: {m2_t}")
+    print (f"Token sum for metric III: {m3_t}")
 
     print (f"Token per step for metric I: \n{m1_tokens}")
     print (f"Token per step for metric II: \n{m2_tokens}")
+    print (f"Token per step for metric III: \n{m3_tokens}")
 
     print (f"Thinking length for metric I: \n{m1_thinking_length}")
     print (f"Thinking length for metric II: \n{m2_thinking_length}")
+    print (f"Thinking length for metric III: \n{m3_thinking_length}")
 
     # print (f"Thinking for metric I: \n{m1_thinking}")
     # print (f"Thinking for metric II: \n{m2_thinking}")
