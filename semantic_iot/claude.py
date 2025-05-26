@@ -7,6 +7,8 @@ import anthropic
 from typing import Dict, Any, List, Optional, Union
 from memory_profiler import memory_usage
 
+from semantic_iot.utils.prompts import default_system_prompt
+
 from pathlib import Path
 root_path = Path(__file__).parent
 
@@ -17,14 +19,7 @@ class ClaudeAPIProcessor:
                  api_key: str = "", 
                  model: str = "claude-3-7-sonnet-20250219",  
                  temperature: float = 1.0,
-                 system_prompt: str = """ 
-                    You are an expert in engineering who is specialized in developing knowledge graphps 
-                    for building automation with IoT platforms. 
-                    Be precise and concise.
-                    You can use tools, only call them when needed. 
-                    When you call a tool, you will receive its output in the next interaction.
-                    Put the relevant output data in <output> tags.
-                    The parent of 'LLM_models' folder is the project root."""): # TODO include <background> from prompts.py
+                 system_prompt: str = default_system_prompt):
         """
         Initialize the Claude API processor
 
@@ -46,7 +41,7 @@ class ClaudeAPIProcessor:
     
         self.model = model
         self.temperature = temperature
-        self.system_prompt = system_prompt
+        self.system_prompt = system_prompt if system_prompt else "default"
 
         self.base_url = "https://api.anthropic.com/v1/messages"
         self.headers = {
@@ -67,7 +62,7 @@ class ClaudeAPIProcessor:
                     conversation_history = None,
                     temperature: float = None,
                     thinking: bool = True,
-                    tool_use: bool = True) -> Dict[str, Any]: # TODO add tool selection
+                    tools: str = "default") -> Dict[str, Any]: # TODO add tool selection
         """
         Send a query to Claude API
 
@@ -112,21 +107,36 @@ class ClaudeAPIProcessor:
             "model": self.model,
             "messages": messages,
             "max_tokens": 20000,
-            "system": self.system_prompt,
+            "system": [
+                {
+                    "type": "text",
+                    "text": self.system_prompt,
+                    "cache_control": {"type": "ephemeral"} # Cache Breakpoint
+                }
+            ],
             "temperature": self.temperature # "top_p": 1.0
         }
 
         if thinking:
             data["thinking"] = {
                 "type": "enabled",
-                "budget_tokens": 16000
+                "budget_tokens": 16000 # TODO increase
             }
         
-        if tool_use:
-            from semantic_iot.tools import TOOLS, execute_tool, VAL_TOOLS
-            self.tools = TOOLS + VAL_TOOLS
+        if tools:
+            from semantic_iot.tools import execute_tool, TOOLS, RML_ENGINE, SIOT_TOOLS
+            if tools == "default":  tools = TOOLS 
+            elif tools == "I":      tools = TOOLS
+            elif tools == "II":     tools = TOOLS + RML_ENGINE
+            elif tools == "III":    tools = TOOLS + RML_ENGINE + SIOT_TOOLS
 
-            data["tools"] = self.tools
+            # Add cache control to the last tool for caching
+            tools_with_cache = tools.copy()
+            # Only add cache_control if the list is not empty and the last tool doesn't already have it
+            if tools_with_cache and not tools_with_cache[-1].get("cache_control"):
+                tools_with_cache[-1]["cache_control"] = {"type": "ephemeral"}
+            data["tools"] = tools_with_cache
+
             data["tool_choice"] = {"type": "auto"} # default
 
 
@@ -226,7 +236,7 @@ class ClaudeAPIProcessor:
 
         # TOOL USE =========================================================
 
-        if tool_use and result.get("stop_reason") == "tool_use":
+        if tools and result.get("stop_reason") == "tool_use":
             tool_use = result.get("content")[-1] # TODO assuming only one tool is called at a time
             tool_name = tool_use.get("name")
             tool_input = tool_use.get("input")
@@ -235,11 +245,9 @@ class ClaudeAPIProcessor:
             try:
                 tool_result = execute_tool(tool_name, tool_input)
             except Exception as e:
-                error_message = f"Error executing tool '{tool_name}': {e}"
+                error_message = f"⚠️  Error executing tool '{tool_name}': {e}"
                 print(error_message)
 
-                # if input("Do you want to regenerate the response? (y/n): ").strip().lower() == 'n':
-                #     raise e
                 
                 tool_result = {
                     "error": True,
@@ -247,9 +255,13 @@ class ClaudeAPIProcessor:
                     "details": str(e)
                 }
                 
+                # if input("Do you want to regenerate the response? (y/n): ").strip().lower() == 'n':
+                #     raise e
+                print("Continuing with error result...")  # Continue with the error result
+                
                 # Don't raise the exception, just continue with the error result
 
-            print(f"🛠️↪️ Tool result: \n{json.dumps(tool_result, indent=2)}")
+            print(f"🛠️ ↪️  Tool result: \n{json.dumps(tool_result, indent=2)}")
 
             messages.append(
                 {
@@ -263,6 +275,43 @@ class ClaudeAPIProcessor:
                     ],
                 },
             )
+            if tool_name == "load_from_file": # add breakpoint behind file loading
+                if not tool_result.get("error"):
+                    if messages and isinstance(messages[-1], dict) and isinstance(messages[-1]["content"], list):
+                        if len(messages[-1]["content"]) > 0:
+
+                            cache_control_count = 0
+                            cache_control_locations = []
+                            for msg_idx, msg in enumerate(messages):
+                                if isinstance(msg, dict) and "content" in msg:
+                                    content = msg["content"]
+                                    if isinstance(content, list):
+                                        for block_idx, block in enumerate(content):
+                                            if isinstance(block, dict) and "cache_control" in block:
+                                                cache_control_count += 1
+                                                cache_control_locations.append((msg_idx, block_idx))
+                                    elif isinstance(content, dict) and "cache_control" in content:
+                                        cache_control_count += 1
+                                        cache_control_locations.append((msg_idx, None))
+                            print(f"ℹ️  Number of cache_control points in messages: {cache_control_count}")
+
+                            # If there are exactly 2 cache_control points, remove the last one
+                            if cache_control_count == 2 and cache_control_locations:
+                                last_msg_idx, last_block_idx = cache_control_locations[-1]
+                                if last_block_idx is not None:
+                                    # Remove cache_control from the last block in the list
+                                    messages[last_msg_idx]["content"][last_block_idx].pop("cache_control", None)
+                                else:
+                                    # Remove cache_control from the dict content
+                                    messages[last_msg_idx]["content"].pop("cache_control", None)
+                                print("🧹 Removed last cache_control breakpoint because there were 2.")
+
+                            messages[-1]["content"][0]["cache_control"] = {"type": "ephemeral"}
+                            print(f"📂 Loaded file, added cache breakpoint")
+                            # print(f"📂 Messages: \n{json.dumps(messages, indent=2)}")
+            
+
+
             self.conversation_history = messages
 
             # METRICS

@@ -93,7 +93,7 @@ import re
 import jsonpath_ng
 
 from semantic_iot import MappingPreprocess
-from semantic_iot.API_spec_processor import APISpecProcessor
+from semantic_iot.utils.API_spec_processor import APISpecProcessor
 from semantic_iot.metrics_eval import MetricsEval
 
 

@@ -543,14 +543,21 @@ class OntologyProcessor:
 
         prompt = self.generate_llm_prompt(term_description, term_type=term_type)
 
-        # TODO add system prompt for term matching (including <background> from prompts.py)
+        # TODO change system prompt for term matching (including <background> from prompts.py?)
+
+        system = """
+        - Make sure relationships use the correct ontology predicates
+        - Ensure system hierarchies are properly represented
+        - Devices must be correctly linked to their locations
+        - Pay attention to the correct direction of relationships
+        """
 
         from semantic_iot.claude import ClaudeAPIProcessor
-        claude = ClaudeAPIProcessor()
+        claude = ClaudeAPIProcessor(system_prompt=system)
         response = claude.query(
             prompt, 
             step_name="find_match", 
-            tool_use=False)
+            tools="")
         
         # Parse the response to extract the selected term name
         term_name = None

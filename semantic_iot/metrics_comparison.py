@@ -6,6 +6,7 @@ sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
 from semantic_iot.claude import ClaudeAPIProcessor
 from semantic_iot.utils.prompts import human_effort_metrics
 
+METRICS = "LLM_models\metrics\metrics.json"
 METRIC_ONE_PATH = "LLM_models\metrics\metrics_I_example.json"
 METRIC_TWO_PATH = "LLM_models\metrics\metrics_II_example.json"
 METRIC_THREE_PATH = "LLM_models\metrics\metrics_III_example.json"
@@ -93,6 +94,18 @@ def forget_find_match_steps(metrics):
         metrics = json.loads(metrics)
     return {k: v for k, v in metrics.items() if not k.startswith("find_match")}
 
+
+def get_sum_cached_read_tokens(metrics):
+    """
+    Calculate the sum of cache_read_input_tokens from the metrics.
+    """
+    total = 0
+    for step in metrics.values():
+        performance = step.get("performance", {})
+        tokens = performance.get("tokens", {})
+        total += tokens.get("cache_read_input_tokens", 0)
+    return total
+
 def split_in_steps(metrics):
     """
     Split the metrics into steps.
@@ -115,37 +128,34 @@ def compare_steps(metrics):
 
 if __name__ == "__main__":
 
-    m1 = load_metrics(METRIC_ONE_PATH)
-    m2 = load_metrics(METRIC_TWO_PATH)
-    m3 = load_metrics(METRIC_THREE_PATH)
+    metric_paths = {
+        "0": METRICS,
+        # "I": METRIC_ONE_PATH,
+        # "II": METRIC_TWO_PATH,
+        # "III": METRIC_THREE_PATH
+    }
 
-    m1_t = get_total_performance(m1)
-    m2_t = get_total_performance(m2)
-    m3_t = get_total_performance(m3)
+    metrics = {}
+    total_performance = {}
+    tokens_per_step = {}
+    thinking_length = {}
+    thinking_text = {}
+    cached_read_tokens = {}
 
-    m1_tokens = get_token_per_steps(m1)
-    m2_tokens = get_token_per_steps(m2)
-    m3_tokens = get_token_per_steps(m3)
+    for key, path in metric_paths.items():
+        m = load_metrics(path)
+        metrics[key] = m
+        total_performance[key] = get_total_performance(m)
+        tokens_per_step[key] = get_token_per_steps(m)
+        thinking_length[key] = get_len_of_thinking_per_steps(m)
+        thinking_text[key] = extract_thinking(forget_find_match_steps(m))
+        cached_read_tokens[key] = get_sum_cached_read_tokens(m)
 
-    m1_thinking_length = get_len_of_thinking_per_steps(m1)
-    m2_thinking_length = get_len_of_thinking_per_steps(m2)
-    m3_thinking_length = get_len_of_thinking_per_steps(m3)
-
-    m1_thinking = extract_thinking(forget_find_match_steps(m1))
-    m2_thinking = extract_thinking(forget_find_match_steps(m2))
-    m3_thinking = extract_thinking(forget_find_match_steps(m3))
-
-    print (f"Token sum for metric I: {m1_t}")
-    print (f"Token sum for metric II: {m2_t}")
-    print (f"Token sum for metric III: {m3_t}")
-
-    print (f"Token per step for metric I: \n{m1_tokens}")
-    print (f"Token per step for metric II: \n{m2_tokens}")
-    print (f"Token per step for metric III: \n{m3_tokens}")
-
-    print (f"Thinking length for metric I: \n{m1_thinking_length}")
-    print (f"Thinking length for metric II: \n{m2_thinking_length}")
-    print (f"Thinking length for metric III: \n{m3_thinking_length}")
+    for key in metric_paths:
+        print(f"Token sum for metric {key}: {total_performance[key]}")
+        print(f"Token per step for metric {key}: \n{tokens_per_step[key]}")
+        print(f"Thinking length for metric {key}: \n{thinking_length[key]}")
+        print(f"Sum of cached read tokens for metric {key}: {cached_read_tokens[key]}")
 
     # print (f"Thinking for metric I: \n{m1_thinking}")
     # print (f"Thinking for metric II: \n{m2_thinking}")
@@ -164,10 +174,10 @@ if __name__ == "__main__":
 
     <data>
     Task 1: 
-    {m1_thinking}
+    {thinking_text["I"]}
 
     Task 2:
-    {m2_thinking}
+    {thinking_text["II"]}
     </data>
 
     In a first step, evaluate the following metrics for each task on a scale from 1 to 100 (1 = minimal human effort, 100 = maximal human effort):
@@ -183,7 +193,7 @@ if __name__ == "__main__":
     """
     # TODO turn into two queries, return the CoT of first step as input for the second
 
-    response = claude.query(prompt, step_name="compare_steps", tool_use=False)
+    response = claude.query(prompt, step_name="compare_steps", tools="")
     # print(f"Claude response: {response}")
 
 output = """

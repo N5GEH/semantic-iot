@@ -79,7 +79,7 @@ class ControllerConfiguration:
 
         Args:
             rdf_kg_path (str): Path to the RDF knowledge graph (Turtle format).
-            output_file (str): Path to the controller configuration file (JSON format).
+            output_file (str): Path to the controller configuration file (YML format).
         """
         self.rdf_kg_path = rdf_kg_path
         self.output_file = output_file
