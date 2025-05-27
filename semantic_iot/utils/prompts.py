@@ -1,7 +1,7 @@
 
 # TODO need to let LLM read the prefixes from the ontology?
 
-# PROMPTS ==================================================================
+# TEXT BLOCKS ==================================================================
 
 role = f"""
 You are an expert in engineering who is specialized in developing knowledge graphps 
@@ -16,8 +16,6 @@ system = f"""
 
 The parent of 'LLM_models' folder is the project root.
 """
-
-
 
 background = f"""
 
@@ -89,20 +87,34 @@ The RML mapping file defines how the JSON Example file should be transformed int
 There is the need to generate a RML mapping file.
 The generation of the RML mapping file happens based on the JSON Example file, since it contains all unique entity types of the JSON Entities file.
 
+<constraints>
+
+- for classes and properties, use only the mapped terms from earlier, do NOT find suitable terms on your own!
+- use the correct prefixes for the ontology classes and properties
+
+- instead of using <#> syntax for mapping names, declare an example namespace
+- the logical source should be "placeholder.json"
+- the rdf:value property should have the correct API endpoint as object but without angle brackets around URI
+- establish proper relationships between entities through rr:parentTriplesMap and rr:joinCondition
+- do not use spaces in filter expressions and use single quotes outside and double quotes inside
+
+</constraints>
+
+
 """
 
-
-backgroud_III = f"""
+# "In order to preprocess the JSON example file, you need to generate a platform configuration file."
+background_III = """
 # Resource Node Relationship Document ==================
-If there is a validated Resource Node Relationship Document available, it can be used to generate the RML Mapping file automatically.
-In this case there is the need to preprocess the JSON example file to get a prefilled Resource Node Relationship Document.
-Then you must validate the preprocessed file. 
-In order to preprocess the JSON example file, you need to generate a platform configuration file.
+The RML Mapping file can be generated automatically based on a validated Resource Node Relationship Document.
+To validate the Resource Node Relationship Document, you need to generate it using the generate_rml_from_rnr tool.
+This tool requires a JSON Example file and an ontology to generate a prefilled Resource Node Relationship Document.
+
 
 file: Resource Node Relationship Document
     Validate the Resource Node relationship file by:
     1. Generate suitable terms for classes and properties based on the ontology
-    2. Fill out the hasdataaccess property with the correct API endpoint
+    2. Fill out the value of the hasdataaccess key with a string of the correct API endpoint
 
 file: Platform Configuration file
     The configuration file should contain the following information:
@@ -196,24 +208,16 @@ default_system_prompt = f"""
 <output>{output_format}</output>
 """
 
+# PROMPTS ====================================================================
 
 prompt_I = f"""
 <instructions>
     Generate the RDF knowledge graph from the provided JSON data of a GET request to the FIWARE IoT platform.
     After generation, build the controller configuration file.
-    Your working directory is "LLM_models/1_RDF"
 </instructions>
 
-<role>{role}</role>
-<system>{system}</system>
-
-<context>{background}</context>
-
-<context>{input_files}</context>
-<output>{output_format}</output>
-
-<input>{{target}}</input>
-
+<input>Selected dataset folder: {{target_folder}}</input>
+<output>Put results in: {{results_folder}}</output>
 """
 
 prompt_II = f"""
@@ -221,24 +225,34 @@ prompt_II = f"""
     Generate the RDF knowledge graph using the RML Mapping engine.
     The provided JSON data of a GET request to a specific IoT platform should be converted into a knowledge graph.
     The overall goal is to generate a mapping file in RML format for generating this knowledge graph out of this specific JSON data.
-    Your working directory is "LLM_models/2_RML"
+
+
 </instructions>
 
-<role>{role}</role>
-<system>{system}</system>
-
-<context>{background}</context>
 <context>{background_II}</context>
 
-<context>{input_files}</context>
-<output>{output_format}</output>
-
-<input>{{target}}</input>
-
+<input>Selected dataset folder: {{target_folder}}</input>
+<output>Put results in: {{results_folder}}</output>
 """
+    # After generation of the RML, use the RML Engine to generate the RDF knowledge graph from the JSON Entities file.
+    # After generation, build the extended knowledge graph.
+    # After generation, build the controller configuration file.
 
+# "- Create a configuration file", "- Use the preprocessing"
 prompt_III = f"""
+<instructions>
+    Generate the Resource Node Relationship Document based on the provided JSON Example file and ontology.
+    The goal is to generate a prefilled Resource Node Relationship Document that can be used to generate the RML Mapping file.
 
+    - Validate preprocessed file
+    - Use the RML generation
+</instructions>
+
+<context>{background_II}</context>
+<context>{background_III}</context>
+
+<input>Selected dataset folder: {{target_folder}}</input>
+<output>Put results in: {{results_folder}}</output>
 """
 
 

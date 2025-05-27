@@ -62,7 +62,8 @@ class ClaudeAPIProcessor:
                     conversation_history = None,
                     temperature: float = None,
                     thinking: bool = True,
-                    tools: str = "default") -> Dict[str, Any]: # TODO add tool selection
+                    tools: str = "default",
+                    follow_up: bool = False) -> Dict[str, Any]: # TODO add tool selection
         """
         Send a query to Claude API
 
@@ -323,7 +324,9 @@ class ClaudeAPIProcessor:
             self.save_metrics(tool_name)
 
             # FOLLOW UP
-            self.query(step_name=f"{step_name}", thinking=thinking)
+            if follow_up: 
+                self.query(step_name=f"{step_name}", thinking=thinking)
+            return tool_result
 
         elif result.get("stop_reason") == "end_turn":
             model_reply = self.extract_tag(response_text, "output")            

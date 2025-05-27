@@ -339,7 +339,7 @@ def exit():
     print("🛑 Assistant exits...")
     sys.exit()
 
-def preprocess_json(json_file_path: str, rdf_node_relationship_file_path: str, ontology_file_paths: str): #, config_path: str):
+def preprocess_json(json_file_path: str, rdf_node_relationship_file_path: str, ontology_file_paths: str, config_path: str):
     """
     Preprocesses the JSON file and saves the result to the output file.
     """
@@ -347,8 +347,8 @@ def preprocess_json(json_file_path: str, rdf_node_relationship_file_path: str, o
     json_processor = MappingPreprocess(
             json_file_path=json_file_path,
             rdf_node_relationship_file_path=rdf_node_relationship_file_path,
-            ontology_file_paths=ontology_file_paths
-            #platform_config=config_path,
+            ontology_file_paths=ontology_file_paths,
+            platform_config=config_path,
             )
     json_processor.pre_process(overwrite=True)
 
@@ -510,6 +510,8 @@ if __name__ == "__main__":
     output file same as input file but with .ttl extension.
 
     """
+
+    prompt = "do you have a tool named generate_rdf_from_rml?"
 
     sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
     from semantic_iot.claude import ClaudeAPIProcessor
