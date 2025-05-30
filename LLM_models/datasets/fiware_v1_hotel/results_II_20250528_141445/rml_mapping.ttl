@@ -1,0 +1,308 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix bacnet: <http://data.ashrae.org/bacnet/2020#> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix bsh: <https://brickschema.org/schema/BrickShape#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix qudtqk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rec: <https://w3id.org/rec#> .
+@prefix ref: <https://brickschema.org/schema/Brick/ref#> .
+@prefix s223: <http://data.ashrae.org/standard223#> .
+@prefix sdo: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix tag: <https://brickschema.org/schema/BrickTag#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.com/> .
+
+# Hotel Mapping
+ex:HotelMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator "$[?(@.type==\"Hotel\")]"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/{id}" ;
+        rr:class brick:Location
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [
+            rml:reference "name.value"
+        ]
+    ] .
+
+# HotelRoom Mapping
+ex:HotelRoomMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator "$[?(@.type==\"HotelRoom\")]"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/{id}" ;
+        rr:class rec:Bedroom
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label ;
+        rr:objectMap [
+            rml:reference "name.value"
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:hasLocation ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:HotelMapping ;
+            rr:joinCondition [
+                rr:child "hasLocation.value" ;
+                rr:parent "id"
+            ]
+        ]
+    ] .
+
+# AmbientTemperatureSensor Mapping
+ex:AmbientTemperatureSensorMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator "$[?(@.type==\"AmbientTemperatureSensor\")]"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/{id}" ;
+        rr:class brick:Outside_Air_Temperature_Sensor
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:hasLocation ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:HotelMapping ;
+            rr:joinCondition [
+                rr:child "hasLocation.value" ;
+                rr:parent "id"
+            ]
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:temperature ;
+        rr:objectMap [
+            rml:reference "temperatureAmb.value"
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdf:value ;
+        rr:objectMap [
+            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value"
+        ]
+    ] .
+
+# TemperatureSensor Mapping
+ex:TemperatureSensorMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator "$[?(@.type==\"TemperatureSensor\")]"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/{id}" ;
+        rr:class brick:Temperature_Sensor
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:hasLocation ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:HotelRoomMapping ;
+            rr:joinCondition [
+                rr:child "hasLocation.value" ;
+                rr:parent "id"
+            ]
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:temperature ;
+        rr:objectMap [
+            rml:reference "temperature.value"
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdf:value ;
+        rr:objectMap [
+            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
+        ]
+    ] .
+
+# CO2Sensor Mapping
+ex:CO2SensorMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator "$[?(@.type==\"CO2Sensor\")]"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/{id}" ;
+        rr:class brick:CO2_Sensor
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:hasLocation ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:HotelRoomMapping ;
+            rr:joinCondition [
+                rr:child "hasLocation.value" ;
+                rr:parent "id"
+            ]
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:co2_concentration ;
+        rr:objectMap [
+            rml:reference "co2.value"
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdf:value ;
+        rr:objectMap [
+            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value"
+        ]
+    ] .
+
+# PresenceSensor Mapping
+ex:PresenceSensorMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator "$[?(@.type==\"PresenceSensor\")]"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/{id}" ;
+        rr:class brick:Occupancy_Sensor
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:hasLocation ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:HotelRoomMapping ;
+            rr:joinCondition [
+                rr:child "hasLocation.value" ;
+                rr:parent "id"
+            ]
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:occupancy ;
+        rr:objectMap [
+            rml:reference "pir.value"
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdf:value ;
+        rr:objectMap [
+            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value"
+        ]
+    ] .
+
+# FreshAirVentilation Mapping
+ex:FreshAirVentilationMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator "$[?(@.type==\"FreshAirVentilation\")]"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/{id}" ;
+        rr:class brick:Ventilation_Air_System
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:hasLocation ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:HotelRoomMapping ;
+            rr:joinCondition [
+                rr:child "hasLocation.value" ;
+                rr:parent "id"
+            ]
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:supply_air_flow_setpoint ;
+        rr:objectMap [
+            rml:reference "airFlowSetpoint.value"
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdf:value ;
+        rr:objectMap [
+            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/airFlowSetpoint/value"
+        ]
+    ] .
+
+# RadiatorThermostat Mapping
+ex:RadiatorThermostatMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator "$[?(@.type==\"RadiatorThermostat\")]"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/{id}" ;
+        rr:class brick:Radiator
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:hasLocation ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:HotelRoomMapping ;
+            rr:joinCondition [
+                rr:child "hasLocation.value" ;
+                rr:parent "id"
+            ]
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:temperature_setpoint ;
+        rr:objectMap [
+            rml:reference "temperatureSetpoint.value"
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdf:value ;
+        rr:objectMap [
+            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureSetpoint/value"
+        ]
+    ] .
+
+# CoolingCoil Mapping
+ex:CoolingCoilMapping a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator "$[?(@.type==\"CoolingCoil\")]"
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/{id}" ;
+        rr:class brick:Cooling_Coil
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:hasLocation ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:HotelRoomMapping ;
+            rr:joinCondition [
+                rr:child "hasLocation.value" ;
+                rr:parent "id"
+            ]
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:fan_speed ;
+        rr:objectMap [
+            rml:reference "fanSpeed.value"
+        ]
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdf:value ;
+        rr:objectMap [
+            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/fanSpeed/value"
+        ]
+    ] .

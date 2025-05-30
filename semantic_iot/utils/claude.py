@@ -13,11 +13,10 @@ from pathlib import Path
 root_path = Path(__file__).parent
 
 
-
 class ClaudeAPIProcessor:    
     def __init__(self, 
                  api_key: str = "", 
-                 model: str = "claude-3-7-sonnet-20250219",  
+                 model: str = "claude-3-7-sonnet-20250219", # TODO (Metrics) change to latest model
                  temperature: float = 1.0,
                  system_prompt: str = default_system_prompt):
         """
@@ -61,7 +60,7 @@ class ClaudeAPIProcessor:
                     max_retry: int = 5,
                     conversation_history = None,
                     temperature: float = None,
-                    thinking: bool = True,
+                    thinking: bool = False, # TODO (Metrics) Change
                     tools: str = "default",
                     follow_up: bool = False) -> Dict[str, Any]: # TODO add tool selection
         """
@@ -325,8 +324,11 @@ class ClaudeAPIProcessor:
 
             # FOLLOW UP
             if follow_up: 
-                self.query(step_name=f"{step_name}", thinking=thinking)
-            return tool_result
+                tool_result = self.query(step_name=f"{step_name}", thinking=thinking, follow_up=follow_up)
+                return tool_result
+            else:
+                print("Returning tool result...")
+                return tool_result
 
         elif result.get("stop_reason") == "end_turn":
             model_reply = self.extract_tag(response_text, "output")            
@@ -394,5 +396,22 @@ class ClaudeAPIProcessor:
         match = re.search(pattern, text, re.DOTALL)
         if match:
             return match.group(1)
+        else:
+            return None
+        
+    def extract_json(self, text):
+        """
+        Extract code blocks from text enclosed in triple backticks with optional language specification.
+        
+        Args:
+            text: The text containing code blocks
+            
+        Returns:
+            str: The extracted code content, or None if no code block is found
+        """
+        pattern = r'```(?:\w+)?\s*(.*?)\s*```'
+        match = re.search(pattern, text, re.DOTALL)
+        if match:
+            return json.loads(match.group(1).strip())
         else:
             return None

@@ -10,7 +10,7 @@
   },
   {
     "id": "AmbientTemperatureSensor",
-    "type": "AmbientTemperatureSensor",
+    "type": "AmbientTemperatureSensor", 
     "temperatureAmb": {
       "type": "Number",
       "value": 0.0,

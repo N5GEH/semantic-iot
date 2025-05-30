@@ -8,6 +8,7 @@ import re
 from pathlib import Path
 import time
 
+# TODO correct direction of relationships?
 
 # TODO fine tuning with temperature
 
@@ -552,7 +553,7 @@ class OntologyProcessor:
         - Pay attention to the correct direction of relationships
         """
 
-        from semantic_iot.claude import ClaudeAPIProcessor
+        from semantic_iot.utils.claude import ClaudeAPIProcessor
         claude = ClaudeAPIProcessor(system_prompt=system)
         response = claude.query(
             prompt, 

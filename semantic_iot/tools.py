@@ -514,7 +514,7 @@ if __name__ == "__main__":
     prompt = "do you have a tool named generate_rdf_from_rml?"
 
     sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
-    from semantic_iot.claude import ClaudeAPIProcessor
+    from semantic_iot.utils.claude import ClaudeAPIProcessor
     claude = ClaudeAPIProcessor(system_prompt="")
 
     response = claude.query(prompt, tools="II")

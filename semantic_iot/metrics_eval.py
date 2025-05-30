@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 import json
 sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
-from semantic_iot.claude import ClaudeAPIProcessor
+from semantic_iot.utils.claude import ClaudeAPIProcessor
 import time
 from datetime import datetime
 

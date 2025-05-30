@@ -1,0 +1,6 @@
+- controller_function: Ventilation
+  controller_mode: co2
+  inputs:
+    sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:example_room/attrs/co2/value
+  outputs:
+    actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:example_room/attrs/airFlowSetpoint/value

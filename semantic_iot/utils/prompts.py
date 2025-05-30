@@ -10,9 +10,8 @@ for building automation with IoT platforms.
 
 system = f"""
 - Be precise and concise.
-- Do not directly generate the file, but reach the goal step by step.
-- You can use tools, only call them when needed. 
-- When you call a tool, you will receive its output in the next interaction.
+- You may use tools, only call them when needed, then you will receive its output in the next interaction.
+- If you dont have tools, dont try to call a tool, the prompt contains all information you need.
 
 The parent of 'LLM_models' folder is the project root.
 """
@@ -54,7 +53,8 @@ For the RDF graph to properly support configuration generation, the following el
 
     1. Accurate Entity Classification
     - Entities must map to correct ontology classes
-    - use http://example.com/ prefix for all entities
+    - You can use the prefix `http://example.com/` for entities that are not in the ontology
+    - But use the correct prefixes from the input
 
     2. Complete Data Access Information
     - Each entity that has a numerical value property in the JSON, needs a value property in the knowledge graph.
@@ -65,6 +65,7 @@ For the RDF graph to properly support configuration generation, the following el
     3. Proper Relationship Structure
     - Relationships between entities that are not numerical values must use correct ontology predicates 
     - System hierarchies must be properly represented
+    - The datamodel must be represented correctly
     - Devices must be properly connected to their locations (e.g., sensors to rooms)
 
     4. Functional Classification
@@ -77,6 +78,8 @@ For the RDF graph to properly support configuration generation, the following el
 
     6. Prefix Usage
     - Use syntactically correct prefixes for URIs
+
+MOST IMPORTANT: RDF should follow a valid syntax!
 """
 
 background_II = f"""
@@ -96,12 +99,26 @@ The generation of the RML mapping file happens based on the JSON Example file, s
 - the logical source should be "placeholder.json"
 - the rdf:value property should have the correct API endpoint as object but without angle brackets around URI
 - establish proper relationships between entities through rr:parentTriplesMap and rr:joinCondition
-- do not use spaces in filter expressions and use single quotes outside and double quotes inside
+- do not use spaces in filter expressions and use single and double quotes like this:'$[?(@.type=="name")]'
+- use 'a rr:TriplesMap ;' declerations
+
+CRITICAL RML TEMPLATE RULES:
+- Only use rr:template when you need variable substitution with curly braces {{{{variable}}}}
+- For static/literal values, use rr:constant instead of rr:template
+- For IRI references, use rr:constant with proper namespace prefixes
+- Templates without curly braces will cause "Invalid template" errors
+
+Examples:
+✓ rr:template "http://example.com/{{{{id}}}}" (uses variable)
+✓ rr:constant "Temperature" (static literal)
+✓ rr:constant qudtqk:Temperature (static IRI)
+✗ rr:template "Temperature" (static value with template - CAUSES ERROR)
 
 </constraints>
 
+MOST IMPORTANT: RML should follow a valid syntax!
 
-"""
+"""# TODO give example of a mapping file
 
 # "In order to preprocess the JSON example file, you need to generate a platform configuration file."
 background_III = """
@@ -115,7 +132,9 @@ file: Resource Node Relationship Document
     Validate the Resource Node relationship file by:
     1. Generate suitable terms for classes and properties based on the ontology
     2. Fill out the value of the hasdataaccess key with a string of the correct API endpoint
-
+"""
+# cut
+"""
 file: Platform Configuration file
     The configuration file should contain the following information:
 
@@ -213,26 +232,34 @@ default_system_prompt = f"""
 prompt_I = f"""
 <instructions>
     Generate the RDF knowledge graph from the provided JSON data of a GET request to the FIWARE IoT platform.
-    After generation, build the controller configuration file.
 </instructions>
 
-<input>Selected dataset folder: {{target_folder}}</input>
-<output>Put results in: {{results_folder}}</output>
-"""
+<input>
+JSON Entities file: {{JEN_content}}
+{{context}}
+</input>
+
+<output>
+Return the knowledge graph in Turtle format.
+</output>
+""" # Put the knowledge graph in: {{results_folder}} with the name containing 'entities'
 
 prompt_II = f"""
 <instructions>
-    Generate the RDF knowledge graph using the RML Mapping engine.
-    The provided JSON data of a GET request to a specific IoT platform should be converted into a knowledge graph.
-    The overall goal is to generate a mapping file in RML format for generating this knowledge graph out of this specific JSON data.
-
+    Generate the mapping file in RML format for generating the knowledge graph out of the JSON Entities data.
 
 </instructions>
 
 <context>{background_II}</context>
 
-<input>Selected dataset folder: {{target_folder}}</input>
-<output>Put results in: {{results_folder}}</output>
+<input>
+JSON Example file: {{JEN_content}}
+{{context}}
+</input>
+
+<output>
+Return the RML Mapping file in Turtle format.
+</output>
 """
     # After generation of the RML, use the RML Engine to generate the RDF knowledge graph from the JSON Entities file.
     # After generation, build the extended knowledge graph.
