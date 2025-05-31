@@ -7,7 +7,7 @@ import anthropic
 from typing import Dict, Any, List, Optional, Union
 from memory_profiler import memory_usage
 
-from semantic_iot.utils.prompts import default_system_prompt
+from semantic_iot.utils.prompts import prompts
 
 from pathlib import Path
 root_path = Path(__file__).parent
@@ -18,7 +18,7 @@ class ClaudeAPIProcessor:
                  api_key: str = "", 
                  model: str = "claude-3-7-sonnet-20250219", # TODO (Metrics) change to latest model
                  temperature: float = 1.0,
-                 system_prompt: str = default_system_prompt):
+                 system_prompt: str = prompts.system_default):
         """
         Initialize the Claude API processor
 
@@ -124,20 +124,24 @@ class ClaudeAPIProcessor:
             }
         
         if tools:
-            from semantic_iot.tools import execute_tool, TOOLS, RML_ENGINE, SIOT_TOOLS
-            if tools == "default":  tools = TOOLS 
-            elif tools == "I":      tools = TOOLS
-            elif tools == "II":     tools = TOOLS + RML_ENGINE
-            elif tools == "III":    tools = TOOLS + RML_ENGINE + SIOT_TOOLS
+            from semantic_iot.tools import execute_tool, FILE_ACCESS, CONTEXT, VALIDATION, RML_ENGINE, SIOT_TOOLS
+            selected_tools = ""
+            if "context" in tools:      selected_tools += CONTEXT
+            if "file_access" in tools:  selected_tools += FILE_ACCESS
+            if "validation" in tools:   selected_tools += VALIDATION
+            if "rml_engine" in tools:   selected_tools += RML_ENGINE
+            if "siot_tools" in tools:   selected_tools += SIOT_TOOLS
 
-            # Add cache control to the last tool for caching
-            tools_with_cache = tools.copy()
-            # Only add cache_control if the list is not empty and the last tool doesn't already have it
-            if tools_with_cache and not tools_with_cache[-1].get("cache_control"):
-                tools_with_cache[-1]["cache_control"] = {"type": "ephemeral"}
-            data["tools"] = tools_with_cache
+            if selected_tools:
+                # Add cache control to the last tool for caching
+                tools_with_cache = selected_tools.copy()
+                # Only add cache_control if the list is not empty and the last tool doesn't already have it
+                if tools_with_cache and not tools_with_cache[-1].get("cache_control"):
+                    tools_with_cache[-1]["cache_control"] = {"type": "ephemeral"}
+                data["tools"] = tools_with_cache
 
-            data["tool_choice"] = {"type": "auto"} # default
+                data["tool_choice"] = {"type": "auto"} # default
+            else: print("ℹ️  Tool selection invalid, continuing without tools")  
 
 
         # QUERY ========================================================================

@@ -1,0 +1,38 @@
+{ONTOLOGY_PREFIXES}
+@prefix ex: <http://example.com#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# This template defines reusable patterns for mapping IoT entities to RDF using RML 
+# Terms in curly braces {} are placeholders to be replaced with terms
+
+ex:Mapping{ENTITY_TYPE}
+    a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator '$[?(@.type=="{ENTITY_TYPE}")]' ;
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/{ENTITY_TYPE}/{ID}" ;
+        rr:class {ONTOLOGY_CLASS} ;
+    ] ;
+    
+    # BUILDING BLOCK: Non-numerical Relationships between Entities
+    rr:predicateObjectMap [
+        rr:predicate {ONTOLOGY_ROPERTY} ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:Mapping{ENTITY_TYPE} ;
+            rr:joinCondition [
+                rr:child "{CHILD_JOIN_FIELD}" ;
+                rr:parent "{PARENT_JOIN_FIELD}" ;
+            ] ;
+        ] ;
+    ] ;
+
+    # BUILDING BLOCK: Numerical Relationships
+    rr:predicateObjectMap [
+        rr:predicate rdf:value ;
+        rr:objectMap [
+            rr:template "{API_ENDPOINT_URL}" ;
+        ] ;
+    ] ;

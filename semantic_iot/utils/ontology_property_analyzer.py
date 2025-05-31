@@ -11,6 +11,8 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from semantic_iot.utils.claude import ClaudeAPIProcessor
 from semantic_iot.utils.reasoning import inference_owlrl
 
+# TODO try with other ontologies, e.g., Brick, SAREF, etc.
+
 class OntologyPropertyAnalyzer:
     def __init__(self, ontology_path):
         self.ontology_path = ontology_path
@@ -105,6 +107,7 @@ class OntologyPropertyAnalyzer:
             "Given a list of properties, classify them into numerical and non-numerical categories.\n"
             "Properties are numerical if they represent measurable quantities, such as temperature, count, or speed.\n"
             "Non-numerical properties include those that represent qualitative attributes, relationships, or categories.\n"
+            "The terms must not be a literal.\n"
             "Return a JSON object with two keys: 'numerical' and 'non_numerical'.\n"
             f"The input properties are:\n {inherited_properties}"
         ) # based on the inherited properties of each class, which classes have a property that contains a numerical value?
@@ -169,15 +172,6 @@ class OntologyPropertyAnalyzer:
             'numerical': [self._uri_to_string(prop) for prop in numerical_properties],
             'non_numerical': [self._uri_to_string(prop) for prop in non_numerical_properties]
         }
-
-
-
-    def reason(self):
-        pass
-
-    def query(self):
-        pass
-
 
 
     def get_non_numeric_classes(self, target_classes: list, classifier: str = "LLM") -> list:

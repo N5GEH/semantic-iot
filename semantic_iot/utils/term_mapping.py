@@ -521,6 +521,19 @@ class OntologyProcessor:
         2. Provide a brief explanation for your choice
         </instructions>
 
+        4. Functional Classification
+        - Systems need proper classification (HVAC, Air, Ventilation)
+        - Enables inference of class hierarchy (e.g., Ventilation_Air_System is a subclass of Air_System)
+
+        5. Point Types
+        - Clear distinction between sensors, setpoints, and commands
+        - Proper classification of measurement/control points
+
+        - Make sure relationships use the correct ontology predicates
+        - Ensure system hierarchies are properly represented
+        - Devices must be correctly linked to their locations
+        - Pay attention to the correct direction of relationships
+
         Return the selected term in the terminology as an output.
         """
 
@@ -547,10 +560,7 @@ class OntologyProcessor:
         # TODO change system prompt for term matching (including <background> from prompts.py?)
 
         system = """
-        - Make sure relationships use the correct ontology predicates
-        - Ensure system hierarchies are properly represented
-        - Devices must be correctly linked to their locations
-        - Pay attention to the correct direction of relationships
+
         """
 
         from semantic_iot.utils.claude import ClaudeAPIProcessor

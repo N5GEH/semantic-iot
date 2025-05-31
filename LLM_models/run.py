@@ -6,7 +6,7 @@ import os
 import datetime
 
 from semantic_iot.tools import generate_rdf_from_rml, reasoning, generate_controller_configuration, term_mapper, get_endpoint_from_api_spec, generate_rml_from_rnr, generate_rdf_from_rml
-from semantic_iot.utils.prompts import prompt_I, prompt_II, prompt_III
+from semantic_iot.utils.prompts import prompts
 
 timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 
@@ -80,237 +80,223 @@ def get_file(folder, file_type, keyword=None):
 
 # CHOOSE DATASET ======================================================
 
-print ("\nChoose a dataset folder to run the scenarios on:")
-datasets_dir = "LLM_models/datasets"
-ontology_dir = "LLM_models/ontologies"
-subfolders = [f.name for f in os.scandir(datasets_dir) if f.is_dir()]
-for idx, folder in enumerate(subfolders, 1):
-    print(f"{idx}: {folder}")
-while True:
-    try:
-        selected_idx = int(input("Select a subfolder by number: ")) - 1
-        if 0 <= selected_idx < len(subfolders):
-            target_folder = os.path.join(datasets_dir, subfolders[selected_idx])
-            break
+class ScenarioExecutor:
+    def __init__(self, 
+                 dataset_folder: str = "LLM_models/datasets",
+                 ontology_folder: str = "LLM_models/ontologies"):
+        self.dataset_folder = dataset_folder
+        self.ontology_folder = ontology_folder
+
+    def choose_dataset(self):
+
+        # Choose: Target Folder, JSON Entites, JSON Example =====================
+
+        print ("\nChoose a dataset folder to run the scenarios on:")
+        subfolders = [f.name for f in os.scandir(self.dataset_folder) if f.is_dir()]
+        for idx, folder in enumerate(subfolders, 1):
+            print(f"{idx}: {folder}")
+
+        while True:
+            try:
+                selected_idx = int(input("Select a subfolder by number: ")) - 1
+                if 0 <= selected_idx < len(subfolders):
+                    self.target_folder = os.path.join(self.dataset_folder, subfolders[selected_idx])
+                    break
+                else:
+                    print("Invalid selection. Please enter a valid number.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+        print(f"Selected dataset folder: {self.target_folder}")
+
+        self.JEN = get_file(self.target_folder, "JEN")
+        self.JEX = get_file(self.target_folder, "JEX")
+
+        with open(self.JEN, 'r') as f:
+            self.JEN_content = f.read()
+        with open(self.JEX, 'r') as f:
+            self.JEX_content = f.read()
+
+
+        # Choose: Ontology =====================================================
+
+        print("\nChoose an ontology file to run the scenarios on:")
+        ontology_files = [f.name for f in os.scandir(self.ontology_folder) if f.is_file() and f.name.endswith('.ttl')]
+
+        if len(ontology_files) == 0:
+            raise FileNotFoundError("No ontology files found in the specified folder.")
+        elif len(ontology_files) == 1:
+            self.ontology_file = os.path.join(self.ontology_folder, ontology_files[0])
+            print(f"Found ontology: {ontology_files[0]}")
         else:
-            print("Invalid selection. Please enter a valid number.")
-    except ValueError:
-        print("Invalid input. Please enter a number.")
+            for idx, file in enumerate(ontology_files, 1):
+                print(f"{idx}: {file}")
+            while True:
+                try:
+                    selected_idx = int(input("Select an ontology file by number: ")) - 1
+                    if 0 <= selected_idx < len(ontology_files):
+                        self.ontology_file = os.path.join(self.ontology_folder, ontology_files[selected_idx])
+                        break
+                    else:
+                        print("Invalid selection. Please enter a valid number.")
+                except ValueError:
+                    print("Invalid input. Please enter a number.")
+        print(f"Selected ontology file: {self.ontology_file}") 
 
-print(f"Selected dataset folder: {target_folder}")
+        # Choose: Scenarios ======================================================
 
-JEN = get_file(target_folder, "JEN")
-JEX = get_file(target_folder, "JEX")
+        print("\nSelect scenarios to run (comma-separated numbers):")
+        print("1: Scenario I: Generate RDF from JSON Entities")
+        print("2: Scenario II: Generate RML from JSON Entities")
+        print("3: Scenario III: Use Semantic-IoT Framework for RML Generation")
 
-with open(JEN, 'r') as f:
-    JEN_content = f.read()
+        selected_scenarios = input("Select scenarios by number (comma-separated): ")
+        self.selected_scenario_list = []
 
-with open(JEX, 'r') as f:
-    JEX_content = f.read()
-
-# CHOOSE ONTOLOGY ======================================================
-
-print("\nChoose an ontology file to run the scenarios on:")
-ontology_files = [f.name for f in os.scandir(ontology_dir) if f.is_file() and f.name.endswith('.ttl')]
-
-if len(ontology_files) == 0:
-    print("No ontology files found")
-    ontology_file = None
-elif len(ontology_files) == 1:
-    ontology_file = os.path.join(ontology_dir, ontology_files[0])
-    print(f"Found ontology: {ontology_files[0]}")
-else:
-    for idx, file in enumerate(ontology_files, 1):
-        print(f"{idx}: {file}")
-    while True:
-        try:
-            selected_idx = int(input("Select an ontology file by number: ")) - 1
-            if 0 <= selected_idx < len(ontology_files):
-                ontology_file = os.path.join(ontology_dir, ontology_files[selected_idx])
-                break
+        for x in selected_scenarios.split(','):
+            x = x.strip()
+            if x in ['1', 'I']:
+                self.selected_scenario_list.append('I')
+            elif x in ['2', 'II']:
+                self.selected_scenario_list.append('II')
+            elif x in ['3', 'III']:
+                self.selected_scenario_list.append('III')
             else:
-                print("Invalid selection. Please enter a valid number.")
-        except ValueError:
-            print("Invalid input. Please enter a number.")
+                print(f"Invalid scenario: {x}. Allowed values: 1,2,3,I,II,III")
+        print (f"Selected scenarios: {self.selected_scenario_list}")
 
-print(f"Selected ontology file: {ontology_file}") 
+    # GET CONTEXT ======================================================
+    def get_context(self):
+        print("\nPreparing context for scenarios...")
 
-# CHOOSE SCENARIO ======================================================
+        client_context = ClaudeAPIProcessor()
 
-print("\nSelect scenarios to run (comma-separated numbers):")
-print("1: Scenario I: Generate RDF from JSON Entities")
-print("2: Scenario II: Generate RML from JSON Entities")
-print("3: Scenario III: Use Semantic-IoT Framework for RML Generation")
+        # TODO mapped terms & extra nodes
 
-selected_scenarios = input("Select scenarios by number (comma-separated): ")
-selected_scenario_list = []
-
-for x in selected_scenarios.split(','):
-    x = x.strip()
-    if x in ['1', 'I']:
-        selected_scenario_list.append('I')
-    elif x in ['2', 'II']:
-        selected_scenario_list.append('II')
-    elif x in ['3', 'III']:
-        selected_scenario_list.append('III')
-    else:
-        print(f"Invalid scenario: {x}. Allowed values: 1,2,3,I,II,III")
-
-print (f"Selected scenarios: {selected_scenario_list}")
-
-# GET CONTEXT ======================================================
-
-print("\nPreparing context for scenarios...")
-def get_context ():
-
-    # TODO let claude call the tools or not?
-    
-    client_context = ClaudeAPIProcessor()
-
-    mapped_terms = client_context.query(
-        prompt=f"Map Entites to ontology classes and not numerical values to ontology predicates. "
-               f"Use the ontology file path: {ontology_file} and the JSON Example file: {JEX} to map terms."
-               f"Output only the mapped terms in JSON format, not other text.",
-        step_name="get_mapped_terms",
-        follow_up=True,
-        # tools=["term_mapper"]
-    )
-    # TODO validate mapped terms
-
-    endpoint = client_context.query(
-        prompt=f"Find the API endpoint. "
-            #    f"Use API Spec path: "
-               f"Base on the JSON Example file: {JEX}"
-               f"Output only the endpoint in JSON format, not other text.",
-        step_name="get_endpoint",
-        follow_up=True
-        # tools=["get_endpoint_from_api_spec", "save_file"]
-    )
-    # TODO validate endpoint
-
-    # mapped_terms = term_mapper(
-    #     terms=terms_to_map,
-    #     ontology_path=ontology_file,
-    # )
-
-    # endpoint = get_endpoint_from_api_spec(
-    #     api_spec_file_path="LLM_models/datasets/fiware_v1_hotel/fiware_api_spec.json",
-    #     api_processor=client_context
-    # )
-
-    # extra nodes
-
-    # Extract prefixes from ontology file
-    with open(ontology_file, 'r', encoding='utf-8') as f:
-        ontology_lines = f.readlines()
-
-    prefixes = []
-    for line in ontology_lines:
-        line = line.strip()
-        if line.startswith('@prefix') or line.startswith('PREFIX'):
-            prefixes.append(line)
-        elif line and not line.startswith('#') and not line.startswith('@prefix') and not line.startswith('PREFIX'):
-            # Stop when we reach non-prefix, non-comment content
-            break
-
-    prefixes_text = '\n'.join(prefixes)
-    print(f"Ontology prefixes:\n{prefixes_text}")
-
-    return {
-        "mapped_terms": mapped_terms,
-        "api_endpoint": endpoint,
-        "ontology_prefixes": prefixes_text
-    }
-context = get_context()
-print(f"LLM context: \n{context}")
-
-input("Press Enter to continue...")
-
-# GENERATE RESULTS ======================================================
-
-print(f"\nGenerating results for selected scenarios {selected_scenario_list}...")
-
-result_folder = {
-    "I": None,
-    "II": None,
-    "III": None,
-}
-prompt = {
-    "I": prompt_I,
-    "II": prompt_II,
-    "III": prompt_III
-}
-
-file_name = {
-    "I": "kg_entities.ttl",
-    "II": "rml_mapping.ttl",
-    "III": "node_relationship_validated.json"
-}
-
-for sc in selected_scenario_list:
-    
-    result_folder[sc] = os.path.join(target_folder, f"results_{sc}_{timestamp}")
-    os.makedirs(result_folder[sc], exist_ok=True)
-    print(f"Results subfolder created at: {result_folder[sc]}")
-    input("Press Enter to continue...")
-
-    print(f"Running scenario {sc}...")
-
-    client_scenario = ClaudeAPIProcessor()
-
-    response = client_scenario.query(
-        prompt=prompt[sc].format(JEN_content=JEN_content, # TODO give JEX in scenario I
-                                 context=context,
-                                 results_folder=result_folder[sc]),
-        step_name=f"scenario_{sc}", 
-        tools="",
-        follow_up=False
-    )
-
-    # Save the response to the results folder
-    response_file = os.path.join(result_folder[sc], file_name[sc])
-    with open(response_file, 'w', encoding='utf-8') as f:
-        f.write(response)
-    print(f"Response saved to: {response_file}")
-    input("Press Enter to continue...")
-
-    # VALIDATE =======================================================
-
-    if sc == 'III':
-        # Generate RML (from RNR from config)
-        generate_rml_from_rnr(
-            INPUT_RNR_FILE_PATH=get_file(result_folder[sc], "RNR"),
-            OUTPUT_RML_FILE_PATH=os.path.join(result_folder[sc], "rml_mapping.ttl"),
+        self.context = client_context.query( 
+            prompt=prompts.context,
+            step_name="get_context",
+            follow_up=True,
+            # tools=["term_mapper"]
         )
-        input("Press Enter to continue...")
 
-    if sc == 'II' or sc == 'III':
-        # Generate RDF (from RML)
-        generate_rdf_from_rml(
-            json_file_path=JEN,
-            rml_file_path=get_file(result_folder[sc], "RML"),
-            output_rdf_file_path=os.path.join(result_folder[sc], "kg_entities.ttl"),
-            platform_config=None
-        )
-        input("Press Enter to continue...")
+        # Prefixes from ontology file
+        with open(self.ontology_file, 'r', encoding='utf-8') as f:
+            ontology_lines = f.readlines()
 
-    reasoning(
-        target_kg_path=get_file(result_folder[sc], "KG"),
-        ontology_path=ontology_file,
-        extended_kg_filename=""
-    )
+        prefixes = []
+        for line in ontology_lines:
+            line = line.strip()
+            if line.startswith('@prefix') or line.startswith('PREFIX'):
+                prefixes.append(line)
+            elif line and not line.startswith('#') and not line.startswith('@prefix') and not line.startswith('PREFIX'):
+                break
 
-    input("Press Enter to continue...")
-
-    generate_controller_configuration(
-        extended_kg_path=get_file(result_folder[sc], "iKG"),
-        output_file=os.path.join(result_folder[sc], "controller_configuration.yml")
-    )
-
-    print (f"Controller configuration generated and saved to {get_file(result_folder[sc], 'CC')}")
-    print(f"Scenario {sc} completed. Results saved in {result_folder[sc]}")
+        self.prefixes_text = '\n'.join(prefixes)
+        print(f"Ontology prefixes:\n{self.prefixes_text}")
 
 
+        context = {
+            "ontology_prefixes": self.prefixes_text,
+            "mapped_terms": self.mapped_terms,
+            "api_endpoint": self.endpoint,
+            "extra_nodes": []
+        }
+        prompts.load_context(context)
+        return context
+
+    # GENERATE RESULTS ======================================================
+    def run_scenarios(self, context, target_folder):
+        print(f"\nGenerating results for selected scenarios {self.selected_scenario_list}...")
+
+        result_folder = {
+            "I": None,
+            "II": None,
+            "III": None,
+        }
+        prompt = {
+            "I": prompts.prompt_I,
+            "II": prompts.prompt_II,
+            "III": prompts.prompt_III
+        }
+        file_name = {
+            "I": "kg_entities.ttl",
+            "II": "rml_mapping.ttl",
+            "III": "node_relationship_validated.json"
+        }
+
+        for sc in self.selected_scenario_list:
+            
+            result_folder[sc] = os.path.join(target_folder, f"results_{sc}_{timestamp}")
+            os.makedirs(result_folder[sc], exist_ok=True)
+            print(f"Results subfolder created at: {result_folder[sc]}")
+            input("Press Enter to continue...")
+
+            print(f"Running scenario {sc}...")
+
+            client_scenario = ClaudeAPIProcessor()
+
+            response = client_scenario.query(
+                prompt=prompt[sc].format(JEN_content=self.JEN_content, # TODO give JEX in scenario I
+                                        context=context,
+                                        results_folder=result_folder[sc]),
+                step_name=f"scenario_{sc}", 
+                tools="",
+                follow_up=False
+            )
+
+            # Save the response to the results folder
+            response_file = os.path.join(result_folder[sc], file_name[sc])
+            with open(response_file, 'w', encoding='utf-8') as f:
+                f.write(response)
+            print(f"Response saved to: {response_file}")
+            input("Press Enter to continue...")
+
+
+            # FINISH =======================================================
+
+            if sc == 'III':
+                # Generate RML (from RNR from config)
+                generate_rml_from_rnr(
+                    INPUT_RNR_FILE_PATH=get_file(result_folder[sc], "RNR"),
+                    OUTPUT_RML_FILE_PATH=os.path.join(result_folder[sc], "rml_mapping.ttl"),
+                )
+                input("Press Enter to continue...")
+
+            if sc == 'II' or sc == 'III':
+                # Generate RDF (from RML)
+                generate_rdf_from_rml(
+                    json_file_path=self.JEN,
+                    rml_file_path=get_file(result_folder[sc], "RML"),
+                    output_rdf_file_path=os.path.join(result_folder[sc], "kg_entities.ttl"),
+                    platform_config=None
+                )
+                input("Press Enter to continue...")
+
+            reasoning(
+                target_kg_path=get_file(result_folder[sc], "KG"),
+                ontology_path=self.ontology_file,
+                extended_kg_filename=""
+            )
+
+            input("Press Enter to continue...")
+
+            generate_controller_configuration(
+                extended_kg_path=get_file(result_folder[sc], "iKG"),
+                output_file=os.path.join(result_folder[sc], "controller_configuration.yml")
+            )
+
+            print (f"Controller configuration generated and saved to {get_file(result_folder[sc], 'CC')}")
+            print(f"Scenario {sc} completed. Results saved in {result_folder[sc]}")
+
+
+
+if __name__ == "__main__":
+    executor = ScenarioExecutor()
+    executor.choose_dataset()
+    
+    context = executor.get_context()
+    print(f"Context prepared: {context}")
+    # executor.run_scenarios(context, executor.target_folder, executor.selected_scenario_list)
 
 
 

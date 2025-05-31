@@ -1,0 +1,22 @@
+{ONTOLOGY_PREFIXES}
+@prefix ex: <http://example.com/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# This template defines reusable pattens for a knowledge graph of IoT entities
+# Terms in curly braces {} are placeholders to be replaced with terms
+
+# BUILDING BLOCK: Numerical Relationships of Entities
+<http://example.com/{ENTITY_TYPE}/{ID}> a {ONTOLOGY_CLASS} ;
+    rdf:value <{API_ENDPOINT_URL}> ;
+
+# BUILDING BLOCK: Numerical Relationships of Entities & Non-numerical Relationships between Entities
+<http://example.com/{ENTITY_TYPE}/{ID}> a {ONTOLOGY_CLASS} ;
+    rdf:value <{API_ENDPOINT_URL}> ;
+    {ONTOLOGY_ROPERTY} <http://example.com/{ENTITY_TYPE}/{ID}> .
+
+# BUILDING BLOCK: Non-numerical Relationships between Entities
+<http://example.com/{ENTITY_TYPE}/{ID}> a {ONTOLOGY_CLASS} ;
+    {ONTOLOGY_ROPERTY} <http://example.com/{ENTITY_TYPE}/{ID}> .
+
+# BUILDING BLOCK: Top-Level Spatial Entities
+<http://example.com/{ENTITY_TYPE}/{ID}> a {ONTOLOGY_CLASS} .

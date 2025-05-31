@@ -9,25 +9,24 @@ import sys
 from semantic_iot import MappingPreprocess
 from semantic_iot import RMLMappingGenerator
 from semantic_iot import RDFGenerator
-from semantic_iot.utils.reasoning import inference_owlrl
 from semantic_iot.controller_configuration import ControllerConfiguration
 
-
+from semantic_iot.utils.reasoning import inference_owlrl
 from semantic_iot.utils.term_mapping import OntologyProcessor
 from semantic_iot.utils.API_spec_processor import APISpecProcessor
+from semantic_iot.utils.ontology_property_analyzer import OntologyPropertyAnalyzer
 
 # TODO merge into claude.py file?
 
 ###################################################################################
-# Constants # TODO
+# Constants
 
-# START_PATH = r"C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models"
-HOST_PATH = "https://fiware.eonerc.rwth-aachen.de/"
+HOST_PATH = "https://fiware.eonerc.rwth-aachen.de/" # TODO put swh else
 
 ###################################################################################
 # Tool definitions
 
-TOOLS = [
+FILE_ACCESS = [
     {
         "name": "save_to_file",
         "description": "Saves the provided content to a file.",
@@ -68,30 +67,9 @@ TOOLS = [
             "properties": {},
             "required": []
         }
-    },
-    {
-        "name": "wait_for_sec",
-        "description": "Waits for a specified number of seconds. Use to try again later.",
-        "input_schema": {
-            "type": "object",
-            "properties": {
-                "seconds": {
-                    "type": "integer",
-                    "description": "The number of seconds to wait."
-                }
-            },
-            "required": ["seconds"]
-        }
-    },
-    {
-        "name": "exit",
-        "description": "Exits the assistant and stops the script.",
-        "input_schema": {
-            "type": "object",
-            "properties": {},
-            "required": []
-        }
-    },
+    }
+]
+CONTEXT = [
     {
         "name": "term_mapper",
         "description": "Maps a list of terms to a list of appropriate ontology classes or properties.",
@@ -128,6 +106,29 @@ TOOLS = [
             "required": ["api_spec_path", "query"]
         }
     },
+    {
+        "name": "get_non_numeric_classes",
+        "description": "Checks if the selected ontology classes have an (inherited) numerical property. If not, returns the class.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "target_classes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of target classes to check for numeric properties."
+                },
+                "ontology_path": {
+                    "type": "string",
+                    "description": "The path to the ontology file."
+                }
+            },
+            "required": ["target_classes", "ontology_path"]
+        }
+    }
+]
+VALIDATION = [
     {
         "name": "reasoning",
         "description": "Performs reasoning on the target knowledge graph using the specified ontology.",
@@ -331,6 +332,13 @@ def get_endpoint_from_api_spec(api_spec_path: str, query: str):
     best_endpoint_path = processor.get_endpoint(query)
     return best_endpoint_path['full_path']
 
+def get_non_numeric_classes(target_classes: List[str], ontology_path: str) -> List[str]:
+    """
+    Returns a list of non-numeric classes from the ontology that match the target classes.
+    """
+    ont_analyzer = OntologyPropertyAnalyzer(ontology_path)
+    return ont_analyzer.get_non_numeric_classes(target_classes)
+
 def wait_for_sec(seconds: int = 60):
     print(f"⌚ Assistant sleeps for {seconds} sec...")
     time.sleep(seconds)
@@ -438,6 +446,11 @@ def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
         return {"endpoint": r"https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/{attrName}/value"}
         return {"endpoint": get_endpoint_from_api_spec(input_data["api_spec_path"], input_data["query"])}
     
+    # For get_non_numeric_classes tool
+    elif tool_name == "get_non_numeric_classes":
+        print(f"🔍 Getting non-numeric classes for: {input_data['target_classes']} using ontology: {input_data['ontology_path']}")
+        return {"non_numeric_classes": get_non_numeric_classes(input_data["target_classes"], input_data["ontology_path"])}
+
     elif tool_name == "wait_for_sec":
         wait_for_sec(input_data["seconds"])
 

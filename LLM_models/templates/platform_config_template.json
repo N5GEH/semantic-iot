@@ -1,0 +1,14 @@
+{
+    "ID_KEY": "<uniqueIdentifierOfAnEntity>",
+    "TYPE_KEYS": [
+        "<uniqueIdentifierOfAnTypeOfTheEntity>",
+        "<...>"
+    ],
+
+    "JSONPATH_EXTRA_NODES": [
+        "<jsonpath_expression_of_extra_node_1>",
+        "<jsonpath_expression_of_extra_node_2>",
+        "<...>"
+    ]
+}
+

@@ -4,7 +4,7 @@ import json
 sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
 
 from semantic_iot.utils.claude import ClaudeAPIProcessor
-from semantic_iot.utils.prompts import human_effort_metrics
+from semantic_iot.utils.prompts import prompts
 
 METRICS = "LLM_models\metrics\metrics.json"
 METRIC_ONE_PATH = "LLM_models\metrics\metrics_I_example.json"
@@ -181,7 +181,7 @@ if __name__ == "__main__":
     </data>
 
     In a first step, evaluate the following metrics for each task on a scale from 1 to 100 (1 = minimal human effort, 100 = maximal human effort):
-    {human_effort_metrics}
+    {prompts.human_effort_metrics}
 
     In a second step, based on the individual metrics:
     Compare the effort an expert in engineering who is specialized in developing knowledge graphps 
