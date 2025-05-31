@@ -3,11 +3,7 @@ import re
 from typing import List, Dict, Any, Optional
 from sentence_transformers import SentenceTransformer
 
-from pathlib import Path
-import sys
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
-
-from semantic_iot.utils.claude import ClaudeAPIProcessor
+from semantic_iot.utils import ClaudeAPIProcessor
 
 
 

@@ -3,7 +3,7 @@ from pathlib import Path
 import json
 sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
 
-from semantic_iot.utils.claude import ClaudeAPIProcessor
+from semantic_iot.utils import ClaudeAPIProcessor
 from semantic_iot.utils.prompts import prompts
 
 METRICS = "LLM_models\metrics\metrics.json"

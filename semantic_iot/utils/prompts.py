@@ -31,6 +31,7 @@ class PromptsLoader:
         self.JEX_content = None
 
         self.context = None
+        self.prefixes = None
 
         self.rnr_content = None
 
@@ -116,6 +117,7 @@ class PromptsLoader:
         <constraints>MOST IMPORTANT: RDF should follow a valid turtle syntax!</constraints>
 
         <template>\n{self.templates["rdf"]}\n</template>
+        <data>\n{self.prefixes}\n</data>
         """
 
         self.RML = f"""
@@ -127,6 +129,7 @@ class PromptsLoader:
         <constraints>MOST IMPORTANT: RML should follow a valid turtle syntax!</constraints>
 
         <template>\n{self.templates["RML"]}\n</template>
+        <data>\n{self.prefixes}\n</data>
         """
         
         self.PC = f""" 
@@ -168,20 +171,23 @@ class PromptsLoader:
             relational properties are properties that have a relation to another entity, like 'is located in', 'has sensor', etc.
         
         2.1 Map the relational properties to ontology properties.
+            Do not map the numerical properties to ontology properties.
 
         2.2 Check if the selected ontology classes for the entities of the numerical properties have an (inherited) numerical property.
         
-        2.3 If not, create a new entity in the JSON file with entity_name = property_name and with a numerical value.
-            Map the entity to an ontology class. Go to step 2.2.
+        2.3 If there are extra nodes to be added, add a new JSON entity to an imagenary list of extra nodes.
+            The extra nodes should have the name of the property they come from
+            Map this newly created entity to an ontology class by using the query 'Numerical Entity of {{property_name}}'.
 
-        Repeat this process maximally 3 times.
+        3. Now check again, if the newly created entities have an (inherited) numerical property and do steps 2.2 and 2.3 again.
+           Repeat this process maximally 3 times.
         </steps>
 
         <output>
         Return a JSON, containg:
         - enumeration of the numerical properties and relational properties
         - the mapping of the JSON Entities to ontology classes and properties
-        - the name of the newly created entities in the JSON file
+        - the name of the Extra Nodes to be added created entities in the JSON file
         </output>
         
         """
@@ -309,6 +315,9 @@ class PromptsLoader:
     def load_context(self, context):
         self.context = context
         self.update_variables()
+
+    def load_prefixes(self, prefixes):
+        self.prefixes = prefixes
 
     def load_RNR(self, rnr_path):
         with open(rnr_path, "r") as f:

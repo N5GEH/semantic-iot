@@ -61,7 +61,7 @@ class ClaudeAPIProcessor:
                     conversation_history = None,
                     temperature: float = None,
                     thinking: bool = False, # TODO (Metrics) Change
-                    tools: str = "default",
+                    tools: str = "",
                     follow_up: bool = False) -> Dict[str, Any]: # TODO add tool selection
         """
         Send a query to Claude API
@@ -125,12 +125,12 @@ class ClaudeAPIProcessor:
         
         if tools:
             from semantic_iot.tools import execute_tool, FILE_ACCESS, CONTEXT, VALIDATION, RML_ENGINE, SIOT_TOOLS
-            selected_tools = ""
-            if "context" in tools:      selected_tools += CONTEXT
-            if "file_access" in tools:  selected_tools += FILE_ACCESS
-            if "validation" in tools:   selected_tools += VALIDATION
-            if "rml_engine" in tools:   selected_tools += RML_ENGINE
-            if "siot_tools" in tools:   selected_tools += SIOT_TOOLS
+            selected_tools = []
+            if "context"     in tools: selected_tools.extend(CONTEXT)
+            if "file_access" in tools: selected_tools.extend(FILE_ACCESS)
+            if "validation"  in tools: selected_tools.extend(VALIDATION)
+            if "rml_engine"  in tools: selected_tools.extend(RML_ENGINE)
+            if "siot_tools"  in tools: selected_tools.extend(SIOT_TOOLS)
 
             if selected_tools:
                 # Add cache control to the last tool for caching
@@ -328,7 +328,11 @@ class ClaudeAPIProcessor:
 
             # FOLLOW UP
             if follow_up: 
-                tool_result = self.query(step_name=f"{step_name}", thinking=thinking, follow_up=follow_up)
+                tool_result = self.query(
+                    step_name=f"{step_name}", 
+                    thinking=thinking, 
+                    tools=tools,
+                    follow_up=follow_up)
                 return tool_result
             else:
                 print("Returning tool result...")
@@ -403,7 +407,7 @@ class ClaudeAPIProcessor:
         else:
             return None
         
-    def extract_json(self, text):
+    def extract_code(self, text):
         """
         Extract code blocks from text enclosed in triple backticks with optional language specification.
         

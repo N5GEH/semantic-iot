@@ -4,11 +4,8 @@ from rdflib.namespace import RDF, RDFS, OWL
 import owlrl
 
 import json
-from pathlib import Path
-import sys
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from semantic_iot.utils.claude import ClaudeAPIProcessor
+from semantic_iot.utils import ClaudeAPIProcessor
 from semantic_iot.utils.reasoning import inference_owlrl
 
 # TODO try with other ontologies, e.g., Brick, SAREF, etc.
@@ -63,7 +60,7 @@ class OntologyPropertyAnalyzer:
         
         raise ValueError(f"Could not find prefix for class URI: {uri}")
 
-    def get_inherited_properties(self, ontology, target_class):
+    def get_inherited_properties(self, target_class):
 
         target_class_uri = self._string_to_uri(self.ont, target_class)
 
@@ -105,15 +102,15 @@ class OntologyPropertyAnalyzer:
         claude = ClaudeAPIProcessor(system_prompt="You are an expert in semantic reasoning and ontology classification.")
         prompt = (
             "Given a list of properties, classify them into numerical and non-numerical categories.\n"
-            "Properties are numerical if they represent measurable quantities, such as temperature, count, or speed.\n"
-            "Non-numerical properties include those that represent qualitative attributes, relationships, or categories.\n"
-            "The terms must not be a literal.\n"
+            "Properties are numerical if they connect an entity with a measurable quantity, such as temperature, count, or speed.\n"
+            "Properties are non-numerical if they connect an entity with a another entity or description\n"
+            # "Non-numerical properties include those that represent qualitative attributes, relationships, or categories between two entities.\n"
             "Return a JSON object with two keys: 'numerical' and 'non_numerical'.\n"
             f"The input properties are:\n {inherited_properties}"
         ) # based on the inherited properties of each class, which classes have a property that contains a numerical value?
 
         response = claude.query(prompt, step_name="classify_props_LLM", tools=None)
-        return claude.extract_json(response)
+        return claude.extract_code(response)
     
     def classify_props_inference(self, inherited_properties, target_classes) -> dict:
 
@@ -180,7 +177,7 @@ class OntologyPropertyAnalyzer:
         properties_of_classes = {}
         for target_class in target_classes:
             print(f"\n{'='*20} PROCESSING CLASS: {target_class} {'='*20}")
-            properties_of_classes[target_class] = self.get_inherited_properties(ontology, target_class)
+            properties_of_classes[target_class] = self.get_inherited_properties(target_class)
 
 
         # Get unique properties across all classes and convert to strings directly

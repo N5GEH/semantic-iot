@@ -518,7 +518,7 @@ class OntologyProcessor:
         <instructions>
         Based on the {'entity' if term_type == 'class' else 'relation'} description above and the ontology information provided:
         1. Identify the most appropriate ontology {'class' if term_type == 'class' else 'property'} for this {'entity' if term_type == 'class' else 'relation'}
-        2. Provide a brief explanation for your choice
+        2. Provide no explanation for your choice
         </instructions>
 
         4. Functional Classification
@@ -534,7 +534,9 @@ class OntologyProcessor:
         - Devices must be correctly linked to their locations
         - Pay attention to the correct direction of relationships
 
-        Return the selected term in the terminology as an output.
+        If there is no suitable term in the ontology, choose a term that is semantically closest to the description.
+
+        Return the selected term in the terminology in output tags like <output> </output>.
         """
 
         return prompt.strip()    
@@ -559,11 +561,9 @@ class OntologyProcessor:
 
         # TODO change system prompt for term matching (including <background> from prompts.py?)
 
-        system = """
+        system = "Provide an explaination"
 
-        """
-
-        from semantic_iot.utils.claude import ClaudeAPIProcessor
+        from semantic_iot.utils import ClaudeAPIProcessor
         claude = ClaudeAPIProcessor(system_prompt=system)
         response = claude.query(
             prompt, 

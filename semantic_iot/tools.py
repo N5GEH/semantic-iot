@@ -297,29 +297,27 @@ def get_file_paths () -> str:
     return "\n".join(output)
 
 def term_mapper(terms: dict, ontology_path: str) -> str:
-    # ontology_name = ontology_path.split("/")[-1].split(".")[0]
 
-    # mapped_terms = {}
-    # for term, term_type in terms.items():
-    #     processor = OntologyProcessor(ontology_path)
-    #     result = processor.map_term(term, term_type)
-    #     mapped_terms[term] = result
-    #     # print(f"🔍 '{mapped_term}' is a {ontology_name} {term_type} of '{term}'")
+    mapped_terms = {}
+    for term, term_type in terms.items():
+        processor = OntologyProcessor(ontology_path)
+        result = processor.map_term(term, term_type)
+        mapped_terms[term] = result
 
-    mapped_terms = {
-        "mapped_terms": {
-            "Hotel": "brick:Location",
-            "HotelRoom": "rec:Bedroom",
-            "hasLocation": "brick:hasLocation",
-            "TemperatureSensor": "brick:Temperature_Sensor",
-            "CO2Sensor": "brick:CO2_Sensor",
-            "PresenceSensor": "brick:Occupancy_Sensor",
-            "FreshAirVentilation": "brick:Ventilation_Air_System",
-            "RadiatorThermostat": "brick:Radiator",
-            "CoolingCoil": "brick:Cooling_Coil",
-            "AmbientTemperatureSensor": "brick:Outside_Air_Temperature_Sensor"
-        }       
-    }
+    # mapped_terms = {
+    #     "mapped_terms": {
+    #         "Hotel": "brick:Location",
+    #         "HotelRoom": "rec:Bedroom",
+    #         "hasLocation": "brick:hasLocation",
+    #         "TemperatureSensor": "brick:Temperature_Sensor",
+    #         "CO2Sensor": "brick:CO2_Sensor",
+    #         "PresenceSensor": "brick:Occupancy_Sensor",
+    #         "FreshAirVentilation": "brick:Ventilation_Air_System",
+    #         "RadiatorThermostat": "brick:Radiator",
+    #         "CoolingCoil": "brick:Cooling_Coil",
+    #         "AmbientTemperatureSensor": "brick:Outside_Air_Temperature_Sensor"
+    #     }       
+    # }
     
     return mapped_terms
     
@@ -526,8 +524,7 @@ if __name__ == "__main__":
 
     prompt = "do you have a tool named generate_rdf_from_rml?"
 
-    sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
-    from semantic_iot.utils.claude import ClaudeAPIProcessor
+    from semantic_iot.utils import ClaudeAPIProcessor
     claude = ClaudeAPIProcessor(system_prompt="")
 
     response = claude.query(prompt, tools="II")
