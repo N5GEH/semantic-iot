@@ -1,0 +1,687 @@
+
+Choose a dataset folder to run the scenarios on:
+1: fiware_v1_hotel
+2: fiware_v2_hotel
+3: openhab_v1_hotel
+4: openhab_v2_hotel
+Select a subfolder by number: 1
+Selected dataset folder: LLM_models/datasets\fiware_v1_hotel
+
+Multiple JSON Entities files found:
+1: fiware_entities_2rooms.json
+2: fiware_entities_50rooms.json
+Select a JSON Entities file by number: 1
+Selected JSON Entities: fiware_entities_2rooms.json
+Found JSON Example: fiware_example.json
+
+Choose an ontology file to run the scenarios on:
+Found ontology: Brick.ttl
+Selected ontology file: LLM_models/ontologies\Brick.ttl
+
+Choose an API endpoint to run the scenarios on:
+1: FIWAR_ngsiV2_API_spec.json
+2: openhab_API_spec.json
+Select an API specification file by number: 1
+Selected API endpoint: LLM_models/API_specs\FIWAR_ngsiV2_API_spec.json
+
+Select scenarios to run (comma-separated numbers):
+1: Scenario I: Generate RDF from JSON Entities
+2: Scenario II: Generate RML from JSON Example
+3: Scenario III: Use Semantic-IoT Framework for RML Generation
+Select scenarios by number (comma-separated): 1,2,3
+Selected scenarios: ['I', 'II', 'III', 'IIIf']
+
+Preparing context for scenarios...
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (get_context_(0))
+
+🛠️  Tool use... (get_endpoint_from_api_spec)
+[APISpecProcessor] Initializing with spec file: LLM_models/API_specs\FIWAR_ngsiV2_API_spec.json
+[APISpecProcessor] Loading spec from: LLM_models/API_specs\FIWAR_ngsiV2_API_spec.json
+[APISpecProcessor] Spec loaded successfully.
+[APISpecProcessor] Detecting OpenAPI/Swagger version...
+[APISpecProcessor] Detected Swagger version: 2.0
+[APISpecProcessor] Extracting endpoints from spec...
+[APISpecProcessor] Extracted 29 endpoints.
+[APISpecProcessor] Loaded 29 endpoints from spec.
+[APISpecProcessor] Matching query to endpoint using LLM: 'accessing numerical values of entities'
+[APISpecProcessor] Building text chunks for 29 endpoints...
+[APISpecProcessor] Built 29 chunks.
+[APISpecProcessor] Sending prompt to LLM:
+You are an expert API assistant.
+Given the following user query and a list of API endpoints, select the single most relevant endpoint.
+
+User query: accessing numerical values of entities
+
+API endpoints:
+1. GET /v2 Retrieve API Resources
+2. GET /v2/entities List Entities
+3. POST /v2/entities Create Entity
+4. GET /v2/entities/{entityId} Retrieve Entity
+5. DELETE /v2/entities/{entityId} Remove Entity
+6. GET /v2/entities/{entityId}/attrs Retrieve Entity Attributes
+7. PUT /v2/entities/{entityId}/attrs Replace all entity attributes
+8. POST /v2/entities/{entityId}/attrs Update or Append Entity Attributes
+9. PATCH /v2/entities/{entityId}/attrs Update Existing Entity Attributes
+10. GET /v2/entities/{entityId}/attrs/{attrName} Get attribute data
+11. PUT /v2/entities/{entityId}/attrs/{attrName} Update Attribute Data
+12. DELETE /v2/entities/{entityId}/attrs/{attrName} Remove a Single Attribute
+13. GET /v2/entities/{entityId}/attrs/{attrName}/value Get Attribute Value
+14. PUT /v2/entities/{entityId}/attrs/{attrName}/value Update Attribute Value
+15. GET /v2/types/ List Entity Types
+16. GET /v2/types/{entityType} Retrieve entity type
+17. GET /v2/subscriptions List Subscriptions
+18. POST /v2/subscriptions Create Subscription
+19. GET /v2/subscriptions/{subscriptionId} Retrieve Subscription
+20. DELETE /v2/subscriptions/{subscriptionId} Delete subscription
+21. PATCH /v2/subscriptions/{subscriptionId} Update Subscription
+22. GET /v2/registrations List Registrations
+23. POST /v2/registrations Create Registration
+24. GET /v2/registrations/{registrationId} Retrieve Registration
+25. DELETE /v2/registrations/{registrationId} Delete Registration
+26. PATCH /v2/registrations/{registrationId} Update Registration
+27. POST /v2/op/update Update
+28. POST /v2/op/query Query
+29. POST /v2/op/notify Notify
+
+Reply ONLY with the number of the best matching endpoint. If none are relevant, reply with 0.
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (get_endpoint_(0))
+✨↪️  Model reply: 13
+13
+[APISpecProcessor] LLM selected endpoint 13: GET https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/{attrName}/value
+🛠️ ↪️  Tool result:
+{
+  "endpoint": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/{attrName}/value"
+}
+
+✨ Claude generating... (get_context_(1))
+
+🛠️  Tool use... (term_mapper)
+🔍 Mapping terms: {
+  "Hotel": "class",
+  "AmbientTemperatureSensor": "class",
+  "HotelRoom": "class",
+  "TemperatureSensor": "class",
+  "CO2Sensor": "class",
+  "PresenceSensor": "class",
+  "FreshAirVentilation": "class",
+  "RadiatorThermostat": "class",
+  "CoolingCoil": "class",
+  "hasLocation": "property"
+} using ontology: LLM_models/ontologies\Brick.ttl
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology class for 'Hotel')
+🔍✅ Semantic search completed in 27.78 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: Shelter
+🔍 Prefix found: rec:Shelter (URI: https://w3id.org/rec#Shelter)
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology class for 'AmbientTemperatureSensor')
+🔍✅ Semantic search completed in 23.12 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: SensorEquipment
+🔍 Prefix found: rec:SensorEquipment (URI: https://w3id.org/rec#SensorEquipment)
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology class for 'HotelRoom')
+🔍✅ Semantic search completed in 23.17 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: Bedroom
+🔍 Prefix found: rec:Bedroom (URI: https://w3id.org/rec#Bedroom)
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology class for 'TemperatureSensor')
+🔍✅ Semantic search completed in 21.92 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: Temperature_Sensor
+🔍 Prefix found: brick:Temperature_Sensor (URI: https://brickschema.org/schema/Brick#Temperature_Sensor)
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology class for 'CO2Sensor')
+🔍✅ Semantic search completed in 22.65 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: CO2_Sensor
+🔍 Prefix found: brick:CO2_Sensor (URI: https://brickschema.org/schema/Brick#CO2_Sensor)
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology class for 'PresenceSensor')
+🔍✅ Semantic search completed in 22.60 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: Occupancy_Sensor
+🔍 Prefix found: brick:Occupancy_Sensor (URI: https://brickschema.org/schema/Brick#Occupancy_Sensor)
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology class for 'FreshAirVentilation')
+🔍✅ Semantic search completed in 22.15 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: Ventilation_Air_System
+🔍 Prefix found: brick:Ventilation_Air_System (URI: https://brickschema.org/schema/Brick#Ventilation_Air_System)
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology class for 'RadiatorThermostat')
+🔍✅ Semantic search completed in 23.06 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: 
+Radiator
+
+🔍 Prefix found: brick:Radiator (URI: https://brickschema.org/schema/Brick#Radiator)
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology class for 'CoolingCoil')
+🔍✅ Semantic search completed in 23.45 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: Cooling_Coil
+🔍 Prefix found: brick:Cooling_Coil (URI: https://brickschema.org/schema/Brick#Cooling_Coil)
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology property for 'hasLocation')
+🔍✅ Semantic search completed in 22.48 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: hasLocation
+🔍 Prefix found: brick:hasLocation (URI: https://brickschema.org/schema/Brick#hasLocation)
+🛠️ ↪️  Tool result:
+{
+  "mapped_terms": {
+    "Hotel": "rec:Shelter",
+    "AmbientTemperatureSensor": "rec:SensorEquipment",
+    "HotelRoom": "rec:Bedroom",
+    "TemperatureSensor": "brick:Temperature_Sensor",
+    "CO2Sensor": "brick:CO2_Sensor",
+    "PresenceSensor": "brick:Occupancy_Sensor",
+    "FreshAirVentilation": "brick:Ventilation_Air_System",
+    "RadiatorThermostat": "brick:Radiator",
+    "CoolingCoil": "brick:Cooling_Coil",
+    "hasLocation": "brick:hasLocation"
+  }
+}
+
+✨ Claude generating... (get_context_(2))
+
+🛠️  Tool use... (get_non_numeric_classes)
+🔍 Getting non-numeric classes for: ['rec:SensorEquipment', 'brick:Temperature_Sensor', 'brick:CO2_Sensor', 'brick:Occupancy_Sensor', 'brick:Ventilation_Air_System', 'brick:Radiator', 'brick:Cooling_Coil'] using ontology: LLM_models/ontologies\Brick.ttl
+
+==================== PROCESSING CLASS: rec:SensorEquipment ====================
+Found 7 superclasses for rec:SensorEquipment
+Found 9 properties for rec:SensorEquipment
+  - rdfs:comment
+  - rdfs:label
+  - rdfs:subClassOf
+  - owl:deprecated
+  - skos:definition
+  - brick:deprecatedInVersion
+  - brick:deprecationMitigationMessage
+  - brick:hasAssociatedTag
+  - brick:isReplacedBy
+
+==================== PROCESSING CLASS: brick:Temperature_Sensor ====================
+Found 5 superclasses for brick:Temperature_Sensor
+Found 7 properties for brick:Temperature_Sensor
+  - rdfs:label
+  - rdfs:seeAlso
+  - rdfs:subClassOf
+  - owl:disjointWith
+  - skos:definition
+  - brick:hasAssociatedTag
+  - brick:hasQuantity
+
+==================== PROCESSING CLASS: brick:CO2_Sensor ====================
+Found 6 superclasses for brick:CO2_Sensor
+Found 8 properties for brick:CO2_Sensor
+  - rdfs:label
+  - rdfs:seeAlso
+  - rdfs:subClassOf
+  - owl:disjointWith
+  - skos:definition
+  - brick:hasAssociatedTag
+  - brick:hasQuantity
+  - brick:hasSubstance
+
+==================== PROCESSING CLASS: brick:Occupancy_Sensor ====================
+Found 5 superclasses for brick:Occupancy_Sensor
+Found 7 properties for brick:Occupancy_Sensor
+  - rdfs:label
+  - rdfs:seeAlso
+  - rdfs:subClassOf
+  - owl:disjointWith
+  - skos:definition
+  - brick:hasAssociatedTag
+  - brick:hasQuantity
+
+==================== PROCESSING CLASS: brick:Ventilation_Air_System ====================
+Found 9 superclasses for brick:Ventilation_Air_System
+Found 6 properties for brick:Ventilation_Air_System
+  - rdfs:comment
+  - rdfs:label
+  - rdfs:subClassOf
+  - owl:equivalentClass
+  - skos:definition
+  - brick:hasAssociatedTag
+
+==================== PROCESSING CLASS: brick:Radiator ====================
+Found 8 superclasses for brick:Radiator
+Found 5 properties for brick:Radiator
+  - rdfs:comment
+  - rdfs:label
+  - rdfs:subClassOf
+  - skos:definition
+  - brick:hasAssociatedTag
+
+==================== PROCESSING CLASS: brick:Cooling_Coil ====================
+Found 9 superclasses for brick:Cooling_Coil
+Found 6 properties for brick:Cooling_Coil
+  - rdfs:comment
+  - rdfs:label
+  - rdfs:subClassOf
+  - owl:equivalentClass
+  - skos:definition
+  - brick:hasAssociatedTag
+
+Total unique properties across all classes: 14
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (classify_props_LLM_(0))
+✨↪️  Model reply: Looking at each property to determine if it connects entities to measurable quantities or to other entities/descriptions:
+
+```json
+{
+  "numerical": [
+    "brick:hasQuantity"
+  ],
+  "non_numerical": [
+    "rdfs:subClassOf",
+    "rdfs:label",
+    "skos:definition",
+    "brick:isReplacedBy",
+    "owl:deprecated",
+    "rdfs:seeAlso",
+    "brick:deprecatedInVersion",
+    "owl:equivalentClass",
+    "brick:deprecationMitigationMessage",
+    "brick:hasSubstance",
+    "brick:hasAssociatedTag",
+    "owl:disjointWith",
+    "rdfs:comment"
+  ]
+}
+```
+
+The only numerical property is `brick:hasQuantity` as it connects entities to measurable quantities. All other properties connect entities to other entities (like classes, substances, tags) or to descriptive text (labels, definitions, comments).
+
+Classification result: {
+  "numerical": [
+    "brick:hasQuantity"
+  ],
+  "non_numerical": [
+    "rdfs:subClassOf",
+    "rdfs:label",
+    "skos:definition",
+    "brick:isReplacedBy",
+    "owl:deprecated",
+    "rdfs:seeAlso",
+    "brick:deprecatedInVersion",
+    "owl:equivalentClass",
+    "brick:deprecationMitigationMessage",
+    "brick:hasSubstance",
+    "brick:hasAssociatedTag",
+    "owl:disjointWith",
+    "rdfs:comment"
+  ]
+}
+Numerical properties: ['brick:hasQuantity']
+Class rec:SensorEquipment does not have numerical properties
+Class brick:Temperature_Sensor has numerical properties: ['brick:hasQuantity']
+Class brick:CO2_Sensor has numerical properties: ['brick:hasQuantity']
+Class brick:Occupancy_Sensor has numerical properties: ['brick:hasQuantity']
+Class brick:Ventilation_Air_System does not have numerical properties
+Class brick:Radiator does not have numerical properties
+Class brick:Cooling_Coil does not have numerical properties
+
+Extra nodes to be added: ['rec:SensorEquipment', 'brick:Ventilation_Air_System', 'brick:Radiator', 'brick:Cooling_Coil']
+🛠️ ↪️  Tool result:
+{
+  "non_numeric_classes": [
+    "rec:SensorEquipment",
+    "brick:Ventilation_Air_System",
+    "brick:Radiator",
+    "brick:Cooling_Coil"
+  ]
+}
+
+✨ Claude generating... (get_context_(3))
+
+🛠️  Tool use... (term_mapper)
+🔍 Mapping terms: {
+  "Numerical Entity of temperatureAmb": "class",
+  "Numerical Entity of airFlowSetpoint": "class",
+  "Numerical Entity of temperatureSetpoint": "class",
+  "Numerical Entity of fanSpeed": "class"
+} using ontology: LLM_models/ontologies\Brick.ttl
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology class for 'Numerical Entity of temperatureAmb')
+🔍✅ Semantic search completed in 22.62 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: TemperatureObservation
+🔍 Prefix found: rec:TemperatureObservation (URI: https://w3id.org/rec#TemperatureObservation)
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology class for 'Numerical Entity of airFlowSetpoint')
+🔍✅ Semantic search completed in 24.25 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: Air_Flow_Setpoint
+🔍 Prefix found: brick:Air_Flow_Setpoint (URI: https://brickschema.org/schema/Brick#Air_Flow_Setpoint)
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology class for 'Numerical Entity of temperatureSetpoint')
+🔍✅ Semantic search completed in 22.75 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: Temperature_Setpoint
+🔍 Prefix found: brick:Temperature_Setpoint (URI: https://brickschema.org/schema/Brick#Temperature_Setpoint)
+
+Ontology index loaded from LLM_models/ontologies\Brick_index.json
+🔍⏳ Semantic search... (ontology class for 'Numerical Entity of fanSpeed')
+🔍✅ Semantic search completed in 29.37 seconds
+Using Claude model: claude-sonnet-4-20250514 (Thinking: True, Max Tokens: 20000)
+
+✨ Claude generating... (find_match_(0))
+✨↪️  Model reply: Speed_Sensor
+🔍 Prefix found: brick:Speed_Sensor (URI: https://brickschema.org/schema/Brick#Speed_Sensor)
+🛠️ ↪️  Tool result:
+{
+  "mapped_terms": {
+    "Numerical Entity of temperatureAmb": "rec:TemperatureObservation",
+    "Numerical Entity of airFlowSetpoint": "brick:Air_Flow_Setpoint",
+    "Numerical Entity of temperatureSetpoint": "brick:Temperature_Setpoint",
+    "Numerical Entity of fanSpeed": "brick:Speed_Sensor"
+  }
+}
+
+✨ Claude generating... (get_context_(4))
+
+🛠️  Tool use... (get_non_numeric_classes)
+🔍 Getting non-numeric classes for: ['rec:TemperatureObservation', 'brick:Air_Flow_Setpoint', 'brick:Temperature_Setpoint', 'brick:Speed_Sensor'] using ontology: LLM_models/ontologies\Brick.ttl
+
+==================== PROCESSING CLASS: rec:TemperatureObservation ====================
+Found 5 superclasses for rec:TemperatureObservation
+Found 4 properties for rec:TemperatureObservation
+⚠️  Error executing tool 'get_non_numeric_classes': Could not find prefix for class URI: http://qudt.org/schema/qudt/hasQuantityKind
+Continuing with error result...
+🛠️ ↪️  Tool result:
+{
+  "error": true,
+  "message": "\u26a0\ufe0f  Error executing tool 'get_non_numeric_classes': Could not find prefix for class URI: http://qudt.org/schema/qudt/hasQuantityKind",
+  "details": "Could not find prefix for class URI: http://qudt.org/schema/qudt/hasQuantityKind"
+}
+
+✨ Claude generating... (get_context_(5))
+Traceback (most recent call last):
+  File "c:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\run.py", line 460, in <module>
+    context, prefixes = executor.get_context()
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\run.py", line 210, in get_context
+    self.context = client_context.query(
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\56xsl\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\semantic_iot\utils\claude.py", line 379, in query
+    tool_result = self.query(
+                  ^^^^^^^^^^^
+  File "C:\Users\56xsl\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\semantic_iot\utils\claude.py", line 379, in query
+    tool_result = self.query(
+                  ^^^^^^^^^^^
+  File "C:\Users\56xsl\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\semantic_iot\utils\claude.py", line 379, in query
+    tool_result = self.query(
+                  ^^^^^^^^^^^
+  [Previous line repeated 2 more times]
+  File "C:\Users\56xsl\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\semantic_iot\utils\claude.py", line 286, in query
+    self.save_metrics(step_name)
+    tool_result = self.query(
+                  ^^^^^^^^^^^
+  File "C:\Users\56xsl\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\semantic_iot\utils\claude.py", line 379, in query
+    tool_result = self.query(
+                  ^^^^^^^^^^^
+  [Previous line repeated 2 more times]
+  File "C:\Users\56xsl\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\semantic_iot\utils\claude.py", line 286, in query
+    self.save_metrics(step_name)
+                  ^^^^^^^^^^^
+  File "C:\Users\56xsl\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\semantic_iot\utils\claude.py", line 379, in query
+    tool_result = self.query(
+                  ^^^^^^^^^^^
+  [Previous line repeated 2 more times]
+  File "C:\Users\56xsl\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\semantic_iot\utils\claude.py", line 286, in query
+    self.save_metrics(step_name)
+                  ^^^^^^^^^^^
+  [Previous line repeated 2 more times]
+  File "C:\Users\56xsl\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\semantic_iot\utils\claude.py", line 286, in query
+    self.save_metrics(step_name)
+    self.save_metrics(step_name)
+  File "C:\Users\56xsl\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\semantic_iot\utils\claude.py", line 422, in save_metrics       
+    all_metrics = json.load(f)
+                  ^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\json\__init__.py", line 293, in load
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\json\__init__.py", line 293, in load
+    return loads(fp.read(),
+    return loads(fp.read(),
+                 ^^^^^^^^^
+                 ^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+                 ^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 129342: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\run.py", line 466, in <module>
+    executor.save_metrics(status=e)
+  File "c:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\run.py", line 424, in save_metrics
+3, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 129342: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\run.py", line 466, in <module>
+    executor.save_metrics(status=e)
+  File "c:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\run.py", line 424, in save_metrics
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\run.py", line 466, in <module>
+    executor.save_metrics(status=e)
+  File "c:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\run.py", line 424, in save_metrics
+Traceback (most recent call last):
+  File "c:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\run.py", line 466, in <module>
+    executor.save_metrics(status=e)
+  File "c:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\run.py", line 424, in save_metrics
+    executor.save_metrics(status=e)
+  File "c:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\run.py", line 424, in save_metrics
+  File "c:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\run.py", line 424, in save_metrics
+    content = f.read().strip()
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 129342: character maps to <undefined>
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    content = f.read().strip()
+              ^^^^^^^^
+    content = f.read().strip()
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 129342: character maps to <undefined>
+PS C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot>
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 129342: character maps to <undefined>
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    content = f.read().strip()
+              ^^^^^^^^
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+    content = f.read().strip()
+              ^^^^^^^^
+    content = f.read().strip()
+    content = f.read().strip()
+              ^^^^^^^^
+    content = f.read().strip()
+              ^^^^^^^^
+    content = f.read().strip()
+              ^^^^^^^^
+    content = f.read().strip()
+    content = f.read().strip()
+              ^^^^^^^^
+    content = f.read().strip()
+    content = f.read().strip()
+              ^^^^^^^^
+    content = f.read().strip()
+    content = f.read().strip()
+    content = f.read().strip()
+    content = f.read().strip()
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 129342: character maps to <undefined>
+PS C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot>
+
+
+
+
+
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 129342: character maps to <undefined>
+PS C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot>
+
+
+
+
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 129342: character maps to <undefined>
+PS C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot>
+
+
+
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 129342: character maps to <undefined>
+PS C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot>
+
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+    content = f.read().strip()
+              ^^^^^^^^
+    content = f.read().strip()
+              ^^^^^^^^
+    content = f.read().strip()
+              ^^^^^^^^
+    content = f.read().strip()
+    content = f.read().strip()
+              ^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.11_3.11.2544.0_x64__qbz5n2kfra8p0\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x8f in position 129342: character maps to <undefined>
+PS C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

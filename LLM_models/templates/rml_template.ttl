@@ -3,8 +3,9 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 # This template defines reusable patterns for mapping IoT entities to RDF using RML 
-# Terms in curly braces {} are placeholders to be replaced with terms
+# Terms in uppercase and curly braces {} are placeholders to be replaced with terms
 
+# Mapping for {ENTITY_TYPE}
 ex:Mapping{ENTITY_TYPE}
     a rr:TriplesMap ;
     rml:logicalSource [
@@ -13,7 +14,7 @@ ex:Mapping{ENTITY_TYPE}
         rml:iterator '$[?(@.type=="{ENTITY_TYPE}")]' ;
     ] ;
     rr:subjectMap [
-        rr:template "http://example.com/{ENTITY_TYPE}/{ID}" ;
+        rr:template "http://example.com/{ENTITY_TYPE}/{id}" ;
         rr:class {ONTOLOGY_CLASS} ;
     ] ;
     

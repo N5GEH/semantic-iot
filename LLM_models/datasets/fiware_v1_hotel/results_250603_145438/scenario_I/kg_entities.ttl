@@ -1,0 +1,62 @@
+@prefix bacnet: <http://data.ashrae.org/bacnet/2020#> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix rec: <https://w3id.org/rec#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# Hotel Entity
+<http://example.com/Hotel/example_hotel> a rec:Shelter ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/Hotel:example_hotel/attrs/name/value> .
+
+# Ambient Temperature Sensor
+<http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> a brick:Temperature_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value> ;
+    brick:hasLocation <http://example.com/Hotel/example_hotel> .
+
+# Hotel Room
+<http://example.com/HotelRoom/example_room> a rec:Room ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/HotelRoom:example_room/attrs/name/value> .
+
+# Temperature Sensor in Room
+<http://example.com/TemperatureSensor/example_room> a brick:Temperature_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:example_room/attrs/temperature/value> ;
+    brick:hasLocation <http://example.com/HotelRoom/example_room> .
+
+# CO2 Sensor in Room
+<http://example.com/CO2Sensor/example_room> a brick:CO2_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:example_room/attrs/co2/value> ;
+    brick:hasLocation <http://example.com/HotelRoom/example_room> .
+
+# Presence Sensor in Room
+<http://example.com/PresenceSensor/example_room> a brick:Occupancy_Sensor ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:example_room/attrs/pir/value> ;
+    brick:hasLocation <http://example.com/HotelRoom/example_room> .
+
+# Fresh Air Ventilation in Room
+<http://example.com/FreshAirVentilation/example_room> a brick:Ventilation_Air_System ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:example_room/attrs/airFlowSetpoint/value> ;
+    brick:hasLocation <http://example.com/HotelRoom/example_room> .
+
+# Air Flow Setpoint Extra Node
+<http://example.com/airFlowSetpoint/FreshAirVentilation/example_room> a brick:Air_Flow_Setpoint ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/airFlowSetpoint:FreshAirVentilation:example_room/attrs/value/value> ;
+    brick:hasLocation <http://example.com/FreshAirVentilation/example_room> .
+
+# Radiator Thermostat in Room
+<http://example.com/RadiatorThermostat/example_room> a brick:Radiator ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:example_room/attrs/temperatureSetpoint/value> ;
+    brick:hasLocation <http://example.com/HotelRoom/example_room> .
+
+# Temperature Setpoint Extra Node
+<http://example.com/temperatureSetpoint/RadiatorThermostat/example_room> a brick:Temperature_Setpoint ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/temperatureSetpoint:RadiatorThermostat:example_room/attrs/value/value> ;
+    brick:hasLocation <http://example.com/RadiatorThermostat/example_room> .
+
+# Cooling Coil in Room
+<http://example.com/CoolingCoil/example_room> a brick:Cooling_Coil ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:example_room/attrs/fanSpeed/value> ;
+    brick:hasLocation <http://example.com/HotelRoom/example_room> .
+
+# Fan Speed Command Extra Node
+<http://example.com/fanSpeed/CoolingCoil/example_room> a brick:Fan_Speed_Command ;
+    rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/fanSpeed:CoolingCoil:example_room/attrs/value/value> ;
+    brick:hasLocation <http://example.com/CoolingCoil/example_room> .

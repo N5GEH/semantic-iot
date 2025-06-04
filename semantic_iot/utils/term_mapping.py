@@ -14,6 +14,10 @@ import time
 
 # TODO gerichtete graphen beachten, mit reasoning! rausfiltern mit LLM welche richtige richtung haben (siehe test)
 
+# Exclude:
+# - Shapes
+# 
+
 class OntologyProcessor:
     """
     A general solution for processing large ontology files and integrating with LLMs.

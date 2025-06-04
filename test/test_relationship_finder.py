@@ -11,7 +11,7 @@ ONTOLOGY_PATHS = [
 def load_example_datasets():
     files = {
         "fiware": {
-            "path": f"{project_root_path}/test_relationship_finder/fiware.json",
+            "path": f"{project_root_path}/test_relationship_finder/fiware_copy.json",
             "config": f"{project_root_path}/test_relationship_finder/fiware_config.json",
         },
         "openhab": {

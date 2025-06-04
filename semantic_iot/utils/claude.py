@@ -12,11 +12,45 @@ from semantic_iot.utils.prompts import prompts
 from pathlib import Path
 root_path = Path(__file__).parent
 
+# Price in $ per million tokens (Base Input) (https://docs.anthropic.com/en/docs/about-claude/models/overview)
+models = {
+    "4opus": {
+        "api": "claude-opus-4-20250514",
+        "thinking": True,
+        "max_tokens": 20000, #max:32000
+        "price": 15.0,  
+    },
+    "4sonnet": {
+        "api": "claude-sonnet-4-20250514",
+        "thinking": True, # Summarized Thinking
+        "max_tokens": 20000, #max:64000
+        "price": 3.0, 
+    },
+    "3.7sonnet": {
+        "api": "claude-3-7-sonnet-20250219",
+        "thinking": True, # Full Thinking
+        "max_tokens": 20000, #max:64000
+        "price": 3.0,  
+    },
+    "3.5haiku": {
+        "api": "claude-3-5-haiku-20241022",
+        "thinking": False,
+        "max_tokens": 8192, #max:8192
+        "price": 0.8,  
+    },
+    "3haiku": {
+        "api": "claude-3-haiku-20240307",
+        "thinking": False,
+        "max_tokens": 4096, #max:4096
+        "price": 0.25,  
+    },
+}
+
 
 class ClaudeAPIProcessor:    
     def __init__(self, 
                  api_key: str = "", 
-                 model: str = "claude-3-7-sonnet-20250219", # TODO (Metrics) change to latest model
+                 model: str = "4sonnet",
                  temperature: float = 1.0,
                  system_prompt: str = prompts.system_default):
         """
@@ -38,7 +72,14 @@ class ClaudeAPIProcessor:
             except FileNotFoundError:
                 self.api_key = input(f"Couldn't find API key in {root_path}/ANTHROPIC_API_KEY\nEnter your Anthropic API key: ")
     
-        self.model = model
+        if model not in models:
+            raise ValueError(f"Model {model} not found. Available models: {list(models.keys())}")
+        self.model = models[model]
+        self.model_api = self.model["api"]
+        self.thinking = self.model["thinking"]
+        self.max_tokens = self.model["max_tokens"]
+        print (f"Using Claude model: {self.model_api} (Thinking: {self.thinking}, Max Tokens: {self.max_tokens})")
+
         self.temperature = temperature
         self.system_prompt = system_prompt if system_prompt else "default"
 
@@ -46,7 +87,9 @@ class ClaudeAPIProcessor:
         self.headers = {
             "x-api-key": self.api_key,
             "anthropic-version": "2023-06-01",
-            "content-type": "application/json"
+            "content-type": "application/json",
+            "anthropic-beta": "interleaved-thinking-2025-05-14"
+
         }
 
         # self.client = anthropic.Client(self.api_key) # TODO 
@@ -60,7 +103,7 @@ class ClaudeAPIProcessor:
                     max_retry: int = 5,
                     conversation_history = None,
                     temperature: float = None,
-                    thinking: bool = False, # TODO (Metrics) Change
+                    thinking: bool = True,
                     tools: str = "",
                     follow_up: bool = False) -> Dict[str, Any]: # TODO add tool selection
         """
@@ -92,6 +135,11 @@ class ClaudeAPIProcessor:
         
         # SETUP =========================================================================
 
+        # Check if thinking is enabled for the model
+        if not self.thinking and thinking:
+            print("⚠️  Thinking mode is not supported for this model, continuing without thinking.")
+            thinking = False            
+
         # Use instance data or default values
         temperature = temperature if temperature is not None \
             else self.temperature
@@ -104,23 +152,24 @@ class ClaudeAPIProcessor:
             messages.append({"role": "user", "content": prompt})
 
         data = {
-            "model": self.model,
+            "model": self.model_api,
             "messages": messages,
-            "max_tokens": 20000,
+            "max_tokens": self.max_tokens,
             "system": [
                 {
                     "type": "text",
                     "text": self.system_prompt,
-                    "cache_control": {"type": "ephemeral"} # Cache Breakpoint
                 }
             ],
             "temperature": self.temperature # "top_p": 1.0
         }
+        if follow_up: # Add Cache Breakpoint if multiple queries are made
+            data["system"][0]["cache_control"] = {"type": "ephemeral"} 
 
         if thinking:
             data["thinking"] = {
                 "type": "enabled",
-                "budget_tokens": 16000 # TODO increase
+                "budget_tokens": int(self.max_tokens*0.8) # TODO how much? default: 16000
             }
         
         if tools:
@@ -133,13 +182,12 @@ class ClaudeAPIProcessor:
             if "siot_tools"  in tools: selected_tools.extend(SIOT_TOOLS)
 
             if selected_tools:
-                # Add cache control to the last tool for caching
-                tools_with_cache = selected_tools.copy()
-                # Only add cache_control if the list is not empty and the last tool doesn't already have it
-                if tools_with_cache and not tools_with_cache[-1].get("cache_control"):
-                    tools_with_cache[-1]["cache_control"] = {"type": "ephemeral"}
-                data["tools"] = tools_with_cache
-
+                if follow_up: # Add Cache Breakpoint if multiple queries are made
+                    tools_with_cache = selected_tools.copy()
+                    # Only if the last tool doesn't already have it
+                    if tools_with_cache and not tools_with_cache[-1].get("cache_control"):
+                        tools_with_cache[-1]["cache_control"] = {"type": "ephemeral"}
+                    data["tools"] = tools_with_cache
                 data["tool_choice"] = {"type": "auto"} # default
             else: print("ℹ️  Tool selection invalid, continuing without tools")  
 
@@ -370,7 +418,7 @@ class ClaudeAPIProcessor:
 
         # Try to load existing metrics
         try:
-            with open(output_file, 'r') as f:
+            with open(output_file, 'r', encoding='utf-8') as f:
                 all_metrics = json.load(f)
         except (FileNotFoundError, json.JSONDecodeError):
             all_metrics = {}
@@ -383,9 +431,9 @@ class ClaudeAPIProcessor:
 
         all_metrics[new_step_name] = self.metrics[step_name]
 
-        # Write back the updated metrics
-        with open(output_file, 'w') as f:
-            json.dump(all_metrics, f, indent=4)
+        # Write back the updated metrics with proper formatting
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(all_metrics, f, indent=4, ensure_ascii=False)
 
         # print(f"⬇️ 📐 Metrics saved to {output_file}")
 
@@ -415,11 +463,18 @@ class ClaudeAPIProcessor:
             text: The text containing code blocks
             
         Returns:
-            str: The extracted code content, or None if no code block is found
+            dict or str: The extracted code content parsed as JSON if valid, 
+                        otherwise raw string content, or original text if no code block is found
         """
         pattern = r'```(?:\w+)?\s*(.*?)\s*```'
         match = re.search(pattern, text, re.DOTALL)
         if match:
-            return json.loads(match.group(1).strip())
+            extracted_content = match.group(1).strip()
+            # Try to parse as JSON first
+            try:
+                return json.loads(extracted_content)
+            except json.JSONDecodeError:
+                # If not valid JSON, return as raw string
+                return extracted_content
         else:
-            return None
+            return text

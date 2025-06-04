@@ -1,5 +1,4 @@
 {ONTOLOGY_PREFIXES}
-@prefix ex: <http://example.com/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 # This template defines reusable pattens for a knowledge graph of IoT entities

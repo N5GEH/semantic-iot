@@ -30,7 +30,7 @@ class PromptsLoader:
         self.JEN_content = None
         self.JEX_content = None
 
-        self.context = None
+        self.context_content = None
         self.prefixes = None
 
         self.rnr_content = None
@@ -59,7 +59,7 @@ class PromptsLoader:
         # INPUT FILES ================================================================
 
         self.jen = f"""<input>
-        file: JSON Entities file
+        # file: JSON Entities file
             description:
                 This JSON data is a response of a GET request to the API of an IoT platform, 
                 which contains all the literal entities of a building and its systematic components, available sensors and actuators. 
@@ -68,9 +68,9 @@ class PromptsLoader:
         </input>"""
 
         self.jex = f"""<input> 
-        file: JSON Example file
+        # file: JSON Example file
             description:
-                The JSON example file is a sample data file that contains all unique entity types of the JSON entities file.
+                The JSON Example file is a sample data file that contains all unique entity types of the JSON Entities file, a response of a GET request to the API of an IoT platform.
                 It represents the data structure of the JSON Entities file, but with only one instance of each entity type.
             content:
                 <data>{self.JEX_content}</data>
@@ -80,7 +80,7 @@ class PromptsLoader:
         # GOAL ================================================================
 
         self.GOAL = f"""<context>
-        # Controller Configuration ========
+        # Controller Configuration 
         The overall goal is to generate a configuration for a building's ventilation system based on the available sensors and actuators.
 
         file: Controller Configuration file
@@ -102,7 +102,7 @@ class PromptsLoader:
         - How to access the actuation points of each ventilation device?
 
 
-        # Extended Knowledge Graph ========
+        # Extended Knowledge Graph 
         The extended knowledge graph is based on the original knowledge graph and includes additional classes and properties from a given ontology.
         The additional classes and properties are being created through inheritance from the ontology classes or properties.
         </context>"""
@@ -110,7 +110,7 @@ class PromptsLoader:
         # PROJECT FILES ================================================================
 
         self.KG = f"""
-        # Knowledge Graph =================
+        # Knowledge Graph 
         The knowledge graph is a structured representation of the building's systematic components, including rooms, ventilation devices, sensors, and their relationships. 
         It is built from the provided JSON entities file of a GET request to a specific IoT platform.
 
@@ -121,7 +121,7 @@ class PromptsLoader:
         """
 
         self.RML = f"""
-        # RML Mapping File ==================
+        # RML Mapping File 
         The RML mapping file is used to generate the RDF knowledge graph from the JSON Entities data.
 
         The knowledge graph looks like this: \n{self.KG}
@@ -133,23 +133,23 @@ class PromptsLoader:
         """
         
         self.PC = f""" 
-        file: Platform Configuration file
+        # file: Platform Configuration file
             The configuration file should contain the following information:
 
             - The ID_KEY is the key in the JSON data that uniquely identifies each entity.
             - The TYPE_KEYS are the keys in the JSON data that identify the type of each entity.
-            - The JSONPATH_EXTRA_NODES are the JSON paths to the extra nodes that should be included in the mapping.
+            - The JSONPATH_EXTRA_NODES are the JSONpath Expressions to the extra nodes that should be included in the mapping. 
 
             template: <template>\n{self.templates["config"]}\n</template>
-        """
+        """ # Use the recursive descent operator
         
         self.RNR = f"""
-        # Resource Node Relationship Document ==================
+        # Resource Node Relationship Document 
         The RML Mapping file can be generated automatically based on a validated Resource Node Relationship Document.
         The Resource Node Relationship Document is a prefilled document that contains the necessary information to generate the RML Mapping file.
 
         file: Resource Node Relationship Document
-            content: {self.rnr_content}
+            content: \n{self.rnr_content}
         """
 
         # CONTEXT PROMPTS ================================================================
@@ -162,7 +162,7 @@ class PromptsLoader:
         </context>
 
         <steps>
-        1. Find the suitable API endpoint for data access
+        1. Find the suitable API endpoint for accessing numerical values of entities
 
         1. Map JSON Entities to ontology Classes.
 
@@ -185,6 +185,7 @@ class PromptsLoader:
 
         <output>
         Return a JSON, containg:
+        - the API endpoint for data access
         - enumeration of the numerical properties and relational properties
         - the mapping of the JSON Entities to ontology classes and properties
         - the name of the Extra Nodes to be added created entities in the JSON file
@@ -195,71 +196,98 @@ class PromptsLoader:
         # SCENARIO PROMPTS ====================================================================
 
         self.prompt_I = f"""
-        <context>
-        {self.context}
         {self.jen}
+        <context>
+        # Results of Preprocessing of the JSON file: \n{self.context_content}
         {self.KG}
         </context>
 
         <instructions>
-        Generate the RDF knowledge graph from the provided JSON Entities data of a GET request to the FIWARE IoT platform.
+        Generate the RDF knowledge graph from the provided JSON Entities data of a GET request to the IoT platform based on the template.
+        For every entity in the JSON Entities file and for every Extra Node, create a corresponding entity in the RDF graph.
+        For each RDF entity, choose a suitable block from the template and fill out the placeholders with the results of Preprocessing of the JSON file.
+        For connecting extra nodes to the parent entities, choose a previously mapped ontology property for relations.
+        Use the given prefixes.
+        For the 'http://example.com/' URI, do not use a prefix, but use the full URI in angle brackets.
 
-        Replace the placeholders in curly brackets in the RDF template with the context:
-        - The Ontology classes and properties
-        - The correct prefixes from the ontology
-        - The API endpoint for data access
-        - Consider extra nodes
-
-        Do not use any other information, to fill out the RDF graph.
+        Do not use any other information to fill out the RDF graph.
+        If you have any doubts, fill in a marker at the point and add a comment with your question.
         </instructions>
 
         <output> Return the knowledge graph in Turtle format. </output>
         """
+        # Replace the placeholders in curly brackets in the RDF template with the results of Preprocessing of the JSON file:
+        # - The Ontology classes and properties
+        # - The correct prefixes from the ontology
+        # - The API endpoint for data access
+        # - Consider extra nodes as part of the original JSON file
 
         self.prompt_II = f"""
-        <context>
-        {self.context}
         {self.jex}
+        <context>
+        # Results of Preprocessing of the JSON file: \n{self.context_content}
         {self.RML}
         </context>
 
         <instructions>
-        Generate the RML mapping file based on the JSON Example file needed for generating the knowledge graph.
-
-        Replace the placeholders in curly brackets in the RML template with the context:
-        - The Ontology classes and properties 
-        - The correct prefixes from the ontology
-        - The API endpoint for data access
-        - Consider extra nodes
-
-        Do not use any other information, to fill out the RML mapping file.
+        Generate the RML mapping file from the provided JSON Example file needed for generating the knowledge graph based on the template.
+        For every entity in the JSON Example file and for every Extra Node, create a corresponding entity in the RML mapping file.
+        For each RML entity, choose a suitable block from the template and fill out the placeholders with the results of Preprocessing of the JSON file.
+        Do not replace the '{{id}}' but all other placeholders that are in curly brackets AND in uppercase.
+        For connecting extra nodes to the parent entities, choose a previously mapped ontology property for relations.
+        For every prefix you use in the document, there need to be a corresponding decalaration of the prefix choosen from the Ontology Prefixes input.
+ 
+        Do not use any other information to fill out the RML mapping file.
+        If you have any doubts, fill in a marker at the point and add a comment with your question.
         </instructions>
 
         <output> Return the RML Mapping file in Turtle format. </output>
         """
 
-        self.prompt_III = f"""
-        <context>
-        {self.context}
+        self.prompt_IIIc = f"""
         {self.jex}
+        <context>
+        # Results of Preprocessing of the JSON file: \n{self.context_content}
         {self.PC}
         </context>
 
         <instructions>
-        1. Generate the Platform Configuration file based on the JSON Example file.
-            - Consider extra nodes
+        Generate the Platform Configuration file based on the JSON Example file.
+        Consider extra nodes if present. 
 
-        2. Fill out the preprocessed Resource Node Relationship Document based on the provided context.
+        <constraints>
+        Ensure all JSONPath expressions use simple, widely supported operators.
+        - Allowed: '$', '*', '.'
+        - Not allowed: '?', '@', filter expressions
+        </constraints>
+        </instructions>
 
-            Replace the placeholders with the context
-            - For ... : The Ontology classes and properties
-            - For the hasdataaccess value : string of the correct API endpoint : of the The API endpoint for data access
+        <output> Return the Platform Configuration file in JSON format. </output>
+        """
 
-            <context> {self.RNR} </context>
+        self.prompt_III = f"""
+        {self.jex}
+        <context>
+        # Results of Preprocessing of the JSON file: \n{self.context_content}
+        {self.RNR}
+        </context>
+
+        <instructions>
+        Fill out the preprocessed Resource Node Relationship Document based on the results of Preprocessing of the JSON file.
+
+        Do not change anything in the Resource Node Relationship Document but the following:
+
+        - For the value of every "class" key: 
+            - Ignore any prefilled value and replace it with the mapped Ontology Class for the "nodetype" value of the entity.
+        - For the value of every "property" key:
+            - Ignore any prefilled value and replace it with the mapped Ontology Property for the "rawdataidentifier" value of the entity.
+        - For the value of every "hasdataaccess" key: 
+            - Ignore any prefilled value and replace it with string of the correct API endpoint for data access
+        
         </instructions>
 
         <output> Return the Resource Node Relationship Document in JSON format. </output>
-        """
+        """ # TODO remove self.jex out of prompt
 
         self.system_default = f"""
         {self.ROLE}
@@ -313,11 +341,12 @@ class PromptsLoader:
         self.update_variables()
 
     def load_context(self, context):
-        self.context = context
+        self.context_content = context
         self.update_variables()
 
     def load_prefixes(self, prefixes):
         self.prefixes = prefixes
+        self.update_variables()
 
     def load_RNR(self, rnr_path):
         with open(rnr_path, "r") as f:

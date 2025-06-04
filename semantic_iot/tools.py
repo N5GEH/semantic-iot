@@ -296,28 +296,47 @@ def get_file_paths () -> str:
     output.append("folder_one/")
     return "\n".join(output)
 
-def term_mapper(terms: dict, ontology_path: str) -> str:
+def term_mapper(terms: dict, ontology_path: str, test: bool = False) -> str:
 
-    mapped_terms = {}
-    for term, term_type in terms.items():
-        processor = OntologyProcessor(ontology_path)
-        result = processor.map_term(term, term_type)
-        mapped_terms[term] = result
+    if test:
+        mapped_terms = {}
+        mapping = {
+            "Hotel": "rec:Shelter",
+            "HotelRoom": "rec:Bedroom",
+            "hasLocation": "brick:hasLocation",
+            "TemperatureSensor": "brick:Temperature_Sensor",
+            "CO2Sensor": "brick:CO2_Sensor",
+            "PresenceSensor": "brick:Occupancy_Sensor",
+            "FreshAirVentilation": "brick:Ventilation_Air_System",
+            "RadiatorThermostat": "brick:Radiator",
+            "CoolingCoil": "brick:Cooling_Coil",
+            "AmbientTemperatureSensor": "brick:Outside_Air_Temperature_Sensor",
+            "hasLocation": "brick:hasLocation",
+            "temperatureAmb": "brick:Temperature_Sensor",
+            "temperature": "bsh:TemperatureQuantityShape",
+            "co2": "bsh:CO2_ConcentrationQuantityShape",
+            "pir": "brick:PIR_Sensor",
+            "airFlowSetpoint": "brick:Air_Flow_Setpoint",
+            "temperatureSetpoint": "brick:Temperature_Setpoint",
+            "fanSpeed": "brick:Fan_Speed_Command"
+        }
 
-    # mapped_terms = {
-    #     "mapped_terms": {
-    #         "Hotel": "brick:Location",
-    #         "HotelRoom": "rec:Bedroom",
-    #         "hasLocation": "brick:hasLocation",
-    #         "TemperatureSensor": "brick:Temperature_Sensor",
-    #         "CO2Sensor": "brick:CO2_Sensor",
-    #         "PresenceSensor": "brick:Occupancy_Sensor",
-    #         "FreshAirVentilation": "brick:Ventilation_Air_System",
-    #         "RadiatorThermostat": "brick:Radiator",
-    #         "CoolingCoil": "brick:Cooling_Coil",
-    #         "AmbientTemperatureSensor": "brick:Outside_Air_Temperature_Sensor"
-    #     }       
-    # }
+        for term, term_type in terms.items():
+            for to_mapped_term, mapped_class in mapping.items():
+                # print(f"Comparing {term} with {to_mapped_term}")    
+                if term == to_mapped_term:
+                    mapped_terms[term] = mapped_class
+                    break
+                # term = input(f"Enter mapping for {term}: ")
+                # mapped_terms[term] = mapped_class
+
+    else:
+        mapped_terms = {}
+        for term, term_type in terms.items():
+            processor = OntologyProcessor(ontology_path)
+            result = processor.map_term(term, term_type)
+            mapped_terms[term] = result
+
     
     return mapped_terms
     
@@ -441,7 +460,7 @@ def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
 
     # For get_endpoint_from_api_spec tool
     elif tool_name == "get_endpoint_from_api_spec":
-        return {"endpoint": r"https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/{attrName}/value"}
+        # return {"endpoint": r"https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/{attrName}/value"}
         return {"endpoint": get_endpoint_from_api_spec(input_data["api_spec_path"], input_data["query"])}
     
     # For get_non_numeric_classes tool

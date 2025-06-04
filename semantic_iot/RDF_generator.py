@@ -60,7 +60,8 @@ class RDFGenerator:
         else:
             raise ValueError("Invalid engine. Please use 'morph-kgc'")
         
-        self.clean_up()
+        if source_file != self.preprocess_file:
+            self.clean_up()
 
     def morph_kgc_mapper(self,
                          destination_file: str):
