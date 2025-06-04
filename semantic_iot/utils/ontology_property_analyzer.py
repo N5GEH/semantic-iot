@@ -7,6 +7,7 @@ import json
 
 from semantic_iot.utils import ClaudeAPIProcessor
 from semantic_iot.utils.reasoning import inference_owlrl
+from semantic_iot.utils.prompts import prompts
 
 # TODO try with other ontologies, e.g., Brick, SAREF, etc.
 
@@ -54,7 +55,7 @@ class OntologyPropertyAnalyzer:
             raise ValueError(f"Cannot parse URI: {uri}")
 
         # Find matching prefix for the namespace
-        for prefix, ns in Graph().namespaces():
+        for prefix, ns in self.ont.namespaces():
             if str(ns).rstrip('#/') == namespace.rstrip('#/'):
                 return f"{prefix}:{local_name}"
         
@@ -99,17 +100,18 @@ class OntologyPropertyAnalyzer:
         return properties
 
     def classify_props_LLM(self, inherited_properties) -> dict:
-        claude = ClaudeAPIProcessor(system_prompt="You are an expert in semantic reasoning and ontology classification.")
+        claude = ClaudeAPIProcessor(system_prompt=f"You are an expert in semantic reasoning and ontology classification. {prompts.OUTPUT_FORMAT}")
         prompt = (
+            "I need your help to classify properties from an ontology. I want to know if the ontology would allow to connect a numerical value with a class through a property\n"
             "Given a list of properties, classify them into numerical and non-numerical categories.\n"
-            "Properties are numerical if they connect an entity with a measurable quantity, such as temperature, count, or speed.\n"
+            "Properties are numerical if they (directly or inderictly through another class and property) connect an entity with a measurable quantity or quantity concept, such as temperature, count, or speed.\n"
             "Properties are non-numerical if they connect an entity with a another entity or description\n"
             # "Non-numerical properties include those that represent qualitative attributes, relationships, or categories between two entities.\n"
             "Return a JSON object with two keys: 'numerical' and 'non_numerical'.\n"
             f"The input properties are:\n {inherited_properties}"
         ) # based on the inherited properties of each class, which classes have a property that contains a numerical value?
 
-        response = claude.query(prompt, step_name="classify_props_LLM", tools=None)
+        response = claude.query(prompt, step_name="classify_props_LLM", tools=None, temperature=0.0)
         return claude.extract_code(response)
     
     def classify_props_inference(self, inherited_properties, target_classes) -> dict:

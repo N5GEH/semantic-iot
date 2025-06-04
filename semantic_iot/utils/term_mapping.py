@@ -8,15 +8,10 @@ import re
 from pathlib import Path
 import time
 
-# TODO correct direction of relationships?
+from semantic_iot.utils.prompts import prompts
 
 # TODO fine tuning with temperature
-
-# TODO gerichtete graphen beachten, mit reasoning! rausfiltern mit LLM welche richtige richtung haben (siehe test)
-
-# Exclude:
-# - Shapes
-# 
+# TODO correct direction of relationships? gerichtete graphen beachten, mit reasoning! rausfiltern mit LLM welche richtige richtung haben (siehe test)
 
 class OntologyProcessor:
     """
@@ -106,9 +101,31 @@ class OntologyProcessor:
         self._link_properties_to_classes()
         
         return self.index
+
+    def _is_shape(self, uri: URIRef) -> bool:
+        """Check if a URI represents a Shape (SHACL or similar)"""
+        # Get all prefixes that contain 'shape' in their URI
+        shape_prefixes = []
+        for prefix, namespace in self.graph.namespace_manager.namespaces():
+            if 'shape' in str(namespace).lower():
+                shape_prefixes.append(str(namespace))
+
+        # Check if the URI starts with a shape namespace
+        for shape_namespace in shape_prefixes:
+            if str(uri).startswith(shape_namespace):
+                return True
+            
+        # # Check if the local name contains 'shape' (case-insensitive)
+        # local_name = self._get_local_name(uri).lower()
+        # if 'shape' in local_name:
+        #     return True
+            
+        return False
     
     def _process_class(self, class_uri: URIRef) -> None:
         """Process a class and add it to the index, merging information from different sources"""
+        if self._is_shape(class_uri): return # Skip shapes
+            
         class_id = self._get_local_name(class_uri)
         
         # Get basic class information
@@ -180,6 +197,8 @@ class OntologyProcessor:
     
     def _process_property(self, prop_uri: URIRef) -> None:
         """Process a property and add it to the index, merging information from different sources"""
+        if self._is_shape(prop_uri): return # Skip shapes
+        
         prop_id = self._get_local_name(prop_uri)
         
         # Get basic property information
@@ -508,39 +527,37 @@ class OntologyProcessor:
         context = self.get_ontology_context_for_llm(query, term_type)
 
         prompt = f"""
-        You are an ontology expert that helps map domain entities to appropriate ontology classes and predicates.
+        <role>You are an ontology expert</role>
 
-        # Ontology-Based Naming Task
+        <data>
+        Extraction of available Ontology {'class' if term_type == 'Classes' else 'Properties'}
+        {context}
+        </data>
 
-        ## Ontology Context Information
-        <data>{context}</data>
-
-        ## {'Entity' if term_type == 'class' else 'Relation'} Description
+        <input>
+        Domain {'Entity' if term_type == 'class' else 'Relation'} 
         {query}
+        </input>
 
-        ## Instructions
         <instructions>
-        Based on the {'entity' if term_type == 'class' else 'relation'} description above and the ontology information provided:
-        1. Identify the most appropriate ontology {'class' if term_type == 'class' else 'property'} for this {'entity' if term_type == 'class' else 'relation'}
-        2. Provide no explanation for your choice
+        Identify the most appropriate ontology {'class' if term_type == 'class' else 'property'} for the domain {'entity' if term_type == 'class' else 'relation'}
+        The goal is to inherit the attributes and relations from the selected Ontology Class or Property.
+
+        MAPPING CRITERIA: (in order of priority)
+        1. Exact semantic match
+        2. Functional equivalence (same purpose/behavior)
+        3. Hierarchical relationship (parent/child concepts)
+        4. Attribute similarity (same properties/characteristics)
+
+        SPECIAL CONSIDERATIONS:
+        - Distinguish between sensors (measurement) vs setpoints (targets) vs commands (actions)
+        - Consider measurement types, units, and data flows
+        - Respect system hierarchies (building → floor → room → equipment)
+        - Pay attention to relationship directions (subject → predicate → object)
+        - Test the found ontology class or property like this: Does it make sense to say "{{query}} is a {{found_term}}"?
         </instructions>
 
-        4. Functional Classification
-        - Systems need proper classification (HVAC, Air, Ventilation)
-        - Enables inference of class hierarchy (e.g., Ventilation_Air_System is a subclass of Air_System)
-
-        5. Point Types
-        - Clear distinction between sensors, setpoints, and commands
-        - Proper classification of measurement/control points
-
-        - Make sure relationships use the correct ontology predicates
-        - Ensure system hierarchies are properly represented
-        - Devices must be correctly linked to their locations
-        - Pay attention to the correct direction of relationships
-
-        If there is no suitable term in the ontology, choose a term that is semantically closest to the description.
-
-        Return the selected term in the terminology in output tags like <output> </output>.
+        <output>Return the selected term in the terminology in output tags, do not provide an explaination.</output>
         """
 
         return prompt.strip()    
@@ -555,7 +572,7 @@ class OntologyProcessor:
         # Check if an ontology index exists, otherwise build it
         if self.index_file and os.path.exists(self.index_file):
             self.load_index()
-            print(f"\nOntology index loaded from {self.index_file}")
+            print(f"\n\nOntology index loaded from {self.index_file}")
         else:
             self.build_index()
             self.save_index()
@@ -565,14 +582,15 @@ class OntologyProcessor:
 
         # TODO change system prompt for term matching (including <background> from prompts.py?)
 
-        system = "Provide an explaination"
+        system = prompts.OUTPUT_FORMAT
 
         from semantic_iot.utils import ClaudeAPIProcessor
         claude = ClaudeAPIProcessor(system_prompt=system)
         response = claude.query(
             prompt, 
-            step_name="find_match", 
-            tools="")
+            step_name=f"find_{term_description}_match", 
+            tools="",
+            temperature=0.0)
         
         # Parse the response to extract the selected term name
         term_name = None
@@ -652,12 +670,12 @@ class OntologyProcessor:
 # Usage example
 if __name__ == "__main__":
 
-    ontology_path = r"C:\Users\56xsl\Obsidian\Compass\Projects\Bachelorarbeit\Code\semantic-iot\LLM_models\RAG\Brick.ttl"
+    # Example usage
+    ontology_path = r"LLM_models/ontologies/Brick.ttl"
 
     processor = OntologyProcessor(ontology_path)
     
-    # Example usage: Name an entity
-    entity_result = processor.map_term(term_description="HotelRoom", term_type="class")
+    entity_result = processor.map_term(term_description="AmbientTemperatureSensor", term_type="class")
     print(json.dumps(entity_result, indent=2))
 
 

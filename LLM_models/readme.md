@@ -1,4 +1,11 @@
 
+
+# Setup
+
+Put 'ANTROPIC_API' File in Code Folder 
+
+
+
 # Adding a New Dataset
 
 ## Dataset Folder

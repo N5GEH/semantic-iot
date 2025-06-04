@@ -149,6 +149,18 @@ class ClaudeAPIProcessor:
             else self.conversation_history.copy()
 
         if prompt: # Add user message to messages
+            # Add req
+            prompt += """
+            What are requirements for a human to be able to output the same result? 
+
+            Example task: Complete the pattern: 1, 2, 5, 8,
+            Example thinking: <thinking> 
+            - Basic arithmetic skills (addition and subtraction). 
+            - Pattern recognition abilities, specifically recognizing changes between numbers. 
+            - Logical thinking to identify the alternating difference pattern. 
+            </thinking>
+            <output>Put the answer in <req> tags.</output>
+            """
             messages.append({"role": "user", "content": prompt})
 
         data = {
@@ -280,7 +292,8 @@ class ClaudeAPIProcessor:
                     "ttft": None
                 },
                 "tokens": result.get("usage", {})
-            }
+            },
+            "requirements": self.extract_tag(response_text, "req") 
             # "evaluation": None, # TODO add absolute evaluation based on ... ??
         }      
         self.save_metrics(step_name)

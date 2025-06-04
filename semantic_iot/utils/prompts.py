@@ -50,9 +50,13 @@ class PromptsLoader:
         - Be precise and concise.
         - You may use tools, only call them when needed, then you will receive its output in the next interaction.
         - If you dont have tools, dont try to call a tool, the prompt contains all information you need.
+        - In your thinking, include the requirements for a human to be able to output the same result, e. g.:
+        Example task: Complete the pattern: 1, 2, 5, 8,
+        Example thinking: <thinking> - Basic arithmetic skills (addition and subtraction). - Pattern recognition abilities, specifically recognizing changes between numbers. - Logical thinking to identify the alternating difference pattern. </thinking>
         </system>"""
         self.OUTPUT_FORMAT = f"""<output>
         Put the relevant output data in <output> tags.
+        What are requirements for a human to be able to output the same result? Put the answer in <req> tags.
         </output>"""
 
         
@@ -177,10 +181,9 @@ class PromptsLoader:
         
         2.3 If there are extra nodes to be added, add a new JSON entity to an imagenary list of extra nodes.
             The extra nodes should have the name of the property they come from
-            Map this newly created entity to an ontology class by using the query 'Numerical Entity of {{property_name}}'.
+            Map this newly created entity to an ontology class by using the query '{{property_name}} (value of {{parentEntity}})'.
 
-        3. Now check again, if the newly created entities have an (inherited) numerical property and do steps 2.2 and 2.3 again.
-           Repeat this process maximally 3 times.
+        3. Now check again, if the newly created entities have an (inherited) numerical property and do steps 2.2 and 2.3 again before continuing.
         </steps>
 
         <output>
@@ -188,7 +191,7 @@ class PromptsLoader:
         - the API endpoint for data access
         - enumeration of the numerical properties and relational properties
         - the mapping of the JSON Entities to ontology classes and properties
-        - the name of the Extra Nodes to be added created entities in the JSON file
+        - the name of the properties, that will be added to the JSON Entities as Extra Nodes and the names of the Extra Nodes
         </output>
         
         """

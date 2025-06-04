@@ -10265,7 +10265,8 @@ brick:Fan_Speed_Command a owl:Class,
     brick:hasAssociatedTag tag:Command,
         tag:Fan,
         tag:Point,
-        tag:Speed .
+        tag:Speed ;
+    brick:hasQuantity qudtqk:Speed .
 
 brick:Fan_VFD a owl:Class,
         sh:NodeShape ;

@@ -139,7 +139,7 @@ class APISpecProcessor:
 
         print(f"[APISpecProcessor] Sending prompt to LLM:\n{prompt}")
         claude = ClaudeAPIProcessor() # TODO change system prompt
-        response = claude.query(prompt, step_name="get_endpoint", tools="")
+        response = claude.query(prompt, step_name="get_endpoint", tools="", temperature=0.0)
         print(response)
 
         # Extract the number from the response

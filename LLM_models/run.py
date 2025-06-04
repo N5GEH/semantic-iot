@@ -196,7 +196,7 @@ class ScenarioExecutor:
         print (f"Selected scenarios: {self.selected_scenarios}")
 
     # GET CONTEXT ======================================================
-    def get_context(self):
+    def get_context(self, test=True):
 
         if not self.JEN_path or not self.JEX_path or not self.ontology_path or not self.endpoint_path:
             input("Please run choose_dataset() first to select the dataset, ontology, and API endpoint. Press Enter to continue...")
@@ -204,7 +204,7 @@ class ScenarioExecutor:
         
         print("\nPreparing context for scenarios...")
 
-        if not self.test:
+        if not test:
             # Term Mapping & Extra Nodes & API Endpoint
             client_context = ClaudeAPIProcessor()
             self.context = client_context.query( 
@@ -230,7 +230,7 @@ class ScenarioExecutor:
         self.prefixes = '\n'.join(prefixes_list)
         # print(self.prefixes)
 
-        if self.test:
+        if test:
             self.context = {
                 "apiEndpoint": r"https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/{attrName}/value",
                 "numericalProperties": [
@@ -418,7 +418,7 @@ class ScenarioExecutor:
         """
         Save the metrics to a file.
         """ 
-        metrics_file = "LLM_models/metrics/metrics.json"
+        metrics_file = r"LLM_models/metrics/metrics.json"
         if os.path.exists(metrics_file):
             with open(metrics_file, 'r', encoding='utf-8') as f:
                 content = f.read().strip()
@@ -441,7 +441,7 @@ def clear_metrics():
     """
     Clear the metrics file if it exists.
     """
-    metrics_file = "LLM_models\metrics\metrics.json"
+    metrics_file = r"LLM_models\metrics\metrics.json"
     if os.path.exists(metrics_file):
         with open(metrics_file, 'w') as f:
             pass

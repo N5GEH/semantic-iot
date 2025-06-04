@@ -6,6 +6,15 @@ sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
 from semantic_iot.utils import ClaudeAPIProcessor
 from semantic_iot.utils.prompts import prompts
 
+# TODO Roadmap
+
+# 1. Calculate total performance metrics
+# 2. Extract thinking 
+# 3. Normalize Thinking () based on criteria, standards # TODO
+# 4. Pointwise Evaluation
+# 5. Pairwise Evaluation
+
+
 METRICS = "LLM_models\metrics\metrics.json"
 METRIC_ONE_PATH = "LLM_models\metrics\metrics_I_example.json"
 METRIC_TWO_PATH = "LLM_models\metrics\metrics_II_example.json"
