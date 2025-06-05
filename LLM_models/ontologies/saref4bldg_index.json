@@ -1,0 +1,4755 @@
+{
+  "classes": {
+    "Actuator": {
+      "uri": "https://saref.etsi.org/saref4bldg/Actuator",
+      "label": "Actuator",
+      "description": "An actuator is a mechanical device for moving or controlling a mechanism or system. An actuator takes energy, usually created by air, electricity, or liquid, and converts that into some kind of motion.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Actuator",
+        "https://saref.etsi.org/core/Actuator"
+      ],
+      "superclasses": [
+        "DistributionControlDevice",
+        "Actuator"
+      ],
+      "subclasses": [
+        "Actuator"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "DistributionControlDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/DistributionControlDevice",
+      "label": "Distribution control device",
+      "description": "Represents devices of a building automation control system that are used to impart control over elements of a distribution system. (Definition adapated from http://www.buildingsmart-tech.org/ifc/IFC4/Add1/html/schema/ifcsharedbldgserviceelements/lexical/ifcdistributioncontrolelement.htm)",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/DistributionControlDevice"
+      ],
+      "superclasses": [
+        "DistributionDevice"
+      ],
+      "subclasses": [
+        "Actuator",
+        "Alarm",
+        "Controller",
+        "FlowInstrument",
+        "ProtectiveDeviceTrippingUnit",
+        "Sensor",
+        "UnitaryControlElement"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "DistributionDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/DistributionDevice",
+      "label": "Distribution device",
+      "description": "Generalization of all devices that participate in a distribution system. (Definition adapated from http://www.buildingsmart-tech.org/ifc/IFC4/Add1/html/schema/ifcproductextension/lexical/ifcdistributionelement.htm)",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/DistributionDevice"
+      ],
+      "superclasses": [
+        "BuildingDevice"
+      ],
+      "subclasses": [
+        "DistributionControlDevice",
+        "DistributionFlowDevice"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "BuildingDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/BuildingDevice",
+      "label": "Building device",
+      "description": "A tangible object designed to accomplish a particular task in a building.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/BuildingDevice"
+      ],
+      "superclasses": [
+        "BuildingObject",
+        "Device"
+      ],
+      "subclasses": [
+        "DistributionDevice",
+        "ShadingDevice"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "BuildingObject": {
+      "uri": "https://saref.etsi.org/saref4bldg/BuildingObject",
+      "label": "Building object",
+      "description": "An object in the building that can be controlled by devices, such as a door or a window that can be automatically opened or closed by an actuator.  (Definition taken from SAREF 1.0)",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/BuildingObject"
+      ],
+      "superclasses": [
+        "PhysicalObject"
+      ],
+      "subclasses": [
+        "BuildingDevice"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "PhysicalObject": {
+      "uri": "https://saref.etsi.org/saref4bldg/PhysicalObject",
+      "label": "Physical object",
+      "description": "Any Object that has a proper space region.  (Definition extracted from DUL ontology)",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/PhysicalObject"
+      ],
+      "superclasses": [],
+      "subclasses": [
+        "BuildingObject",
+        "Device"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Device": {
+      "uri": "https://saref.etsi.org/core/Device",
+      "label": "Device",
+      "description": "A tangible object designed to accomplish a particular task in households, common public buildings or offices. In order to accomplish this task, the device performs one or more functions. For example, a washing machine is designed to wash (task) and to accomplish this task it performs the start and stop function.",
+      "sources": [
+        "https://saref.etsi.org/core/Device"
+      ],
+      "superclasses": [
+        "PhysicalObject"
+      ],
+      "subclasses": [
+        "BuildingDevice",
+        "TransportElement",
+        "VibrationIsolator"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "AirToAirHeatRecovery": {
+      "uri": "https://saref.etsi.org/saref4bldg/AirToAirHeatRecovery",
+      "label": "Air to air heat recovery",
+      "description": "An air-to-air heat recovery device employs a counter-flow heat exchanger between inbound and outbound air flow. It is typically used to transfer heat from warmer air in one chamber to cooler air in the second chamber (i.e., typically used to recover heat from the conditioned air being exhausted and the outside air being supplied to a building), resulting in energy savings from reduced heating (or cooling) requirements.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/AirToAirHeatRecovery"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "EnergyConversionDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/EnergyConversionDevice",
+      "label": "Energy conversion device",
+      "description": "The distribution flow element EnergyConversionDevice defines the occurrence of a device used to perform energy conversion or heat transfer and typically participates in a flow distribution system.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/EnergyConversionDevice"
+      ],
+      "superclasses": [
+        "DistributionFlowDevice"
+      ],
+      "subclasses": [
+        "AirToAirHeatRecovery",
+        "Boiler",
+        "Burner",
+        "Chiller",
+        "Coil",
+        "Condenser",
+        "CooledBeam",
+        "CoolingTower",
+        "ElectricGenerator",
+        "ElectricMotor",
+        "Engine",
+        "EvaporativeCooler",
+        "Evaporator",
+        "HeatExchanger",
+        "Humidifier",
+        "SolarDevice",
+        "Transformer",
+        "TubeBundle"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "DistributionFlowDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/DistributionFlowDevice",
+      "label": "DistributionFlowDevice",
+      "description": "Represents devices of a distribution system that facilitate the distribution of energy or matter, such as air, water or power. (Definition adapated from http://www.buildingsmart-tech.org/ifc/IFC4/Add1/html/schema/ifcsharedbldgserviceelements/lexical/ifcdistributionflowelement.htm)",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/DistributionFlowDevice"
+      ],
+      "superclasses": [
+        "DistributionDevice"
+      ],
+      "subclasses": [
+        "EnergyConversionDevice",
+        "FlowTerminal",
+        "FlowMovingDevice",
+        "FlowController",
+        "FlowTreatmentDevice",
+        "FlowStorageDevice"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Alarm": {
+      "uri": "https://saref.etsi.org/saref4bldg/Alarm",
+      "label": "Alarm",
+      "description": "An alarm is a device that signals the existence of a condition or situation that is outside the boundaries of normal expectation or that activates such a device.\r\n\r\nAlarms include the provision of break glass buttons and manual pull boxes that are used to activate alarms.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Alarm"
+      ],
+      "superclasses": [
+        "DistributionControlDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "AudioVisualAppliance": {
+      "uri": "https://saref.etsi.org/saref4bldg/AudioVisualAppliance",
+      "label": "Audio visual appliance",
+      "description": "An audio-visual appliance is a device that displays, captures, transmits, or receives audio or video.\r\n\r\nAudio-visual appliances may be fixed in place or may be able to be moved from one space to another. They may require an electrical supply that may be supplied either by an electrical circuit or provided from a local battery source. Audio-visual appliances may be connected to data circuits including specialist circuits for audio visual purposes only.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/AudioVisualAppliance"
+      ],
+      "superclasses": [
+        "FlowTerminal"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "FlowTerminal": {
+      "uri": "https://saref.etsi.org/saref4bldg/FlowTerminal",
+      "label": "Flow terminal",
+      "description": "The distribution flow element FlowTerminal defines the occurrence of a permanently attached element that acts as a terminus or beginning of a distribution system (such as an air outlet, drain, water closet, or sink). A terminal is typically a point at which a system interfaces with an external environment.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/FlowTerminal"
+      ],
+      "superclasses": [
+        "DistributionFlowDevice"
+      ],
+      "subclasses": [
+        "AudioVisualAppliance",
+        "CommunicationAppliance",
+        "ElectricAppliance",
+        "FireSuppressionTerminal",
+        "Lamp",
+        "MedicalDevice",
+        "Outlet",
+        "SanitaryTerminal",
+        "SpaceHeater"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Boiler": {
+      "uri": "https://saref.etsi.org/saref4bldg/Boiler",
+      "label": "Boiler",
+      "description": "A boiler is a closed, pressure-rated vessel in which water or other fluid is heated using an energy source such as natural gas, heating oil, or electricity. The fluid in the vessel is then circulated out of the boiler for use in various processes or heating applications.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Boiler"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Building": {
+      "uri": "https://saref.etsi.org/saref4bldg/Building",
+      "label": "Building",
+      "description": "A building represents a structure that provides shelter for its occupants or contents and stands in one place. The building is also used to provide a basic element within the spatial structure hierarchy for the components of a building project (together with site, storey, and space).",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Building"
+      ],
+      "superclasses": [],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "BuildingSpace": {
+      "uri": "https://saref.etsi.org/saref4bldg/BuildingSpace",
+      "label": "Building space",
+      "description": "An entity used to define the physical spaces of the building. A building space contains devices or building objects.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/BuildingSpace"
+      ],
+      "superclasses": [],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "n77928931364f451bb5cd0ca3aa25c844b29": {
+      "uri": "n77928931364f451bb5cd0ca3aa25c844b29",
+      "label": null,
+      "description": null,
+      "sources": [
+        "n77928931364f451bb5cd0ca3aa25c844b29"
+      ],
+      "superclasses": [],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Burner": {
+      "uri": "https://saref.etsi.org/saref4bldg/Burner",
+      "label": "Burner",
+      "description": "A burner is a device that converts fuel into heat through combustion. It includes gas, oil, and wood burners.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Burner"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Chiller": {
+      "uri": "https://saref.etsi.org/saref4bldg/Chiller",
+      "label": "Chiller",
+      "description": "A chiller is a device used to remove heat from a liquid via a vapor-compression or absorption refrigeration cycle to cool a fluid, typically water or a mixture of water and glycol. The chilled fluid is then used to cool and dehumidify air in a building.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Chiller"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Coil": {
+      "uri": "https://saref.etsi.org/saref4bldg/Coil",
+      "label": "Coil",
+      "description": "A coil is a device used to provide heat transfer between non-mixing media. A common example is a cooling coil, which utilizes a finned coil in which circulates chilled water, antifreeze, or refrigerant that is used to remove heat from air moving across the surface of the coil. A coil may be used either for heating or cooling purposes by placing a series of tubes (the coil) carrying a heating or cooling fluid into an airstream. The coil may be constructed from tubes bundled in a serpentine form or from finned tubes that give a extended heat transfer surface.\r\n\r\nCoils may also be used for non-airflow cases such as embedded in a floor slab.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Coil"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "CommunicationAppliance": {
+      "uri": "https://saref.etsi.org/saref4bldg/CommunicationAppliance",
+      "label": "Communication appliance",
+      "description": "A communications appliance transmits and receives electronic or digital information as data or sound.\r\n\r\nCommunication appliances may be fixed in place or may be able to be moved from one space to another. Communication appliances require an electrical supply that may be supplied either by an electrical circuit or provided from a local battery source.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/CommunicationAppliance"
+      ],
+      "superclasses": [
+        "FlowTerminal"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Compressor": {
+      "uri": "https://saref.etsi.org/saref4bldg/Compressor",
+      "label": "Compressor",
+      "description": "A compressor is a device that compresses a fluid typically used in a refrigeration circuit.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Compressor"
+      ],
+      "superclasses": [
+        "FlowMovingDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "FlowMovingDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/FlowMovingDevice",
+      "label": "Flow moving device",
+      "description": "The distribution flow element FlowMovingDevice defines the occurrence of an apparatus used to distribute, circulate or perform conveyance of fluids, including liquids and gases (such as a pump or fan), and typically participates in a flow distribution system.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/FlowMovingDevice"
+      ],
+      "superclasses": [
+        "DistributionFlowDevice"
+      ],
+      "subclasses": [
+        "Compressor",
+        "Fan",
+        "Pump"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Condenser": {
+      "uri": "https://saref.etsi.org/saref4bldg/Condenser",
+      "label": "Condenser",
+      "description": "A condenser is a device that is used to dissipate heat, typically by condensing a substance such as a refrigerant from its gaseous to its liquid state.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Condenser"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Controller": {
+      "uri": "https://saref.etsi.org/saref4bldg/Controller",
+      "label": "Controller",
+      "description": "A controller is a device that monitors inputs and controls outputs within a building automation system.\r\n\r\nA controller may be physical (having placement within a spatial structure) or logical (a software interface or aggregated within a programmable physical controller).",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Controller"
+      ],
+      "superclasses": [
+        "DistributionControlDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "CooledBeam": {
+      "uri": "https://saref.etsi.org/saref4bldg/CooledBeam",
+      "label": "Cooled beam",
+      "description": "A cooled beam (or chilled beam) is a device typically used to cool air by circulating a fluid such as chilled water through exposed finned tubes above a space. Typically mounted overhead near or within a ceiling, the cooled beam uses convection to cool the space below it by acting as a heat sink for the naturally rising warm air of the space. Once cooled, the air naturally drops back to the floor where the cycle begins again.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/CooledBeam"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "CoolingTower": {
+      "uri": "https://saref.etsi.org/saref4bldg/CoolingTower",
+      "label": "Cooling tower",
+      "description": "A cooling tower is a device which rejects heat to ambient air by circulating a fluid such as water through it to reduce its temperature by partial evaporation.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/CoolingTower"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Damper": {
+      "uri": "https://saref.etsi.org/saref4bldg/Damper",
+      "label": "Damper",
+      "description": "A damper typically participates in an HVAC duct distribution system and is used to control or modulate the flow of air.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Damper"
+      ],
+      "superclasses": [
+        "FlowController"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "FlowController": {
+      "uri": "https://saref.etsi.org/saref4bldg/FlowController",
+      "label": "Flow controller",
+      "description": "The distribution flow element FlowController defines the occurrence of elements of a distribution system that are used to regulate flow through a distribution system. Examples include dampers, valves, switches, and relays.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/FlowController"
+      ],
+      "superclasses": [
+        "DistributionFlowDevice"
+      ],
+      "subclasses": [
+        "Damper",
+        "ElectricTimeControl",
+        "FlowMeter",
+        "ProtectiveDevice",
+        "SwitchingDevice",
+        "Valve"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "DuctSilencer": {
+      "uri": "https://saref.etsi.org/saref4bldg/DuctSilencer",
+      "label": "Duct silencer",
+      "description": "A duct silencer is a device that is typically installed inside a duct distribution system for the purpose of reducing the noise levels from air movement, fan noise, etc. in the adjacent space or downstream of the duct silencer device.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/DuctSilencer"
+      ],
+      "superclasses": [
+        "FlowTreatmentDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "FlowTreatmentDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/FlowTreatmentDevice",
+      "label": "Flow treatment device",
+      "description": "The distribution flow element FlowTreatmentDevice defines the occurrence of a device typically used to remove unwanted matter from a fluid, either liquid or gas, and typically participates in a flow distribution system.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/FlowTreatmentDevice"
+      ],
+      "superclasses": [
+        "DistributionFlowDevice"
+      ],
+      "subclasses": [
+        "DuctSilencer",
+        "Filter",
+        "Interceptor"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "ElectricAppliance": {
+      "uri": "https://saref.etsi.org/saref4bldg/ElectricAppliance",
+      "label": "Electric appliance",
+      "description": "An electric appliance is a device intended for consumer usage that is powered by electricity.\r\n\r\nElectric appliances may be fixed in place or may be able to be moved from one space to another. Electric appliances require an electrical supply that may be supplied either by an electrical circuit or provided from a local battery source.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/ElectricAppliance"
+      ],
+      "superclasses": [
+        "FlowTerminal"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "ElectricFlowStorageDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/ElectricFlowStorageDevice",
+      "label": "Electric flow storage device",
+      "description": "An electric flow storage device is a device in which electrical energy is stored and from which energy may be progressively released.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/ElectricFlowStorageDevice"
+      ],
+      "superclasses": [
+        "FlowStorageDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "FlowStorageDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/FlowStorageDevice",
+      "label": "Flow storage device",
+      "description": "The distribution flow element FlowStorageDevice defines the occurrence of a device that participates in a distribution system and is used for temporary storage (such as a tank).",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/FlowStorageDevice"
+      ],
+      "superclasses": [
+        "DistributionFlowDevice"
+      ],
+      "subclasses": [
+        "ElectricFlowStorageDevice",
+        "Tank"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "ElectricGenerator": {
+      "uri": "https://saref.etsi.org/saref4bldg/ElectricGenerator",
+      "label": "Electric generator",
+      "description": "An electric generator is an engine that is a machine for converting mechanical energy into electrical energy.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/ElectricGenerator"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "ElectricMotor": {
+      "uri": "https://saref.etsi.org/saref4bldg/ElectricMotor",
+      "label": "Electric motor",
+      "description": "An electric motor is an engine that is a machine for converting electrical energy into mechanical energy.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/ElectricMotor"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "ElectricTimeControl": {
+      "uri": "https://saref.etsi.org/saref4bldg/ElectricTimeControl",
+      "label": "Electric time control",
+      "description": "An electric time control is a device that applies control to the provision or flow of electrical energy over time.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/ElectricTimeControl"
+      ],
+      "superclasses": [
+        "FlowController"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Engine": {
+      "uri": "https://saref.etsi.org/saref4bldg/Engine",
+      "label": "Engine",
+      "description": "An engine is a device that converts fuel into mechanical energy through combustion.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Engine"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "EvaporativeCooler": {
+      "uri": "https://saref.etsi.org/saref4bldg/EvaporativeCooler",
+      "label": "Evaporative cooler",
+      "description": "An evaporative cooler is a device that cools air by saturating it with water vapor.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/EvaporativeCooler"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Evaporator": {
+      "uri": "https://saref.etsi.org/saref4bldg/Evaporator",
+      "label": "Evaporator",
+      "description": "An evaporator is a device in which a liquid refrigerent is vaporized and absorbs heat from the surrounding fluid.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Evaporator"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Fan": {
+      "uri": "https://saref.etsi.org/saref4bldg/Fan",
+      "label": "Fan",
+      "description": "A fan is a device which imparts mechanical work on a gas. A typical usage of a fan is to induce airflow in a building services air distribution system.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Fan"
+      ],
+      "superclasses": [
+        "FlowMovingDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Filter": {
+      "uri": "https://saref.etsi.org/saref4bldg/Filter",
+      "label": "Filter",
+      "description": "A filter is an apparatus used to remove particulate or gaseous matter from fluids and gases.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Filter"
+      ],
+      "superclasses": [
+        "FlowTreatmentDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "FireSuppressionTerminal": {
+      "uri": "https://saref.etsi.org/saref4bldg/FireSuppressionTerminal",
+      "label": "Fire suppression terminal",
+      "description": "A fire suppression terminal has the purpose of delivering a fluid (gas or liquid) that will suppress a fire.\r\n\r\nA fire suppression terminal provides for all forms of sprinkler, spreader and other form of terminal that is connected to a pipework system and intended to act in the role of suppressing a fire.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/FireSuppressionTerminal"
+      ],
+      "superclasses": [
+        "FlowTerminal"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "FlowInstrument": {
+      "uri": "https://saref.etsi.org/saref4bldg/FlowInstrument",
+      "label": "Flow instrument",
+      "description": "A flow instrument reads and displays the value of a particular property of a system at a point, or displays the difference in the value of a property between two points.\r\n\r\nInstrumentation is typically for the purpose of determining the value of the property at a point in time. It is not the purpose of an instrument to record or integrate the values over time (although they may be connected to recording devices that do perform such a function). This entity provides for all forms of mechanical flow instrument (thermometers, pressure gauges etc.) and electrical flow instruments (ammeters, voltmeters etc.)",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/FlowInstrument"
+      ],
+      "superclasses": [
+        "DistributionControlDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "FlowMeter": {
+      "uri": "https://saref.etsi.org/saref4bldg/FlowMeter",
+      "label": "Flow meter",
+      "description": "A flow meter is a device that is used to measure the flow rate in a system.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/FlowMeter"
+      ],
+      "superclasses": [
+        "FlowController"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "HeatExchanger": {
+      "uri": "https://saref.etsi.org/saref4bldg/HeatExchanger",
+      "label": "Heat exchanger",
+      "description": "A heat exchanger is a device used to provide heat transfer between non-mixing media such as plate and shell and tube heat exchangers. HeatExchanger is commonly used on water-side distribution systems to recover energy from a liquid to another liquid (typically water-based), whereas AirToAirHeatRecovery is commonly used on air-side distribution systems to recover energy from a gas to a gas (usually air).",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/HeatExchanger"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Humidifier": {
+      "uri": "https://saref.etsi.org/saref4bldg/Humidifier",
+      "label": "Humidifier",
+      "description": "A humidifier is a device that adds moisture into the air.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Humidifier"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Interceptor": {
+      "uri": "https://saref.etsi.org/saref4bldg/Interceptor",
+      "label": "Interceptor",
+      "description": "An interceptor is a device designed and installed in order to separate and retain deleterious, hazardous or undesirable matter while permitting normal sewage or liquids to discharge into a collection system by gravity.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Interceptor"
+      ],
+      "superclasses": [
+        "FlowTreatmentDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Lamp": {
+      "uri": "https://saref.etsi.org/saref4bldg/Lamp",
+      "label": "Lamp",
+      "description": "A lamp is an artificial light source such as a light bulb or tube.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Lamp"
+      ],
+      "superclasses": [
+        "FlowTerminal"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "MedicalDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/MedicalDevice",
+      "label": "Medical device",
+      "description": "A medical device is attached to a medical piping system and operates upon medical gases to perform a specific function. Medical gases include medical air, medical vacuum, oxygen, carbon dioxide, nitrogen, and nitrous oxide.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/MedicalDevice"
+      ],
+      "superclasses": [
+        "FlowTerminal"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Outlet": {
+      "uri": "https://saref.etsi.org/saref4bldg/Outlet",
+      "label": "Outlet",
+      "description": "An outlet is a device installed at a point to receive one or more inserted plugs for electrical power or communications.\r\n\r\nPower outlets are commonly connected within a junction box; data outlets may be directly connected to a wall. For power outlets sharing the same circuit within a junction box, the ports should indicate the logical wiring relationship to the enclosing junction box, even though they may be physically connected to a cable going to another outlet, switch, or fixture.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Outlet"
+      ],
+      "superclasses": [
+        "FlowTerminal"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "n77928931364f451bb5cd0ca3aa25c844b213": {
+      "uri": "n77928931364f451bb5cd0ca3aa25c844b213",
+      "label": null,
+      "description": null,
+      "sources": [
+        "n77928931364f451bb5cd0ca3aa25c844b213"
+      ],
+      "superclasses": [],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "ProtectiveDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/ProtectiveDevice",
+      "label": "Protective device",
+      "description": "A protective device breaks an electrical circuit when a stated electric current that passes through it is exceeded.\r\n\r\nA protective device provides protection against electrical current only (not as a general protective device). It may be used to represent the complete set of elements including both the tripping unit and the breaking unit that provide the protection. This may be particularly useful at earlier stages of design where the approach to breaking the electrical supply may be determined but the method of tripping may not. Alternatively, this entity may be used to specifically represent the breaking unit alone (in which case the tripping unit will also be specifically identified). This entity is specific to dedicated protective devices and excludes electrical outlets that may have circuit protection.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/ProtectiveDevice"
+      ],
+      "superclasses": [
+        "FlowController"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "ProtectiveDeviceTrippingUnit": {
+      "uri": "https://saref.etsi.org/saref4bldg/ProtectiveDeviceTrippingUnit",
+      "label": "Protective device tripping unit",
+      "description": "A protective device tripping unit breaks an electrical circuit at a separate breaking unit when a stated electric current that passes through the unit is exceeded.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/ProtectiveDeviceTrippingUnit"
+      ],
+      "superclasses": [
+        "DistributionControlDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Pump": {
+      "uri": "https://saref.etsi.org/saref4bldg/Pump",
+      "label": "Pump",
+      "description": "A pump is a device which imparts mechanical work on fluids or slurries to move them through a channel or pipeline. A typical use of a pump is to circulate chilled water or heating hot water in a building services distribution system.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Pump"
+      ],
+      "superclasses": [
+        "FlowMovingDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "SanitaryTerminal": {
+      "uri": "https://saref.etsi.org/saref4bldg/SanitaryTerminal",
+      "label": "Sanitary terminal",
+      "description": "A sanitary terminal is a fixed appliance or terminal usually supplied with water and used for drinking, cleaning or foul water disposal or that is an item of equipment directly used with such an appliance or terminal.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/SanitaryTerminal"
+      ],
+      "superclasses": [
+        "FlowTerminal"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Sensor": {
+      "uri": "https://saref.etsi.org/saref4bldg/Sensor",
+      "label": "Sensor",
+      "description": "A sensor is a device that measures a physical quantity and converts it into a signal which can be read by an observer or by an instrument.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Sensor",
+        "https://saref.etsi.org/core/Sensor"
+      ],
+      "superclasses": [
+        "DistributionControlDevice",
+        "Sensor"
+      ],
+      "subclasses": [
+        "Sensor"
+      ],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "ShadingDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/ShadingDevice",
+      "label": "Shading device",
+      "description": "Shading devices are purpose built devices to protect from the sunlight, from natural light, or screening them from view. Shading devices can form part of the facade or can be mounted inside the building, they can be fixed or operable.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/ShadingDevice"
+      ],
+      "superclasses": [
+        "BuildingDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "SolarDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/SolarDevice",
+      "label": "Solar device",
+      "description": "A solar device converts solar radiation into other energy such as electric current or thermal energy.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/SolarDevice"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "SpaceHeater": {
+      "uri": "https://saref.etsi.org/saref4bldg/SpaceHeater",
+      "label": "Space heater",
+      "description": "Space heaters utilize a combination of radiation and/or natural convection using a heating source such as electricity, steam or hot water to heat a limited space or area. Examples of space heaters include radiators, convectors, baseboard and finned-tube heaters.\r\n\r\nUnitaryEquipment should be used for packaged units supporting a combination of heating, cooling, and/or dehumidification; Coil should be used for coil-based floor heating.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/SpaceHeater"
+      ],
+      "superclasses": [
+        "FlowTerminal"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "SwitchingDevice": {
+      "uri": "https://saref.etsi.org/saref4bldg/SwitchingDevice",
+      "label": "Switching device",
+      "description": "A switch is used in a cable distribution system (electrical circuit) to control or modulate the flow of electricity.\r\n\r\nSwitches include those used for electrical power, communications, audio-visual, or other distribution system types as determined by the available ports.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/SwitchingDevice"
+      ],
+      "superclasses": [
+        "FlowController"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Tank": {
+      "uri": "https://saref.etsi.org/saref4bldg/Tank",
+      "label": "Tank",
+      "description": "A tank is a vessel or container in which a fluid or gas is stored for later use.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Tank"
+      ],
+      "superclasses": [
+        "FlowStorageDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Transformer": {
+      "uri": "https://saref.etsi.org/saref4bldg/Transformer",
+      "label": "Transformer",
+      "description": "A transformer is an inductive stationary device that transfers electrical energy from one circuit to another.\r\n\r\nTransformer is used to transform electric power; conversion of electric signals for other purposes is handled at other entities: Controller converts arbitrary signals, AudioVisualAppliance converts signals for audio or video streams, and CommunicationsAppliance converts signals for data or other communications usage.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Transformer"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "TransportElement": {
+      "uri": "https://saref.etsi.org/saref4bldg/TransportElement",
+      "label": "Transport element",
+      "description": "A transport element is a generalization of all transport related objects that move people, animals or goods within a building or building complex. The TransportElement defines the occurrence of a transport element. ",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/TransportElement"
+      ],
+      "superclasses": [
+        "Device"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "TubeBundle": {
+      "uri": "https://saref.etsi.org/saref4bldg/TubeBundle",
+      "label": "Tube bundle",
+      "description": "A tube bundle is a device consisting of tubes and bundles of tubes used for heat transfer and contained typically within other energy conversion devices, such as a chiller or coil.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/TubeBundle"
+      ],
+      "superclasses": [
+        "EnergyConversionDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "UnitaryControlElement": {
+      "uri": "https://saref.etsi.org/saref4bldg/UnitaryControlElement",
+      "label": "Unitary control element",
+      "description": "A unitary control element combines a number of control components into a single product, such as a thermostat or humidistat.\r\n\r\nA unitary control element provides a housing for an aggregation of control or electrical distribution elements that, in combination, perform a singular (unitary) purpose. Each item in the aggregation may have its own geometric representation and location.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/UnitaryControlElement"
+      ],
+      "superclasses": [
+        "DistributionControlDevice"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Valve": {
+      "uri": "https://saref.etsi.org/saref4bldg/Valve",
+      "label": "Valve",
+      "description": "A valve is used in a building services piping distribution system to control or modulate the flow of the fluid.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/Valve"
+      ],
+      "superclasses": [
+        "FlowController"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "VibrationIsolator": {
+      "uri": "https://saref.etsi.org/saref4bldg/VibrationIsolator",
+      "label": "Vibration isolator",
+      "description": "A vibration isolator is a device used to minimize the effects of vibration transmissibility in a building.",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/VibrationIsolator"
+      ],
+      "superclasses": [
+        "Device"
+      ],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Measurement": {
+      "uri": "https://saref.etsi.org/core/Measurement",
+      "label": "Measurement",
+      "description": "Represents the measured value made over a property. It is also linked to the unit of measure in which the value is expressed and the timestamp of the measurement.",
+      "sources": [
+        "https://saref.etsi.org/core/Measurement"
+      ],
+      "superclasses": [],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "Property": {
+      "uri": "https://saref.etsi.org/core/Property",
+      "label": "Property",
+      "description": "An aspect of an entity that can be observable by a sensor.",
+      "sources": [
+        "https://saref.etsi.org/core/Property"
+      ],
+      "superclasses": [],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    },
+    "UnitOfMeasure": {
+      "uri": "https://saref.etsi.org/core/UnitOfMeasure",
+      "label": "Unit of measure",
+      "description": "The unit of measure is a standard for measurement of a quantity, such as a Property. For example,  Power is a property and Watt is a unit of power that represents a definite predetermined power: when we say 10 Watt, we actually mean 10 times the definite predetermined power called \"watt\". Our definition is based on the definition of unit of measure in the Ontology of units of Measure (OM). We propose here a list of some units of measure that are relevant for the purpose of the Smart Appliances ontology, but this list can be extended.",
+      "sources": [
+        "https://saref.etsi.org/core/UnitOfMeasure"
+      ],
+      "superclasses": [],
+      "subclasses": [],
+      "equivalent_classes": [],
+      "properties": [],
+      "in_range_of": []
+    }
+  },
+  "properties": {
+    "location": {
+      "uri": "http://www.w3.org/2003/01/geo/wgs84_pos#location",
+      "label": "location",
+      "description": "The relation between something and the point,  or other geometrical thing in space, where it is.  For example, the realtionship between a radio tower and a Point with a given lat and long. Or a relationship between a park and its outline as a closed arc of points, or a road and its location as a arc (a sequence of points). Clearly in practice there will be limit to the accuracy of any such statement, but one would expect an accuracy appropriate for the size of the object and uses such as mapping .",
+      "type": "ObjectProperty",
+      "sources": [
+        "http://www.w3.org/2003/01/geo/wgs84_pos#location"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "airFlowRateMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/airFlowRateMax",
+      "label": "air flow rate range max",
+      "description": "Maximum allowable air flow rate. Usually measured in m3/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/airFlowRateMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "airFlowRateMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/airFlowRateMin",
+      "label": "air flow rate range min",
+      "description": "Minimum allowable air flow rate. Usually measured in m3/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/airFlowRateMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "ambientDesignDryBulbTemperature": {
+      "uri": "https://saref.etsi.org/saref4bldg/ambientDesignDryBulbTemperature",
+      "label": "ambient design dry bulb temperature",
+      "description": "Ambient design dry bulb temperature used for selecting the cooling tower. Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/ambientDesignDryBulbTemperature"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "ambientDesignWetBulbTemperature": {
+      "uri": "https://saref.etsi.org/saref4bldg/ambientDesignWetBulbTemperature",
+      "label": "ambient design wet bulb temperature",
+      "description": "Ambient design wet bulb temperature used for selecting the cooling tower. Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/ambientDesignWetBulbTemperature"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "apparentPowerMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/apparentPowerMax",
+      "label": "maximum apparent power",
+      "description": "Maximum apparent power/capacity in VA (volt ampere). Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/apparentPowerMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "audioVolume": {
+      "uri": "https://saref.etsi.org/saref4bldg/audioVolume",
+      "label": "audio volume",
+      "description": "Indicates discrete audio volume levels and corresponding sound power offsets, if applicable. Missing values may be interpolated. Measured in watts.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/audioVolume"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "basinReserveVolume": {
+      "uri": "https://saref.etsi.org/saref4bldg/basinReserveVolume",
+      "label": "basin reserve volume",
+      "description": "Volume between operating and overflow levels in cooling tower basin. Usually measured in cubic metre (m3).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/basinReserveVolume"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "bladeThickness": {
+      "uri": "https://saref.etsi.org/saref4bldg/bladeThickness",
+      "label": "blade thickness",
+      "description": "The thickness of the damper blade. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/bladeThickness"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "bodyMass": {
+      "uri": "https://saref.etsi.org/saref4bldg/bodyMass",
+      "label": "body mass",
+      "description": "Overall body mass of the heater. Usually measured in kilograms (kg) or grams (g).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/bodyMass"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "capacityWeight": {
+      "uri": "https://saref.etsi.org/saref4bldg/capacityWeight",
+      "label": "capacity weight",
+      "description": "Capacity of the transport element measured by weight. Usually measured in kilograms (kg) or grams (g).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/capacityWeight"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "closeOffRating": {
+      "uri": "https://saref.etsi.org/saref4bldg/closeOffRating",
+      "label": "close off rating",
+      "description": "Close off rating. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/closeOffRating"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "coilLength": {
+      "uri": "https://saref.etsi.org/saref4bldg/coilLength",
+      "label": "coil length",
+      "description": "Length of coil. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/coilLength"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "coilWidth": {
+      "uri": "https://saref.etsi.org/saref4bldg/coilWidth",
+      "label": "coil width",
+      "description": "Width of coil. Usually measured in millimeters (mm",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/coilWidth"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "colorTemperature": {
+      "uri": "https://saref.etsi.org/saref4bldg/colorTemperature",
+      "label": "color temperature",
+      "description": "The color temperature of any source of radiation is defined as the temperature (in Kelvin) of a black-body or Planckian radiator whose radiation has the same chromaticity as the source of radiation. Often the values are only approximate color temperatures as the black-body radiator cannot emit radiation of every chromaticity value. The color temperatures of the commonest artificial light sources range from less than 3000K (warm white) to 4000K (intermediate) and over 5000K (daylight). Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/colorTemperature"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "compressorSpeed": {
+      "uri": "https://saref.etsi.org/saref4bldg/compressorSpeed",
+      "label": "compressor speed",
+      "description": "Compressor speed. Usually measured in cycles/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/compressorSpeed"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "connectionSize": {
+      "uri": "https://saref.etsi.org/saref4bldg/connectionSize",
+      "label": "connection size",
+      "description": "The connection size of the to and from the pump. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/connectionSize"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "contains": {
+      "uri": "https://saref.etsi.org/saref4bldg/contains",
+      "label": "contains",
+      "description": "A relation between a physical space and the objects located in such space.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/contains"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": [
+        "transitive"
+      ]
+    },
+    "contributedLuminousFlux": {
+      "uri": "https://saref.etsi.org/saref4bldg/contributedLuminousFlux",
+      "label": "contributed luminous flux",
+      "description": "Luminous flux is a photometric measure of radiant flux, i.e. the volume of light emitted from a light source. Luminous flux is measured either for the interior as a whole or for a part of the interior (partial luminous flux for a solid angle). All other photometric parameters are derivatives of luminous flux. Luminous flux is measured in lumens (lm). The luminous flux is given as a nominal value for each lamp. Usually measured in Lumen (lm, Candela Steradian).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/contributedLuminousFlux"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "coverLength": {
+      "uri": "https://saref.etsi.org/saref4bldg/coverLength",
+      "label": "cover length",
+      "description": "The length measured along the x-axis in the local coordinate system or the radius (in the case of a circular shape in plan) of the cover of the oil interceptor. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/coverLength"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "coverWidth": {
+      "uri": "https://saref.etsi.org/saref4bldg/coverWidth",
+      "label": "cover width",
+      "description": "The length measured along the x-axis in the local coordinate system of the cover of the oil interceptor. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/coverWidth"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "effectiveCapacity": {
+      "uri": "https://saref.etsi.org/saref4bldg/effectiveCapacity",
+      "label": "effective capacity",
+      "description": "The total effective or actual volumetric capacity of the tank. Usually measured in cubic metre (m3).B3",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/effectiveCapacity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "electricGeneratorEfficiency": {
+      "uri": "https://saref.etsi.org/saref4bldg/electricGeneratorEfficiency",
+      "label": "electric generator efficiency",
+      "description": "The ratio of output capacity to intake capacity.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/electricGeneratorEfficiency"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "electricMotorEfficiency": {
+      "uri": "https://saref.etsi.org/saref4bldg/electricMotorEfficiency",
+      "label": "electric motor efficiency",
+      "description": "The ratio of output capacity to intake capacity.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/electricMotorEfficiency"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "externalSurfaceArea": {
+      "uri": "https://saref.etsi.org/saref4bldg/externalSurfaceArea",
+      "label": "external surface area",
+      "description": "External surface area (both primary and secondary area). Usually measured in square metre (m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/externalSurfaceArea"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "faceArea": {
+      "uri": "https://saref.etsi.org/saref4bldg/faceArea",
+      "label": "face area",
+      "description": "Face area open to the airstream. Usually measured in square metre (m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/faceArea"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "finalResistance": {
+      "uri": "https://saref.etsi.org/saref4bldg/finalResistance",
+      "label": "final resistance",
+      "description": "Filter fluid resistance when replacement is required (i.e., Pressure drop at the maximum air flowrate across the filter when the filter needs replacement per ASHRAE Standard 52.1). Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/finalResistance"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "firstCurvatureRadius": {
+      "uri": "https://saref.etsi.org/saref4bldg/firstCurvatureRadius",
+      "label": "first curvature radius",
+      "description": "FirstCurvatureRadius should be defined as the base or left side radius of curvature value. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/firstCurvatureRadius"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "flowCoefficient": {
+      "uri": "https://saref.etsi.org/saref4bldg/flowCoefficient",
+      "label": "flow coefficient",
+      "description": "Flow coefficient (the quantity of fluid that passes through a fully open valve at unit pressure drop), typically expressed as the Kv or Cv value for the valve.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/flowCoefficient"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "flowResistanceMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/flowResistanceMax",
+      "label": "flow resistance range",
+      "description": "Allowable range of frictional resistance against which the fluid is being pumped. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/flowResistanceMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "flowResistanceMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/flowResistanceMin",
+      "label": "flow resistance range",
+      "description": "Allowable range of frictional resistance against which the fluid is being pumped. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/flowResistanceMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "fluidFlowRateMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/fluidFlowRateMax",
+      "label": "fluid flow rate range",
+      "description": "Possible range of fluid flowrate that can be delivered. Usually measured in m3/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/fluidFlowRateMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "fluidFlowRateMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/fluidFlowRateMin",
+      "label": "fluid flow rate range",
+      "description": "Possible range of fluid flowrate that can be delivered. Usually measured in m3/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/fluidFlowRateMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "foulingFactor": {
+      "uri": "https://saref.etsi.org/saref4bldg/foulingFactor",
+      "label": "fouling factor",
+      "description": "Fouling factor of the tubes in the tube bundle. Usually measured in m2 Kelvin/Watt.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/foulingFactor"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "frameDepth": {
+      "uri": "https://saref.etsi.org/saref4bldg/frameDepth",
+      "label": "frame depth",
+      "description": "The length (or depth) of the damper frame. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/frameDepth"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "frameThickness": {
+      "uri": "https://saref.etsi.org/saref4bldg/frameThickness",
+      "label": "frame thickness",
+      "description": "The thickness of the damper frame material. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/frameThickness"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "hasSpace": {
+      "uri": "https://saref.etsi.org/saref4bldg/hasSpace",
+      "label": "has space",
+      "description": "Relation between a building or a building space and the spaces it can be divided into.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/hasSpace"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": [
+        "transitive"
+      ]
+    },
+    "heatExchangeArea": {
+      "uri": "https://saref.etsi.org/saref4bldg/heatExchangeArea",
+      "label": "heat exchange area",
+      "description": "Heat exchange area. Usually measured in square metre (m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/heatExchangeArea"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "heatTransferSurfaceArea": {
+      "uri": "https://saref.etsi.org/saref4bldg/heatTransferSurfaceArea",
+      "label": "heat transfer surface area",
+      "description": "Total heat transfer area of the vessel. Usually measured in square metre (m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/heatTransferSurfaceArea"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "height": {
+      "uri": "https://saref.etsi.org/saref4bldg/height",
+      "label": "height",
+      "description": "Height of the vibration isolator before tha application of load. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/height"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "horizontalSpacing": {
+      "uri": "https://saref.etsi.org/saref4bldg/horizontalSpacing",
+      "label": "horizontal spacing",
+      "description": "Horizontal spacing between tubes in the tube bundle. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/horizontalSpacing"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "hydraulicDiameter": {
+      "uri": "https://saref.etsi.org/saref4bldg/hydraulicDiameter",
+      "label": "hydraulic diameter",
+      "description": "Hydraulic diameter. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/hydraulicDiameter"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "idealCapacity": {
+      "uri": "https://saref.etsi.org/saref4bldg/idealCapacity",
+      "label": "ideal capacity",
+      "description": "Compressor capacity under ideal conditions. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/idealCapacity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "idealShaftPower": {
+      "uri": "https://saref.etsi.org/saref4bldg/idealShaftPower",
+      "label": "ideal shaft power",
+      "description": "Compressor shaft power under ideal conditions. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/idealShaftPower"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "imaginaryImpedanceRatio": {
+      "uri": "https://saref.etsi.org/saref4bldg/imaginaryImpedanceRatio",
+      "label": "imaginary impedance ratio",
+      "description": "The ratio between the imaginary part of the zero sequence impedance and the imaginary part of the positive impedance (i.e. imaginary part of the short-circuit voltage) of the transformer. Used for three-phase transformer which includes a N-conductor.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/imaginaryImpedanceRatio"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "impellerDiameter": {
+      "uri": "https://saref.etsi.org/saref4bldg/impellerDiameter",
+      "label": "impeller diameter",
+      "description": "Diameter of compressor impeller - used to scale performance of geometrically similar compressors. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/impellerDiameter"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "inLineRowSpacing": {
+      "uri": "https://saref.etsi.org/saref4bldg/inLineRowSpacing",
+      "label": "in line row spacing",
+      "description": "In-line tube row spacing. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/inLineRowSpacing"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "initialResistance": {
+      "uri": "https://saref.etsi.org/saref4bldg/initialResistance",
+      "label": "initial resistance",
+      "description": "Initial new filter fluid resistance (i.e., pressure drop at the maximum air flowrate across the filter when the filter is new per ASHRAE Standard 52.1). Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/initialResistance"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "inletConnectionSize": {
+      "uri": "https://saref.etsi.org/saref4bldg/inletConnectionSize",
+      "label": "inlet connection size",
+      "description": "Size of the inlet connection. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/inletConnectionSize"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "insideDiameter": {
+      "uri": "https://saref.etsi.org/saref4bldg/insideDiameter",
+      "label": "inside diameter",
+      "description": "Actual inner diameter of the tube in the tube bundle. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/insideDiameter"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "internalRefrigerantVolume": {
+      "uri": "https://saref.etsi.org/saref4bldg/internalRefrigerantVolume",
+      "label": "internal refrigerant volume",
+      "description": "Internal volume of evaporator (refrigerant side). Usually measured in cubic metre (m3).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/internalRefrigerantVolume"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "internalSurfaceArea": {
+      "uri": "https://saref.etsi.org/saref4bldg/internalSurfaceArea",
+      "label": "internal surface area",
+      "description": "Internal surface area. Usually measured in square metre (m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/internalSurfaceArea"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "internalWaterVolume": {
+      "uri": "https://saref.etsi.org/saref4bldg/internalWaterVolume",
+      "label": "internal water volume",
+      "description": "Internal volume of evaporator (water side). Usually measured in cubic metre (m3).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/internalWaterVolume"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "isContainedIn": {
+      "uri": "https://saref.etsi.org/saref4bldg/isContainedIn",
+      "label": "is contained in",
+      "description": "A relation between an object and the physical space in which it is located.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/isContainedIn"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": [
+        "transitive"
+      ]
+    },
+    "isSpaceOf": {
+      "uri": "https://saref.etsi.org/saref4bldg/isSpaceOf",
+      "label": "isSpaceOf",
+      "description": "Relation between a building space and the building or building space it belongs to.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/isSpaceOf"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": [
+        "transitive"
+      ]
+    },
+    "isolatorCompressibility": {
+      "uri": "https://saref.etsi.org/saref4bldg/isolatorCompressibility",
+      "label": "isolator compressibility",
+      "description": "The compressibility of the vibration isolator.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/isolatorCompressibility"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "isolatorStaticDeflection": {
+      "uri": "https://saref.etsi.org/saref4bldg/isolatorStaticDeflection",
+      "label": "isolator static deflection",
+      "description": "Static deflection of the vibration isolator. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/isolatorStaticDeflection"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "lampMaintenanceFactor": {
+      "uri": "https://saref.etsi.org/saref4bldg/lampMaintenanceFactor",
+      "label": "lamp maintenance factor",
+      "description": "Non recoverable losses of luminous flux of a lamp due to lamp depreciation i.e. the decreasing of light output of a luminaire due to aging and dirt.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/lampMaintenanceFactor"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "leakageFullyClosed": {
+      "uri": "https://saref.etsi.org/saref4bldg/leakageFullyClosed",
+      "label": "leakage fully closed",
+      "description": "Leakage when fully closed. Usually measured in m3/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/leakageFullyClosed"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "length": {
+      "uri": "https://saref.etsi.org/saref4bldg/length",
+      "label": "length",
+      "description": "The finished length of the device. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/length"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "liftElevationDifference": {
+      "uri": "https://saref.etsi.org/saref4bldg/liftElevationDifference",
+      "label": "lift elevation difference",
+      "description": "Elevation difference between cooling tower sump and the top of the tower. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/liftElevationDifference"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "lightEmitterNominalPower": {
+      "uri": "https://saref.etsi.org/saref4bldg/lightEmitterNominalPower",
+      "label": "light emitter nominal power",
+      "description": "Light emitter nominal power. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/lightEmitterNominalPower"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "limitingTerminalSize": {
+      "uri": "https://saref.etsi.org/saref4bldg/limitingTerminalSize",
+      "label": "limiting terminal size",
+      "description": "The maximum terminal size capacity of the device. Usually measured in square metre (m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/limitingTerminalSize"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "lockedRotorCurrent": {
+      "uri": "https://saref.etsi.org/saref4bldg/lockedRotorCurrent",
+      "label": "locked rotor current",
+      "description": "Input current when a motor armature is energized but not rotating. Usually measured in Ampere (A).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/lockedRotorCurrent"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "netPositiveSuctionHead": {
+      "uri": "https://saref.etsi.org/saref4bldg/netPositiveSuctionHead",
+      "label": "net positive suction head",
+      "description": "Minimum liquid pressure at the pump inlet to prevent cavitation. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/netPositiveSuctionHead"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalAirFlowRate": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalAirFlowRate",
+      "label": "nominal air flow rate",
+      "description": "Nominal rate of air flow. Usually measured in m3/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalAirFlowRate"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalBodyDepth": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalBodyDepth",
+      "label": "nominal body depth",
+      "description": "Nominal or quoted =length, measured along the z-axis of the local coordinate system of the object, of the body of the object. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalBodyDepth"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalBodyLength": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalBodyLength",
+      "label": "nominal body length",
+      "description": "Nominal or quoted length, measured along the x-axis of the local coordinate system of the object, of the body of the object. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalBodyLength"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalBodyWidth": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalBodyWidth",
+      "label": "nominal body width",
+      "description": "Nominal or quoted length, measured along the y-axis of the local coordinate system of the object, of the body of the object. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalBodyWidth"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalCapacity": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalCapacity",
+      "label": "nominal capacity",
+      "description": "Nominal capacity. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalCapacity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalCondensingTemperature": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalCondensingTemperature",
+      "label": "nominal condensing temperature",
+      "description": "Chiller condensing temperature. Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalCondensingTemperature"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalCoolingCapacity": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalCoolingCapacity",
+      "label": "nominal cooling capacity",
+      "description": "Nominal cooling capacity. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalCoolingCapacity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalDepth": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalDepth",
+      "label": "nominal depth",
+      "description": "The nominal depth of the tank. Note: Not required for a horizontal cylindrical tank. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalDepth"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalDiameter": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalDiameter",
+      "label": "nominal diameter",
+      "description": "Nominal diameter or width of the tubes in the tube bundle. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalDiameter"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalEfficiency": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalEfficiency",
+      "label": "nominal efficiency",
+      "description": "Nominal chiller efficiency under nominal conditions. ",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalEfficiency"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalEnergyConsumption": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalEnergyConsumption",
+      "label": "nominal energy consumption",
+      "description": "Nominal fuel consumption rate required to produce the total boiler heat output. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalEnergyConsumption"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalEvaporatingTemmperature": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalEvaporatingTemmperature",
+      "label": "nominal evaporating temmperature",
+      "description": "Chiller evaporating temperature.Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalEvaporatingTemmperature"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalFilterFaceVelocity": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalFilterFaceVelocity",
+      "label": "nominal filter face velocity",
+      "description": "Filter face velocity. Usually measured in m/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalFilterFaceVelocity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalFlowRate": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalFlowRate",
+      "label": "nominal flow rate",
+      "description": "Nominal fluid flow rate through the filter. Usually measured in m3/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalFlowRate"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalFrequency": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalFrequency",
+      "label": "nominal frequency",
+      "description": "The nominal frequency of the supply. Usually measured in cycles/s or Hertz (Hz).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalFrequency"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalHeatRejectionRate": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalHeatRejectionRate",
+      "label": "nominal heat rejection rate",
+      "description": "Sum of the refrigeration effect and the heat equivalent of the power input to the compressor. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalHeatRejectionRate"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalHeatTransferArea": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalHeatTransferArea",
+      "label": "nominal heat transfer area",
+      "description": "Nominal heat transfer surface area associated with nominal overall heat transfer coefficient. Usually measured in square metre (m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalHeatTransferArea"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalHeatTransferCoefficient": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalHeatTransferCoefficient",
+      "label": "nominal heat transfer coefficient",
+      "description": "Nominal overall heat transfer coefficient associated with nominal heat transfer area. Usually measured in Watts/m2 Kelvin.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalHeatTransferCoefficient"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalHeatingCapacity": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalHeatingCapacity",
+      "label": "nominal heating capacity",
+      "description": "Nominal heating capacity. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalHeatingCapacity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalLatentCapacity": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalLatentCapacity",
+      "label": "nominal latent capacity",
+      "description": "Nominal latent capacity. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalLatentCapacity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalLengthOrDiameter": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalLengthOrDiameter",
+      "label": "nominal length or diameter",
+      "description": "The nominal length or, in the case of a vertical cylindrical tank, the nominal diameter of the tank. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalLengthOrDiameter"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalMediaSurfaceVelocity": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalMediaSurfaceVelocity",
+      "label": "nominal media surface velocity",
+      "description": "Average fluid velocity at the media surface. Usually measured in m/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalMediaSurfaceVelocity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalMoistureGain": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalMoistureGain",
+      "label": "nominal moisture gain",
+      "description": "Nominal rate of water vapor added into the airstream. Usually measured in kg/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalMoistureGain"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalPartLoadRatio": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalPartLoadRatio",
+      "label": "nominal part load ratio",
+      "description": "Allowable part load ratio range.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalPartLoadRatio"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalParticleGeometricMeanDiameter": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalParticleGeometricMeanDiameter",
+      "label": "nominal particle geometric mean diameter",
+      "description": "Particle geometric mean diameter associated with nominal efficiency. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalParticleGeometricMeanDiameter"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalParticleGeometricStandardDeviation": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalParticleGeometricStandardDeviation",
+      "label": "nominal particle geometric standard deviation",
+      "description": "Particle geometric standard deviation associated with nominal efficiency. ",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalParticleGeometricStandardDeviation"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalPowerConsumption": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalPowerConsumption",
+      "label": "nominal power consumption",
+      "description": "Nominal total power consumption. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalPowerConsumption"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalPowerRate": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalPowerRate",
+      "label": "nominal power rate",
+      "description": "Nominal fan power rate.Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalPowerRate"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalPressureDrop": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalPressureDrop",
+      "label": "nominal pressure drop",
+      "description": "Total pressure drop across the filter. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalPressureDrop"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalReturnWaterTemperatureCooling": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalReturnWaterTemperatureCooling",
+      "label": "nominal return water temperature cooling",
+      "description": "Nominal return water temperature (refers to nominal cooling capacity). Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalReturnWaterTemperatureCooling"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalReturnWaterTemperatureHeating": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalReturnWaterTemperatureHeating",
+      "label": "nominal return water temperature heating",
+      "description": "Nominal return water temperature (refers to nominal heating capacity). Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalReturnWaterTemperatureHeating"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalRotationSpeed": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalRotationSpeed",
+      "label": "nominal rotation speed",
+      "description": "Nominal fan wheel speed. Usually measured in cycles/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalRotationSpeed"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalSensibleCapacity": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalSensibleCapacity",
+      "label": "nominal sensible capacity",
+      "description": "Nominal sensible capacity. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalSensibleCapacity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalSorroundingHumidityCooling": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalSorroundingHumidityCooling",
+      "label": "nominal sorrounding humidity cooling",
+      "description": "Nominal surrounding humidity (refers to nominal cooling capacity). Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalSorroundingHumidityCooling"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalSorroundingTemperatureCooling": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalSorroundingTemperatureCooling",
+      "label": "nominal sorrounding temperature cooling",
+      "description": "Nominal surrounding temperature (refers to nominal cooling capacity). Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalSorroundingTemperatureCooling"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalSorroundingTemperatureHeating": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalSorroundingTemperatureHeating",
+      "label": "nominal sorrounding temperature heating",
+      "description": "Nominal surrounding temperature (refers to nominal heating capacity). Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalSorroundingTemperatureHeating"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalStaticPressure": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalStaticPressure",
+      "label": "nominal static pressure",
+      "description": "The static pressure within the air stream that the fan must overcome to insure designed circulation of air. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalStaticPressure"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalSupplyVoltage": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalSupplyVoltage",
+      "label": "nominal supply voltage",
+      "description": "The nominal voltage of the supply. Usually measured in Volts (V, W/A).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalSupplyVoltage"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalSupplyVoltageMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalSupplyVoltageMax",
+      "label": "nominal supply voltage offset",
+      "description": "The maximum and minimum allowed voltage of the supply e.g. boundaries of 380V/440V may be applied for a nominal voltage of 400V.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalSupplyVoltageMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalSupplyVoltageMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalSupplyVoltageMin",
+      "label": "nominal supply voltage offset",
+      "description": "The maximum and minimum allowed voltage of the supply e.g. boundaries of 380V/440V may be applied for a nominal voltage of 400V.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalSupplyVoltageMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalSupplyWaterTemperatureCooling": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalSupplyWaterTemperatureCooling",
+      "label": "nominal supply water temperature cooling",
+      "description": "Nominal supply water temperature (refers to nominal cooling capacity). Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalSupplyWaterTemperatureCooling"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalSupplyWaterTemperatureHeating": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalSupplyWaterTemperatureHeating",
+      "label": "nominal supply water temperature heating",
+      "description": "Nominal supply water temperature (refers to nominal heating capacity). Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalSupplyWaterTemperatureHeating"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalTotalPressure": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalTotalPressure",
+      "label": "nominal total pressure",
+      "description": "Nominal total pressure rise across the fan. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalTotalPressure"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalUa": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalUa",
+      "label": "nominal ua",
+      "description": "Nominal UA value.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalUa"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalVolumetricCapacity": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalVolumetricCapacity",
+      "label": "nominal volumetric capacity",
+      "description": "The total nominal or design volumetric capacity of the tank. Usually measured in cubic metre (m3).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalVolumetricCapacity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalWaterFlowCooling": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalWaterFlowCooling",
+      "label": "nominal water flow cooling",
+      "description": "Nominal water flow (refers to nominal cooling capacity). Usually measured in m3/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalWaterFlowCooling"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalWaterFlowHeating": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalWaterFlowHeating",
+      "label": "nominal water flow heating",
+      "description": "Nominal water flow (refers to nominal heating capacity). Usually measured in m3/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalWaterFlowHeating"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nominalWidthOrDiameter": {
+      "uri": "https://saref.etsi.org/saref4bldg/nominalWidthOrDiameter",
+      "label": "nominal width or diameter",
+      "description": "The nominal width or, in the case of a horizontal cylindrical tank, the nominal diameter of the tank. Note: Not required for a vertical cylindrical tank. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nominalWidthOrDiameter"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "nomminalRotationSpeed": {
+      "uri": "https://saref.etsi.org/saref4bldg/nomminalRotationSpeed",
+      "label": "nomminal rotation speed",
+      "description": "Pump rotational speed under nominal conditions. Usually measured in cycles/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/nomminalRotationSpeed"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "openPressureDrop": {
+      "uri": "https://saref.etsi.org/saref4bldg/openPressureDrop",
+      "label": "open pressure drop",
+      "description": "Total pressure drop across damper. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/openPressureDrop"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "operatingWeight": {
+      "uri": "https://saref.etsi.org/saref4bldg/operatingWeight",
+      "label": "operating weight",
+      "description": "Operating weight of the tank including all of its contents. Usually measured in kilograms (kg) or grams (g).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/operatingWeight"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "operationTemperatureMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/operationTemperatureMax",
+      "label": "operation temperature range",
+      "description": "Allowable operation ambient (air, fluid) temperature range. Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/operationTemperatureMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "operationTemperatureMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/operationTemperatureMin",
+      "label": "operation temperature range",
+      "description": "Allowable operation ambient (air, fluid) temperature range. Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/operationTemperatureMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "operationalRiterial": {
+      "uri": "https://saref.etsi.org/saref4bldg/operationalRiterial",
+      "label": "operational riterial",
+      "description": "Time of operation at maximum operational ambient air temperature. Measured in seconds (s) or days (d) or other units of time.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/operationalRiterial"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "outletConnectionSize": {
+      "uri": "https://saref.etsi.org/saref4bldg/outletConnectionSize",
+      "label": "outlet connection size",
+      "description": "Size of the outlet connection. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/outletConnectionSize"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "outletTemperatureMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/outletTemperatureMax",
+      "label": "outlet temperature range",
+      "description": "Allowable outlet temperature of either the water or the steam. Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/outletTemperatureMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "outletTemperatureMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/outletTemperatureMin",
+      "label": "outlet temperature range",
+      "description": "Allowable outlet temperature of either the water or the steam. Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/outletTemperatureMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "outputCapacity": {
+      "uri": "https://saref.etsi.org/saref4bldg/outputCapacity",
+      "label": "output capacity",
+      "description": "Total nominal heat output as listed by the manufacturer. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/outputCapacity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "outsideDiameter": {
+      "uri": "https://saref.etsi.org/saref4bldg/outsideDiameter",
+      "label": "outside diameter",
+      "description": "Actual outside diameter of the tube in the tube bundle. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/outsideDiameter"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "partLoadRatioMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/partLoadRatioMax",
+      "label": "maximum part load ratio",
+      "description": "Maximum part load ratio as a fraction of nominal capacity.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/partLoadRatioMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "partLoadRatioMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/partLoadRatioMin",
+      "label": "minimum part load ratio",
+      "description": "Minimum part load ratio as a fraction of nominal capacity.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/partLoadRatioMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "powerOutputMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/powerOutputMax",
+      "label": "maximum power output",
+      "description": "The maximum output power rating of the engine. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/powerOutputMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "pressureRating": {
+      "uri": "https://saref.etsi.org/saref4bldg/pressureRating",
+      "label": "pressure rating",
+      "description": "Nominal pressure rating of the boiler as rated by the agency having jurisdiction. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/pressureRating"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "primaryAirFlowRateMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/primaryAirFlowRateMax",
+      "label": "primary air flow rate range",
+      "description": "Maximum primary airflow that can be delivered. Usually measured in m3/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/primaryAirFlowRateMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "primaryAirFlowRateMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/primaryAirFlowRateMin",
+      "label": "primary air flow rate range",
+      "description": "Minimum primary airflow that can be delivered. Usually measured in m3/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/primaryAirFlowRateMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "primaryApparentPower": {
+      "uri": "https://saref.etsi.org/saref4bldg/primaryApparentPower",
+      "label": "primary apparent power",
+      "description": "The power in VA (volt ampere) that has been transformed and that runs into the transformer on the primary side. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/primaryApparentPower"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "primaryCurrent": {
+      "uri": "https://saref.etsi.org/saref4bldg/primaryCurrent",
+      "label": "primary current",
+      "description": "The current that is going to be transformed and that runs into the transformer on the primary side. Usually measured in Ampere (A).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/primaryCurrent"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "primaryFrequency": {
+      "uri": "https://saref.etsi.org/saref4bldg/primaryFrequency",
+      "label": "primary frequency",
+      "description": "The frequency that is going to be transformed and that runs into the transformer on the primary side. Usually measured in cycles/s or Hertz (Hz).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/primaryFrequency"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "primaryVoltage": {
+      "uri": "https://saref.etsi.org/saref4bldg/primaryVoltage",
+      "label": "primary voltage",
+      "description": "The voltage that is going to be transformed and that runs into the transformer on the primary side. Usually measured in Volts (V, W/A).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/primaryVoltage"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "pumpFlowRateMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/pumpFlowRateMax",
+      "label": "pump flow rate range",
+      "description": "Allowable range of volume of fluid being pumped against the resistance specified. Usually measured in kg/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/pumpFlowRateMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "pumpFlowRateMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/pumpFlowRateMin",
+      "label": "pump flow rate range",
+      "description": "Allowable range of volume of fluid being pumped against the resistance specified. Usually measured in kg/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/pumpFlowRateMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "realImpedanceRatio": {
+      "uri": "https://saref.etsi.org/saref4bldg/realImpedanceRatio",
+      "label": "real impedance ratio",
+      "description": "The ratio between the real part of the zero sequence impedance and the real part of the positive impedance (i.e. real part of the short-circuit voltage) of the transformer. Used for three-phase transformer which includes a N-conductor.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/realImpedanceRatio"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "secondCurvatureRadius": {
+      "uri": "https://saref.etsi.org/saref4bldg/secondCurvatureRadius",
+      "label": "second curvature radius",
+      "description": "SecondCurvatureRadius should be defined as the top or right side radius of curvature value. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/secondCurvatureRadius"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "secondaryAirFlowRateMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/secondaryAirFlowRateMax",
+      "label": "secondary air flow rate range",
+      "description": "Maximum secondary airflow that can be delivered. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/secondaryAirFlowRateMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "secondaryAirFlowRateMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/secondaryAirFlowRateMin",
+      "label": "secondary air flow rate range",
+      "description": "Maximum secondary airflow that can be delivered. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/secondaryAirFlowRateMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "secondaryApparentPower": {
+      "uri": "https://saref.etsi.org/saref4bldg/secondaryApparentPower",
+      "label": "secondary apparent power",
+      "description": "The power in VA (volt ampere) that has been transformed and is running out of the transformer on the secondary side. Usually measured in Watts (W, J/s).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/secondaryApparentPower"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "secondaryCurrent": {
+      "uri": "https://saref.etsi.org/saref4bldg/secondaryCurrent",
+      "label": "secondary current",
+      "description": "The current that has been transformed and is running out of the transformer on the secondary side. Usually measured in Ampere (A).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/secondaryCurrent"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "secondaryFrequency": {
+      "uri": "https://saref.etsi.org/saref4bldg/secondaryFrequency",
+      "label": "secondary frequency",
+      "description": "The frequency that has been transformed and is running out of the transformer on the secondary side. Usually measured in cycles/s or Hertz (Hz).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/secondaryFrequency"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "secondaryVoltage": {
+      "uri": "https://saref.etsi.org/saref4bldg/secondaryVoltage",
+      "label": "secondary voltage",
+      "description": "The voltage that has been transformed and is running out of the transformer on the secondary side. Usually measured in Volts (V, W/A).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/secondaryVoltage"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "shortCircuitVoltage": {
+      "uri": "https://saref.etsi.org/saref4bldg/shortCircuitVoltage",
+      "label": "short circuit voltage",
+      "description": "A complex number that specifies the real and imaginary parts of the short-circuit voltage at rated current of a transformer given in %.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/shortCircuitVoltage"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "size": {
+      "uri": "https://saref.etsi.org/saref4bldg/size",
+      "label": "size",
+      "description": "The size of the connection to the valve (or to each connection for faucets, mixing valves, etc.). Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/size"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "solarReflectance": {
+      "uri": "https://saref.etsi.org/saref4bldg/solarReflectance",
+      "label": "solar reflectance",
+      "description": "(Rsol): The ratio of incident solar radiation that is reflected by a shading system (also named _e). Note the following equation Asol + Rsol + Tsol = 1",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/solarReflectance"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "solarTransmittance": {
+      "uri": "https://saref.etsi.org/saref4bldg/solarTransmittance",
+      "label": "solar transmittance",
+      "description": "(Tsol) The ratio of incident solar radiation that directly passes through a shading system (also named _e). Note the following equation Asol + Rsol + Tsol = 1",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/solarTransmittance"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "spectrumMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/spectrumMax",
+      "label": "maximum spectrum",
+      "description": "The spectrum of radiation describes its composition with regard to wavelength. Light, for example, as the portion of electromagnetic radiation that is visible to the human eye, is radiation with wavelengths in the range of approx. 380 to 780 nm (1 nm = 10 m). The corresponding range of colours varies from violet to indigo, blue, green, yellow, orange, and red. These colours form a continuous spectrum, in which the various spectral sectors merge into each other.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/spectrumMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "spectrumMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/spectrumMin",
+      "label": "minimum spectrum",
+      "description": "The spectrum of radiation describes its composition with regard to wavelength. Light, for example, as the portion of electromagnetic radiation that is visible to the human eye, is radiation with wavelengths in the range of approx. 380 to 780 nm (1 nm = 10 m). The corresponding range of colours varies from violet to indigo, blue, green, yellow, orange, and red. These colours form a continuous spectrum, in which the various spectral sectors merge into each other.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/spectrumMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "staggeredRowSpacing": {
+      "uri": "https://saref.etsi.org/saref4bldg/staggeredRowSpacing",
+      "label": "staggered row spacing",
+      "description": "Staggered tube row spacing. Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/staggeredRowSpacing"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "startCurrentFactor": {
+      "uri": "https://saref.etsi.org/saref4bldg/startCurrentFactor",
+      "label": "start current factor",
+      "description": "IEC. Start current factor defines how large the peek starting current will become on the engine. StartCurrentFactor is multiplied to NominalCurrent and we get the start current.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/startCurrentFactor"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "startingTime": {
+      "uri": "https://saref.etsi.org/saref4bldg/startingTime",
+      "label": "starting time",
+      "description": "The time (in s) needed for the motor to reach its rated speed with its driven equipment attached, starting from standstill and at the nominal voltage applied at its terminals.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/startingTime"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "supportedWeightMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/supportedWeightMax",
+      "label": "maximum supported weight",
+      "description": "The maximum weight that can be carried by the vibration isolator. Usually measured in kilograms (kg) or grams (g).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/supportedWeightMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "teTime": {
+      "uri": "https://saref.etsi.org/saref4bldg/teTime",
+      "label": "te time",
+      "description": "The maximum time (in s) at which the motor could run with locked rotor when the motor is used in an EX-environment. The time indicates that a protective device should trip before this time when the starting current of the motor is slowing through the device.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/teTime"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "temperatureRating": {
+      "uri": "https://saref.etsi.org/saref4bldg/temperatureRating",
+      "label": "temperature rating",
+      "description": "Temperature rating. Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/temperatureRating"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "testPressure": {
+      "uri": "https://saref.etsi.org/saref4bldg/testPressure",
+      "label": "test pressure",
+      "description": "The maximum pressure to which the valve has been subjected under test. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/testPressure"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "thermalConductivity": {
+      "uri": "https://saref.etsi.org/saref4bldg/thermalConductivity",
+      "label": "thermal conductivity",
+      "description": "Fouling factor of the tubes in the tube bundle. Usually measured in m2 Kelvin/Watt.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/thermalConductivity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "thermalEfficiency": {
+      "uri": "https://saref.etsi.org/saref4bldg/thermalEfficiency",
+      "label": "thermal efficiency",
+      "description": "Overall Thermal Efficiency is defined as gross energy output of the heat transfer device divided by the energy input.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/thermalEfficiency"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "thermalMassHeatCapacity": {
+      "uri": "https://saref.etsi.org/saref4bldg/thermalMassHeatCapacity",
+      "label": "thermal mass heat capacity",
+      "description": "Product of component mass and specific heat.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/thermalMassHeatCapacity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "thermalTransmittance": {
+      "uri": "https://saref.etsi.org/saref4bldg/thermalTransmittance",
+      "label": "thermal transmittance",
+      "description": "Rate at which energy is transmitted through a body. Usually measured in Watts/m2 Kelvin.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/thermalTransmittance"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "ventilatingPipeSize": {
+      "uri": "https://saref.etsi.org/saref4bldg/ventilatingPipeSize",
+      "label": "ventilating pipe size",
+      "description": "Size of the ventilating pipe(s). Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/ventilatingPipeSize"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "verticalSpacing": {
+      "uri": "https://saref.etsi.org/saref4bldg/verticalSpacing",
+      "label": "vertical spacing",
+      "description": "Vertical spacing between tubes in the tube bundle.Usually measured in millimeters (mm).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/verticalSpacing"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "vibrationTransmissibility": {
+      "uri": "https://saref.etsi.org/saref4bldg/vibrationTransmissibility",
+      "label": "vibration transmissibility",
+      "description": "The vibration transmissibility percentage.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/vibrationTransmissibility"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "visibleLightReflectance": {
+      "uri": "https://saref.etsi.org/saref4bldg/visibleLightReflectance",
+      "label": "visible light reflectance",
+      "description": "Fraction of the visible light that is reflected by the glazing at normal incidence. It is a value without unit.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/visibleLightReflectance"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "visibleLightTransmittance": {
+      "uri": "https://saref.etsi.org/saref4bldg/visibleLightTransmittance",
+      "label": "visible light transmittance",
+      "description": "Fraction of the visible light that passes the shading system at normal incidence. It is a value without unit.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/visibleLightTransmittance"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "volumen": {
+      "uri": "https://saref.etsi.org/saref4bldg/volumen",
+      "label": "volumen",
+      "description": "Total volume of fluid in the tubes and their headers. Usually measured in cubic metre (m3).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/volumen"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "waterInletTemperatureMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/waterInletTemperatureMax",
+      "label": "water inlet temperature range",
+      "description": "Allowable water inlet temperature range. Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/waterInletTemperatureMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "waterInletTemperatureMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/waterInletTemperatureMin",
+      "label": "water inlet temperature range",
+      "description": "Allowable water inlet temperature range. Usually measured in degrees Kelvin (K).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/waterInletTemperatureMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "waterPressureMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/waterPressureMax",
+      "label": "water pressure range",
+      "description": "Allowable water circuit working pressure range. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/waterPressureMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "waterPressureMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/waterPressureMin",
+      "label": "water pressure range",
+      "description": "Allowable water circuit working pressure range. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/waterPressureMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "waterRequirement": {
+      "uri": "https://saref.etsi.org/saref4bldg/waterRequirement",
+      "label": "water requirement",
+      "description": "Make-up water requirement. Usually measured in m3/s.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/waterRequirement"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "waterStorageCapacity": {
+      "uri": "https://saref.etsi.org/saref4bldg/waterStorageCapacity",
+      "label": "water storage capacity",
+      "description": "Water storage capacity. Usually measured in cubic metre (m3).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/waterStorageCapacity"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "weight": {
+      "uri": "https://saref.etsi.org/saref4bldg/weight",
+      "label": "weight",
+      "description": "The weight of the device. Usually measured in kilograms (kg) or grams (g).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/weight"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "workingPressure": {
+      "uri": "https://saref.etsi.org/saref4bldg/workingPressure",
+      "label": "working pressure",
+      "description": "The normally expected maximum working pressure of the valve. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/workingPressure"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "workingPressureMax": {
+      "uri": "https://saref.etsi.org/saref4bldg/workingPressureMax",
+      "label": "maximum working pressure",
+      "description": "Maximum working pressure. Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/workingPressureMax"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "workingPressureMin": {
+      "uri": "https://saref.etsi.org/saref4bldg/workingPressureMin",
+      "label": "minimum working pressure",
+      "description": "Allowable minimum working pressure (relative to ambient pressure). Usually measured in Pascals (Pa, N/m2).",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/workingPressureMin"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "isMeasuredIn": {
+      "uri": "https://saref.etsi.org/core/isMeasuredIn",
+      "label": "is measured in",
+      "description": "A relation between a measurement and the unit of measure in which the measurement value is expressed.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/core/isMeasuredIn"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "relatesToProperty": {
+      "uri": "https://saref.etsi.org/core/relatesToProperty",
+      "label": "relates to property",
+      "description": "A relation between a measurement and the property such measurement is about.",
+      "type": "ObjectProperty",
+      "sources": [
+        "https://saref.etsi.org/core/relatesToProperty"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    },
+    "accessType": {
+      "uri": "https://saref.etsi.org/saref4bldg/accessType",
+      "label": "access type",
+      "description": "Defines the types of access (or cover) to a tank that may be specified. Note that covers are generally specified for rectangular tanks. For cylindrical tanks, access will normally be via a manhole.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/accessType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "application": {
+      "uri": "https://saref.etsi.org/saref4bldg/application",
+      "label": "application",
+      "description": "Humidifier application. Fixed: Humidifier installed in a ducted flow distribution system. Portable: Humidifier is not installed in a ducted flow distribution system.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/application"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "arrangement": {
+      "uri": "https://saref.etsi.org/saref4bldg/arrangement",
+      "label": "arrangement",
+      "description": "Defines the basic flow arrangements for the heat exchanger: COUNTERFLOW: Counterflow heat exchanger arrangement. CROSSFLOW: Crossflow heat exchanger arrangement. PARALLELFLOW: Parallel flow heat exchanger arrangement. MULTIPASS: Multipass flow heat exchanger arrangement. OTHER: Other type of heat exchanger flow arrangement not defined above.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/arrangement"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "bladeAction": {
+      "uri": "https://saref.etsi.org/saref4bldg/bladeAction",
+      "label": "blade action",
+      "description": "Blade action.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/bladeAction"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "bladeEdge": {
+      "uri": "https://saref.etsi.org/saref4bldg/bladeEdge",
+      "label": "blade edge",
+      "description": "Blade edge.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/bladeEdge"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "bladeShape": {
+      "uri": "https://saref.etsi.org/saref4bldg/bladeShape",
+      "label": "blade shape",
+      "description": "Blade shape. Flat means triple V-groove.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/bladeShape"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "capacityControl": {
+      "uri": "https://saref.etsi.org/saref4bldg/capacityControl",
+      "label": "capacity control",
+      "description": "FanCycling: Fan is cycled on and off to control duty. TwoSpeedFan: Fan is switched between low and high speed to control duty. VariableSpeedFan: Fan speed is varied to control duty. DampersControl: Dampers modulate the air flow to control duty. BypassValveControl: Bypass valve modulates the water flow to control duty. MultipleSeriesPumps: Turn on/off multiple series pump to control duty. TwoSpeedPump: Switch between high/low pump speed to control duty. VariableSpeedPump: vary pump speed to control duty.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/capacityControl"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "capacityControlType": {
+      "uri": "https://saref.etsi.org/saref4bldg/capacityControlType",
+      "label": "capacity control type",
+      "description": "InletVane: Control by adjusting inlet vane. VariableSpeedDrive: Control by variable speed drive. BladePitchAngle: Control by adjusting blade pitch angle. TwoSpeed: Control by switch between high and low speed. DischargeDamper: Control by modulating discharge damper.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/capacityControlType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "capacityPeople": {
+      "uri": "https://saref.etsi.org/saref4bldg/capacityPeople",
+      "label": "capacity people",
+      "description": "Capacity of the transportation element measured in numbers of person.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/capacityPeople"
+      ],
+      "domains": [],
+      "ranges": [
+        "nonNegativeInteger"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "circuitType": {
+      "uri": "https://saref.etsi.org/saref4bldg/circuitType",
+      "label": "circuit type",
+      "description": "OpenCircuit: Exposes water directly to the cooling atmosphere. CloseCircuit: The fluid is separated from the atmosphere by a heat exchanger. Wet: The air stream or the heat exchange surface is evaporatively cooled. Dry: No evaporation into the air stream. DryWet: A combination of a dry tower and a wet tower.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/circuitType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "colorAppearance": {
+      "uri": "https://saref.etsi.org/saref4bldg/colorAppearance",
+      "label": "color appearance",
+      "description": "In both the DIN and CIE standards, artificial light sources are classified in terms of their color appearance. To the human eye they all appear to be white the difference can only be detected by direct comparison. Visual performance is not directly affected by differences in color appearance.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/colorAppearance"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "colorRenderingIndex": {
+      "uri": "https://saref.etsi.org/saref4bldg/colorRenderingIndex",
+      "label": "color rendering index",
+      "description": "The CRI indicates how well a light source renders eight standard colors compared to perfect reference lamp with the same color temperature. The CRI scale ranges from 1 to 100, with 100 representing perfect rendering properties.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/colorRenderingIndex"
+      ],
+      "domains": [],
+      "ranges": [
+        "integer"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "controlStrategy": {
+      "uri": "https://saref.etsi.org/saref4bldg/controlStrategy",
+      "label": "control strategy",
+      "description": "FixedExitingWaterTemp: The capacity is controlled to maintain a fixed exiting water temperature. WetBulbTempReset: The set-point is reset based on the wet-bulb temperature.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/controlStrategy"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "endShapeType": {
+      "uri": "https://saref.etsi.org/saref4bldg/endShapeType",
+      "label": "end shape type",
+      "description": "Defines the types of end shapes that can be used for preformed tanks. The convention for reading these enumerated values is that for a vertical cylinder, the first value is the base and the second is the top for a horizontal cylinder, the order of reading should be left to right. For a speherical tank, the value UNSET should be used.B5",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/endShapeType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "energySource": {
+      "uri": "https://saref.etsi.org/saref4bldg/energySource",
+      "label": "energy source",
+      "description": "Enumeration defining the energy source or fuel cumbusted to generate heat.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/energySource"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "evaporationCoolant": {
+      "uri": "https://saref.etsi.org/saref4bldg/evaporationCoolant",
+      "label": "evaporation coolant",
+      "description": "The fluid used for the coolant in the evaporator.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/evaporationCoolant"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "evaporationMediumType": {
+      "uri": "https://saref.etsi.org/saref4bldg/evaporationMediumType",
+      "label": "evaporation medium type",
+      "description": "ColdLiquid: Evaporator is using liquid type of fluid to exchange heat with refrigerant. ColdAir: Evaporator is using air to exchange heat with refrigerant.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/evaporationMediumType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "failPosition": {
+      "uri": "https://saref.etsi.org/saref4bldg/failPosition",
+      "label": "fail position",
+      "description": "Specifies the required fail-safe position of the actuator.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/failPosition"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "finishColor": {
+      "uri": "https://saref.etsi.org/saref4bldg/finishColor",
+      "label": "finish color",
+      "description": "Finish color for cooled beam.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/finishColor"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "fireExit": {
+      "uri": "https://saref.etsi.org/saref4bldg/fireExit",
+      "label": "fire exit",
+      "description": "Indication whether this object is designed to serve as an exit in the case of fire (TRUE) or not (FALSE). Here whether the transport element (in case of e.g., a lift) is designed to serve as a fire exit, e.g., for fire escape purposes.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/fireExit"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "flowArrangement": {
+      "uri": "https://saref.etsi.org/saref4bldg/flowArrangement",
+      "label": "flow arrangement",
+      "description": "CounterFlow: Air and water flow enter in different directions. CrossFlow: Air and water flow are perpendicular. ParallelFlow: air and water flow enter in same directions.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/flowArrangement"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "frameSize": {
+      "uri": "https://saref.etsi.org/saref4bldg/frameSize",
+      "label": "frame size",
+      "description": "Designation of the frame size according to the named range of frame sizes designated at the place of use or according to a given standard.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/frameSize"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "frameType": {
+      "uri": "https://saref.etsi.org/saref4bldg/frameType",
+      "label": "frame type",
+      "description": "The type of frame used by the damper (e.g., Standard, Single Flange, Single Reversed Flange, Double Flange, etc.).",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/frameType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "hasDefrost": {
+      "uri": "https://saref.etsi.org/saref4bldg/hasDefrost",
+      "label": "has defrost",
+      "description": "Whether the heat exchanger has defrost function or not.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/hasDefrost"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "hasExteriorInsulation": {
+      "uri": "https://saref.etsi.org/saref4bldg/hasExteriorInsulation",
+      "label": "has exterior insulation",
+      "description": "TRUE if the silencer has exterior insulation. FALSE if it does not.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/hasExteriorInsulation"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "hasHotGasBypass": {
+      "uri": "https://saref.etsi.org/saref4bldg/hasHotGasBypass",
+      "label": "has hot gas bypass",
+      "description": "Whether or not hot gas bypass is provided for the compressor. TRUE = Yes, FALSE = No.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/hasHotGasBypass"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "hasLock": {
+      "uri": "https://saref.etsi.org/saref4bldg/hasLock",
+      "label": "has lock",
+      "description": "Indication of whether a switching device has a key operated lock (=TRUE) or not (= FALSE).",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/hasLock"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "hasPartWinding": {
+      "uri": "https://saref.etsi.org/saref4bldg/hasPartWinding",
+      "label": "has part winding",
+      "description": "Indication of whether the motor is single speed, i.e. has a single winding (= FALSE) or multi-speed i.e.has part winding (= TRUE) .",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/hasPartWinding"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "hasTurbulator": {
+      "uri": "https://saref.etsi.org/saref4bldg/hasTurbulator",
+      "label": "has turbulator",
+      "description": "TRUE if the tube has a turbulator, FALSE if it does not.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/hasTurbulator"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "heatTransferDimension": {
+      "uri": "https://saref.etsi.org/saref4bldg/heatTransferDimension",
+      "label": "heat transfer dimension",
+      "description": "Indicates how heat is transmitted according to the shape of the space heater.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/heatTransferDimension"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "heatTransferMedium": {
+      "uri": "https://saref.etsi.org/saref4bldg/heatTransferMedium",
+      "label": "heat transfer medium",
+      "description": "Enumeration defining the heat transfer medium if applicable.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/heatTransferMedium"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "heatTransferTypeEnum": {
+      "uri": "https://saref.etsi.org/saref4bldg/heatTransferTypeEnum",
+      "label": "heat transfer type enum",
+      "description": "Type of heat transfer between the two air streams.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/heatTransferTypeEnum"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "integratedLightingType": {
+      "uri": "https://saref.etsi.org/saref4bldg/integratedLightingType",
+      "label": "integrated lighting type",
+      "description": "Integrated lighting in cooled beam.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/integratedLightingType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "internalControl": {
+      "uri": "https://saref.etsi.org/saref4bldg/internalControl",
+      "label": "internal control",
+      "description": "Internal modulation control.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/internalControl"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "isExternal": {
+      "uri": "https://saref.etsi.org/saref4bldg/isExternal",
+      "label": "is external",
+      "description": "Indication whether the element is designed for use in the exterior (TRUE) or not (FALSE). If (TRUE) it is an external element and faces the outside of the building.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/isExternal"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "isFreeHanging": {
+      "uri": "https://saref.etsi.org/saref4bldg/isFreeHanging",
+      "label": "is free hanging",
+      "description": "Is it free hanging type (not mounted in a false ceiling)?",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/isFreeHanging"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "isGuarded": {
+      "uri": "https://saref.etsi.org/saref4bldg/isGuarded",
+      "label": "is guarded",
+      "description": "Indication of whether the motor enclosure is guarded (= TRUE) or not (= FALSE).",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/isGuarded"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "isIlluminated": {
+      "uri": "https://saref.etsi.org/saref4bldg/isIlluminated",
+      "label": "is illuminated",
+      "description": "An indication of whether there is an illuminated indicator to show that the switch is on (=TRUE) or not (= FALSE).",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/isIlluminated"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "isNeutralPrimaryTerminalAvailable": {
+      "uri": "https://saref.etsi.org/saref4bldg/isNeutralPrimaryTerminalAvailable",
+      "label": "is neutral primary terminal available",
+      "description": "An indication of whether the neutral point of the primary winding is available as a terminal (=TRUE) or not (= FALSE).",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/isNeutralPrimaryTerminalAvailable"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "isNeutralSecondaryTerminalAvailable": {
+      "uri": "https://saref.etsi.org/saref4bldg/isNeutralSecondaryTerminalAvailable",
+      "label": "is neutral secondary terminal available",
+      "description": "An indication of whether the neutral point of the secondary winding is available as a terminal (=TRUE) or not (= FALSE).",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/isNeutralSecondaryTerminalAvailable"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "isPluggableOutlet": {
+      "uri": "https://saref.etsi.org/saref4bldg/isPluggableOutlet",
+      "label": "is pluggable outlet",
+      "description": "Indication of whether the outlet accepts a loose plug connection (= TRUE) or whether it is directly connected (= FALSE) or whether the form of connection has not yet been determined (= UNKNOWN).",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/isPluggableOutlet"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "isWaterStorageHeater": {
+      "uri": "https://saref.etsi.org/saref4bldg/isWaterStorageHeater",
+      "label": "is water storage heater",
+      "description": "This is used to identify if the boiler has storage capacity (TRUE). If FALSE, then there is no storage capacity built into the boiler, such as an instantaneous hot water heater.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/isWaterStorageHeater"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "lampBallastType": {
+      "uri": "https://saref.etsi.org/saref4bldg/lampBallastType",
+      "label": "lamp ballast type",
+      "description": "The type of ballast used to stabilise gas discharge by limiting the current during operation and to deliver the necessary striking voltage for starting. Ballasts are needed to operate Discharge Lamps such as Fluorescent, Compact Fluorescent, High-pressure Mercury, Metal Halide and High-pressure Sodium Lamps. Magnetic ballasts are chokes which limit the current passing through a lamp connected in series on the principle of self-induction. The resultant current and power are decisive for the efficient operation of the lamp. A specially designed ballast is required for every type of lamp to comply with lamp rating in terms of Luminous Flux, Color Appearance and service life. The two types of magnetic ballasts for fluorescent lamps are KVG Conventional (EC-A series) and VVG Low-loss ballasts (EC-B series). Low-loss ballasts have a higher efficiency, which means reduced ballast losses and a lower thermal load. Electronic ballasts are used to run fluorescent lamps at high frequencies (approx. 35 - 40 kHz).",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/lampBallastType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "lampCompensationType": {
+      "uri": "https://saref.etsi.org/saref4bldg/lampCompensationType",
+      "label": "lamp compensation type",
+      "description": "Identifies the form of compensation used for power factor correction and radio suppression.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/lampCompensationType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "legend": {
+      "uri": "https://saref.etsi.org/saref4bldg/legend",
+      "label": "legend",
+      "description": "A text inscribed or applied to the switch as a legend to indicate purpose or function.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/legend"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "manualOverride": {
+      "uri": "https://saref.etsi.org/saref4bldg/manualOverride",
+      "label": "manual override",
+      "description": "Identifies whether hand-operated operation is provided as an override (= TRUE) or not (= FALSE). Note that this value should be set to FALSE by default in the case of a Hand Operated Actuator.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/manualOverride"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "mechanicalOperated": {
+      "uri": "https://saref.etsi.org/saref4bldg/mechanicalOperated",
+      "label": "mechanical operated",
+      "description": "Indication whether the element is operated machanically (TRUE) or not, i.e. manually (FALSE).",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/mechanicalOperated"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "mediaSource": {
+      "uri": "https://saref.etsi.org/saref4bldg/mediaSource",
+      "label": "media source",
+      "description": "Indicates media sources and corresponding names of ports (DistributionPort with FlowDirection=SINK and PredefinedType=AUDIOVISUAL) or aggregated audio/video components (AudioVisualAppliance).",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/mediaSource"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "motorDriveType": {
+      "uri": "https://saref.etsi.org/saref4bldg/motorDriveType",
+      "label": "motor drive type",
+      "description": "Motor drive type: DIRECTDRIVE: Direct drive. BELTDRIVE: Belt drive. COUPLING: Coupling. OTHER: Other type of motor drive. UNKNOWN: Unknown motor drive type. ",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/motorDriveType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "motorEnclosureType": {
+      "uri": "https://saref.etsi.org/saref4bldg/motorEnclosureType",
+      "label": "motor enclosure type",
+      "description": "A list of the available types of motor enclosure from which that required may be selected.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/motorEnclosureType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "numberOfBlades": {
+      "uri": "https://saref.etsi.org/saref4bldg/numberOfBlades",
+      "label": "number of blades",
+      "description": "Number of blades.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/numberOfBlades"
+      ],
+      "domains": [],
+      "ranges": [
+        "integer"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "numberOfCells": {
+      "uri": "https://saref.etsi.org/saref4bldg/numberOfCells",
+      "label": "number of cells",
+      "description": "Number of cells in one cooling tower unit.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/numberOfCells"
+      ],
+      "domains": [],
+      "ranges": [
+        "integer"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "numberOfCircuits": {
+      "uri": "https://saref.etsi.org/saref4bldg/numberOfCircuits",
+      "label": "number of circuits",
+      "description": "Number of parallel fluid tube circuits.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/numberOfCircuits"
+      ],
+      "domains": [],
+      "ranges": [
+        "integer"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "numberOfGangs": {
+      "uri": "https://saref.etsi.org/saref4bldg/numberOfGangs",
+      "label": "number of gangs",
+      "description": "Number of gangs/buttons on this switch.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/numberOfGangs"
+      ],
+      "domains": [],
+      "ranges": [
+        "integer"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "numberOfPanels": {
+      "uri": "https://saref.etsi.org/saref4bldg/numberOfPanels",
+      "label": "number of panels",
+      "description": "Number of panels.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/numberOfPanels"
+      ],
+      "domains": [],
+      "ranges": [
+        "integer"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "numberOfRows": {
+      "uri": "https://saref.etsi.org/saref4bldg/numberOfRows",
+      "label": "number of rows",
+      "description": "Number of tube rows in the tube bundle assembly.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/numberOfRows"
+      ],
+      "domains": [],
+      "ranges": [
+        "integer"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "numberOfSections": {
+      "uri": "https://saref.etsi.org/saref4bldg/numberOfSections",
+      "label": "number of sections",
+      "description": "Number of sections used.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/numberOfSections"
+      ],
+      "domains": [],
+      "ranges": [
+        "integer"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "numberOsSockets": {
+      "uri": "https://saref.etsi.org/saref4bldg/numberOsSockets",
+      "label": "number os sockets",
+      "description": "The number of sockets that may be connected. In case of inconsistency, sockets defined on ports take precedence.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/numberOsSockets"
+      ],
+      "domains": [],
+      "ranges": [
+        "integer"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "operatingMode": {
+      "uri": "https://saref.etsi.org/saref4bldg/operatingMode",
+      "label": "operating mode",
+      "description": "Identifies the operating mode of the boiler.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/operatingMode"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "operation": {
+      "uri": "https://saref.etsi.org/saref4bldg/operation",
+      "label": "operation",
+      "description": "The operational mechanism for the damper operation.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/operation"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "orientation": {
+      "uri": "https://saref.etsi.org/saref4bldg/orientation",
+      "label": "orientation",
+      "description": "The intended orientation for the damper as specified by the manufacturer.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/orientation"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "patternType": {
+      "uri": "https://saref.etsi.org/saref4bldg/patternType",
+      "label": "pattern type",
+      "description": "Defines the types of pattern (or shape of a tank that may be specified.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/patternType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "pipeConnectionEnum": {
+      "uri": "https://saref.etsi.org/saref4bldg/pipeConnectionEnum",
+      "label": "pipe connection enum",
+      "description": "The manner in which the pipe connection is made to the cooled beam.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/pipeConnectionEnum"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "placementType": {
+      "uri": "https://saref.etsi.org/saref4bldg/placementType",
+      "label": "placement type",
+      "description": "Indicates how the device is designed to be placed.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/placementType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "powerSource": {
+      "uri": "https://saref.etsi.org/saref4bldg/powerSource",
+      "label": "power source",
+      "description": "Type of power driving the compressor.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/powerSource"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "readOutType": {
+      "uri": "https://saref.etsi.org/saref4bldg/readOutType",
+      "label": "read out type",
+      "description": "Indication of the form that readout from the meter takes. In the case of a dial read out, this may comprise multiple dials that give a cumulative reading and/or a mechanical odometer.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/readOutType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "refrigerantClass": {
+      "uri": "https://saref.etsi.org/saref4bldg/refrigerantClass",
+      "label": "refrigerant class",
+      "description": "Refrigerant class used by the compressor. CFC: Chlorofluorocarbons. HCFC: Hydrochlorofluorocarbons. HFC: Hydrofluorocarbons.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/refrigerantClass"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "remoteReading": {
+      "uri": "https://saref.etsi.org/saref4bldg/remoteReading",
+      "label": "remote reading",
+      "description": "Indicates whether the meter has a connection for remote reading through connection of a communication device (set TRUE) or not (set FALSE).",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/remoteReading"
+      ],
+      "domains": [],
+      "ranges": [
+        "boolean"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "roughness": {
+      "uri": "https://saref.etsi.org/saref4bldg/roughness",
+      "label": "roughness",
+      "description": "A measure of the vertical deviations of the surface.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/roughness"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "secondaryCurrentType": {
+      "uri": "https://saref.etsi.org/saref4bldg/secondaryCurrentType",
+      "label": "secondary current type",
+      "description": "A list of the secondary current types that can result from transformer output.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/secondaryCurrentType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "shadingDeviceType": {
+      "uri": "https://saref.etsi.org/saref4bldg/shadingDeviceType",
+      "label": "shading device type",
+      "description": "Specifies the type of shading device.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/shadingDeviceType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "sprayType": {
+      "uri": "https://saref.etsi.org/saref4bldg/sprayType",
+      "label": "spray type",
+      "description": "SprayFilled: Water is sprayed into airflow. SplashTypeFill: water cascades over successive rows of splash bars. FilmTypeFill: water flows in a thin layer over closely spaced sheets.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/sprayType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "standard": {
+      "uri": "https://saref.etsi.org/saref4bldg/standard",
+      "label": "standard",
+      "description": "The designation of the standard applicable for the definition of the characteristics of the unit.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/standard"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "storageType": {
+      "uri": "https://saref.etsi.org/saref4bldg/storageType",
+      "label": "storage type",
+      "description": "Defines the general material category intended to be stored.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/storageType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "switchFunction": {
+      "uri": "https://saref.etsi.org/saref4bldg/switchFunction",
+      "label": "switch function",
+      "description": "Indicates types of switches which differs in functionality.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/switchFunction"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "temperatureClassification": {
+      "uri": "https://saref.etsi.org/saref4bldg/temperatureClassification",
+      "label": "temperature classification",
+      "description": "Enumeration defining the temperature classification of the space heater surface temperature. low temperature - surface temperature is relatively low, usually heated by hot water or electricity. high temperature - surface temperature is relatively high, usually heated by gas or steam.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/temperatureClassification"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "transformerVectorGroup": {
+      "uri": "https://saref.etsi.org/saref4bldg/transformerVectorGroup",
+      "label": "transformer vector group",
+      "description": "List of the possible vector groups for the transformer from which that required may be set. Values in the enumeration list follow a standard international code where the first letter describes how the primary windings are connected, the second letter describes how the secondary windings are connected, and the numbers describe the rotation of voltages and currents from the primary to the secondary side in multiples of 30 degrees. D: means that the windings are delta-connected. Y: means that the windings are star-connected. Z: means that the windings are zig-zag connected (a special start-connected providing low reactance of the transformer). The connectivity is only relevant for three-phase transformers.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/transformerVectorGroup"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "valveMechanism": {
+      "uri": "https://saref.etsi.org/saref4bldg/valveMechanism",
+      "label": "valve mechanism",
+      "description": "The mechanism by which the valve function is achieved where: BALL: Valve that has a ported ball that can be turned relative to the body seat ports. BUTTERFLY: Valve in which a streamlined disc pivots about a diametric axis. CONFIGUREDGATE: Screwdown valve in which the closing gate is shaped in a configured manner to have a more precise control of pressure and flow change across the valve. GLAND: Valve with a tapered seating, in which a rotatable plug is retained by means of a gland and gland packing. GLOBE: Screwdown valve that has a spherical body. LUBRICATEDPLUG: Plug valve in which a lubricant is injected under pressure between the plug face and the body. NEEDLE: Valve for regulating the flow in or from a pipe, in which a slender cone moves along the axis of flow to close against a fixed conical seat. PARALLELSLIDE: Screwdown valve that has a machined plate that slides in formed grooves to form a seal. PLUG: Valve that has a ported plug that can be turned relative to the body seat ports. WEDGEGATE: Screwdown valve that has a wedge shaped plate fitting into tapered guides to form a seal.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/valveMechanism"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "valveOperation": {
+      "uri": "https://saref.etsi.org/saref4bldg/valveOperation",
+      "label": "valve operation",
+      "description": "The method of valve operation where: DROPWEIGHT: A valve that is closed by the action of a weighted lever being released, the weight normally being prevented from dropping by being held by a wire, the closure normally being made by the action of heat on a fusible link in the wire FLOAT: A valve that is opened and closed by the action of a float that rises and falls with water level. The float may be a ball attached to a lever or other mechanism HYDRAULIC: A valve that is opened and closed by hydraulic actuation LEVER: A valve that is opened and closed by the action of a lever rotating the gate within the valve. LOCKSHIELD: A valve that requires the use of a special lockshield key for opening and closing, the operating mechanism being protected by a shroud during normal operation. MOTORIZED: A valve that is opened and closed by the action of an electric motor on an actuator PNEUMATIC: A valve that is opened and closed by pneumatic actuation SOLENOID: A valve that is normally held open by a magnetic field in a coil acting on the gate but that is closed immediately if the electrical current generating the magnetic field is removed. SPRING: A valve that is normally held in position by the pressure of a spring on a plate but that may be caused to open if the pressure of the fluid is sufficient to overcome the spring pressure. THERMOSTATIC: A valve in which the ports are opened or closed to maintain a required predetermined temperature. WHEEL: A valve that is opened and closed by the action of a wheel moving the gate within the valve.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/valveOperation"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "valvePattern": {
+      "uri": "https://saref.etsi.org/saref4bldg/valvePattern",
+      "label": "valve pattern",
+      "description": "The configuration of the ports of a valve according to either the linear route taken by a fluid flowing through the valve or by the number of ports where: SINGLEPORT: Valve that has a single entry port from the system that it serves, the exit port being to the surrounding environment. ANGLED_2_PORT: Valve in which the direction of flow is changed through 90 degrees. STRAIGHT_2_PORT: Valve in which the flow is straight through. STRAIGHT_3_PORT: Valve with three separate ports. CROSSOVER_4_PORT: Valve with 4 separate ports.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/valvePattern"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "waterFlowControlSystemType": {
+      "uri": "https://saref.etsi.org/saref4bldg/waterFlowControlSystemType",
+      "label": "water flow control system type",
+      "description": "Factory fitted waterflow control system.",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/saref4bldg/waterFlowControlSystemType"
+      ],
+      "domains": [],
+      "ranges": [
+        "string"
+      ],
+      "inverses": [],
+      "characteristics": []
+    },
+    "hasTimestamp": {
+      "uri": "https://saref.etsi.org/core/hasTimestamp",
+      "label": "has timestamp",
+      "description": "A relationship stating the timestamp of an entity (e.g. a measurement).",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/core/hasTimestamp"
+      ],
+      "domains": [],
+      "ranges": [
+        "dateTime"
+      ],
+      "inverses": [],
+      "characteristics": [
+        "functional"
+      ]
+    },
+    "hasValue": {
+      "uri": "https://saref.etsi.org/core/hasValue",
+      "label": "has value",
+      "description": "A relationship defining the value of a certain property, e.g., energy or power",
+      "type": "DatatypeProperty",
+      "sources": [
+        "https://saref.etsi.org/core/hasValue"
+      ],
+      "domains": [],
+      "ranges": [],
+      "inverses": [],
+      "characteristics": []
+    }
+  },
+  "individuals": {},
+  "prefixes": {
+    "brick": "https://brickschema.org/schema/Brick#",
+    "csvw": "http://www.w3.org/ns/csvw#",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcmitype": "http://purl.org/dc/dcmitype/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "dcam": "http://purl.org/dc/dcam/",
+    "doap": "http://usefulinc.com/ns/doap#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "geo": "http://www.opengis.net/ont/geosparql#",
+    "odrl": "http://www.w3.org/ns/odrl/2/",
+    "org": "http://www.w3.org/ns/org#",
+    "prof": "http://www.w3.org/ns/dx/prof/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "qb": "http://purl.org/linked-data/cube#",
+    "schema": "https://schema.org/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "ssn": "http://www.w3.org/ns/ssn/",
+    "time": "http://www.w3.org/2006/time#",
+    "vann": "http://purl.org/vocab/vann/",
+    "void": "http://rdfs.org/ns/void#",
+    "wgs": "https://www.w3.org/2003/01/geo/wgs84_pos#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "xml": "http://www.w3.org/XML/1998/namespace",
+    "s4bldg": "https://saref.etsi.org/saref4bldg/",
+    "saref": "https://saref.etsi.org/core/"
+  }
+}

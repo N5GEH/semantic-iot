@@ -103,7 +103,7 @@ class ClaudeAPIProcessor:
                     max_retry: int = 5,
                     conversation_history = None,
                     temperature: float = None,
-                    thinking: bool = True,
+                    thinking: bool = False,
                     tools: str = "",
                     follow_up: bool = False) -> Dict[str, Any]: # TODO add tool selection
         """
@@ -149,18 +149,6 @@ class ClaudeAPIProcessor:
             else self.conversation_history.copy()
 
         if prompt: # Add user message to messages
-            # Add req
-            prompt += """
-            What are requirements for a human to be able to output the same result? 
-
-            Example task: Complete the pattern: 1, 2, 5, 8,
-            Example thinking: <thinking> 
-            - Basic arithmetic skills (addition and subtraction). 
-            - Pattern recognition abilities, specifically recognizing changes between numbers. 
-            - Logical thinking to identify the alternating difference pattern. 
-            </thinking>
-            <output>Put the answer in <req> tags.</output>
-            """
             messages.append({"role": "user", "content": prompt})
 
         data = {
@@ -461,6 +449,8 @@ class ClaudeAPIProcessor:
         return self.metrics
 
     def extract_tag(self, text, tag):
+        if text is None:
+            return None
         pattern = fr'<{tag}>(.*?)</{tag}>'
         match = re.search(pattern, text, re.DOTALL)
         if match:
@@ -479,6 +469,9 @@ class ClaudeAPIProcessor:
             dict or str: The extracted code content parsed as JSON if valid, 
                         otherwise raw string content, or original text if no code block is found
         """
+        if text is None:
+            return None
+        
         pattern = r'```(?:\w+)?\s*(.*?)\s*```'
         match = re.search(pattern, text, re.DOTALL)
         if match:

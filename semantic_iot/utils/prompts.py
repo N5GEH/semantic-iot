@@ -50,14 +50,13 @@ class PromptsLoader:
         - Be precise and concise.
         - You may use tools, only call them when needed, then you will receive its output in the next interaction.
         - If you dont have tools, dont try to call a tool, the prompt contains all information you need.
-        - In your thinking, include the requirements for a human to be able to output the same result, e. g.:
-        Example task: Complete the pattern: 1, 2, 5, 8,
-        Example thinking: <thinking> - Basic arithmetic skills (addition and subtraction). - Pattern recognition abilities, specifically recognizing changes between numbers. - Logical thinking to identify the alternating difference pattern. </thinking>
         </system>"""
         self.OUTPUT_FORMAT = f"""<output>
-        Put the relevant output data in <output> tags.
-        What are requirements for a human to be able to output the same result? Put the answer in <req> tags.
-        </output>"""
+        Put the relevant output data in <output> tags.</output>"""
+        # - In your thinking, include the requirements for a human to be able to output the same result and put the answer in <thinking> tags., e. g.:
+        # Prompt: Complete the pattern: 1, 2, 4, 7, ...
+        # Response: <output>11</output><thinking> - Basic arithmetic skills (addition and subtraction). - Pattern recognition abilities, specifically recognizing changes between numbers. - Logical thinking to identify the alternating difference pattern. </thinking>
+        # </output>"""
 
         
         # INPUT FILES ================================================================
@@ -181,7 +180,7 @@ class PromptsLoader:
         
         2.3 If there are extra nodes to be added, add a new JSON entity to an imagenary list of extra nodes.
             The extra nodes should have the name of the property they come from
-            Map this newly created entity to an ontology class by using the query '{{property_name}} (value of {{parentEntity}})'.
+            Map this newly created entity to an ontology class by using the query '{{property_name}}'.
 
         3. Now check again, if the newly created entities have an (inherited) numerical property and do steps 2.2 and 2.3 again before continuing.
         </steps>
@@ -191,10 +190,15 @@ class PromptsLoader:
         - the API endpoint for data access
         - enumeration of the numerical properties and relational properties
         - the mapping of the JSON Entities to ontology classes and properties
-        - the name of the properties, that will be added to the JSON Entities as Extra Nodes and the names of the Extra Nodes
+        - the name of the properties, that will be added to the JSON Entities as Extra Nodes and the names of the Extra Nodes and their mapped ontology classes.
         </output>
         
-        """
+        """ 
+        # TODO improve prompt:
+        # give template for output?
+        # Continue, if there are no more extra nodes left to add. When iterating over the same object, adjust the query 
+        # adding the query: using the query '{{property_name}} (value of {{parentEntity}})'
+
 
         # SCENARIO PROMPTS ====================================================================
 
@@ -219,6 +223,14 @@ class PromptsLoader:
 
         <output> Return the knowledge graph in Turtle format. </output>
         """
+        # TODO: improve command:
+        
+        # Preserve and use the complete id from the JEN to use in the KG
+
+        # Explain Extra Nodes:
+        # Extra Nodes always have numerical value property, but their parent does not.
+        # They are created to represent properties that are not numerical values, but still need to be represented in the RDF graph.
+
         # Replace the placeholders in curly brackets in the RDF template with the results of Preprocessing of the JSON file:
         # - The Ontology classes and properties
         # - The correct prefixes from the ontology
@@ -290,7 +302,7 @@ class PromptsLoader:
         </instructions>
 
         <output> Return the Resource Node Relationship Document in JSON format. </output>
-        """ # TODO remove self.jex out of prompt
+        """ # TODO remove self.jex out of prompt?
 
         self.system_default = f"""
         {self.ROLE}
@@ -323,9 +335,23 @@ class PromptsLoader:
             
         """
 
+    def load_prefixes(self, ontology_path):
+        with open(ontology_path, 'r', encoding='utf-8') as f:
+            ontology_lines = f.readlines()
 
+        prefixes_list = ["Ontology prefixes:"]
+        for line in ontology_lines:
+            line = line.strip()
+            if line.startswith('@prefix') or line.startswith('PREFIX'):
+                prefixes_list.append(line)
+            elif line and not line.startswith('#') and not line.startswith('@prefix') and not line.startswith('PREFIX'):
+                break
+
+        self.prefixes = '\n'.join(prefixes_list)
+        self.update_variables()
 
     def load_ontology_path(self, ontology_path):
+        self.load_prefixes(ontology_path)
         self.ontology_path = ontology_path
         self.update_variables()
 
@@ -345,10 +371,6 @@ class PromptsLoader:
 
     def load_context(self, context):
         self.context_content = context
-        self.update_variables()
-
-    def load_prefixes(self, prefixes):
-        self.prefixes = prefixes
         self.update_variables()
 
     def load_RNR(self, rnr_path):

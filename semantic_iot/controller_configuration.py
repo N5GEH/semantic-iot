@@ -182,6 +182,7 @@ class ControllerConfiguration:
 
 if __name__ == "__main__":
     RDF_KG_PATH = "examples/fiware/kgcp/results/brick/fiware_entities_10rooms_inferred.ttl"
+    RDF_KG_PATH = r"LLM_models\datasets\fiware_v1_hotel\results_250605_170725\scenario_I\kg_entities.ttl"
     # load to path object
     RDF_KG_PATH = Path(RDF_KG_PATH)
     rdf_kg_file_name = os.path.basename(RDF_KG_PATH).split(".")[0]

@@ -36,11 +36,15 @@ def get_file(folder, file_type, keyword=None):
         "RML": {"text": "rml", "ending": ".ttl", "description": "RML Mapping"},
         "KG": {"text": "entities", "ending": ".ttl", "description": "Knowledge Graph"},
         "iKG": {"text": "inferred", "ending": ".ttl", "description": "Inferred Knowledge Graph"},
-        "CC": {"text": "controller", "ending": ".yml", "description": "Controller Configuration"}
+        "CC": {"text": "controller", "ending": ".yml", "description": "Controller Configuration"},
+        "CTX": {"text": "context", "ending": ".json", "description": "Context"},
     }
     
     if file_type not in file_types:
         raise ValueError(f"Unknown file type: {file_type}. Available types: {list(file_types.keys())}")
+    if not folder or not os.path.isdir(folder):
+        print(f"Invalid folder: {folder}. Please provide a valid directory path.")
+        return None
     
     file = file_types[file_type]
     text = file["text"]
@@ -57,7 +61,7 @@ def get_file(folder, file_type, keyword=None):
         return None
     elif len(matching_files) == 1:
         file_path = os.path.join(folder, matching_files[0])
-        print(f"Found {description}: {matching_files[0]}")
+        print(f"Found {description}: {file_path}")
         return file_path
     else:
         print(f"\nMultiple {description} files found:")
@@ -196,7 +200,7 @@ class ScenarioExecutor:
         print (f"Selected scenarios: {self.selected_scenarios}")
 
     # GET CONTEXT ======================================================
-    def get_context(self, test=True):
+    def get_context(self, test=False):
 
         if not self.JEN_path or not self.JEX_path or not self.ontology_path or not self.endpoint_path:
             input("Please run choose_dataset() first to select the dataset, ontology, and API endpoint. Press Enter to continue...")
@@ -204,31 +208,26 @@ class ScenarioExecutor:
         
         print("\nPreparing context for scenarios...")
 
+        # Create result folder first
+        os.makedirs(self.result_folder, exist_ok=True)
+
         if not test:
             # Term Mapping & Extra Nodes & API Endpoint
             client_context = ClaudeAPIProcessor()
-            self.context = client_context.query( 
-                prompt=prompts.context,
-                step_name="get_context",
-                follow_up=True,
-                tools="context",
-                thinking=True,
-            )
-
-        # Prefixes from ontology file
-        with open(self.ontology_path, 'r', encoding='utf-8') as f:
-            ontology_lines = f.readlines()
-
-        prefixes_list = ["Ontology prefixes:"]
-        for line in ontology_lines:
-            line = line.strip()
-            if line.startswith('@prefix') or line.startswith('PREFIX'):
-                prefixes_list.append(line)
-            elif line and not line.startswith('#') and not line.startswith('@prefix') and not line.startswith('PREFIX'):
-                break
-
-        self.prefixes = '\n'.join(prefixes_list)
-        # print(self.prefixes)
+            try:
+                self.context = client_context.extract_code(
+                    client_context.query( 
+                        prompt=prompts.context,
+                        step_name="get_context",
+                        follow_up=True,
+                        tools="context",
+                        # thinking=True,
+                    )
+                )
+            except Exception as e:
+                print(f"Error in Claude API call: {e}")
+                print("Press enter to fall back to test mode...")
+                test = True
 
         if test:
             self.context = {
@@ -292,19 +291,27 @@ class ScenarioExecutor:
 
         print("Context prepared successfully.")
         print("Context:", json.dumps(self.context, indent=2))
-        i = input("Any changes? Copy validated context here: ")
-        if i:
-            self.context = i
-            
+        
+        # Save context to file
         prompts.load_context(self.context)
-        prompts.load_prefixes(self.prefixes)
-        return self.context, self.prefixes
+        context_file = os.path.join(self.result_folder, "context.json")
+        with open(context_file, 'w', encoding='utf-8') as f:
+            json.dump(self.context, f, indent=2)
+        print(f"Context saved to: {context_file}")
+
+        return self.context
 
     # GENERATE RESULTS ======================================================
     def run_scenarios(self, test=False):
         
-        if not self.context or not self.prefixes:
-            input("Please run get_context() first to prepare the context. Press Enter to continue...")
+        if not hasattr(self, 'context') or not self.context:
+            print("\nLoad context from file...")
+            self.load_context(self.result_folder)
+        if not hasattr(self, 'context') or not self.context:
+            print("Load Validated Context...")
+            self.load_context("LLM_models") # get validated context
+        if not hasattr(self, 'context') or not self.context:
+            print("Get context from Claude...")
             self.get_context()
         
         print(f"\nGenerating results for selected scenarios {self.selected_scenarios}...")
@@ -353,7 +360,7 @@ class ScenarioExecutor:
                     step_name=f"scenario_{sc}", 
                     tools="",
                     follow_up=False,
-                    thinking=True
+                    # thinking=True
                 )
                 response = client_scenario.extract_code(response)
 
@@ -414,6 +421,16 @@ class ScenarioExecutor:
             print (f"Controller configuration generated and saved to {get_file(scenario_folder[sc], 'CC')}")
             print(f"Scenario {sc} completed. Results saved in {scenario_folder[sc]}")
 
+    def load_context(self, result_folder):
+        context_file = get_file(result_folder, "CTX")
+        if context_file:
+            with open(context_file, 'r', encoding='utf-8') as f:
+                self.context = json.load(f)
+                prompts.load_context(self.context)
+            return self.context
+        else:
+            return None
+
     def save_metrics(self, status="completed"):
         """
         Save the metrics to a file.
@@ -457,7 +474,7 @@ if __name__ == "__main__":
     executor.choose_dataset()
 
     try:
-        context, prefixes = executor.get_context()
+        # context = executor.get_context()
         executor.run_scenarios()
 
         executor.save_metrics()

@@ -13,6 +13,8 @@ from semantic_iot.utils.prompts import prompts
 # TODO fine tuning with temperature
 # TODO correct direction of relationships? gerichtete graphen beachten, mit reasoning! rausfiltern mit LLM welche richtige richtung haben (siehe test)
 
+# TODO build from scratch, inherit from OntologyPropertyAnalyzer, without Brick Index
+
 class OntologyProcessor:
     """
     A general solution for processing large ontology files and integrating with LLMs.
@@ -26,9 +28,10 @@ class OntologyProcessor:
             ontology_file_path: Path to the ontology file (e.g., .ttl, .owl, .rdf)
         """
         self.ontology_file = ontology_file_path
+        self.ontology_name = os.path.splitext(os.path.basename(ontology_file_path))[0]
         self.index_file = os.path.splitext(self.ontology_file)[0] + "_index.json"
 
-        self.graph = None
+        self.ont = None
         self.index = {
             "classes": {},
             "properties": {},
@@ -40,10 +43,8 @@ class OntologyProcessor:
         }
         self.embedding_model = None
         
-    def load_ontology(self) -> None:
-        """Load the ontology file into an RDF graph"""
-        self.graph = Graph()
-        # Determine format based on file extension
+        # Load the ontology if it exists
+        self.ont = Graph()
         format_map = {
             ".ttl": "turtle",
             ".owl": "xml",
@@ -56,8 +57,8 @@ class OntologyProcessor:
         format_type = format_map.get(ext, "turtle")  # Default to turtle
         
         try:
-            self.graph.parse(self.ontology_file, format=format_type)
-            print(f"Loaded ontology with {len(self.graph)} triples")
+            self.ont.parse(self.ontology_file, format=format_type)
+            print(f"Loaded ontology with {len(self.ont)} triples")
         except Exception as e:
             raise Exception(f"Failed to load ontology: {e}")
     
@@ -68,33 +69,31 @@ class OntologyProcessor:
         Returns:
             Dict containing indexed ontology elements
         """
-        if not self.graph:
-            self.load_ontology()
 
         # Extract prefixes from the ontology
         self.index["prefixes"] = {}
-        for prefix, namespace in self.graph.namespace_manager.namespaces():
+        for prefix, namespace in self.ont.namespace_manager.namespaces():
             self.index["prefixes"][str(prefix)] = str(namespace)
         print(f"Extracted {len(self.index['prefixes'])} prefixes from the ontology")
             
         # Process classes
-        for class_uri in self.graph.subjects(RDF.type, RDFS.Class):
+        for class_uri in self.ont.subjects(RDF.type, RDFS.Class):
             self._process_class(class_uri)
             
         # Also check for OWL classes
-        for class_uri in self.graph.subjects(RDF.type, OWL.Class):
+        for class_uri in self.ont.subjects(RDF.type, OWL.Class):
             self._process_class(class_uri)
             
         # Process properties
-        for prop_uri in self.graph.subjects(RDF.type, RDF.Property):
+        for prop_uri in self.ont.subjects(RDF.type, RDF.Property):
             self._process_property(prop_uri)
             
         # Process object properties
-        for prop_uri in self.graph.subjects(RDF.type, OWL.ObjectProperty):
+        for prop_uri in self.ont.subjects(RDF.type, OWL.ObjectProperty):
             self._process_property(prop_uri)
             
         # Process datatype properties
-        for prop_uri in self.graph.subjects(RDF.type, OWL.DatatypeProperty):
+        for prop_uri in self.ont.subjects(RDF.type, OWL.DatatypeProperty):
             self._process_property(prop_uri)
             
         # Add relationship between classes and properties
@@ -106,7 +105,7 @@ class OntologyProcessor:
         """Check if a URI represents a Shape (SHACL or similar)"""
         # Get all prefixes that contain 'shape' in their URI
         shape_prefixes = []
-        for prefix, namespace in self.graph.namespace_manager.namespaces():
+        for prefix, namespace in self.ont.namespace_manager.namespaces():
             if 'shape' in str(namespace).lower():
                 shape_prefixes.append(str(namespace))
 
@@ -116,7 +115,7 @@ class OntologyProcessor:
                 return True
             
         # # Check if the local name contains 'shape' (case-insensitive)
-        # local_name = self._get_local_name(uri).lower()
+        # local_name = self._uri_to_string(uri).lower()
         # if 'shape' in local_name:
         #     return True
             
@@ -126,7 +125,7 @@ class OntologyProcessor:
         """Process a class and add it to the index, merging information from different sources"""
         if self._is_shape(class_uri): return # Skip shapes
             
-        class_id = self._get_local_name(class_uri)
+        class_id = self._uri_to_string(class_uri)
         
         # Get basic class information
         label = self._get_first_literal(class_uri, RDFS.label)
@@ -153,9 +152,9 @@ class OntologyProcessor:
         
         # Continue with superclass and equivalent class processing as before
         # Get superclasses
-        for parent in self.graph.objects(class_uri, RDFS.subClassOf):
+        for parent in self.ont.objects(class_uri, RDFS.subClassOf):
             if isinstance(parent, URIRef):
-                parent_id = self._get_local_name(parent)
+                parent_id = self._uri_to_string(parent)
                 if parent_id not in self.index["classes"][class_id]["superclasses"]:
                     self.index["classes"][class_id]["superclasses"].append(parent_id)
                     
@@ -169,9 +168,9 @@ class OntologyProcessor:
                         self.index["classes"][parent_id]["subclasses"].append(class_id)
         
         # Process equivalent classes
-        for eq_class in self.graph.objects(class_uri, OWL.equivalentClass):
+        for eq_class in self.ont.objects(class_uri, OWL.equivalentClass):
             if isinstance(eq_class, URIRef):
-                eq_class_id = self._get_local_name(eq_class)
+                eq_class_id = self._uri_to_string(eq_class)
                 if eq_class_id not in self.index["classes"][class_id]["equivalent_classes"]:
                     self.index["classes"][class_id]["equivalent_classes"].append(eq_class_id)
 
@@ -199,7 +198,7 @@ class OntologyProcessor:
         """Process a property and add it to the index, merging information from different sources"""
         if self._is_shape(prop_uri): return # Skip shapes
         
-        prop_id = self._get_local_name(prop_uri)
+        prop_id = self._uri_to_string(prop_uri)
         
         # Get basic property information
         label = self._get_first_literal(prop_uri, RDFS.label)
@@ -211,9 +210,9 @@ class OntologyProcessor:
         #     print(f"Processing property: {prop_uri}, \n definition: {definition} \n comment: {comment} \n label: {label}")
         
         # Determine property type
-        if (prop_uri, RDF.type, OWL.ObjectProperty) in self.graph:
+        if (prop_uri, RDF.type, OWL.ObjectProperty) in self.ont:
             prop_type = "ObjectProperty"
-        elif (prop_uri, RDF.type, OWL.DatatypeProperty) in self.graph:
+        elif (prop_uri, RDF.type, OWL.DatatypeProperty) in self.ont:
             prop_type = "DatatypeProperty"
         else:
             prop_type = "Property"
@@ -237,9 +236,9 @@ class OntologyProcessor:
             }
         
         # Get domains
-        for domain in self.graph.objects(prop_uri, RDFS.domain):
+        for domain in self.ont.objects(prop_uri, RDFS.domain):
             if isinstance(domain, URIRef):
-                domain_id = self._get_local_name(domain)
+                domain_id = self._uri_to_string(domain)
                 if domain_id not in self.index["properties"][prop_id]["domains"]:
                     self.index["properties"][prop_id]["domains"].append(domain_id)
                 
@@ -248,9 +247,9 @@ class OntologyProcessor:
                     self._process_class(domain)
         
         # Get ranges
-        for range_obj in self.graph.objects(prop_uri, RDFS.range):
+        for range_obj in self.ont.objects(prop_uri, RDFS.range):
             if isinstance(range_obj, URIRef):
-                range_id = self._get_local_name(range_obj)
+                range_id = self._uri_to_string(range_obj)
                 if range_id not in self.index["properties"][prop_id]["ranges"]:
                     self.index["properties"][prop_id]["ranges"].append(range_id)
                 
@@ -305,7 +304,7 @@ class OntologyProcessor:
                         if prop_id not in self.index["classes"][range_id]["in_range_of"]:
                             self.index["classes"][range_id]["in_range_of"].append(prop_id)
     
-    def _get_local_name(self, uri: URIRef) -> str:
+    def _uri_to_string(self, uri: URIRef) -> str:
         """Extract the local name from a URI"""
         uri_str = str(uri)
         if '#' in uri_str:
@@ -314,9 +313,23 @@ class OntologyProcessor:
             return uri_str.split('/')[-1]
         return uri_str
     
+    def _string_to_uri(self, string, term_type: str = "class") -> Optional[str]:
+        """
+        Convert a string like 'prefix:ClassName' to a proper URI reference
+        by extracting namespace information from the loaded ontology.
+        """
+        index_to_search = self.index["classes"] if term_type == "class" else self.index["properties"]
+
+        # Get the URI if we found a term
+        uri = None
+        if string and string in index_to_search:
+            uri = index_to_search[string]["uri"]
+
+        return URIRef(uri) if uri else None
+    
     def _get_first_literal(self, subject: URIRef, predicate) -> Optional[str]:
         """Get the first literal value for a subject-predicate pair"""
-        for obj in self.graph.objects(subject, predicate):
+        for obj in self.ont.objects(subject, predicate):
             if hasattr(obj, 'value'):
                 return str(obj.value)  # Get the value without language tag
             else:
@@ -326,13 +339,13 @@ class OntologyProcessor:
     def _get_property_characteristics(self, prop_uri: URIRef) -> List[str]:
         """Get the characteristics of a property"""
         characteristics = []
-        if (prop_uri, RDF.type, OWL.TransitiveProperty) in self.graph:
+        if (prop_uri, RDF.type, OWL.TransitiveProperty) in self.ont:
             characteristics.append("transitive")
-        if (prop_uri, RDF.type, OWL.SymmetricProperty) in self.graph:
+        if (prop_uri, RDF.type, OWL.SymmetricProperty) in self.ont:
             characteristics.append("symmetric")
-        if (prop_uri, RDF.type, OWL.FunctionalProperty) in self.graph:
+        if (prop_uri, RDF.type, OWL.FunctionalProperty) in self.ont:
             characteristics.append("functional")
-        if (prop_uri, RDF.type, OWL.InverseFunctionalProperty) in self.graph:
+        if (prop_uri, RDF.type, OWL.InverseFunctionalProperty) in self.ont:
             characteristics.append("inverse_functional")
         return characteristics
     
@@ -450,7 +463,7 @@ class OntologyProcessor:
         Returns:
             List of tuples (id, similarity_score, info)
         """
-        print(f"🔍⏳ Semantic search... (ontology {term_type} for '{query}')")
+        print(f"🔍⏳ Semantic search... ({self.ontology_name} {term_type} for '{query}')")
         start_time = time.time()
 
         if not self.embedding_model:
@@ -479,59 +492,147 @@ class OntologyProcessor:
         print(f"🔍✅ Semantic search completed in {end_time - start_time:.2f} seconds")
         return results[:top_k]
     
-    def format_for_llm(self, data: Any) -> str:
+    def build_tree(self, results: List[Tuple[str, float, Dict]], term_type: str = "class") -> str:
         """
-        Format data for inclusion in LLM prompt
-        
+        Build a hierarchical tree structure from search results.
+
         Args:
-            data: Data to format (typically a dict or list)
-            
+            results: List of tuples (id, similarity_score, info)
+            term_type: "class" or "property"
+
         Returns:
-            Formatted string
+            String representation of the hierarchical tree structure
         """
-        if isinstance(data, dict):
-            formatted = json.dumps(data, indent=2)
-            # If it's too large, simplify it
-            if len(formatted) > 4000:  # Arbitrary token limit
-                simplified = {}
-                for key, value in data.items():
-                    if key in ["class", "property"]:
-                        simplified[key] = value
-                    elif key in ["parents", "children", "properties", "domains", "ranges"]:
-                        simplified[key] = {k: {"label": v.get("label", ""), "description": v.get("description", "")} 
-                                         for k, v in value.items()}
-                formatted = json.dumps(simplified, indent=2)
-            return formatted
-        return str(data)
-    
-    def get_ontology_context_for_llm(self, query: str, term_type: str, max_tokens: int = 20000) -> str:
-        # Try direct lookup for class or property
-
-        results = self.semantic_search(query, term_type=term_type, top_k=50)
-        context_str = "### Relevant Classes\n" if term_type == "class" else "### Relevant Properties\n"
-        for id, score, info in results:
-            description = info.get("description", "")
-            context_str += f"- {id}"              # ({score:.2f}) {info.get('label', '')}
-            context_str += f": {description}\n" if description else "\n"
+        if term_type == "property":
+            # For properties, return a flat list as string
+            tree_str = ""
+            for item_id, score, info in results:
+                description = info.get("description", "")
+                tree_str += f"- {item_id}: {description}\n" if description else f"- {item_id}\n"
+            return tree_str
+        
+        # Build hierarchy for classes
+        hierarchy = {}
+        all_classes = set()
+        
+        # First, collect all classes from results and their superclasses
+        for item_id, score, info in results:
+            all_classes.add(item_id)
+            class_uri = self._string_to_uri(item_id, term_type="class")
             
-        # print(f"Context for LLM: \n{context_str}")
+            if class_uri:
+                # Get all superclasses recursively
+                superclasses = self._get_all_superclasses_recursive(class_uri)
+                for superclass_uri in superclasses:
+                    superclass_id = self._uri_to_string(superclass_uri)
+                    all_classes.add(superclass_id)
+        
+        # Build parent-child relationships
+        for class_id in all_classes:
+            hierarchy[class_id] = {
+                "children": set(),  # Use set to avoid duplicates
+                "parents": set(),   # Use set to avoid duplicates
+                "info": None
+            }
+            
+            # Find info from results if available
+            for item_id, score, info in results:
+                if item_id == class_id:
+                    hierarchy[class_id]["info"] = info
+                    break
+        
+        # Populate parent-child relationships (avoid duplicates with sets)
+        for class_id in all_classes:
+            if class_id in self.index["classes"]:
+                superclasses = self.index["classes"][class_id].get("superclasses", [])
+                for parent_id in superclasses:
+                    if parent_id in hierarchy:
+                        hierarchy[class_id]["parents"].add(parent_id)
+                        hierarchy[parent_id]["children"].add(class_id)
+        
+        # Find root classes (classes with no parents in our hierarchy)
+        root_classes = [class_id for class_id in hierarchy if not hierarchy[class_id]["parents"]]
+        
+        # Global visited set to prevent any class from being rendered multiple times
+        global_visited = set()
+        
+        # Build tree string representation
+        def build_tree_string(class_id, level=0):
+            # If already visited globally, skip this entire subtree
+            if class_id in global_visited:
+                return ""
+            
+            # Mark as visited globally
+            global_visited.add(class_id)
+            
+            indent = "  " * level
+            
+            # Get description if available
+            description = ""
+            if hierarchy[class_id]["info"]:
+                description = hierarchy[class_id]["info"].get("description", "")
+            
+            tree_str = f"{indent}- {class_id}"
+            if description:
+                tree_str += f": {description}"
+            tree_str += "\n"
+            
+            # Add children (convert set to sorted list)
+            children = sorted(list(hierarchy[class_id]["children"]))
+            for child_id in children:
+                tree_str += build_tree_string(child_id, level + 1)
+            
+            return tree_str
+        
+        # Build the complete tree string
+        complete_tree = ""
+        for root_class in sorted(root_classes):
+            complete_tree += build_tree_string(root_class)
+        
+        return complete_tree
 
+    def _get_all_superclasses_recursive(self, class_uri: URIRef, visited=None) -> set:
+        """Get all superclasses of a class recursively"""
+        if visited is None:
+            visited = set()
+        
+        if class_uri in visited:
+            return set()
+        
+        visited.add(class_uri)
+        superclasses = set()
+        
+        # Find direct superclasses
+        for s, p, o in self.ont.triples((class_uri, RDFS.subClassOf, None)):
+            if isinstance(o, URIRef):
+                superclasses.add(o)
+                # Recursively get superclasses of superclasses
+                superclasses.update(self._get_all_superclasses_recursive(o, visited.copy()))
+        
+        return superclasses
+
+    def generate_llm_prompt(self, query: str, term_type: str, top_k: int, max_tokens: int = 20000) -> str:
+        
+        results = self.semantic_search(query, term_type=term_type, top_k=top_k)
+        
+        tree_structure = self.build_tree(results, term_type=term_type)        
+        context_str = "### Relevant Classes (Hierarchical)\n" if term_type == "class" else "### Relevant Properties\n"
+        context_str += tree_structure
+
+        print(f"Prompt Context: {context_str}")
+        input("Press Enter to continue...")
+            
         # Ensure the context fits within token limits
         if len(context_str.split()) > max_tokens:
             context_str = " ".join(context_str.split()[:max_tokens]) + "..."
-            
-        return context_str
     
-    def generate_llm_prompt(self, query: str, term_type: str) -> str:
-
-        context = self.get_ontology_context_for_llm(query, term_type)
-
+    
         prompt = f"""
         <role>You are an ontology expert</role>
 
         <data>
         Extraction of available Ontology {'class' if term_type == 'Classes' else 'Properties'}
-        {context}
+        {context_str}
         </data>
 
         <input>
@@ -550,19 +651,23 @@ class OntologyProcessor:
         4. Attribute similarity (same properties/characteristics)
 
         SPECIAL CONSIDERATIONS:
-        - Distinguish between sensors (measurement) vs setpoints (targets) vs commands (actions)
-        - Consider measurement types, units, and data flows
-        - Respect system hierarchies (building → floor → room → equipment)
-        - Pay attention to relationship directions (subject → predicate → object)
-        - Test the found ontology class or property like this: Does it make sense to say "{{query}} is a {{found_term}}"?
+        - Distinguish locations, air systems, devices, actuation points, sensors
+        - Avoid category errors: don't confuse the thing itself with infrastructure that supports the thing
+        
+        {'- Respect system hierarchies (building → floor → room → equipment' if term_type == 'class' 
+         else '- Maintain the direction of the relationship original (subject → predicate → object), e. g.: is_instance_of NOT EQUAL TO is_instanciated_by'})
+        
+        {'- When the Domain Entity seems to be a relation, select a class that would have this relation as a property' if term_type == 'class' else ''}
         </instructions>
 
         <output>Return the selected term in the terminology in output tags, do not provide an explaination.</output>
-        """
+        """.strip()
+        # TODO change prompt description query (different as semantic search query), add: 'relationship value of parent entity'
+
 
         return prompt.strip()    
 
-    def map_term(self, term_description: str, term_type: str) -> Dict:
+    def map_term(self, term_description: str, term_type: str, top_k: int=40) -> Dict:
 
         # print(f"Mapping the term '{term_description}' to an ontology {term_type}...")
 
@@ -578,19 +683,19 @@ class OntologyProcessor:
             self.save_index()
             print(f"\nOntology index saved to {self.index_file}")
 
-        prompt = self.generate_llm_prompt(term_description, term_type=term_type)
+        prompt = self.generate_llm_prompt(term_description, term_type, top_k)
 
         # TODO change system prompt for term matching (including <background> from prompts.py?)
 
         system = prompts.OUTPUT_FORMAT
 
         from semantic_iot.utils import ClaudeAPIProcessor
-        claude = ClaudeAPIProcessor(system_prompt=system)
+        claude = ClaudeAPIProcessor(system_prompt=system, model="4sonnet")
         response = claude.query(
             prompt, 
             step_name=f"find_{term_description}_match", 
             tools="",
-            temperature=0.0)
+            temperature=1.0)
         
         # Parse the response to extract the selected term name
         term_name = None
@@ -671,49 +776,19 @@ class OntologyProcessor:
 if __name__ == "__main__":
 
     # Example usage
-    ontology_path = r"LLM_models/ontologies/Brick.ttl"
+    ontology_paths = {
+        "Brick": r"LLM_models/ontologies/Brick.ttl",
+        "DogOnt": r"LLM_models/ontologies/DogOnt.ttl",
+        "SAREF4Bldg": r"LLM_models/ontologies/saref4bldg.ttl",
+    }
 
-    processor = OntologyProcessor(ontology_path)
+    processor = OntologyProcessor(ontology_paths["Brick"])
+
+    # processor.build_index()
+    # print(processor._string_to_uri("Outside_Air_Temperature_Sensor"))
     
-    entity_result = processor.map_term(term_description="AmbientTemperatureSensor", term_type="class")
+    entity_result = processor.map_term(term_description="FreshAirVentilation", term_type="class")
     print(json.dumps(entity_result, indent=2))
 
 
 
-
-
-# TODO use this prompt description?
-
-"""
-GOAL:
-Match resource types from JSON data to ontology classes, 
-finding the most semantically appropriate matches.
-
-Resource types to match: {self.resource_types}
-Available ontology classes: {self.ont_classes_names}
-
-CONTEXT:
-This is in a context of building automatization, 
-Internet of Things, building systems, 
-building components, sensors, and their relationships.
-
-RESPONSE FORMAT:
-Return a JSON dictionary where 
-    keys are resource types and 
-    values are arrays with 
-    [ontology_classes, confidence_score]. 
-    As ontology_classes use exclusively words from the given input ontology classes. 
-    The confidence_score should be between 0 and 1 and should tell the proximity of how likely this is a correct match. 
-    Example: \"CO2Sensor\": [\"CO2_Sensor\", 0.95]. 
-Do not output any other explaination or text.
-
-CONSTRAINTS:
-Use semantic matching, considering synonyms and related terms. 
-Prioritize exact matches, then partial matches.
-
-TARGET USE:
-The matches will be used to create RML mappings for knowledge graph generation.
-
-ROLE:
-Act as an expert in ontology matching and semantic alignment.
-"""
