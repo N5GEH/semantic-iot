@@ -1,4 +1,8 @@
 /build/
+/.makemd
+/.obsidian
+/.smart-env
+/.space
 /examples/fiware/kgcp/rml/rdf_node_relationship.json
 local_test/
 /semantic_iot.egg-info/
@@ -8,3 +12,4 @@ local_test/
 **/ANTHROPIC_API_KEY
 **/__pycache__/
 /doc/
+**/datasets/**/*result*

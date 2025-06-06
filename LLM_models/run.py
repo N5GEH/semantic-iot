@@ -221,7 +221,6 @@ class ScenarioExecutor:
                         step_name="get_context",
                         follow_up=True,
                         tools="context",
-                        # thinking=True,
                     )
                 )
             except Exception as e:
@@ -313,6 +312,9 @@ class ScenarioExecutor:
         if not hasattr(self, 'context') or not self.context:
             print("Get context from Claude...")
             self.get_context()
+
+        print(f"\nContext loaded: {json.dumps(self.context, indent=2)}")
+        input("Press Enter to continue...")
         
         print(f"\nGenerating results for selected scenarios {self.selected_scenarios}...")
 
@@ -336,90 +338,106 @@ class ScenarioExecutor:
         }
 
         for sc in self.selected_scenarios:
-            # Create result folder for each scenario
-            if sc == 'IIIf': 
-                scenario_folder[sc] = scenario_folder['III']
-                # print(f"Using existing results folder for scenario {sc}: {scenario_folder[sc]}")
-            else:
-                scenario_folder[sc] = os.path.join(self.result_folder, f"scenario_{sc}")
-                os.makedirs(scenario_folder[sc], exist_ok=True)
-                print(f"Results subfolder created at: {scenario_folder[sc]}")
-            input("Press Enter to continue...")
+            try: # to handle errors in each scenario individually
 
-            if not test:
+                # Create result folder for each scenario
+                if sc == 'IIIf': 
+                    scenario_folder[sc] = scenario_folder['III']
+                    # print(f"Using existing results folder for scenario {sc}: {scenario_folder[sc]}")
+                else:
+                    scenario_folder[sc] = os.path.join(self.result_folder, f"scenario_{sc}")
+                    os.makedirs(scenario_folder[sc], exist_ok=True)
+                    print(f"Results subfolder created at: {scenario_folder[sc]}")
+                    # input("Press Enter to continue...")
 
-                print(prompt[sc])
-                input("Press Enter to continue...")
+                if not test:
 
-                print(f"Running scenario {sc}...")
+                    # print(prompt[sc])
+                    # input("Press Enter to continue...")
 
-                client_scenario = ClaudeAPIProcessor()
+                    print(f"Running scenario {sc}...")
 
-                response = client_scenario.query(
-                    prompt=prompt[sc],
-                    step_name=f"scenario_{sc}", 
-                    tools="",
-                    follow_up=False,
-                    # thinking=True
+                    client_scenario = ClaudeAPIProcessor()
+
+                    response = client_scenario.query(
+                        prompt=prompt[sc],
+                        step_name=f"scenario_{sc}", 
+                        tools="",
+                        follow_up=False,
+                    )
+                    response = client_scenario.extract_code(response)
+
+                    # Save the response to the results folder
+                    response_file = os.path.join(scenario_folder[sc], file_name[sc])
+                    with open(response_file, 'w', encoding='utf-8') as f:
+                        if isinstance(response, dict):
+                            f.write(json.dumps(response, indent=2))
+                        else:
+                            f.write(response)
+                    print(f"Response saved to: {response_file}")
+                    # input("Press Enter to continue...")
+
+
+                # FINISH =======================================================
+
+                if sc == 'III':
+                    # Generate RNR from PC
+                    print("\n======= Generate RNR (from Platform Configuration) =======")
+                    preprocess_json(
+                        json_file_path=self.JEN_path, # TODO JEN or JEX?
+                        rdf_node_relationship_file_path=os.path.join(scenario_folder[sc], "node_relationship.json"),
+                        ontology_file_paths=[self.ontology_path],
+                        config_path=get_file(scenario_folder[sc], "PC")
+                    )
+                    prompts.load_RNR(get_file(scenario_folder[sc], "RNR"))
+                    prompt["IIIf"] = prompts.prompt_III
+                    # input("Press Enter to continue...")
+                    continue
+
+                if sc == 'IIIf':
+                    # Generate RML (from RNR from config)
+                    print("\n======= Generate RML (from RNR) =======")
+                    generate_rml_from_rnr(
+                        INPUT_RNR_FILE_PATH=get_file(scenario_folder[sc], "RNRv"),
+                        OUTPUT_RML_FILE_PATH=os.path.join(scenario_folder[sc], "rml_mapping.ttl"),
+                    )
+                    # input("Press Enter to continue...")
+
+                if sc == 'II' or sc == 'IIIf':
+                    # Generate KG (from RML)
+                    print("\n======= Generate KG (from RML) =======")
+                    generate_rdf_from_rml(
+                        json_file_path=self.JEN_path,
+                        rml_file_path=get_file(scenario_folder[sc], "RML"),
+                        output_rdf_file_path=os.path.join(scenario_folder[sc], "kg_entities.ttl"),
+                        platform_config=get_file(scenario_folder[sc], "PC") or None,
+                    )
+                    # input("Press Enter to continue...")
+
+                print("\n======= Generate iKG (from KG) =======")
+                reasoning(
+                    target_kg_path=get_file(scenario_folder[sc], "KG"),
+                    ontology_path=self.ontology_path,
+                    extended_kg_filename=""
                 )
-                response = client_scenario.extract_code(response)
 
-                # Save the response to the results folder
-                response_file = os.path.join(scenario_folder[sc], file_name[sc])
-                with open(response_file, 'w', encoding='utf-8') as f:
-                    f.write(response)
-                print(f"Response saved to: {response_file}")
-                input("Press Enter to continue...")
+                # input("Press Enter to continue...")
 
-
-            # FINISH =======================================================
-
-            if sc == 'III':
-                # Generate RNR from PC
-                preprocess_json(
-                    json_file_path=self.JEN_path, # TODO JEN or JEX?
-                    rdf_node_relationship_file_path=os.path.join(scenario_folder[sc], "node_relationship.json"),
-                    ontology_file_paths=[self.ontology_path],
-                    config_path=get_file(scenario_folder[sc], "PC")
+                print("\n======= Generate CC (from iKG) =======")
+                generate_controller_configuration(
+                    extended_kg_path=get_file(scenario_folder[sc], "iKG"),
+                    output_file=os.path.join(scenario_folder[sc], "controller_configuration.yml")
                 )
-                prompts.load_RNR(get_file(scenario_folder[sc], "RNR"))
-                prompt["IIIf"] = prompts.prompt_III
-                input("Press Enter to continue...")
+
+                print (f"\nController configuration generated and saved to {get_file(scenario_folder[sc], 'CC')}")
+                print(f"Scenario {sc} completed. Results saved in {scenario_folder[sc]}")
+            
+            except Exception as e:
+                print(f"Error in scenario {sc}: {e}")
+                print("Skipping this scenario due to an error.")
                 continue
-
-            if sc == 'IIIf':
-                # Generate RML (from RNR from config)
-                generate_rml_from_rnr(
-                    INPUT_RNR_FILE_PATH=get_file(scenario_folder[sc], "RNRv"),
-                    OUTPUT_RML_FILE_PATH=os.path.join(scenario_folder[sc], "rml_mapping.ttl"),
-                )
-                input("Press Enter to continue...")
-
-            if sc == 'II' or sc == 'IIIf':
-                # Generate RDF (from RML)
-                generate_rdf_from_rml(
-                    json_file_path=self.JEN_path,
-                    rml_file_path=get_file(scenario_folder[sc], "RML"),
-                    output_rdf_file_path=os.path.join(scenario_folder[sc], "kg_entities.ttl"),
-                    platform_config=get_file(scenario_folder[sc], "PC") or None,
-                )
-                input("Press Enter to continue...")
-
-            reasoning(
-                target_kg_path=get_file(scenario_folder[sc], "KG"),
-                ontology_path=self.ontology_path,
-                extended_kg_filename=""
-            )
-
-            input("Press Enter to continue...")
-
-            generate_controller_configuration(
-                extended_kg_path=get_file(scenario_folder[sc], "iKG"),
-                output_file=os.path.join(scenario_folder[sc], "controller_configuration.yml")
-            )
-
-            print (f"Controller configuration generated and saved to {get_file(scenario_folder[sc], 'CC')}")
-            print(f"Scenario {sc} completed. Results saved in {scenario_folder[sc]}")
+                
+        print(f"\n\n✅  All selected scenarios completed. Results saved in {self.result_folder}")
 
     def load_context(self, result_folder):
         context_file = get_file(result_folder, "CTX")
@@ -446,7 +464,16 @@ class ScenarioExecutor:
         else:
             metrics = {}
 
-        metrics = {"status": status, **metrics}
+        metrics = {
+            "status": status,
+            "dataset": self.target_folder,
+            "JEN": self.JEN_path,
+            "JEX": self.JEX_path,
+            "ontology": self.ontology_path,
+            "api_spec": self.endpoint_path,
+            "scenarios": self.selected_scenarios,
+            **metrics
+        }
 
         output_file = os.path.join(self.result_folder, "metrics.json")
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -474,8 +501,8 @@ if __name__ == "__main__":
     executor.choose_dataset()
 
     try:
-        # context = executor.get_context()
-        executor.run_scenarios()
+        context = executor.get_context()
+        # executor.run_scenarios()
 
         executor.save_metrics()
 

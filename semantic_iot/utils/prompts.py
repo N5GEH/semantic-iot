@@ -52,7 +52,8 @@ class PromptsLoader:
         - If you dont have tools, dont try to call a tool, the prompt contains all information you need.
         </system>"""
         self.OUTPUT_FORMAT = f"""<output>
-        Put the relevant output data in <output> tags.</output>"""
+        Put the relevant output data in <output> tags.</output>
+        """
         # - In your thinking, include the requirements for a human to be able to output the same result and put the answer in <thinking> tags., e. g.:
         # Prompt: Complete the pattern: 1, 2, 4, 7, ...
         # Response: <output>11</output><thinking> - Basic arithmetic skills (addition and subtraction). - Pattern recognition abilities, specifically recognizing changes between numbers. - Logical thinking to identify the alternating difference pattern. </thinking>
@@ -212,6 +213,7 @@ class PromptsLoader:
         <instructions>
         Generate the RDF knowledge graph from the provided JSON Entities data of a GET request to the IoT platform based on the template.
         For every entity in the JSON Entities file and for every Extra Node, create a corresponding entity in the RDF graph.
+        Preserve and use the complete id from the JEN in the KG.
         For each RDF entity, choose a suitable block from the template and fill out the placeholders with the results of Preprocessing of the JSON file.
         For connecting extra nodes to the parent entities, choose a previously mapped ontology property for relations.
         Use the given prefixes.
@@ -224,8 +226,6 @@ class PromptsLoader:
         <output> Return the knowledge graph in Turtle format. </output>
         """
         # TODO: improve command:
-        
-        # Preserve and use the complete id from the JEN to use in the KG
 
         # Explain Extra Nodes:
         # Extra Nodes always have numerical value property, but their parent does not.
@@ -297,7 +297,7 @@ class PromptsLoader:
         - For the value of every "property" key:
             - Ignore any prefilled value and replace it with the mapped Ontology Property for the "rawdataidentifier" value of the entity.
         - For the value of every "hasdataaccess" key: 
-            - Ignore any prefilled value and replace it with string of the correct API endpoint for data access
+            - If entity has a numerical property: Ignore any prefilled value, replace it with a string of the correct API endpoint for data access
         
         </instructions>
 
@@ -315,6 +315,119 @@ class PromptsLoader:
 
         # Metrics ====================================================================
 
+        # Pointwise 
+        self.cot_extraction_full = f"""
+        <context>
+        Bloom's Taxonomy:
+        - Remembering: Recall basic facts and concepts.
+        - Understanding: Explain ideas or concepts.
+        - Applying: Use information in new situations.
+        - Analyzing: Draw connections among ideas.
+        - Evaluating: Justify a stand or decision.
+        - Creating: Produce new or original work.
+
+        Knowledge Dimensions:
+        - Factual Knowledge: Basic elements needed to understand a domain.
+        - Conceptual Knowledge: Interrelationships among basic elements within a larger structure.
+        - Procedural Knowledge: How to do something, methods of inquiry, and criteria for using skills, algorithms, techniques, and methods.
+        - Metacognitive Knowledge: Knowledge of cognition in general as well as awareness and knowledge of one's own cognition.        
+        </context>
+
+        <instructions>
+        Do the task step by step. 
+        A step is defined as something that can be categorized into a Bloom's Taxonomy category and a Knowledge Dimension and that is not devidable into smaller steps that can be categorized as well.
+        Consecutive steps that can be categorized into the same Bloom's Taxonomy category and Knowledge Dimension, can not be put in one step.
+        </instructions>
+
+        <output>
+        In <steps> tags, return a JSON object in which the steps and their Bloom's Taxonomy category (bloom) and Knowledge Dimension (dim) and how many times this same step needs to be repeated to process all items (quantity).
+        Example:
+        [
+            {{
+                "step": "Step Name",
+                "bloom": "Understanding",
+                "dim": "Factual Knowledge",
+                "quantity": 1
+            }},
+            {{
+                "step": "Step Name",
+                "bloom": "Applying",
+                "dim": "Conceptual Knowledge"
+                "quantity": 2
+            }}
+        ]
+        </output>
+        """
+        # Evaluate: 
+        # - total number of steps (quantity)
+        # - number of steps per Bloom's Taxonomy category (complexity)
+        # - number of steps per Knowledge Dimension (prerequisites)
+        # duration = quantity * complexity * prerequisites
+
+        # where decision complexity??
+        # where number of options / error potential??
+
+        self.cot_extraction_est = f"""
+         <context>
+        Bloom's Taxonomy:
+        - Remembering: Recall basic facts and concepts.
+        - Understanding: Explain ideas or concepts.
+        - Applying: Use information in new situations.
+        - Analyzing: Draw connections among ideas.
+        - Evaluating: Justify a stand or decision.
+        - Creating: Produce new or original work.
+
+        Knowledge Dimensions:
+        - Factual Knowledge: Basic elements needed to understand a domain.
+        - Conceptual Knowledge: Interrelationships among basic elements within a larger structure.
+        - Procedural Knowledge: How to do something, methods of inquiry, and criteria for using skills, algorithms, techniques, and methods.
+        - Metacognitive Knowledge: Knowledge of cognition in general as well as awareness and knowledge of one's own cognition.        
+        </context>
+
+        <instructions>
+        Do the task step by step. 
+
+        I want to use a standardized way to evaluate the difficulty of the task in order to compare it with other tasks.
+        Therefore it is essential to follow the given definition of steps
+
+        A step is valid if it meets all of the following:
+        - Acts on exactly one conceptual target: entity, property, relationship, path, or configuration key.
+        - Performs one logical action: mapping, transformation, ...
+        - Is invariant across domain context
+        - Can be counted and evaluated independently
+
+        A step is defined as something that can be categorized into a Bloom's Taxonomy category and a Knowledge Dimension and that is not devidable into smaller steps that can be categorized as well.
+        Consecutive steps that can be categorized into the same Bloom's Taxonomy category and Knowledge Dimension, can NOT be put in one step.
+        Steps that are done multiple times with different conceptual targets, are counted as multiple steps.
+        </instructions>
+
+        <output>
+        In <steps> tags, return a JSON object containing the number of steps: total, for each Bloom's Taxonomy category each Knowledge Dimension.
+        Example:
+        {{
+            "total_steps": 0,
+            "bloom_categories": {{
+                "Remembering": 0,
+                "Understanding": 0,
+                "Applying": 0,
+                "Analyzing": 0,
+                "Evaluating": 0,
+                "Creating": 0
+            }},
+            "knowledge_dimensions": {{
+                "Factual Knowledge": 0,
+                "Conceptual Knowledge": 0,
+                "Procedural Knowledge": 0,
+                "Metacognitive Knowledge": 0
+            }}
+        }}
+        Do not output any (explainatory) text or than the JSON object in the <steps> tags and the result of the prompt.
+        </output>
+        """
+        # self.OUTPUT_FORMAT += self.cot_extraction_est
+        
+
+        # Top Level
         self.HUMAN_EFFORT_METRICS = f"""
         - Difficulty
 
@@ -332,6 +445,44 @@ class PromptsLoader:
             - Duration
             - Cognitive Load (amount of cognitive effort required)
             - Error Potential (Likelihood of making mistakes)
+        
+
+        output:
+        - what is the difficulty here?
+        - challenges? trade-offs? struggles? where did you needed to think?
+        - which mistakes would a dumb human make?
+
+
+        use vocab for prompt:
+        - choose
+        - compose
+        - classify
+        - requiers expert knowledge
+        - straight forward
+        - semantic disambiguation / Ambiguity or uncertainty
+        - reasoning
+        - interpretation
+
+        cognitive effort (how hard something was)
+        uncertainty or complexity
+        decisions made or alternatives considered
+        what required extra modeling or attention
+
+        Prompt Design Principles:
+        ✅ Explicitly ask for reflections on difficulty
+        ✅ Ask the model to note challenges, decisions, or trade-offs
+        ✅ Request structured reasoning per entity or component
+        ✅ Use consistent formatting so it's easy to parse later
+
+
+        Let LLM output thinking in this vocab
+        --> count words (e. g. decision points)
+
+        specified <thinking> output template defined
+
+        + addition:
+        let LLM evaluate its own thinking and decisions and give score right away
+
             
         """
 

@@ -2,31 +2,45 @@
 
 from semantic_iot.tools import execute_tool, FILE_ACCESS, CONTEXT, VALIDATION, RML_ENGINE, SIOT_TOOLS
 
-# Need to PRESERVE thinking blocks!!!
+# TODO Need to PRESERVE thinking blocks!!!
 # https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking#extended-thinking-with-tool-usehttps://docs.anthropic.com/en/docs/build-with-claude/extended-thinking#extended-thinking-with-tool-use
 
 from semantic_iot.utils import ClaudeAPIProcessor, models
 
-claude = ClaudeAPIProcessor(system_prompt="", model="4sonnet")
+from semantic_iot.utils.prompts import prompts
 
-prompt = """
+system_prompt = """
+# Thinking behavior
+Think in triples: subject, predicate, object.
+# Use the thinking tags to provide reasoning for your answers.
+Example:
+Prompt: What is the capital of France?
+Thinking: <thinking>[subject: France, predicate: hasCapital, object: Paris]</thinking>
+"""
+system_prompt="" # prompts.cot_extraction
+
+claude = ClaudeAPIProcessor(system_prompt=system_prompt, model="4sonnet")
+
+prompt = f"""
 
 Task 1: Complete: 1, 2, 5, 14, ...
 Task 2: Complete: 1, 2, 4, 7, ...
 
-Think step by step. 
-Give the reasoning process in detail in thinking tags.
-
+<instructions>
 Which task is easier to complete?
-Why?
+</instructions>
+
+<output>
+Put the searched Task Number in output tags
+</output>
+
+{prompts.cot_extraction}
 
 """
-
-# TODO just try out with sonnet 4 and compare thinking outputs
-
 claude.query(
     prompt=prompt,
-    thinking=True,
+    thinking=False,
+    temperature=0.0
     # tools="file_access",
     # follow_up=True
 )

@@ -51,7 +51,7 @@ class ClaudeAPIProcessor:
     def __init__(self, 
                  api_key: str = "", 
                  model: str = "4sonnet",
-                 temperature: float = 1.0,
+                 temperature: float = 1.0, # TUNE
                  system_prompt: str = prompts.system_default):
         """
         Initialize the Claude API processor
@@ -149,6 +149,7 @@ class ClaudeAPIProcessor:
             else self.conversation_history.copy()
 
         if prompt: # Add user message to messages
+            prompt += prompts.cot_extraction_full
             messages.append({"role": "user", "content": prompt})
 
         data = {
@@ -281,7 +282,7 @@ class ClaudeAPIProcessor:
                 },
                 "tokens": result.get("usage", {})
             },
-            "requirements": self.extract_tag(response_text, "req") 
+            "sub_steps": json.loads(self.extract_tag(response_text, "steps")) if self.extract_tag(response_text, "steps") else None
             # "evaluation": None, # TODO add absolute evaluation based on ... ??
         }      
         self.save_metrics(step_name)
@@ -480,7 +481,15 @@ class ClaudeAPIProcessor:
             try:
                 return json.loads(extracted_content)
             except json.JSONDecodeError:
-                # If not valid JSON, return as raw string
                 return extracted_content
         else:
-            return text
+            # No code block found, check if the text itself is already a dict or valid JSON
+            if isinstance(text, dict):
+                return text
+            elif isinstance(text, str):
+                try:
+                    return json.loads(text)
+                except json.JSONDecodeError:
+                    return text
+            else:
+                return text

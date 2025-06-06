@@ -451,7 +451,7 @@ class OntologyProcessor:
                 
         return result
     
-    def semantic_search(self, query: str, term_type: str = "", top_k: int = 10) -> List[Tuple[str, float, Dict]]:
+    def semantic_search(self, query: str, term_type: str, top_k: int) -> List[Tuple[str, float, Dict]]:
         """
         Find ontology classes or properties semantically related to the query.
 
@@ -619,8 +619,8 @@ class OntologyProcessor:
         context_str = "### Relevant Classes (Hierarchical)\n" if term_type == "class" else "### Relevant Properties\n"
         context_str += tree_structure
 
-        print(f"Prompt Context: {context_str}")
-        input("Press Enter to continue...")
+        # print(f"Prompt Context: {context_str}")
+        # input("Press Enter to continue...")
             
         # Ensure the context fits within token limits
         if len(context_str.split()) > max_tokens:
@@ -667,7 +667,7 @@ class OntologyProcessor:
 
         return prompt.strip()    
 
-    def map_term(self, term_description: str, term_type: str, top_k: int=40) -> Dict:
+    def map_term(self, term_description: str, term_type: str, top_k: int=45) -> Dict:
 
         # print(f"Mapping the term '{term_description}' to an ontology {term_type}...")
 
