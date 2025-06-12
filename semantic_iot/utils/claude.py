@@ -50,7 +50,7 @@ models = {
 class ClaudeAPIProcessor:    
     def __init__(self, 
                  api_key: str = "", 
-                 model: str = "4sonnet",
+                 model: str = "3.7sonnet",
                  temperature: float = 1.0, # TUNE
                  system_prompt: str = prompts.system_default):
         """
@@ -78,7 +78,7 @@ class ClaudeAPIProcessor:
         self.model_api = self.model["api"]
         self.thinking = self.model["thinking"]
         self.max_tokens = self.model["max_tokens"]
-        print (f"Using Claude model: {self.model_api} (Thinking: {self.thinking}, Max Tokens: {self.max_tokens})")
+        print (f"Using Claude model: {self.model_api} (Thinking Possible: {self.thinking}, Max Tokens: {self.max_tokens})")
 
         self.temperature = temperature
         self.system_prompt = system_prompt if system_prompt else "default"
@@ -98,14 +98,14 @@ class ClaudeAPIProcessor:
         self.metrics = {}
 
     def query(self,
-                    prompt: str = "",
-                    step_name: str = "default_step",
-                    max_retry: int = 5,
-                    conversation_history = None,
-                    temperature: float = None,
-                    thinking: bool = False,
-                    tools: str = "",
-                    follow_up: bool = False) -> Dict[str, Any]: # TODO add tool selection
+                prompt: str = "",
+                step_name: str = "default_step",
+                max_retry: int = 5,
+                conversation_history = None,
+                temperature: float = None,
+                thinking: bool = True,
+                tools: str = "",
+                follow_up: bool = False) -> Dict[str, Any]: # TODO add tool selection
         """
         Send a query to Claude API
 
@@ -150,6 +150,7 @@ class ClaudeAPIProcessor:
 
         if prompt: # Add user message to messages
             prompt += prompts.cot_extraction_full
+            # prompt += prompts.predefined_steps
             messages.append({"role": "user", "content": prompt})
 
         data = {
@@ -280,12 +281,14 @@ class ClaudeAPIProcessor:
                     "tpot": round(elapsed_time / result.get("usage", {}).get("output_tokens", 1), 4),
                     "ttft": None
                 },
-                "tokens": result.get("usage", {})
+                "tokens": result.get("usage", {})            
             },
-            "sub_steps": json.loads(self.extract_tag(response_text, "steps")) if self.extract_tag(response_text, "steps") else None
+            "sub_steps": self._safe_parse_steps(thinking_text, response_text)
             # "evaluation": None, # TODO add absolute evaluation based on ... ??
-        }      
+        }
         self.save_metrics(step_name)
+
+        print(f"Thinking:\n{thinking_text}") if thinking_text else None
 
 
         # TOOL USE =========================================================
@@ -480,8 +483,18 @@ class ClaudeAPIProcessor:
             # Try to parse as JSON first
             try:
                 return json.loads(extracted_content)
-            except json.JSONDecodeError:
-                return extracted_content
+            except json.JSONDecodeError as e:
+                print(f"⚠️  JSON parsing error in code block: {e}")
+                print(f"Content: {extracted_content[:200]}...")
+                # Try to extract just valid JSON from the beginning
+                try:
+                    decoder = json.JSONDecoder()
+                    obj, idx = decoder.raw_decode(extracted_content)
+                    print(f"✅ Extracted valid JSON object from position 0 to {idx}")
+                    return obj
+                except json.JSONDecodeError:
+                    print("❌ Could not extract valid JSON, returning raw content")
+                    return extracted_content
         else:
             # No code block found, check if the text itself is already a dict or valid JSON
             if isinstance(text, dict):
@@ -489,7 +502,157 @@ class ClaudeAPIProcessor:
             elif isinstance(text, str):
                 try:
                     return json.loads(text)
-                except json.JSONDecodeError:
-                    return text
+                except json.JSONDecodeError as e:
+                    print(f"⚠️  JSON parsing error in raw text: {e}")
+                    print(f"Content: {text[:200]}...")
+                    # Try to extract just valid JSON from the beginning
+                    try:
+                        decoder = json.JSONDecoder()
+                        obj, idx = decoder.raw_decode(text)
+                        print(f"✅ Extracted valid JSON object from position 0 to {idx}")
+                        return obj
+                    except json.JSONDecodeError:
+                        print("❌ Could not extract valid JSON, returning raw text")
+                        return text
             else:
                 return text
+
+    def _safe_parse_steps(self, thinking_text, response_text):
+        """
+        Safely parse steps from extracted text with proper error handling.
+        
+        Args:
+            thinking_text: The thinking text from Claude's response
+            response_text: The response text from Claude's response
+            
+        Returns:
+            dict or None: Parsed steps as dict if valid JSON, otherwise None
+        """
+        # If no thinking text, try the original implementation with response text
+        if not thinking_text:
+            try:
+                steps_text = self.extract_tag(response_text, "steps")
+                if steps_text:
+                    return json.loads(steps_text)
+                return None
+            except json.JSONDecodeError as e:
+                print(f"⚠️  JSON parsing error in steps extraction: {e}")
+                print(f"Steps content: {steps_text[:200] if steps_text else 'None'}...")
+                # Try to extract valid JSON from the beginning
+                try:
+                    decoder = json.JSONDecoder()
+                    obj, idx = decoder.raw_decode(steps_text)
+                    print(f"✅ Extracted valid JSON object from steps at position 0 to {idx}")
+                    return obj
+                except (json.JSONDecodeError, TypeError):
+                    print("❌ Could not extract valid JSON from steps, returning None")
+                    return None
+            except Exception as e:
+                print(f"⚠️  Unexpected error in steps parsing: {e}")
+                return None
+        
+        # Parse steps from thinking text
+        try:
+            return self._parse_thinking_steps(thinking_text)
+        except Exception as e:
+            print(f"⚠️  Error parsing thinking steps: {e}")
+            return None
+    
+    def _parse_thinking_steps(self, thinking_text):
+        """
+        Parse steps from thinking text format.
+        
+        Args:
+            thinking_text: The thinking text containing step information
+            
+        Returns:
+            dict: Parsed steps with step numbers as keys
+        """
+        if not thinking_text:
+            return None
+            
+        steps = {}
+        
+        # Split the text by double newlines to get step blocks
+        # Then find blocks that start with "Step"
+        blocks = thinking_text.split('\n\n')
+        
+        print(f"🔍 Found {len(blocks)} blocks in thinking text")
+        
+        for block in blocks:
+            block = block.strip()
+            if not block:
+                continue
+                
+            # Check if this block starts with "Step"
+            if re.match(r'^\s*Step\s+\d+:', block, re.IGNORECASE):
+                # Extract step number and content
+                step_match = re.match(r'^\s*Step\s+(\d+):\s*(.*)', block, re.DOTALL | re.IGNORECASE)
+                if step_match:
+                    step_number = step_match.group(1)
+                    step_content = step_match.group(2).strip()
+                    
+                    # Split into lines to get title and attributes
+                    lines = step_content.split('\n')
+                    step_title = lines[0].strip()
+                    
+                    # Parse the step details (bloom, dim, quantity, human_effort)
+                    step_data = {
+                        "title": step_title,
+                        "bloom": None,
+                        "dim": None,
+                        "quantity": None,
+                        "human_effort": None
+                    }
+                    
+                    print(f"Step {step_number} block: {repr(block)}")
+                    
+                    # Look for attributes in the entire block
+                    for line in lines:
+                        line = line.strip()
+                        
+                        # Extract bloom value
+                        bloom_match = re.search(r'bloom:\s*([^\n,]+)', line, re.IGNORECASE)
+                        if bloom_match:
+                            step_data["bloom"] = bloom_match.group(1).strip()
+                        
+                        # Extract dim value
+                        dim_match = re.search(r'dim:\s*([^\n,]+)', line, re.IGNORECASE)
+                        if dim_match:
+                            step_data["dim"] = dim_match.group(1).strip()
+                        
+                        # Extract quantity value
+                        quantity_match = re.search(r'quantity:\s*(\d+)', line, re.IGNORECASE)
+                        if quantity_match:
+                            step_data["quantity"] = int(quantity_match.group(1))
+                        
+                        # Extract human_effort value
+                        effort_match = re.search(r'human_effort:\s*(\d+)', line, re.IGNORECASE)
+                        if effort_match:
+                            step_data["human_effort"] = int(effort_match.group(1))
+                    
+                    print(f"Parsed step {step_number}: {step_data}")
+
+                    # Only include steps that have all required fields
+                    if all(step_data[key] is not None for key in ["bloom", "dim", "quantity", "human_effort"]):
+                        steps[f"step_{step_number}"] = step_data
+                    else:
+                        print(f"⚠️ Step {step_number} missing required fields: {[k for k, v in step_data.items() if v is None]}")
+        
+        return steps if steps else None
+    
+
+
+if __name__ == "__main__":
+
+    thinking_text = """
+
+    """
+
+    # Example usage
+    claude = ClaudeAPIProcessor()
+
+    # Print the parsed steps
+    result = claude._parse_thinking_steps(thinking_text)
+    print("\n\n")
+    print(json.dumps(result, indent=2))

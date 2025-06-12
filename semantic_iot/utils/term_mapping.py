@@ -619,8 +619,8 @@ class OntologyProcessor:
         context_str = "### Relevant Classes (Hierarchical)\n" if term_type == "class" else "### Relevant Properties\n"
         context_str += tree_structure
 
-        # print(f"Prompt Context: {context_str}")
-        # input("Press Enter to continue...")
+        print(f"Prompt Context: {context_str}")
+        input("Press Enter to continue...")
             
         # Ensure the context fits within token limits
         if len(context_str.split()) > max_tokens:

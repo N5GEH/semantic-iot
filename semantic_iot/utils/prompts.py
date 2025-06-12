@@ -1,5 +1,31 @@
 
 
+kg_template_string = """<template> RDF
+For the RDF graph to properly support configuration generation, the following elements are essential:
+
+Rule 1: Entity Declaration
+Always: Every IoT entity and each Extra Node must be declared with:
+- A unique URI following the pattern <http://example.com/{{ENTITY_TYPE}}/{{ID}}>
+- A type classification using a {{ONTOLOGY_CLASS}}
+
+Rule 2: Ontology Prefixes
+Always: The knowledge graph must begin with:
+- {{ONTOLOGY_PREFIXES}} declaration
+- Standard RDF prefix: @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+- Do not add prefixes for the API endpoint, but use the full URI in angle brackets.
+
+Rule 3: Numerical Data Source
+If: An entity provides or exposes numerical data (accessible by API endpoint) 
+Then: Add the property rdf:value <{{API_ENDPOINT_URL}}>
+
+Rule 4: Relational Connections
+If: An entity has relationships or connections to other entities 
+Then: Add one or more properties using {{ONTOLOGY_PROPERTY}} <http://example.com/{{ENTITY_TYPE}}/{{ID}}>
+- System hierarchies must be properly represented
+- The datamodel must be represented correctly
+- Devices must be properly connected to their locations (e.g., sensors to rooms)
+
+</template>"""
 
 
 
@@ -120,9 +146,9 @@ class PromptsLoader:
 
         <constraints>MOST IMPORTANT: RDF should follow a valid turtle syntax!</constraints>
 
-        <template>\n{self.templates["rdf"]}\n</template>
         <data>\n{self.prefixes}\n</data>
-        """
+        {kg_template_string}
+        """ # <template>\n{self.templates["rdf"]}\n</template>
 
         self.RML = f"""
         # RML Mapping File 
@@ -131,9 +157,8 @@ class PromptsLoader:
         The knowledge graph looks like this: \n{self.KG}
 
         <constraints>MOST IMPORTANT: RML should follow a valid turtle syntax!</constraints>
-
-        <template>\n{self.templates["RML"]}\n</template>
         <data>\n{self.prefixes}\n</data>
+        <template>\n{self.templates["RML"]}\n</template>
         """
         
         self.PC = f""" 
@@ -225,17 +250,10 @@ class PromptsLoader:
 
         <output> Return the knowledge graph in Turtle format. </output>
         """
-        # TODO: improve command:
-
         # Explain Extra Nodes:
         # Extra Nodes always have numerical value property, but their parent does not.
         # They are created to represent properties that are not numerical values, but still need to be represented in the RDF graph.
 
-        # Replace the placeholders in curly brackets in the RDF template with the results of Preprocessing of the JSON file:
-        # - The Ontology classes and properties
-        # - The correct prefixes from the ontology
-        # - The API endpoint for data access
-        # - Consider extra nodes as part of the original JSON file
 
         self.prompt_II = f"""
         {self.jex}
@@ -319,74 +337,76 @@ class PromptsLoader:
         self.cot_extraction_full = f"""
         <context>
         Bloom's Taxonomy:
-        - Remembering: Recall basic facts and concepts.
-        - Understanding: Explain ideas or concepts.
-        - Applying: Use information in new situations.
-        - Analyzing: Draw connections among ideas.
-        - Evaluating: Justify a stand or decision.
-        - Creating: Produce new or original work.
-
+        - Remembering: Recall information.
+        - Understanding: Constructing meaning from information, e. g.: interpreting, exemplifying, classifying, summarizing, inferring, comparing, or explaining
+        - Applying: using a procedure through executing, or implementing.
+        - Analyzing: determine how concept parts relate to each other or how they interrelate, differentiating, organizing, and attributing, as well as being able to distinguish  between the components or parts.
+        - Evaluating: Making judgments based on criteria and standards through checking and critiquing.
+        - Creating: generating and synthesizing parts into new structures or patterns.
+ 
         Knowledge Dimensions:
-        - Factual Knowledge: Basic elements needed to understand a domain.
-        - Conceptual Knowledge: Interrelationships among basic elements within a larger structure.
-        - Procedural Knowledge: How to do something, methods of inquiry, and criteria for using skills, algorithms, techniques, and methods.
-        - Metacognitive Knowledge: Knowledge of cognition in general as well as awareness and knowledge of one's own cognition.        
+        - Factual Knowledge: facts, terminology, or syntax needed to understand the domain.
+        - Conceptual Knowledge: classifications, principles, generalizations, theories, models, or structures pertinent to a particular disciplinary area
+        - Procedural Knowledge: How to do something, methods of inquiry, specific or finite skills, algorithms, techniques, and particular methodologies
+        - Metacognitive Knowledge: awareness of own cognition, strategic or reflective knowledge considering contextual and conditional knowledge and knowledge of self.
         </context>
 
         <instructions>
-        Do the task step by step. 
-        A step is defined as something that can be categorized into a Bloom's Taxonomy category and a Knowledge Dimension and that is not devidable into smaller steps that can be categorized as well.
-        Consecutive steps that can be categorized into the same Bloom's Taxonomy category and Knowledge Dimension, can not be put in one step.
+        Do the task step by step.
+        Output the thinking process as detailed as possible.
+        It is really important to output every little step of your reasoning, even if it seems obvious.
+        Each step is not devidable into smaller steps.
+
+        Each step, no matter how small, should be classifiable by the Bloom's Taxonomy scale and the Knowledge Dimension.
+        {"Each step, no matter how small, must be outputted as a JSON object with the following keys:" if False else ""}
+        For each step, must have:
+        - step: the step name
+        - context: the context information that is needed to complete the step
+        - reason: the reasoning process that led to the step
+        - result: the result of the step, if applicable
+        - bloom: the Bloom's Taxonomy level
+        - dim: the Knowledge Dimension
+        - quantity: the number of context information pieces processed simultaneously
+        - human_effort: own evaluation of the human effort required to complete this step (from 1 to 10, where 1 is very easy and 10 is very hard)
+        
+        Only one single conceptual target should be processed in each step, 
+        Only one logical action should be performed in each step,
+        Only one result should be produced in each step, otherwise these should be split into multiple steps.
+ 
         </instructions>
 
         <output>
+        Output the steps in <steps> tags.
+        </output>
+        """
+        div = f"""
         In <steps> tags, return a JSON object in which the steps and their Bloom's Taxonomy category (bloom) and Knowledge Dimension (dim) and how many times this same step needs to be repeated to process all items (quantity).
+        The triviality score is based on your own evaluation of the step, where 0 is trivial at all and 5 is the most complex.
+        Also add the Result of the substep in JSON format, if applicable.
         Example:
         [
             {{
                 "step": "Step Name",
                 "bloom": "Understanding",
                 "dim": "Factual Knowledge",
-                "quantity": 1
+                "quantity": 1,
+                "triviality_score": 0,
+                "result": "Result of the step"
             }},
             {{
                 "step": "Step Name",
                 "bloom": "Applying",
-                "dim": "Conceptual Knowledge"
-                "quantity": 2
+                "dim": "Conceptual Knowledge",
+                "quantity": 2,
+                "triviality_score": 0,
+                "result": "Result of the step"
             }}
         ]
         </output>
         """
-        # Evaluate: 
-        # - total number of steps (quantity)
-        # - number of steps per Bloom's Taxonomy category (complexity)
-        # - number of steps per Knowledge Dimension (prerequisites)
-        # duration = quantity * complexity * prerequisites
+          
 
-        # where decision complexity??
-        # where number of options / error potential??
-
-        self.cot_extraction_est = f"""
-         <context>
-        Bloom's Taxonomy:
-        - Remembering: Recall basic facts and concepts.
-        - Understanding: Explain ideas or concepts.
-        - Applying: Use information in new situations.
-        - Analyzing: Draw connections among ideas.
-        - Evaluating: Justify a stand or decision.
-        - Creating: Produce new or original work.
-
-        Knowledge Dimensions:
-        - Factual Knowledge: Basic elements needed to understand a domain.
-        - Conceptual Knowledge: Interrelationships among basic elements within a larger structure.
-        - Procedural Knowledge: How to do something, methods of inquiry, and criteria for using skills, algorithms, techniques, and methods.
-        - Metacognitive Knowledge: Knowledge of cognition in general as well as awareness and knowledge of one's own cognition.        
-        </context>
-
-        <instructions>
-        Do the task step by step. 
-
+        self.step_definition = f"""
         I want to use a standardized way to evaluate the difficulty of the task in order to compare it with other tasks.
         Therefore it is essential to follow the given definition of steps
 
@@ -400,31 +420,41 @@ class PromptsLoader:
         Consecutive steps that can be categorized into the same Bloom's Taxonomy category and Knowledge Dimension, can NOT be put in one step.
         Steps that are done multiple times with different conceptual targets, are counted as multiple steps.
         </instructions>
-
-        <output>
-        In <steps> tags, return a JSON object containing the number of steps: total, for each Bloom's Taxonomy category each Knowledge Dimension.
-        Example:
-        {{
-            "total_steps": 0,
-            "bloom_categories": {{
-                "Remembering": 0,
-                "Understanding": 0,
-                "Applying": 0,
-                "Analyzing": 0,
-                "Evaluating": 0,
-                "Creating": 0
-            }},
-            "knowledge_dimensions": {{
-                "Factual Knowledge": 0,
-                "Conceptual Knowledge": 0,
-                "Procedural Knowledge": 0,
-                "Metacognitive Knowledge": 0
-            }}
-        }}
-        Do not output any (explainatory) text or than the JSON object in the <steps> tags and the result of the prompt.
-        </output>
         """
         # self.OUTPUT_FORMAT += self.cot_extraction_est
+
+        self.predefined_steps = f"""
+        <context>
+        Predefined Tasks:
+        - For each entity in the JSON file, 
+            - choose a template block
+            - fill out the placeholders
+            - Create RDF triples for the entity
+        - For each extra node in the JSON file,
+            - choose a template block
+            - fill out the placeholders
+            - Create RDF triples for the entity
+        </context>
+        <instructions>
+        Do the predefined subtasks step by step.
+        In <steps> tags, return a JSON object in which the steps and the explicit results of this steps are listed.
+        </instructions>
+        <output>
+        Return a JSON object with the following structure:
+        {{
+            "steps": [
+                {{
+                    "step": "Map Hotel Term",
+                    "quantity": 1,
+                    "number_of_decisions": 1,
+                    "number_of_options": 10,
+                    "step_result": "rec:Room"
+                }},
+                ...
+            ]
+        }}
+        </output>
+        """
         
 
         # Top Level
@@ -606,27 +636,3 @@ Quality Control
 # </template>
 
 
-
-# <template> RDF
-# For the RDF graph to properly support configuration generation, the following elements are essential:
-
-# 1. Accurate Entity Classification
-# - Entities must map to correct ontology classes
-# - You can use the prefix `http://example.com/` for entities that are not in the ontology
-# - But use the correct prefixes from the input
-
-# 2. Complete Data Access Information
-# - Each entity that has a numerical value property in the JSON, needs a value property in the knowledge graph.
-# - For this, use the ontology property `rdf:value` everytime.
-# - For the object, instead of a literal number use an URI to the IoT-platform API endpoint for data access
-# - This URI to the IoT-platform API should not contain a prefix, but be a complete URI in angle brackets
-
-# 3. Proper Relationship Structure
-# - Relationships between entities that are not numerical values must use correct ontology predicates 
-# - System hierarchies must be properly represented
-# - The datamodel must be represented correctly
-# - Devices must be properly connected to their locations (e.g., sensors to rooms)
-
-# 4. Prefix Usage
-# - Use syntactically correct prefixes for URIs
-# </template>

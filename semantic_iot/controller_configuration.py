@@ -61,7 +61,7 @@ query_presence_sensor_availability = """
     SELECT ?sensor ?sensor_access
     WHERE {
         <room_uri> a rec:Room .
-        ?sensor a brick:Occupancy_Count_Sensor .
+        ?sensor a brick:Occupancy_Sensor .
         ?sensor rdf:value ?sensor_access .
         ?sensor (brick:isPointOf|brick:hasLocation|brick:isPartOf)* <room_uri>.
     }

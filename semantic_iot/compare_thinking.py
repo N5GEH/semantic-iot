@@ -16,6 +16,7 @@ from semantic_iot.utils.prompts import prompts
 # 5. Pairwise Evaluation
 
 target_folder = r"LLM_models\datasets\fiware_v1_hotel\results_250605_221222"
+target_folder = r"LLM_models\datasets\fiware_v1_hotel\results_detailed_thinking"
 
 eval_folder = Path(target_folder) / "evaluation"
 eval_folder.mkdir(parents=True, exist_ok=True)
@@ -101,9 +102,6 @@ def summarize_context():
 
     return output_path
 
-
-
-
 def extract_reasoning_sentences(text):
 
     # Define patterns indicating reasoning, decision-making, or modeling difficulty
@@ -153,25 +151,98 @@ def load_metrics(metric_path):
         content = json.load(file)
     return content
 
-################################
+def add_aggregated_substeps(metrics):
+    bloom_map = {
+        "Remembering": 1,
+        "Understanding": 2,
+        "Applying": 3,
+        "Analyzing": 4,
+        "Evaluating": 5,
+        "Creating": 6
+    }
 
-sum_path = summarize_context()
+    dim_map = {
+        "Factual Knowledge": 1,
+        "Conceptual Knowledge": 2,
+        "Procedural Knowledge": 3,
+        "Metacognitive Knowledge": 4
+    }
 
-metrics = load_metrics(sum_path)
+    # Collect aggregated data first to avoid modifying dictionary during iteration
+    aggregated_data = {}
 
-context = metrics.get("summarize_context", {}).get("thinking", "")
-scenario_I = metrics.get("scenario_I_(0)", {}).get("thinking", "")
-scenario_II = metrics.get("scenario_II_(0)", {}).get("thinking", "")
-scenario_III = metrics.get("scenario_IIIf_(0)", {}).get("thinking", "")
+    for key, value in metrics.items():
+        # print(f"Processing key: {key}")
+        if isinstance(value, dict):
+            # print(f"Value for {key} is a dict.")
+            for k, v in value.items():
+                # print(f"Processing key: {k}")
+                if k == "sub_steps" and v is not None and isinstance(v, list) and len(v) > 0 and isinstance(v[0], dict):
+                    print(f"Processing sub_steps for key: {key}")
+                    sum_steps = {
+                        "bloom": 0,
+                        "dim": 0,
+                        "complexity": 0,
+                        "quantity": 0,
+                        "human_effort": 0
+                    }
+                    
+                    for step in v:
+                        # print(f"Processing step: {step}")
+                        
+                        # Extract bloom and dim values directly from the step
+                        bloom = bloom_map.get(step.get("bloom", ""), 0)
+                        dim = dim_map.get(step.get("dim", ""), 0)
+                        quantity = int(step.get("quantity", 0))
+                        human_effort = int(step.get("human_effort", 0))
+                        complexity = round(((bloom**2)/6 + (dim**2)/4 + (human_effort**2)/10)**0.5, 2)
+                        sum_steps["bloom"] += bloom
+                        sum_steps["dim"] += dim
+                        sum_steps["quantity"] += quantity
+                        sum_steps["complexity"] += complexity
+                        sum_steps["human_effort"] += human_effort
 
-request = ""
+                    print(f"Summed sub_steps for {key}: {sum_steps}")
+                    
+                    # Store the aggregated values for later addition
+                    aggregated_data[key] = sum_steps
 
-for text in [context, scenario_I, scenario_II, scenario_III]:
-    request += f"\n\n # Thinking Process for {len(text)} characters\n"
-    request += extract_reasoning_sentences(text)
+    # Now add the aggregated data to the metrics dictionary
+    for key, aggregated_values in aggregated_data.items():
+        metrics[key]["aggregated_sub_steps"] = aggregated_values
+
+    return metrics
+
+metrics = load_metrics(metrics_file)
+metrics = add_aggregated_substeps(metrics)
+
+# Save the processed metrics with aggregated sub_steps
+output_path = eval_folder / "processed_metrics.json"
+with open(output_path, 'w') as file:
+    json.dump(metrics, file, indent=4)
+print(f"Processed metrics saved to {output_path}")
+
+####################################
+
+# sum_path = summarize_context()
+# metrics = load_metrics(sum_path)
+
+# context = metrics.get("summarize_context", {}).get("thinking", "")
+# scenario_I = metrics.get("scenario_I_(0)", {}).get("thinking", "")
+# scenario_II = metrics.get("scenario_II_(0)", {}).get("thinking", "")
+# scenario_III = metrics.get("scenario_IIIf_(0)", {}).get("thinking", "")
 
 
-print(request)
+
+# request = ""
+# for text in [context, scenario_I, scenario_II, scenario_III]:
+#     request += f"\n\n # Thinking Process for {len(text)} characters\n"
+#     request += extract_reasoning_sentences(text)
+
+
+# print(request)
+
+#########################################
 
 # filtered_sentences = [s for s in sentences if not is_factual_or_structural(s)]
 

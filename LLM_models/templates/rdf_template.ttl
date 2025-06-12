@@ -11,11 +11,11 @@
 # BUILDING BLOCK: Numerical Relationships of Entities & Non-numerical Relationships between Entities
 <http://example.com/{ENTITY_TYPE}/{ID}> a {ONTOLOGY_CLASS} ;
     rdf:value <{API_ENDPOINT_URL}> ;
-    {ONTOLOGY_ROPERTY} <http://example.com/{ENTITY_TYPE}/{ID}> .
+    {ONTOLOGY_PROPERTY} <http://example.com/{ENTITY_TYPE}/{ID}> .
 
 # BUILDING BLOCK: Non-numerical Relationships between Entities
 <http://example.com/{ENTITY_TYPE}/{ID}> a {ONTOLOGY_CLASS} ;
-    {ONTOLOGY_ROPERTY} <http://example.com/{ENTITY_TYPE}/{ID}> .
+    {ONTOLOGY_PROPERTY} <http://example.com/{ENTITY_TYPE}/{ID}> .
 
 # BUILDING BLOCK: Top-Level Spatial Entities
 <http://example.com/{ENTITY_TYPE}/{ID}> a {ONTOLOGY_CLASS} .

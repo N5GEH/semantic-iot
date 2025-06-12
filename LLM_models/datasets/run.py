@@ -338,8 +338,8 @@ class ScenarioExecutor:
         }
 
         for sc in self.selected_scenarios:
-            try: # to handle errors in each scenario individually
-
+            # try: # to handle errors in each scenario individually
+            if True:
                 # Create result folder for each scenario
                 if sc == 'IIIf': 
                     scenario_folder[sc] = scenario_folder['III']
@@ -365,17 +365,32 @@ class ScenarioExecutor:
                         tools="",
                         follow_up=False,
                     )
-                    response = client_scenario.extract_code(response)
+                    
+                    try:
+                        response = client_scenario.extract_code(response)
+                    except Exception as extract_error:
+                        print(f"❌ Error extracting code from Claude response: {extract_error}")
+                        print(f"Raw response type: {type(response)}")
+                        if isinstance(response, str):
+                            print(f"Raw response preview: {response[:300]}...")
+                        # Try to continue with raw response
+                        print("Continuing with raw response...")
 
-                    # Save the response to the results folder
-                    response_file = os.path.join(scenario_folder[sc], file_name[sc])
-                    with open(response_file, 'w', encoding='utf-8') as f:
-                        if isinstance(response, dict):
-                            f.write(json.dumps(response, indent=2))
-                        else:
-                            f.write(response)
-                    print(f"Response saved to: {response_file}")
-                    # input("Press Enter to continue...")
+                    try:
+                        # Save the response to the results folder
+                        response_file = os.path.join(scenario_folder[sc], file_name[sc])
+                        with open(response_file, 'w', encoding='utf-8') as f:
+                            if isinstance(response, dict):
+                                f.write(json.dumps(response, indent=2))
+                            else:
+                                f.write(response)
+                        print(f"Response saved to: {response_file}")
+                        # input("Press Enter to continue...")
+                    except Exception as save_error:
+                        print(response)
+                        print(f"❌ Error saving response to file: {save_error}")
+                        print("Continuing with raw response...")
+
 
 
                 # FINISH =======================================================
@@ -432,10 +447,10 @@ class ScenarioExecutor:
                 print (f"\nController configuration generated and saved to {get_file(scenario_folder[sc], 'CC')}")
                 print(f"Scenario {sc} completed. Results saved in {scenario_folder[sc]}")
             
-            except Exception as e:
-                print(f"Error in scenario {sc}: {e}")
-                print("Skipping this scenario due to an error.")
-                continue
+            # except Exception as e:
+            #     print(f"Error in scenario {sc}: {e}")
+            #     print("Skipping this scenario due to an error.")
+            #     continue
                 
         print(f"\n\n✅  All selected scenarios completed. Results saved in {self.result_folder}")
 
@@ -475,6 +490,69 @@ class ScenarioExecutor:
             **metrics
         }
 
+        def add_aggregated_substeps(metrics):
+            bloom_map = {
+                "Remembering": 1,
+                "Understanding": 2,
+                "Applying": 3,
+                "Analyzing": 4,
+                "Evaluating": 5,
+                "Creating": 6
+            }
+
+            dim_map = {
+                "Factual Knowledge": 1,
+                "Conceptual Knowledge": 2,
+                "Procedural Knowledge": 3,
+                "Metacognitive Knowledge": 4
+            }
+
+            # Collect aggregated data first to avoid modifying dictionary during iteration
+            aggregated_data = {}
+
+            for key, value in metrics.items():
+                # print(f"Processing key: {key}")
+                if isinstance(value, dict):
+                    # print(f"Value for {key} is a dict.")
+                    for k, v in value.items():
+                        # print(f"Processing key: {k}")
+                        if k == "sub_steps" and v is not None and isinstance(v, list) and len(v) > 0 and isinstance(v[0], dict):
+                            print(f"Processing sub_steps for key: {key}")
+                            sum_steps = {
+                                "bloom": 0,
+                                "dim": 0,
+                                "complexity": 0,
+                                "quantity": 0,
+                                "human_effort": 0
+                            }
+                            
+                            for step in v:
+                                # print(f"Processing step: {step}")
+                                
+                                # Extract bloom and dim values directly from the step
+                                bloom = bloom_map.get(step.get("bloom", ""), 0)
+                                dim = dim_map.get(step.get("dim", ""), 0)
+                                quantity = int(step.get("quantity", 0))
+                                human_effort = int(step.get("human_effort", 0))
+                                complexity = round(((bloom**2)/6 + (dim**2)/4 + (human_effort**2)/10)**0.5, 2)
+                                sum_steps["bloom"] += bloom
+                                sum_steps["dim"] += dim
+                                sum_steps["quantity"] += quantity
+                                sum_steps["complexity"] += complexity
+                                sum_steps["human_effort"] += human_effort
+
+                            print(f"Summed sub_steps for {key}: {sum_steps}")
+                            
+                            # Store the aggregated values for later addition
+                            aggregated_data[key] = sum_steps
+
+            # Now add the aggregated data to the metrics dictionary
+            for key, aggregated_values in aggregated_data.items():
+                metrics[key]["aggregated_sub_steps"] = aggregated_values
+
+            return metrics
+        metrics = add_aggregated_substeps(metrics)
+
         output_file = os.path.join(self.result_folder, "metrics.json")
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(metrics, f, indent=4)
@@ -501,13 +579,20 @@ if __name__ == "__main__":
     executor.choose_dataset()
 
     try:
-        context = executor.get_context()
-        # executor.run_scenarios()
+        # context = executor.get_context()
+        executor.run_scenarios()
 
-        executor.save_metrics()
-
+        executor.save_metrics()    
+    
     except Exception as e:
-        executor.save_metrics(status=e)
+        # Convert exception to JSON-serializable format
+        error_info = {
+            "error": True,
+            "type": type(e).__name__,
+            "message": str(e),
+            "traceback": str(e.__traceback__) if hasattr(e, '__traceback__') else None
+        }
+        executor.save_metrics(status=error_info)
         print(e)
     
 
