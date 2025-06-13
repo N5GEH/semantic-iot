@@ -52,6 +52,7 @@ class MappingPreprocess:
         else:
             self.rdf_node_relationship_file_path = rdf_node_relationship_file_path
         self.ontology_file_paths = ontology_file_paths
+        self.ontology = None
         self.ontology_classes = None
         self.ontology_property_classes = None
         self.ontology_prefixes = None
@@ -96,6 +97,9 @@ class MappingPreprocess:
         _graph = Graph()
         for file in self.ontology_file_paths:
             _graph.parse(file, format="ttl")
+
+        # make ontology graph available
+        self.ontology = _graph
 
         # Extracting ontology classes
         ontology_classes = {}
@@ -204,7 +208,7 @@ class MappingPreprocess:
         return self.semantic_similarity_mappings(semantic_info=self.ontology_property_classes_semantic_info,
                                                  string=property_str)
 
-    def suggestion_condition_top_matches(self, n: int, mappings: List[tuple]):
+    def suggestion_condition_top_matches(self, n: int, mappings: List[tuple]) -> List[str]:
         """
         Suggest a class for the given entity type based on the ontology classes.
         n: number of top matches to consider
@@ -217,19 +221,18 @@ class MappingPreprocess:
         top_matches = mappings[:n]
 
         # use the prefix for the top matches
-        top_matches_prefixed = [(self.convert_to_prefixed(iri), score)
-                                for iri, score in top_matches]
+        top_matches_prefixed = top_matches
         best_match, highest_score = top_matches_prefixed[0]
         third_highest_score = top_matches_prefixed[2][1] if len(
             top_matches_prefixed) > 2 else 0
 
         # return condition
         if highest_score > 90:
-            return top_matches_prefixed[0][0]
+            return [top_matches_prefixed[0][0]]
         elif highest_score - third_highest_score <= 10:
             return [match[0] for match in top_matches_prefixed]
         else:
-            return top_matches_prefixed[0][0]
+            return [top_matches_prefixed[0][0]]
 
     def convert_to_prefixed(self, iri):
         """
@@ -241,7 +244,7 @@ class MappingPreprocess:
         # If no prefix matches, return the original IRI
         return iri
 
-    def suggest_class(self, entity_type):
+    def suggest_class(self, entity_type) -> List[str]:
         """
         Suggest a class for the given entity type based on the ontology classes.
         """
@@ -259,16 +262,19 @@ class MappingPreprocess:
 
         return self.suggestion_condition_top_matches(n=3, mappings=mappings)
 
-    def suggest_property_class(self, attribute_path:str):
+    def suggest_property_class(self, attribute_path:str, property_classes: dict = None) -> List[str]:
         """
         Suggest a property class for the given attribute path based on the ontology classes.
         """
         keyword = attribute_path.replace("_", " ").replace(".", " ")
 
+        if property_classes is None:
+            property_classes = self.ontology_property_classes
+
         # compute similarity scores for all ontology property classes
         if self.similarity_mode == "string":
             mappings = [(iri, self.string_similarity(keyword, label))
-                        for label, iri in self.ontology_property_classes.items()]
+                        for label, iri in property_classes.items()]
         elif self.similarity_mode == "semantic":
             mappings = self.property_semantic_similarity_mappings(property_str=keyword)
         else:
@@ -301,6 +307,30 @@ class MappingPreprocess:
                     print(json.dumps(d, indent=2))
             # assert all(d == matched_items[0] for d in matched_items)
         return unique_node_relationships
+
+    def get_candidate_property_classes(self,
+                                       subject_c: List[str],
+                                       object_c: List[str]) -> dict:
+        """
+        Not implemented yet.
+        This function returns a list of candidate property classes based on the subject and object classes.
+        It uses the ontology_property_classes to find the property classes that are related to the subject and object classes.
+        """
+        candidate_property_classes = {}
+        for property_class, iri in self.ontology_property_classes.items():
+            # check if the property class can belong to the subject class
+            allowed_subjects = self.ontology.value(subject=iri, predicate=RDFS.domain)
+            for s_iri in subject_c:
+                pass
+
+            # check if the property rdfs:range matches the object class
+            allowed_objects = self.ontology.value(subject=iri, predicate=RDFS.range)
+            for o_iri in object_c:
+                pass
+
+            # currently not implemented, so put every property class as candidate
+            candidate_property_classes[property_class] = iri
+        return candidate_property_classes
 
     @staticmethod
     def find_relationships(entity: dict, entity_list: List[dict]) -> List[dict]:
@@ -415,15 +445,40 @@ class MappingPreprocess:
         # drop duplicates from the rdf_node_relationships
         rdf_node_relationships = self.drop_duplicates(rdf_node_relationships)
 
-        # terminology mapping
+        # terminology mapping for subjects
         for resource in rdf_node_relationships:
             resource_type = resource['nodetype']
             suggested_class = self.suggest_class(resource_type)
-            resource["class"] = f"**TODO: PLEASE CHECK** {suggested_class}"
+            resource["class"] = suggested_class
+
+        # terminology mapping for relationships
+        for resource in rdf_node_relationships:
+            subject_class = resource["class"]
             for relationship in resource["hasRelationship"]:
+                object_type = relationship["relatedNodeType"]
+                # get the object class from the rdf_node_relationships, where resource['nodetype'] == object_type
+                object_class = next((r["class"] for r in rdf_node_relationships if r["nodetype"] == object_type), None)
+                if object_class is None:
+                    logging.warning(f"Object class for related node type '{object_type}' not found. ")
+                # get possible predicate classes based on the ontology
+                candidate_property_classes = self.get_candidate_property_classes(
+                    subject_c=subject_class,
+                    object_c=object_class
+                )
                 attribute_path = relationship["rawdataidentifier"]
-                suggested_property_class = self.suggest_property_class(attribute_path)
-                relationship["propertyClass"] = f"**TODO: PLEASE CHECK** {suggested_property_class}"
+                suggested_property_class = self.suggest_property_class(attribute_path,
+                                                                       property_classes=candidate_property_classes)
+                relationship["propertyClass"] = suggested_property_class
+
+        # Highlight subject class and property class before output
+        for resource in rdf_node_relationships:
+            subject_classes = resource["class"]
+            subject_classes = [self.convert_to_prefixed(s_c) for s_c in subject_classes]
+            resource["class"] = f"**TODO: PLEASE CHECK** {subject_classes}"
+            for relationship in resource["hasRelationship"]:
+                property_classes = relationship["propertyClass"]
+                property_classes = [self.convert_to_prefixed(p_c) for p_c in property_classes]
+                relationship["propertyClass"] = f"**TODO: PLEASE CHECK** {property_classes}"
 
         # create namespaces from ontology prefixes
         context = self.ontology_prefixes
