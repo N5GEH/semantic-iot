@@ -299,7 +299,16 @@ class TaskDifficultyAnalyzer:
             difficulty_score = 0.0
         
         difficulty_metrics['overall_difficulty_score'] = difficulty_score
+
+        print(f"\nDifficulty score components:")
+        print(f"  - Prediction confidence: {prediction_confidence:.3f}")
+        print(f"  - Prediction uncertainty: {prediction_uncertainty:.3f}")
+        print(f"  - Activation variability: {activation_variability:.3f}")
+        print(f"  - Attention difficulty: {attention_difficulty:.3f}")
+        print(f"  - Activation instability: {activation_instability:.3f}")
+        print(f"-> Weighted difficulty score: {difficulty_score:.3f}\n")
         
+
         return difficulty_metrics
 
 # ================ Usage Examples ================
@@ -313,6 +322,44 @@ test_prompts = [
     "Complete the sequence: 1, 1, 2, 3, 5, 8,",  # Fibonacci
     "Translate to French: Hello world",  # Translation
 ]
+
+# test_prompts = ["""
+# Available Ontology Classes:
+# - Class
+#   - Collection
+#     - System
+#       - Heating_Ventilation_Air_Conditioning_System
+#         - Air_System: The equipment, distribution systems and terminals that introduce or exhaust, either collectively or individually, the air into and from the building
+#           - Ventilation_Air_System: The equipment, devices, and conduits that handle the introduction and distribution of ventilation air in the building
+#   - Equipment
+#     - HVAC_Equipment
+#       - Air_Handler_Unit: Assembly consisting of sections containing a fan or fans and other necessary equipment to perform one or more of the following functions: circulating, filtration, heating, cooling, heat recovery, humidifying, dehumidifying, and mixing of air. Is usually connected to an air-distribution system.
+#       - Air_Plenum: A component of the HVAC the receives air from the air handling 
+
+# Identify the most appropriate ontology class for the domain entity: "FreshAirVentilation"
+
+# Output exclusively the selected class from the options of the available Ontology Classes.
+# The selected class must exist in the available Ontology Classes.
+# Do not provide an explaination or any other output.
+# """
+# ]
+
+# test_prompts = [
+#     "Write a RDF description for a 'FreshAirVentilation' system using the provided ontology class: brick:Air_Ventilation.",
+# ]
+
+# MAPPING CRITERIA: (in order of priority)
+# 1. Exact semantic match
+# 2. Functional equivalence (same purpose/behavior)
+# 3. Hierarchical relationship (parent/child concepts)
+# 4. Attribute similarity (same properties/characteristics)
+
+# SPECIAL CONSIDERATIONS:
+# - Distinguish locations, air systems, devices, actuation points, sensors
+# - Avoid category errors: don't confuse the thing itself with infrastructure that supports the thing
+# - Respect system hierarchies (building → floor → room → equipment)
+# </instructions>
+
 
 print("=== TASK DIFFICULTY ANALYSIS ===\n")
 
@@ -374,17 +421,17 @@ print(f"Hardest Task: '{hardest_task[0]}' (Score: {hardest_task[1]['overall_diff
 # visualize_layer_activity(hardest_task[1], "Hardest_Task")
 
 # ================ Simple Test to Verify Fix ================
-print("\n=== TESTING SINGLE PROMPT ===")
-test_prompt = "The capital of France is"
-print(f"Testing: '{test_prompt}'")
-metrics = analyzer.analyze_task_difficulty(test_prompt)
+# print("\n=== TESTING SINGLE PROMPT ===")
+# test_prompt = "The capital of France is"
+# print(f"Testing: '{test_prompt}'")
+# metrics = analyzer.analyze_task_difficulty(test_prompt)
 
-print(f"Generated Response: '{metrics.get('generated_response', 'N/A')}'")
-print(f"Result keys: {list(metrics.keys())}")
-print(f"Overall difficulty score: {metrics.get('overall_difficulty_score', 'MISSING')}")
-print(f"Prediction confidence: {metrics.get('prediction_confidence', 'MISSING')}")
-print(f"Prediction uncertainty: {metrics.get('prediction_uncertainty', 'MISSING')}")
-print(f"Activation variability: {metrics.get('activation_variability', 'MISSING')}")
+# print(f"Generated Response: '{metrics.get('generated_response', 'N/A')}'")
+# print(f"Result keys: {list(metrics.keys())}")
+# print(f"Overall difficulty score: {metrics.get('overall_difficulty_score', 'MISSING')}")
+# print(f"Prediction confidence: {metrics.get('prediction_confidence', 'MISSING')}")
+# print(f"Prediction uncertainty: {metrics.get('prediction_uncertainty', 'MISSING')}")
+# print(f"Activation variability: {metrics.get('activation_variability', 'MISSING')}")
 
 # ================ Memory Cleanup ================
 torch.cuda.empty_cache() if torch.cuda.is_available() else None

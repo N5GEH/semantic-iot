@@ -631,13 +631,12 @@ class OntologyProcessor:
         <role>You are an ontology expert</role>
 
         <data>
-        Extraction of available Ontology {'class' if term_type == 'Classes' else 'Properties'}
+        Extraction of available Ontology {'Classes' if term_type == 'class' else 'Properties'}
         {context_str}
         </data>
 
         <input>
-        Domain {'Entity' if term_type == 'class' else 'Relation'} 
-        {query}
+        Domain {'Entity' if term_type == 'class' else 'Relation'}: {query}
         </input>
 
         <instructions>
@@ -664,7 +663,8 @@ class OntologyProcessor:
         """.strip()
         # TODO change prompt description query (different as semantic search query), add: 'relationship value of parent entity'
 
-
+        print("Prompt")
+        print(prompt)
         return prompt.strip()    
 
     def map_term(self, term_description: str, term_type: str, top_k: int=45) -> Dict:
@@ -787,7 +787,7 @@ if __name__ == "__main__":
     # processor.build_index()
     # print(processor._string_to_uri("Outside_Air_Temperature_Sensor"))
     
-    entity_result = processor.map_term(term_description="FreshAirVentilation", term_type="class")
+    entity_result = processor.map_term(term_description="HotelRoom", term_type="class")
     print(json.dumps(entity_result, indent=2))
 
 

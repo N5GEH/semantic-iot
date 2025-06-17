@@ -19,10 +19,1029 @@ def format_string(string):
         f.write(formatted)
 
     print("Formatted string written to readable.md")
+    return formatted
+
+
+def extract_evaluations(text):
+    """
+    Extracts evaluation sections from text that start with 'EVALUATION:' 
+    and continue until an empty line is encountered.
+    """
+    evaluations = []
+    lines = text.split('\n')
+
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+        
+        # Check if line starts with "EVALUATION:"
+        if line.startswith("EVALUATION:"):
+            evaluation_lines = [line]
+            i += 1
+            
+            # Continue collecting lines until empty line or end of text
+            while i < len(lines):
+                current_line = lines[i]
+                
+                # Stop if we hit an empty line
+                if current_line.strip() == "":
+                    break
+                    
+                evaluation_lines.append(current_line)
+                i += 1
+            
+            # Join the evaluation lines and add to results
+            evaluations.append('\n'.join(evaluation_lines))
+        
+        i += 1
+
+    with open("evaluations.md", "w", encoding="utf-8") as f:
+        for evaluation in evaluations:
+            f.write(f"{evaluation}\n\n")
+
+    print("Evaluations extracted and written to evaluations.md")
+
+    return evaluations
 
 
 # string = str(input("Enter the string to format:\n"))
 string = """
-Let me break down this task step by step:\n\n1. I need to generate an RDF knowledge graph in Turtle format based on the JSON Entities data provided.\n2. For each entity in the JSON data and each required extra node, I need to create corresponding entities in the RDF graph.\n3. I need to preserve the complete ID from the JSON entities in the knowledge graph.\n4. I need to use the prefixes provided in the context.\n5. For extra nodes, I need to connect them to parent entities using appropriate ontology properties.\n\nLet's start by examining the provided JSON entities file and the preprocessing results to understand what we're working with.\n\nFrom the preprocessing results, I can see:\n- API endpoint information\n- Lists of numerical and relational properties\n- Entity mappings (e.g., 'Hotel' maps to 'rec:Building')\n- Relational property mappings\n- Extra nodes required for certain properties\n\nFirst, I'll identify all the entities in the JSON data:\n\n```json\n[\n  {\n    \"id\": \"Hotel:hotel:aachen:001\",\n    \"type\": \"Hotel\",\n    ...\n  },\n  {\n    \"id\": \"AmbientTemperatureSensor\",\n    \"type\": \"AmbientTemperatureSensor\",\n    ...\n  },\n  {\n    \"id\": \"HotelRoom:room_base_1\",\n    \"type\": \"HotelRoom\",\n    ...\n  },\n  ...\n]\n```\n\nI'll now go through each entity and create RDF triples for them, following the entity mappings provided in the preprocessing results.\n\nStep 1: Let's start with the `Hotel:hotel:aachen:001` entity:\n```json\n{\n  \"id\": \"Hotel:hotel:aachen:001\",\n  \"type\": \"Hotel\",\n  \"address\": {\n    \"type\": \"None\",\n    \"value\": null,\n    \"metadata\": {}\n  },\n  \"name\": {\n    \"type\": \"Text\",\n    \"value\": \"hotel:aachen:001\",\n    \"metadata\": {}\n  }\n}\n```\n\nAccording to the entity mappings, 'Hotel' maps to 'rec:Building'. The ID is \"Hotel:hotel:aachen:001\", and it has a name property with value \"hotel:aachen:001\".\n\nIn RDF Turtle, this would be:\n```turtle\n<Hotel:hotel:aachen:001> a rec:Building ;\n    bacnet:object-name \"hotel:aachen:001\" .\n```\n\nStep 2: Next, let's handle the `AmbientTemperatureSensor` entity:\n```json\n{\n  \"id\": \"AmbientTemperatureSensor\",\n  \"type\": \"AmbientTemperatureSensor\",\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"Hotel:hotel:aachen:001\",\n    \"metadata\": {}\n  },\n  \"temperatureAmb\": {\n    \"type\": \"Number\",\n    \"value\": 0.0,\n    \"metadata\": {}\n  }\n}\n```\n\nAccording to the entity mappings, 'AmbientTemperatureSensor' maps to 'brick:Air_Temperature_Sensor'. It has a relationship with the Hotel entity and a numerical property.\n\nIn RDF Turtle, this would be:\n```turtle\n<AmbientTemperatureSensor> a brick:Air_Temperature_Sensor ;\n    brick:hasLocation <Hotel:hotel:aachen:001> ;\n    brick:temperatureAmb 0.0 .\n```\n\nHowever, I notice that 'temperatureAmb' is not a standard Brick property. Since it's a numerical property in the JSON, I should probably define it as a custom property in the RDF. For now, I'll keep it simple, but in a real system, we might want to properly define this property.\n\nStep 3: Let's handle the `HotelRoom:room_base_1` entity:\n```json\n{\n  \"id\": \"HotelRoom:room_base_1\",\n  \"type\": \"HotelRoom\",\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"Hotel:hotel:aachen:001\",\n    \"metadata\": {}\n  },\n  \"name\": {\n    \"type\": \"Text\",\n    \"value\": \"room_base_1\",\n    \"metadata\": {}\n  }\n}\n```\n\nAccording to the entity mappings, 'HotelRoom' maps to 'rec:Bedroom'. It has a relationship with the Hotel entity and a name property.\n\nIn RDF Turtle, this would be:\n```turtle\n<HotelRoom:room_base_1> a rec:Bedroom ;\n    brick:hasLocation <Hotel:hotel:aachen:001> ;\n    bacnet:object-name \"room_base_1\" .\n```\n\nStep 4: Let's handle the `TemperatureSensor:room_base_1` entity:\n```json\n{\n  \"id\": \"TemperatureSensor:room_base_1\",\n  \"type\": \"TemperatureSensor\",\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"HotelRoom:room_base_1\",\n    \"metadata\": {}\n  },\n  \"temperature\": {\n    \"type\": \"Number\",\n    \"value\": 0.0,\n    \"metadata\": {}\n  }\n}\n```\n\nAccording to the entity mappings, 'TemperatureSensor' maps to 'brick:Temperature_Sensor'. It has a relationship with the HotelRoom entity and a numerical property.\n\nIn RDF Turtle, this would be:\n```turtle\n<TemperatureSensor:room_base_1> a brick:Temperature_Sensor ;\n    brick:hasLocation <HotelRoom:room_base_1> ;\n    brick:temperature 0.0 .\n```\n\nAgain, 'temperature' might not be a standard Brick property, but I'll include it for now.\n\nStep 5: Let's handle the `CO2Sensor:room_base_1` entity:\n```json\n{\n  \"id\": \"CO2Sensor:room_base_1\",\n  \"type\": \"CO2Sensor\",\n  \"co2\": {\n    \"type\": \"Number\",\n    \"value\": 0.0,\n    \"metadata\": {}\n  },\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"HotelRoom:room_base_1\",\n    \"metadata\": {}\n  }\n}\n```\n\nAccording to the entity mappings, 'CO2Sensor' maps to 'brick:CO2_Sensor'. It has a relationship with the HotelRoom entity and a numerical property.\n\nIn RDF Turtle, this would be:\n```turtle\n<CO2Sensor:room_base_1> a brick:CO2_Sensor ;\n    brick:hasLocation <HotelRoom:room_base_1> ;\n    brick:co2 0.0 .\n```\n\nStep 6: Let's handle the `PresenceSensor:room_base_1` entity:\n```json\n{\n  \"id\": \"PresenceSensor:room_base_1\",\n  \"type\": \"PresenceSensor\",\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"HotelRoom:room_base_1\",\n    \"metadata\": {}\n  },\n  \"pir\": {\n    \"type\": \"Number\",\n    \"value\": 0.0,\n    \"metadata\": {}\n  }\n}\n```\n\nAccording to the entity mappings, 'PresenceSensor' maps to 'brick:Occupancy_Count_Sensor'. It has a relationship with the HotelRoom entity and a numerical property.\n\nIn RDF Turtle, this would be:\n```turtle\n<PresenceSensor:room_base_1> a brick:Occupancy_Count_Sensor ;\n    brick:hasLocation <HotelRoom:room_base_1> ;\n    brick:pir 0.0 .\n```\n\nStep 7: Let's handle the `FreshAirVentilation:room_base_1` entity:\n```json\n{\n  \"id\": \"FreshAirVentilation:room_base_1\",\n  \"type\": \"FreshAirVentilation\",\n  \"airFlowSetpoint\": {\n    \"type\": \"Number\",\n    \"value\": 0.0,\n    \"metadata\": {}\n  },\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"HotelRoom:room_base_1\",\n    \"metadata\": {}\n  }\n}\n```\n\nAccording to the entity mappings, 'FreshAirVentilation' maps to 'brick:Ventilation_Air_System'. It has a relationship with the HotelRoom entity and a numerical property.\n\nI notice that 'airFlowSetpoint' is listed in the 'properties_requiring_extra_nodes' in the preprocessing results. According to the extra node mappings, 'AirFlowSetpoint' maps to 'brick:Air_Flow_Setpoint'. So, I'll need to create an extra node for this property.\n\nIn RDF Turtle, this would be:\n```turtle\n<FreshAirVentilation:room_base_1> a brick:Ventilation_Air_System ;\n    brick:hasLocation <HotelRoom:room_base_1> .\n\n<http://example.com/AirFlowSetpoint:room_base_1> a brick:Air_Flow_Setpoint ;\n    brick:hasValue 0.0 ;\n    brick:isPointOf <FreshAirVentilation:room_base_1> .\n```\n\nI'm using the 'brick:isPointOf' property to connect the setpoint to the ventilation system, and 'brick:hasValue' to set the value. These are common Brick patterns.\n\nStep 8: Let's handle the `RadiatorThermostat:room_base_1` entity:\n```json\n{\n  \"id\": \"RadiatorThermostat:room_base_1\",\n  \"type\": \"RadiatorThermostat\",\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"HotelRoom:room_base_1\",\n    \"metadata\": {}\n  },\n  \"temperatureSetpoint\": {\n    \"type\": \"Number\",\n    \"value\": 0.0,\n    \"metadata\": {}\n  }\n}\n```\n\nAccording to the entity mappings, 'RadiatorThermostat' maps to 'brick:HVAC_Equipment'. It has a relationship with the HotelRoom entity and a numerical property.\n\nI notice that 'temperatureSetpoint' is listed in the 'properties_requiring_extra_nodes' in the preprocessing results. According to the extra node mappings, 'TemperatureSetpoint' maps to 'brick:Temperature_Setpoint'. So, I'll need to create an extra node for this property.\n\nIn RDF Turtle, this would be:\n```turtle\n<RadiatorThermostat:room_base_1> a brick:HVAC_Equipment ;\n    brick:hasLocation <HotelRoom:room_base_1> .\n\n<http://example.com/TemperatureSetpoint:room_base_1> a brick:Temperature_Setpoint ;\n    brick:hasValue 0.0 ;\n    brick:isPointOf <RadiatorThermostat:room_base_1> .\n```\n\nStep 9: Let's handle the `CoolingCoil:room_base_1` entity:\n```json\n{\n  \"id\": \"CoolingCoil:room_base_1\",\n  \"type\": \"CoolingCoil\",\n  \"fanSpeed\": {\n    \"type\": \"Number\",\n    \"value\": 0.0,\n    \"metadata\": {}\n  },\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"HotelRoom:room_base_1\",\n    \"metadata\": {}\n  }\n}\n```\n\nAccording to the entity mappings, 'CoolingCoil' maps to 'brick:Cooling_Coil'. It has a relationship with the HotelRoom entity and a numerical property.\n\nI notice that 'fanSpeed' is listed in the 'properties_requiring_extra_nodes' in the preprocessing results. According to the extra node mappings, 'FanSpeedSetpoint' maps to 'brick:Speed_Setpoint'. So, I'll need to create an extra node for this property.\n\nIn RDF Turtle, this would be:\n```turtle\n<CoolingCoil:room_base_1> a brick:Cooling_Coil ;\n    brick:hasLocation <HotelRoom:room_base_1> .\n\n<http://example.com/FanSpeedSetpoint:room_base_1> a brick:Speed_Setpoint ;\n    brick:hasValue 0.0 ;\n    brick:isPointOf <CoolingCoil:room_base_1> .\n```\n\nNow, I'll repeat this process for the entities related to `room_base_2`. The structure will be the same, just with different IDs.\n\nStep 10: Let's handle the `HotelRoom:room_base_2` entity:\n```json\n{\n  \"id\": \"HotelRoom:room_base_2\",\n  \"type\": \"HotelRoom\",\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"Hotel:hotel:aachen:001\",\n    \"metadata\": {}\n  },\n  \"name\": {\n    \"type\": \"Text\",\n    \"value\": \"room_base_2\",\n    \"metadata\": {}\n  }\n}\n```\n\nIn RDF Turtle, this would be:\n```turtle\n<HotelRoom:room_base_2> a rec:Bedroom ;\n    brick:hasLocation <Hotel:hotel:aachen:001> ;\n    bacnet:object-name \"room_base_2\" .\n```\n\nStep 11: Let's handle the `TemperatureSensor:room_base_2` entity:\n```json\n{\n  \"id\": \"TemperatureSensor:room_base_2\",\n  \"type\": \"TemperatureSensor\",\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"HotelRoom:room_base_2\",\n    \"metadata\": {}\n  },\n  \"temperature\": {\n    \"type\": \"Number\",\n    \"value\": 0.0,\n    \"metadata\": {}\n  }\n}\n```\n\nIn RDF Turtle, this would be:\n```turtle\n<TemperatureSensor:room_base_2> a brick:Temperature_Sensor ;\n    brick:hasLocation <HotelRoom:room_base_2> ;\n    brick:temperature 0.0 .\n```\n\nStep 12: Let's handle the `CO2Sensor:room_base_2` entity:\n```json\n{\n  \"id\": \"CO2Sensor:room_base_2\",\n  \"type\": \"CO2Sensor\",\n  \"co2\": {\n    \"type\": \"Number\",\n    \"value\": 0.0,\n    \"metadata\": {}\n  },\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"HotelRoom:room_base_2\",\n    \"metadata\": {}\n  }\n}\n```\n\nIn RDF Turtle, this would be:\n```turtle\n<CO2Sensor:room_base_2> a brick:CO2_Sensor ;\n    brick:hasLocation <HotelRoom:room_base_2> ;\n    brick:co2 0.0 .\n```\n\nStep 13: Let's handle the `PresenceSensor:room_base_2` entity:\n```json\n{\n  \"id\": \"PresenceSensor:room_base_2\",\n  \"type\": \"PresenceSensor\",\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"HotelRoom:room_base_2\",\n    \"metadata\": {}\n  },\n  \"pir\": {\n    \"type\": \"Number\",\n    \"value\": 0.0,\n    \"metadata\": {}\n  }\n}\n```\n\nIn RDF Turtle, this would be:\n```turtle\n<PresenceSensor:room_base_2> a brick:Occupancy_Count_Sensor ;\n    brick:hasLocation <HotelRoom:room_base_2> ;\n    brick:pir 0.0 .\n```\n\nStep 14: Let's handle the `FreshAirVentilation:room_base_2` entity:\n```json\n{\n  \"id\": \"FreshAirVentilation:room_base_2\",\n  \"type\": \"FreshAirVentilation\",\n  \"airFlowSetpoint\": {\n    \"type\": \"Number\",\n    \"value\": 0.0,\n    \"metadata\": {}\n  },\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"HotelRoom:room_base_2\",\n    \"metadata\": {}\n  }\n}\n```\n\nIn RDF Turtle, this would be:\n```turtle\n<FreshAirVentilation:room_base_2> a brick:Ventilation_Air_System ;\n    brick:hasLocation <HotelRoom:room_base_2> .\n\n<http://example.com/AirFlowSetpoint:room_base_2> a brick:Air_Flow_Setpoint ;\n    brick:hasValue 0.0 ;\n    brick:isPointOf <FreshAirVentilation:room_base_2> .\n```\n\nStep 15: Let's handle the `RadiatorThermostat:room_base_2` entity:\n```json\n{\n  \"id\": \"RadiatorThermostat:room_base_2\",\n  \"type\": \"RadiatorThermostat\",\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"HotelRoom:room_base_2\",\n    \"metadata\": {}\n  },\n  \"temperatureSetpoint\": {\n    \"type\": \"Number\",\n    \"value\": 0.0,\n    \"metadata\": {}\n  }\n}\n```\n\nIn RDF Turtle, this would be:\n```turtle\n<RadiatorThermostat:room_base_2> a brick:HVAC_Equipment ;\n    brick:hasLocation <HotelRoom:room_base_2> .\n\n<http://example.com/TemperatureSetpoint:room_base_2> a brick:Temperature_Setpoint ;\n    brick:hasValue 0.0 ;\n    brick:isPointOf <RadiatorThermostat:room_base_2> .\n```\n\nStep 16: Let's handle the `CoolingCoil:room_base_2` entity:\n```json\n{\n  \"id\": \"CoolingCoil:room_base_2\",\n  \"type\": \"CoolingCoil\",\n  \"fanSpeed\": {\n    \"type\": \"Number\",\n    \"value\": 0.0,\n    \"metadata\": {}\n  },\n  \"hasLocation\": {\n    \"type\": \"Relationship\",\n    \"value\": \"HotelRoom:room_base_2\",\n    \"metadata\": {}\n  }\n}\n```\n\nIn RDF Turtle, this would be:\n```turtle\n<CoolingCoil:room_base_2> a brick:Cooling_Coil ;\n    brick:hasLocation <HotelRoom:room_base_2> .\n\n<http://example.com/FanSpeedSetpoint:room_base_2> a brick:Speed_Setpoint ;\n    brick:hasValue 0.0 ;\n    brick:isPointOf <CoolingCoil:room_base_2> .\n```\n\nNow, let's assemble all of these triples into a complete RDF Turtle document, including the prefixes provided in the context:\n\n```turtle\n@prefix bacnet: <http://data.ashrae.org/bacnet/2020#> .\n@prefix brick: <https://brickschema.org/schema/Brick#> .\n@prefix bsh: <https://brickschema.org/schema/BrickShape#> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix qudt: <http://qudt.org/schema/qudt/> .\n@prefix qudtqk: <http://qudt.org/vocab/quantitykind/> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix rec: <https://w3id.org/rec#> .\n@prefix ref: <https://brickschema.org/schema/Brick/ref#> .\n@prefix s223: <http://data.ashrae.org/standard223#> .\n@prefix sdo: <http://schema.org/> .\n@prefix sh: <http://www.w3.org/ns/shacl#> .\n@prefix skos: <http://www.w3.org/2004/02/skos/core#> .\n@prefix sosa: <http://www.w3.org/ns/sosa/> .\n@prefix tag: <https://brickschema.org/schema/BrickTag#> .\n@prefix unit: <http://qudt.org/vocab/unit/> .\n@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .\n@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n\n<Hotel:hotel:aachen:001> a rec:Building ;\n    bacnet:object-name \"hotel:aachen:001\" .\n\n<AmbientTemperatureSensor> a brick:Air_Temperature_Sensor ;\n    brick:hasLocation <Hotel:hotel:aachen:001> ;\n    brick:temperatureAmb 0.0 .\n\n<HotelRoom:room_base_1> a rec:Bedroom ;\n    brick:hasLocation <Hotel:hotel:aachen:001> ;\n    bacnet:object-name \"room_base_1\" .\n\n<TemperatureSensor:room_base_1> a brick:Temperature_Sensor ;\n    brick:hasLocation <HotelRoom:room_base_1> ;\n    brick:temperature 0.0 .\n\n<CO2Sensor:room_base_1> a brick:CO2_Sensor ;\n    brick:hasLocation <HotelRoom:room_base_1> ;\n    brick:co2 0.0 .\n\n<PresenceSensor:room_base_1> a brick:Occupancy_Count_Sensor ;\n    brick:hasLocation <HotelRoom:room_base_1> ;\n    brick:pir 0.0 .\n\n<FreshAirVentilation:room_base_1> a brick:Ventilation_Air_System ;\n    brick:hasLocation <HotelRoom:room_base_1> .\n\n<http://example.com/AirFlowSetpoint:room_base_1> a brick:Air_Flow_Setpoint ;\n    brick:hasValue 0.0 ;\n    brick:isPointOf <FreshAirVentilation:room_base_1> .\n\n<RadiatorThermostat:room_base_1> a brick:HVAC_Equipment ;\n    brick:hasLocation <HotelRoom:room_base_1> .\n\n<http://example.com/TemperatureSetpoint:room_base_1> a brick:Temperature_Setpoint ;\n    brick:hasValue 0.0 ;\n    brick:isPointOf <RadiatorThermostat:room_base_1> .\n\n<CoolingCoil:room_base_1> a brick:Cooling_Coil ;\n    brick:hasLocation <HotelRoom:room_base_1> .\n\n<http://example.com/FanSpeedSetpoint:room_base_1> a brick:Speed_Setpoint ;\n    brick:hasValue 0.0 ;\n    brick:isPointOf <CoolingCoil:room_base_1> .\n\n<HotelRoom:room_base_2> a rec:Bedroom ;\n    brick:hasLocation <Hotel:hotel:aachen:001> ;\n    bacnet:object-name \"room_base_2\" .\n\n<TemperatureSensor:room_base_2> a brick:Temperature_Sensor ;\n    brick:hasLocation <HotelRoom:room_base_2> ;\n    brick:temperature 0.0 .\n\n<CO2Sensor:room_base_2> a brick:CO2_Sensor ;\n    brick:hasLocation <HotelRoom:room_base_2> ;\n    brick:co2 0.0 .\n\n<PresenceSensor:room_base_2> a brick:Occupancy_Count_Sensor ;\n    brick:hasLocation <HotelRoom:room_base_2> ;\n    brick:pir 0.0 .\n\n<FreshAirVentilation:room_base_2> a brick:Ventilation_Air_System ;\n    brick:hasLocation <HotelRoom:room_base_2> .\n\n<http://example.com/AirFlowSetpoint:room_base_2> a brick:Air_Flow_Setpoint ;\n    brick:hasValue 0.0 ;\n    brick:isPointOf <FreshAirVentilation:room_base_2> .\n\n<RadiatorThermostat:room_base_2> a brick:HVAC_Equipment ;\n    brick:hasLocation <HotelRoom:room_base_2> .\n\n<http://example.com/TemperatureSetpoint:room_base_2> a brick:Temperature_Setpoint ;\n    brick:hasValue 0.0 ;\n    brick:isPointOf <RadiatorThermostat:room_base_2> .\n\n<CoolingCoil:room_base_2> a brick:Cooling_Coil ;\n    brick:hasLocation <HotelRoom:room_base_2> .\n\n<http://example.com/FanSpeedSetpoint:room_base_2> a brick:Speed_Setpoint ;\n    brick:hasValue 0.0 ;\n    brick:isPointOf <CoolingCoil:room_base_2> .\n```\n\nThis Turtle document represents the RDF knowledge graph based on the provided JSON entities data. It includes all the entities and their relationships, as well as the extra nodes required for certain properties.\n\nI've used common Brick properties like 'brick:hasLocation', 'brick:isPointOf', and 'brick:hasValue' to represent the relationships and values in the graph. For the numerical properties that didn't require extra nodes, I've directly attached them to the entities with custom predicates like 'brick:temperature', 'brick:co2', etc. In a real system, these predicates would need to be properly defined in the ontology.\n\nNow, let's think about the steps we went through to complete this task, formatted according to the requirements:\n\n1. Extract and analyze the JSON Entities data to understand the structure and entities.\n2. Identify the mappings between entity types and ontology classes from the preprocessing results.\n3. Identify the mappings between properties and ontology properties from the preprocessing results.\n4. Identify the properties that require extra nodes and their mappings from the preprocessing results.\n5. For each entity in the JSON data, create an RDF entity with the appropriate type and relationships.\n6. For properties requiring extra nodes, create additional RDF entities and connect them to the parent entities.\n7. Assemble all the triples into a complete RDF Turtle document, including the provided prefixes.\n\nLet me now do the analysis of each step according to Bloom's Taxonomy and Knowledge Dimension:\n\nStep 1: Extract and analyze the JSON Entities data\n- Bloom's Taxonomy: Understanding\n- Knowledge Dimension: Factual Knowledge\n- Quantity: 16 entities\n- Human Effort: 4\n\nStep 2: Identify entity mappings\n- Bloom's Taxonomy: Applying\n- Knowledge Dimension: Conceptual Knowledge\n- Quantity: 9 mappings\n- Human Effort: 3\n\nStep 3: Identify property mappings\n- Bloom's Taxonomy: Applying\n- Knowledge Dimension: Conceptual Knowledge\n- Quantity: 2 mappings\n- Human Effort: 3\n\nStep 4: Identify extra node requirements\n- Bloom's Taxonomy: Analyzing\n- Knowledge Dimension: Conceptual Knowledge\n- Quantity: 3 properties\n- Human Effort: 4\n\nStep 5: Create RDF entities\n- Bloom's Taxonomy: Creating\n- Knowledge Dimension: Procedural Knowledge\n- Quantity: 16 entities\n- Human Effort: 6\n\nStep 6: Create extra nodes\n- Bloom's Taxonomy: Creating\n- Knowledge Dimension: Procedural Knowledge\n- Quantity: 6 nodes (3 for each room)\n- Human Effort: 5\n\nStep 7: Assemble the Turtle document\n- Bloom's Taxonomy: Creating\n- Knowledge Dimension: Procedural Knowledge\n- Quantity: 1 document with multiple parts\n- Human Effort: 3\n\nNow, let me break down each step in a more detailed, step-by-step manner:\n\nStep 1.1: Read and understand the JSON data structure.\n- Bloom's Taxonomy: Understanding\n- Knowledge Dimension: Factual Knowledge\n- Quantity: 1 (overall structure)\n- Human Effort: 3\n\nStep 1.2: Identify all entity IDs and types in the JSON data.\n- Bloom's Taxonomy: Analyzing\n- Knowledge Dimension: Factual Knowledge\n- Quantity: 16 entities\n- Human Effort: 4\n\nStep 1.3: Identify all properties and their values in the JSON data.\n- Bloom's Taxonomy: Analyzing\n- Knowledge Dimension: Factual Knowledge\n- Quantity: Multiple properties per entity\n- Human Effort: 5\n\nStep 2.1: Map each JSON entity type to its corresponding ontology class.\n- Bloom's Taxonomy: Applying\n- Knowledge Dimension: Conceptual Knowledge\n- Quantity: 9 mappings\n- Human Effort: 3\n\nStep 3.1: Map each JSON property to its corresponding ontology property.\n- Bloom's Taxonomy: Applying\n- Knowledge Dimension: Conceptual Knowledge\n- Quantity: 2 mappings\n- Human Effort: 3\n\nStep 4.1: Identify properties requiring extra nodes.\n- Bloom's Taxonomy: Analyzing\n- Knowledge Dimension: Conceptual Knowledge\n- Quantity: 3 properties\n- Human Effort: 4\n\nStep 4.2: Map each extra node to its corresponding ontology class.\n- Bloom's Taxonomy: Applying\n- Knowledge Dimension: Conceptual Knowledge\n- Quantity: 3 mappings\n- Human Effort: 3\n\nStep 5.1: For each entity, create an RDF triple with the entity ID as subject, rdf:type as predicate, and the mapped ontology class as object.\n- Bloom's Taxonomy: Creating\n- Knowledge Dimension: Procedural Knowledge\n- Quantity: 16 entities\n- Human Effort: 5\n\nStep 5.2: For each relationship property, create an RDF triple with the entity ID as subject, the mapped ontology property as predicate, and the related entity ID as object.\n- Bloom's Taxonomy: Creating\n- Knowledge Dimension: Procedural Knowledge\n- Quantity: Multiple relationships\n- Human Effort: 5\n\nStep 5.3: For each non-relationship property that doesn't require an extra node, create an RDF triple with the entity ID as subject, a custom predicate as predicate, and the property value as object.\n- Bloom's Taxonomy: Creating\n- Knowledge Dimension: Procedural Knowledge\n- Quantity: Multiple properties\n- Human Effort: 5\n\nStep 6.1: For each property requiring an extra node, create an RDF entity for the extra node with the appropriate type.\n- Bloom's Taxonomy: Creating\n- Knowledge Dimension: Procedural Knowledge\n- Quantity: 6 nodes\n- Human Effort: 5\n\nStep 6.2: Connect the extra node to the parent entity with an appropriate relationship.\n- Bloom's Taxonomy: Creating\n- Knowledge Dimension: Procedural Knowledge\n- Quantity: 6 connections\n- Human Effort: 4\n\nStep 6.3: Add the property value to the extra node.\n- Bloom's Taxonomy: Creating\n- Knowledge Dimension: Procedural Knowledge\n- Quantity: 6 values\n- Human Effort: 3\n\nStep 7.1: Include all required prefixes at the beginning of the Turtle document.\n- Bloom's Taxonomy: Applying\n- Knowledge Dimension: Factual Knowledge\n- Quantity: 20 prefixes\n- Human Effort: 2\n\nStep 7.2: Combine all RDF triples into a single Turtle document, following Turtle syntax.\n- Bloom's Taxonomy: Creating\n- Knowledge Dimension: Procedural Knowledge\n- Quantity: Multiple triples\n- Human Effort: 4\n\nStep 7.3: Verify the completeness and correctness of the generated Turtle document.\n- Bloom's Taxonomy: Evaluating\n- Knowledge Dimension: Metacognitive Knowledge\n- Quantity: 1 document\n- Human Effort: 5\n\nI realize that I need to format these steps as JSON objects, so let me reformat:\n\n{\n  \"step\": \"Read and understand the JSON data structure\",\n  \"bloom\": \"Understanding\",\n  \"dim\": \"Factual Knowledge\",\n  \"quantity\": 1,\n  \"human_effort\": 3\n}\n\n{\n  \"step\": \"Identify all entity IDs and types in the JSON data\",\n  \"bloom\": \"Analyzing\",\n  \"dim\": \"Factual Knowledge\",\n  \"quantity\": 16,\n  \"human_effort\": 4\n}\n\n{\n  \"step\": \"Identify all properties and their values in the JSON data\",\n  \"bloom\": \"Analyzing\",\n  \"dim\": \"Factual Knowledge\",\n  \"quantity\": 32,\n  \"human_effort\": 5\n}\n\n{\n  \"step\": \"Map each JSON entity type to its corresponding ontology class\",\n  \"bloom\": \"Applying\",\n  \"dim\": \"Conceptual Knowledge\",\n  \"quantity\": 9,\n  \"human_effort\": 3\n}\n\n{\n  \"step\": \"Map each JSON property to its corresponding ontology property\",\n  \"bloom\": \"Applying\",\n  \"dim\": \"Conceptual Knowledge\",\n  \"quantity\": 2,\n  \"human_effort\": 3\n}\n\n{\n  \"step\": \"Identify properties requiring extra nodes\",\n  \"bloom\": \"Analyzing\",\n  \"dim\": \"Conceptual Knowledge\",\n  \"quantity\": 3,\n  \"human_effort\": 4\n}\n\n{\n  \"step\": \"Map each extra node to its corresponding ontology class\",\n  \"bloom\": \"Applying\",\n  \"dim\": \"Conceptual Knowledge\",\n  \"quantity\": 3,\n  \"human_effort\": 3\n}\n\n{\n  \"step\": \"For each entity, create an RDF triple with the entity ID as subject, rdf:type as predicate, and the mapped ontology class as object\",\n  \"bloom\": \"Creating\",\n  \"dim\": \"Procedural Knowledge\",\n  \"quantity\": 16,\n  \"human_effort\": 5\n}\n\n{\n  \"step\": \"For each relationship property, create an RDF triple with the entity ID as subject, the mapped ontology property as predicate, and the related entity ID as object\",\n  \"bloom\": \"Creating\",\n  \"dim\": \"Procedural Knowledge\",\n  \"quantity\": 16,\n  \"human_effort\": 5\n}\n\n{\n  \"step\": \"For each non-relationship property that doesn't require an extra node, create an RDF triple with the entity ID as subject, a custom predicate as predicate, and the property value as object\",\n  \"bloom\": \"Creating\",\n  \"dim\": \"Procedural Knowledge\",\n  \"quantity\": 10,\n  \"human_effort\": 5\n}\n\n{\n  \"step\": \"For each property requiring an extra node, create an RDF entity for the extra node with the appropriate type\",\n  \"bloom\": \"Creating\",\n  \"dim\": \"Procedural Knowledge\",\n  \"quantity\": 6,\n  \"human_effort\": 5\n}\n\n{\n  \"step\": \"Connect the extra node to the parent entity with an appropriate relationship\",\n  \"bloom\": \"Creating\",\n  \"dim\": \"Procedural Knowledge\",\n  \"quantity\": 6,\n  \"human_effort\": 4\n}\n\n{\n  \"step\": \"Add the property value to the extra node\",\n  \"bloom\": \"Creating\",\n  \"dim\": \"Procedural Knowledge\",\n  \"quantity\": 6,\n  \"human_effort\": 3\n}\n\n{\n  \"step\": \"Include all required prefixes at the beginning of the Turtle document\",\n  \"bloom\": \"Applying\",\n  \"dim\": \"Factual Knowledge\",\n  \"quantity\": 20,\n  \"human_effort\": 2\n}\n\n{\n  \"step\": \"Combine all RDF triples into a single Turtle document, following Turtle syntax\",\n  \"bloom\": \"Creating\",\n  \"dim\": \"Procedural Knowledge\",\n  \"quantity\": 70,\n  \"human_effort\": 4\n}\n\n{\n  \"step\": \"Verify the completeness and correctness of the generated Turtle document\",\n  \"bloom\": \"Evaluating\",\n  \"dim\": \"Metacognitive Knowledge\",\n  \"quantity\": 1,\n  \"human_effort\": 5\n}
+
+"thinking": "Let's break down the task:
+
+1. I need to fill out the Resource Node Relationship Document based on the preprocessing results
+2. For each entity in the document, I need to:
+   - Replace the "class" value with the mapped Ontology Class from the preprocessing results
+   - Replace the "property" value with the mapped Ontology Property
+   - Add proper API endpoint for data access for entities with numerical properties
+
+Let's start by examining the preprocessing results to understand what mappings are available:
+
+```
+{'api_endpoint': 'https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/{attrName}/value', 
+'numerical_properties': ['temperatureAmb', 'temperature', 'co2', 'pir', 'airFlowSetpoint', 'temperatureSetpoint', 'fanSpeed'], 
+'relational_properties': ['hasLocation', 'name'], 
+'entity_mappings': {
+    'Hotel': 'rec:Building', 
+    'AmbientTemperatureSensor': 'brick:Air_Temperature_Sensor', 
+    'HotelRoom': 'rec:Bedroom', 
+    'TemperatureSensor': 'brick:Temperature_Sensor', 
+    'CO2Sensor': 'brick:CO2_Sensor', 
+    'PresenceSensor': 'brick:Occupancy_Count_Sensor', 
+    'FreshAirVentilation': 'brick:Ventilation_Air_System', 
+    'RadiatorThermostat': 'brick:HVAC_Equipment', 
+    'CoolingCoil': 'brick:Cooling_Coil'
+}, 
+'relational_property_mappings': {
+    'hasLocation': 'brick:hasLocation', 
+    'name': 'bacnet:object-name'
+}, 
+'extra_nodes': {
+    'properties_requiring_extra_nodes': ['airFlowSetpoint', 'temperatureSetpoint', 'fanSpeed'], 
+    'extra_node_names': ['AirFlowSetpoint', 'TemperatureSetpoint', 'FanSpeedSetpoint'], 
+    'extra_node_mappings': {
+        'AirFlowSetpoint': 'brick:Air_Flow_Setpoint', 
+        'TemperatureSetpoint': 'brick:Temperature_Setpoint', 
+        'FanSpeedSetpoint': 'brick:Speed_Setpoint'
+    }
+}}
+```
+
+Now, let me process the Resource Node Relationship Document entity by entity:
+
+I'll start with the first entity in the RNRD: Hotel.
+
+STEP 1: Update Hotel entity class
+- context: Hotel entity in RNRD, entity_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** ['brick:Hot_Deck', 'brick:Shower', 'brick:Tunnel']" with the correct mapping from preprocessing
+
+In the preprocessing results, Hotel is mapped to 'rec:Building'. So I'll replace the class value with 'rec:Building'.
+
+EVALUATION:
+- bloom: Applying the mapping procedure
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 2
+
+STEP 2: Update AmbientTemperatureSensor entity class
+- context: AmbientTemperatureSensor entity in RNRD, entity_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** ['brick:Air_Temperature_Sensor', 'brick:Temperature_Sensor', 'brick:Water_Temperature_Sensor']" with the correct mapping
+
+In the preprocessing results, AmbientTemperatureSensor is mapped to 'brick:Air_Temperature_Sensor'. So I'll replace the class value with 'brick:Air_Temperature_Sensor'.
+
+EVALUATION:
+- bloom: Applying the mapping procedure
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 2
+
+STEP 3: Update hasLocation relationship for AmbientTemperatureSensor
+- context: AmbientTemperatureSensor relationship in RNRD, relational_property_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** brick:hasLocation" with the correct mapping
+
+In the preprocessing results, hasLocation is mapped to 'brick:hasLocation'. So I'll keep this value as it's already correct.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 2
+
+STEP 4: Add data access for AmbientTemperatureSensor
+- context: AmbientTemperatureSensor entity in RNRD, numerical_properties and api_endpoint from preprocessing
+- reason: Need to add API endpoint for the 'temperatureAmb' property
+
+I need to check if AmbientTemperatureSensor has a numerical property in the preprocessing results. Looking at the numerical_properties list, 'temperatureAmb' is included. Therefore, I need to add data access using the API endpoint pattern.
+
+The API endpoint pattern is: 'https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/{attrName}/value'
+
+For AmbientTemperatureSensor, the data access would be:
+'https://fiware.eonerc.rwth-aachen.de/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value'
+
+EVALUATION:
+- bloom: Creating a new data access endpoint
+- dim: Procedural Knowledge
+- quantity: 1 entity, 1 property
+- human_effort: 3
+
+STEP 5: Update HotelRoom entity class
+- context: HotelRoom entity in RNRD, entity_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** ['brick:Control_Room', 'brick:Team_Room', 'brick:Telecom_Room']" with the correct mapping
+
+In the preprocessing results, HotelRoom is mapped to 'rec:Bedroom'. So I'll replace the class value with 'rec:Bedroom'.
+
+EVALUATION:
+- bloom: Applying the mapping procedure
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 2
+
+STEP 6: Update hasLocation relationship for HotelRoom
+- context: HotelRoom relationship in RNRD, relational_property_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** brick:hasLocation" with the correct mapping
+
+In the preprocessing results, hasLocation is mapped to 'brick:hasLocation'. So I'll keep this value as it's already correct.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 2
+
+STEP 7: Update TemperatureSensor entity class
+- context: TemperatureSensor entity in RNRD, entity_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** brick:Temperature_Sensor" with the correct mapping
+
+In the preprocessing results, TemperatureSensor is mapped to 'brick:Temperature_Sensor'. So I'll keep this value as it's already correct.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 2
+
+STEP 8: Update hasLocation relationship for TemperatureSensor
+- context: TemperatureSensor relationship in RNRD, relational_property_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** brick:hasLocation" with the correct mapping
+
+In the preprocessing results, hasLocation is mapped to 'brick:hasLocation'. So I'll keep this value as it's already correct.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 2
+
+STEP 9: Add data access for TemperatureSensor
+- context: TemperatureSensor entity in RNRD, numerical_properties and api_endpoint from preprocessing
+- reason: Need to add API endpoint for the 'temperature' property
+
+Looking at the numerical_properties list, 'temperature' is included. Therefore, I need to add data access using the API endpoint pattern.
+
+For TemperatureSensor, the data access would be:
+'https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/temperature/value'
+
+EVALUATION:
+- bloom: Creating a new data access endpoint
+- dim: Procedural Knowledge
+- quantity: 1 entity, 1 property
+- human_effort: 3
+
+STEP 10: Update CO2Sensor entity class
+- context: CO2Sensor entity in RNRD, entity_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** brick:CO2_Sensor" with the correct mapping
+
+In the preprocessing results, CO2Sensor is mapped to 'brick:CO2_Sensor'. So I'll keep this value as it's already correct.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 2
+
+STEP 11: Update hasLocation relationship for CO2Sensor
+- context: CO2Sensor relationship in RNRD, relational_property_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** brick:hasLocation" with the correct mapping
+
+In the preprocessing results, hasLocation is mapped to 'brick:hasLocation'. So I'll keep this value as it's already correct.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 2
+
+STEP 12: Add data access for CO2Sensor
+- context: CO2Sensor entity in RNRD, numerical_properties and api_endpoint from preprocessing
+- reason: Need to add API endpoint for the 'co2' property
+
+Looking at the numerical_properties list, 'co2' is included. Therefore, I need to add data access using the API endpoint pattern.
+
+For CO2Sensor, the data access would be:
+'https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/co2/value'
+
+EVALUATION:
+- bloom: Creating a new data access endpoint
+- dim: Procedural Knowledge
+- quantity: 1 entity, 1 property
+- human_effort: 3
+
+STEP 13: Update PresenceSensor entity class
+- context: PresenceSensor entity in RNRD, entity_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** ['brick:Pressure_Sensor', 'brick:Frequency_Sensor', 'brick:Speed_Sensor']" with the correct mapping
+
+In the preprocessing results, PresenceSensor is mapped to 'brick:Occupancy_Count_Sensor'. So I'll replace the class value with 'brick:Occupancy_Count_Sensor'.
+
+EVALUATION:
+- bloom: Applying the mapping procedure
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 2
+
+STEP 14: Update hasLocation relationship for PresenceSensor
+- context: PresenceSensor relationship in RNRD, relational_property_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** brick:hasLocation" with the correct mapping
+
+In the preprocessing results, hasLocation is mapped to 'brick:hasLocation'. So I'll keep this value as it's already correct.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 2
+
+STEP 15: Add data access for PresenceSensor
+- context: PresenceSensor entity in RNRD, numerical_properties and api_endpoint from preprocessing
+- reason: Need to add API endpoint for the 'pir' property
+
+Looking at the numerical_properties list, 'pir' is included. Therefore, I need to add data access using the API endpoint pattern.
+
+For PresenceSensor, the data access would be:
+'https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/pir/value'
+
+EVALUATION:
+- bloom: Creating a new data access endpoint
+- dim: Procedural Knowledge
+- quantity: 1 entity, 1 property
+- human_effort: 3
+
+STEP 16: Update FreshAirVentilation entity class
+- context: FreshAirVentilation entity in RNRD, entity_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** ['brick:Fresh_Air_Fan', 'brick:Fresh_Air_Setpoint_Limit', 'brick:Max_Fresh_Air_Setpoint_Limit']" with the correct mapping
+
+In the preprocessing results, FreshAirVentilation is mapped to 'brick:Ventilation_Air_System'. So I'll replace the class value with 'brick:Ventilation_Air_System'.
+
+EVALUATION:
+- bloom: Applying the mapping procedure
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 2
+
+STEP 17: Update hasLocation relationship for FreshAirVentilation
+- context: FreshAirVentilation relationship in RNRD, relational_property_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** brick:hasLocation" with the correct mapping
+
+In the preprocessing results, hasLocation is mapped to 'brick:hasLocation'. So I'll keep this value as it's already correct.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 2
+
+STEP 18: Update relatedTo relationship for FreshAirVentilation
+- context: FreshAirVentilation relationship to airFlowSetpoint in RNRD
+- reason: Need to replace "**TODO: PLEASE CHECK** rec:relatedTo" with the correct mapping
+
+I don't see a specific mapping for 'relatedTo' in the preprocessing results. However, the RNRD uses 'rec:relatedTo', and there isn't a clear alternative in the mappings, so I'll keep it as 'rec:relatedTo'.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 3
+
+STEP 19: Add data access for FreshAirVentilation
+- context: FreshAirVentilation entity in RNRD, numerical_properties and api_endpoint from preprocessing
+- reason: Need to add API endpoint for the 'airFlowSetpoint' property
+
+Looking at the numerical_properties list, 'airFlowSetpoint' is included. Therefore, I need to add data access using the API endpoint pattern.
+
+For FreshAirVentilation, the data access would be:
+'https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/airFlowSetpoint/value'
+
+EVALUATION:
+- bloom: Creating a new data access endpoint
+- dim: Procedural Knowledge
+- quantity: 1 entity, 1 property
+- human_effort: 3
+
+STEP 20: Update RadiatorThermostat entity class
+- context: RadiatorThermostat entity in RNRD, entity_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** brick:Thermostat" with the correct mapping
+
+In the preprocessing results, RadiatorThermostat is mapped to 'brick:HVAC_Equipment'. So I'll replace the class value with 'brick:HVAC_Equipment'.
+
+EVALUATION:
+- bloom: Applying the mapping procedure
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 2
+
+STEP 21: Update hasLocation relationship for RadiatorThermostat
+- context: RadiatorThermostat relationship in RNRD, relational_property_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** brick:hasLocation" with the correct mapping
+
+In the preprocessing results, hasLocation is mapped to 'brick:hasLocation'. So I'll keep this value as it's already correct.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 2
+
+STEP 22: Update relatedTo relationship for RadiatorThermostat
+- context: RadiatorThermostat relationship to temperatureSetpoint in RNRD
+- reason: Need to replace "**TODO: PLEASE CHECK** rec:relatedTo" with the correct mapping
+
+I don't see a specific mapping for 'relatedTo' in the preprocessing results. However, the RNRD uses 'rec:relatedTo', and there isn't a clear alternative in the mappings, so I'll keep it as 'rec:relatedTo'.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 3
+
+STEP 23: Add data access for RadiatorThermostat
+- context: RadiatorThermostat entity in RNRD, numerical_properties and api_endpoint from preprocessing
+- reason: Need to add API endpoint for the 'temperatureSetpoint' property
+
+Looking at the numerical_properties list, 'temperatureSetpoint' is included. Therefore, I need to add data access using the API endpoint pattern.
+
+For RadiatorThermostat, the data access would be:
+'https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/temperatureSetpoint/value'
+
+EVALUATION:
+- bloom: Creating a new data access endpoint
+- dim: Procedural Knowledge
+- quantity: 1 entity, 1 property
+- human_effort: 3
+
+STEP 24: Update CoolingCoil entity class
+- context: CoolingCoil entity in RNRD, entity_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** brick:Cooling_Coil" with the correct mapping
+
+In the preprocessing results, CoolingCoil is mapped to 'brick:Cooling_Coil'. So I'll keep this value as it's already correct.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 2
+
+STEP 25: Update hasLocation relationship for CoolingCoil
+- context: CoolingCoil relationship in RNRD, relational_property_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** brick:hasLocation" with the correct mapping
+
+In the preprocessing results, hasLocation is mapped to 'brick:hasLocation'. So I'll keep this value as it's already correct.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 2
+
+STEP 26: Update relatedTo relationship for CoolingCoil
+- context: CoolingCoil relationship to fanSpeed in RNRD
+- reason: Need to replace "**TODO: PLEASE CHECK** rec:relatedTo" with the correct mapping
+
+I don't see a specific mapping for 'relatedTo' in the preprocessing results. However, the RNRD uses 'rec:relatedTo', and there isn't a clear alternative in the mappings, so I'll keep it as 'rec:relatedTo'.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 3
+
+STEP 27: Add data access for CoolingCoil
+- context: CoolingCoil entity in RNRD, numerical_properties and api_endpoint from preprocessing
+- reason: Need to add API endpoint for the 'fanSpeed' property
+
+Looking at the numerical_properties list, 'fanSpeed' is included. Therefore, I need to add data access using the API endpoint pattern.
+
+For CoolingCoil, the data access would be:
+'https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/fanSpeed/value'
+
+EVALUATION:
+- bloom: Creating a new data access endpoint
+- dim: Procedural Knowledge
+- quantity: 1 entity, 1 property
+- human_effort: 3
+
+STEP 28: Update airFlowSetpoint_FreshAirVentilation entity class
+- context: airFlowSetpoint_FreshAirVentilation entity in RNRD, extra_node_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** ['brick:Air_Flow_Setpoint_Limit', 'brick:Max_Air_Flow_Setpoint_Limit', 'brick:Min_Air_Flow_Setpoint_Limit']" with the correct mapping
+
+In the preprocessing results, under extra_node_mappings, AirFlowSetpoint is mapped to 'brick:Air_Flow_Setpoint'. So I'll replace the class value with 'brick:Air_Flow_Setpoint'.
+
+EVALUATION:
+- bloom: Applying the mapping procedure
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 3
+
+STEP 29: Update relatedTo relationship for airFlowSetpoint_FreshAirVentilation
+- context: airFlowSetpoint_FreshAirVentilation relationship to FreshAirVentilation in RNRD
+- reason: Need to replace "**TODO: PLEASE CHECK** rec:relatedTo" with the correct mapping
+
+I don't see a specific mapping for 'relatedTo' in the preprocessing results. However, the RNRD uses 'rec:relatedTo', and there isn't a clear alternative in the mappings, so I'll keep it as 'rec:relatedTo'.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 3
+
+STEP 30: Add data access for airFlowSetpoint_FreshAirVentilation
+- context: airFlowSetpoint_FreshAirVentilation entity in RNRD, numerical_properties and api_endpoint from preprocessing
+- reason: Need to consider if this entity needs data access
+
+This is an extra node entity created for the airFlowSetpoint property of FreshAirVentilation. The actual data access for airFlowSetpoint is already handled in the FreshAirVentilation entity, so I don't need to add additional data access here.
+
+EVALUATION:
+- bloom: Analyzing the data access requirement
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 3
+
+STEP 31: Update temperatureSetpoint_RadiatorThermostat entity class
+- context: temperatureSetpoint_RadiatorThermostat entity in RNRD, extra_node_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** ['brick:Air_Temperature_Setpoint_Limit', 'brick:Max_Temperature_Setpoint_Limit', 'brick:Min_Temperature_Setpoint_Limit']" with the correct mapping
+
+In the preprocessing results, under extra_node_mappings, TemperatureSetpoint is mapped to 'brick:Temperature_Setpoint'. So I'll replace the class value with 'brick:Temperature_Setpoint'.
+
+EVALUATION:
+- bloom: Applying the mapping procedure
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 3
+
+STEP 32: Update relatedTo relationship for temperatureSetpoint_RadiatorThermostat
+- context: temperatureSetpoint_RadiatorThermostat relationship to RadiatorThermostat in RNRD
+- reason: Need to replace "**TODO: PLEASE CHECK** rec:relatedTo" with the correct mapping
+
+I don't see a specific mapping for 'relatedTo' in the preprocessing results. However, the RNRD uses 'rec:relatedTo', and there isn't a clear alternative in the mappings, so I'll keep it as 'rec:relatedTo'.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 3
+
+STEP 33: Add data access for temperatureSetpoint_RadiatorThermostat
+- context: temperatureSetpoint_RadiatorThermostat entity in RNRD, numerical_properties and api_endpoint from preprocessing
+- reason: Need to consider if this entity needs data access
+
+This is an extra node entity created for the temperatureSetpoint property of RadiatorThermostat. The actual data access for temperatureSetpoint is already handled in the RadiatorThermostat entity, so I don't need to add additional data access here.
+
+EVALUATION:
+- bloom: Analyzing the data access requirement
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 3
+
+STEP 34: Update fanSpeed_CoolingCoil entity class
+- context: fanSpeed_CoolingCoil entity in RNRD, extra_node_mappings from preprocessing
+- reason: Need to replace "**TODO: PLEASE CHECK** ['brick:Cooling_Coil', 'brick:Fan_Speed_Command', 'brick:Direct_Expansion_Cooling_Coil']" with the correct mapping
+
+In the preprocessing results, under extra_node_mappings, FanSpeedSetpoint is mapped to 'brick:Speed_Setpoint'. So I'll replace the class value with 'brick:Speed_Setpoint'.
+
+EVALUATION:
+- bloom: Applying the mapping procedure
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 3
+
+STEP 35: Update relatedTo relationship for fanSpeed_CoolingCoil
+- context: fanSpeed_CoolingCoil relationship to CoolingCoil in RNRD
+- reason: Need to replace "**TODO: PLEASE CHECK** rec:relatedTo" with the correct mapping
+
+I don't see a specific mapping for 'relatedTo' in the preprocessing results. However, the RNRD uses 'rec:relatedTo', and there isn't a clear alternative in the mappings, so I'll keep it as 'rec:relatedTo'.
+
+EVALUATION:
+- bloom: Analyzing the current mapping
+- dim: Procedural Knowledge
+- quantity: 1 relationship
+- human_effort: 3
+
+STEP 36: Add data access for fanSpeed_CoolingCoil
+- context: fanSpeed_CoolingCoil entity in RNRD, numerical_properties and api_endpoint from preprocessing
+- reason: Need to consider if this entity needs data access
+
+This is an extra node entity created for the fanSpeed property of CoolingCoil. The actual data access for fanSpeed is already handled in the CoolingCoil entity, so I don't need to add additional data access here.
+
+EVALUATION:
+- bloom: Analyzing the data access requirement
+- dim: Procedural Knowledge
+- quantity: 1 entity
+- human_effort: 3
+
+Now, let me combine all these updates into the final Resource Node Relationship Document.
+
+The updated Resource Node Relationship Document is:
+
+```json
+{
+    "@context": {
+        "brick": "https://brickschema.org/schema/Brick#",
+        "csvw": "http://www.w3.org/ns/csvw#",
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "dcmitype": "http://purl.org/dc/dcmitype/",
+        "dcterms": "http://purl.org/dc/terms/",
+        "dcam": "http://purl.org/dc/dcam/",
+        "doap": "http://usefulinc.com/ns/doap#",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "geo": "http://www.opengis.net/ont/geosparql#",
+        "odrl": "http://www.w3.org/ns/odrl/2/",
+        "org": "http://www.w3.org/ns/org#",
+        "prof": "http://www.w3.org/ns/dx/prof/",
+        "prov": "http://www.w3.org/ns/prov#",
+        "qb": "http://purl.org/linked-data/cube#",
+        "schema": "https://schema.org/",
+        "sh": "http://www.w3.org/ns/shacl#",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "sosa": "http://www.w3.org/ns/sosa/",
+        "ssn": "http://www.w3.org/ns/ssn/",
+        "time": "http://www.w3.org/2006/time#",
+        "vann": "http://purl.org/vocab/vann/",
+        "void": "http://rdfs.org/ns/void#",
+        "wgs": "https://www.w3.org/2003/01/geo/wgs84_pos#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "xml": "http://www.w3.org/XML/1998/namespace",
+        "bacnet": "http://data.ashrae.org/bacnet/2020#",
+        "bsh": "https://brickschema.org/schema/BrickShape#",
+        "qudt": "http://qudt.org/schema/qudt/",
+        "qudtqk": "http://qudt.org/vocab/quantitykind/",
+        "rec": "https://w3id.org/rec#",
+        "ref": "https://brickschema.org/schema/Brick/ref#",
+        "s223": "http://data.ashrae.org/standard223#",
+        "sdo": "http://schema.org/",
+        "tag": "https://brickschema.org/schema/BrickTag#",
+        "unit": "http://qudt.org/vocab/unit/",
+        "vcard": "http://www.w3.org/2006/vcard/ns#"
+    },
+    "@data": [
+        {
+            "nodetype": "Hotel",
+            "iterator": "$[?(@.type=='Hotel')]",
+            "class": "rec:Building",
+            "hasRelationship": [],
+            "hasDataAccess": null
+        },
+        {
+            "nodetype": "AmbientTemperatureSensor",
+            "iterator": "$[?(@.type=='AmbientTemperatureSensor')]",
+            "class": "brick:Air_Temperature_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Hotel",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value"
+        },
+        {
+            "nodetype": "HotelRoom",
+            "iterator": "$[?(@.type=='HotelRoom')]",
+            "class": "rec:Bedroom",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Hotel",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "nodetype": "TemperatureSensor",
+            "iterator": "$[?(@.type=='TemperatureSensor')]",
+            "class": "brick:Temperature_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/temperature/value"
+        },
+        {
+            "nodetype": "CO2Sensor",
+            "iterator": "$[?(@.type=='CO2Sensor')]",
+            "class": "brick:CO2_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/co2/value"
+        },
+        {
+            "nodetype": "PresenceSensor",
+            "iterator": "$[?(@.type=='PresenceSensor')]",
+            "class": "brick:Occupancy_Count_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/pir/value"
+        },
+        {
+            "nodetype": "FreshAirVentilation",
+            "iterator": "$[?(@.type=='FreshAirVentilation')]",
+            "class": "brick:Ventilation_Air_System",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                },
+                {
+                    "relatedNodeType": "airFlowSetpoint_FreshAirVentilation",
+                    "propertyClass": "rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/airFlowSetpoint/value"
+        },
+        {
+            "nodetype": "RadiatorThermostat",
+            "iterator": "$[?(@.type=='RadiatorThermostat')]",
+            "class": "brick:HVAC_Equipment",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                },
+                {
+                    "relatedNodeType": "temperatureSetpoint_RadiatorThermostat",
+                    "propertyClass": "rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/temperatureSetpoint/value"
+        },
+        {
+            "nodetype": "CoolingCoil",
+            "iterator": "$[?(@.type=='CoolingCoil')]",
+            "class": "brick:Cooling_Coil",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                },
+                {
+                    "relatedNodeType": "fanSpeed_CoolingCoil",
+                    "propertyClass": "rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/fanSpeed/value"
+        },
+        {
+            "nodetype": "airFlowSetpoint_FreshAirVentilation",
+            "iterator": "$[?(@.type=='airFlowSetpoint_FreshAirVentilation')]",
+            "class": "brick:Air_Flow_Setpoint",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "FreshAirVentilation",
+                    "propertyClass": "rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "nodetype": "temperatureSetpoint_RadiatorThermostat",
+            "iterator": "$[?(@.type=='temperatureSetpoint_RadiatorThermostat')]",
+            "class": "brick:Temperature_Setpoint",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "RadiatorThermostat",
+                    "propertyClass": "rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "nodetype": "fanSpeed_CoolingCoil",
+            "iterator": "$[?(@.type=='fanSpeed_CoolingCoil')]",
+            "class": "brick:Speed_Setpoint",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "CoolingCoil",
+                    "propertyClass": "rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": null
+        }
+    ]
+}
+```
+
+Now, I'll examine the completed document to ensure it meets all the requirements:
+
+1. I replaced all "class" values with the correct mapped Ontology Classes from the preprocessing results.
+2. I verified and updated all "propertyClass" values with the mapped Ontology Properties.
+3. I added proper API endpoints for data access for entities with numerical properties.
+
+Let me review a few specific entities to double-check:
+
+- Hotel: Class is updated to "rec:Building"
+- AmbientTemperatureSensor: Class is updated to "brick:Air_Temperature_Sensor" and data access is added
+- TemperatureSensor: Class is kept as "brick:Temperature_Sensor" and data access is added
+- FreshAirVentilation: Class is updated to "brick:Ventilation_Air_System" and data access is added
+- airFlowSetpoint_FreshAirVentilation: Class is updated to "brick:Air_Flow_Setpoint"
+
+I notice one issue: in some of the data access URLs, I used '{entityId}' as a placeholder. Let me fix that to use the actual entity id. I need to update the following:
+
+- TemperatureSensor: "https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:example_room/attrs/temperature/value"
+- CO2Sensor: "https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:example_room/attrs/co2/value"
+- PresenceSensor: "https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:example_room/attrs/pir/value"
+- FreshAirVentilation: "https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:example_room/attrs/airFlowSetpoint/value"
+- RadiatorThermostat: "https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:example_room/attrs/temperatureSetpoint/value"
+- CoolingCoil: "https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:example_room/attrs/fanSpeed/value"
+
+But wait, the task actually asks to use the '{entityId}' placeholder in the URL, and not hardcode the specific IDs. Let me check the preprocessing results again to confirm the correct format for the API endpoint:
+
+```
+'api_endpoint': 'https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/{attrName}/value'
+```
+
+Yes, the preprocessing results specify to use the placeholder '{entityId}', so I should stick with that format. The idea is that the actual entity ID will be substituted at runtime.
+
+With that, my final Resource Node Relationship Document is:
+
+```json
+{
+    "@context": {
+        "brick": "https://brickschema.org/schema/Brick#",
+        "csvw": "http://www.w3.org/ns/csvw#",
+        "dc": "http://purl.org/dc/elements/1.1/",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "dcmitype": "http://purl.org/dc/dcmitype/",
+        "dcterms": "http://purl.org/dc/terms/",
+        "dcam": "http://purl.org/dc/dcam/",
+        "doap": "http://usefulinc.com/ns/doap#",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "geo": "http://www.opengis.net/ont/geosparql#",
+        "odrl": "http://www.w3.org/ns/odrl/2/",
+        "org": "http://www.w3.org/ns/org#",
+        "prof": "http://www.w3.org/ns/dx/prof/",
+        "prov": "http://www.w3.org/ns/prov#",
+        "qb": "http://purl.org/linked-data/cube#",
+        "schema": "https://schema.org/",
+        "sh": "http://www.w3.org/ns/shacl#",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "sosa": "http://www.w3.org/ns/sosa/",
+        "ssn": "http://www.w3.org/ns/ssn/",
+        "time": "http://www.w3.org/2006/time#",
+        "vann": "http://purl.org/vocab/vann/",
+        "void": "http://rdfs.org/ns/void#",
+        "wgs": "https://www.w3.org/2003/01/geo/wgs84_pos#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "xml": "http://www.w3.org/XML/1998/namespace",
+        "bacnet": "http://data.ashrae.org/bacnet/2020#",
+        "bsh": "https://brickschema.org/schema/BrickShape#",
+        "qudt": "http://qudt.org/schema/qudt/",
+        "qudtqk": "http://qudt.org/vocab/quantitykind/",
+        "rec": "https://w3id.org/rec#",
+        "ref": "https://brickschema.org/schema/Brick/ref#",
+        "s223": "http://data.ashrae.org/standard223#",
+        "sdo": "http://schema.org/",
+        "tag": "https://brickschema.org/schema/BrickTag#",
+        "unit": "http://qudt.org/vocab/unit/",
+        "vcard": "http://www.w3.org/2006/vcard/ns#"
+    },
+    "@data": [
+        {
+            "nodetype": "Hotel",
+            "iterator": "$[?(@.type=='Hotel')]",
+            "class": "rec:Building",
+            "hasRelationship": [],
+            "hasDataAccess": null
+        },
+        {
+            "nodetype": "AmbientTemperatureSensor",
+            "iterator": "$[?(@.type=='AmbientTemperatureSensor')]",
+            "class": "brick:Air_Temperature_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Hotel",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/temperatureAmb/value"
+        },
+        {
+            "nodetype": "HotelRoom",
+            "iterator": "$[?(@.type=='HotelRoom')]",
+            "class": "rec:Bedroom",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Hotel",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "nodetype": "TemperatureSensor",
+            "iterator": "$[?(@.type=='TemperatureSensor')]",
+            "class": "brick:Temperature_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/temperature/value"
+        },
+        {
+            "nodetype": "CO2Sensor",
+            "iterator": "$[?(@.type=='CO2Sensor')]",
+            "class": "brick:CO2_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/co2/value"
+        },
+        {
+            "nodetype": "PresenceSensor",
+            "iterator": "$[?(@.type=='PresenceSensor')]",
+            "class": "brick:Occupancy_Count_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/pir/value"
+        },
+        {
+            "nodetype": "FreshAirVentilation",
+            "iterator": "$[?(@.type=='FreshAirVentilation')]",
+            "class": "brick:Ventilation_Air_System",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                },
+                {
+                    "relatedNodeType": "airFlowSetpoint_FreshAirVentilation",
+                    "propertyClass": "rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/airFlowSetpoint/value"
+        },
+        {
+            "nodetype": "RadiatorThermostat",
+            "iterator": "$[?(@.type=='RadiatorThermostat')]",
+            "class": "brick:HVAC_Equipment",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                },
+                {
+                    "relatedNodeType": "temperatureSetpoint_RadiatorThermostat",
+                    "propertyClass": "rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/temperatureSetpoint/value"
+        },
+        {
+            "nodetype": "CoolingCoil",
+            "iterator": "$[?(@.type=='CoolingCoil')]",
+            "class": "brick:Cooling_Coil",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "propertyClass": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                },
+                {
+                    "relatedNodeType": "fanSpeed_CoolingCoil",
+                    "propertyClass": "rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/fanSpeed/value"
+        },
+        {
+            "nodetype": "airFlowSetpoint_FreshAirVentilation",
+            "iterator": "$[?(@.type=='airFlowSetpoint_FreshAirVentilation')]",
+            "class": "brick:Air_Flow_Setpoint",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "FreshAirVentilation",
+                    "propertyClass": "rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "nodetype": "temperatureSetpoint_RadiatorThermostat",
+            "iterator": "$[?(@.type=='temperatureSetpoint_RadiatorThermostat')]",
+            "class": "brick:Temperature_Setpoint",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "RadiatorThermostat",
+                    "propertyClass": "rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": null
+        },
+        {
+            "nodetype": "fanSpeed_CoolingCoil",
+            "iterator": "$[?(@.type=='fanSpeed_CoolingCoil')]",
+            "class": "brick:Speed_Setpoint",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "CoolingCoil",
+                    "propertyClass": "rec:relatedTo",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "hasDataAccess": null
+        }
+    ]
+}
+```
+
+This Resource Node Relationship Document now correctly maps all entities to their ontology classes, specifies the proper relationships, and includes data access endpoints for entities with numerical properties.",
+
+
+
+
+
+
+
+
 """
 format_string(string)
+
+
+evaluations = extract_evaluations(string)

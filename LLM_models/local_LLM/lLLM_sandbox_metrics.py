@@ -281,10 +281,19 @@ class TaskDifficultyAnalyzer:
             attention_difficulty * 0.2 +         # High attention entropy = high difficulty
             activation_instability * 0.1         # High instability = high difficulty
         )
+
         
         # Ensure no NaN in final score
         if np.isnan(difficulty_score) or np.isinf(difficulty_score):
             difficulty_score = 0.0
+
+        print(f"\nDifficulty score components:")
+        print(f"  - Prediction confidence: {prediction_confidence:.3f}")
+        print(f"  - Prediction uncertainty: {prediction_uncertainty:.3f}")
+        print(f"  - Activation variability: {activation_variability:.3f}")
+        print(f"  - Attention difficulty: {attention_difficulty:.3f}")
+        print(f"  - Activation instability: {activation_instability:.3f}")
+        print(f"-> Weighted difficulty score: {difficulty_score:.3f}\n")
         
         difficulty_metrics['overall_difficulty_score'] = difficulty_score
         

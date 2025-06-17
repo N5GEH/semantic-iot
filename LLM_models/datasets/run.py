@@ -355,7 +355,7 @@ class ScenarioExecutor:
                     # print(prompt[sc])
                     # input("Press Enter to continue...")
 
-                    print(f"Running scenario {sc}...")
+                    print(f"\nRunning scenario {sc}...")
 
                     client_scenario = ClaudeAPIProcessor()
 

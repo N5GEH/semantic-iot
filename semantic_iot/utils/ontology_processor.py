@@ -2,6 +2,7 @@ from rdflib import Graph, RDF, RDFS, OWL, URIRef, SKOS, DC
 from sentence_transformers import SentenceTransformer, util
 from typing import List, Tuple, Dict
 import os
+import json
 
 
 
@@ -27,8 +28,11 @@ class OntologyProcessor:
         self.shape_prefixes = self._get_shape_prefixes()
 
         # Extract resources and create embeddings
-        self.classes = self._extract_classes()
-        self.properties = self._extract_properties()
+        self.classes, class_descriptions = self._extract_classes()
+        self.properties, property_descriptions = self._extract_properties()
+
+        # Merge class and property descriptions
+        self._resource_descriptions = {**class_descriptions, **property_descriptions}
 
         self.c_index = self._build_embeddings(self.classes)
         self.p_index = self._build_embeddings(self.properties)
@@ -78,9 +82,7 @@ class OntologyProcessor:
             r[label_key] = s
             descriptions[label_key] = current_desc
         
-        # Store descriptions for later use in _build_embeddings
-        self._resource_descriptions = descriptions
-        return r
+        return r, descriptions
 
     def _extract_classes(self):  # Extracting ontology classes
         owl_classes = set(self.ont.subjects(RDF.type, OWL.Class))
@@ -96,16 +98,13 @@ class OntologyProcessor:
     def _build_embeddings(self, resources):
         index = {}
         for label, uri in resources.items():
-            # Use merged description if available, otherwise get from ontology
-            if hasattr(self, '_resource_descriptions') and label in self._resource_descriptions:
-                description = self._resource_descriptions[label]
-            else:
-                description1 = self.ont.value(subject=URIRef(uri), predicate=RDFS.comment)
-                description2 = self.ont.value(subject=URIRef(uri), predicate=SKOS.definition)
-                description3 = self.ont.value(subject=URIRef(uri), predicate=DC.description)
-                description = description1 or description2 or description3 or ""
+            description = self._resource_descriptions[label]
 
-            chunk = f"{label}: {description}"
+            if description:
+                chunk = f"{label}: {description}"
+            else:
+                chunk = label
+
             embedding = self.embedding_model.encode(chunk, convert_to_tensor=True)
 
             index[label] = {
@@ -162,6 +161,12 @@ class OntologyProcessor:
         for label, data in index.items():
             similarity = util.pytorch_cos_sim(query_embedding, data['embedding']).item()
             results.append((data['prefixed'], similarity, data))
+
+        print(f"Found {len(results)} results for query '{query}' of type '{type}'")
+
+        # for result in results:
+        #     print(f"Prefixed Result: {result[0]}")
+        # raise ValueError("No results found for the query")
 
         # Filter top k
         results = sorted(results, key=lambda x: x[1], reverse=True)[:top_k]
@@ -337,7 +342,15 @@ class OntologyProcessor:
 if __name__ == "__main__":
     brick = OntologyProcessor("test/Brick.ttl")
 
-    results = brick.search("HotelRoom", type='class', top_k=90)
+    search_terms = [
+        "HotelRoom",
+        "Room",
+        "TemperatureSensor",
+        "AirConditioner",
+        "LightingControl"
+    ]
+
+    results = brick.search(search_terms, type='class', top_k=90)
 
     print("Search Results:")
     print(results)

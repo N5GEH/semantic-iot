@@ -13,3 +13,7 @@ local_test/
 **/__pycache__/
 /doc/
 **/datasets/**/*result*
+/Anhänge
+readable.md
+/literature/
+evaluations.md

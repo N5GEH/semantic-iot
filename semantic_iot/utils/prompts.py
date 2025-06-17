@@ -336,14 +336,15 @@ class PromptsLoader:
         # Pointwise 
         self.cot_extraction_full = f"""
         <context>
+        # CoT Extraction
         Bloom's Taxonomy:
-        - Remembering: Recall information.
-        - Understanding: Constructing meaning from information, e. g.: interpreting, exemplifying, classifying, summarizing, inferring, comparing, or explaining
-        - Applying: using a procedure through executing, or implementing.
-        - Analyzing: determine how concept parts relate to each other or how they interrelate, differentiating, organizing, and attributing, as well as being able to distinguish  between the components or parts.
-        - Evaluating: Making judgments based on criteria and standards through checking and critiquing.
-        - Creating: generating and synthesizing parts into new structures or patterns.
- 
+        - Remembering: {{information}} (Recall information)
+        - Understanding: {{meaning}} (Constructing meaning from information, e. g.: interpreting, exemplifying, classifying, summarizing, inferring, comparing, or explaining)
+        - Applying: {{procedure}} (using a procedure through executing, or implementing.)
+        - Analyzing: {{analysis}} (determine how concept parts relate to each other or how they interrelate, differentiating, organizing, and attributing, as well as being able to distinguish  between the components or parts.)
+        - Evaluating: {{number of options considered}} (Making judgments based on criteria and standards through checking and critiquing.)
+        - Creating: {{newly created idea or element}} (generating new ideas or elements.)
+
         Knowledge Dimensions:
         - Factual Knowledge: facts, terminology, or syntax needed to understand the domain.
         - Conceptual Knowledge: classifications, principles, generalizations, theories, models, or structures pertinent to a particular disciplinary area
@@ -353,32 +354,71 @@ class PromptsLoader:
 
         <instructions>
         Do the task step by step.
+        Each step must:
+        - Perform exactly one logical action
+        - Have exactly one conceptual target
+        - be not devidable into smaller steps 
+        - Produce exactly one concrete output
+        - Be completable in isolation
+        - Not require planning future steps
+
         Output the thinking process as detailed as possible.
         It is really important to output every little step of your reasoning, even if it seems obvious.
-        Each step is not devidable into smaller steps.
 
-        Each step, no matter how small, should be classifiable by the Bloom's Taxonomy scale and the Knowledge Dimension.
-        {"Each step, no matter how small, must be outputted as a JSON object with the following keys:" if False else ""}
-        For each step, must have:
-        - step: the step name
-        - context: the context information that is needed to complete the step
-        - reason: the reasoning process that led to the step
-        - result: the result of the step, if applicable
-        - bloom: the Bloom's Taxonomy level
-        - dim: the Knowledge Dimension
-        - quantity: the number of context information pieces processed simultaneously
-        - human_effort: own evaluation of the human effort required to complete this step (from 1 to 10, where 1 is very easy and 10 is very hard)
+        Process exactly ONE step at a time. 
+        You cannot reference or work on any other step until the current one is complete. 
+        After completing one step, explicitly state "STEP COMPLETE" before starting the next.
         
-        Only one single conceptual target should be processed in each step, 
-        Only one logical action should be performed in each step,
-        Only one result should be produced in each step, otherwise these should be split into multiple steps.
- 
+        You can only use information from:
+        - The original input
+        - Results from previously completed steps
+        - The current step you're working on
+        You cannot reference or anticipate future steps.
+        
+        For each step:
+        1. State what you're about to do
+            - context: the explicit context information that is needed to complete the step
+            - reason: the reasoning process that led to the step
+        2. Do it immediately 
+        3. Show the result
+            - result: The actual concrete output produced (code, data, text) - not a description of what you will produce
+        4. Evaluate the step
+            - bloom: {{objective}} the Bloom's Taxonomy level and it's objective (max 7 words)
+            - dim: the Knowledge Dimension
+            - quantity: the number of context information items processed in this step. Items are either: entities, properties, relationships, paths, or lines of code.
+            - human_effort: own evaluation of the human effort required to complete this step (from 1 to 10, where 1 is very easy and 10 is very hard)
+        5. Move to next step
+
+        If you find yourself working on multiple entities simultaneously, STOP immediately and restart with only the first incomplete entity.
+        FINAL OUTPUT RULE: Only after ALL entities show 'ENTITY COMPLETE', combine all step results into the final deliverable.
+
+        Example format:
+        ...
+        STEP 1: {{step name}}
+            context: {{context}}
+            reason: {{reasoning of the step}}
+        EXECUTING: [actual code/work here]
+        RESULT:
+            result: {{result of the step}}
+        EVALUATION:
+            bloom: {{bloom}} {{objective}}
+            dim: {{dim}}
+            quantity: {{quantity}}
+            human_effort: {{human_effort}}
+
+        NEXT: STEP 2: {{step name}}
+        STEP COMPLETE
+        ...
         </instructions>
 
         <output>
-        Output the steps in <steps> tags.
+        Output the steps in <steps> tags. Put the response in output tags first, then the steps in <steps> tags after.
         </output>
         """
+        # do I still need to _OUTPUT_ the thinking process?
+        # - result: here is space for putting the explicit information that will be required for generating the output of the prompt, e. g. a code block, a JSON object, a list of items, ...
+
+
         div = f"""
         In <steps> tags, return a JSON object in which the steps and their Bloom's Taxonomy category (bloom) and Knowledge Dimension (dim) and how many times this same step needs to be repeated to process all items (quantity).
         The triviality score is based on your own evaluation of the step, where 0 is trivial at all and 5 is the most complex.
@@ -455,8 +495,10 @@ class PromptsLoader:
         }}
         </output>
         """
-        
 
+        
+        
+        # HUMAN EFFORT METRICS ================================================================
         # Top Level
         self.HUMAN_EFFORT_METRICS = f"""
         - Difficulty

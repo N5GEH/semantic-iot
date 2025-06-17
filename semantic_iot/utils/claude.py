@@ -101,11 +101,13 @@ class ClaudeAPIProcessor:
                 prompt: str = "",
                 step_name: str = "default_step",
                 max_retry: int = 5,
+                max_tokens: int = None,
                 conversation_history = None,
                 temperature: float = None,
                 thinking: bool = True,
                 tools: str = "",
-                follow_up: bool = False) -> Dict[str, Any]: # TODO add tool selection
+                follow_up: bool = False,
+                stop_sequences: List[str] = ["<steps>"]) -> Dict[str, Any]:
         """
         Send a query to Claude API
 
@@ -116,6 +118,8 @@ class ClaudeAPIProcessor:
             conversation_history: Optional conversation history to use for this query
             temperature: Optional temperature parameter to override the instance setting
             thinking: Enable thinking mode if the model supports it
+            tools: Tools to make available to Claude (e.g. "context", "file_access", "validation", "rml_engine", "siot_tools")
+            follow_up: Whether this is a follow-up query (to add cache breakpoints)
 
         Returns:
             The JSON response from Claude
@@ -147,6 +151,10 @@ class ClaudeAPIProcessor:
         
         messages = conversation_history if conversation_history \
             else self.conversation_history.copy()
+        
+        if max_tokens:
+            self.max_tokens = max_tokens
+            print(f"🔧 Overriding max_tokens to {self.max_tokens} for this query")
 
         if prompt: # Add user message to messages
             prompt += prompts.cot_extraction_full
@@ -163,7 +171,8 @@ class ClaudeAPIProcessor:
                     "text": self.system_prompt,
                 }
             ],
-            "temperature": self.temperature # "top_p": 1.0
+            "temperature": self.temperature, # "top_p": 1.0
+            "stop_sequences": stop_sequences, # TODO add stop sequences
         }
         if follow_up: # Add Cache Breakpoint if multiple queries are made
             data["system"][0]["cache_control"] = {"type": "ephemeral"} 
@@ -385,17 +394,68 @@ class ClaudeAPIProcessor:
                     step_name=f"{step_name}", 
                     thinking=thinking, 
                     tools=tools,
-                    follow_up=follow_up)
+                    follow_up=follow_up,
+                    stop_sequences=stop_sequences
+                )
                 return tool_result
             else:
                 print("Returning tool result...")
                 return tool_result
+            
+        # STOP SEQUENCE =========================================
+        if result.get("stop_reason") == "stop_sequence":
 
+            print(f"Stopped at sequence: {result.get('stop_sequence')}")
+            return response_text
+
+            print(f"✨↪️  Model reply: {response_text}")
+            # If the response contains a thinking block, extract it
+            if thinking_text:
+                print(f"Thinking:\n{thinking_text}")
+            else:
+                print("No Thinking block found in the response.")
+
+            # Parse steps from thinking text
+            steps = self._safe_parse_steps(thinking_text, response_text)
+            if steps:
+                print(f"Parsed Steps: \n{json.dumps(steps, indent=2)}")
+            else:
+                print("No valid steps found in the thinking text.")
+
+            return {
+                "thinking": thinking_text,
+                "response": response_text,
+                "steps": steps,
+                "metrics": self.metrics[step_name]
+            }
+        
+        # END OF TERM & MAX TOKENS =========================================================
         elif result.get("stop_reason") == "end_turn":
-            model_reply = self.extract_tag(response_text, "output")            
-            if model_reply: response_text = model_reply
+            output = self.extract_tag(response_text, "output")
+            if output: response_text = output
             print(f"✨↪️  Model reply: {response_text}")
             return response_text
+
+        elif result.get("stop_reason") == "max_tokens":
+            print("⚠️  Max tokens reached, response may be incomplete.")
+            i = input("Continue generation? (y/n)")
+            if i.strip().lower() == 'y':
+                print("Continuing generation...")
+                # Continue the query with the same prompt and conversation history
+                return self.query(
+                    prompt=prompt+response_text, # Append the response text to the prompt
+                    step_name=step_name,
+                    max_retry=max_retry,
+                    temperature=temperature,
+                    thinking=thinking,
+                    tools=tools,
+                    follow_up=follow_up,
+                    stop_sequences=stop_sequences
+                )
+            else:
+                print("Stopping generation.")
+                print(f"✨↪️  Model reply: {response_text}")
+                return self.extract_tag(response_text, "output") if self.extract_tag(response_text, "output") else response_text
 
         else: raise Exception("Unknown stop reason")
         
