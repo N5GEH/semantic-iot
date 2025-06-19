@@ -10,12 +10,6 @@ from semantic_iot.tools import generate_rdf_from_rml, reasoning, generate_contro
 
 timestamp = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
 
-# TODO Set save Metrics
-
-# TODO which test files do I need?
-# TODO what to do when validation fails?
-
-# TODO implement extra nodes
 
 
 def get_file(folder, file_type, keyword=None):
@@ -306,9 +300,9 @@ class ScenarioExecutor:
         if not hasattr(self, 'context') or not self.context:
             print("\nLoad context from file...")
             self.load_context(self.result_folder)
-        if not hasattr(self, 'context') or not self.context:
-            print("Load Validated Context...")
-            self.load_context("LLM_models") # get validated context
+        # if not hasattr(self, 'context') or not self.context:
+        #     print("Load Validated Context...")
+        #     self.load_context("LLM_models") # get validated context
         if not hasattr(self, 'context') or not self.context:
             print("Get context from Claude...")
             self.get_context()

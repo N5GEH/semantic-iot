@@ -4,25 +4,7 @@ from typing import List, Dict, Any, Optional
 from sentence_transformers import SentenceTransformer
 
 from semantic_iot.utils import ClaudeAPIProcessor
-
-
-
-
-# TODO merge output with base path 
-
-# TODO with description as context or not? Toggle?
-# TODO      with semantic search preprocessing or not? Toggle?
-# TODO          Die beste hälfte von den top matches neue semantischen suche nehmen und das alles mit Beschreibung der LLM geben
-# TODO          Confidence score von anthropic ausgeben lassen? 
-
-# How much difference is it?
-
-# Perspective:
-# Get rausfiltern
-# example usage aus specs dateien
-
-# TODO delete version detection
-
+from semantic_iot.utils.prompts import HOST_PATH
 
 
 class APISpecProcessor:
@@ -30,7 +12,7 @@ class APISpecProcessor:
     Generic processor for OpenAPI/Swagger API specification files.
     Supports OpenAPI 2.0 (Swagger) and 3.x (OpenAPI) JSON files.
     """
-    def __init__(self, spec_path: str, host_path: str = "https://example.com/") -> None:
+    def __init__(self, spec_path: str, host_path: str = HOST_PATH) -> None:
         print(f"[APISpecProcessor] Initializing with spec file: {spec_path}")
         self.spec_path = spec_path
         self.host_path = host_path
@@ -120,6 +102,13 @@ class APISpecProcessor:
         print("[APISpecProcessor] No relevant endpoint found for the query.")
         return None
     
+    def get_endpoint_list(self) -> List[Dict[str, Any]]:
+        chunks = self.build_chunks()
+        endpoint_list = f"Host Path: {self.host_path}\nPossible Endpoints:\n" + "\n".join([
+            f"- {chunk}" for i, chunk in enumerate(chunks)
+        ])
+        return endpoint_list
+    
     def get_endpoint(self, query: str) -> Optional[Dict[str, Any]]:
         """
         Matches a user query to the best endpoint using Anthropic Claude API.
@@ -130,12 +119,15 @@ class APISpecProcessor:
         endpoint_list = "\n".join([
             f"{i+1}. {chunk}" for i, chunk in enumerate(chunks)
         ])
+
         prompt = (
             f"You are an expert API assistant.\n"
             f"Given the following user query and a list of API endpoints, select the single most relevant endpoint.\n"
             f"\nUser query: {query}\n\nAPI endpoints:\n{endpoint_list}\n\n"
             f"Reply ONLY with the number of the best matching endpoint. If none are relevant, reply with 0."
         )
+
+        input("Press Enter to send the prompt to the LLM...")  # Wait for user input before sending
 
         print(f"[APISpecProcessor] Sending prompt to LLM:\n{prompt}")
         claude = ClaudeAPIProcessor() # TODO change system prompt
@@ -169,15 +161,15 @@ class APISpecProcessor:
 if __name__ == "__main__":
 
     # INPUT
-    HOST_PATH = "https://fiware.eonerc.rwth-aachen.de/"
-
     API_SPEC_PATH = "LLM_models/API_specs/openhab_API_spec.json"
     API_SPEC_PATH = "LLM_models\API_specs\FIWAR_ngsiV2_API_spec.json"
 
     # Example usage
-    processor = APISpecProcessor(API_SPEC_PATH, HOST_PATH)
+    processor = APISpecProcessor(API_SPEC_PATH)
+
+    endpoint_list = processor.get_endpoint_list()
+    print(endpoint_list)
 
     user_query = "Get Sensor Value"
     best_endpoint_path = processor.get_endpoint(user_query)
-
     print(f"\n\nBest matching endpoint path: {best_endpoint_path['full_path']}")

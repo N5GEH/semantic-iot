@@ -5,8 +5,6 @@ import os
 import json
 
 
-
-
 class OntologyProcessor:
     """
     Processing large files with semantic search.
@@ -75,7 +73,7 @@ class OntologyProcessor:
                 if current_desc and current_desc not in existing_desc:
                     merged_desc = f"{existing_desc}; {current_desc}" if existing_desc else current_desc
                     descriptions[label_key] = merged_desc
-                    print(f"Label is a duplicate: {label_key}")
+                    # print(f"Label is a duplicate: {label_key}")
                 continue
             
             # Add new resource (first occurrence of this label)
@@ -137,7 +135,7 @@ class OntologyProcessor:
         prefix, namespace = matching_prefixes[0]
         return f"{prefix}:{uri_str[len(namespace):]}"
 
-    def search(self, query, type='class', top_k=10) -> List[Tuple[str, float, URIRef]]:
+    def search(self, queries: Dict[str, str], top_k=10) -> List[Tuple[str, float, URIRef]]:
         """
         Perform a semantic search for a query against ontology classes or properties.
 
@@ -146,35 +144,46 @@ class OntologyProcessor:
         :param top_k: Number of top results to return.
         :return: The most similar items and their similarity scores.
         """
-        if type == 'class':
-            index = self.c_index
-        elif type == 'property':
-            index = self.p_index
-        else:
-            raise ValueError("type must be 'class' or 'property'")
-        
-        # Embed the query
-        query_embedding = self.embedding_model.encode(query, convert_to_tensor=True)
+        class_results = []
+        property_results = []
 
-        # Calculate similarity with all indexed items
-        results = []
-        for label, data in index.items():
-            similarity = util.pytorch_cos_sim(query_embedding, data['embedding']).item()
-            results.append((data['prefixed'], similarity, data))
+        for query, type in queries.items():
+            print(f"Searching ontology {type} for '{query}'")
+            if type == 'class':
+                index = self.c_index
+            elif type == 'property':
+                index = self.p_index
+            else:
+                raise ValueError("type must be 'class' or 'property'")
+            
+            # Embed the query
+            query_embedding = self.embedding_model.encode(query, convert_to_tensor=True)
 
-        print(f"Found {len(results)} results for query '{query}' of type '{type}'")
+            # Calculate similarity with all indexed items
+            results = []
+            for label, data in index.items():
+                similarity = util.pytorch_cos_sim(query_embedding, data['embedding']).item()
+                results.append((data['prefixed'], similarity, data))
 
-        # for result in results:
-        #     print(f"Prefixed Result: {result[0]}")
-        # raise ValueError("No results found for the query")
+            # Filter top k
+            results = sorted(results, key=lambda x: x[1], reverse=True)[:top_k]
 
-        # Filter top k
-        results = sorted(results, key=lambda x: x[1], reverse=True)[:top_k]
+            if type == 'class':
+                class_results.extend(results)
+            elif type == 'property':
+                property_results.extend(results)
 
-        return self._build_tree(results, term_type=type)
+        class_tree = self._build_tree(class_results, term_type='class')
+        property_tree = self._build_tree(property_results, term_type='property')
 
-    
-    
+        string_results = []
+        if class_tree:
+            string_results.append(f"Classes:\n{class_tree}")
+        if property_tree:
+            string_results.append(f"Properties:\n{property_tree}")
+
+        return "\n".join(string_results)
+
     def get_superclasses(self, class_uri: URIRef, visited=None) -> set:
         """Get all superclasses of a class recursively"""
         if visited is None:
@@ -333,24 +342,21 @@ class OntologyProcessor:
         return complete_tree
         
 
-        
-
-
 
     
 # Example usage:
 if __name__ == "__main__":
     brick = OntologyProcessor("test/Brick.ttl")
 
-    search_terms = [
-        "HotelRoom",
-        "Room",
-        "TemperatureSensor",
-        "AirConditioner",
-        "LightingControl"
-    ]
+    search_terms = {
+        "Room": "class",
+        "Hotel": "class",
+        "TemperatureSensor": "class",
+        "hasLocation": "property",
+        "hasTemperature": "property",
+    }
 
-    results = brick.search(search_terms, type='class', top_k=90)
+    results = brick.search(search_terms, top_k=10)
 
     print("Search Results:")
     print(results)

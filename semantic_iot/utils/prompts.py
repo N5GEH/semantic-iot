@@ -1,5 +1,7 @@
 
 
+HOST_PATH = "https://fiware.eonerc.rwth-aachen.de/" # TODO put into setup
+
 kg_template_string = """<template> RDF
 For the RDF graph to properly support configuration generation, the following elements are essential:
 
@@ -26,6 +28,8 @@ Then: Add one or more properties using {{ONTOLOGY_PROPERTY}} <http://example.com
 - Devices must be properly connected to their locations (e.g., sensors to rooms)
 
 </template>"""
+
+
 
 
 
@@ -183,17 +187,47 @@ class PromptsLoader:
 
         # CONTEXT PROMPTS ================================================================
 
+        self.term_mapping = f"""
+        <term_mapping_instructions>
+        <instructions>
+        Based on the extraction of available Ontology Classes and Properties and
+        the list of terms that need to be mapped to the ontology,
+        for each term, you need to select the most appropriate ontology class or property for the domain entity or relation.
+        The goal is to inherit the attributes and relations from the selected Ontology Class or Property.
+
+        MAPPING CRITERIA: (in order of priority)
+        1. Exact semantic match
+        2. Functional equivalence (same purpose/behavior)
+        3. Hierarchical relationship (parent/child concepts)
+        4. Attribute similarity (same properties/characteristics)
+
+        SPECIAL CONSIDERATIONS:
+        - Distinguish locations, air systems, devices, actuation points, sensors
+        - Avoid category errors: don't confuse the thing itself with infrastructure that supports the thing
+
+        JUST FOR CLASSES:
+        - Respect system hierarchies (building → floor → room → equipment)
+        - When the Domain Entity seems to be a relation, select a class that would have this relation as a property.
+
+        JUST FOR PROPERTIES:
+        - Maintain the direction of the relationship original (subject → predicate → object), e. g.: is_instance_of NOT EQUAL TO is_instanciated_by
+        </instructions>
+        </term_mapping_instructions>
+        """
+
         self.context = f"""
         <context>
         {self.jex}
-        Ontology path: '{self.ontology_path}'
         API Specification path: '{self.api_spec_path}'
+        Ontology path: '{self.ontology_path}'
+        Term Mapping Instructions: 
+        {self.term_mapping}
         </context>
 
         <steps>
-        1. Find the suitable API endpoint for accessing numerical values of entities
+        1. Based on the extraction of available API endpoints, select the single most relevant endpoint for accessing numerical values of entities.
 
-        1. Map JSON Entities to ontology Classes.
+        1. Map JSON Entities to ontology Classes considering the Term Mapping Instructions.
 
         2. Decide which relations in the JSON file are 'numeric properties' and 'relational properties'.
             numeric properties are properties that have a numerical value, like temperature, humidity, etc.

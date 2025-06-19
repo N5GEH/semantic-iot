@@ -14,7 +14,9 @@ from semantic_iot.controller_configuration import ControllerConfiguration
 from semantic_iot.utils.reasoning import inference_owlrl
 from semantic_iot.utils.term_mapping import OntologyProcessor
 from semantic_iot.utils.API_spec_processor import APISpecProcessor
-from semantic_iot.utils.ontology_property_analyzer import OntologyPropertyAnalyzer
+from semantic_iot.utils.ontology_property_analyzer import ontology_processor
+from semantic_iot.utils.ontology_processor import OntologyProcessor
+from semantic_iot.utils.prompts import prompts
 
 # TODO merge into claude.py file?
 
@@ -72,13 +74,13 @@ FILE_ACCESS = [
 CONTEXT = [
     {
         "name": "term_mapper",
-        "description": "Maps a list of terms to a list of appropriate ontology classes or properties.",
+        "description": "Finds all available ontology classes and properties for a list of terms.",
         "input_schema": {
             "type": "object",
             "properties": {
                 "terms": {
                     "type": "object",
-                    "description": "A dictionary of terms to be mapped. The keys are the terms. The terms must NOT describe a numerical property. The values are the type of the corresponding term and can only be 'class' or 'property'."
+                    "description": "A dictionary of terms to be mapped. The keys are the terms. The terms must NOT describe a numerical property. The values are the type of the corresponding term and can only be 'class' and 'property'."
                 },
                 "ontology_path": {
                     "type": "string",
@@ -89,21 +91,12 @@ CONTEXT = [
         }
     },
     {
-        "name": "get_endpoint_from_api_spec",
-        "description": "Returns the best matching endpoint from the API specification for accessing the data of a given query.",
+        "name": "get_endpoint_list",
+        "description": "Returns a list of all available endpoints from the API specification.",
         "input_schema": {
             "type": "object",
-            "properties": {
-                "api_spec_path": {
-                    "type": "string",
-                    "description": "The path to the API specification file."
-                },
-                "query": {
-                    "type": "string",
-                    "description": "The query to the endpoint."
-                }
-            },
-            "required": ["api_spec_path", "query"]
+            "properties": {},
+            "required": []
         }
     },
     {
@@ -118,10 +111,6 @@ CONTEXT = [
                         "type": "string"
                     },
                     "description": "A list of target classes to check for numeric properties."
-                },
-                "ontology_path": {
-                    "type": "string",
-                    "description": "The path to the ontology file."
                 }
             },
             "required": ["target_classes", "ontology_path"]
@@ -330,6 +319,11 @@ def term_mapper(terms: dict, ontology_path: str, test: bool = False) -> str:
                 # term = input(f"Enter mapping for {term}: ")
                 # mapped_terms[term] = mapped_class
 
+    elif True:
+        brick = OntologyProcessor(ontology_path)
+        search_results = brick.search(terms, top_k=45)
+        return search_results
+
     else:
         mapped_terms = {}
         for term, term_type in terms.items():
@@ -346,15 +340,18 @@ def get_endpoint_from_api_spec(api_spec_path: str, query: str):
         processor = APISpecProcessor(api_spec_path, host_path=HOST_PATH)
     except FileNotFoundError:
         processor = APISpecProcessor("LLM_models/" + api_spec_path, host_path=HOST_PATH)
-    best_endpoint_path = processor.get_endpoint(query)
-    return best_endpoint_path['full_path']
+    best_endpoint_path = processor.get_endpoint(query)['full_path']
+    return best_endpoint_path
 
-def get_non_numeric_classes(target_classes: List[str], ontology_path: str) -> List[str]:
+def get_endpoint_list():
+    spec = APISpecProcessor(prompts.api_spec_path)
+    return spec.get_endpoint_list()
+
+def get_non_numeric_classes(target_classes: List[str]) -> List[str]:
     """
     Returns a list of non-numeric classes from the ontology that match the target classes.
     """
-    ont_analyzer = OntologyPropertyAnalyzer(ontology_path)
-    return ont_analyzer.get_non_numeric_classes(target_classes)
+    return ontology_processor.get_non_numeric_classes(target_classes)
 
 def wait_for_sec(seconds: int = 60):
     print(f"⌚ Assistant sleeps for {seconds} sec...")
@@ -463,10 +460,14 @@ def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
         # return {"endpoint": r"https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/{attrName}/value"}
         return {"endpoint": get_endpoint_from_api_spec(input_data["api_spec_path"], input_data["query"])}
     
+    # For get_endpoint_list tool
+    elif tool_name == "get_endpoint_list":
+        return get_endpoint_list()
+
     # For get_non_numeric_classes tool
     elif tool_name == "get_non_numeric_classes":
-        print(f"🔍 Getting non-numeric classes for: {input_data['target_classes']} using ontology: {input_data['ontology_path']}")
-        return {"non_numeric_classes": get_non_numeric_classes(input_data["target_classes"], input_data["ontology_path"])}
+        print(f"🔍 Getting non-numeric classes for: {input_data['target_classes']} using ontology: {prompts.ontology_path}")
+        return {"non_numeric_classes": get_non_numeric_classes(input_data["target_classes"])}
 
     elif tool_name == "wait_for_sec":
         wait_for_sec(input_data["seconds"])
@@ -523,6 +524,18 @@ def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
 ###############################################################################
 
 if __name__ == "__main__":
+
+    prompts.load_ontology_path('test/Brick.ttl')
+
+    get_non_numeric_classes(
+        target_classes=["brick:Temperature_Sensor", "brick:Occupancy_Sensor", "brick:Light_Sensor"]
+    )
+
+    get_non_numeric_classes(
+        target_classes=["brick:Temperature_Sensor", "brick:Occupancy_Sensor", "brick:Light_Sensor"]
+    )
+
+    raise Exception("Test")
 
     # generate_rdf_from_rml(
     #     json_file_path="LLM_models/datasets/fiware_v1_hotel/fiware_entities_2rooms.json",

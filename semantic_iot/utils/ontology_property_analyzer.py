@@ -1,7 +1,6 @@
 import rdflib
 from rdflib import Graph, Namespace, URIRef
 from rdflib.namespace import RDF, RDFS, OWL
-import owlrl
 
 import json
 
@@ -9,13 +8,14 @@ from semantic_iot.utils import ClaudeAPIProcessor
 from semantic_iot.utils.reasoning import inference_owlrl
 from semantic_iot.utils.prompts import prompts
 
-# TODO try with other ontologies, e.g., Brick, SAREF, etc.
 
 class OntologyPropertyAnalyzer:
     def __init__(self, ontology_path):
         self.ontology_path = ontology_path
         self.ont = Graph()
         self.ont.parse(ontology_path, format='turtle')
+        
+        self.classification = {"numerical": [], "non_numerical": []}
 
 
     def _string_to_uri(self, graph, string):
@@ -78,7 +78,7 @@ class OntologyPropertyAnalyzer:
             return superclasses
 
         all_classes = get_all_superclasses(target_class_uri)
-        print(f"Found {len(all_classes)} superclasses for {target_class}")
+        # print(f"Found {len(all_classes)} superclasses for {target_class}")
 
         # Collect all properties for the target class and its superclasses
         properties = set()
@@ -93,9 +93,9 @@ class OntologyPropertyAnalyzer:
                         continue
                     properties.add(p)
 
-        print(f"Found {len(properties)} properties for {target_class}")
-        for prop in sorted(properties):
-            print(f"  - {self._uri_to_string(prop)}")
+        # print(f"Found {len(properties)} properties for {target_class}")
+        # for prop in sorted(properties):
+        #     print(f"  - {self._uri_to_string(prop)}")
 
         return properties
 
@@ -107,7 +107,7 @@ class OntologyPropertyAnalyzer:
             "Properties are numerical if they (directly or inderictly through another class and property) connect an entity with a measurable quantity or quantity concept, such as temperature, count, or speed.\n"
             "Properties are non-numerical if they connect an entity with a another entity or description\n"
             # "Non-numerical properties include those that represent qualitative attributes, relationships, or categories between two entities.\n"
-            "Return a JSON object with two keys: 'numerical' and 'non_numerical'.\n"
+            "Return a JSON object with two keys: 'numerical' and 'non_numerical' and both a list of properties as values."
             f"The input properties are:\n {inherited_properties}"
         ) # based on the inherited properties of each class, which classes have a property that contains a numerical value?
 
@@ -175,10 +175,11 @@ class OntologyPropertyAnalyzer:
 
     def get_non_numeric_classes(self, target_classes: list, classifier: str = "LLM") -> list:
 
+
         # Get all (inherited) properties of the target classes
+        print(f"Searching inherited properties for target classes {target_classes} using classifier {classifier}")
         properties_of_classes = {}
         for target_class in target_classes:
-            print(f"\n{'='*20} PROCESSING CLASS: {target_class} {'='*20}")
             properties_of_classes[target_class] = self.get_inherited_properties(target_class)
 
 
@@ -187,22 +188,30 @@ class OntologyPropertyAnalyzer:
         for props in properties_of_classes.values():
             all_props_strings.update(self._uri_to_string(prop) for prop in props)
         all_props_strings = list(all_props_strings)
-        print(f"\nTotal unique properties across all classes: {len(all_props_strings)}")
+        print(f"\nTotal unique properties across all classes: {all_props_strings}")
 
 
         # Classify properties to non numerical properties
-        if classifier == "LLM":
-            classification = self.classify_props_LLM(all_props_strings)
-        elif classifier == "inference":
-            classification = self.classify_props_inference(all_props_strings, target_classes)
-        else: 
-            raise ValueError(f"Unknown classifier: {classifier}")
-        print(f"\nClassification result: {json.dumps(classification, indent=2)}")
+
+        # Identify unclassified properties
+        classified_props = set(self.classification.get('numerical', [])) | set(self.classification.get('non_numerical', []))
+        unclassified_props = [prop for prop in all_props_strings if prop not in classified_props]
+        print(f"\nClassified properties: {classified_props}")
+        print(f"Unclassified properties: {unclassified_props}")
+
+        if unclassified_props:
+            if classifier == "LLM":
+                self.classification.update(self.classify_props_LLM(unclassified_props))
+            elif classifier == "inference":
+                self.classification.update(self.classify_props_inference(unclassified_props, target_classes))
+            else: 
+                raise ValueError(f"Unknown classifier: {classifier}")
+            print(f"\nClassification result: {json.dumps(self.classification, indent=2)}")
 
 
         # Check if classes have non-numerical properties
         extra_nodes = []
-        numerical_prop = classification.get('numerical', [])
+        numerical_prop = self.classification.get('numerical', [])
         print(f"Numerical properties: {numerical_prop}")
 
         for target_class, props in properties_of_classes.items():
@@ -219,6 +228,11 @@ class OntologyPropertyAnalyzer:
 
         print(f"\nExtra nodes to be added: {extra_nodes}")
         return extra_nodes
+    
+if prompts.ontology_path is None:
+    ontology_processor = OntologyPropertyAnalyzer("test/Brick.ttl")  # Default ontology path if not set
+else:
+    ontology_processor = OntologyPropertyAnalyzer(prompts.ontology_path)
 
 
 
@@ -242,4 +256,5 @@ if __name__ == "__main__":
     ]
 
     brick_analyzer = OntologyPropertyAnalyzer(ontology)
+    brick_analyzer.get_non_numeric_classes(target_classes)
     brick_analyzer.get_non_numeric_classes(target_classes)

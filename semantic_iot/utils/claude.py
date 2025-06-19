@@ -78,7 +78,7 @@ class ClaudeAPIProcessor:
         self.model_api = self.model["api"]
         self.thinking = self.model["thinking"]
         self.max_tokens = self.model["max_tokens"]
-        print (f"Using Claude model: {self.model_api} (Thinking Possible: {self.thinking}, Max Tokens: {self.max_tokens})")
+        print (f"\nUsing Claude model: {self.model_api} (Thinking Possible: {self.thinking}, Max Tokens: {self.max_tokens})")
 
         self.temperature = temperature
         self.system_prompt = system_prompt if system_prompt else "default"
@@ -297,7 +297,7 @@ class ClaudeAPIProcessor:
         }
         self.save_metrics(step_name)
 
-        print(f"Thinking:\n{thinking_text}") if thinking_text else None
+        # print(f"Thinking:\n{thinking_text}") if thinking_text else None
 
 
         # TOOL USE =========================================================
@@ -404,8 +404,10 @@ class ClaudeAPIProcessor:
             
         # STOP SEQUENCE =========================================
         if result.get("stop_reason") == "stop_sequence":
-
-            print(f"Stopped at sequence: {result.get('stop_sequence')}")
+            print(f"⏸️ Stopped at sequence: {result.get('stop_sequence')}")
+            output = self.extract_tag(response_text, "output")
+            if output: response_text = output
+            print(f"✨↪️  Model reply: {response_text}")
             return response_text
 
             print(f"✨↪️  Model reply: {response_text}")
@@ -665,7 +667,7 @@ class ClaudeAPIProcessor:
                         "human_effort": None
                     }
                     
-                    print(f"Step {step_number} block: {repr(block)}")
+                    # print(f"Step {step_number} block: {repr(block)}")
                     
                     # Look for attributes in the entire block
                     for line in lines:
