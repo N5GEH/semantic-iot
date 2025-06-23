@@ -7,6 +7,8 @@ import anthropic
 from typing import Dict, Any, List, Optional, Union
 from memory_profiler import memory_usage
 import yaml
+from mermaid import Mermaid
+import textwrap
 
 from semantic_iot.utils.prompts import prompts
 
@@ -48,12 +50,13 @@ models = {
 }
 
 
-class ClaudeAPIProcessor:    
+class LLMAgent:    
     def __init__(self, 
                  api_key: str = "", 
                  model: str = "4sonnet",
                  temperature: float = 1.0, # TUNE
-                 system_prompt: str = prompts.system_default):
+                 system_prompt: str = prompts.system_default,
+                 result_folder: str = "LLM_models/metrics",):
         """
         Initialize the Claude API processor
 
@@ -72,6 +75,10 @@ class ClaudeAPIProcessor:
                     self.api_key = f.read().strip()
             except FileNotFoundError:
                 self.api_key = input(f"Couldn't find API key in {root_path}/ANTHROPIC_API_KEY\nEnter your Anthropic API key: ")
+
+                with open(f"{root_path}/ANTHROPIC_API_KEY", "w") as f:
+                    f.write(self.api_key)
+                print(f"API key saved to {root_path}/ANTHROPIC_API_KEY")
     
         if model not in models:
             raise ValueError(f"Model {model} not found. Available models: {list(models.keys())}")
@@ -80,10 +87,12 @@ class ClaudeAPIProcessor:
         self.model_api = self.model["api"]
         self.thinking = self.model["thinking"]
         self.max_tokens = self.model["max_tokens"]
-        print (f"\nUsing Claude model: {self.model_api} (Thinking Possible: {self.thinking}, Max Tokens: {self.max_tokens})")
+        # print (f"\nUsing Claude model: {self.model_api} (Thinking Possible: {self.thinking}, Max Tokens: {self.max_tokens})")
 
         self.temperature = temperature
         self.system_prompt = system_prompt if system_prompt else "default"
+
+        self.result_folder = result_folder
 
         self.base_url = "https://api.anthropic.com/v1/messages"
         self.headers = {
@@ -94,10 +103,11 @@ class ClaudeAPIProcessor:
 
         }
 
-        # self.client = anthropic.Client(self.api_key) # TODO 
+        # self.client = anthropic.Client(self.api_key) # TODO replace with API instead of requests
         
         self.conversation_history = []
         self.metrics = {}
+        self.yaml_text = {}
 
     def query(self,
                 prompt: str = "",
@@ -109,7 +119,7 @@ class ClaudeAPIProcessor:
                 thinking: bool = True,
                 tools: str = "",
                 follow_up: bool = False,
-                stop_sequences: List[str] = ["NEXT"]) -> Dict[str, Any]:
+                stop_sequences: List[str] = []) -> Dict[str, Any]:
         """
         Send a query to Claude API
 
@@ -160,8 +170,7 @@ class ClaudeAPIProcessor:
             print(f"🔧 Overriding max_tokens to {self.max_tokens} for this query")
 
         if prompt: # Add user message to messages
-            prompt += prompts.cot_extraction
-            # prompt += prompts.predefined_steps
+            # prompt += prompts.cot_extraction
             messages.append({"role": "user", "content": prompt})
 
         data = {
@@ -174,8 +183,8 @@ class ClaudeAPIProcessor:
                     "text": self.system_prompt,
                 }
             ],
-            "temperature": self.temperature, # "top_p": 1.0
-            "stop_sequences": stop_sequences, # TODO add stop sequences
+            "temperature": self.temperature,
+            "stop_sequences": stop_sequences,
         }
         if follow_up: # Add Cache Breakpoint if multiple queries are made
             data["system"][0]["cache_control"] = {"type": "ephemeral"} 
@@ -187,7 +196,7 @@ class ClaudeAPIProcessor:
             }
         
         if tools:
-            from semantic_iot.tools import execute_tool, FILE_ACCESS, CONTEXT, VALIDATION, RML_ENGINE, SIOT_TOOLS
+            from semantic_iot.utils.tools import execute_tool, FILE_ACCESS, CONTEXT, VALIDATION, RML_ENGINE, SIOT_TOOLS
             selected_tools = []
             if "context"     in tools: selected_tools.extend(CONTEXT)
             if "file_access" in tools: selected_tools.extend(FILE_ACCESS)
@@ -279,14 +288,12 @@ class ClaudeAPIProcessor:
 
         # METRICS ======================================================== 
 
-        # TODO implement time to first token metric -> antropic stream
-        # TODO add claude instance 
-
         self.metrics[step_name] = {
             "step_name": step_name,
             "prompt": prompt,
             "thinking": thinking_text if thinking_text else "No Thinking",
             "response": response_text,
+            "model": self.model_api,
             "performance": {
                 "time": {
                     "latency": round(elapsed_time, 2),
@@ -295,12 +302,28 @@ class ClaudeAPIProcessor:
                 },
                 "tokens": result.get("usage", {})            
             },
-            "sub_steps": self._safe_parse_steps(thinking_text, response_text)
-            # "evaluation": None, # TODO add absolute evaluation based on ... ??
+            # "sub_steps": self._parse_steps(thinking_text, response_text)
         }
-        self.save_metrics(step_name)
+        self.save_json_metrics(step_name)
 
-        # print(f"Thinking:\n{thinking_text}") if thinking_text else None
+
+
+        self._add_newline(prompt, f"{self.result_folder}/prompt.md")
+        if thinking_text:
+            self._add_newline(thinking_text, f"{self.result_folder}/thinking.md")
+        self._add_newline(response_text, f"{self.result_folder}/response.md")
+
+        steps = self._parse_steps(thinking_text, response_text)
+        if steps:
+            self.save_yaml(steps, f"{self.result_folder}/steps.yaml")
+
+        mermaid_flowchart = self.extract_code(self.extract_tag(response_text, "flowchart"))
+        if mermaid_flowchart:
+            Mermaid(graph=mermaid_flowchart).to_svg(f"{self.result_folder}/flowchart.svg")
+        
+        print(f"⬇️  Metrics saved to {self.result_folder}")
+
+
 
         # TOOL USE =========================================================
 
@@ -388,7 +411,7 @@ class ClaudeAPIProcessor:
                 "tool_input": tool_input,
                 "tool_result": tool_result
             }
-            self.save_metrics(tool_name)
+            self.save_json_metrics(tool_name)
 
             # FOLLOW UP
             if follow_up: 
@@ -420,7 +443,7 @@ class ClaudeAPIProcessor:
                 print("No Thinking block found in the response.")
 
             # Parse steps from thinking text
-            steps = self._safe_parse_steps(thinking_text, response_text)
+            steps = self._parse_steps(thinking_text, response_text)
             if steps:
                 print(f"Parsed Steps: \n{json.dumps(steps, indent=2)}")
             else:
@@ -464,7 +487,7 @@ class ClaudeAPIProcessor:
         else: raise Exception("Unknown stop reason")
         
     
-    def regenerate (self, error_message) -> None: # TODO replace throug try: in query
+    def regenerate (self, error_message) -> None:
         '''
         Correct generated content based on error messages.
         '''
@@ -476,15 +499,13 @@ class ClaudeAPIProcessor:
         """, step_name="regenerate_response")
         return response
 
-    def save_metrics(self, step_name: str, output_file: str="LLM_models/metrics/metrics.json") -> None:
+    def save_json_metrics(self, step_name: str, output_file: str="LLM_models/metrics/metrics.json") -> None:
         """
         Save the pipeline results to a JSON file, appending or updating the dict.
 
         Args:
             output_file: Path to the output JSON file
         """
-        # TODO copy metrics to a new file
-
         # Try to load existing metrics
         try:
             with open(output_file, 'r', encoding='utf-8') as f:
@@ -506,14 +527,38 @@ class ClaudeAPIProcessor:
 
         # print(f"⬇️ 📐 Metrics saved to {output_file}")
 
-        # Save to YAML file
+    def save_yaml(self, text: str, output_file: str) -> None:
         try:
-            yaml_filename = f"LLM_models/metrics/metrics.yaml"
-            with open(yaml_filename, 'w', encoding='utf-8') as f:
-                yaml.dump(self.metrics[step_name], f, default_flow_style=False, allow_unicode=True)
-            print(f"⬇️ 📐 Metrics saved to {yaml_filename}")
+            with open(output_file, 'r', encoding='utf-8') as f:
+                existing_content = f.read()
+        except FileNotFoundError:
+            existing_content = ""
+        
+        content = existing_content + "\n\n\n" + text 
+
+        try:
+            with open(output_file, 'w', encoding='utf-8') as f:
+                f.write(content)
+                # yaml.dump(text, f, default_flow_style=False, allow_unicode=True)
         except Exception as e:
             print(f"⚠️  Error saving metrics to YAML: {e}")
+
+    def _add_newline(self, string, path: str):
+        # Retrieve existing content
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                existing_content = f.read()
+        except FileNotFoundError:
+            existing_content = ""
+
+        # Add new content
+        for line in string.split("\n"):
+            existing_content += f"{line}\n"
+
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(existing_content)
+
+        return existing_content
 
 
     def get_metrics(self) -> Dict[str, Any]:
@@ -558,16 +603,16 @@ class ClaudeAPIProcessor:
             try:
                 return json.loads(extracted_content)
             except json.JSONDecodeError as e:
-                print(f"⚠️  JSON parsing error in code block: {e}")
-                print(f"Content: {extracted_content[:200]}...")
+                # print(f"⚠️  JSON parsing error in code block: {e}")
+                # print(f"Content: {extracted_content[:200]}...")
                 # Try to extract just valid JSON from the beginning
                 try:
                     decoder = json.JSONDecoder()
                     obj, idx = decoder.raw_decode(extracted_content)
-                    print(f"✅ Extracted valid JSON object from position 0 to {idx}")
+                    # print(f"✅ Extracted valid JSON object from position 0 to {idx}")
                     return obj
                 except json.JSONDecodeError:
-                    print("ℹ️ Could not extract valid JSON, returning raw content")
+                    # print("ℹ️ Could not extract valid JSON, returning raw content")
                     return extracted_content
         else:
             # No code block found, check if the text itself is already a dict or valid JSON
@@ -591,7 +636,7 @@ class ClaudeAPIProcessor:
             else:
                 return text
 
-    def _safe_parse_steps(self, thinking_text, response_text):
+    def _parse_steps(self, thinking_text, response_text):
         """
         Safely parse steps from extracted text with proper error handling.
         
@@ -602,35 +647,60 @@ class ClaudeAPIProcessor:
         Returns:
             dict or None: Parsed steps as dict if valid JSON, otherwise None
         """
-        # If no thinking text, try the original implementation with response text
-        if not thinking_text:
-            try:
-                steps_text = self.extract_tag(response_text, "steps")
-                if steps_text:
-                    return json.loads(steps_text)
-                return None
-            except json.JSONDecodeError as e:
-                print(f"⚠️  JSON parsing error in steps extraction: {e}")
-                print(f"Steps content: {steps_text[:200] if steps_text else 'None'}...")
-                # Try to extract valid JSON from the beginning
-                try:
-                    decoder = json.JSONDecoder()
-                    obj, idx = decoder.raw_decode(steps_text)
-                    print(f"✅ Extracted valid JSON object from steps at position 0 to {idx}")
-                    return obj
-                except (json.JSONDecodeError, TypeError):
-                    print("❌ Could not extract valid JSON from steps, returning None")
-                    return None
-            except Exception as e:
-                print(f"⚠️  Unexpected error in steps parsing: {e}")
-                return None
+        # Try parsing steps from response first
+        # print("🔍 Attempting to parse steps from response text...")
+        try:
+            steps_text = self.extract_tag(response_text, "steps")
+            if steps_text:
+                return self._extract_evaluations(steps_text)
+        except Exception as e:
+            print(f"⚠️  Error parsing thinking steps: {e}")        
         
         # Parse steps from thinking text
+        # print("🔍 Attempting to parse steps from thinking text...")
         try:
-            return self._parse_thinking_steps(thinking_text)
+            steps_text = self.extract_tag(thinking_text, "steps")
+            if steps_text:
+                return self._extract_evaluations(thinking_text)
         except Exception as e:
             print(f"⚠️  Error parsing thinking steps: {e}")
-            return None
+        return None
+    
+    def _extract_evaluations(self, text: str):
+        """
+        Extracts evaluation sections from text that start with 'EVALUATION:' 
+        and continue until an empty line is encountered.
+        """
+        evaluations = ""
+        lines = text.split('\n')
+
+        i = 0
+        while i < len(lines):
+            line = lines[i].strip()
+            
+            if line.startswith("EVALUATION:"):
+                evaluation_lines = [line]
+                i += 1
+                
+                while i < len(lines):
+                    current_line = lines[i]
+
+                    # If line contains " - " (dash with spaces), keep only the part before it
+                    if " - " in current_line.strip():
+                        current_line = current_line.split(" - ")[0]
+                    
+                    if current_line.strip() == "":
+                        break
+                    evaluation_lines.append(current_line)
+                    i += 1
+                
+                evaluations += '\n'.join(evaluation_lines) + "\n\n"
+            i += 1
+
+        print(f"🔍 Found {evaluations.count('EVALUATION:')} evaluations in text")
+        print(evaluations)
+
+        return evaluations
     
     def _parse_thinking_steps(self, thinking_text):
         """
@@ -720,13 +790,15 @@ class ClaudeAPIProcessor:
 if __name__ == "__main__":
 
     thinking_text = """
-
+    "response": "<flowchart>\n```mermaid\nflowchart TD\n    A[Start] --> B[Read sequence terms]\n    B --> C[Calculate ratio 2/1]\n    C --> D[Calculate ratio 4/2]\n    D --> E[Calculate ratio 8/4]\n    E --> F[Identify common pattern]\n    F --> G[Generate term 5]\n    G --> H[Generate term 6]\n    H --> I[Generate term 7]\n    I --> J[End]\n```\n</flowchart>\n\n<estimation>\n9 steps total (8 process nodes + completion)\n</estimation>\n\n<steps>\n\nSTEP 1: read 4 sequence terms\n- flowchart_node: Read sequence terms\n- context: Given sequence \"1, 2, 4, 8, ...\"\n\nEXECUTING:\nReading the provided sequence terms:\n- Term 1: 1\n- Term 2: 2  \n- Term 3: 4\n- Term 4: 8\n\nVALIDATION:\n- single_bloom_check: Knowledge - only retrieving given information\n- subdivision_check: Cannot be subdivided - single reading action\n- step_validation_checklist: Single action (read), single Bloom level (Knowledge), single output (4 terms), atomic operation\n\nEVALUATION:\n- bloom: Knowledge - recall given sequence terms\n- dim: Factual Knowledge\n- quantity: 4\n- human_effort: 5 - Simple reading of provided numbers\n\nNEXT: STEP 2: Calculate ratio 2/1\n- next_flowchart_node: Calculate ratio 2/1\n\nSTEP 2: calculate 1 ratio between consecutive terms\n- flowchart_node: Calculate ratio 2/1\n- context: Term 1 = 1, Term 2 = 2\n\nEXECUTING:\nCalculating the ratio between the second and first terms:\nRatio = Term 2 ÷ Term 1 = 2 ÷ 1 = 2\n\nVALIDATION:\n- single_bloom_check: Application - applying division operation\n- subdivision_check: Cannot be subdivided - single calculation\n- step_validation_checklist: Single action (calculate), single Bloom level (Application), single output (ratio = 2), atomic operation\n\nEVALUATION:\n- bloom: Application - apply division to find ratio\n- dim: Procedural Knowledge\n- quantity: 1\n- human_effort: 10 - Basic arithmetic calculation\n\nNEXT: STEP 3: Calculate ratio 4/2\n- next_flowchart_node: Calculate ratio 4/2\n\nSTEP 3: calculate 1 ratio between consecutive terms\n- flowchart_node: Calculate ratio 4/2\n- context: Term 2 = 2, Term 3 = 4\n\nEXECUTING:\nCalculating the ratio between the third and second terms:\nRatio = Term 3 ÷ Term 2 = 4 ÷ 2 = 2\n\nVALIDATION:\n- single_bloom_check: Application - applying division operation\n- subdivision_check: Cannot be subdivided - single calculation\n- step_validation_checklist: Single action (calculate), single Bloom level (Application), single output (ratio = 2), atomic operation\n\nEVALUATION:\n- bloom: Application - apply division to find ratio\n- dim: Procedural Knowledge\n- quantity: 1\n- human_effort: 10 - Basic arithmetic calculation\n\nNEXT: STEP 4: Calculate ratio 8/4\n- next_flowchart_node: Calculate ratio 8/4\n\nSTEP 4: calculate 1 ratio between consecutive terms\n- flowchart_node: Calculate ratio 8/4\n- context: Term 3 = 4, Term 4 = 8\n\nEXECUTING:\nCalculating the ratio between the fourth and third terms:\nRatio = Term 4 ÷ Term 3 = 8 ÷ 4 = 2\n\nVALIDATION:\n- single_bloom_check: Application - applying division operation\n- subdivision_check: Cannot be subdivided - single calculation\n- step_validation_checklist: Single action (calculate), single Bloom level (Application), single output (ratio = 2), atomic operation\n\nEVALUATION:\n- bloom: Application - apply division to find ratio\n- dim: Procedural Knowledge\n- quantity: 1\n- human_effort: 10 - Basic arithmetic calculation\n\nNEXT: STEP 5: Identify common pattern\n- next_flowchart_node: Identify common pattern\n\nSTEP 5: identify 1 common pattern from ratios\n- flowchart_node: Identify common pattern\n- context: Calculated ratios are 2, 2, 2\n\nEXECUTING:\nAnalyzing the calculated ratios:\n- Ratio 1: 2\n- Ratio 2: 2  \n- Ratio 3: 2\n\nAll ratios are equal to 2, indicating this is a geometric sequence with common ratio r = 2.\nPattern identified: Each term is double the previous term.\n\nVALIDATION:\n- single_bloom_check: Analysis - examining ratios to identify pattern\n- subdivision_check: Cannot be subdivided - single pattern recognition\n- step_validation_checklist: Single action (identify), single Bloom level (Analysis), single output (pattern = geometric sequence with r=2), atomic operation\n\nEVALUATION:\n- bloom: Analysis - analyze ratios to identify pattern\n- dim: Conceptual Knowledge\n- quantity: 1\n- human_effort: 25 - Requires pattern recognition and understanding of geometric sequences\n\nNEXT: STEP 6: Generate term 5\n- next_flowchart_node: Generate term 5\n\nSTEP 6: generate 1 next sequence term\n- flowchart_node: Generate term 5\n- context: Term 4 = 8, common ratio = 2\n\nEXECUTING:\nApplying the identified pattern to generate the 5th term:\nTerm 5 = Term 4 × common ratio = 8 × 2 = 16\n\nVALIDATION:\n- single_bloom_check: Application - applying identified pattern\n- subdivision_check: Cannot be subdivided - single term generation\n- step_validation_checklist: Single action (generate), single Bloom level (Application), single output (term 5 = 16), atomic operation\n\nEVALUATION:\n- bloom: Application - apply pattern to generate term\n- dim: Procedural Knowledge\n- quantity: 1\n- human_effort: 15 - Straightforward application of identified pattern\n\nNEXT: STEP 7: Generate term 6\n- next_flowchart_node: Generate term 6\n\nSTEP 7: generate 1 next sequence term\n- flowchart_node: Generate term 6\n- context: Term 5 = 16, common ratio = 2\n\nEXECUTING:\nApplying the identified pattern to generate the 6th term:\nTerm 6 = Term 5 × common ratio = 16 × 2 = 32\n\nVALIDATION:\n- single_bloom_check: Application - applying identified pattern\n- subdivision_check: Cannot be subdivided - single term generation\n- step_validation_checklist: Single action (generate), single Bloom level (Application), single output (term 6 = 32), atomic operation\n\nEVALUATION:\n- bloom: Application - apply pattern to generate term\n- dim: Procedural Knowledge\n- quantity: 1\n- human_effort: 15 - Straightforward application of identified pattern\n\nNEXT: STEP 8: Generate term 7\n- next_flowchart_node: Generate term 7\n\nSTEP 8: generate 1 next sequence term\n- flowchart_node: Generate term 7\n- context: Term 6 = 32, common ratio = 2\n\nEXECUTING:\nApplying the identified pattern to generate the 7th term:\nTerm 7 = Term 6 × common ratio = 32 × 2 = 64\n\nVALIDATION:\n- single_bloom_check: Application - applying identified pattern\n- subdivision_check: Cannot be subdivided - single term generation\n- step_validation_checklist: Single action (generate), single Bloom level (Application), single output (term 7 = 64), atomic operation\n\nEVALUATION:\n- bloom: Application - apply pattern to generate term\n- dim: Procedural Knowledge\n- quantity: 1\n- human_effort: 15 - Straightforward application of identified pattern\n\nNEXT: Task completion\n- next_flowchart_node: End\n\n</steps>\n\n<output>\nThe completed sequence is: 1, 2, 4, 8, 16, 32, 64, ...\n\nThis is a geometric sequence where each term is obtained by multiplying the previous term by 2 (common ratio = 2).\n</output>\n\n<verification>\nEVALUATION TOTAL:\n- Total Steps: 8\n- Flowchart Compliance: yes - all steps correspond to flowchart process nodes\n- Bloom Consistency: yes - each step uses only one Bloom level (Knowledge, Application, or Analysis)\n- Granularity Check: yes - similar operations (ratio calculations, term generations) have consistent granularity\n</verification>",
     """
 
     # Example usage
-    claude = ClaudeAPIProcessor()
+    claude = LLMAgent()
 
     # Print the parsed steps
-    result = claude._parse_thinking_steps(thinking_text)
+    # result = claude._parse_thinking_steps(thinking_text)
+    result = claude._parse_steps(thinking_text, thinking_text)
     print("\n\n")
-    print(json.dumps(result, indent=2))
+    print(result)
+    # print(json.dumps(result, indent=2))

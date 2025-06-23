@@ -1,4 +1,4 @@
-from .claude import ClaudeAPIProcessor, models
+from .claude import LLMAgent, models
 from .prompts import prompts
 
-__all__ = ['ClaudeAPIProcessor', 'prompts']
+__all__ = ['LLMAgent', 'prompts']

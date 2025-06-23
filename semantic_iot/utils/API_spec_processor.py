@@ -3,8 +3,8 @@ import re
 from typing import List, Dict, Any, Optional
 from sentence_transformers import SentenceTransformer
 
-from semantic_iot.utils import ClaudeAPIProcessor
-from semantic_iot.utils.prompts import HOST_PATH
+from semantic_iot.utils import LLMAgent
+from semantic_iot.utils.prompts import prompts
 
 
 class APISpecProcessor:
@@ -12,7 +12,7 @@ class APISpecProcessor:
     Generic processor for OpenAPI/Swagger API specification files.
     Supports OpenAPI 2.0 (Swagger) and 3.x (OpenAPI) JSON files.
     """
-    def __init__(self, spec_path: str, host_path: str = HOST_PATH) -> None:
+    def __init__(self, spec_path: str, host_path: str = prompts.host_path) -> None:
         print(f"[APISpecProcessor] Initializing with spec file: {spec_path}")
         self.spec_path = spec_path
         self.host_path = host_path
@@ -130,7 +130,7 @@ class APISpecProcessor:
         input("Press Enter to send the prompt to the LLM...")  # Wait for user input before sending
 
         print(f"[APISpecProcessor] Sending prompt to LLM:\n{prompt}")
-        claude = ClaudeAPIProcessor() # TODO change system prompt
+        claude = LLMAgent()
         response = claude.query(prompt, step_name="get_endpoint", tools="", temperature=0.0)
         print(response)
 

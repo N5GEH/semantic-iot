@@ -12,18 +12,11 @@ from semantic_iot import RDFGenerator
 from semantic_iot.controller_configuration import ControllerConfiguration
 
 from semantic_iot.utils.reasoning import inference_owlrl
-from semantic_iot.utils.term_mapping import OntologyProcessor
 from semantic_iot.utils.API_spec_processor import APISpecProcessor
 from semantic_iot.utils.ontology_property_analyzer import ontology_processor
 from semantic_iot.utils.ontology_processor import OntologyProcessor
 from semantic_iot.utils.prompts import prompts
 
-# TODO merge into claude.py file?
-
-###################################################################################
-# Constants
-
-HOST_PATH = "https://fiware.eonerc.rwth-aachen.de/" # TODO put swh else
 
 ###################################################################################
 # Tool definitions
@@ -189,7 +182,7 @@ RML_ENGINE = [
     }
 ]
 
-SIOT_TOOLS = [ # TODO implement SIOT Tools
+SIOT_TOOLS = [
     {
         "name": "preprocess_json",
         "description": "Preprocesses the JSON Example file and saves the result to the RDF node relationship file.",
@@ -321,10 +314,11 @@ def term_mapper(terms: dict, ontology_path: str, test: bool = False) -> str:
 
     elif True:
         brick = OntologyProcessor(ontology_path)
-        search_results = brick.search(terms, top_k=45)
+        search_results = brick.search(terms, top_k=5)
         return search_results
 
     else:
+        from semantic_iot.utils.term_mapping import OntologyProcessor
         mapped_terms = {}
         for term, term_type in terms.items():
             processor = OntologyProcessor(ontology_path)
@@ -337,9 +331,9 @@ def term_mapper(terms: dict, ontology_path: str, test: bool = False) -> str:
 
 def get_endpoint_from_api_spec(api_spec_path: str, query: str):
     try:
-        processor = APISpecProcessor(api_spec_path, host_path=HOST_PATH)
+        processor = APISpecProcessor(api_spec_path, host_path=prompts.host_path)
     except FileNotFoundError:
-        processor = APISpecProcessor("LLM_models/" + api_spec_path, host_path=HOST_PATH)
+        processor = APISpecProcessor("LLM_models/" + api_spec_path, host_path=prompts.host_path)
     best_endpoint_path = processor.get_endpoint(query)['full_path']
     return best_endpoint_path
 
@@ -378,7 +372,6 @@ def generate_rml_from_rnr(INPUT_RNR_FILE_PATH: str, OUTPUT_RML_FILE_PATH: str):
     """
     Generates the RML mapping file from the RDF node relationship file.
     """
-    # TODO implement RML Mapping Generator
     rml_generator = RMLMappingGenerator(
         rdf_relationship_file=INPUT_RNR_FILE_PATH,
         output_file=OUTPUT_RML_FILE_PATH
@@ -405,7 +398,6 @@ def reasoning(target_kg_path: str, ontology_path: str, extended_kg_filename: str
     Performs reasoning on the target knowledge graph using the specified ontology.
     """
     inference_owlrl(target_kg_path, ontology_path, extended_kg_filename)
-    # TODO merge with controller configuration generation?
 
 def generate_controller_configuration(extended_kg_path: str, output_file: str):
 
@@ -418,7 +410,7 @@ def generate_controller_configuration(extended_kg_path: str, output_file: str):
     )
     return controller_config.generate_configuration()
 
-def validate_triple(): # TODO 
+def validate_triple(): 
     """
     For a given RDF triple, perform reasoning and perform SPARQL query.
     Check query result against expected result.
@@ -442,7 +434,7 @@ def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
     elif tool_name == "load_from_file":
         try: 
             content = load_from_file(input_data["file_path"])
-        except FileNotFoundError: # TODO ugly workaround
+        except FileNotFoundError: # ugly workaround
             content= load_from_file("LLM_models/" + input_data["file_path"])
         return {"content": content}
     
@@ -453,7 +445,7 @@ def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
     # For term_mapper tool
     elif tool_name == "term_mapper":
         print (f"🔍 Mapping terms: {json.dumps(input_data['terms'], indent=2)} using ontology: {input_data['ontology_path']}")
-        return {"ontology_terms": term_mapper(input_data["terms"], input_data["ontology_path"])}
+        return {"ontology_terms": term_mapper(input_data["terms"], input_data["ontology_path"])} # "quantity": len(input_data["terms"])
 
     # For get_endpoint_from_api_spec tool
     elif tool_name == "get_endpoint_from_api_spec":
@@ -462,11 +454,11 @@ def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
     
     # For get_endpoint_list tool
     elif tool_name == "get_endpoint_list":
-        return {"endpoints": get_endpoint_list()}
+        return {"endpoints": get_endpoint_list(), "quantity": len(get_endpoint_list().splitlines())}
 
     # For get_non_numeric_classes tool
     elif tool_name == "get_non_numeric_classes":
-        print(f"🔍 Getting non-numeric classes for: {input_data['target_classes']} using ontology: {prompts.ontology_path}")
+        print(f"[GetNonNumericClasses] Getting non-numeric classes for: {input_data['target_classes']} using ontology: {prompts.ontology_path}")
         return {"non_numeric_classes": get_non_numeric_classes(input_data["target_classes"])}
 
     elif tool_name == "wait_for_sec":
@@ -556,8 +548,8 @@ if __name__ == "__main__":
 
     prompt = "do you have a tool named generate_rdf_from_rml?"
 
-    from semantic_iot.utils import ClaudeAPIProcessor
-    claude = ClaudeAPIProcessor(system_prompt="")
+    from semantic_iot.utils import LLMAgent
+    claude = LLMAgent(system_prompt="")
 
     response = claude.query(prompt, tools="II")
 

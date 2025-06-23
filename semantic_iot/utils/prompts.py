@@ -1,37 +1,5 @@
 
-
-HOST_PATH = "https://fiware.eonerc.rwth-aachen.de/" # TODO put into setup
-
-kg_template_string = """<rules>
-# Knowledge Graph Rules
-For the RDF graph to properly support configuration generation, the following elements are essential:
-
-Rule 1: Entity Declaration
-Always: Every IoT entity and each Extra Node must be declared with:
-- A unique URI following the pattern <http://example.com/{{ENTITY_TYPE}}/{{ID}}>
-- A type classification using a {{ONTOLOGY_CLASS}}
-
-Rule 2: Ontology Prefixes
-Always: The knowledge graph must begin with:
-- {{ONTOLOGY_PREFIXES}} declaration
-- Standard RDF prefix: @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-- Do not add prefixes for the API endpoint, but use the full URI in angle brackets.
-
-Rule 3: Numerical Data Source
-If: An entity provides or exposes numerical data (accessible by API endpoint) 
-Then: Add the property rdf:value <{{API_ENDPOINT_URL}}>
-
-Rule 4: Relational Connections
-If: An entity has relationships or connections to other entities 
-Then: Add one or more properties using {{ONTOLOGY_PROPERTY}} <http://example.com/{{ENTITY_TYPE}}/{{ID}}>
-- System hierarchies must be properly represented
-- The datamodel must be represented correctly
-- Devices must be properly connected to their locations (e.g., sensors to rooms)
-
-</rules>""".strip()
-
-
-
+import textwrap
 
 
 class PromptsLoader:
@@ -57,6 +25,7 @@ class PromptsLoader:
 
         self.ontology_path = None
         self.api_spec_path = None
+        self.host_path = "https://fiware.eonerc.rwth-aachen.de/"
 
         self.JEN_content = None
         self.JEX_content = None
@@ -140,6 +109,34 @@ class PromptsLoader:
 
         # PROJECT FILES ================================================================
 
+        kg_template_string = """<rules>
+        # Knowledge Graph Rules
+        For the RDF graph to properly support configuration generation, the following elements are essential:
+
+        Rule 1: Entity Declaration
+        Always: Every IoT entity and each Extra Node must be declared with:
+        - A unique URI following the pattern <http://example.com/{{ENTITY_TYPE}}/{{ID}}>
+        - A type classification using a {{ONTOLOGY_CLASS}}
+
+        Rule 2: Ontology Prefixes
+        Always: The knowledge graph must begin with:
+        - {{ONTOLOGY_PREFIXES}} declaration
+        - Standard RDF prefix: @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+        - Do not add prefixes for the API endpoint, but use the full URI in angle brackets.
+
+        Rule 3: Numerical Data Source
+        If: An entity provides or exposes numerical data (accessible by API endpoint) 
+        Then: Add the property rdf:value <{{API_ENDPOINT_URL}}>
+
+        Rule 4: Relational Connections
+        If: An entity has relationships or connections to other entities 
+        Then: Add one or more properties using {{ONTOLOGY_PROPERTY}} <http://example.com/{{ENTITY_TYPE}}/{{ID}}>
+        - System hierarchies must be properly represented
+        - The datamodel must be represented correctly
+        - Devices must be properly connected to their locations (e.g., sensors to rooms)
+
+        </rules>""".strip()
+
         self.KG = f"""
         # Knowledge Graph 
         The knowledge graph is a structured representation of the building's systematic components, including rooms, ventilation devices, sensors, and their relationships. 
@@ -158,7 +155,6 @@ class PromptsLoader:
         The knowledge graph looks like this: \n{self.KG}
 
         <constraints>MOST IMPORTANT: RML should follow a valid turtle syntax!</constraints>
-        <data>\n{self.prefixes}\n</data>
         <template>\n{self.templates["RML"]}\n</template>
         """
         
@@ -434,7 +430,7 @@ class PromptsLoader:
 
 
         # Pointwise 
-        self.cot_extraction = f"""
+        self.cot_extraction = textwrap.dedent(f"""
         <context>
         {self.bloom_descriptions}
         {self.knowledge_dimensions}
@@ -554,13 +550,13 @@ class PromptsLoader:
         </output>
 
         <verification>
-        Total Steps: [count]
-        Flowchart Compliance: [yes/no - if all steps are represented in flowchart process nodes]
-        Bloom Consistency: [yes/no - if all steps use only one Bloom level]
-        Granularity Check: [yes/no - if all steps have consistent abstraction level]
+        EVALUATION TOTAL:
+        - Total Steps: [count]
+        - Flowchart Compliance: [yes/no - if all steps are represented in flowchart process nodes]
+        - Bloom Consistency: [yes/no - if all steps use only one Bloom level]
+        - Granularity Check: [yes/no - if all steps have consistent abstraction level]
         </verification>
-
-        """
+        """)
         # TODO adjust prompt
 
         # 4. For each process node (not decision diamond), specify:
@@ -568,15 +564,6 @@ class PromptsLoader:
             # - Expected Knowledge Dimension
             # - Brief description of the cognitive operation
         # {"[Include Bloom/Knowledge Dimension for each process node]" if False else ""}
-
-
-        # - In your thinking, include the requirements for a human to be able to output the same result and put the answer in <thinking> tags., e. g.:
-        # Prompt: Complete the pattern: 1, 2, 4, 7, ...
-        # Response: <output>11</output><thinking> - Basic arithmetic skills (addition and subtraction). - Pattern recognition abilities, specifically recognizing changes between numbers. - Logical thinking to identify the alternating difference pattern. </thinking>
-        # </output>"""
-
-        # Tree of Thought specific prompting
-        # Output possible next steps, Count number of options
 
 
 

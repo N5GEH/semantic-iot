@@ -4,10 +4,11 @@ from rdflib.namespace import RDF, RDFS, OWL
 
 import json
 
-from semantic_iot.utils import ClaudeAPIProcessor
+from semantic_iot.utils import LLMAgent
 from semantic_iot.utils.reasoning import inference_owlrl
 from semantic_iot.utils.prompts import prompts
 
+# TODO merge with OntologyAnalyzer?
 
 class OntologyPropertyAnalyzer:
     def __init__(self, ontology_path):
@@ -100,7 +101,7 @@ class OntologyPropertyAnalyzer:
         return properties
 
     def classify_props_LLM(self, inherited_properties) -> dict:
-        claude = ClaudeAPIProcessor(system_prompt=f"You are an expert in semantic reasoning and ontology classification. {prompts.OUTPUT_FORMAT}")
+        claude = LLMAgent(system_prompt=f"You are an expert in semantic reasoning and ontology classification. {prompts.OUTPUT_FORMAT}")
         prompt = (
             "I need your help to classify properties from an ontology. I want to know if the ontology would allow to connect a numerical value with a class through a property\n"
             "Given a list of properties, classify them into numerical and non-numerical categories.\n"
@@ -164,8 +165,8 @@ class OntologyPropertyAnalyzer:
                 except ValueError:
                     non_numerical_properties.add(subject)
 
-        print(f"Numerical properties: {numerical_properties}")
-        print(f"Non-numerical properties: {non_numerical_properties}")
+        print(f"[GetNonNumericClasses] Numerical properties: {numerical_properties}")
+        print(f"[GetNonNumericClasses] Non-numerical properties: {non_numerical_properties}")
 
         return {
             'numerical': [self._uri_to_string(prop) for prop in numerical_properties],
@@ -188,7 +189,7 @@ class OntologyPropertyAnalyzer:
         for props in properties_of_classes.values():
             all_props_strings.update(self._uri_to_string(prop) for prop in props)
         all_props_strings = list(all_props_strings)
-        print(f"\nTotal unique properties across all classes: {all_props_strings}")
+        print(f"\n[GetNonNumericClasses] Total unique properties across all classes: {all_props_strings}")
 
 
         # Classify properties to non numerical properties
@@ -196,8 +197,8 @@ class OntologyPropertyAnalyzer:
         # Identify unclassified properties
         classified_props = set(self.classification.get('numerical', [])) | set(self.classification.get('non_numerical', []))
         unclassified_props = [prop for prop in all_props_strings if prop not in classified_props]
-        print(f"\nClassified properties: {classified_props}")
-        print(f"Unclassified properties: {unclassified_props}")
+        print(f"\n[GetNonNumericClasses] Classified properties: {classified_props}")
+        print(f"[GetNonNumericClasses] Unclassified properties: {unclassified_props}")
 
         if unclassified_props:
             if classifier == "LLM":
@@ -212,7 +213,7 @@ class OntologyPropertyAnalyzer:
         # Check if classes have non-numerical properties
         extra_nodes = []
         numerical_prop = self.classification.get('numerical', [])
-        print(f"Numerical properties: {numerical_prop}")
+        print(f"[GetNonNumericClasses] Numerical properties: {numerical_prop}")
 
         for target_class, props in properties_of_classes.items():
             props_strings = [self._uri_to_string(prop) for prop in props]
@@ -221,12 +222,13 @@ class OntologyPropertyAnalyzer:
             class_numerical_props = [prop for prop in numerical_prop if prop in props_strings]
             
             if class_numerical_props:
-                print(f"Class {target_class} has numerical properties: {class_numerical_props}")
+                pass
+                # print(f"Class {target_class} has numerical properties: {class_numerical_props}")
             else:
-                print(f"Class {target_class} does not have numerical properties")
+                # print(f"Class {target_class} does not have numerical properties")
                 extra_nodes.append(target_class)
 
-        print(f"\nExtra nodes to be added: {extra_nodes}")
+        print(f"[GetNonNumericClasses] Extra nodes to be added: {extra_nodes}")
         return extra_nodes
     
 if prompts.ontology_path is None:

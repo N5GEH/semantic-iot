@@ -4,7 +4,7 @@ import json
 sys.path.append(str(Path(__file__).parent.parent))  # Add LLM_models to path
 import re
 
-from semantic_iot.utils import ClaudeAPIProcessor
+from semantic_iot.utils import LLMAgent
 from semantic_iot.utils.prompts import prompts
 
 # TODO Roadmap
@@ -400,7 +400,7 @@ print(f"Processed metrics saved to {output_path}")
 #     """
     
 
-#     claude = ClaudeAPIProcessor(system_prompt=system)
+#     claude = LLMAgent(system_prompt=system)
 
 #     prompt = f"""
 

@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 import json
-from semantic_iot.utils import ClaudeAPIProcessor
+from semantic_iot.utils import LLMAgent
 import time
 from datetime import datetime
 
@@ -15,7 +15,7 @@ from typing import Dict, List, Any, Optional, Union, Tuple
 
 class MetricsEval:
     def __init__(self):
-        self.claude = ClaudeAPIProcessor()
+        self.claude = LLMAgent()
 
     def quantify_thinking(self, metrics_dict: dict) -> str:
         """
@@ -449,7 +449,7 @@ class MetricsEval:
 if __name__ == "__main__":
 
     # Generate Example Data
-    claude = ClaudeAPIProcessor()
+    claude = LLMAgent()
 
     print("Generating example data...")
     response = claude.query("What is 1+2", step_name="Step 1")

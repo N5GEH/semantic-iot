@@ -5,10 +5,10 @@ import json
 
 # from mermaid import
 
-from semantic_iot.utils import ClaudeAPIProcessor
+from semantic_iot.utils import LLMAgent
 from semantic_iot.utils import prompts
 
-from semantic_iot.tools import generate_rdf_from_rml, reasoning, generate_controller_configuration, term_mapper, get_endpoint_from_api_spec, generate_rml_from_rnr, generate_rdf_from_rml, preprocess_json
+from semantic_iot.utils.tools import generate_rdf_from_rml, reasoning, generate_controller_configuration, term_mapper, get_endpoint_from_api_spec, generate_rml_from_rnr, generate_rdf_from_rml, preprocess_json
 
 timestamp = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
 
@@ -94,7 +94,7 @@ class ScenarioExecutor:
 
     def choose_dataset(self):
 
-        # TODO implement select file class and reuse
+        # TODO improve: implement select file class and reuse
 
         # Choose: Target Folder, JSON Entites, JSON Example =====================
 
@@ -177,6 +177,18 @@ class ScenarioExecutor:
 
         prompts.load_api_spec_path(self.endpoint_path)
 
+        # Choose: Host Path ======================================================
+
+        print("\nChoose a host path for the API endpoint (leave empty for default):")
+        self.host_path = input(f"Default host path: {prompts.host_path}\nEnter host path or leave empty: ").strip()
+        if self.host_path:
+            if not self.host_path.endswith('/'):
+                self.host_path += '/'
+            prompts.host_path = self.host_path
+        else:
+            self.host_path = prompts.host_path
+        
+
         # Choose: Scenarios ======================================================
 
         print("\nSelect scenarios to run (comma-separated numbers):")
@@ -211,7 +223,7 @@ class ScenarioExecutor:
 
         if not test:
             # Term Mapping & Extra Nodes & API Endpoint
-            client_context = ClaudeAPIProcessor()
+            client_context = LLMAgent(system_prompt=prompts.cot_extraction, result_folder=self.result_folder)
             try:
                 self.context = client_context.extract_code(
                     client_context.query( 
@@ -361,7 +373,7 @@ class ScenarioExecutor:
 
                     print(f"\nRunning scenario {sc}...")
 
-                    client_scenario = ClaudeAPIProcessor()
+                    client_scenario = LLMAgent(system_prompt=prompts.cot_extraction, result_folder=self.result_folder)
 
                     response = client_scenario.query(
                         prompt=prompt[sc],
@@ -403,7 +415,7 @@ class ScenarioExecutor:
                     # Generate RNR from PC
                     print("\n======= Generate RNR (from Platform Configuration) =======")
                     preprocess_json(
-                        json_file_path=self.JEN_path, # TODO JEN or JEX?
+                        json_file_path=self.JEN_path,
                         rdf_node_relationship_file_path=os.path.join(scenario_folder[sc], "node_relationship.json"),
                         ontology_file_paths=[self.ontology_path],
                         config_path=get_file(scenario_folder[sc], "PC")
@@ -563,22 +575,22 @@ class ScenarioExecutor:
     
         print(f"Metrics saved to {output_file}.")
 
-        # Save readable metrics file
-        readable_file = os.path.join(self.result_folder, "readable_metrics.md")
-        readable = to_readable(metrics)
-        with open(readable_file, 'w', encoding='utf-8') as f:
-            f.write(readable)
+        # # Save readable metrics file
+        # readable_file = os.path.join(self.result_folder, "readable_metrics.md")
+        # readable = to_readable(metrics)
+        # with open(readable_file, 'w', encoding='utf-8') as f:
+        #     f.write(readable)
 
-        print(f"Readable metrics saved to {readable_file}.")
+        # print(f"Readable metrics saved to {readable_file}.")
 
-        # Extract evaluations and save to file
-        evaluations = extract_evaluations(readable)
-        evaluations_file = os.path.join(self.result_folder, "evaluations.md")
-        with open(evaluations_file, 'w', encoding='utf-8') as f:
-            for evaluation in evaluations:
-                f.write(f"{evaluation}\n\n")
+        # # Extract evaluations and save to file
+        # evaluations = extract_evaluations(readable)
+        # evaluations_file = os.path.join(self.result_folder, "evaluations.md")
+        # with open(evaluations_file, 'w', encoding='utf-8') as f:
+        #     for evaluation in evaluations:
+        #         f.write(f"{evaluation}\n\n")
         
-        print(f"Evaluations extracted and saved to {evaluations_file}.")
+        # print(f"Evaluations extracted and saved to {evaluations_file}.")
         
 
 
@@ -656,13 +668,10 @@ if __name__ == "__main__":
     executor.choose_dataset()
 
     try:
-        # context = executor.get_context()
         executor.run_scenarios()
-
         executor.save_metrics()    
     
     except Exception as e:
-        # Convert exception to JSON-serializable format
         error_info = {
             "error": True,
             "type": type(e).__name__,
@@ -672,7 +681,3 @@ if __name__ == "__main__":
         executor.save_metrics(status=error_info)
         print(e)
     
-
-
-
-# TODO compare configs with each other
