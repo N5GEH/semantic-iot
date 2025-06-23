@@ -1,13 +1,16 @@
 import json
-from semantic_iot import RDFGenerator
 import time
-from memory_profiler import memory_usage
 from pathlib import Path
-project_root_path = Path(__file__).parent.parent
+from memory_profiler import memory_usage
+from semantic_iot import RDFGenerator
+from http_extension import extend_with_http
 
-# Flag to decide whether to measure performance metrics
-measure_metrics = False
-# If measure_metrics is True, the number of repetitions for the performance measurement
+# Path to HTTP ontology and OpenAPI spec (adjust as needed)
+HTTP_ONTO = Path(__file__).parent.parent / f'ontologies/Http.ttl'
+OPENAPI   = Path(__file__).parent / 'api_spec.json'
+
+# Performance measurement flag
+measure_metrics = True
 repeat = 20
 
 
@@ -19,8 +22,6 @@ def profile_generate_rdf(rdf_gen: RDFGenerator, repetitions=20, **kwargs):
     def wrapper():
         for _ in range(repetitions):
             rdf_gen.generate_rdf(**kwargs)
-
-    # Measure memory usage
     return memory_usage(wrapper)
 
 
@@ -31,72 +32,78 @@ def measure_performance(rdf_gen: RDFGenerator,
     """
     This function will measure the memory usage and elapsed time of generate_rdf
     """
-    # Start time measurement
     start_time = time.time()
-
-    # Measure memory usage while running the function
     mem_usage = profile_generate_rdf(rdf_gen,
                                      repetitions=repetitions,
                                      **kwargs
                                      )
-
-    # End time measurement
-    end_time = time.time()
-
-    # Calculate elapsed time in seconds
-    elapsed_time = end_time - start_time
-
+    elapsed_time = time.time() - start_time
     return mem_usage, elapsed_time
 
 
 if __name__ == '__main__':
+    project_root = Path(__file__).parent.parent
+    mapping_file = project_root / 'kgcp/rml/fiware_hotel_rml.ttl'
+    config_file  = project_root / 'kgcp/fiware_config.json'
     metrics = dict()
 
-    # Load the created mapping file and platform configuration to build KGCP for FIWARE
-    fiware_kgcp = RDFGenerator(
-        mapping_file=f"{project_root_path}/kgcp/rml/fiware_hotel_rml.ttl",
-        platform_config=f"{project_root_path}/kgcp/fiware_config.json"
+    rdf_gen = RDFGenerator(
+        mapping_file=str(mapping_file),
+        platform_config=str(config_file)
     )
 
     for hotel in (
-            "fiware_entities_2rooms",
-            "fiware_entities_10rooms",
-            "fiware_entities_50rooms",
-            "fiware_entities_100rooms",
-            "fiware_entities_500rooms",
-            "fiware_entities_1000rooms"
+            'fiware_entities_2rooms',
+            'fiware_entities_10rooms',
+            'fiware_entities_50rooms',
+            'fiware_entities_100rooms',
+            'fiware_entities_500rooms',
+            'fiware_entities_1000rooms'
     ):
+        src = project_root / f'hotel_dataset/{hotel}.json'
+        dst = project_root / f'kgcp/results/{hotel}.ttl'
+
         if measure_metrics:
-            m_usage, time_usage = measure_performance(
-                rdf_gen=fiware_kgcp,
+            mem, elapsed = measure_performance(
+                rdf_gen,
                 repetitions=repeat,
-                source_file=f"{project_root_path}/hotel_dataset/{hotel}.json",
-                destination_file=f"{project_root_path}/kgcp/results/{hotel}.ttl",
-                engine="morph-kgc"
+                source_file=str(src),
+                destination_file=str(dst),
+                engine='morph-kgc'
             )
 
             print(f"memory usage for {hotel} in MiB")
-            print(f"Average: {sum(m_usage) / len(m_usage)}")
-            print(f"Max: {max(m_usage)}")
-            print(f"Min: {min(m_usage)}")
+            print(f"Average: {sum(mem) / len(mem)}")
+            print(f"Max: {max(mem)}")
+            print(f"Min: {min(mem)}")
 
             print(f"Time usage for {hotel} in second")
-            print(f"Total: {time_usage}")
-            print(f"Average: {time_usage / repeat}")
+            print(f"Total: {elapsed}")
+            print(f"Average: {elapsed / repeat}")
 
-            metrics[hotel] = {"memory": m_usage,
-                              "time": time_usage,
+            metrics[hotel] = {"memory": mem,
+                              "time": elapsed,
                               "repetitions": repeat}
 
-        else:
-            fiware_kgcp.generate_rdf(
-                source_file=f"{project_root_path}/hotel_dataset/{hotel}.json",
-                destination_file=f"{project_root_path}/kgcp/results/{hotel}.ttl",
-                engine="morph-kgc"
+        # Always also extend with HTTP metadata
+        # Generate extension regardless of measure_metrics setting
+        # First ensure base TTL exists (either from metric run or direct generate)
+        if not dst.exists():
+            rdf_gen.generate_rdf(
+                source_file=str(src),
+                destination_file=str(dst),
+                engine='morph-kgc'
             )
+        out_ext = project_root / f'kgcp/results/{hotel}_extended.ttl'
+        extend_with_http(
+            input_ttl=dst,
+            openapi_json=OPENAPI,
+            http_onto_ttl=HTTP_ONTO,
+            out_ttl=out_ext
+        )
 
     # Save metrics as JSON file
     time_stamp = time.strftime("%Y_%m_%d-%H_%M_%S")  # current timestamp
     if measure_metrics:
-        with open(f"{project_root_path}/kgcp/results/metrics_{time_stamp}.json", "w") as f:
+        with open(f"{project_root}/kgcp/results/metrics_{time_stamp}.json", "w") as f:
             json.dump(metrics, f, indent=2)
