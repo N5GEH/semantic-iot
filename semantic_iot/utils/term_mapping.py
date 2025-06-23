@@ -108,6 +108,7 @@ class OntologyProcessor:
         for prefix, namespace in self.ont.namespace_manager.namespaces():
             if 'shape' in str(namespace).lower():
                 shape_prefixes.append(str(namespace))
+        print(f"Identified shape prefixes in the ontology: {shape_prefixes}")
 
         # Check if the URI starts with a shape namespace
         for shape_namespace in shape_prefixes:

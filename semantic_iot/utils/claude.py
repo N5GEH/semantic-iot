@@ -6,6 +6,7 @@ import re
 import anthropic
 from typing import Dict, Any, List, Optional, Union
 from memory_profiler import memory_usage
+import yaml
 
 from semantic_iot.utils.prompts import prompts
 
@@ -50,7 +51,7 @@ models = {
 class ClaudeAPIProcessor:    
     def __init__(self, 
                  api_key: str = "", 
-                 model: str = "3.7sonnet",
+                 model: str = "4sonnet",
                  temperature: float = 1.0, # TUNE
                  system_prompt: str = prompts.system_default):
         """
@@ -75,6 +76,7 @@ class ClaudeAPIProcessor:
         if model not in models:
             raise ValueError(f"Model {model} not found. Available models: {list(models.keys())}")
         self.model = models[model]
+        self.model_name = model
         self.model_api = self.model["api"]
         self.thinking = self.model["thinking"]
         self.max_tokens = self.model["max_tokens"]
@@ -107,7 +109,7 @@ class ClaudeAPIProcessor:
                 thinking: bool = True,
                 tools: str = "",
                 follow_up: bool = False,
-                stop_sequences: List[str] = ["<steps>"]) -> Dict[str, Any]:
+                stop_sequences: List[str] = ["NEXT"]) -> Dict[str, Any]:
         """
         Send a query to Claude API
 
@@ -135,7 +137,8 @@ class ClaudeAPIProcessor:
         except Exception as e:
             raise Exception(f"Error parsing step name '{step_name}': {e}")
         
-        print (f"\n✨ Claude generating... ({step_name})")
+        print (f"\n✨ {str(self.model_api).capitalize()}{'-Thinking' if thinking else ''} generating... ({step_name})")
+
         
         # SETUP =========================================================================
 
@@ -157,7 +160,7 @@ class ClaudeAPIProcessor:
             print(f"🔧 Overriding max_tokens to {self.max_tokens} for this query")
 
         if prompt: # Add user message to messages
-            prompt += prompts.cot_extraction_full
+            prompt += prompts.cot_extraction
             # prompt += prompts.predefined_steps
             messages.append({"role": "user", "content": prompt})
 
@@ -231,12 +234,12 @@ class ClaudeAPIProcessor:
                     raise Exception("Max retries reached. "
                                     "API request failed with status code 429")
             elif response.status_code == 529: # The service is overloaded
-                print("⌚ API is temporarily overloaded, try again later")
+                print("⌚ API is temporarily overloaded, trying again in one minute...")
                 time.sleep(60)  # Wait for a minute before retrying
                 continue
                 # response = {"content": [{"type": "tool_use", "id": datetime.now().strftime('%Y%m%d_%H%M%S'), "name": "wait_for_sec", "input": {"seconds": 60}}], "stop_reason": "tool_use"}
-            elif response.status_code == 502: # Bad Gateway 
-                print("⌚ Bad Gateway from API server, try again later")
+            elif response.status_code == 502: # Bad Gateway
+                print("⌚ Bad Gateway from API server, trying again in one minute...")
                 time.sleep(60)  # Wait for a minute before retrying
                 continue
                 # response = {"content": [{"type": "tool_use", "id": datetime.now().strftime('%Y%m%d_%H%M%S'), "name": "wait_for_sec", "input": {"seconds": 60}}], "stop_reason": "tool_use"}
@@ -298,7 +301,6 @@ class ClaudeAPIProcessor:
         self.save_metrics(step_name)
 
         # print(f"Thinking:\n{thinking_text}") if thinking_text else None
-
 
         # TOOL USE =========================================================
 
@@ -504,6 +506,16 @@ class ClaudeAPIProcessor:
 
         # print(f"⬇️ 📐 Metrics saved to {output_file}")
 
+        # Save to YAML file
+        try:
+            yaml_filename = f"LLM_models/metrics/metrics.yaml"
+            with open(yaml_filename, 'w', encoding='utf-8') as f:
+                yaml.dump(self.metrics[step_name], f, default_flow_style=False, allow_unicode=True)
+            print(f"⬇️ 📐 Metrics saved to {yaml_filename}")
+        except Exception as e:
+            print(f"⚠️  Error saving metrics to YAML: {e}")
+
+
     def get_metrics(self) -> Dict[str, Any]:
         """
         Get the metrics of the pipeline
@@ -555,7 +567,7 @@ class ClaudeAPIProcessor:
                     print(f"✅ Extracted valid JSON object from position 0 to {idx}")
                     return obj
                 except json.JSONDecodeError:
-                    print("❌ Could not extract valid JSON, returning raw content")
+                    print("ℹ️ Could not extract valid JSON, returning raw content")
                     return extracted_content
         else:
             # No code block found, check if the text itself is already a dict or valid JSON

@@ -19,7 +19,7 @@
     "HotelRoom": "rec:Bedroom",
     "TemperatureSensor": "brick:Temperature_Sensor",
     "CO2Sensor": "brick:CO2_Sensor",
-    "PresenceSensor": "brick:Occupancy_Count_Sensor",
+    "PresenceSensor": "brick:Occupancy_Sensor",
     "FreshAirVentilation": "brick:Ventilation_Air_System",
     "RadiatorThermostat": "brick:HVAC_Equipment",
     "CoolingCoil": "brick:Cooling_Coil"

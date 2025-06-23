@@ -3,6 +3,8 @@ import os
 import datetime
 import json
 
+# from mermaid import
+
 from semantic_iot.utils import ClaudeAPIProcessor
 from semantic_iot.utils import prompts
 
@@ -178,6 +180,7 @@ class ScenarioExecutor:
         # Choose: Scenarios ======================================================
 
         print("\nSelect scenarios to run (comma-separated numbers):")
+        print("C: Context: Generate context from dataset, ontology, and API endpoint")
         print("1: Scenario I: Generate RDF from JSON Entities")
         print("2: Scenario II: Generate RML from JSON Example")
         print("3: Scenario III: Use Semantic-IoT Framework for RML Generation")
@@ -186,11 +189,12 @@ class ScenarioExecutor:
         self.selected_scenarios = []
 
         for x in selected_scenarios.split(','):
-            x = x.strip()
-            if x in ['1', 'I']:     self.selected_scenarios.append('I')
+            x = x.strip().upper() 
+            if x == 'C':            self.selected_scenarios.append('C')
+            elif x in ['1', 'I']:   self.selected_scenarios.append('I')
             elif x in ['2', 'II']:  self.selected_scenarios.append('II')
             elif x in ['3', 'III']: self.selected_scenarios.extend(['III', 'IIIf'])
-            else: print(f"Invalid scenario: {x}. Allowed values: 1,2,3,I,II,III")
+            else: print(f"Invalid scenario: {x}. Allowed values: C,1,2,3,I,II,III")
         print (f"Selected scenarios: {self.selected_scenarios}")
 
     # GET CONTEXT ======================================================
@@ -296,18 +300,24 @@ class ScenarioExecutor:
 
     # GENERATE RESULTS ======================================================
     def run_scenarios(self, test=False):
-        
+
+        if "C" in self.selected_scenarios:
+            print("Get context from Claude...")
+            self.get_context()
+
         if not hasattr(self, 'context') or not self.context:
             print("\nLoad context from file...")
             self.load_context(self.result_folder)
-        # if not hasattr(self, 'context') or not self.context:
-        #     print("Load Validated Context...")
-        #     self.load_context("LLM_models") # get validated context
         if not hasattr(self, 'context') or not self.context:
+            print("Load Validated Context...")
+            self.load_context("LLM_models") # get validated context
+        if not hasattr(self, 'context') or not self.context:
+            input("No context found. Please run get_context() first. Press Enter to continue...")
             print("Get context from Claude...")
             self.get_context()
 
         print(f"\nContext loaded: {json.dumps(self.context, indent=2)}")
+        print("\nContext loaded successfully.")
         input("Press Enter to continue...")
         
         print(f"\nGenerating results for selected scenarios {self.selected_scenarios}...")
@@ -552,6 +562,79 @@ class ScenarioExecutor:
             json.dump(metrics, f, indent=4)
     
         print(f"Metrics saved to {output_file}.")
+
+        # Save readable metrics file
+        readable_file = os.path.join(self.result_folder, "readable_metrics.md")
+        readable = to_readable(metrics)
+        with open(readable_file, 'w', encoding='utf-8') as f:
+            f.write(readable)
+
+        print(f"Readable metrics saved to {readable_file}.")
+
+        # Extract evaluations and save to file
+        evaluations = extract_evaluations(readable)
+        evaluations_file = os.path.join(self.result_folder, "evaluations.md")
+        with open(evaluations_file, 'w', encoding='utf-8') as f:
+            for evaluation in evaluations:
+                f.write(f"{evaluation}\n\n")
+        
+        print(f"Evaluations extracted and saved to {evaluations_file}.")
+        
+
+
+def to_readable(data) -> str:
+    """
+    Convert a dictionary or string to a more readable format.
+    """
+    import json
+    
+    # # If input is a dictionary, convert to JSON string first
+    # if isinstance(data, dict):
+    #     text = json.dumps(data, indent=2)
+    # else:
+    text = str(data)
+    
+    formatted = ""
+    for line in text.split("\n"):
+        formatted += line.strip() + "\n"
+        
+    return formatted
+
+def extract_evaluations(text: str) -> list[str]:
+    """
+    Extracts evaluation sections from text that start with 'EVALUATION:' 
+    and continue until an empty line is encountered.
+    """
+    evaluations = []
+    lines = text.split('\n')
+
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+        
+        # Check if line starts with "EVALUATION:"
+        if line.startswith("EVALUATION:"):
+            evaluation_lines = [line]
+            i += 1
+            
+            # Continue collecting lines until empty line or end of text
+            while i < len(lines):
+                current_line = lines[i]
+                
+                # Stop if we hit an empty line
+                if current_line.strip() == "":
+                    break
+                    
+                evaluation_lines.append(current_line)
+                i += 1
+            
+            # Join the evaluation lines and add to results
+            evaluations.append('\n'.join(evaluation_lines))
+        
+        i += 1
+
+    return evaluations
+
 
 def clear_metrics():
     """

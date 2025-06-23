@@ -136,6 +136,12 @@ class ControllerConfiguration:
                 sensor_access = co2_sensors.bindings[0].get('sensor_access', None)
                 controller_mode = "co2"
 
+                print("Not checking presence sensors, using CO2 sensor for control.")
+                # Check presence sensors for KG validation
+                presence_query = query_presence_sensor_availability.replace("<room_uri>", f"<{room_uri}>")
+                presence_sensors = self.graph.query(presence_query)
+                self.all_query_results['presence_sensors'][str(room_uri)] = [str(row['sensor']) for row in presence_sensors]
+
             else:
                 # b) Check presence sensor
                 presence_query = query_presence_sensor_availability.replace("<room_uri>", f"<{room_uri}>")
@@ -145,7 +151,7 @@ class ControllerConfiguration:
 
                 if presence_sensors:
                     # Pick the first presence sensor
-                    sensor_access = presence_sensors[0].get('sensor_access', None)
+                    sensor_access = presence_sensors.bindings[0].get('sensor_access', None)
                     controller_mode = "presence"
                 else:
                     # c) Fall back to timetable-based control

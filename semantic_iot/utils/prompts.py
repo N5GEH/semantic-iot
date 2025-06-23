@@ -2,7 +2,8 @@
 
 HOST_PATH = "https://fiware.eonerc.rwth-aachen.de/" # TODO put into setup
 
-kg_template_string = """<template> RDF
+kg_template_string = """<rules>
+# Knowledge Graph Rules
 For the RDF graph to properly support configuration generation, the following elements are essential:
 
 Rule 1: Entity Declaration
@@ -27,7 +28,7 @@ Then: Add one or more properties using {{ONTOLOGY_PROPERTY}} <http://example.com
 - The datamodel must be represented correctly
 - Devices must be properly connected to their locations (e.g., sensors to rooms)
 
-</template>"""
+</rules>""".strip()
 
 
 
@@ -84,10 +85,6 @@ class PromptsLoader:
         self.OUTPUT_FORMAT = f"""<output>
         Put the relevant output data in <output> tags.</output>
         """
-        # - In your thinking, include the requirements for a human to be able to output the same result and put the answer in <thinking> tags., e. g.:
-        # Prompt: Complete the pattern: 1, 2, 4, 7, ...
-        # Response: <output>11</output><thinking> - Basic arithmetic skills (addition and subtraction). - Pattern recognition abilities, specifically recognizing changes between numbers. - Logical thinking to identify the alternating difference pattern. </thinking>
-        # </output>"""
 
         
         # INPUT FILES ================================================================
@@ -247,7 +244,7 @@ class PromptsLoader:
 
         <output>
         Return a JSON, containg:
-        - the API endpoint for data access
+        - the API endpoint for data access merged with the host path
         - enumeration of the numerical properties and relational properties
         - the mapping of the JSON Entities to ontology classes and properties
         - the name of the properties, that will be added to the JSON Entities as Extra Nodes and the names of the Extra Nodes and their mapped ontology classes.
@@ -367,90 +364,220 @@ class PromptsLoader:
 
         # Metrics ====================================================================
 
-        # Pointwise 
-        self.cot_extraction_full = f"""
-        <context>
-        # CoT Extraction
-        Bloom's Taxonomy:
+        # depricated
+        self.bloom_taxonomy = f"""
+        # Bloom's Taxonomy:
         - Remembering: {{information}} (Recall information)
         - Understanding: {{meaning}} (Constructing meaning from information, e. g.: interpreting, exemplifying, classifying, summarizing, inferring, comparing, or explaining)
         - Applying: {{procedure}} (using a procedure through executing, or implementing.)
         - Analyzing: {{analysis}} (determine how concept parts relate to each other or how they interrelate, differentiating, organizing, and attributing, as well as being able to distinguish  between the components or parts.)
         - Evaluating: {{number of options considered}} (Making judgments based on criteria and standards through checking and critiquing.)
-        - Creating: {{newly created idea or element}} (generating new ideas or elements.)
+        - Creating: {{newly created idea or element}} (generating new ideas or elements. not applicable if content is just a transformation of existing content.)
 
-        Knowledge Dimensions:
+        # Knowledge Dimensions:
         - Factual Knowledge: facts, terminology, or syntax needed to understand the domain.
         - Conceptual Knowledge: classifications, principles, generalizations, theories, models, or structures pertinent to a particular disciplinary area
         - Procedural Knowledge: How to do something, methods of inquiry, specific or finite skills, algorithms, techniques, and particular methodologies
         - Metacognitive Knowledge: awareness of own cognition, strategic or reflective knowledge considering contextual and conditional knowledge and knowledge of self.
+        """
+
+        self.bloom_descriptions = f"""
+        # Bloom's Taxonomy Categories:
+        1. Knowledge: Remembering or retrieving previously learned material. Examples of verbs that relate to this function are: know identify relate list  define recall memorize repeat  record name recognize acquire
+        2. Comprehension: The ability to grasp or construct meaning from material. Examples of verbs that relate to this function are: restate locate report recognize explain express  identify discuss describe discuss review infer  illustrate interpret draw represent differentiate conclude
+        3. Application: The ability to use learned material, or to implement material in new and concrete situations. Examples of verbs that relate to this function are: apply relate develop translate use operate  organize employ restructure interpret demonstrate illustrate  practice calculate show exhibi
+        4. Analysis: The ability to break down or distinguish the parts of material into its components so that its organizational structure may be better understood. Examples of verbs that relate to this function are:  analyze compare probe inquire examine contrast categorize  differentiate contrast investigate detect survey classify deduce  experiment scrutinize discover inspect dissect discriminate separate
+        5. Synthesis: The ability to put parts together to form a coherent or unique new whole. Examples of verbs that relate to this function are: compose produce design assemble create prepare predict modify tell  plan invent formulate collect set up generalize document combine relate  propose develop arrange construct organize originate derive write propose
+        6. Evaluation: The ability to judge, check, and even critique the value of material for a given purpose. Examples of verbs that relate to this function are: judge assess compare evaluate conclude measure deduce  argue decide choose rate select estimate  validate consider appraise value criticize infer
+        """
+
+        self.knowledge_dimensions = f"""
+        # Knowledge Dimensions:
+        - Factual Knowledge: is knowledge that is basic to specific disciplines. This dimension refers to essential facts, terminology, details or elements students must know or be familiar with in order to understand a discipline or solve a problem in it.  
+        - Conceptual Knowledge: is knowledge of classifications, principles, generalizations, theories, models, or structures pertinent to a particular disciplinary area.  
+        - Procedural Knowledge: refers to information or knowledge that helps students to do something specific to a discipline, subject, or area of study. It also refers to methods of inquiry, very specific or finite skills, algorithms, techniques, and particular methodologies.  
+        - Metacognitive Knowledge: is the awareness of one’s own cognition and particular cognitive processes. It is strategic or reflective knowledge about how to go about solving problems, cognitive tasks, to include contextual and conditional knowledge and knowledge of self.
+        """
+
+        self.quantity = f"""
+        # Quantity 
+        In the step description, consisting of a verb that describes the action and the targets of the action, the quantity is the count of all targets of the action.
+        **Target Identification Rule**: The targets should be the actual objects being processed, created, or manipulated by the action, not the container or context.
+        Examples:
+        - "parsing 5 JSON objects": quantity = 5 (cognitive operation: "parse", target: "JSON objects", not the file containing them)
+        - "applying a rule to 10 data points": quantity = 10 (cognitive operation: "apply validation rule", target: "data points", not the rule)
+        Quantity should enable meaningful comparison across different granularity levels.
+        """
+        # The number of identical repetitions of this exact step needed to process all objects of attention in the task.
+        # Count only direct repetitions of the same cognitive operation, not variations or different steps.
+
+
+        self.human_effort_index = f"""
+        # Human Effort Index
+        Evaluation of the effort of a qualified expert required to complete this step.
+        Based on own evaluation considering the following factors:
+        - The amount of cognitive load required to complete this step
+        - The amount of time needed to complete this step
+        (from 1 to 100, where 1 is very easy and 100 is very hard)
+        Provide a short reasoning for the score.
+        It is crucial to provide a score that is comparable to other steps in the task.
+        The proportion of the score between two steps should reflect the proportion of the effort required to complete the steps.
+        """.strip()
+        # TODO reference Bloom Class and Knowledge Dimension as base of the human effort index
+
+        self.scope_complexity = f"""
+        """
+
+        self.abtraction_level = f"""
+        """
+
+
+
+        # Pointwise 
+        self.cot_extraction = f"""
+        <context>
+        {self.bloom_descriptions}
+        {self.knowledge_dimensions}
+        {self.quantity}
+        {self.human_effort_index}
         </context>
 
         <instructions>
-        Do the task step by step.
-        Each step must:
-        - Perform exactly one logical action
-        - Have exactly one conceptual target
-        - be not devidable into smaller steps 
-        - Produce exactly one concrete output
-        - Be completable in isolation
-        - Not require planning future steps
+        Do the task step by step with maximum consistency and precision.
+        I need a complete step-by-step execution of the task, where each step is fully printed out, even if repetitive, for future analysis and evaluation.
 
-        Output the thinking process as detailed as possible.
-        It is really important to output every little step of your reasoning, even if it seems obvious.
-
-        Process exactly ONE step at a time. 
-        You cannot reference or work on any other step until the current one is complete. 
-        After completing one step, explicitly state "STEP COMPLETE" before starting the next.
+        ### CRITICAL STEP DEFINITION RULES
+        Each step must satisfy ALL of these criteria:
+        - **Single Action**: Performs exactly one distinct cognitive operation
+        - **Single Bloom Level**: Can be classified with exactly one Bloom's Taxonomy category
+        - **Single Output**: Produces exactly one concrete, measurable result
+        - **Atomic**: Cannot be meaningfully subdivided while maintaining the same cognitive operation
+        - **Isolated**: Can be completed without simultaneous work on other steps
+        - **Deterministic**: Same input always produces same type of output
+        - A step is not a decision what to do next
         
-        You can only use information from:
-        - The original input
-        - Results from previously completed steps
-        - The current step you're working on
-        You cannot reference or anticipate future steps.
+        ### STEP VALIDATION CHECKLIST
+        Before finalizing any step, verify:
+        1. Can you identify exactly one primary verb that describes the action?
+        2. Does the step require only one type of cognitive process?
+        3. If you removed any part of this step, would the remaining part still be meaningful?
+        4. Can you complete this step without starting the next one?
+
+        If any answer is "no", subdivide the step further.
+
         
-        For each step:
-        1. State what you're about to do
-            - context: the explicit context information that is needed to complete the step
-            - reason: the reasoning process that led to the step
-        2. Do it immediately 
-        3. Show the result
-            - result: The actual concrete output produced (code, data, text) - not a description of what you will produce
-        4. Evaluate the step
-            - bloom: {{objective}} the Bloom's Taxonomy level and it's objective (max 7 words)
-            - dim: the Knowledge Dimension
-            - quantity: the number of context information items processed in this step. Items are either: entities, properties, relationships, paths, or lines of code.
-            - human_effort: own evaluation of the human effort required to complete this step (from 1 to 10, where 1 is very easy and 10 is very hard)
-        5. Move to next step
+        ### FLOWCHART NAVIGATION RULES
+        - Each step must correspond to exactly one node in the flowchart.
+        - Not every flowchart node must be a step.
+        - Decision diamonds are not steps, but only used to decide which step to take next.
+        - Decision diamonds can only be referenced in the "NEXT" section of a step.
 
-        If you find yourself working on multiple entities simultaneously, STOP immediately and restart with only the first incomplete entity.
-        FINAL OUTPUT RULE: Only after ALL entities show 'ENTITY COMPLETE', combine all step results into the final deliverable.
 
-        Example format:
-        ...
-        STEP 1: {{step name}}
-            context: {{context}}
-            reason: {{reasoning of the step}}
-        EXECUTING: [actual code/work here]
-        RESULT:
-            result: {{result of the step}}
+        ### EXECUTION PROTOCOL
+
+        #### Phase 1: Task Analysis and Flowchart Creation
+        1. Analyze the task complete requirements, instructions and constraints.
+        2. Identify all process nodes and possible decision points and alternative paths.
+            - If a node has multiple possible next steps, use a decision diamond to represent the decision point.
+            - If a node may not be executed every time, use a decision diamond to be able to decide if the node is executed or not (e. g. because of conditional rules).
+        3. Create a flowchart to visualize the conditional task structure.
+        4. Estimate the number of steps needed to complete the task.
+            - Consider the flowchart process nodes and decision points on how to process the input data
+            - Consider the number of times to loop the flowchart over the input data
+
+            
+        #### Phase 2: Step-by-Step Execution
+        Remember: Execute the task following the flowchart process nodes and decision points, repeating the steps with the input data as needed.
+        Process exactly ONE step at a time following this format: 
+
+        STEP [N]: [verb (optionally plus descriptive noun) that describes the step action] [quantity] [the targets of the action]
+        - flowchart_node: [exact node name from flowchart]
+        - context: [explicit information needed for this step only]
+
+        EXECUTING:
+        [Perform the actual work - show code, calculations, analysis, etc.]
+
+        VALIDATION:
+        - single_bloom_check: [confirm if this step uses only one Bloom level]
+        - subdivision_check: [confirm if this cannot be meaningfully subdivided]
+        - step_validation_checklist: [confirm if all validation criteria are met]
+
         EVALUATION:
-            bloom: {{bloom}} {{objective}}
-            dim: {{dim}}
-            quantity: {{quantity}}
-            human_effort: {{human_effort}}
+        - bloom: [single level] - [specific objective in max 7 words]
+        - dim: [single Knowledge Dimension]
+        - quantity: [the count of the noun that describes the target of the action]
+        - human_effort: [1-100 score] - [brief reasoning]
 
-        NEXT: STEP 2: {{step name}}
-        STEP COMPLETE
-        ...
+        NEXT: STEP [N+1]: [Next Action Description]
+        [if applicable, decide next step based on flowchart]
+        - decision_point: [if applicable, specify the decision point]
+        - next_flowchart_node: [if applicable, specify the next node in flowchart]
+
+
+
+        #### Phase 3: Consistency Verification
+        After completing all steps, verify:
+        - All steps are represented in flowchart process nodes
+        - No steps combine multiple Bloom levels
+        - Similar cognitive operations have consistent granularity
+        - Quantity measurements are meaningful for comparison
+
+        ### ERROR PREVENTION RULES
+        - **Multi-Bloom Detection**: If you find yourself using "and" or "then" in a step description, subdivide it
+        - **Multiple Tasks**: If you find multiple tasks in the same step, subdivide them into separate steps
+        - **Granularity Consistency**: Steps handling similar data types should have similar granularity
+        - **Missing Intermediate Steps**: If there's a logical gap between steps, add the missing step
+        - Does the number of steps match the estimated number of steps needed to complete the task?
+
         </instructions>
 
         <output>
-        Output the steps in <steps> tags. Put the response in output tags first, then the steps in <steps> tags after.
+        ### OUTPUT FORMAT
+        Output exactly in this order:
+
+        <flowchart>
+        [Flowchart in mermaid syntax showing the process nodes and decision points]
+        </flowchart>
+
+        <estimation>
+        [Estimated number of times to loop the flowchart over the input data]
+        </estimation>
+
+        <steps>
+        [Complete step-by-step execution following the format above]
+        [Every single step must be fully printed out, even if repetitive - no summarization or skipping]
+        </steps>
+
+        <output>
+        [Final deliverable result of the task, e.g. JSON, RDF, etc.]
+        [The output can only be a composition of the execution results of the steps]
         </output>
+
+        <verification>
+        Total Steps: [count]
+        Flowchart Compliance: [yes/no - if all steps are represented in flowchart process nodes]
+        Bloom Consistency: [yes/no - if all steps use only one Bloom level]
+        Granularity Check: [yes/no - if all steps have consistent abstraction level]
+        </verification>
+
         """
-        # do I still need to _OUTPUT_ the thinking process?
-        # - result: here is space for putting the explicit information that will be required for generating the output of the prompt, e. g. a code block, a JSON object, a list of items, ...
+        # TODO adjust prompt
+
+        # 4. For each process node (not decision diamond), specify:
+            # - Expected Bloom Taxonomy level
+            # - Expected Knowledge Dimension
+            # - Brief description of the cognitive operation
+        # {"[Include Bloom/Knowledge Dimension for each process node]" if False else ""}
+
+
+        # - In your thinking, include the requirements for a human to be able to output the same result and put the answer in <thinking> tags., e. g.:
+        # Prompt: Complete the pattern: 1, 2, 4, 7, ...
+        # Response: <output>11</output><thinking> - Basic arithmetic skills (addition and subtraction). - Pattern recognition abilities, specifically recognizing changes between numbers. - Logical thinking to identify the alternating difference pattern. </thinking>
+        # </output>"""
+
+        # Tree of Thought specific prompting
+        # Output possible next steps, Count number of options
+
 
 
         div = f"""

@@ -453,7 +453,7 @@ def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
     # For term_mapper tool
     elif tool_name == "term_mapper":
         print (f"🔍 Mapping terms: {json.dumps(input_data['terms'], indent=2)} using ontology: {input_data['ontology_path']}")
-        return {"mapped_terms": term_mapper(input_data["terms"], input_data["ontology_path"])}
+        return {"ontology_terms": term_mapper(input_data["terms"], input_data["ontology_path"])}
 
     # For get_endpoint_from_api_spec tool
     elif tool_name == "get_endpoint_from_api_spec":
@@ -462,7 +462,7 @@ def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
     
     # For get_endpoint_list tool
     elif tool_name == "get_endpoint_list":
-        return get_endpoint_list()
+        return {"endpoints": get_endpoint_list()}
 
     # For get_non_numeric_classes tool
     elif tool_name == "get_non_numeric_classes":
