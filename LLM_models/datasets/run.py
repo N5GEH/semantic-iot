@@ -373,10 +373,13 @@ class ScenarioExecutor:
 
                     print(f"\nRunning scenario {sc}...")
 
-                    client_scenario = LLMAgent(system_prompt=prompts.cot_extraction, result_folder=self.result_folder)
+                    client_scenario = LLMAgent(
+                        system_prompt=prompts.cot_extraction,
+                        result_folder=self.result_folder
+                    )
 
                     response = client_scenario.query(
-                        prompt=prompt[sc],
+                        prompt=prompt[sc],#+prompts.cot_extraction,
                         step_name=f"scenario_{sc}", 
                         tools="",
                         follow_up=False,

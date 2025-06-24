@@ -119,7 +119,7 @@ class LLMAgent:
                 thinking: bool = True,
                 tools: str = "",
                 follow_up: bool = False,
-                stop_sequences: List[str] = []) -> Dict[str, Any]:
+                stop_sequences: List[str] = ["STEP 5"]) -> Dict[str, Any]:
         """
         Send a query to Claude API
 
@@ -435,26 +435,9 @@ class LLMAgent:
             print(f"✨↪️  Model reply: {response_text}")
             return response_text
 
-            print(f"✨↪️  Model reply: {response_text}")
-            # If the response contains a thinking block, extract it
-            if thinking_text:
-                print(f"Thinking:\n{thinking_text}")
-            else:
-                print("No Thinking block found in the response.")
-
-            # Parse steps from thinking text
-            steps = self._parse_steps(thinking_text, response_text)
-            if steps:
-                print(f"Parsed Steps: \n{json.dumps(steps, indent=2)}")
-            else:
-                print("No valid steps found in the thinking text.")
-
-            return {
-                "thinking": thinking_text,
-                "response": response_text,
-                "steps": steps,
-                "metrics": self.metrics[step_name]
-            }
+            # Parse Steps anyway, without <tags> and thinking_text
+            # ...
+    
         
         # END OF TERM & MAX TOKENS =========================================================
         elif result.get("stop_reason") == "end_turn":

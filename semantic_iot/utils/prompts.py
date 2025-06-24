@@ -40,76 +40,69 @@ class PromptsLoader:
 
     def update_variables(self):
 
-        # TEXT BLOCKS ==================================================================
+        # SYSTEM CONTEXT ==================================================================
 
-        self.ROLE = f""" <role>
+        self.ROLE = textwrap.dedent(f""" <role>
         You are an expert in engineering who is specialized in developing knowledge graphps 
         for building automation with IoT platforms. 
-        </role>"""
-        self.SYSTEM = f"""<system>
+        </role>""")
+        self.SYSTEM = textwrap.dedent(f"""<system>
         - Be precise and concise.
         - You may use tools, only call them when needed, then you will receive its output in the next interaction.
         - If you dont have tools, dont try to call a tool, the prompt contains all information you need.
-        </system>"""
-        self.OUTPUT_FORMAT = f"""<output>
+        </system>""")
+        self.OUTPUT_FORMAT = textwrap.dedent(f"""<output>
         Put the relevant output data in <output> tags.</output>
-        """
+        """)
 
         
         # INPUT FILES ================================================================
 
-        self.jen = f"""<input>
-        # file: JSON Entities file
-            description:
-                This JSON data is a response of a GET request to the API of an IoT platform, 
-                which contains all the literal entities of a building and its systematic components, available sensors and actuators. 
-            content:
-                <data>{self.JEN_content}</data>
-        </input>"""
+        self.jen = textwrap.dedent(f"""<input>
+        # JSON Entities file
+        This JSON data is a response of a GET request to the API of an IoT platform, 
+        which contains all the literal entities of a building and its systematic components, available sensors and actuators. 
+        content: <data>\n{self.JEN_content}</data>
+        </input>""")
 
-        self.jex = f"""<input> 
-        # file: JSON Example file
-            description:
-                The JSON Example file is a sample data file that contains all unique entity types of the JSON Entities file, a response of a GET request to the API of an IoT platform.
-                It represents the data structure of the JSON Entities file, but with only one instance of each entity type.
-            content:
-                <data>{self.JEX_content}</data>
-        </input>"""
+        self.jex = textwrap.dedent(f"""<input> 
+        # JSON Example file
+        The JSON Example file is a sample data file that contains all unique entity types of the JSON Entities file, a response of a GET request to the API of an IoT platform.
+        It represents the data structure of the JSON Entities file, but with only one instance of each entity type.
+        content: <data>\n{self.JEX_content}</data>
+        </input>""")
 
 
         # GOAL ================================================================
 
-        self.GOAL = f"""<context>
-        # Controller Configuration 
+        self.GOAL = textwrap.dedent(f"""<context>
+        # Controller Configuration file
         The overall goal is to generate a configuration for a building's ventilation system based on the available sensors and actuators.
 
-        file: Controller Configuration file
-            Requirements for the configuration file based on the SPARQL queries:
+        Requirements for the configuration file based on the SPARQL queries:
+        1. List of all rooms in the building (identified by their URIs).
+        2. For each room:
+            - All ventilation devices (Air Systems) associated with the room.
+                - For each device: 
+                    - All actuation points (e.g., setpoints, commands) and their access methods/values.
+            - All CO2 sensors available in the room, including their access methods/values.
+            - All presence (occupancy count) sensors available in the room, including their access methods/values.
 
-            1. List of all rooms in the building (identified by their URIs).
-            2. For each room:
-                - All ventilation devices (Air Systems) associated with the room.
-                    - For each device: 
-                        - All actuation points (e.g., setpoints, commands) and their access methods/values.
-                - All CO2 sensors available in the room, including their access methods/values.
-                - All presence (occupancy count) sensors available in the room, including their access methods/values.
-
-            The configuration file must map each room to its available sensors and actuators, specifying how to access their data or control them.
+        The configuration file must map each room to its available sensors and actuators, specifying how to access their data or control them.
 
         This is done by querying a extended knowledge graph with SPARQL to extract information about the building's systematic components, like:
         - Which rooms are available in the building?
         - Which ventilation devices are available in each room?
         - How to access the actuation points of each ventilation device?
 
-
-        # Extended Knowledge Graph 
+        # Extended Knowledge Graph file
         The extended knowledge graph is based on the original knowledge graph and includes additional classes and properties from a given ontology.
         The additional classes and properties are being created through inheritance from the ontology classes or properties.
-        </context>"""
+        </context>""")
 
         # PROJECT FILES ================================================================
 
-        kg_template_string = """<rules>
+        kg_rules = textwrap.dedent("""<rules>
         # Knowledge Graph Rules
         For the RDF graph to properly support configuration generation, the following elements are essential:
 
@@ -135,52 +128,146 @@ class PromptsLoader:
         - The datamodel must be represented correctly
         - Devices must be properly connected to their locations (e.g., sensors to rooms)
 
-        </rules>""".strip()
+        </rules>""").strip()
 
-        self.KG = f"""
-        # Knowledge Graph 
+        kg_instructions = textwrap.dedent("""<instructions>
+        # Knowledge Graph Instructions
+
+        The knowledge graph must begin with:
+        - declaration of ontology prefixes
+        - Standard RDF prefix: @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+        - Do not add prefixes for the API endpoint, but use the full URI in angle brackets.
+
+        Every IoT entity and each Extra Node must be declared with:
+        - A unique URI following the pattern <http://example.com/{{ENTITY_TYPE}}/{{ID}}>
+        - A type classification using a ontology class
+
+        For an entity providing or exposing numerical data (accessible by API endpoint),
+        the property rdf:value <{{API_ENDPOINT_URL}}> must be added
+
+        For an entity having relationships or connections to other entities,
+        one or more properties using the ontology property and the URI of the entity must be added
+        - System hierarchies must be properly represented
+        - The datamodel must be represented correctly
+        - Devices must be properly connected to their locations (e.g., sensors to rooms)
+
+        </instructions>""").strip()
+
+        rml_instructions = textwrap.dedent("""<instructions>
+        # RML Mapping Instructions
+
+        The RML mapping must include the ontology prefixes from the knowledge graph and 
+        the RML-specific prefix: @prefix ex: <http://example.com#> .
+
+        Every IoT entity type must have a corresponding TriplesMap declared with
+        a unique mapping URI following the pattern ex:Mapping{{ENTITY_TYPE}} and a type classification: a rr:TriplesMap.
+
+        Each TriplesMap must define its data source via rml:logicalSource with 
+        the rml:source "placeholder.json" and an iterator to filter entities by type
+
+        Each TriplesMap must define a rr:subjectMap with
+        rr:template "http://example.com/{{ENTITY_TYPE}}/{id}" for dynamic URI generation from data and rr:class {{ONTOLOGY_CLASS}} for type classification
+
+        For entities that provide or expose numerical data via API endpoint,
+        a rr:predicateObjectMap must be added with rdf:value and an objectMap for API endpoint URL
+
+        For entities that reference other entities in the data source, 
+        a rr:predicateObjectMap must be added with:
+        - the ontology property as predicate
+        - an objectMap referencing rr:parentTriplesMap ex:Mapping{{ENTITY_TYPE}}
+        - Join conditions must match the data source field names and structure
+        - System hierarchies, the datamodel relationships and devices and their locations must be properly represented through join conditions and their child and parent
+
+        </instructions>""").strip()
+
+        rml_rules = textwrap.dedent("""<rules>
+        # RML Mapping Rules
+        For the RML mapping to properly transform IoT data sources to RDF triples, the following RML-specific elements are essential:
+
+        Rule 1: TriplesMap Structure
+        Always: Every IoT entity type must have a corresponding TriplesMap declared with:
+        - A unique mapping URI following the pattern ex:Mapping{{ENTITY_TYPE}}
+        - A type classification: a rr:TriplesMap
+
+        Rule 2: RML-Specific Prefixes
+        Always: The RML mapping must include RML-specific prefixes:
+        - {{ONTOLOGY_PREFIXES}} declaration
+        - Standard prefixes: @prefix ex: <http://example.com#> . and @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+        # - Do not add prefixes for the API endpoint, but use the full URI in template strings.
+
+        Rule 3: Data Source Configuration
+        Always: Each TriplesMap must define its data source via rml:logicalSource:
+        - rml:source "placeholder.json"
+        - rml:referenceFormulation ql:JSONPath (for JSON data)
+        - rml:iterator '$[?(@.type=="{{ENTITY_TYPE}}")]' to filter and iterate over entities by type
+
+        Rule 4: Subject Template Generation
+        Always: Each TriplesMap must define a rr:subjectMap with:
+        - rr:template "http://example.com/{{ENTITY_TYPE}}/{id}" for dynamic URI generation from data
+        - rr:class {{ONTOLOGY_CLASS}} for type classification
+
+        Rule 5: API Endpoint Value Mapping
+        If: An entity provides or exposes numerical data via API endpoint
+        Then: Add a rr:predicateObjectMap with:
+        - rr:predicate rdf:value
+        - rr:objectMap with rr:template "{{API_ENDPOINT_URL}}" (template-based URI generation)
+
+        Rule 6: Cross-Entity Reference Mapping
+        If: An entity references other entities in the data source
+        Then: Add a rr:predicateObjectMap with:
+        - rr:predicate {{ONTOLOGY_PROPERTY}}
+        - rr:objectMap referencing rr:parentTriplesMap ex:Mapping{{ENTITY_TYPE}}
+        - rr:joinCondition specifying rr:child "{{CHILD_JOIN_FIELD}}" and rr:parent "{{PARENT_JOIN_FIELD}}"
+        - Join conditions must match the data source field names and structure
+        # - System hierarchies must be properly represented through join conditions
+        # - The datamodel relationships must be correctly mapped
+        # - Devices must be properly connected to their locations through appropriate join fields
+
+        </rules>""")
+
+
+
+        self.KG = textwrap.dedent(f"""
+        # Knowledge Graph file
         The knowledge graph is a structured representation of the building's systematic components, including rooms, ventilation devices, sensors, and their relationships. 
         It is built from the provided JSON entities file of a GET request to a specific IoT platform.
 
         <constraints>MOST IMPORTANT: RDF should follow a valid turtle syntax!</constraints>
-
         <data>\n{self.prefixes}\n</data>
-        {kg_template_string}
-        """ # <template>\n{self.templates["rdf"]}\n</template>
+        {kg_instructions}
+        """)# <template>\n{self.templates["rdf"]}\n</template>
 
-        self.RML = f"""
-        # RML Mapping File 
+        self.RML = textwrap.dedent(f"""
+        # RML Mapping file 
         The RML mapping file is used to generate the RDF knowledge graph from the JSON Entities data.
 
         The knowledge graph looks like this: \n{self.KG}
 
         <constraints>MOST IMPORTANT: RML should follow a valid turtle syntax!</constraints>
-        <template>\n{self.templates["RML"]}\n</template>
-        """
+        {rml_instructions}
+        """)# <template>\n{self.templates["RML"]}\n</template>
         
-        self.PC = f""" 
-        # file: Platform Configuration file
-            The configuration file should contain the following information:
+        self.PC = textwrap.dedent(f""" 
+        # Platform Configuration file
+        The configuration file should contain the following information:
+        - The ID_KEY is the key in the JSON data that uniquely identifies each entity.
+        - The TYPE_KEYS are the keys in the JSON data that identify the type of each entity.
+        - The JSONPATH_EXTRA_NODES are the JSONpath Expressions to the extra nodes that should be included in the mapping. 
 
-            - The ID_KEY is the key in the JSON data that uniquely identifies each entity.
-            - The TYPE_KEYS are the keys in the JSON data that identify the type of each entity.
-            - The JSONPATH_EXTRA_NODES are the JSONpath Expressions to the extra nodes that should be included in the mapping. 
-
-            template: <template>\n{self.templates["config"]}\n</template>
-        """ # Use the recursive descent operator
+        <template>\n{self.templates["config"]}\n</template>
+        """) # Use the recursive descent operator
         
-        self.RNR = f"""
+        self.RNR = textwrap.dedent(f"""
         # Resource Node Relationship Document 
         The RML Mapping file can be generated automatically based on a validated Resource Node Relationship Document.
         The Resource Node Relationship Document is a prefilled document that contains the necessary information to generate the RML Mapping file.
-
-        file: Resource Node Relationship Document
-            content: \n{self.rnr_content}
-        """
+        
+        content: <data>\n{self.rnr_content}</data>
+        """)
 
         # CONTEXT PROMPTS ================================================================
 
-        self.term_mapping = f"""
+        self.term_mapping = textwrap.dedent(f"""
         <term_mapping_instructions>
         <instructions>
         Based on the extraction of available Ontology Classes and Properties and
@@ -206,17 +293,11 @@ class PromptsLoader:
         - Maintain the direction of the relationship original (subject → predicate → object), e. g.: is_instance_of NOT EQUAL TO is_instanciated_by
         </instructions>
         </term_mapping_instructions>
-        """
+        """)
 
-        self.context = f"""
-        <context>
-        {self.jex}
-        API Specification path: '{self.api_spec_path}'
-        Ontology path: '{self.ontology_path}'
-        Term Mapping Instructions: 
-        {self.term_mapping}
-        </context>
 
+
+        context_steps = textwrap.dedent(f"""
         <steps>
         1. Based on the extraction of available API endpoints, select the single most relevant endpoint for accessing numerical values of entities.
 
@@ -237,6 +318,29 @@ class PromptsLoader:
 
         3. Now check again, if the newly created entities have an (inherited) numerical property and do steps 2.2 and 2.3 again before continuing.
         </steps>
+        """).strip()
+
+        context_instructions = textwrap.dedent(f"""
+        <instructions>
+        Your task is to process JSON data containing entities and their properties by mapping them to an appropriate ontology structure, with special attention to handling numerical values effectively.
+        You need to examine the available API endpoints and identify which one would be most suitable for accessing numerical entity values. This endpoint selection should inform your mapping decisions.
+        The JSON entities require correspondence with ontology classes, using the provided Term Mapping Instructions as your guide. Within the JSON structure, you'll encounter properties that represent numerical measurements (such as temperature readings, humidity levels, or other quantitative data) and properties that represent relationships between entities (such as location associations, sensor ownership, or other connections). This distinction is crucial because these property types require different handling approaches.
+        Relational properties should be mapped to appropriate ontology properties, while numerical properties should not be mapped directly to ontology properties. You'll need to verify whether the ontology classes selected for entities containing numerical properties possess the necessary numerical property capabilities, either directly or through inheritance.
+        Where gaps exist and additional structural elements are needed, create supplementary entities to fill these gaps. These new entities should derive their names from the properties that necessitated their creation, and the same ontology mapping process should be applied to them using the property name as your mapping query.
+        The entire structure requires assessment to ensure all numerical property requirements are properly addressed. This verification and enhancement process should continue until the mapping is complete and all numerical values have appropriate ontological representation.
+        </instructions>
+        """).strip()
+
+        self.context = textwrap.dedent(f"""
+        <context>
+        {self.jex}
+        API Specification path: '{self.api_spec_path}'
+        Ontology path: '{self.ontology_path}'
+        Term Mapping Instructions: 
+        {self.term_mapping}
+        </context>
+
+        {context_instructions}
 
         <output>
         Return a JSON, containg:
@@ -246,7 +350,7 @@ class PromptsLoader:
         - the name of the properties, that will be added to the JSON Entities as Extra Nodes and the names of the Extra Nodes and their mapped ontology classes.
         </output>
         
-        """ 
+        """)
         # TODO improve prompt:
         # give template for output?
         # Continue, if there are no more extra nodes left to add. When iterating over the same object, adjust the query 
@@ -255,7 +359,7 @@ class PromptsLoader:
 
         # SCENARIO PROMPTS ====================================================================
 
-        self.prompt_I = f"""
+        self.prompt_I = textwrap.dedent(f"""
         {self.jen}
         <context>
         # Results of Preprocessing of the JSON file: \n{self.context_content}
@@ -276,13 +380,13 @@ class PromptsLoader:
         </instructions>
 
         <output> Return the knowledge graph in Turtle format. </output>
-        """
+        """)
         # Explain Extra Nodes:
         # Extra Nodes always have numerical value property, but their parent does not.
         # They are created to represent properties that are not numerical values, but still need to be represented in the RDF graph.
 
 
-        self.prompt_II = f"""
+        self.prompt_II = textwrap.dedent(f"""
         {self.jex}
         <context>
         # Results of Preprocessing of the JSON file: \n{self.context_content}
@@ -302,9 +406,9 @@ class PromptsLoader:
         </instructions>
 
         <output> Return the RML Mapping file in Turtle format. </output>
-        """
+        """)
 
-        self.prompt_IIIc = f"""
+        self.prompt_IIIc = textwrap.dedent(f"""
         {self.jex}
         <context>
         # Results of Preprocessing of the JSON file: \n{self.context_content}
@@ -323,9 +427,9 @@ class PromptsLoader:
         </instructions>
 
         <output> Return the Platform Configuration file in JSON format. </output>
-        """
+        """)
 
-        self.prompt_III = f"""
+        self.prompt_III = textwrap.dedent(f"""
         {self.jex}
         <context>
         # Results of Preprocessing of the JSON file: \n{self.context_content}
@@ -347,21 +451,14 @@ class PromptsLoader:
         </instructions>
 
         <output> Return the Resource Node Relationship Document in JSON format. </output>
-        """ # TODO remove self.jex out of prompt?
-
-        self.system_default = f"""
-        {self.ROLE}
-        {self.SYSTEM}
-        {self.GOAL}
-        {self.OUTPUT_FORMAT}
-        """
+        """) # TODO remove self.jex out of prompt?
 
 
 
         # Metrics ====================================================================
 
         # depricated
-        self.bloom_taxonomy = f"""
+        self.bloom_taxonomy = textwrap.dedent(f"""
         # Bloom's Taxonomy:
         - Remembering: {{information}} (Recall information)
         - Understanding: {{meaning}} (Constructing meaning from information, e. g.: interpreting, exemplifying, classifying, summarizing, inferring, comparing, or explaining)
@@ -375,61 +472,67 @@ class PromptsLoader:
         - Conceptual Knowledge: classifications, principles, generalizations, theories, models, or structures pertinent to a particular disciplinary area
         - Procedural Knowledge: How to do something, methods of inquiry, specific or finite skills, algorithms, techniques, and particular methodologies
         - Metacognitive Knowledge: awareness of own cognition, strategic or reflective knowledge considering contextual and conditional knowledge and knowledge of self.
-        """
+        """)
 
-        self.bloom_descriptions = f"""
+        self.bloom_descriptions = textwrap.dedent(f"""
         # Bloom's Taxonomy Categories:
-        1. Knowledge: Remembering or retrieving previously learned material. Examples of verbs that relate to this function are: know identify relate list  define recall memorize repeat  record name recognize acquire
-        2. Comprehension: The ability to grasp or construct meaning from material. Examples of verbs that relate to this function are: restate locate report recognize explain express  identify discuss describe discuss review infer  illustrate interpret draw represent differentiate conclude
-        3. Application: The ability to use learned material, or to implement material in new and concrete situations. Examples of verbs that relate to this function are: apply relate develop translate use operate  organize employ restructure interpret demonstrate illustrate  practice calculate show exhibi
-        4. Analysis: The ability to break down or distinguish the parts of material into its components so that its organizational structure may be better understood. Examples of verbs that relate to this function are:  analyze compare probe inquire examine contrast categorize  differentiate contrast investigate detect survey classify deduce  experiment scrutinize discover inspect dissect discriminate separate
-        5. Synthesis: The ability to put parts together to form a coherent or unique new whole. Examples of verbs that relate to this function are: compose produce design assemble create prepare predict modify tell  plan invent formulate collect set up generalize document combine relate  propose develop arrange construct organize originate derive write propose
-        6. Evaluation: The ability to judge, check, and even critique the value of material for a given purpose. Examples of verbs that relate to this function are: judge assess compare evaluate conclude measure deduce  argue decide choose rate select estimate  validate consider appraise value criticize infer
-        """
+        1. Knowledge: Remembering or retrieving previously learned material. 
+            Examples of verbs that relate to this function are: identify, relate, list, define, recall, memorize, repeat, record, name, recognize, acquire
+        2. Comprehension: The ability to grasp or construct meaning from material. 
+            Examples of verbs that relate to this function are: restate, locate, report, recognize, explain, express, identify, discuss, describe, discuss, review, infer, illustrate, interpret, draw, represent, differentiate, conclude
+        3. Application: The ability to use learned material, or to implement material in new and concrete situations.
+            Examples of verbs that relate to this function are: relate, develop, translate, use, operate, organize, employ, restructure, interpret, demonstrate, illustrate, practice, calculate, show, exhibit
+        4. Analysis: The ability to break down or distinguish the parts of material into its components so that its organizational structure may be better understood. 
+            Examples of verbs that relate to this function are: compare, probe, inquire, examine, contrast, categorize, differentiate, contrast, investigate, detect, survey, classify, deduce, experiment, scrutinize, discover, inspect, dissect, discriminate, separate
+        5. Synthesis: The ability to put parts together to form a coherent or unique new whole. 
+            Examples of verbs that relate to this function are: compose, produce, design, assemble, create, prepare, predict, modify, tell, plan, invent, formulate, collect, set up, generalize, document, combine, relate, propose, develop, arrange, construct, organize, originate, derive, write, propose
+        6. Evaluation: The ability to judge, check, and even critique the value of material for a given purpose. 
+            Examples of verbs that relate to this function are: judge, assess, compare, conclude, measure, deduce, argue, decide, choose, rate, select, estimate, validate, consider, appraise, value, criticize, infer
+        """)
 
-        self.knowledge_dimensions = f"""
+        self.knowledge_dimensions = textwrap.dedent(f"""
         # Knowledge Dimensions:
         - Factual Knowledge: is knowledge that is basic to specific disciplines. This dimension refers to essential facts, terminology, details or elements students must know or be familiar with in order to understand a discipline or solve a problem in it.  
         - Conceptual Knowledge: is knowledge of classifications, principles, generalizations, theories, models, or structures pertinent to a particular disciplinary area.  
         - Procedural Knowledge: refers to information or knowledge that helps students to do something specific to a discipline, subject, or area of study. It also refers to methods of inquiry, very specific or finite skills, algorithms, techniques, and particular methodologies.  
         - Metacognitive Knowledge: is the awareness of one’s own cognition and particular cognitive processes. It is strategic or reflective knowledge about how to go about solving problems, cognitive tasks, to include contextual and conditional knowledge and knowledge of self.
-        """
+        """)
 
-        self.quantity = f"""
+        self.quantity = textwrap.dedent(f"""
         # Quantity 
-        In the step description, consisting of a verb that describes the action and the targets of the action, the quantity is the count of all targets of the action.
-        **Target Identification Rule**: The targets should be the actual objects being processed, created, or manipulated by the action, not the container or context.
+        The quantity is the count of all targets of the action. The targets should be the actual objects being processed, created, or manipulated by the action, not the container or context.
         Examples:
         - "parsing 5 JSON objects": quantity = 5 (cognitive operation: "parse", target: "JSON objects", not the file containing them)
         - "applying a rule to 10 data points": quantity = 10 (cognitive operation: "apply validation rule", target: "data points", not the rule)
         Quantity should enable meaningful comparison across different granularity levels.
-        """
+        """)
         # The number of identical repetitions of this exact step needed to process all objects of attention in the task.
         # Count only direct repetitions of the same cognitive operation, not variations or different steps.
 
 
-        self.human_effort_index = f"""
+        self.human_effort_index = textwrap.dedent(f"""
         # Human Effort Index
         Evaluation of the effort of a qualified expert required to complete this step.
         Based on own evaluation considering the following factors:
         - The amount of cognitive load required to complete this step
         - The amount of time needed to complete this step
+        - The bloom taxonomy level of the step
+        - The knowledge dimension of the step
         (from 1 to 100, where 1 is very easy and 100 is very hard)
         Provide a short reasoning for the score.
         It is crucial to provide a score that is comparable to other steps in the task.
         The proportion of the score between two steps should reflect the proportion of the effort required to complete the steps.
-        """.strip()
+        """).strip()
         # TODO reference Bloom Class and Knowledge Dimension as base of the human effort index
 
-        self.scope_complexity = f"""
-        """
+        self.scope_complexity = textwrap.dedent(f"""
+        """)
 
-        self.abtraction_level = f"""
-        """
+        self.abtraction_level = textwrap.dedent(f"""
+        """)
 
+        # COT EXTRACTION ================================================================
 
-
-        # Pointwise 
         self.cot_extraction = textwrap.dedent(f"""
         <context>
         {self.bloom_descriptions}
@@ -441,6 +544,9 @@ class PromptsLoader:
         <instructions>
         Do the task step by step with maximum consistency and precision.
         I need a complete step-by-step execution of the task, where each step is fully printed out, even if repetitive, for future analysis and evaluation.
+        
+        I want to use a standardized way to compare steps across different tasks.
+        Therefore it is absolutely essential to follow the given definition of steps:
 
         ### CRITICAL STEP DEFINITION RULES
         Each step must satisfy ALL of these criteria:
@@ -480,13 +586,12 @@ class PromptsLoader:
         4. Estimate the number of steps needed to complete the task.
             - Consider the flowchart process nodes and decision points on how to process the input data
             - Consider the number of times to loop the flowchart over the input data
-
             
         #### Phase 2: Step-by-Step Execution
         Remember: Execute the task following the flowchart process nodes and decision points, repeating the steps with the input data as needed.
         Process exactly ONE step at a time following this format: 
 
-        STEP [N]: [verb (optionally plus descriptive noun) that describes the step action] [quantity] [the targets of the action]
+        STEP [N]: [step description]
         - flowchart_node: [exact node name from flowchart]
         - context: [explicit information needed for this step only]
 
@@ -498,17 +603,16 @@ class PromptsLoader:
         - subdivision_check: [confirm if this cannot be meaningfully subdivided]
         - step_validation_checklist: [confirm if all validation criteria are met]
 
-        EVALUATION:
-        - bloom: [single level] - [specific objective in max 7 words]
-        - dim: [single Knowledge Dimension]
-        - quantity: [the count of the noun that describes the target of the action]
+        EVALUATION: [verb (optionally plus descriptive noun) that describes the step action] [quantity] [the targets of the action]
+        - bloom: [single level] - [specific objective in max 7 words] - [verb choosen from Bloom's Taxonomy levels examples of verbs relating to the function]
+        - dim: [single Knowledge Dimension] - [specific knowledge type in max 7 words]
+        - quantity: [the count of the noun that describes the target of the action] - [the noun that describes the target of the action]
         - human_effort: [1-100 score] - [brief reasoning]
 
         NEXT: STEP [N+1]: [Next Action Description]
         [if applicable, decide next step based on flowchart]
         - decision_point: [if applicable, specify the decision point]
         - next_flowchart_node: [if applicable, specify the next node in flowchart]
-
 
 
         #### Phase 3: Consistency Verification
@@ -566,89 +670,11 @@ class PromptsLoader:
         # {"[Include Bloom/Knowledge Dimension for each process node]" if False else ""}
 
 
-
-        div = f"""
-        In <steps> tags, return a JSON object in which the steps and their Bloom's Taxonomy category (bloom) and Knowledge Dimension (dim) and how many times this same step needs to be repeated to process all items (quantity).
-        The triviality score is based on your own evaluation of the step, where 0 is trivial at all and 5 is the most complex.
-        Also add the Result of the substep in JSON format, if applicable.
-        Example:
-        [
-            {{
-                "step": "Step Name",
-                "bloom": "Understanding",
-                "dim": "Factual Knowledge",
-                "quantity": 1,
-                "triviality_score": 0,
-                "result": "Result of the step"
-            }},
-            {{
-                "step": "Step Name",
-                "bloom": "Applying",
-                "dim": "Conceptual Knowledge",
-                "quantity": 2,
-                "triviality_score": 0,
-                "result": "Result of the step"
-            }}
-        ]
-        </output>
-        """
-          
-
-        self.step_definition = f"""
-        I want to use a standardized way to evaluate the difficulty of the task in order to compare it with other tasks.
-        Therefore it is essential to follow the given definition of steps
-
-        A step is valid if it meets all of the following:
-        - Acts on exactly one conceptual target: entity, property, relationship, path, or configuration key.
-        - Performs one logical action: mapping, transformation, ...
-        - Is invariant across domain context
-        - Can be counted and evaluated independently
-
-        A step is defined as something that can be categorized into a Bloom's Taxonomy category and a Knowledge Dimension and that is not devidable into smaller steps that can be categorized as well.
-        Consecutive steps that can be categorized into the same Bloom's Taxonomy category and Knowledge Dimension, can NOT be put in one step.
-        Steps that are done multiple times with different conceptual targets, are counted as multiple steps.
-        </instructions>
-        """
-        # self.OUTPUT_FORMAT += self.cot_extraction_est
-
-        self.predefined_steps = f"""
-        <context>
-        Predefined Tasks:
-        - For each entity in the JSON file, 
-            - choose a template block
-            - fill out the placeholders
-            - Create RDF triples for the entity
-        - For each extra node in the JSON file,
-            - choose a template block
-            - fill out the placeholders
-            - Create RDF triples for the entity
-        </context>
-        <instructions>
-        Do the predefined subtasks step by step.
-        In <steps> tags, return a JSON object in which the steps and the explicit results of this steps are listed.
-        </instructions>
-        <output>
-        Return a JSON object with the following structure:
-        {{
-            "steps": [
-                {{
-                    "step": "Map Hotel Term",
-                    "quantity": 1,
-                    "number_of_decisions": 1,
-                    "number_of_options": 10,
-                    "step_result": "rec:Room"
-                }},
-                ...
-            ]
-        }}
-        </output>
-        """
-
         
         
         # HUMAN EFFORT METRICS ================================================================
         # Top Level
-        self.HUMAN_EFFORT_METRICS = f"""
+        self.HUMAN_EFFORT_METRICS = textwrap.dedent(f"""
         - Difficulty
 
             - Thinking Quantity (number of total thinking steps needed to do)
@@ -703,8 +729,15 @@ class PromptsLoader:
         + addition:
         let LLM evaluate its own thinking and decisions and give score right away
 
-            
-        """
+        """)
+
+        self.system_default = textwrap.dedent(f"""
+        {self.ROLE}
+        {self.SYSTEM}
+        {self.GOAL}
+        {self.OUTPUT_FORMAT}
+        {self.cot_extraction}
+        """).strip()
 
     def load_prefixes(self, ontology_path):
         with open(ontology_path, 'r', encoding='utf-8') as f:
