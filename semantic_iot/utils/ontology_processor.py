@@ -50,9 +50,9 @@ class OntologyProcessor:
             label = self.ont.value(subject=s, predicate=RDFS.label)
             if not label:
                 label = s.split("#")[-1] if "#" in s else s.split("/")[-1]
-            
-            if s in self.shape_prefixes:
-                print(f"Skipping Property: {s} as it is a shape")
+
+            if self._convert_to_prefixed(s).split(":")[0] in self.shape_prefixes:
+                # print(f"Skipping Property: {s} as it is a shape")
                 continue
             
             label_key = str(label).lower()
@@ -116,7 +116,7 @@ class OntologyProcessor:
     def _convert_to_prefixed(self, uri):
         """
         Convert a URI to a prefixed form using the ontology prefixes.
-        Prefer shorter prefixes and avoid deprecated ones.
+        Avoid deprecated prefixes by taking the first prefix.
         """
         uri_str = str(uri)
         matching_prefixes = []
@@ -131,6 +131,7 @@ class OntologyProcessor:
         # Sort by preference: shorter namespace first, then alphabetically by prefix
         # This tends to prefer main prefixes over deprecated ones
         matching_prefixes.sort(key=lambda x: (len(x[1]), x[0]))
+        # TODO proper handling of deprecated prefixes
         
         prefix, namespace = matching_prefixes[0]
         return f"{prefix}:{uri_str[len(namespace):]}"
@@ -356,7 +357,11 @@ if __name__ == "__main__":
         "hasTemperature": "property",
     }
 
-    results = brick.search(search_terms, top_k=10)
+    search_terms = {
+        "FreshAirVentilation": "class",
+    }
+
+    results = brick.search(search_terms, top_k=35)
 
     print("Search Results:")
     print(results)

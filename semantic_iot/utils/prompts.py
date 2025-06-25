@@ -518,9 +518,18 @@ class PromptsLoader:
         - The amount of time needed to complete this step
         - The bloom taxonomy level of the step
         - The knowledge dimension of the step
-        (from 1 to 100, where 1 is very easy and 100 is very hard)
-        Provide a short reasoning for the score.
-        It is crucial to provide a score that is comparable to other steps in the task.
+                                                  
+        The score should be a number between 1 and 100, where:
+        - 1-10: Trivial
+        - 11-25: Easy
+        - 26-40: Moderate
+        - 41-60: Intermediate
+        - 61-75: Advanced
+        - 76-90: Expert
+        - 91-100: Extremely Difficult
+
+        It is crucial to provide a score that is comparable to other steps in the task. 
+        Provide a short reasoning for the score. 
         The proportion of the score between two steps should reflect the proportion of the effort required to complete the steps.
         """).strip()
         # TODO reference Bloom Class and Knowledge Dimension as base of the human effort index
@@ -607,7 +616,7 @@ class PromptsLoader:
         - bloom: [single level] - [specific objective in max 7 words] - [verb choosen from Bloom's Taxonomy levels examples of verbs relating to the function]
         - dim: [single Knowledge Dimension] - [specific knowledge type in max 7 words]
         - quantity: [the count of the noun that describes the target of the action] - [the noun that describes the target of the action]
-        - human_effort: [1-100 score] - [brief reasoning]
+        - human_effort: [1-100 score] - [brief reasoning] - [score description from 1-100 scale]
 
         NEXT: STEP [N+1]: [Next Action Description]
         [if applicable, decide next step based on flowchart]

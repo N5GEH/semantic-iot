@@ -312,18 +312,18 @@ def term_mapper(terms: dict, ontology_path: str, test: bool = False) -> str:
                 # term = input(f"Enter mapping for {term}: ")
                 # mapped_terms[term] = mapped_class
 
-    elif True:
+    else:
         brick = OntologyProcessor(ontology_path)
-        search_results = brick.search(terms, top_k=5)
+        search_results = brick.search(terms, top_k=35)
         return search_results
 
-    else:
-        from semantic_iot.utils.term_mapping import OntologyProcessor
-        mapped_terms = {}
-        for term, term_type in terms.items():
-            processor = OntologyProcessor(ontology_path)
-            result = processor.map_term(term, term_type)
-            mapped_terms[term] = result
+    # else:
+    #     from semantic_iot.utils.term_mapping import OntologyProcessor
+    #     mapped_terms = {}
+    #     for term, term_type in terms.items():
+    #         processor = OntologyProcessor(ontology_path)
+    #         result = processor.map_term(term, term_type)
+    #         mapped_terms[term] = result
 
     
     return mapped_terms

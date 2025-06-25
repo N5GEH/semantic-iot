@@ -308,6 +308,10 @@ class ScenarioExecutor:
             json.dump(self.context, f, indent=2)
         print(f"Context saved to: {context_file}")
 
+        corrected = input("\nInput corrected context if needed: ")
+        prompts.load_context(corrected)
+        print("Context updated in the prompt.")
+
         return self.context
 
     # GENERATE RESULTS ======================================================
@@ -330,7 +334,7 @@ class ScenarioExecutor:
 
         print(f"\nContext loaded: {json.dumps(self.context, indent=2)}")
         print("\nContext loaded successfully.")
-        input("Press Enter to continue...")
+        # input("Press Enter to continue...")
         
         print(f"\nGenerating results for selected scenarios {self.selected_scenarios}...")
 
@@ -354,61 +358,59 @@ class ScenarioExecutor:
         }
 
         for sc in self.selected_scenarios:
-            # try: # to handle errors in each scenario individually
-            if True:
+            try: # handle errors in each scenario individually
+            # if True:
                 # Create result folder for each scenario
                 if sc == 'IIIf': 
                     scenario_folder[sc] = scenario_folder['III']
                     # print(f"Using existing results folder for scenario {sc}: {scenario_folder[sc]}")
+                if sc == 'C':
+                    continue
                 else:
                     scenario_folder[sc] = os.path.join(self.result_folder, f"scenario_{sc}")
                     os.makedirs(scenario_folder[sc], exist_ok=True)
                     print(f"Results subfolder created at: {scenario_folder[sc]}")
                     # input("Press Enter to continue...")
 
-                if not test:
 
-                    # print(prompt[sc])
+                print(f"\nRunning scenario {sc}...")
+
+                client_scenario = LLMAgent(
+                    system_prompt=prompts.cot_extraction,
+                    result_folder=self.result_folder
+                )
+
+                response = client_scenario.query(
+                    prompt=prompt[sc],#+prompts.cot_extraction,
+                    step_name=f"scenario_{sc}", 
+                    tools="",
+                    follow_up=False,
+                )
+                
+                try:
+                    response = client_scenario.extract_code(response)
+                except Exception as extract_error:
+                    print(f"❌ Error extracting code from Claude response: {extract_error}")
+                    print(f"Raw response type: {type(response)}")
+                    if isinstance(response, str):
+                        print(f"Raw response preview: {response[:300]}...")
+                    # Try to continue with raw response
+                    print("Continuing with raw response...")
+
+                try:
+                    # Save the response to the results folder
+                    response_file = os.path.join(scenario_folder[sc], file_name[sc])
+                    with open(response_file, 'w', encoding='utf-8') as f:
+                        if isinstance(response, dict):
+                            f.write(json.dumps(response, indent=2))
+                        else:
+                            f.write(response)
+                    print(f"Response saved to: {response_file}")
                     # input("Press Enter to continue...")
-
-                    print(f"\nRunning scenario {sc}...")
-
-                    client_scenario = LLMAgent(
-                        system_prompt=prompts.cot_extraction,
-                        result_folder=self.result_folder
-                    )
-
-                    response = client_scenario.query(
-                        prompt=prompt[sc],#+prompts.cot_extraction,
-                        step_name=f"scenario_{sc}", 
-                        tools="",
-                        follow_up=False,
-                    )
-                    
-                    try:
-                        response = client_scenario.extract_code(response)
-                    except Exception as extract_error:
-                        print(f"❌ Error extracting code from Claude response: {extract_error}")
-                        print(f"Raw response type: {type(response)}")
-                        if isinstance(response, str):
-                            print(f"Raw response preview: {response[:300]}...")
-                        # Try to continue with raw response
-                        print("Continuing with raw response...")
-
-                    try:
-                        # Save the response to the results folder
-                        response_file = os.path.join(scenario_folder[sc], file_name[sc])
-                        with open(response_file, 'w', encoding='utf-8') as f:
-                            if isinstance(response, dict):
-                                f.write(json.dumps(response, indent=2))
-                            else:
-                                f.write(response)
-                        print(f"Response saved to: {response_file}")
-                        # input("Press Enter to continue...")
-                    except Exception as save_error:
-                        print(response)
-                        print(f"❌ Error saving response to file: {save_error}")
-                        print("Continuing with raw response...")
+                except Exception as save_error:
+                    print(response)
+                    print(f"❌ Error saving response to file: {save_error}")
+                    print("Continuing with raw response...")
 
 
 
@@ -466,10 +468,10 @@ class ScenarioExecutor:
                 print (f"\nController configuration generated and saved to {get_file(scenario_folder[sc], 'CC')}")
                 print(f"Scenario {sc} completed. Results saved in {scenario_folder[sc]}")
             
-            # except Exception as e:
-            #     print(f"Error in scenario {sc}: {e}")
-            #     print("Skipping this scenario due to an error.")
-            #     continue
+            except Exception as e:
+                print(f"Error in scenario {sc}: {e}")
+                print("Skipping this scenario due to an error.")
+                continue
                 
         print(f"\n\n✅  All selected scenarios completed. Results saved in {self.result_folder}")
 

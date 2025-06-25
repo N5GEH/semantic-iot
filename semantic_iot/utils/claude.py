@@ -26,7 +26,7 @@ models = {
     "4sonnet": {
         "api": "claude-sonnet-4-20250514",
         "thinking": True, # Summarized Thinking
-        "max_tokens": 20000, #max:64000
+        "max_tokens": 40000, #max:64000
         "price": 3.0, 
     },
     "3.7sonnet": {
@@ -54,7 +54,7 @@ class LLMAgent:
     def __init__(self, 
                  api_key: str = "", 
                  model: str = "4sonnet",
-                 temperature: float = 1.0, # TUNE
+                 temperature: float = 1.0,
                  system_prompt: str = prompts.system_default,
                  result_folder: str = "LLM_models/metrics",):
         """
@@ -119,7 +119,7 @@ class LLMAgent:
                 thinking: bool = True,
                 tools: str = "",
                 follow_up: bool = False,
-                stop_sequences: List[str] = ["STEP 5"]) -> Dict[str, Any]:
+                stop_sequences: List[str] = []) -> Dict[str, Any]:
         """
         Send a query to Claude API
 
@@ -170,7 +170,6 @@ class LLMAgent:
             print(f"🔧 Overriding max_tokens to {self.max_tokens} for this query")
 
         if prompt: # Add user message to messages
-            # prompt += prompts.cot_extraction
             messages.append({"role": "user", "content": prompt})
 
         data = {
@@ -192,7 +191,7 @@ class LLMAgent:
         if thinking:
             data["thinking"] = {
                 "type": "enabled",
-                "budget_tokens": int(self.max_tokens*0.8) # TODO how much? default: 16000
+                "budget_tokens": int(self.max_tokens*0.8) # how much? default: 16000
             }
         
         if tools:
@@ -244,14 +243,12 @@ class LLMAgent:
                                     "API request failed with status code 429")
             elif response.status_code == 529: # The service is overloaded
                 print("⌚ API is temporarily overloaded, trying again in one minute...")
-                time.sleep(60)  # Wait for a minute before retrying
+                time.sleep(60)  
                 continue
-                # response = {"content": [{"type": "tool_use", "id": datetime.now().strftime('%Y%m%d_%H%M%S'), "name": "wait_for_sec", "input": {"seconds": 60}}], "stop_reason": "tool_use"}
             elif response.status_code == 502: # Bad Gateway
                 print("⌚ Bad Gateway from API server, trying again in one minute...")
-                time.sleep(60)  # Wait for a minute before retrying
+                time.sleep(60)
                 continue
-                # response = {"content": [{"type": "tool_use", "id": datetime.now().strftime('%Y%m%d_%H%M%S'), "name": "wait_for_sec", "input": {"seconds": 60}}], "stop_reason": "tool_use"}
             else:
                 print(f"Error: {response.status_code}")
                 print(response.text)
