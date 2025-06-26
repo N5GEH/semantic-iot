@@ -1,6 +1,7 @@
 from rdflib import Graph, RDF, RDFS, OWL, URIRef, SKOS, DC
 from sentence_transformers import SentenceTransformer, util
 from typing import List, Tuple, Dict
+import re
 import os
 import json
 
@@ -134,7 +135,21 @@ class OntologyProcessor:
         # TODO proper handling of deprecated prefixes
         
         prefix, namespace = matching_prefixes[0]
+        # Handle empty prefix case
+        if prefix == '':
+            return f":{uri_str[len(namespace):]}"
         return f"{prefix}:{uri_str[len(namespace):]}"
+    
+    def camel_to_spaces(self, text):
+        # Insert space before uppercase letters that follow lowercase letters
+        text = re.sub(r'([a-z])([A-Z])', r'\1 \2', text)
+        # Insert space before uppercase letters that are followed by lowercase letters
+        text = re.sub(r'([A-Z])([A-Z][a-z])', r'\1 \2', text)
+        # Insert space before numbers
+        text = re.sub(r'([a-zA-Z])(\d)', r'\1 \2', text)
+        # Insert space after numbers if followed by uppercase/lowercase letter
+        text = re.sub(r'(\d)([A-Za-z])', r'\1 \2', text)
+        return text
 
     def search(self, queries: Dict[str, str], top_k=10) -> List[Tuple[str, float, URIRef]]:
         """
@@ -158,6 +173,8 @@ class OntologyProcessor:
                 raise ValueError("type must be 'class' or 'property'")
             
             # Embed the query
+            query = self.camel_to_spaces(query)  # Convert camelCase to spaced words
+            print(f"Query after camel to spaces: {query}")
             query_embedding = self.embedding_model.encode(query, convert_to_tensor=True)
 
             # Calculate similarity with all indexed items
@@ -274,7 +291,11 @@ class OntologyProcessor:
             if not class_uri:
                 # Try to find URI by converting from prefixed form
                 for prefix, namespace in self.prefixes.items():
-                    if class_id.startswith(prefix + ":"):
+                    if prefix == '' and class_id.startswith(":"):
+                        # Handle empty prefix case (e.g., ":ClassName")
+                        class_uri = namespace + class_id[1:]  # Remove the leading ":"
+                        break
+                    elif class_id.startswith(prefix + ":"):
                         class_uri = namespace + class_id[len(prefix) + 1:]
                         break
             
@@ -347,21 +368,27 @@ class OntologyProcessor:
     
 # Example usage:
 if __name__ == "__main__":
-    brick = OntologyProcessor("test/Brick.ttl")
+    brick = OntologyProcessor("LLM_models/ontologies/DogOnt.ttl")
 
     search_terms = {
-        "Room": "class",
         "Hotel": "class",
+        "AmbientTemperatureSensor": "class",
+        "HotelRoom": "class",
         "TemperatureSensor": "class",
-        "hasLocation": "property",
-        "hasTemperature": "property",
-    }
-
-    search_terms = {
+        "CO2Sensor": "class",
+        "PresenceSensor": "class",
         "FreshAirVentilation": "class",
+        "RadiatorThermostat": "class",
+        "CoolingCoil": "class",
+        "hasLocation": "property",
+        "name": "property",
     }
 
-    results = brick.search(search_terms, top_k=35)
+    # search_terms = {
+    #     "PresenceSensor": "class",
+    # }
+
+    results = brick.search(search_terms, top_k=20)
 
     print("Search Results:")
     print(results)

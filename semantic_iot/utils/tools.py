@@ -314,7 +314,7 @@ def term_mapper(terms: dict, ontology_path: str, test: bool = False) -> str:
 
     else:
         brick = OntologyProcessor(ontology_path)
-        search_results = brick.search(terms, top_k=35)
+        search_results = brick.search(terms, top_k=22)
         return search_results
 
     # else:

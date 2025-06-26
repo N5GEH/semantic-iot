@@ -27,6 +27,8 @@ class PromptsLoader:
         self.api_spec_path = None
         self.host_path = "https://fiware.eonerc.rwth-aachen.de/"
 
+        self.result_folder = None
+
         self.JEN_content = None
         self.JEX_content = None
 
@@ -34,6 +36,7 @@ class PromptsLoader:
         self.prefixes = None
 
         self.rnr_content = None
+        self.PC_content = None
 
         self.update_variables()
 
@@ -55,410 +58,7 @@ class PromptsLoader:
         Put the relevant output data in <output> tags.</output>
         """)
 
-        
-        # INPUT FILES ================================================================
-
-        self.jen = textwrap.dedent(f"""<input>
-        # JSON Entities file
-        This JSON data is a response of a GET request to the API of an IoT platform, 
-        which contains all the literal entities of a building and its systematic components, available sensors and actuators. 
-        content: <data>\n{self.JEN_content}</data>
-        </input>""")
-
-        self.jex = textwrap.dedent(f"""<input> 
-        # JSON Example file
-        The JSON Example file is a sample data file that contains all unique entity types of the JSON Entities file, a response of a GET request to the API of an IoT platform.
-        It represents the data structure of the JSON Entities file, but with only one instance of each entity type.
-        content: <data>\n{self.JEX_content}</data>
-        </input>""")
-
-
-        # GOAL ================================================================
-
-        self.GOAL = textwrap.dedent(f"""<context>
-        # Controller Configuration file
-        The overall goal is to generate a configuration for a building's ventilation system based on the available sensors and actuators.
-
-        Requirements for the configuration file based on the SPARQL queries:
-        1. List of all rooms in the building (identified by their URIs).
-        2. For each room:
-            - All ventilation devices (Air Systems) associated with the room.
-                - For each device: 
-                    - All actuation points (e.g., setpoints, commands) and their access methods/values.
-            - All CO2 sensors available in the room, including their access methods/values.
-            - All presence (occupancy count) sensors available in the room, including their access methods/values.
-
-        The configuration file must map each room to its available sensors and actuators, specifying how to access their data or control them.
-
-        This is done by querying a extended knowledge graph with SPARQL to extract information about the building's systematic components, like:
-        - Which rooms are available in the building?
-        - Which ventilation devices are available in each room?
-        - How to access the actuation points of each ventilation device?
-
-        # Extended Knowledge Graph file
-        The extended knowledge graph is based on the original knowledge graph and includes additional classes and properties from a given ontology.
-        The additional classes and properties are being created through inheritance from the ontology classes or properties.
-        </context>""")
-
-        # PROJECT FILES ================================================================
-
-        kg_rules = textwrap.dedent("""<rules>
-        # Knowledge Graph Rules
-        For the RDF graph to properly support configuration generation, the following elements are essential:
-
-        Rule 1: Entity Declaration
-        Always: Every IoT entity and each Extra Node must be declared with:
-        - A unique URI following the pattern <http://example.com/{{ENTITY_TYPE}}/{{ID}}>
-        - A type classification using a {{ONTOLOGY_CLASS}}
-
-        Rule 2: Ontology Prefixes
-        Always: The knowledge graph must begin with:
-        - {{ONTOLOGY_PREFIXES}} declaration
-        - Standard RDF prefix: @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-        - Do not add prefixes for the API endpoint, but use the full URI in angle brackets.
-
-        Rule 3: Numerical Data Source
-        If: An entity provides or exposes numerical data (accessible by API endpoint) 
-        Then: Add the property rdf:value <{{API_ENDPOINT_URL}}>
-
-        Rule 4: Relational Connections
-        If: An entity has relationships or connections to other entities 
-        Then: Add one or more properties using {{ONTOLOGY_PROPERTY}} <http://example.com/{{ENTITY_TYPE}}/{{ID}}>
-        - System hierarchies must be properly represented
-        - The datamodel must be represented correctly
-        - Devices must be properly connected to their locations (e.g., sensors to rooms)
-
-        </rules>""").strip()
-
-        kg_instructions = textwrap.dedent("""<instructions>
-        # Knowledge Graph Instructions
-
-        The knowledge graph must begin with:
-        - declaration of ontology prefixes
-        - Standard RDF prefix: @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-        - Do not add prefixes for the API endpoint, but use the full URI in angle brackets.
-
-        Every IoT entity and each Extra Node must be declared with:
-        - A unique URI following the pattern <http://example.com/{{ENTITY_TYPE}}/{{ID}}>
-        - A type classification using a ontology class
-
-        For an entity providing or exposing numerical data (accessible by API endpoint),
-        the property rdf:value <{{API_ENDPOINT_URL}}> must be added
-
-        For an entity having relationships or connections to other entities,
-        one or more properties using the ontology property and the URI of the entity must be added
-        - System hierarchies must be properly represented
-        - The datamodel must be represented correctly
-        - Devices must be properly connected to their locations (e.g., sensors to rooms)
-
-        </instructions>""").strip()
-
-        rml_instructions = textwrap.dedent("""<instructions>
-        # RML Mapping Instructions
-
-        The RML mapping must include the ontology prefixes from the knowledge graph and 
-        the RML-specific prefix: @prefix ex: <http://example.com#> .
-
-        Every IoT entity type must have a corresponding TriplesMap declared with
-        a unique mapping URI following the pattern ex:Mapping{{ENTITY_TYPE}} and a type classification: a rr:TriplesMap.
-
-        Each TriplesMap must define its data source via rml:logicalSource with 
-        the rml:source "placeholder.json" and an iterator to filter entities by type
-
-        Each TriplesMap must define a rr:subjectMap with
-        rr:template "http://example.com/{{ENTITY_TYPE}}/{id}" for dynamic URI generation from data and rr:class {{ONTOLOGY_CLASS}} for type classification
-
-        For entities that provide or expose numerical data via API endpoint,
-        a rr:predicateObjectMap must be added with rdf:value and an objectMap for API endpoint URL
-
-        For entities that reference other entities in the data source, 
-        a rr:predicateObjectMap must be added with:
-        - the ontology property as predicate
-        - an objectMap referencing rr:parentTriplesMap ex:Mapping{{ENTITY_TYPE}}
-        - Join conditions must match the data source field names and structure
-        - System hierarchies, the datamodel relationships and devices and their locations must be properly represented through join conditions and their child and parent
-
-        </instructions>""").strip()
-
-        rml_rules = textwrap.dedent("""<rules>
-        # RML Mapping Rules
-        For the RML mapping to properly transform IoT data sources to RDF triples, the following RML-specific elements are essential:
-
-        Rule 1: TriplesMap Structure
-        Always: Every IoT entity type must have a corresponding TriplesMap declared with:
-        - A unique mapping URI following the pattern ex:Mapping{{ENTITY_TYPE}}
-        - A type classification: a rr:TriplesMap
-
-        Rule 2: RML-Specific Prefixes
-        Always: The RML mapping must include RML-specific prefixes:
-        - {{ONTOLOGY_PREFIXES}} declaration
-        - Standard prefixes: @prefix ex: <http://example.com#> . and @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-        # - Do not add prefixes for the API endpoint, but use the full URI in template strings.
-
-        Rule 3: Data Source Configuration
-        Always: Each TriplesMap must define its data source via rml:logicalSource:
-        - rml:source "placeholder.json"
-        - rml:referenceFormulation ql:JSONPath (for JSON data)
-        - rml:iterator '$[?(@.type=="{{ENTITY_TYPE}}")]' to filter and iterate over entities by type
-
-        Rule 4: Subject Template Generation
-        Always: Each TriplesMap must define a rr:subjectMap with:
-        - rr:template "http://example.com/{{ENTITY_TYPE}}/{id}" for dynamic URI generation from data
-        - rr:class {{ONTOLOGY_CLASS}} for type classification
-
-        Rule 5: API Endpoint Value Mapping
-        If: An entity provides or exposes numerical data via API endpoint
-        Then: Add a rr:predicateObjectMap with:
-        - rr:predicate rdf:value
-        - rr:objectMap with rr:template "{{API_ENDPOINT_URL}}" (template-based URI generation)
-
-        Rule 6: Cross-Entity Reference Mapping
-        If: An entity references other entities in the data source
-        Then: Add a rr:predicateObjectMap with:
-        - rr:predicate {{ONTOLOGY_PROPERTY}}
-        - rr:objectMap referencing rr:parentTriplesMap ex:Mapping{{ENTITY_TYPE}}
-        - rr:joinCondition specifying rr:child "{{CHILD_JOIN_FIELD}}" and rr:parent "{{PARENT_JOIN_FIELD}}"
-        - Join conditions must match the data source field names and structure
-        # - System hierarchies must be properly represented through join conditions
-        # - The datamodel relationships must be correctly mapped
-        # - Devices must be properly connected to their locations through appropriate join fields
-
-        </rules>""")
-
-
-
-        self.KG = textwrap.dedent(f"""
-        # Knowledge Graph file
-        The knowledge graph is a structured representation of the building's systematic components, including rooms, ventilation devices, sensors, and their relationships. 
-        It is built from the provided JSON entities file of a GET request to a specific IoT platform.
-
-        <constraints>MOST IMPORTANT: RDF should follow a valid turtle syntax!</constraints>
-        <data>\n{self.prefixes}\n</data>
-        {kg_instructions}
-        """)# <template>\n{self.templates["rdf"]}\n</template>
-
-        self.RML = textwrap.dedent(f"""
-        # RML Mapping file 
-        The RML mapping file is used to generate the RDF knowledge graph from the JSON Entities data.
-
-        The knowledge graph looks like this: \n{self.KG}
-
-        <constraints>MOST IMPORTANT: RML should follow a valid turtle syntax!</constraints>
-        {rml_instructions}
-        """)# <template>\n{self.templates["RML"]}\n</template>
-        
-        self.PC = textwrap.dedent(f""" 
-        # Platform Configuration file
-        The configuration file should contain the following information:
-        - The ID_KEY is the key in the JSON data that uniquely identifies each entity.
-        - The TYPE_KEYS are the keys in the JSON data that identify the type of each entity.
-        - The JSONPATH_EXTRA_NODES are the JSONpath Expressions to the extra nodes that should be included in the mapping. 
-
-        <template>\n{self.templates["config"]}\n</template>
-        """) # Use the recursive descent operator
-        
-        self.RNR = textwrap.dedent(f"""
-        # Resource Node Relationship Document 
-        The RML Mapping file can be generated automatically based on a validated Resource Node Relationship Document.
-        The Resource Node Relationship Document is a prefilled document that contains the necessary information to generate the RML Mapping file.
-        
-        content: <data>\n{self.rnr_content}</data>
-        """)
-
-        # CONTEXT PROMPTS ================================================================
-
-        self.term_mapping = textwrap.dedent(f"""
-        <term_mapping_instructions>
-        <instructions>
-        Based on the extraction of available Ontology Classes and Properties and
-        the list of terms that need to be mapped to the ontology,
-        for each term, you need to select the most appropriate ontology class or property for the domain entity or relation.
-        The goal is to inherit the attributes and relations from the selected Ontology Class or Property.
-
-        MAPPING CRITERIA: (in order of priority)
-        1. Exact semantic match
-        2. Functional equivalence (same purpose/behavior)
-        3. Hierarchical relationship (parent/child concepts)
-        4. Attribute similarity (same properties/characteristics)
-
-        SPECIAL CONSIDERATIONS:
-        - Distinguish locations, air systems, devices, actuation points, sensors
-        - Avoid category errors: don't confuse the thing itself with infrastructure that supports the thing
-
-        JUST FOR CLASSES:
-        - Respect system hierarchies (building → floor → room → equipment)
-        - When the Domain Entity seems to be a relation, select a class that would have this relation as a property.
-
-        JUST FOR PROPERTIES:
-        - Maintain the direction of the relationship original (subject → predicate → object), e. g.: is_instance_of NOT EQUAL TO is_instanciated_by
-        </instructions>
-        </term_mapping_instructions>
-        """)
-
-
-
-        context_steps = textwrap.dedent(f"""
-        <steps>
-        1. Based on the extraction of available API endpoints, select the single most relevant endpoint for accessing numerical values of entities.
-
-        1. Map JSON Entities to ontology Classes considering the Term Mapping Instructions.
-
-        2. Decide which relations in the JSON file are 'numeric properties' and 'relational properties'.
-            numeric properties are properties that have a numerical value, like temperature, humidity, etc.
-            relational properties are properties that have a relation to another entity, like 'is located in', 'has sensor', etc.
-        
-        2.1 Map the relational properties to ontology properties.
-            Do not map the numerical properties to ontology properties.
-
-        2.2 Check if the selected ontology classes for the entities of the numerical properties have an (inherited) numerical property.
-        
-        2.3 If there are extra nodes to be added, add a new JSON entity to an imagenary list of extra nodes.
-            The extra nodes should have the name of the property they come from
-            Map this newly created entity to an ontology class by using the query '{{property_name}}'.
-
-        3. Now check again, if the newly created entities have an (inherited) numerical property and do steps 2.2 and 2.3 again before continuing.
-        </steps>
-        """).strip()
-
-        context_instructions = textwrap.dedent(f"""
-        <instructions>
-        Your task is to process JSON data containing entities and their properties by mapping them to an appropriate ontology structure, with special attention to handling numerical values effectively.
-        You need to examine the available API endpoints and identify which one would be most suitable for accessing numerical entity values. This endpoint selection should inform your mapping decisions.
-        The JSON entities require correspondence with ontology classes, using the provided Term Mapping Instructions as your guide. Within the JSON structure, you'll encounter properties that represent numerical measurements (such as temperature readings, humidity levels, or other quantitative data) and properties that represent relationships between entities (such as location associations, sensor ownership, or other connections). This distinction is crucial because these property types require different handling approaches.
-        Relational properties should be mapped to appropriate ontology properties, while numerical properties should not be mapped directly to ontology properties. You'll need to verify whether the ontology classes selected for entities containing numerical properties possess the necessary numerical property capabilities, either directly or through inheritance.
-        Where gaps exist and additional structural elements are needed, create supplementary entities to fill these gaps. These new entities should derive their names from the properties that necessitated their creation, and the same ontology mapping process should be applied to them using the property name as your mapping query.
-        The entire structure requires assessment to ensure all numerical property requirements are properly addressed. This verification and enhancement process should continue until the mapping is complete and all numerical values have appropriate ontological representation.
-        </instructions>
-        """).strip()
-
-        self.context = textwrap.dedent(f"""
-        <context>
-        {self.jex}
-        API Specification path: '{self.api_spec_path}'
-        Ontology path: '{self.ontology_path}'
-        Term Mapping Instructions: 
-        {self.term_mapping}
-        </context>
-
-        {context_instructions}
-
-        <output>
-        Return a JSON, containg:
-        - the API endpoint for data access merged with the host path
-        - enumeration of the numerical properties and relational properties
-        - the mapping of the JSON Entities to ontology classes and properties
-        - the name of the properties, that will be added to the JSON Entities as Extra Nodes and the names of the Extra Nodes and their mapped ontology classes.
-        </output>
-        
-        """)
-        # TODO improve prompt:
-        # give template for output?
-        # Continue, if there are no more extra nodes left to add. When iterating over the same object, adjust the query 
-        # adding the query: using the query '{{property_name}} (value of {{parentEntity}})'
-
-
-        # SCENARIO PROMPTS ====================================================================
-
-        self.prompt_I = textwrap.dedent(f"""
-        {self.jen}
-        <context>
-        # Results of Preprocessing of the JSON file: \n{self.context_content}
-        {self.KG}
-        </context>
-
-        <instructions>
-        Generate the RDF knowledge graph from the provided JSON Entities data of a GET request to the IoT platform based on the template.
-        For every entity in the JSON Entities file and for every Extra Node, create a corresponding entity in the RDF graph.
-        Preserve and use the complete id from the JEN in the KG.
-        For each RDF entity, choose a suitable block from the template and fill out the placeholders with the results of Preprocessing of the JSON file.
-        For connecting extra nodes to the parent entities, choose a previously mapped ontology property for relations.
-        Use the given prefixes.
-        For the 'http://example.com/' URI, do not use a prefix, but use the full URI in angle brackets.
-
-        Do not use any other information to fill out the RDF graph.
-        If you have any doubts, fill in a marker at the point and add a comment with your question.
-        </instructions>
-
-        <output> Return the knowledge graph in Turtle format. </output>
-        """)
-        # Explain Extra Nodes:
-        # Extra Nodes always have numerical value property, but their parent does not.
-        # They are created to represent properties that are not numerical values, but still need to be represented in the RDF graph.
-
-
-        self.prompt_II = textwrap.dedent(f"""
-        {self.jex}
-        <context>
-        # Results of Preprocessing of the JSON file: \n{self.context_content}
-        {self.RML}
-        </context>
-
-        <instructions>
-        Generate the RML mapping file from the provided JSON Example file needed for generating the knowledge graph based on the template.
-        For every entity in the JSON Example file and for every Extra Node, create a corresponding entity in the RML mapping file.
-        For each RML entity, choose a suitable block from the template and fill out the placeholders with the results of Preprocessing of the JSON file.
-        Do not replace the '{{id}}' but all other placeholders that are in curly brackets AND in uppercase.
-        For connecting extra nodes to the parent entities, choose a previously mapped ontology property for relations.
-        For every prefix you use in the document, there need to be a corresponding decalaration of the prefix choosen from the Ontology Prefixes input.
- 
-        Do not use any other information to fill out the RML mapping file.
-        If you have any doubts, fill in a marker at the point and add a comment with your question.
-        </instructions>
-
-        <output> Return the RML Mapping file in Turtle format. </output>
-        """)
-
-        self.prompt_IIIc = textwrap.dedent(f"""
-        {self.jex}
-        <context>
-        # Results of Preprocessing of the JSON file: \n{self.context_content}
-        {self.PC}
-        </context>
-
-        <instructions>
-        Generate the Platform Configuration file based on the JSON Example file.
-        Consider extra nodes if present. 
-
-        <constraints>
-        Ensure all JSONPath expressions use simple, widely supported operators.
-        - Allowed: '$', '*', '.'
-        - Not allowed: '?', '@', filter expressions
-        </constraints>
-        </instructions>
-
-        <output> Return the Platform Configuration file in JSON format. </output>
-        """)
-
-        self.prompt_III = textwrap.dedent(f"""
-        {self.jex}
-        <context>
-        # Results of Preprocessing of the JSON file: \n{self.context_content}
-        {self.RNR}
-        </context>
-
-        <instructions>
-        Fill out the preprocessed Resource Node Relationship Document based on the results of Preprocessing of the JSON file.
-
-        Do not change anything in the Resource Node Relationship Document but the following:
-
-        - For the value of every "class" key: 
-            - Ignore any prefilled value and replace it with the mapped Ontology Class for the "nodetype" value of the entity.
-        - For the value of every "property" key:
-            - Ignore any prefilled value and replace it with the mapped Ontology Property for the "rawdataidentifier" value of the entity.
-        - For the value of every "hasdataaccess" key: 
-            - If entity has a numerical property: Ignore any prefilled value, replace it with a string of the correct API endpoint for data access
-        
-        </instructions>
-
-        <output> Return the Resource Node Relationship Document in JSON format. </output>
-        """) # TODO remove self.jex out of prompt?
-
-
-
-        # Metrics ====================================================================
-
-        # depricated
-        self.bloom_taxonomy = textwrap.dedent(f"""
+        bloom_taxonomy = textwrap.dedent(f"""
         # Bloom's Taxonomy:
         - Remembering: {{information}} (Recall information)
         - Understanding: {{meaning}} (Constructing meaning from information, e. g.: interpreting, exemplifying, classifying, summarizing, inferring, comparing, or explaining)
@@ -474,7 +74,7 @@ class PromptsLoader:
         - Metacognitive Knowledge: awareness of own cognition, strategic or reflective knowledge considering contextual and conditional knowledge and knowledge of self.
         """)
 
-        self.bloom_descriptions = textwrap.dedent(f"""
+        BLOOM_DESCRIPTIONS = textwrap.dedent(f"""
         # Bloom's Taxonomy Categories:
         1. Knowledge: Remembering or retrieving previously learned material. 
             Examples of verbs that relate to this function are: identify, relate, list, define, recall, memorize, repeat, record, name, recognize, acquire
@@ -490,7 +90,7 @@ class PromptsLoader:
             Examples of verbs that relate to this function are: judge, assess, compare, conclude, measure, deduce, argue, decide, choose, rate, select, estimate, validate, consider, appraise, value, criticize, infer
         """)
 
-        self.knowledge_dimensions = textwrap.dedent(f"""
+        KNOWLEDGE_DIMENSIONS = textwrap.dedent(f"""
         # Knowledge Dimensions:
         - Factual Knowledge: is knowledge that is basic to specific disciplines. This dimension refers to essential facts, terminology, details or elements students must know or be familiar with in order to understand a discipline or solve a problem in it.  
         - Conceptual Knowledge: is knowledge of classifications, principles, generalizations, theories, models, or structures pertinent to a particular disciplinary area.  
@@ -498,7 +98,7 @@ class PromptsLoader:
         - Metacognitive Knowledge: is the awareness of one’s own cognition and particular cognitive processes. It is strategic or reflective knowledge about how to go about solving problems, cognitive tasks, to include contextual and conditional knowledge and knowledge of self.
         """)
 
-        self.quantity = textwrap.dedent(f"""
+        QUANTITY = textwrap.dedent(f"""
         # Quantity 
         The quantity is the count of all targets of the action. The targets should be the actual objects being processed, created, or manipulated by the action, not the container or context.
         Examples:
@@ -510,23 +110,18 @@ class PromptsLoader:
         # Count only direct repetitions of the same cognitive operation, not variations or different steps.
 
 
-        self.human_effort_index = textwrap.dedent(f"""
+        HUMAN_EFFORT_INDEX = textwrap.dedent(f"""
         # Human Effort Index
         Evaluation of the effort of a qualified expert required to complete this step.
-        Based on own evaluation considering the following factors:
-        - The amount of cognitive load required to complete this step
-        - The amount of time needed to complete this step
-        - The bloom taxonomy level of the step
-        - The knowledge dimension of the step
-                                                  
-        The score should be a number between 1 and 100, where:
+        Based on an evaluation of the execution of the step and the context that was therefore needed,
+        rate the cognitive effort of this step on a scale from 1 to 100, where:                                                  
         - 1-10: Trivial
         - 11-25: Easy
         - 26-40: Moderate
         - 41-60: Intermediate
         - 61-75: Advanced
         - 76-90: Expert
-        - 91-100: Extremely Difficult
+        - 91-100: Extreme
 
         It is crucial to provide a score that is comparable to other steps in the task. 
         Provide a short reasoning for the score. 
@@ -534,20 +129,37 @@ class PromptsLoader:
         """).strip()
         # TODO reference Bloom Class and Knowledge Dimension as base of the human effort index
 
-        self.scope_complexity = textwrap.dedent(f"""
+        HUMAN_EFFORT_METRICS = textwrap.dedent(f"""
+        - Error Potential (Likelihood of making mistakes)
+
+        output:
+        - reflect on the difficulty: what is the difficulty here?
+        - challenges? trade-offs? struggles? where did you needed to think?
+        - which mistakes would a dumb human make?
+
+        cognitive effort (how hard something was)
+        uncertainty or complexity
+        decisions made or alternatives considered
+        what required extra modeling or attention
+
+        let LLM evaluate its own thinking and decisions and give score right away
         """)
 
-        self.abtraction_level = textwrap.dedent(f"""
+        scope_complexity = textwrap.dedent(f"""
+        """)
+
+        abtraction_level = textwrap.dedent(f"""
         """)
 
         # COT EXTRACTION ================================================================
 
         self.cot_extraction = textwrap.dedent(f"""
+        {self.ROLE}
         <context>
-        {self.bloom_descriptions}
-        {self.knowledge_dimensions}
-        {self.quantity}
-        {self.human_effort_index}
+        {BLOOM_DESCRIPTIONS}
+        {KNOWLEDGE_DIMENSIONS}
+        {QUANTITY}
+        {HUMAN_EFFORT_INDEX}
         </context>
 
         <instructions>
@@ -565,7 +177,8 @@ class PromptsLoader:
         - **Atomic**: Cannot be meaningfully subdivided while maintaining the same cognitive operation
         - **Isolated**: Can be completed without simultaneous work on other steps
         - **Deterministic**: Same input always produces same type of output
-        - A step is not a decision what to do next
+        - **Not an Iteration Counter**: Skip actions that simply count iterations, repetitions, nodes of the flowchart process
+        - **Not a Decision**: Does NOT just refers to do another step e. g.: 'Moving to next step'
         
         ### STEP VALIDATION CHECKLIST
         Before finalizing any step, verify:
@@ -678,67 +291,36 @@ class PromptsLoader:
             # - Brief description of the cognitive operation
         # {"[Include Bloom/Knowledge Dimension for each process node]" if False else ""}
 
-
         
-        
-        # HUMAN EFFORT METRICS ================================================================
-        # Top Level
-        self.HUMAN_EFFORT_METRICS = textwrap.dedent(f"""
-        - Difficulty
+        # GOAL ================================================================
 
-            - Thinking Quantity (number of total thinking steps needed to do)
-            - Thinking complexity (number of cognitive operations required in total)
+        self.GOAL = textwrap.dedent(f"""<context>
+        # Controller Configuration file
+        The overall goal is to generate a configuration for a building's ventilation system based on the available sensors and actuators.
 
-            - Decision quantity (number of decisions needed to do)
-            - Decision complexity (number of options considered when making decisions)
+        Requirements for the configuration file based on the SPARQL queries:
+        1. List of all rooms in the building (identified by their URIs).
+        2. For each room:
+            - All ventilation devices (Air Systems) associated with the room.
+                - For each device: 
+                    - All actuation points (e.g., setpoints, commands) and their access methods/values.
+            - All CO2 sensors available in the room, including their access methods/values.
+            - All presence (occupancy count) sensors available in the room, including their access methods/values.
 
-            - Knowledge Prerequisites (amount of required spzialized background knowledge)
-            - Working memory load (amount of background information needed to keep in mind)
+        The configuration file must map each room to its available sensors and actuators, specifying how to access their data or control them.
 
-        - Estimation
+        This is done by querying a extended knowledge graph with SPARQL to extract information about the building's systematic components, like:
+        - Which rooms are available in the building?
+        - Which ventilation devices are available in each room?
+        - How to access the actuation points of each ventilation device?
 
-            - Duration
-            - Cognitive Load (amount of cognitive effort required)
-            - Error Potential (Likelihood of making mistakes)
-        
-
-        output:
-        - what is the difficulty here?
-        - challenges? trade-offs? struggles? where did you needed to think?
-        - which mistakes would a dumb human make?
-
-
-        use vocab for prompt:
-        - choose
-        - compose
-        - classify
-        - requiers expert knowledge
-        - straight forward
-        - semantic disambiguation / Ambiguity or uncertainty
-        - reasoning
-        - interpretation
-
-        cognitive effort (how hard something was)
-        uncertainty or complexity
-        decisions made or alternatives considered
-        what required extra modeling or attention
-
-        Prompt Design Principles:
-        ✅ Explicitly ask for reflections on difficulty
-        ✅ Ask the model to note challenges, decisions, or trade-offs
-        ✅ Request structured reasoning per entity or component
-        ✅ Use consistent formatting so it's easy to parse later
+        # Extended Knowledge Graph file
+        The extended knowledge graph is based on the original knowledge graph and includes additional classes and properties from a given ontology.
+        The additional classes and properties are being created through inheritance from the ontology classes or properties.
+        </context>""")
 
 
-        Let LLM output thinking in this vocab
-        --> count words (e. g. decision points)
-
-        specified <thinking> output template defined
-
-        + addition:
-        let LLM evaluate its own thinking and decisions and give score right away
-
-        """)
+        # SYSTEM DEFAULT ================================================================
 
         self.system_default = textwrap.dedent(f"""
         {self.ROLE}
@@ -747,6 +329,379 @@ class PromptsLoader:
         {self.OUTPUT_FORMAT}
         {self.cot_extraction}
         """).strip()
+
+        
+        # INPUT FILES ================================================================
+
+        self.jen = textwrap.dedent(f"""<input>
+        # JSON Entities file
+        This JSON data is a response of a GET request to the API of an IoT platform, 
+        which contains all the literal entities of a building and its systematic components, available sensors and actuators. 
+        content: <data>\n{self.JEN_content}</data>
+        </input>""")
+
+        self.jex = textwrap.dedent(f"""<input> 
+        # JSON Example file
+        The JSON Example file is a sample data file that contains all unique entity types of the JSON Entities file, a response of a GET request to the API of an IoT platform.
+        It represents the data structure of the JSON Entities file, but with only one instance of each entity type.
+        content: <data>\n{self.JEX_content}</data>
+        </input>""")
+
+
+        # PROJECT FILES ================================================================
+
+        kg_rules = textwrap.dedent("""<rules>
+        # Knowledge Graph Rules
+        For the RDF graph to properly support configuration generation, the following elements are essential:
+
+        Rule 1: Entity Declaration
+        Always: Every IoT entity and each Extra Node must be declared with:
+        - A unique URI following the pattern <http://example.com/{{ENTITY_TYPE}}/{{ID}}>
+        - A type classification using a {{ONTOLOGY_CLASS}}
+
+        Rule 2: Ontology Prefixes
+        Always: The knowledge graph must begin with:
+        - {{ONTOLOGY_PREFIXES}} declaration
+        - Standard RDF prefix: @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+        - Do not add prefixes for the API endpoint, but use the full URI in angle brackets.
+
+        Rule 3: Numerical Data Source
+        If: An entity provides or exposes numerical data (accessible by API endpoint) 
+        Then: Add the property rdf:value <{{API_ENDPOINT_URL}}>
+
+        Rule 4: Relational Connections
+        If: An entity has relationships or connections to other entities 
+        Then: Add one or more properties using {{ONTOLOGY_PROPERTY}} <http://example.com/{{ENTITY_TYPE}}/{{ID}}>
+        - System hierarchies must be properly represented
+        - The datamodel must be represented correctly
+        - Devices must be properly connected to their locations (e.g., sensors to rooms)
+
+        </rules>""").strip()
+
+        kg_instructions = textwrap.dedent("""<instructions>
+        # Knowledge Graph Instructions
+
+        The knowledge graph must begin with:
+        - declaration of {{ONTOLOGY_PREFIXES}}
+        - Standard RDF prefix: @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+        - Do not add prefixes for the API endpoint, but use the full URI in angle brackets.
+        - Do not use any prefixes for the 'http://example.com/' URI, but use the full URI in angle brackets.
+
+        Every IoT entity and each Extra Node must be declared with:
+        - A unique URI following the pattern <http://example.com/{{ENTITY_TYPE}}/{{ID}}>. Preserve and use the complete id from the JEN in the KG.
+        - A type classification using a {{ONTOLOGY_CLASS}} selected from the given context
+
+        For an entity providing or exposing numerical data (accessible by API endpoint),
+        the property 'rdf:value <{{API_ENDPOINT_URL}}>' must be added
+
+        For an entity having relationships or connections to other entities,
+        one or more properties using {{ONTOLOGY_PROPERTY}} and the URI of the entity must be added
+        - System hierarchies must be properly represented
+        - The datamodel must be represented correctly
+        - Devices must be properly connected to their locations (e.g., sensors to rooms)
+
+        Extra Nodes always have numerical value property, but their parent does not.
+        The numerical values of the entities that map to non_numeric ontology classes must be connected to their corresponding extra nodes.
+        In the JSON file, the added extra nodes are connected to the parent entities through a 'relatedTo.value' relation, with the parent entitie's 'id' as value.  
+        The extra nodes must be connected to the parent entities through a previously used ontology property exclusively from the list of properties in the preprocessing of the JSON file.
+        
+                                                  
+        Terms in brackets {{}} are placeholders for values given in the context. Strictly choose the values from the preprocessing of the JSON file, except for the variables inside API_ENDPOINT_URL, which can be adapted to match the use case.
+        </instructions>""").strip()
+
+        rml_instructions = textwrap.dedent("""<instructions>
+        # RML Mapping Instructions
+
+        The RML mapping must include the ontology prefixes from the knowledge graph and 
+        the RML-specific prefix: @prefix ex: <http://example.com#> .
+
+        Every IoT entity type must have a corresponding TriplesMap declared with
+        a unique mapping URI following the pattern ex:Mapping{{ENTITY_TYPE}} and a type classification: a rr:TriplesMap.
+
+        Each TriplesMap must define its data source via rml:logicalSource with 
+        the rml:referenceFormulation ql:JSONPath, rml:source "placeholder.json" and an iterator to filter entities by type. Put iterator in single quotes.
+
+        Each TriplesMap must define a rr:subjectMap with
+        rr:template "http://example.com/{{ENTITY_TYPE}}/{id}" for dynamic URI generation from data and rr:class {{ONTOLOGY_CLASS}} for type classification
+        
+
+        For entities that provide or expose numerical data via API endpoint,
+        a rr:predicateObjectMap must be added with rdf:value and an objectMap for API endpoint URL with rr:template "{{API_ENDPOINT_URL}}"
+
+        For entities that reference other entities in the data source, 
+        a rr:predicateObjectMap must be added with:
+        - {{ONTOLOGY_PROPERTY}} as predicate
+        - an objectMap referencing rr:parentTriplesMap ex:Mapping{{ENTITY_TYPE}}
+        - Join conditions must match the data source field names and structure
+        - System hierarchies, the datamodel relationships and devices and their locations must be properly represented through join conditions and their child and parent
+
+        Uppercase terms in brackets {{}} are placeholders for values given in the context. Strictly choose the values from the preprocessing of the JSON file, except for the variables inside API_ENDPOINT_URL, which can be adapted to match the use case.
+        Do not replace the '{{id}}'.
+        </instructions>""").strip() # TODO this ID is not always the same? Depends on platform config?
+
+
+        rml_rules = textwrap.dedent("""<rules>
+        # RML Mapping Rules
+        For the RML mapping to properly transform IoT data sources to RDF triples, the following RML-specific elements are essential:
+
+        Rule 1: TriplesMap Structure
+        Always: Every IoT entity type must have a corresponding TriplesMap declared with:
+        - A unique mapping URI following the pattern ex:Mapping{{ENTITY_TYPE}}
+        - A type classification: a rr:TriplesMap
+
+        Rule 2: RML-Specific Prefixes
+        Always: The RML mapping must include RML-specific prefixes:
+        - {{ONTOLOGY_PREFIXES}} declaration
+        - Standard prefixes: @prefix ex: <http://example.com#> . and @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+        # - Do not add prefixes for the API endpoint, but use the full URI in template strings.
+
+        Rule 3: Data Source Configuration
+        Always: Each TriplesMap must define its data source via rml:logicalSource:
+        - rml:source "placeholder.json"
+        - rml:referenceFormulation ql:JSONPath (for JSON data)
+        - rml:iterator '$[?(@.type=="{{ENTITY_TYPE}}")]' to filter and iterate over entities by type
+
+        Rule 4: Subject Template Generation
+        Always: Each TriplesMap must define a rr:subjectMap with:
+        - rr:template "http://example.com/{{ENTITY_TYPE}}/{id}" for dynamic URI generation from data
+        - rr:class {{ONTOLOGY_CLASS}} for type classification
+
+        Rule 5: API Endpoint Value Mapping
+        If: An entity provides or exposes numerical data via API endpoint
+        Then: Add a rr:predicateObjectMap with:
+        - rr:predicate rdf:value
+        - rr:objectMap with rr:template "{{API_ENDPOINT_URL}}" (template-based URI generation)
+
+        Rule 6: Cross-Entity Reference Mapping
+        If: An entity references other entities in the data source
+        Then: Add a rr:predicateObjectMap with:
+        - rr:predicate {{ONTOLOGY_PROPERTY}}
+        - rr:objectMap referencing rr:parentTriplesMap ex:Mapping{{ENTITY_TYPE}}
+        - rr:joinCondition specifying rr:child "{{CHILD_JOIN_FIELD}}" and rr:parent "{{PARENT_JOIN_FIELD}}"
+        - Join conditions must match the data source field names and structure
+        # - System hierarchies must be properly represented through join conditions
+        # - The datamodel relationships must be correctly mapped
+        # - Devices must be properly connected to their locations through appropriate join fields
+
+        </rules>""")
+
+
+
+        self.KG = textwrap.dedent(f"""
+        # Knowledge Graph file
+        The knowledge graph is a structured representation of the building's systematic components, including rooms, ventilation devices, sensors, and their relationships. 
+        It is built from the provided JSON entities file of a GET request to a specific IoT platform.
+
+        <constraints>MOST IMPORTANT: RDF should follow a valid turtle syntax!</constraints>
+        <data>\n{self.prefixes}\n</data>
+        {kg_instructions}
+        """)# <template>\n{self.templates["rdf"]}\n</template>
+
+        self.RML = textwrap.dedent(f"""
+        # RML Mapping file 
+        The RML mapping file is used to generate the RDF knowledge graph from the JSON Entities data.
+
+        The knowledge graph looks like this: \n{self.KG}
+
+        <constraints>MOST IMPORTANT: RML should follow a valid turtle syntax!</constraints>
+        {rml_instructions}
+        """)# <template>\n{self.templates["RML"]}\n</template>
+        
+        PC_template = f"<template>\n{self.templates['config']}\n</template>"
+        PC_content = f"Content: <data>{self.PC_content}</data>"
+        self.PC = textwrap.dedent(f""" 
+        # Platform Configuration file
+        The configuration file should contain the following information:
+        - The ID_KEY is the key in the JSON data that uniquely identifies each entity.
+        - The TYPE_KEYS are the keys in the JSON data that identify the type of each entity.
+        - The JSONPATH_EXTRA_NODES are the JSONpath Expressions to the {{EXTRA_NODES}} that should be included in the mapping. 
+        
+        Terms in brackets {{}} are placeholders for values given in the context. Strictly choose the values from the preprocessing of the JSON file, except for the variables inside API_ENDPOINT_URL, which can be adapted to match the use case.
+
+        {PC_content if self.PC_content else PC_template}
+        """) # Use the recursive descent operator
+        
+        self.RNR = textwrap.dedent(f"""
+        # Resource Node Relationship Document 
+        The RML Mapping file can be generated automatically based on a validated Resource Node Relationship Document.
+        The Resource Node Relationship Document is a prefilled document that contains the necessary information to generate the RML Mapping file.
+        
+        content: <data>\n{self.rnr_content}</data>
+        """)
+
+        # CONTEXT PROMPTS ================================================================
+
+        term_mapping_instructions = textwrap.dedent(f"""
+        <term_mapping_instructions>
+        <instructions>
+        Based on the extraction of available Ontology Classes and Properties and
+        the list of terms that need to be mapped to the ontology,
+        for each term, you need to select the most appropriate ontology class or property for the domain entity or relation.
+        The goal is to inherit the attributes and relations from the selected Ontology Class or Property.
+
+        MAPPING CRITERIA: (in order of priority)
+        1. Exact semantic match
+        2. Functional equivalence (same purpose/behavior)
+        3. Hierarchical relationship (parent/child concepts)
+        4. Attribute similarity (same properties/characteristics)
+
+        SPECIAL CONSIDERATIONS:
+        - Distinguish locations, air systems, devices, actuation points, sensors
+        - Avoid category errors: don't confuse the thing itself with infrastructure that supports the thing
+
+        JUST FOR CLASSES:
+        - Respect system hierarchies (building → floor → room → equipment)
+        - When the Domain Entity seems to be a relation, select a class that would have this relation as a property.
+
+        JUST FOR PROPERTIES:
+        - Maintain the direction of the relationship original (subject → predicate → object), e. g.: is_instance_of NOT EQUAL TO is_instanciated_by
+        </instructions>
+        </term_mapping_instructions>
+        """)
+
+
+
+        context_steps = textwrap.dedent(f"""
+        <steps>
+        1. Based on the extraction of available API endpoints, select the single most relevant endpoint for accessing numerical values of entities.
+
+        1. Map JSON Entities to ontology Classes considering the Term Mapping Instructions.
+
+        2. Decide which relations in the JSON file are 'numeric properties' and 'relational properties'.
+            numeric properties are properties that have a numerical value, like temperature, humidity, etc.
+            relational properties are properties that have a relation to another entity, like 'is located in', 'has sensor', etc.
+        
+        2.1 Map the relational properties to ontology properties.
+            Do not map the numerical properties to ontology properties.
+
+        2.2 Check if the selected ontology classes for the entities of the numerical properties have an (inherited) numerical property.
+        
+        2.3 If there are extra nodes to be added, add a new JSON entity to an imagenary list of extra nodes.
+            The extra nodes should have the name of the property they come from
+            Map this newly created entity to an ontology class by using the query '{{property_name}}'.
+
+        3. Now check again, if the newly created entities have an (inherited) numerical property and do steps 2.2 and 2.3 again before continuing.
+        </steps>
+        """).strip()
+
+        context_instructions = textwrap.dedent(f"""
+        <instructions>
+        You need to examine the available API endpoints and identify the most specific endpoint which returns only the raw numerical values of entity attributes.
+        Your task is to process JSON data containing entities and their properties by mapping them to an appropriate ontology structure, with special attention to handling numerical values effectively.
+        The JSON entities require correspondence with ontology classes, using the provided Term Mapping Instructions as your guide. Within the JSON structure, you'll encounter properties that represent numerical measurements (such as temperature readings, humidity levels, or other quantitative data) and properties that represent relationships between entities (such as location associations, sensor ownership, or other connections). This distinction is crucial because these property types require different handling approaches.
+        Relational properties should be mapped to appropriate ontology properties, while numerical properties should not be mapped directly to ontology properties. You'll need to verify whether the ontology classes selected for entities containing numerical properties possess the necessary numerical property capabilities, either directly or through inheritance. You also need to check if the selected ontology classes could be a subclass of a class that has a numerical property.
+        Where gaps exist and additional structural elements are needed, create supplementary entities to fill these gaps. These new entities should derive their names from the properties that necessitated their creation, and the same ontology mapping process should be applied to them using the property name as your mapping query.
+        The entire structure requires assessment to ensure all numerical property requirements are properly addressed. This verification and enhancement process should continue until the mapping is complete and all numerical values have appropriate ontological representation.
+        </instructions>
+        """).strip()
+
+        self.context = textwrap.dedent(f"""
+        <context>
+        {self.jex}
+        API Specification path: '{self.api_spec_path}'
+        Ontology path: '{self.ontology_path}'
+        Term Mapping Instructions: 
+        {term_mapping_instructions}
+        </context>
+
+        {context_instructions}
+
+        <output>
+        Return a JSON, containg:
+        - the API endpoint for data access merged with the host path
+        - enumeration of the numerical properties and relational properties
+        - the mapping of the JSON Entities to ontology classes and properties
+        - the name of the properties, that will be added to the JSON Entities as Extra Nodes and the names of the Extra Nodes and their mapped ontology classes.
+        </output>
+        
+        """)
+        # TODO improve prompt:
+        # give template for output?
+        # Continue, if there are no more extra nodes left to add. When iterating over the same object, adjust the query 
+        # adding the query: using the query '{{property_name}} (value of {{parentEntity}})'
+
+
+        # SCENARIO PROMPTS ====================================================================
+
+        self.prompt_I = textwrap.dedent(f"""
+        {self.jen}
+        <context>
+        # Results of Preprocessing of the JSON file: \n{self.context_content}
+        {self.KG}
+        </context>
+
+        <instructions>
+        Generate the RDF knowledge graph from the provided JSON Entities data of a GET request to the IoT platform based on the Knowledge Graph Instructions.        
+        Use the results of Preprocessing of the JSON file. Do not use any other information to fill out the RDF graph.
+        </instructions>
+
+        <output> Return the knowledge graph in Turtle format. </output>
+        """)
+
+        self.prompt_II = textwrap.dedent(f"""
+        {self.jex}
+        <context>
+        # Results of Preprocessing of the JSON file: \n{self.context_content}
+        {self.RML}
+        </context>
+
+        <instructions>
+        Generate the RML mapping file from the provided JSON Example file needed for generating the knowledge graph based on the RML instructions.
+        Do not use any other information to fill out the RML mapping file.
+        </instructions>
+
+        <output> Return the RML Mapping file in Turtle format. </output>
+        """)
+
+        self.prompt_IIIc = textwrap.dedent(f"""
+        <context>
+        {self.jex}
+        # Results of Preprocessing of the JSON file: \n{self.context_content}
+        {self.PC}
+        </context>
+
+        <instructions>
+        Generate the Platform Configuration file based on the JSON Example file.
+        Consider extra nodes if present in the context. 
+
+        <constraints>
+        Ensure all JSONPath expressions use simple, widely supported operators.
+        - Allowed: '$', '*', '.'
+        - Not allowed: '?', '@', filter expressions
+        </constraints>
+        </instructions>
+
+        <output> Return the Platform Configuration file in JSON format. </output>
+        """)
+
+        self.prompt_III = textwrap.dedent(f"""
+        <context>
+        {self.PC}
+        # Results of Preprocessing of the JSON file: \n{self.context_content}
+        {self.RNR}
+        </context>
+
+        <instructions>
+        Fill out the preprocessed Resource Node Relationship Document based on the results of Preprocessing of the JSON file.
+
+        Preserve the structure and strictly do not change ANYTHING in the Resource Node Relationship Document except:
+        - For the value of every "class" key: 
+            - Ignore any prefilled value and replace it with the mapped {{ONTOLOGY_CLASS}} for the "nodetype" value of the entity.
+        - For the value of every "property" key:
+            - Ignore any prefilled value and replace it with the mapped {{ONTOLOGY_PROPERTY}} for the "rawdataidentifier" value of the entity.
+        - For the value of every "hasdataaccess" key: 
+            - If entity has a numerical property: Ignore any prefilled value, replace it with the template {{API_ENDPOINT_URL}} and adapt its variables to match the attribute of this entity and the entity ID_KEY used in the platform configuration file.
+        Terms in brackets {{}} are placeholders for values given in the context. Strictly choose the values from the preprocessing of the JSON file, except for the variables inside API_ENDPOINT_URL, which can be adapted to match the use case.
+        </instructions>
+
+        <output> Return the Resource Node Relationship Document in JSON format. </output>
+        """) # TODO remove self.jex out of prompt?
+        # {self.jex} include again?
+    
+
+
+
+        
 
     def load_prefixes(self, ontology_path):
         with open(ontology_path, 'r', encoding='utf-8') as f:
@@ -790,26 +745,18 @@ class PromptsLoader:
         with open(rnr_path, "r") as f:
             self.rnr_content = f.read()
         self.update_variables()
+    
+    def load_PC(self, pc_path):
+        with open(pc_path, "r") as f:
+            self.PC_content = f.read()
+        self.update_variables()
 
 prompts = PromptsLoader()
 
 
 
 if __name__ == "__main__":
-    # Example usage
-    prompts = PromptsLoader()
-
-    # print(prompts.prompt_I)  
-
-
-
-    # prompts.load_JSON_files("path/to/jen.json", "path/to/jex.json")
-    prompts.load_context("THE CONTEXT IS TOO BIG")
-    # prompts.load_RNR_file("path/to/rnr.json")
-
-    # print(prompts.prompt_I)
-
-    # print(prompts.prompts["prompt_I"])  # Print the first prompt
+    print(prompts.system_default)
 
 
 

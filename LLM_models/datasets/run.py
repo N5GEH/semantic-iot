@@ -219,11 +219,15 @@ class ScenarioExecutor:
         print("\nPreparing context for scenarios...")
 
         # Create result folder first
-        os.makedirs(self.result_folder, exist_ok=True)
+        context_folder = os.path.join(self.result_folder, "context")
+        os.makedirs(context_folder, exist_ok=True)
 
         if not test:
             # Term Mapping & Extra Nodes & API Endpoint
-            client_context = LLMAgent(system_prompt=prompts.cot_extraction, result_folder=self.result_folder)
+            client_context = LLMAgent(
+                system_prompt=prompts.cot_extraction, 
+                result_folder=context_folder
+            )
             try:
                 self.context = client_context.extract_code(
                     client_context.query( 
@@ -303,14 +307,10 @@ class ScenarioExecutor:
         
         # Save context to file
         prompts.load_context(self.context)
-        context_file = os.path.join(self.result_folder, "context.json")
+        context_file = os.path.join(context_folder, "context.json")
         with open(context_file, 'w', encoding='utf-8') as f:
             json.dump(self.context, f, indent=2)
         print(f"Context saved to: {context_file}")
-
-        corrected = input("\nInput corrected context if needed: ")
-        prompts.load_context(corrected)
-        print("Context updated in the prompt.")
 
         return self.context
 
@@ -359,25 +359,29 @@ class ScenarioExecutor:
 
         for sc in self.selected_scenarios:
             try: # handle errors in each scenario individually
-            # if True:
+                input(f"\n\n======= Start running scenario {sc} =======")
+                # Context Scenario already handled
+                if sc == 'C':
+                    continue
                 # Create result folder for each scenario
                 if sc == 'IIIf': 
                     scenario_folder[sc] = scenario_folder['III']
                     # print(f"Using existing results folder for scenario {sc}: {scenario_folder[sc]}")
-                if sc == 'C':
-                    continue
                 else:
                     scenario_folder[sc] = os.path.join(self.result_folder, f"scenario_{sc}")
                     os.makedirs(scenario_folder[sc], exist_ok=True)
                     print(f"Results subfolder created at: {scenario_folder[sc]}")
                     # input("Press Enter to continue...")
 
+                prompts.result_folder = scenario_folder[sc]
+
 
                 print(f"\nRunning scenario {sc}...")
 
                 client_scenario = LLMAgent(
-                    system_prompt=prompts.cot_extraction,
-                    result_folder=self.result_folder
+                    # system_prompt=prompts.cot_extraction,
+                    system_prompt=prompts.system_default,
+                    result_folder=scenario_folder[sc]
                 )
 
                 response = client_scenario.query(
@@ -426,6 +430,7 @@ class ScenarioExecutor:
                         config_path=get_file(scenario_folder[sc], "PC")
                     )
                     prompts.load_RNR(get_file(scenario_folder[sc], "RNR"))
+                    prompts.load_PC(get_file(scenario_folder[sc], "PC"))
                     prompt["IIIf"] = prompts.prompt_III
                     # input("Press Enter to continue...")
                     continue
@@ -579,24 +584,6 @@ class ScenarioExecutor:
             json.dump(metrics, f, indent=4)
     
         print(f"Metrics saved to {output_file}.")
-
-        # # Save readable metrics file
-        # readable_file = os.path.join(self.result_folder, "readable_metrics.md")
-        # readable = to_readable(metrics)
-        # with open(readable_file, 'w', encoding='utf-8') as f:
-        #     f.write(readable)
-
-        # print(f"Readable metrics saved to {readable_file}.")
-
-        # # Extract evaluations and save to file
-        # evaluations = extract_evaluations(readable)
-        # evaluations_file = os.path.join(self.result_folder, "evaluations.md")
-        # with open(evaluations_file, 'w', encoding='utf-8') as f:
-        #     for evaluation in evaluations:
-        #         f.write(f"{evaluation}\n\n")
-        
-        # print(f"Evaluations extracted and saved to {evaluations_file}.")
-        
 
 
 def to_readable(data) -> str:

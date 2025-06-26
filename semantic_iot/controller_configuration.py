@@ -27,7 +27,7 @@ query_ventilation_devices = """
       <room_uri> a rec:Room .
 
       ?device a brick:Air_System .
-      ?actuation brick:isPointOf ?device .
+      ?actuation (brick:isPointOf|brick:isLocationOf) ?device .
 
       OPTIONAL {
         ?actuation a ?actuation_type ;
@@ -38,6 +38,7 @@ query_ventilation_devices = """
       ?actuation (brick:isPointOf|brick:hasLocation|brick:isPartOf)* <room_uri> .
     }
 """
+# changes: added brick:isLocationOf option
 
 query_co2_sensor_availability = """
     PREFIX rec: <https://w3id.org/rec#>
@@ -61,11 +62,13 @@ query_presence_sensor_availability = """
     SELECT ?sensor ?sensor_access
     WHERE {
         <room_uri> a rec:Room .
-        ?sensor a brick:Occupancy_Sensor .
+        ?sensor a ?sensor_type .
+        FILTER (?sensor_type IN (brick:Occupancy_Sensor, brick:PIR_Sensor))
         ?sensor rdf:value ?sensor_access .
         ?sensor (brick:isPointOf|brick:hasLocation|brick:isPartOf)* <room_uri>.
     }
 """
+# added brick:PIR_Sensor as option
 
 
 class ControllerConfiguration:

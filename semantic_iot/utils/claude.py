@@ -9,11 +9,14 @@ from memory_profiler import memory_usage
 import yaml
 from mermaid import Mermaid
 import textwrap
+import pyperclip # TODO just for offline mode, remove later
 
 from semantic_iot.utils.prompts import prompts
 
 from pathlib import Path
 root_path = Path(__file__).parent
+
+offline = True  # Set to True to use offline mode (no API calls)
 
 # Price in $ per million tokens (Base Input) (https://docs.anthropic.com/en/docs/about-claude/models/overview)
 models = {
@@ -218,7 +221,13 @@ class LLMAgent:
 
         result = None
         for i in range(max_retry):
-        # try: TODO return the error and regenerate
+            if offline:
+                pyperclip.copy(self.system_prompt) 
+                pyperclip.copy(prompt)  # Copy prompt to clipboard for offline use
+                print("🔧 Offline mode enabled. Prompt copied to clipboard.")
+                response = input("Enter the response from Claude: ")
+                break
+
             start_time = time.time()
             response = requests.post(
                 self.base_url,
@@ -316,7 +325,7 @@ class LLMAgent:
 
         mermaid_flowchart = self.extract_code(self.extract_tag(response_text, "flowchart"))
         if mermaid_flowchart:
-            Mermaid(graph=mermaid_flowchart).to_svg(f"{self.result_folder}/flowchart.svg")
+            Mermaid(graph=mermaid_flowchart).to_svg(f"{self.result_folder}/flowchart_{step_name}.svg")
         
         print(f"⬇️  Metrics saved to {self.result_folder}")
 
@@ -602,7 +611,7 @@ class LLMAgent:
                 try:
                     return json.loads(text)
                 except json.JSONDecodeError as e:
-                    print(f"⚠️  JSON parsing error in raw text: {e}")
+                    # print(f"⚠️  JSON parsing error in raw text: {e}")
                     print(f"Content: {text[:200]}...")
                     # Try to extract just valid JSON from the beginning
                     try:
@@ -611,7 +620,7 @@ class LLMAgent:
                         print(f"✅ Extracted valid JSON object from position 0 to {idx}")
                         return obj
                     except json.JSONDecodeError:
-                        print("❌ Could not extract valid JSON, returning raw text")
+                        print("ℹ️ Could not extract valid JSON, returning raw text")
                         return text
             else:
                 return text
@@ -665,9 +674,9 @@ class LLMAgent:
                 while i < len(lines):
                     current_line = lines[i]
 
-                    # If line contains " - " (dash with spaces), keep only the part before it
-                    if " - " in current_line.strip():
-                        current_line = current_line.split(" - ")[0]
+                    # # If line contains " - " (dash with spaces), keep only the part before it
+                    # if " - " in current_line.strip():
+                    #     current_line = current_line.split(" - ")[0]
                     
                     if current_line.strip() == "":
                         break
