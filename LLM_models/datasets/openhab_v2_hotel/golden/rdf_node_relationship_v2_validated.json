@@ -30,11 +30,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Room_Location",
-                    "propertyClass": "brick:isPointOf",
+                    "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}/state"
+            "link": "http://137.226.248.250:8080/rest/items/{id}/state"
         },
         {
             "nodetype": "carbondioxide_Point",
@@ -43,11 +43,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Room_Location",
-                    "propertyClass": "brick:isPointOf",
+                    "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}/state"
+            "link": "http://137.226.248.250:8080/rest/items/{id}/state"
         },
         {
             "nodetype": "presence_Point",
@@ -56,11 +56,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "PresenceSensor_Equipment",
-                    "propertyClass": "brick:isPointOf",
+                    "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}/state"
+            "link": "http://137.226.248.250:8080/rest/items/{id}/state"
         },
         {
             "nodetype": "PresenceSensor_Equipment",
@@ -69,11 +69,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Room_Location",
-                    "propertyClass": "brick:hasLocation",
+                    "relatedAttribute": "brick:hasLocation",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": null
+            "link": null
         },
         {
             "nodetype": "fan_Setpoint",
@@ -82,11 +82,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Fan_Equipment",
-                    "propertyClass": "brick:isPointOf",
+                    "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}"
+            "link": "http://137.226.248.250:8080/rest/items/{id}"
         },
         {
             "nodetype": "Fan_Equipment",
@@ -95,11 +95,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "CoolingCoil_Equipment",
-                    "propertyClass": "brick:isPartOf",
+                    "relatedAttribute": "brick:isPartOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": null
+            "link": null
         },
         {
             "nodetype": "CoolingCoil_Equipment",
@@ -108,11 +108,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Room_Location",
-                    "propertyClass": "brick:hasLocation",
+                    "relatedAttribute": "brick:hasLocation",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": null
+            "link": null
         },
         {
             "nodetype": "temperature_Setpoint",
@@ -121,11 +121,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "RadiatorThermostat_Equipment",
-                    "propertyClass": "brick:isPointOf",
+                    "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}"
+            "link": "http://137.226.248.250:8080/rest/items/{id}"
         },
         {
             "nodetype": "RadiatorThermostat_Equipment",
@@ -134,11 +134,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Room_Location",
-                    "propertyClass": "brick:hasLocation",
+                    "relatedAttribute": "brick:hasLocation",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": null
+            "link": null
         },
         {
             "nodetype": "flow_Setpoint",
@@ -147,11 +147,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "VariableAirVolumeBox_Equipment",
-                    "propertyClass": "brick:isPointOf",
+                    "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}"
+            "link": "http://137.226.248.250:8080/rest/items/{id}"
         },
         {
             "nodetype": "VariableAirVolumeBox_Equipment",
@@ -160,11 +160,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Room_Location",
-                    "propertyClass": "brick:hasLocation",
+                    "relatedAttribute": "brick:hasLocation",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": null
+            "link": null
         },
         {
             "nodetype": "Room_Location",
@@ -173,11 +173,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel_Location",
-                    "propertyClass": "brick:hasLocation",
+                    "relatedAttribute": "brick:hasLocation",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": null
+            "link": null
         },
         {
             "nodetype": "outsidetemperature_Point",
@@ -186,11 +186,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel_Location",
-                    "propertyClass": "brick:isPointOf",
+                    "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": "http://137.226.248.250:8080/rest/items/{id}/state"
+            "link": "http://137.226.248.250:8080/rest/items/{id}/state"
         },
         {
             "nodetype": "AirHandlingUnit_Equipment",
@@ -199,24 +199,18 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel_Location",
-                    "propertyClass": "brick:hasLocation",
+                    "relatedAttribute": "brick:hasLocation",
                     "rawdataidentifier": "groupNames"
                 }
             ],
-            "hasDataAccess": null
+            "link": null
         },
         {
             "nodetype": "Hotel_Location",
             "iterator": "$[?(@.type=='Hotel_Location')]",
             "class": "rec:Building",
-            "hasRelationship": [
-                {
-                    "relatedNodeType": null,
-                    "propertyClass": null,
-                    "rawdataidentifier": null
-                }
-            ],
-            "hasDataAccess": null
+            "hasRelationship": [],
+            "link": null
         }
     ]
 }

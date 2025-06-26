@@ -532,7 +532,7 @@ class PromptsLoader:
         # CONTEXT PROMPTS ================================================================
 
         term_mapping_instructions = textwrap.dedent(f"""
-        <term_mapping_instructions>
+        # Term Mapping Instructions: 
         <instructions>
         Based on the extraction of available Ontology Classes and Properties and
         the list of terms that need to be mapped to the ontology,
@@ -556,7 +556,6 @@ class PromptsLoader:
         JUST FOR PROPERTIES:
         - Maintain the direction of the relationship original (subject → predicate → object), e. g.: is_instance_of NOT EQUAL TO is_instanciated_by
         </instructions>
-        </term_mapping_instructions>
         """)
 
 
@@ -600,7 +599,6 @@ class PromptsLoader:
         {self.jex}
         API Specification path: '{self.api_spec_path}'
         Ontology path: '{self.ontology_path}'
-        Term Mapping Instructions: 
         {term_mapping_instructions}
         </context>
 

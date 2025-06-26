@@ -26,13 +26,7 @@
             "nodetype": "Hotel",
             "iterator": "$[?(@.type=='Hotel')]",
             "class": "rec:Building",
-            "hasRelationship": [
-                {
-                    "relatedNodeType": null,
-                    "relatedAttribute": null,
-                    "rawdataidentifier": null
-                }
-            ],
+            "hasRelationship": [],
             "link": null
         },
         {
@@ -46,8 +40,20 @@
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value"
+            "link": "http://137.226.248.250:1026/v2/entities/{id}/attrs/temperatureAmb/value"
+        },
+        {
+            "nodetype": "AirHandlingUnit",
+            "iterator": "$[?(@.type=='AirHandlingUnit')]",
+            "class": "brick:Air_Handling_Unit",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Hotel",
+                    "relatedAttribute": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "link": null
         },
         {
             "nodetype": "HotelRoom",
@@ -60,35 +66,7 @@
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            
             "link": null
-        },
-        {
-            "nodetype": "TemperatureSensor",
-            "iterator": "$[?(@.type=='TemperatureSensor')]",
-            "class": "brick:Air_Temperature_Sensor",
-            "hasRelationship": [
-                {
-                    "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:isPointOf",
-                    "rawdataidentifier": "hasLocation.value"
-                }
-            ],
-            
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
-        },
-        {
-            "nodetype": "CO2Sensor",
-            "iterator": "$[?(@.type=='CO2Sensor')]",
-            "class": "brick:CO2_Sensor",
-            "hasRelationship": [
-                {
-                    "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:isPointOf",
-                    "rawdataidentifier": "hasLocation.value"
-                }
-            ],
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value"
         },
         {
             "nodetype": "PresenceSensor",
@@ -101,21 +79,24 @@
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value"
+            "link": "http://137.226.248.250:1026/v2/entities/{id}/attrs/pir/value"
         },
         {
-            "nodetype": "FreshAirVentilation",
-            "iterator": "$[?(@.type=='FreshAirVentilation')]",
-            "class": "brick:Ventilation_Air_System",
+            "nodetype": "VariableAirVolumeBox",
+            "iterator": "$[?(@.type=='VariableAirVolumeBox')]",
+            "class": "brick:Variable_Air_Volume_Box",
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
                     "relatedAttribute": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
+                },
+                {
+                    "relatedNodeType": "AirHandlingUnit",
+                    "relatedAttribute": "brick:isFedBy",
+                    "rawdataidentifier": "isFedBy.value"
                 }
             ],
-            
             "link": null
         },
         {
@@ -129,7 +110,6 @@
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            
             "link": null
         },
         {
@@ -146,32 +126,69 @@
             "link": null
         },
         {
-            "nodetype": "fanSpeed_CoolingCoil",
-            "iterator": "$[?(@.type=='fanSpeed_CoolingCoil')]",
-            "class": "brick:Fan_Speed_Command",
+            "nodetype": "Fan",
+            "iterator": "$[?(@.type=='Fan')]",
+            "class": "brick:Fan",
             "hasRelationship": [
                 {
                     "relatedNodeType": "CoolingCoil",
+                    "relatedAttribute": "brick:isPartOf",
+                    "rawdataidentifier": "isPartOf.value"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "co2_HotelRoom",
+            "iterator": "$[?(@.type=='co2_HotelRoom')]",
+            "class": "brick:CO2_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
                     "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
+            "link": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/co2/value"
         },
         {
-            "nodetype": "airFlowSetpoint_FreshAirVentilation",
-            "iterator": "$[?(@.type=='airFlowSetpoint_FreshAirVentilation')]",
+            "nodetype": "temperature_HotelRoom",
+            "iterator": "$[?(@.type=='temperature_HotelRoom')]",
+            "class": "brick:Air_Temperature_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "link": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/temperature/value"
+        },
+        {
+            "nodetype": "fanSpeed_Fan",
+            "iterator": "$[?(@.type=='fanSpeed_Fan')]",
+            "class": "brick:Fan_Speed_Command",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Fan",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "link": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
+        },
+        {
+            "nodetype": "airFlowSetpoint_VariableAirVolumeBox",
+            "iterator": "$[?(@.type=='airFlowSetpoint_VariableAirVolumeBox')]",
             "class": "brick:Air_Flow_Setpoint",
             "hasRelationship": [
                 {
-                "relatedNodeType": "FreshAirVentilation",
-                "relatedAttribute": "brick:isPointOf",
-                "rawdataidentifier": "relatedTo.value"
-                    }
+                    "relatedNodeType": "VariableAirVolumeBox",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "relatedTo.value"
+                }
             ],
-            
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
+            "link": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
         },
         {
             "nodetype": "temperatureSetpoint_RadiatorThermostat",
@@ -184,8 +201,7 @@
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-            
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
+            "link": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
         }
     ]
 }

@@ -1,4 +1,7 @@
-
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix ex: <http://example.com#> .
 @prefix bacnet: <http://data.ashrae.org/bacnet/2020#> .
 @prefix brick: <https://brickschema.org/schema/Brick#> .
 @prefix bsh: <https://brickschema.org/schema/BrickShape#> .
@@ -19,10 +22,6 @@
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix ex: <http://example.com#> .
-@prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
-@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
 
 # Mapping for Hotel
 ex:MappingHotel
@@ -34,8 +33,63 @@ ex:MappingHotel
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/Hotel/{id}" ;
-        rr:class rec:Shelter ;
-    ] .
+        rr:class rec:Building ;
+    ] ;
+    .
+
+# Mapping for AmbientTemperatureSensor
+ex:MappingAmbientTemperatureSensor
+    a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator '$[?(@.type=="AmbientTemperatureSensor")]' ;
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/AmbientTemperatureSensor/{id}" ;
+        rr:class brick:Outside_Air_Temperature_Sensor ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:isPointOf ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:MappingHotel ;
+            rr:joinCondition [
+                rr:child "hasLocation.value" ;
+                rr:parent "id" ;
+            ] ;
+        ] ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdf:value ;
+        rr:objectMap [
+            rr:template "http://137.226.248.250:1026/v2/entities/{id}/attrs/temperatureAmb/value" ;
+        ] ;
+    ] ;
+    .
+
+# Mapping for AirHandlingUnit
+ex:MappingAirHandlingUnit
+    a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator '$[?(@.type=="AirHandlingUnit")]' ;
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/AirHandlingUnit/{id}" ;
+        rr:class brick:Air_Handling_Unit ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:hasLocation ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:MappingHotel ;
+            rr:joinCondition [
+                rr:child "hasLocation.value" ;
+                rr:parent "id" ;
+            ] ;
+        ] ;
+    ] ;
+    .
 
 # Mapping for HotelRoom
 ex:MappingHotelRoom
@@ -58,94 +112,8 @@ ex:MappingHotelRoom
                 rr:parent "id" ;
             ] ;
         ] ;
-    ] .
-
-# Mapping for AmbientTemperatureSensor
-ex:MappingAmbientTemperatureSensor
-    a rr:TriplesMap ;
-    rml:logicalSource [
-        rml:source "placeholder.json" ;
-        rml:referenceFormulation ql:JSONPath ;
-        rml:iterator '$[?(@.type=="AmbientTemperatureSensor")]' ;
     ] ;
-    rr:subjectMap [
-        rr:template "http://example.com/AmbientTemperatureSensor/{id}" ;
-        rr:class brick:Temperature_Sensor ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate brick:hasLocation ;
-        rr:objectMap [
-            rr:parentTriplesMap ex:MappingHotel ;
-            rr:joinCondition [
-                rr:child "hasLocation.value" ;
-                rr:parent "id" ;
-            ] ;
-        ] ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value" ;
-        ] ;
-    ] .
-
-# Mapping for TemperatureSensor
-ex:MappingTemperatureSensor
-    a rr:TriplesMap ;
-    rml:logicalSource [
-        rml:source "placeholder.json" ;
-        rml:referenceFormulation ql:JSONPath ;
-        rml:iterator '$[?(@.type=="TemperatureSensor")]' ;
-    ] ;
-    rr:subjectMap [
-        rr:template "http://example.com/TemperatureSensor/{id}" ;
-        rr:class brick:Temperature_Sensor ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate brick:hasLocation ;
-        rr:objectMap [
-            rr:parentTriplesMap ex:MappingHotelRoom ;
-            rr:joinCondition [
-                rr:child "hasLocation.value" ;
-                rr:parent "id" ;
-            ] ;
-        ] ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value" ;
-        ] ;
-    ] .
-
-# Mapping for CO2Sensor
-ex:MappingCO2Sensor
-    a rr:TriplesMap ;
-    rml:logicalSource [
-        rml:source "placeholder.json" ;
-        rml:referenceFormulation ql:JSONPath ;
-        rml:iterator '$[?(@.type=="CO2Sensor")]' ;
-    ] ;
-    rr:subjectMap [
-        rr:template "http://example.com/CO2Sensor/{id}" ;
-        rr:class brick:CO2_Sensor ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate brick:hasLocation ;
-        rr:objectMap [
-            rr:parentTriplesMap ex:MappingHotelRoom ;
-            rr:joinCondition [
-                rr:child "hasLocation.value" ;
-                rr:parent "id" ;
-            ] ;
-        ] ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value" ;
-        ] ;
-    ] .
+    .
 
 # Mapping for PresenceSensor
 ex:MappingPresenceSensor
@@ -157,10 +125,10 @@ ex:MappingPresenceSensor
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/PresenceSensor/{id}" ;
-        rr:class brick:Occupancy_Sensor ;
+        rr:class brick:Occupancy_Count_Sensor ;
     ] ;
     rr:predicateObjectMap [
-        rr:predicate brick:hasLocation ;
+        rr:predicate brick:isPointOf ;
         rr:objectMap [
             rr:parentTriplesMap ex:MappingHotelRoom ;
             rr:joinCondition [
@@ -172,21 +140,22 @@ ex:MappingPresenceSensor
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value" ;
+            rr:template "http://137.226.248.250:1026/v2/entities/{id}/attrs/pir/value" ;
         ] ;
-    ] .
+    ] ;
+    .
 
-# Mapping for FreshAirVentilation
-ex:MappingFreshAirVentilation
+# Mapping for VariableAirVolumeBox
+ex:MappingVariableAirVolumeBox
     a rr:TriplesMap ;
     rml:logicalSource [
         rml:source "placeholder.json" ;
         rml:referenceFormulation ql:JSONPath ;
-        rml:iterator '$[?(@.type=="FreshAirVentilation")]' ;
+        rml:iterator '$[?(@.type=="VariableAirVolumeBox")]' ;
     ] ;
     rr:subjectMap [
-        rr:template "http://example.com/FreshAirVentilation/{id}" ;
-        rr:class brick:Ventilation_Air_System ;
+        rr:template "http://example.com/VariableAirVolumeBox/{id}" ;
+        rr:class brick:Variable_Air_Volume_Box ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate brick:hasLocation ;
@@ -197,7 +166,18 @@ ex:MappingFreshAirVentilation
                 rr:parent "id" ;
             ] ;
         ] ;
-    ] .
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:isFedBy ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:MappingAirHandlingUnit ;
+            rr:joinCondition [
+                rr:child "isFedBy.value" ;
+                rr:parent "id" ;
+            ] ;
+        ] ;
+    ] ;
+    .
 
 # Mapping for RadiatorThermostat
 ex:MappingRadiatorThermostat
@@ -209,7 +189,7 @@ ex:MappingRadiatorThermostat
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/RadiatorThermostat/{id}" ;
-        rr:class brick:Radiator ;
+        rr:class brick:Thermostat ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate brick:hasLocation ;
@@ -220,7 +200,8 @@ ex:MappingRadiatorThermostat
                 rr:parent "id" ;
             ] ;
         ] ;
-    ] .
+    ] ;
+    .
 
 # Mapping for CoolingCoil
 ex:MappingCoolingCoil
@@ -243,26 +224,51 @@ ex:MappingCoolingCoil
                 rr:parent "id" ;
             ] ;
         ] ;
-    ] .
+    ] ;
+    .
 
-# Mapping for airFlowSetpoint (Extra Node)
-ex:MappingAirFlowSetpoint
+# Mapping for Fan
+ex:MappingFan
     a rr:TriplesMap ;
     rml:logicalSource [
         rml:source "placeholder.json" ;
         rml:referenceFormulation ql:JSONPath ;
-        rml:iterator '$[?(@.type=="FreshAirVentilation")]' ;
+        rml:iterator '$[?(@.type=="Fan")]' ;
     ] ;
     rr:subjectMap [
-        rr:template "http://example.com/AirFlowSetpoint/{id}" ;
-        rr:class brick:Air_Flow_Setpoint ;
+        rr:template "http://example.com/Fan/{id}" ;
+        rr:class brick:Fan ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:isPartOf ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:MappingCoolingCoil ;
+            rr:joinCondition [
+                rr:child "isPartOf.value" ;
+                rr:parent "id" ;
+            ] ;
+        ] ;
+    ] ;
+    .
+
+# Mapping for co2_HotelRoom
+ex:Mappingco2_HotelRoom
+    a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator '$[?(@.type=="co2_HotelRoom")]' ;
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/co2_HotelRoom/{id}" ;
+        rr:class brick:CO2_Sensor ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate brick:isPointOf ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingFreshAirVentilation ;
+            rr:parentTriplesMap ex:MappingHotelRoom ;
             rr:joinCondition [
-                rr:child "id" ;
+                rr:child "relatedTo.value" ;
                 rr:parent "id" ;
             ] ;
         ] ;
@@ -270,20 +276,111 @@ ex:MappingAirFlowSetpoint
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/airFlowSetpoint/value" ;
+            rr:template "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/co2/value" ;
         ] ;
-    ] .
+    ] ;
+    .
 
-# Mapping for temperatureSetpoint (Extra Node)
-ex:MappingTemperatureSetpoint
+# Mapping for temperature_HotelRoom
+ex:Mappingtemperature_HotelRoom
     a rr:TriplesMap ;
     rml:logicalSource [
         rml:source "placeholder.json" ;
         rml:referenceFormulation ql:JSONPath ;
-        rml:iterator '$[?(@.type=="RadiatorThermostat")]' ;
+        rml:iterator '$[?(@.type=="temperature_HotelRoom")]' ;
     ] ;
     rr:subjectMap [
-        rr:template "http://example.com/TemperatureSetpoint/{id}" ;
+        rr:template "http://example.com/temperature_HotelRoom/{id}" ;
+        rr:class brick:Air_Temperature_Sensor ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:isPointOf ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:MappingHotelRoom ;
+            rr:joinCondition [
+                rr:child "relatedTo.value" ;
+                rr:parent "id" ;
+            ] ;
+        ] ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdf:value ;
+        rr:objectMap [
+            rr:template "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/temperature/value" ;
+        ] ;
+    ] ;
+    .
+
+# Mapping for fanSpeed_Fan
+ex:MappingfanSpeed_Fan
+    a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator '$[?(@.type=="fanSpeed_Fan")]' ;
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/fanSpeed_Fan/{id}" ;
+        rr:class brick:Fan_Speed_Command ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:isPointOf ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:MappingFan ;
+            rr:joinCondition [
+                rr:child "relatedTo.value" ;
+                rr:parent "id" ;
+            ] ;
+        ] ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdf:value ;
+        rr:objectMap [
+            rr:template "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/fanSpeed/value" ;
+        ] ;
+    ] ;
+    .
+
+# Mapping for airFlowSetpoint_VariableAirVolumeBox
+ex:MappingairFlowSetpoint_VariableAirVolumeBox
+    a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator '$[?(@.type=="airFlowSetpoint_VariableAirVolumeBox")]' ;
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/airFlowSetpoint_VariableAirVolumeBox/{id}" ;
+        rr:class brick:Air_Flow_Setpoint ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate brick:isPointOf ;
+        rr:objectMap [
+            rr:parentTriplesMap ex:MappingVariableAirVolumeBox ;
+            rr:joinCondition [
+                rr:child "relatedTo.value" ;
+                rr:parent "id" ;
+            ] ;
+        ] ;
+    ] ;
+    rr:predicateObjectMap [
+        rr:predicate rdf:value ;
+        rr:objectMap [
+            rr:template "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value" ;
+        ] ;
+    ] ;
+    .
+
+# Mapping for temperatureSetpoint_RadiatorThermostat
+ex:MappingtemperatureSetpoint_RadiatorThermostat
+    a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source "placeholder.json" ;
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator '$[?(@.type=="temperatureSetpoint_RadiatorThermostat")]' ;
+    ] ;
+    rr:subjectMap [
+        rr:template "http://example.com/temperatureSetpoint_RadiatorThermostat/{id}" ;
         rr:class brick:Temperature_Setpoint ;
     ] ;
     rr:predicateObjectMap [
@@ -291,7 +388,7 @@ ex:MappingTemperatureSetpoint
         rr:objectMap [
             rr:parentTriplesMap ex:MappingRadiatorThermostat ;
             rr:joinCondition [
-                rr:child "id" ;
+                rr:child "relatedTo.value" ;
                 rr:parent "id" ;
             ] ;
         ] ;
@@ -299,35 +396,7 @@ ex:MappingTemperatureSetpoint
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureSetpoint/value" ;
-        ] ;
-    ] .
-
-# Mapping for fanSpeed (Extra Node)
-ex:MappingFanSpeed
-    a rr:TriplesMap ;
-    rml:logicalSource [
-        rml:source "placeholder.json" ;
-        rml:referenceFormulation ql:JSONPath ;
-        rml:iterator '$[?(@.type=="CoolingCoil")]' ;
-    ] ;
-    rr:subjectMap [
-        rr:template "http://example.com/FanSpeed/{id}" ;
-        rr:class brick:Fan_Speed_Command ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate brick:isPointOf ;
-        rr:objectMap [
-            rr:parentTriplesMap ex:MappingCoolingCoil ;
-            rr:joinCondition [
-                rr:child "id" ;
-                rr:parent "id" ;
-            ] ;
+            rr:template "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value" ;
         ] ;
     ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/fanSpeed/value" ;
-        ] ;
-    ] .
+    .

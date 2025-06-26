@@ -1,0 +1,101 @@
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rec: <https://w3id.org/rec#> .
+@prefix semantic_oh: <http://semantic-openhab.com#> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_1_v1_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_1_v1_1/state> ;
+    brick:isPointOf <http://example.com/CO2Sensor_Equipment/co2_sensor_openhab_room_base_1_v1_1> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_2_v1_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_2_v1_1/state> ;
+    brick:isPointOf <http://example.com/CO2Sensor_Equipment/co2_sensor_openhab_room_base_2_v1_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_1_v1_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_1_v1_1> ;
+    brick:isPointOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_1_v1_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_2_v1_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_2_v1_1> ;
+    brick:isPointOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_2_v1_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_1_v1_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_1_v1_1> ;
+    brick:isPointOf <http://example.com/FreshAirVentilation_Equipment/fresh_air_ventilation_openhab_room_base_1_v1_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_2_v1_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_2_v1_1> ;
+    brick:isPointOf <http://example.com/FreshAirVentilation_Equipment/fresh_air_ventilation_openhab_room_base_2_v1_1> .
+
+<http://example.com/outsidetemperature_Point/outside_air_temperature> a brick:Outside_Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/outside_air_temperature/state> ;
+    brick:isPointOf <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_1_v1_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_1_v1_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_1_v1_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_2_v1_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_2_v1_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_2_v1_1> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_1_v1_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_1_v1_1/state> ;
+    brick:isPointOf <http://example.com/AirTemperatureSensor_Equipment/air_temperature_sensor_openhab_room_base_1_v1_1> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_2_v1_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_2_v1_1/state> ;
+    brick:isPointOf <http://example.com/AirTemperatureSensor_Equipment/air_temperature_sensor_openhab_room_base_2_v1_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_1_v1_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_1_v1_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_1_v1_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_2_v1_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_2_v1_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_2_v1_1> .
+
+<http://example.com/AirTemperatureSensor_Equipment/air_temperature_sensor_openhab_room_base_1_v1_1> a semantic_oh:Air_Temperature_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_1_v1> .
+
+<http://example.com/AirTemperatureSensor_Equipment/air_temperature_sensor_openhab_room_base_2_v1_1> a semantic_oh:Air_Temperature_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_2_v1> .
+
+<http://example.com/CO2Sensor_Equipment/co2_sensor_openhab_room_base_1_v1_1> a semantic_oh:CO2_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_1_v1> .
+
+<http://example.com/CO2Sensor_Equipment/co2_sensor_openhab_room_base_2_v1_1> a semantic_oh:CO2_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_2_v1> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_1_v1_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_1_v1> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_2_v1_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_2_v1> .
+
+<http://example.com/FreshAirVentilation_Equipment/fresh_air_ventilation_openhab_room_base_1_v1_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_1_v1> .
+
+<http://example.com/FreshAirVentilation_Equipment/fresh_air_ventilation_openhab_room_base_2_v1_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_2_v1> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_1_v1_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_1_v1> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_2_v1_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_2_v1> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_1_v1_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_1_v1> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_2_v1_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_2_v1> .
+
+<http://example.com/Hotel_Location/oh_hotel> a rec:Building .
+
+<http://example.com/Room_Location/openhab_room_base_1_v1> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_2_v1> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+

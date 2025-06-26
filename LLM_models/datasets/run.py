@@ -24,7 +24,7 @@ def get_file(folder, file_type, keyword=None):
     """
     file_types = {
         "ONT": {"text": f"{keyword}", "ending": ".ttl", "description": "Ontology"},
-        "JEN": {"text": "entities", "ending": ".json", "description": "JSON Entities"},
+        "JEN": {"text": "room", "ending": ".json", "description": "JSON Entities"}, # TODO change to generical keyword
         "JEX": {"text": "example", "ending": ".json", "description": "JSON Example"},
         "PC": {"text": "config", "ending": ".json", "description": "Platform Configuration"},
         "RNR": {"text": "node_relationship", "ending": ".json", "description": "Resource Node Relationships"},

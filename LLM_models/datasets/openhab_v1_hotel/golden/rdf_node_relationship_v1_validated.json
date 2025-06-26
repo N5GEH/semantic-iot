@@ -1,0 +1,216 @@
+{
+    "@context": {
+        "bacnet": "http://data.ashrae.org/bacnet/2020#",
+        "brick": "https://brickschema.org/schema/Brick#",
+        "bsh": "https://brickschema.org/schema/BrickShape#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/",
+        "qudtqk": "http://qudt.org/vocab/quantitykind/",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "rec": "https://w3id.org/rec#",
+        "ref": "https://brickschema.org/schema/Brick/ref#",
+        "s223": "http://data.ashrae.org/standard223#",
+        "sdo": "http://schema.org/",
+        "sh": "http://www.w3.org/ns/shacl#",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "sosa": "http://www.w3.org/ns/sosa/",
+        "tag": "https://brickschema.org/schema/BrickTag#",
+        "unit": "http://qudt.org/vocab/unit/",
+        "vcard": "http://www.w3.org/2006/vcard/ns#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#",
+        "semantic_oh": "http://semantic-openhab.com#"
+    },
+    "@data": [
+        {
+            "nodetype": "temperature_Point",
+            "iterator": "$[?(@.type=='temperature_Point')]",
+            "class": "brick:Air_Temperature_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "AirTemperatureSensor_Equipment",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": "http://137.226.248.250:8080/rest/items/{id}/state"
+        },
+        {
+            "nodetype": "AirTemperatureSensor_Equipment",
+            "iterator": "$[?(@.type=='AirTemperatureSensor_Equipment')]",
+            "class": "semantic_oh:Air_Temperature_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Room_Location",
+                    "relatedAttribute": "brick:hasLocation",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "carbondioxide_Point",
+            "iterator": "$[?(@.type=='carbondioxide_Point')]",
+            "class": "brick:CO2_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "CO2Sensor_Equipment",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": "http://137.226.248.250:8080/rest/items/{id}/state"
+        },
+        {
+            "nodetype": "CO2Sensor_Equipment",
+            "iterator": "$[?(@.type=='CO2Sensor_Equipment')]",
+            "class": "semantic_oh:CO2_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Room_Location",
+                    "relatedAttribute": "brick:hasLocation",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "presence_Point",
+            "iterator": "$[?(@.type=='presence_Point')]",
+            "class": "brick:Occupancy_Count_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "PresenceSensor_Equipment",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": "http://137.226.248.250:8080/rest/items/{id}/state"
+        },
+        {
+            "nodetype": "PresenceSensor_Equipment",
+            "iterator": "$[?(@.type=='PresenceSensor_Equipment')]",
+            "class": "semantic_oh:Occupancy_Count_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Room_Location",
+                    "relatedAttribute": "brick:hasLocation",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "fan_Setpoint",
+            "iterator": "$[?(@.type=='fan_Setpoint')]",
+            "class": "brick:Fan_Speed_Command",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "CoolingCoil_Equipment",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": "http://137.226.248.250:8080/rest/items/{id}"
+        },
+        {
+            "nodetype": "CoolingCoil_Equipment",
+            "iterator": "$[?(@.type=='CoolingCoil_Equipment')]",
+            "class": "brick:Cooling_Coil",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Room_Location",
+                    "relatedAttribute": "brick:hasLocation",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "temperature_Setpoint",
+            "iterator": "$[?(@.type=='temperature_Setpoint')]",
+            "class": "brick:Temperature_Setpoint",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "RadiatorThermostat_Equipment",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": "http://137.226.248.250:8080/rest/items/{id}"
+        },
+        {
+            "nodetype": "RadiatorThermostat_Equipment",
+            "iterator": "$[?(@.type=='RadiatorThermostat_Equipment')]",
+            "class": "brick:Thermostat",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Room_Location",
+                    "relatedAttribute": "brick:hasLocation",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "flow_Setpoint",
+            "iterator": "$[?(@.type=='flow_Setpoint')]",
+            "class": "brick:Air_Flow_Setpoint",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "FreshAirVentilation_Equipment",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": "http://137.226.248.250:8080/rest/items/{id}"
+        },
+        {
+            "nodetype": "FreshAirVentilation_Equipment",
+            "iterator": "$[?(@.type=='FreshAirVentilation_Equipment')]",
+            "class": "brick:Ventilation_Air_System",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Room_Location",
+                    "relatedAttribute": "brick:hasLocation",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "Room_Location",
+            "iterator": "$[?(@.type=='Room_Location')]",
+            "class": "rec:Room",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Hotel_Location",
+                    "relatedAttribute": "brick:hasLocation",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "outsidetemperature_Point",
+            "iterator": "$[?(@.type=='outsidetemperature_Point')]",
+            "class": "brick:Outside_Air_Temperature_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Hotel_Location",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "groupNames"
+                }
+            ],
+            "link": "http://137.226.248.250:8080/rest/items/{id}/state"
+        },
+        {
+            "nodetype": "Hotel_Location",
+            "iterator": "$[?(@.type=='Hotel_Location')]",
+            "class": "rec:Building",
+            "hasRelationship": [],
+            "link": null
+        }
+    ]
+}

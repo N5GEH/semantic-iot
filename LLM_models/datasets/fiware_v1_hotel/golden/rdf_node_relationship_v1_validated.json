@@ -26,14 +26,8 @@
             "nodetype": "Hotel",
             "iterator": "$[?(@.type=='Hotel')]",
             "class": "rec:Building",
-            "hasRelationship": [
-                {
-                    "relatedNodeType": null,
-                    "propertyClass": null,
-                    "rawdataidentifier": null
-                }
-            ],
-            "hasDataAccess": null
+            "hasRelationship": [],
+            "link": null
         },
         {
             "nodetype": "AmbientTemperatureSensor",
@@ -42,11 +36,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel",
-                    "propertyClass": "brick:isPointOf",
+                    "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{id}/attrs/temperatureAmb/value"
+            "link": "http://137.226.248.250:1026/v2/entities/{id}/attrs/temperatureAmb/value"
         },
         {
             "nodetype": "HotelRoom",
@@ -55,11 +49,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel",
-                    "propertyClass": "brick:hasLocation",
+                    "relatedAttribute": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": null
+            "link": null
         },
         {
             "nodetype": "TemperatureSensor",
@@ -68,11 +62,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "propertyClass": "brick:isPointOf",
+                    "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{id}/attrs/temperature/value"
+            "link": "http://137.226.248.250:1026/v2/entities/{id}/attrs/temperature/value"
         },
         {
             "nodetype": "CO2Sensor",
@@ -81,11 +75,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "propertyClass": "brick:isPointOf",
+                    "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{id}/attrs/co2/value"
+            "link": "http://137.226.248.250:1026/v2/entities/{id}/attrs/co2/value"
         },
         {
             "nodetype": "PresenceSensor",
@@ -94,11 +88,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "propertyClass": "brick:isPointOf",
+                    "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{id}/attrs/pir/value"
+            "link": "http://137.226.248.250:1026/v2/entities/{id}/attrs/pir/value"
         },
         {
             "nodetype": "FreshAirVentilation",
@@ -107,11 +101,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "propertyClass": "brick:hasLocation",
+                    "relatedAttribute": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": null
+            "link": null
         },
         {
             "nodetype": "RadiatorThermostat",
@@ -120,11 +114,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "propertyClass": "brick:hasLocation",
+                    "relatedAttribute": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": null
+            "link": null
         },
         {
             "nodetype": "CoolingCoil",
@@ -133,11 +127,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "propertyClass": "brick:hasLocation",
+                    "relatedAttribute": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "hasDataAccess": null
+            "link": null
         },
         {
             "nodetype": "fanSpeed_CoolingCoil",
@@ -146,11 +140,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "CoolingCoil",
-                    "propertyClass": "brick:isPointOf",
+                    "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
+            "link": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
         },
         {
             "nodetype": "airFlowSetpoint_FreshAirVentilation",
@@ -159,11 +153,11 @@
             "hasRelationship": [
                 {
                 "relatedNodeType": "FreshAirVentilation",
-                "propertyClass": "brick:isPointOf",
+                "relatedAttribute": "brick:isPointOf",
                 "rawdataidentifier": "relatedTo.value"
                     }
             ],
-            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
+            "link": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
         },
         {
             "nodetype": "temperatureSetpoint_RadiatorThermostat",
@@ -172,11 +166,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "RadiatorThermostat",
-                    "propertyClass": "brick:isPointOf",
+                    "relatedAttribute": "brick:isPointOf",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
+            "link": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
         }
     ]
 }

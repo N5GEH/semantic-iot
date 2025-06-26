@@ -2,10 +2,6 @@
 @prefix rml: <http://semweb.mmlab.be/ns/rml#> .
 @prefix ql: <http://semweb.mmlab.be/ns/ql#> .
 @prefix ex: <http://example.com#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix bacnet: <http://data.ashrae.org/bacnet/2020#> .
 @prefix brick: <https://brickschema.org/schema/Brick#> .
 @prefix bsh: <https://brickschema.org/schema/BrickShape#> .
@@ -13,6 +9,8 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix qudtqk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rec: <https://w3id.org/rec#> .
 @prefix ref: <https://brickschema.org/schema/Brick/ref#> .
 @prefix s223: <http://data.ashrae.org/standard223#> .
@@ -23,6 +21,7 @@
 @prefix tag: <https://brickschema.org/schema/BrickTag#> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 # Mapping for Hotel
 ex:MappingHotel
@@ -63,7 +62,7 @@ ex:MappingAmbientTemperatureSensor
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value" ;
+            rr:template "http://137.226.248.250:1026/v2/entities/{id}/attrs/temperatureAmb/value" ;
         ] ;
     ] ;
     .
@@ -117,7 +116,7 @@ ex:MappingTemperatureSensor
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value" ;
+            rr:template "http://137.226.248.250:1026/v2/entities/{id}/attrs/temperature/value" ;
         ] ;
     ] ;
     .
@@ -147,7 +146,7 @@ ex:MappingCO2Sensor
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value" ;
+            rr:template "http://137.226.248.250:1026/v2/entities/{id}/attrs/co2/value" ;
         ] ;
     ] ;
     .
@@ -177,7 +176,7 @@ ex:MappingPresenceSensor
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value" ;
+            rr:template "http://137.226.248.250:1026/v2/entities/{id}/attrs/pir/value" ;
         ] ;
     ] ;
     .
@@ -279,7 +278,7 @@ ex:MappingfanSpeed_CoolingCoil
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/fanSpeed/value" ;
+            rr:template "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/fanSpeed/value" ;
         ] ;
     ] ;
     .
@@ -309,7 +308,7 @@ ex:MappingairFlowSetpoint_FreshAirVentilation
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value" ;
+            rr:template "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value" ;
         ] ;
     ] ;
     .
@@ -339,7 +338,7 @@ ex:MappingtemperatureSetpoint_RadiatorThermostat
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value" ;
+            rr:template "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value" ;
         ] ;
     ] ;
     .
