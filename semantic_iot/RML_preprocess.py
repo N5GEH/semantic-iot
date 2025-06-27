@@ -7,6 +7,7 @@ from rapidfuzz import fuzz
 from rdflib import Graph, RDF, RDFS, OWL, SKOS, DC
 from sentence_transformers import SentenceTransformer, util
 from semantic_iot.JSON_preprocess import JSONPreprocessorHandler
+from jsonpath_ng import parse
 
 
 class MappingPreprocess:
@@ -15,7 +16,8 @@ class MappingPreprocess:
                  ontology_file_paths: list = None,
                  rdf_node_relationship_file_path: str = None,
                  platform_config: str = None,
-                 similarity_mode: str = "string"  # ["string", "semantic"]
+                 similarity_mode: str = "string",  # ["string", "semantic"]
+                 patterns_splitting: list = None,
                  ):
         """
         Preprocess the JSON data to create an "RDF node relationship" file in JSON-LD
@@ -40,6 +42,8 @@ class MappingPreprocess:
                 - "string" (default): Uses levenstein distance to compute string similarity
                 - "semantic" (beta): Use "all-MiniLM-L6-v2" embedding model to compute semantic similarity.
                               More information in https://github.com/UKPLab/sentence-transformers
+            patterns_splitting: List of patterns (JSONpath) to split a substructure of entities that
+                need to be processed as additional entities during KG generation.
         """
         self.json_file_path = json_file_path
         if not rdf_node_relationship_file_path:
@@ -72,7 +76,6 @@ class MappingPreprocess:
             self.embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
 
         # intermediate variables
-        self.entities = []
         self.entities_for_mapping = []
         self.entity_types = set()
 
@@ -81,6 +84,8 @@ class MappingPreprocess:
             json_file_path=self.json_file_path,
             platform_config=platform_config
         ).json_preprocessor
+
+        self.patterns_splitting = patterns_splitting if patterns_splitting else []
 
     @staticmethod
     def get_value(entity, key):
@@ -92,6 +97,26 @@ class MappingPreprocess:
             return value[0]
 
         return value
+
+    @staticmethod
+    def drop_duplicates(report_list: List[dict]):
+        """
+        Drop duplicated resource types in node relationship file.
+        """
+        unique_node_types = set([item["nodetype"] for item in report_list])
+        unique_report_list = []
+        for unique_node_type in list(unique_node_types):
+            # find all items with the same nodetype
+            matched_items = [item for item in report_list if item["nodetype"] == unique_node_type]
+            if matched_items:
+                # get the first matched item
+                unique_report_list.append(matched_items[0])
+            # assert that all matched items are the same
+            if not all(d == matched_items[0] for d in matched_items):
+                logging.warning("Differences are found for the same resource type")
+                for d in matched_items:
+                    print(json.dumps(d, indent=2))
+        return unique_report_list
 
     def load_ontology(self):
         _graph = Graph()
@@ -283,31 +308,6 @@ class MappingPreprocess:
 
         return self.suggestion_condition_top_matches(n=3, mappings=mappings)
 
-    def drop_duplicates(self, node_relationships: List[dict]):
-        """
-        Drop duplicated resource types in node relationship file.
-        """
-        # Remove duplicate entities of the same type
-        unique_entities = []
-        seen_types = set()
-        for entity in self.entities_for_mapping:
-            if entity['type'] not in seen_types:
-                unique_entities.append(entity)
-                seen_types.add(entity['type'])
-        unique_node_relationships = []
-        for entity in unique_entities:
-            matched_items = [item for item in node_relationships
-                             if item.get("nodetype") == entity['type']]
-            if matched_items:
-                unique_node_relationships.append(matched_items[0]) # get the first matched item
-            # assert that all matched items are the same
-            if not all(d == matched_items[0] for d in matched_items):
-                print("Warning: difference are found in the node relationship file.")
-                for d in matched_items:
-                    print(json.dumps(d, indent=2))
-            # assert all(d == matched_items[0] for d in matched_items)
-        return unique_node_relationships
-
     def get_candidate_property_classes(self,
                                        subject_c: List[str],
                                        object_c: List[str]) -> dict:
@@ -412,21 +412,53 @@ class MappingPreprocess:
                 seen.add(relationship['related_type'])
         return unique_relationships
 
-    def create_rdf_node_relationship_file(self, overwrite: bool = False):
-        # preprocess the json data
-        self.json_processor.load_json_data()
-        self.json_processor.preprocess_extra_entities()
-        self.entities_for_mapping = self.json_processor.entities_for_mapping
+    def append_extra_entities(self, report_list: List[dict]):
+        """
+        Append extra entities to the report_list based on the patterns_splitting.
+        """
+        extra_items = []
+        for pattern in self.patterns_splitting:
+            jsonpath_expr = parse(pattern)
+            for report_item in report_list:
+                entity = report_item['entity']
+                # preserve the original entity in the new list
+                matches = jsonpath_expr.find(entity)
+                for match in matches:
+                    extra_type = f"{match.path.fields[0]}_{entity['type']}"
+                    extra_items.append(
+                        {
+                        "nodetype": extra_type,
+                        "iterator": f"$[?(@.type=='{entity['type']}')]",
+                        "class": None,
+                        "hasRelationship": [
+                            {
+                                "relatedNodeType": entity['type'],
+                                "propertyClass": None,
+                                "rawdataidentifier": "id"
+                            }
+                        ],
+                        "hasDataAccess": None
+                        }
+                    )
+                    report_item["hasRelationship"].append(
+                        {
+                            "relatedNodeType": extra_type,
+                            "propertyClass": None,
+                            "rawdataidentifier": "id"
+                        }
+                    )
+        # append the extra items to the report_list
+        report_list.extend(extra_items)
 
-        # check if the file already exists
-        if os.path.exists(self.rdf_node_relationship_file_path) and not overwrite:
-            raise FileExistsError(f"File already exists: "
-                                  f"{self.rdf_node_relationship_file_path}. "
-                                  f"Set overwrite=True to overwrite the file."
-                                  )
 
-        # populate the rdf_node_relationships
-        rdf_node_relationships = []
+    def initialize_report_list(self) -> List[dict]:
+        """
+        Initialize the report lists with the entities for mapping.
+        This function is used to populate the initial structure of the report lists.
+        """
+        report_list = []
+
+        # loop through the preprocessed entities
         for entity in self.entities_for_mapping:
             # find relationships
             relationships = self.find_relationships(entity, self.entities_for_mapping)
@@ -438,26 +470,34 @@ class MappingPreprocess:
                                      "propertyClass": None,
                                      "rawdataidentifier": relationship["path"]}
                                     for relationship in relationships],
-                "hasDataAccess": None
+                "hasDataAccess": None,
+                # entity is only needed for internal usage
+                "entity": entity
             }
-            rdf_node_relationships.append(resource)
+            report_list.append(resource)
+        return report_list
 
-        # drop duplicates from the rdf_node_relationships
-        rdf_node_relationships = self.drop_duplicates(rdf_node_relationships)
-
-        # terminology mapping for subjects
-        for resource in rdf_node_relationships:
+    def terminology_mapping_subject(self, report_list: List[dict]) -> None:
+        """
+        Terminology mapping for subjects in the report lists.
+        This function will suggest classes for the subjects based on the ontology.
+        """
+        for resource in report_list:
             resource_type = resource['nodetype']
             suggested_class = self.suggest_class(resource_type)
             resource["class"] = suggested_class
 
-        # terminology mapping for relationships
-        for resource in rdf_node_relationships:
+    def terminology_mapping_relationships(self, report_list: List[dict]) -> None:
+        """
+        Terminology mapping for relationships in the report lists.
+        This function will suggest property classes for the relationships based on the ontology.
+        """
+        for resource in report_list:
             subject_class = resource["class"]
             for relationship in resource["hasRelationship"]:
                 object_type = relationship["relatedNodeType"]
-                # get the object class from the rdf_node_relationships, where resource['nodetype'] == object_type
-                object_class = next((r["class"] for r in rdf_node_relationships if r["nodetype"] == object_type), None)
+                # get the object class from the report_list, where resource['nodetype'] == object_type
+                object_class = next((r["class"] for r in report_list if r["nodetype"] == object_type), None)
                 if object_class is None:
                     logging.warning(f"Object class for related node type '{object_type}' not found. ")
                 # get possible predicate classes based on the ontology
@@ -470,25 +510,74 @@ class MappingPreprocess:
                                                                        property_classes=candidate_property_classes)
                 relationship["propertyClass"] = suggested_property_class
 
-        # Highlight subject class and property class before output
-        for resource in rdf_node_relationships:
+    def highlight_terminology_mapping(self, report_list: List[dict]) -> None:
+        """
+        Highlight the subject class and property class before output, which requires manual validation.
+        This function will ensure that the subject class and property class are highlighted
+        in the report lists.
+        """
+        for resource in report_list:
             subject_classes = resource["class"]
             subject_classes = [self.convert_to_prefixed(s_c) for s_c in subject_classes]
-            resource["class"] = f"**TODO: PLEASE CHECK** {subject_classes}"
+            resource["class"] = f"**TODO: PLEASE CHECK** {' '.join(subject_classes)}"
             for relationship in resource["hasRelationship"]:
                 property_classes = relationship["propertyClass"]
                 property_classes = [self.convert_to_prefixed(p_c) for p_c in property_classes]
-                relationship["propertyClass"] = f"**TODO: PLEASE CHECK** {property_classes}"
+                relationship["propertyClass"] = f"**TODO: PLEASE CHECK** {' '.join(property_classes)}"
 
-        # create namespaces from ontology prefixes
+    def save_report(self, report_list: List[dict]) -> None:
+        """ Save the report lists to the RDF node relationship file in JSON-LD format."""
+        # drop the entity key from the report_list
+        for item in report_list:
+            if 'entity' in item:
+                del item['entity']
+
+        # sort the report_list by nodetype with alphabetical order
+        report_list.sort(key=lambda x: x['nodetype'].lower())
+
+        # add prefixes to the context
         context = self.ontology_prefixes
         # populate the report
-        json_ld_data = {"@context": context, "@data": rdf_node_relationships}
+        json_ld_data = {"@context": context, "@data": report_list}
         # Save the preprocess file
         with open(self.rdf_node_relationship_file_path, 'w') as preprocessed_file:
-            json.dump(json_ld_data, preprocessed_file, indent=4)
+            json.dump(json_ld_data, preprocessed_file, indent=2)
         print(f"RDF node relationship file generated as "
               f"{self.rdf_node_relationship_file_path}")
+
+    def create_rdf_node_relationship_file(self, overwrite: bool = False):
+        # check if the file already exists
+        if os.path.exists(self.rdf_node_relationship_file_path) and not overwrite:
+            raise FileExistsError(f"File already exists: "
+                                  f"{self.rdf_node_relationship_file_path}. "
+                                  f"Set overwrite=True to overwrite the file."
+                                  )
+
+        # preprocess the json data
+        self.json_processor.load_json_data()
+        # self.json_processor.preprocess_extra_entities()
+        self.entities_for_mapping = self.json_processor.entities_for_mapping
+
+        # populate the report_list
+        report_list = self.initialize_report_list()
+
+        # handle the patterns for splitting
+        self.append_extra_entities(report_list)
+
+        # drop duplicates from the report_list
+        report_list = self.drop_duplicates(report_list)
+
+        # terminology mapping for subjects
+        self.terminology_mapping_subject(report_list)
+
+        # terminology mapping for relationships
+        self.terminology_mapping_relationships(report_list)
+
+        # Highlight subject class and property class before output
+        self.highlight_terminology_mapping(report_list)
+
+        # output report lists
+        self.save_report(report_list)
 
     def pre_process(self, **kwargs):
         self.load_ontology()

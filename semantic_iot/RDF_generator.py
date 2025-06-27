@@ -29,7 +29,6 @@ class RDFGenerator:
 
     def pre_process(self):
         self.json_processor.load_json_data()
-        self.json_processor.preprocess_extra_entities()
         self.json_processor.save_preprocessed_data()
 
     def clean_up(self):
@@ -79,7 +78,7 @@ class RDFGenerator:
         """
         # load rml file
         g_rml = rdflib.Graph()
-        g_rml.load(self.mapping_file, format="turtle")
+        g_rml.parse(self.mapping_file, format="turtle")
         namespaces = g_rml.namespaces()
 
         # bind namespaces found in RML file

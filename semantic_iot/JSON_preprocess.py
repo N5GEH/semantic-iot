@@ -1,14 +1,13 @@
 import json
-from jsonpath_ng import parse
-
+import logging
 
 class JSONPreprocessor:
     def __init__(self,
-                 json_file_path: str = None,
-                 preprocessed_file_path: str = None,
                  unique_identifier_key: str = None,
                  entity_type_keys: list = None,
-                 extra_entity_node: list = None):
+                 json_file_path: str = None,
+                 preprocessed_file_path: str = None,
+    ):
         """
         Preprocess the JSON data to create a preprocessed data file and pass the preprocessed
         file to RMLPreprocessor.
@@ -22,15 +21,12 @@ class JSONPreprocessor:
             entity_type_keys: key(s) to identify node type, e.g.,['category', 'tags']. It
                     is assumed that the keys for node types are located in the root level
                     of the JSON data. Other cases are not supported yet.
-            extra_entity_node: JSON path of specific attributes to create extra
-                    node types.
         """
 
         self.json_file_path = json_file_path
         self.preprocessed_file_path = preprocessed_file_path
         self.unique_identifier_key = unique_identifier_key
         self.entity_type_keys = entity_type_keys
-        self.extra_entity_node = extra_entity_node
         self.entities = []
         self.entities_for_mapping = []
         self.entity_types = set()
@@ -54,61 +50,26 @@ class JSONPreprocessor:
             entity_type_values = [self.get_value(entity, key) for key in
                                   self.entity_type_keys if self.get_value(entity, key)]
 
+            # unify the ID and Type of the JSON data
             if entity_type_values:
                 if unique_identifier != 'id':
                     entity['id'] = entity[self.unique_identifier_key]
                 entity_type = '_'.join(entity_type_values)
                 entity['type'] = entity_type
-                entity['extraNode'] = False
                 entities_for_mapping.append(entity)
                 entity_types.add(entity_type)
             else:
                 # Log error information
                 if not unique_identifier:
-                    print(
+                    logging.warning(
                         f"Error: Unique identifier '{self.unique_identifier_key}' not found in entity: {entity}")
                 if not entity_type_values:
-                    print(
+                    logging.warning(
                         f"Error: Entity type keys '{self.entity_type_keys}' not found or empty in entity: {entity}")
 
         self.entities = entities
         self.entities_for_mapping = entities_for_mapping
         self.entity_types = entity_types
-
-    def preprocess_extra_entities(self):
-        """Preprocess entities to add extra nodes and save to file."""
-        new_entities = []
-
-        for entity in self.entities:
-            if "relatedTo" not in entity:
-                entity["relatedTo"] = []
-
-        for jsonpath_expression in self.extra_entity_node:
-            jsonpath_expr = parse(jsonpath_expression)
-            for entity in self.entities:
-                # preserve the original entity in the new list
-                new_entities.append(entity)
-                matches = jsonpath_expr.find(entity)
-
-                for match in matches:
-                    extra_id = f"{match.path.fields[0]}_{entity['id']}"
-                    extra_type = f"{match.path.fields[0]}_{entity['type']}"
-                    extra_entity = {
-                        "id": extra_id,
-                        "type": extra_type,
-                        "extraNode": True,
-                        "relatedTo": {"value": entity['id']},
-                        match.path.fields[0]: match.value
-                    }
-                    new_entities.append(extra_entity)
-                    self.entities_for_mapping.append(extra_entity)
-                    self.entity_types.add(extra_type)
-
-                    # append back into super-entity.relatedTo
-                    entity["relatedTo"].append({"value": extra_id})
-
-        # replace entities so downstream sees both originals + extras
-        self.entities = new_entities
 
     def save_preprocessed_data(self):
         with open(self.preprocessed_file_path, 'w') as preprocessed_file:
@@ -136,6 +97,5 @@ class JSONPreprocessorHandler:
         self.json_preprocessor = JSONPreprocessor(
             unique_identifier_key=config.get("ID_KEY"),
             entity_type_keys=config.get("TYPE_KEYS"),
-            extra_entity_node=config.get("JSONPATH_EXTRA_NODES"),
             **keyword_args
         )
