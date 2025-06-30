@@ -100,9 +100,35 @@ Based on the completed **"resource node relationship"** document, we can generat
 In this demonstration, this step can be conducted by running the script [`./kgcp/rml_generate.py`](./kgcp/rml_generate.py).
 The generated RML mapping file can be found in [`./kgcp/rml/fiware_hotel_rml.ttl`](./kgcp/rml/fiware_hotel_rml.ttl).
 
-### Step 4 apply KGCP
-So far, we have collected all required information to build the KGCP.
-[``./kgcp/fiware_kgcp.py``](./kgcp/fiware_kgcp.py) showcases how to apply the KGCP and generate knowledge graphs for different volumes of data sets (range from 2 to 1000 rooms) in [``./hotel_dataset``](./hotel_dataset).
+### Step 4 apply KGCP (including HTTP Extension)
+Now that you’ve generated your RML mappings, you can run the KGCP to produce both the base KG and the HTTP‐augmented KG:
+[``./kgcp/fiware_kgcp.py``](./kgcp/fiware_kgcp.py) 
+
+**What happens under the hood:**
+
+- **RDF Generation**  
+  - Uses `fiware_hotel_rml.ttl` and your JSON dataset to create `hotel_name.ttl` with all entities and relationships.
+
+- **HTTP Extension**  
+  - Loads the newly created `hotel_name.ttl`, the OpenAPI spec (`api_spec.json`), and the HTTP ontology (`Http.ttl`).  
+  - Scans for every `rdf:value` URI in the base KG.  
+  - For each matching `/…/value` endpoint, creates `http:Request` nodes (GET & PUT) with properties:  
+    - `http:methodName`  
+    - `http:absolutePath`  
+    - `http:absoluteURI`  
+    - `http:authority`  
+  - Builds `http:MessageHeader` instances for:  
+    - **Global headers** (e.g. `fiware-service`)  
+    - **Inline headers** (operation-specific, e.g. `Content-Type`)  
+  - Links each header via `http:fieldName`, `http:fieldValue`, and `http:hdrName`.  
+  - Attaches all headers to the corresponding requests via `http:headers` and groups requests under a shared `http:Connection`.  
+  - Writes out `hotel_name_extended.ttl`.  
+
+After running, you’ll find in `kgcp/results/` for each hotel dataset:  
+- `fiware_entities_N.ttl`  
+- `fiware_entities_N_extended.ttl`  
+- _(and, if enabled)_ `metrics_*.json`  
+
 
 ### Step 5 automated service deployment
 The generated knowledge graph of a hotel IoT system can be used to deploy services, for example a building automation program, automatically.

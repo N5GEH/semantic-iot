@@ -315,128 +315,128 @@ http:StatusCode a rdfs:Class ;
     ns1:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_9> .
 
 api:Connection_Main a http:Connection ;
-    http:requests api:GET_ent_AmbientTemperatureSensor_attr_temperatureAmb_value,
-        api:GET_ent_CO2Sensor_room_base_10_attr_co2_value,
-        api:GET_ent_CO2Sensor_room_base_1_attr_co2_value,
-        api:GET_ent_CO2Sensor_room_base_2_attr_co2_value,
-        api:GET_ent_CO2Sensor_room_base_3_attr_co2_value,
-        api:GET_ent_CO2Sensor_room_base_4_attr_co2_value,
-        api:GET_ent_CO2Sensor_room_base_5_attr_co2_value,
-        api:GET_ent_CO2Sensor_room_base_6_attr_co2_value,
-        api:GET_ent_CO2Sensor_room_base_7_attr_co2_value,
-        api:GET_ent_CO2Sensor_room_base_8_attr_co2_value,
-        api:GET_ent_CO2Sensor_room_base_9_attr_co2_value,
-        api:GET_ent_CoolingCoil_room_base_10_attr_fanSpeed_value,
-        api:GET_ent_CoolingCoil_room_base_1_attr_fanSpeed_value,
-        api:GET_ent_CoolingCoil_room_base_2_attr_fanSpeed_value,
-        api:GET_ent_CoolingCoil_room_base_3_attr_fanSpeed_value,
-        api:GET_ent_CoolingCoil_room_base_4_attr_fanSpeed_value,
-        api:GET_ent_CoolingCoil_room_base_5_attr_fanSpeed_value,
-        api:GET_ent_CoolingCoil_room_base_6_attr_fanSpeed_value,
-        api:GET_ent_CoolingCoil_room_base_7_attr_fanSpeed_value,
-        api:GET_ent_CoolingCoil_room_base_8_attr_fanSpeed_value,
-        api:GET_ent_CoolingCoil_room_base_9_attr_fanSpeed_value,
-        api:GET_ent_FreshAirVentilation_room_base_10_attr_airFlowSetpoint_value,
-        api:GET_ent_FreshAirVentilation_room_base_1_attr_airFlowSetpoint_value,
-        api:GET_ent_FreshAirVentilation_room_base_2_attr_airFlowSetpoint_value,
-        api:GET_ent_FreshAirVentilation_room_base_3_attr_airFlowSetpoint_value,
-        api:GET_ent_FreshAirVentilation_room_base_4_attr_airFlowSetpoint_value,
-        api:GET_ent_FreshAirVentilation_room_base_5_attr_airFlowSetpoint_value,
-        api:GET_ent_FreshAirVentilation_room_base_6_attr_airFlowSetpoint_value,
-        api:GET_ent_FreshAirVentilation_room_base_7_attr_airFlowSetpoint_value,
-        api:GET_ent_FreshAirVentilation_room_base_8_attr_airFlowSetpoint_value,
-        api:GET_ent_FreshAirVentilation_room_base_9_attr_airFlowSetpoint_value,
-        api:GET_ent_PresenceSensor_room_base_10_attr_pir_value,
-        api:GET_ent_PresenceSensor_room_base_1_attr_pir_value,
-        api:GET_ent_PresenceSensor_room_base_2_attr_pir_value,
-        api:GET_ent_PresenceSensor_room_base_3_attr_pir_value,
-        api:GET_ent_PresenceSensor_room_base_4_attr_pir_value,
-        api:GET_ent_PresenceSensor_room_base_5_attr_pir_value,
-        api:GET_ent_PresenceSensor_room_base_6_attr_pir_value,
-        api:GET_ent_PresenceSensor_room_base_7_attr_pir_value,
-        api:GET_ent_PresenceSensor_room_base_8_attr_pir_value,
-        api:GET_ent_PresenceSensor_room_base_9_attr_pir_value,
-        api:GET_ent_RadiatorThermostat_room_base_10_attr_temperatureSetpoint_value,
-        api:GET_ent_RadiatorThermostat_room_base_1_attr_temperatureSetpoint_value,
-        api:GET_ent_RadiatorThermostat_room_base_2_attr_temperatureSetpoint_value,
-        api:GET_ent_RadiatorThermostat_room_base_3_attr_temperatureSetpoint_value,
-        api:GET_ent_RadiatorThermostat_room_base_4_attr_temperatureSetpoint_value,
-        api:GET_ent_RadiatorThermostat_room_base_5_attr_temperatureSetpoint_value,
-        api:GET_ent_RadiatorThermostat_room_base_6_attr_temperatureSetpoint_value,
-        api:GET_ent_RadiatorThermostat_room_base_7_attr_temperatureSetpoint_value,
-        api:GET_ent_RadiatorThermostat_room_base_8_attr_temperatureSetpoint_value,
-        api:GET_ent_RadiatorThermostat_room_base_9_attr_temperatureSetpoint_value,
-        api:GET_ent_TemperatureSensor_room_base_10_attr_temperature_value,
-        api:GET_ent_TemperatureSensor_room_base_1_attr_temperature_value,
-        api:GET_ent_TemperatureSensor_room_base_2_attr_temperature_value,
-        api:GET_ent_TemperatureSensor_room_base_3_attr_temperature_value,
-        api:GET_ent_TemperatureSensor_room_base_4_attr_temperature_value,
-        api:GET_ent_TemperatureSensor_room_base_5_attr_temperature_value,
-        api:GET_ent_TemperatureSensor_room_base_6_attr_temperature_value,
-        api:GET_ent_TemperatureSensor_room_base_7_attr_temperature_value,
-        api:GET_ent_TemperatureSensor_room_base_8_attr_temperature_value,
-        api:GET_ent_TemperatureSensor_room_base_9_attr_temperature_value,
-        api:PUT_ent_AmbientTemperatureSensor_attr_temperatureAmb_value,
-        api:PUT_ent_CO2Sensor_room_base_10_attr_co2_value,
-        api:PUT_ent_CO2Sensor_room_base_1_attr_co2_value,
-        api:PUT_ent_CO2Sensor_room_base_2_attr_co2_value,
-        api:PUT_ent_CO2Sensor_room_base_3_attr_co2_value,
-        api:PUT_ent_CO2Sensor_room_base_4_attr_co2_value,
-        api:PUT_ent_CO2Sensor_room_base_5_attr_co2_value,
-        api:PUT_ent_CO2Sensor_room_base_6_attr_co2_value,
-        api:PUT_ent_CO2Sensor_room_base_7_attr_co2_value,
-        api:PUT_ent_CO2Sensor_room_base_8_attr_co2_value,
-        api:PUT_ent_CO2Sensor_room_base_9_attr_co2_value,
-        api:PUT_ent_CoolingCoil_room_base_10_attr_fanSpeed_value,
-        api:PUT_ent_CoolingCoil_room_base_1_attr_fanSpeed_value,
-        api:PUT_ent_CoolingCoil_room_base_2_attr_fanSpeed_value,
-        api:PUT_ent_CoolingCoil_room_base_3_attr_fanSpeed_value,
-        api:PUT_ent_CoolingCoil_room_base_4_attr_fanSpeed_value,
-        api:PUT_ent_CoolingCoil_room_base_5_attr_fanSpeed_value,
-        api:PUT_ent_CoolingCoil_room_base_6_attr_fanSpeed_value,
-        api:PUT_ent_CoolingCoil_room_base_7_attr_fanSpeed_value,
-        api:PUT_ent_CoolingCoil_room_base_8_attr_fanSpeed_value,
-        api:PUT_ent_CoolingCoil_room_base_9_attr_fanSpeed_value,
-        api:PUT_ent_FreshAirVentilation_room_base_10_attr_airFlowSetpoint_value,
-        api:PUT_ent_FreshAirVentilation_room_base_1_attr_airFlowSetpoint_value,
-        api:PUT_ent_FreshAirVentilation_room_base_2_attr_airFlowSetpoint_value,
-        api:PUT_ent_FreshAirVentilation_room_base_3_attr_airFlowSetpoint_value,
-        api:PUT_ent_FreshAirVentilation_room_base_4_attr_airFlowSetpoint_value,
-        api:PUT_ent_FreshAirVentilation_room_base_5_attr_airFlowSetpoint_value,
-        api:PUT_ent_FreshAirVentilation_room_base_6_attr_airFlowSetpoint_value,
-        api:PUT_ent_FreshAirVentilation_room_base_7_attr_airFlowSetpoint_value,
-        api:PUT_ent_FreshAirVentilation_room_base_8_attr_airFlowSetpoint_value,
-        api:PUT_ent_FreshAirVentilation_room_base_9_attr_airFlowSetpoint_value,
-        api:PUT_ent_PresenceSensor_room_base_10_attr_pir_value,
-        api:PUT_ent_PresenceSensor_room_base_1_attr_pir_value,
-        api:PUT_ent_PresenceSensor_room_base_2_attr_pir_value,
-        api:PUT_ent_PresenceSensor_room_base_3_attr_pir_value,
-        api:PUT_ent_PresenceSensor_room_base_4_attr_pir_value,
-        api:PUT_ent_PresenceSensor_room_base_5_attr_pir_value,
-        api:PUT_ent_PresenceSensor_room_base_6_attr_pir_value,
-        api:PUT_ent_PresenceSensor_room_base_7_attr_pir_value,
-        api:PUT_ent_PresenceSensor_room_base_8_attr_pir_value,
-        api:PUT_ent_PresenceSensor_room_base_9_attr_pir_value,
-        api:PUT_ent_RadiatorThermostat_room_base_10_attr_temperatureSetpoint_value,
-        api:PUT_ent_RadiatorThermostat_room_base_1_attr_temperatureSetpoint_value,
-        api:PUT_ent_RadiatorThermostat_room_base_2_attr_temperatureSetpoint_value,
-        api:PUT_ent_RadiatorThermostat_room_base_3_attr_temperatureSetpoint_value,
-        api:PUT_ent_RadiatorThermostat_room_base_4_attr_temperatureSetpoint_value,
-        api:PUT_ent_RadiatorThermostat_room_base_5_attr_temperatureSetpoint_value,
-        api:PUT_ent_RadiatorThermostat_room_base_6_attr_temperatureSetpoint_value,
-        api:PUT_ent_RadiatorThermostat_room_base_7_attr_temperatureSetpoint_value,
-        api:PUT_ent_RadiatorThermostat_room_base_8_attr_temperatureSetpoint_value,
-        api:PUT_ent_RadiatorThermostat_room_base_9_attr_temperatureSetpoint_value,
-        api:PUT_ent_TemperatureSensor_room_base_10_attr_temperature_value,
-        api:PUT_ent_TemperatureSensor_room_base_1_attr_temperature_value,
-        api:PUT_ent_TemperatureSensor_room_base_2_attr_temperature_value,
-        api:PUT_ent_TemperatureSensor_room_base_3_attr_temperature_value,
-        api:PUT_ent_TemperatureSensor_room_base_4_attr_temperature_value,
-        api:PUT_ent_TemperatureSensor_room_base_5_attr_temperature_value,
-        api:PUT_ent_TemperatureSensor_room_base_6_attr_temperature_value,
-        api:PUT_ent_TemperatureSensor_room_base_7_attr_temperature_value,
-        api:PUT_ent_TemperatureSensor_room_base_8_attr_temperature_value,
-        api:PUT_ent_TemperatureSensor_room_base_9_attr_temperature_value .
+    http:requests api:GET__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value,
+        api:GET__v2_entities_CO2Sensor_room_base_10_attrs_co2_value,
+        api:GET__v2_entities_CO2Sensor_room_base_1_attrs_co2_value,
+        api:GET__v2_entities_CO2Sensor_room_base_2_attrs_co2_value,
+        api:GET__v2_entities_CO2Sensor_room_base_3_attrs_co2_value,
+        api:GET__v2_entities_CO2Sensor_room_base_4_attrs_co2_value,
+        api:GET__v2_entities_CO2Sensor_room_base_5_attrs_co2_value,
+        api:GET__v2_entities_CO2Sensor_room_base_6_attrs_co2_value,
+        api:GET__v2_entities_CO2Sensor_room_base_7_attrs_co2_value,
+        api:GET__v2_entities_CO2Sensor_room_base_8_attrs_co2_value,
+        api:GET__v2_entities_CO2Sensor_room_base_9_attrs_co2_value,
+        api:GET__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value,
+        api:GET__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value,
+        api:GET__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value,
+        api:GET__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value,
+        api:GET__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value,
+        api:GET__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value,
+        api:GET__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value,
+        api:GET__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value,
+        api:GET__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value,
+        api:GET__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value,
+        api:GET__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value,
+        api:GET__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value,
+        api:GET__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value,
+        api:GET__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value,
+        api:GET__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value,
+        api:GET__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value,
+        api:GET__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value,
+        api:GET__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value,
+        api:GET__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value,
+        api:GET__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value,
+        api:GET__v2_entities_PresenceSensor_room_base_10_attrs_pir_value,
+        api:GET__v2_entities_PresenceSensor_room_base_1_attrs_pir_value,
+        api:GET__v2_entities_PresenceSensor_room_base_2_attrs_pir_value,
+        api:GET__v2_entities_PresenceSensor_room_base_3_attrs_pir_value,
+        api:GET__v2_entities_PresenceSensor_room_base_4_attrs_pir_value,
+        api:GET__v2_entities_PresenceSensor_room_base_5_attrs_pir_value,
+        api:GET__v2_entities_PresenceSensor_room_base_6_attrs_pir_value,
+        api:GET__v2_entities_PresenceSensor_room_base_7_attrs_pir_value,
+        api:GET__v2_entities_PresenceSensor_room_base_8_attrs_pir_value,
+        api:GET__v2_entities_PresenceSensor_room_base_9_attrs_pir_value,
+        api:GET__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value,
+        api:GET__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value,
+        api:GET__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value,
+        api:GET__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value,
+        api:GET__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value,
+        api:GET__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value,
+        api:GET__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value,
+        api:GET__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value,
+        api:GET__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value,
+        api:GET__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value,
+        api:GET__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value,
+        api:GET__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value,
+        api:GET__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value,
+        api:GET__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value,
+        api:GET__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value,
+        api:GET__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value,
+        api:GET__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value,
+        api:GET__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value,
+        api:GET__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value,
+        api:GET__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value,
+        api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value,
+        api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value,
+        api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value,
+        api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value,
+        api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value,
+        api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value,
+        api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value,
+        api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value,
+        api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value,
+        api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value,
+        api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value,
+        api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value,
+        api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value,
+        api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value,
+        api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value,
+        api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value,
+        api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value,
+        api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value,
+        api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value,
+        api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value,
+        api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value,
+        api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value,
+        api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value,
+        api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value,
+        api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value,
+        api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value,
+        api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value,
+        api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value,
+        api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value,
+        api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value,
+        api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value,
+        api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value,
+        api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value,
+        api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value,
+        api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value,
+        api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value,
+        api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value,
+        api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value,
+        api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value,
+        api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value,
+        api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value .
 
 http:absolutePath a rdf:Property ;
     rdfs:label "Request URI"@en ;
@@ -675,1225 +675,2140 @@ http:statusCodeValue a rdf:Property ;
 <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_9> a ns1:Thermostat ;
     ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_9> .
 
-api:GET_ent_AmbientTemperatureSensor_attr_temperatureAmb_value a http:Request ;
+api:GET__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value a http:Request ;
     http:absolutePath "/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value> .
 
-api:GET_ent_CO2Sensor_room_base_10_attr_co2_value a http:Request ;
+api:GET__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CO2Sensor_room_base_10_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_10/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_10/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_10/attrs/co2/value> .
 
-api:GET_ent_CO2Sensor_room_base_1_attr_co2_value a http:Request ;
+api:GET__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CO2Sensor_room_base_1_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_1/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_1/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_1/attrs/co2/value> .
 
-api:GET_ent_CO2Sensor_room_base_2_attr_co2_value a http:Request ;
+api:GET__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CO2Sensor_room_base_2_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_2/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_2/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_2/attrs/co2/value> .
 
-api:GET_ent_CO2Sensor_room_base_3_attr_co2_value a http:Request ;
+api:GET__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CO2Sensor_room_base_3_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_3/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_3/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_3/attrs/co2/value> .
 
-api:GET_ent_CO2Sensor_room_base_4_attr_co2_value a http:Request ;
+api:GET__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CO2Sensor_room_base_4_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_4/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_4/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_4/attrs/co2/value> .
 
-api:GET_ent_CO2Sensor_room_base_5_attr_co2_value a http:Request ;
+api:GET__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CO2Sensor_room_base_5_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_5/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_5/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_5/attrs/co2/value> .
 
-api:GET_ent_CO2Sensor_room_base_6_attr_co2_value a http:Request ;
+api:GET__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CO2Sensor_room_base_6_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_6/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_6/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_6/attrs/co2/value> .
 
-api:GET_ent_CO2Sensor_room_base_7_attr_co2_value a http:Request ;
+api:GET__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CO2Sensor_room_base_7_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_7/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_7/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_7/attrs/co2/value> .
 
-api:GET_ent_CO2Sensor_room_base_8_attr_co2_value a http:Request ;
+api:GET__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CO2Sensor_room_base_8_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_8/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_8/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_8/attrs/co2/value> .
 
-api:GET_ent_CO2Sensor_room_base_9_attr_co2_value a http:Request ;
+api:GET__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CO2Sensor_room_base_9_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_9/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_9/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_9/attrs/co2/value> .
 
-api:GET_ent_CoolingCoil_room_base_10_attr_fanSpeed_value a http:Request ;
+api:GET__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_10/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_10/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_10/attrs/fanSpeed/value> .
 
-api:GET_ent_CoolingCoil_room_base_1_attr_fanSpeed_value a http:Request ;
+api:GET__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_1/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_1/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_1/attrs/fanSpeed/value> .
 
-api:GET_ent_CoolingCoil_room_base_2_attr_fanSpeed_value a http:Request ;
+api:GET__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_2/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_2/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_2/attrs/fanSpeed/value> .
 
-api:GET_ent_CoolingCoil_room_base_3_attr_fanSpeed_value a http:Request ;
+api:GET__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_3/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_3/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_3/attrs/fanSpeed/value> .
 
-api:GET_ent_CoolingCoil_room_base_4_attr_fanSpeed_value a http:Request ;
+api:GET__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_4/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_4/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_4/attrs/fanSpeed/value> .
 
-api:GET_ent_CoolingCoil_room_base_5_attr_fanSpeed_value a http:Request ;
+api:GET__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_5/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_5/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_5/attrs/fanSpeed/value> .
 
-api:GET_ent_CoolingCoil_room_base_6_attr_fanSpeed_value a http:Request ;
+api:GET__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_6/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_6/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_6/attrs/fanSpeed/value> .
 
-api:GET_ent_CoolingCoil_room_base_7_attr_fanSpeed_value a http:Request ;
+api:GET__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_7/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_7/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_7/attrs/fanSpeed/value> .
 
-api:GET_ent_CoolingCoil_room_base_8_attr_fanSpeed_value a http:Request ;
+api:GET__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_8/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_8/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_8/attrs/fanSpeed/value> .
 
-api:GET_ent_CoolingCoil_room_base_9_attr_fanSpeed_value a http:Request ;
+api:GET__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_9/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_9/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_9/attrs/fanSpeed/value> .
 
-api:GET_ent_FreshAirVentilation_room_base_10_attr_airFlowSetpoint_value a http:Request ;
+api:GET__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value> .
 
-api:GET_ent_FreshAirVentilation_room_base_1_attr_airFlowSetpoint_value a http:Request ;
+api:GET__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value> .
 
-api:GET_ent_FreshAirVentilation_room_base_2_attr_airFlowSetpoint_value a http:Request ;
+api:GET__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value> .
 
-api:GET_ent_FreshAirVentilation_room_base_3_attr_airFlowSetpoint_value a http:Request ;
+api:GET__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value> .
 
-api:GET_ent_FreshAirVentilation_room_base_4_attr_airFlowSetpoint_value a http:Request ;
+api:GET__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value> .
 
-api:GET_ent_FreshAirVentilation_room_base_5_attr_airFlowSetpoint_value a http:Request ;
+api:GET__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value> .
 
-api:GET_ent_FreshAirVentilation_room_base_6_attr_airFlowSetpoint_value a http:Request ;
+api:GET__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value> .
 
-api:GET_ent_FreshAirVentilation_room_base_7_attr_airFlowSetpoint_value a http:Request ;
+api:GET__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value> .
 
-api:GET_ent_FreshAirVentilation_room_base_8_attr_airFlowSetpoint_value a http:Request ;
+api:GET__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value> .
 
-api:GET_ent_FreshAirVentilation_room_base_9_attr_airFlowSetpoint_value a http:Request ;
+api:GET__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value> .
 
-api:GET_ent_PresenceSensor_room_base_10_attr_pir_value a http:Request ;
+api:GET__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_PresenceSensor_room_base_10_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_10/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_10/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_10/attrs/pir/value> .
 
-api:GET_ent_PresenceSensor_room_base_1_attr_pir_value a http:Request ;
+api:GET__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_PresenceSensor_room_base_1_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_1/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_1/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_1/attrs/pir/value> .
 
-api:GET_ent_PresenceSensor_room_base_2_attr_pir_value a http:Request ;
+api:GET__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_PresenceSensor_room_base_2_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_2/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_2/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_2/attrs/pir/value> .
 
-api:GET_ent_PresenceSensor_room_base_3_attr_pir_value a http:Request ;
+api:GET__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_PresenceSensor_room_base_3_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_3/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_3/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_3/attrs/pir/value> .
 
-api:GET_ent_PresenceSensor_room_base_4_attr_pir_value a http:Request ;
+api:GET__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_PresenceSensor_room_base_4_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_4/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_4/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_4/attrs/pir/value> .
 
-api:GET_ent_PresenceSensor_room_base_5_attr_pir_value a http:Request ;
+api:GET__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_PresenceSensor_room_base_5_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_5/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_5/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_5/attrs/pir/value> .
 
-api:GET_ent_PresenceSensor_room_base_6_attr_pir_value a http:Request ;
+api:GET__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_PresenceSensor_room_base_6_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_6/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_6/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_6/attrs/pir/value> .
 
-api:GET_ent_PresenceSensor_room_base_7_attr_pir_value a http:Request ;
+api:GET__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_PresenceSensor_room_base_7_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_7/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_7/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_7/attrs/pir/value> .
 
-api:GET_ent_PresenceSensor_room_base_8_attr_pir_value a http:Request ;
+api:GET__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_PresenceSensor_room_base_8_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_8/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_8/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_8/attrs/pir/value> .
 
-api:GET_ent_PresenceSensor_room_base_9_attr_pir_value a http:Request ;
+api:GET__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_PresenceSensor_room_base_9_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_9/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_9/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_9/attrs/pir/value> .
 
-api:GET_ent_RadiatorThermostat_room_base_10_attr_temperatureSetpoint_value a http:Request ;
+api:GET__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_10/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_10/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_10/attrs/temperatureSetpoint/value> .
 
-api:GET_ent_RadiatorThermostat_room_base_1_attr_temperatureSetpoint_value a http:Request ;
+api:GET__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_1/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_1/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_1/attrs/temperatureSetpoint/value> .
 
-api:GET_ent_RadiatorThermostat_room_base_2_attr_temperatureSetpoint_value a http:Request ;
+api:GET__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_2/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_2/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_2/attrs/temperatureSetpoint/value> .
 
-api:GET_ent_RadiatorThermostat_room_base_3_attr_temperatureSetpoint_value a http:Request ;
+api:GET__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_3/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_3/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_3/attrs/temperatureSetpoint/value> .
 
-api:GET_ent_RadiatorThermostat_room_base_4_attr_temperatureSetpoint_value a http:Request ;
+api:GET__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_4/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_4/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_4/attrs/temperatureSetpoint/value> .
 
-api:GET_ent_RadiatorThermostat_room_base_5_attr_temperatureSetpoint_value a http:Request ;
+api:GET__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_5/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_5/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_5/attrs/temperatureSetpoint/value> .
 
-api:GET_ent_RadiatorThermostat_room_base_6_attr_temperatureSetpoint_value a http:Request ;
+api:GET__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_6/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_6/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_6/attrs/temperatureSetpoint/value> .
 
-api:GET_ent_RadiatorThermostat_room_base_7_attr_temperatureSetpoint_value a http:Request ;
+api:GET__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_7/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_7/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_7/attrs/temperatureSetpoint/value> .
 
-api:GET_ent_RadiatorThermostat_room_base_8_attr_temperatureSetpoint_value a http:Request ;
+api:GET__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_8/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_8/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_8/attrs/temperatureSetpoint/value> .
 
-api:GET_ent_RadiatorThermostat_room_base_9_attr_temperatureSetpoint_value a http:Request ;
+api:GET__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_9/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_9/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_9/attrs/temperatureSetpoint/value> .
 
-api:GET_ent_TemperatureSensor_room_base_10_attr_temperature_value a http:Request ;
+api:GET__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_10/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_10/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_10/attrs/temperature/value> .
 
-api:GET_ent_TemperatureSensor_room_base_1_attr_temperature_value a http:Request ;
+api:GET__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value> .
 
-api:GET_ent_TemperatureSensor_room_base_2_attr_temperature_value a http:Request ;
+api:GET__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value> .
 
-api:GET_ent_TemperatureSensor_room_base_3_attr_temperature_value a http:Request ;
+api:GET__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_3/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_3/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_3/attrs/temperature/value> .
 
-api:GET_ent_TemperatureSensor_room_base_4_attr_temperature_value a http:Request ;
+api:GET__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_4/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_4/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_4/attrs/temperature/value> .
 
-api:GET_ent_TemperatureSensor_room_base_5_attr_temperature_value a http:Request ;
+api:GET__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_5/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_5/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_5/attrs/temperature/value> .
 
-api:GET_ent_TemperatureSensor_room_base_6_attr_temperature_value a http:Request ;
+api:GET__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_6/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_6/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_6/attrs/temperature/value> .
 
-api:GET_ent_TemperatureSensor_room_base_7_attr_temperature_value a http:Request ;
+api:GET__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_7/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_7/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_7/attrs/temperature/value> .
 
-api:GET_ent_TemperatureSensor_room_base_8_attr_temperature_value a http:Request ;
+api:GET__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_8/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_8/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_8/attrs/temperature/value> .
 
-api:GET_ent_TemperatureSensor_room_base_9_attr_temperature_value a http:Request ;
+api:GET__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:GET__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_9/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_9/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
+    http:headers api:GET__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_type ;
     http:methodName "GET" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_9/attrs/temperature/value> .
 
-api:PUT_ent_AmbientTemperatureSensor_attr_temperatureAmb_value a http:Request ;
+api:GET__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value a http:Request ;
     http:absolutePath "/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_AmbientTemperatureSensor_attr_temperatureAmb_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_Content_Type,
+        api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_body,
+        api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value> .
 
-api:PUT_ent_AmbientTemperatureSensor_attr_temperatureAmb_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CO2Sensor_room_base_10_attr_co2_value a http:Request ;
+api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_10/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_10/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CO2Sensor_room_base_10_attr_co2_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_Content_Type,
+        api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_body,
+        api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_10/attrs/co2/value> .
 
-api:PUT_ent_CO2Sensor_room_base_10_attr_co2_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CO2Sensor_room_base_1_attr_co2_value a http:Request ;
+api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_1/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_1/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CO2Sensor_room_base_1_attr_co2_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_Content_Type,
+        api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_body,
+        api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_1/attrs/co2/value> .
 
-api:PUT_ent_CO2Sensor_room_base_1_attr_co2_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CO2Sensor_room_base_2_attr_co2_value a http:Request ;
+api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_2/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_2/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CO2Sensor_room_base_2_attr_co2_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_Content_Type,
+        api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_body,
+        api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_2/attrs/co2/value> .
 
-api:PUT_ent_CO2Sensor_room_base_2_attr_co2_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CO2Sensor_room_base_3_attr_co2_value a http:Request ;
+api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_3/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_3/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CO2Sensor_room_base_3_attr_co2_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_Content_Type,
+        api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_body,
+        api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_3/attrs/co2/value> .
 
-api:PUT_ent_CO2Sensor_room_base_3_attr_co2_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CO2Sensor_room_base_4_attr_co2_value a http:Request ;
+api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_4/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_4/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CO2Sensor_room_base_4_attr_co2_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_Content_Type,
+        api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_body,
+        api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_4/attrs/co2/value> .
 
-api:PUT_ent_CO2Sensor_room_base_4_attr_co2_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CO2Sensor_room_base_5_attr_co2_value a http:Request ;
+api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_5/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_5/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CO2Sensor_room_base_5_attr_co2_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_Content_Type,
+        api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_body,
+        api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_5/attrs/co2/value> .
 
-api:PUT_ent_CO2Sensor_room_base_5_attr_co2_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CO2Sensor_room_base_6_attr_co2_value a http:Request ;
+api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_6/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_6/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CO2Sensor_room_base_6_attr_co2_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_Content_Type,
+        api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_body,
+        api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_6/attrs/co2/value> .
 
-api:PUT_ent_CO2Sensor_room_base_6_attr_co2_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CO2Sensor_room_base_7_attr_co2_value a http:Request ;
+api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_7/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_7/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CO2Sensor_room_base_7_attr_co2_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_Content_Type,
+        api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_body,
+        api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_7/attrs/co2/value> .
 
-api:PUT_ent_CO2Sensor_room_base_7_attr_co2_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CO2Sensor_room_base_8_attr_co2_value a http:Request ;
+api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_8/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_8/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CO2Sensor_room_base_8_attr_co2_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_Content_Type,
+        api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_body,
+        api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_8/attrs/co2/value> .
 
-api:PUT_ent_CO2Sensor_room_base_8_attr_co2_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CO2Sensor_room_base_9_attr_co2_value a http:Request ;
+api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_9/attrs/co2/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_9/attrs/co2/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CO2Sensor_room_base_9_attr_co2_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_Content_Type,
+        api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_body,
+        api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_9/attrs/co2/value> .
 
-api:PUT_ent_CO2Sensor_room_base_9_attr_co2_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CoolingCoil_room_base_10_attr_fanSpeed_value a http:Request ;
+api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_10/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_10/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CoolingCoil_room_base_10_attr_fanSpeed_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_Content_Type,
+        api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_body,
+        api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_10/attrs/fanSpeed/value> .
 
-api:PUT_ent_CoolingCoil_room_base_10_attr_fanSpeed_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CoolingCoil_room_base_1_attr_fanSpeed_value a http:Request ;
+api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_1/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_1/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CoolingCoil_room_base_1_attr_fanSpeed_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_Content_Type,
+        api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_body,
+        api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_1/attrs/fanSpeed/value> .
 
-api:PUT_ent_CoolingCoil_room_base_1_attr_fanSpeed_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CoolingCoil_room_base_2_attr_fanSpeed_value a http:Request ;
+api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_2/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_2/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CoolingCoil_room_base_2_attr_fanSpeed_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_Content_Type,
+        api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_body,
+        api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_2/attrs/fanSpeed/value> .
 
-api:PUT_ent_CoolingCoil_room_base_2_attr_fanSpeed_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CoolingCoil_room_base_3_attr_fanSpeed_value a http:Request ;
+api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_3/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_3/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CoolingCoil_room_base_3_attr_fanSpeed_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_Content_Type,
+        api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_body,
+        api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_3/attrs/fanSpeed/value> .
 
-api:PUT_ent_CoolingCoil_room_base_3_attr_fanSpeed_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CoolingCoil_room_base_4_attr_fanSpeed_value a http:Request ;
+api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_4/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_4/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CoolingCoil_room_base_4_attr_fanSpeed_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_Content_Type,
+        api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_body,
+        api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_4/attrs/fanSpeed/value> .
 
-api:PUT_ent_CoolingCoil_room_base_4_attr_fanSpeed_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CoolingCoil_room_base_5_attr_fanSpeed_value a http:Request ;
+api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_5/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_5/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CoolingCoil_room_base_5_attr_fanSpeed_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_Content_Type,
+        api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_body,
+        api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_5/attrs/fanSpeed/value> .
 
-api:PUT_ent_CoolingCoil_room_base_5_attr_fanSpeed_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CoolingCoil_room_base_6_attr_fanSpeed_value a http:Request ;
+api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_6/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_6/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CoolingCoil_room_base_6_attr_fanSpeed_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_Content_Type,
+        api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_body,
+        api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_6/attrs/fanSpeed/value> .
 
-api:PUT_ent_CoolingCoil_room_base_6_attr_fanSpeed_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CoolingCoil_room_base_7_attr_fanSpeed_value a http:Request ;
+api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_7/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_7/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CoolingCoil_room_base_7_attr_fanSpeed_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_Content_Type,
+        api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_body,
+        api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_7/attrs/fanSpeed/value> .
 
-api:PUT_ent_CoolingCoil_room_base_7_attr_fanSpeed_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CoolingCoil_room_base_8_attr_fanSpeed_value a http:Request ;
+api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_8/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_8/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CoolingCoil_room_base_8_attr_fanSpeed_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_Content_Type,
+        api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_body,
+        api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_8/attrs/fanSpeed/value> .
 
-api:PUT_ent_CoolingCoil_room_base_8_attr_fanSpeed_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_CoolingCoil_room_base_9_attr_fanSpeed_value a http:Request ;
+api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_9/attrs/fanSpeed/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_9/attrs/fanSpeed/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_CoolingCoil_room_base_9_attr_fanSpeed_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_Content_Type,
+        api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_body,
+        api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_9/attrs/fanSpeed/value> .
 
-api:PUT_ent_CoolingCoil_room_base_9_attr_fanSpeed_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_FreshAirVentilation_room_base_10_attr_airFlowSetpoint_value a http:Request ;
+api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_FreshAirVentilation_room_base_10_attr_airFlowSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_body,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value> .
 
-api:PUT_ent_FreshAirVentilation_room_base_10_attr_airFlowSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_FreshAirVentilation_room_base_1_attr_airFlowSetpoint_value a http:Request ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_FreshAirVentilation_room_base_1_attr_airFlowSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_body,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value> .
 
-api:PUT_ent_FreshAirVentilation_room_base_1_attr_airFlowSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_FreshAirVentilation_room_base_2_attr_airFlowSetpoint_value a http:Request ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_FreshAirVentilation_room_base_2_attr_airFlowSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_body,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value> .
 
-api:PUT_ent_FreshAirVentilation_room_base_2_attr_airFlowSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_FreshAirVentilation_room_base_3_attr_airFlowSetpoint_value a http:Request ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_FreshAirVentilation_room_base_3_attr_airFlowSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_body,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value> .
 
-api:PUT_ent_FreshAirVentilation_room_base_3_attr_airFlowSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_FreshAirVentilation_room_base_4_attr_airFlowSetpoint_value a http:Request ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_FreshAirVentilation_room_base_4_attr_airFlowSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_body,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value> .
 
-api:PUT_ent_FreshAirVentilation_room_base_4_attr_airFlowSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_FreshAirVentilation_room_base_5_attr_airFlowSetpoint_value a http:Request ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_FreshAirVentilation_room_base_5_attr_airFlowSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_body,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value> .
 
-api:PUT_ent_FreshAirVentilation_room_base_5_attr_airFlowSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_FreshAirVentilation_room_base_6_attr_airFlowSetpoint_value a http:Request ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_FreshAirVentilation_room_base_6_attr_airFlowSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_body,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value> .
 
-api:PUT_ent_FreshAirVentilation_room_base_6_attr_airFlowSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_FreshAirVentilation_room_base_7_attr_airFlowSetpoint_value a http:Request ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_FreshAirVentilation_room_base_7_attr_airFlowSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_body,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value> .
 
-api:PUT_ent_FreshAirVentilation_room_base_7_attr_airFlowSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_FreshAirVentilation_room_base_8_attr_airFlowSetpoint_value a http:Request ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_FreshAirVentilation_room_base_8_attr_airFlowSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_body,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value> .
 
-api:PUT_ent_FreshAirVentilation_room_base_8_attr_airFlowSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_FreshAirVentilation_room_base_9_attr_airFlowSetpoint_value a http:Request ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_FreshAirVentilation_room_base_9_attr_airFlowSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_body,
+        api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value> .
 
-api:PUT_ent_FreshAirVentilation_room_base_9_attr_airFlowSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_PresenceSensor_room_base_10_attr_pir_value a http:Request ;
+api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_10/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_10/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_PresenceSensor_room_base_10_attr_pir_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_Content_Type,
+        api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_body,
+        api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_10/attrs/pir/value> .
 
-api:PUT_ent_PresenceSensor_room_base_10_attr_pir_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_PresenceSensor_room_base_1_attr_pir_value a http:Request ;
+api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_1/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_1/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_PresenceSensor_room_base_1_attr_pir_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_Content_Type,
+        api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_body,
+        api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_1/attrs/pir/value> .
 
-api:PUT_ent_PresenceSensor_room_base_1_attr_pir_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_PresenceSensor_room_base_2_attr_pir_value a http:Request ;
+api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_2/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_2/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_PresenceSensor_room_base_2_attr_pir_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_Content_Type,
+        api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_body,
+        api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_2/attrs/pir/value> .
 
-api:PUT_ent_PresenceSensor_room_base_2_attr_pir_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_PresenceSensor_room_base_3_attr_pir_value a http:Request ;
+api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_3/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_3/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_PresenceSensor_room_base_3_attr_pir_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_Content_Type,
+        api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_body,
+        api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_3/attrs/pir/value> .
 
-api:PUT_ent_PresenceSensor_room_base_3_attr_pir_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_PresenceSensor_room_base_4_attr_pir_value a http:Request ;
+api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_4/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_4/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_PresenceSensor_room_base_4_attr_pir_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_Content_Type,
+        api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_body,
+        api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_4/attrs/pir/value> .
 
-api:PUT_ent_PresenceSensor_room_base_4_attr_pir_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_PresenceSensor_room_base_5_attr_pir_value a http:Request ;
+api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_5/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_5/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_PresenceSensor_room_base_5_attr_pir_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_Content_Type,
+        api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_body,
+        api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_5/attrs/pir/value> .
 
-api:PUT_ent_PresenceSensor_room_base_5_attr_pir_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_PresenceSensor_room_base_6_attr_pir_value a http:Request ;
+api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_6/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_6/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_PresenceSensor_room_base_6_attr_pir_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_Content_Type,
+        api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_body,
+        api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_6/attrs/pir/value> .
 
-api:PUT_ent_PresenceSensor_room_base_6_attr_pir_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_PresenceSensor_room_base_7_attr_pir_value a http:Request ;
+api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_7/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_7/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_PresenceSensor_room_base_7_attr_pir_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_Content_Type,
+        api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_body,
+        api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_7/attrs/pir/value> .
 
-api:PUT_ent_PresenceSensor_room_base_7_attr_pir_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_PresenceSensor_room_base_8_attr_pir_value a http:Request ;
+api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_8/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_8/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_PresenceSensor_room_base_8_attr_pir_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_Content_Type,
+        api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_body,
+        api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_8/attrs/pir/value> .
 
-api:PUT_ent_PresenceSensor_room_base_8_attr_pir_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_PresenceSensor_room_base_9_attr_pir_value a http:Request ;
+api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_9/attrs/pir/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_9/attrs/pir/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_PresenceSensor_room_base_9_attr_pir_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_Content_Type,
+        api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_body,
+        api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_9/attrs/pir/value> .
 
-api:PUT_ent_PresenceSensor_room_base_9_attr_pir_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_RadiatorThermostat_room_base_10_attr_temperatureSetpoint_value a http:Request ;
+api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_10/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_10/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_RadiatorThermostat_room_base_10_attr_temperatureSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_body,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_10/attrs/temperatureSetpoint/value> .
 
-api:PUT_ent_RadiatorThermostat_room_base_10_attr_temperatureSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_RadiatorThermostat_room_base_1_attr_temperatureSetpoint_value a http:Request ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_1/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_1/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_RadiatorThermostat_room_base_1_attr_temperatureSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_body,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_1/attrs/temperatureSetpoint/value> .
 
-api:PUT_ent_RadiatorThermostat_room_base_1_attr_temperatureSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_RadiatorThermostat_room_base_2_attr_temperatureSetpoint_value a http:Request ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_2/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_2/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_RadiatorThermostat_room_base_2_attr_temperatureSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_body,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_2/attrs/temperatureSetpoint/value> .
 
-api:PUT_ent_RadiatorThermostat_room_base_2_attr_temperatureSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_RadiatorThermostat_room_base_3_attr_temperatureSetpoint_value a http:Request ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_3/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_3/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_RadiatorThermostat_room_base_3_attr_temperatureSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_body,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_3/attrs/temperatureSetpoint/value> .
 
-api:PUT_ent_RadiatorThermostat_room_base_3_attr_temperatureSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_RadiatorThermostat_room_base_4_attr_temperatureSetpoint_value a http:Request ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_4/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_4/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_RadiatorThermostat_room_base_4_attr_temperatureSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_body,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_4/attrs/temperatureSetpoint/value> .
 
-api:PUT_ent_RadiatorThermostat_room_base_4_attr_temperatureSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_RadiatorThermostat_room_base_5_attr_temperatureSetpoint_value a http:Request ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_5/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_5/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_RadiatorThermostat_room_base_5_attr_temperatureSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_body,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_5/attrs/temperatureSetpoint/value> .
 
-api:PUT_ent_RadiatorThermostat_room_base_5_attr_temperatureSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_RadiatorThermostat_room_base_6_attr_temperatureSetpoint_value a http:Request ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_6/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_6/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_RadiatorThermostat_room_base_6_attr_temperatureSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_body,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_6/attrs/temperatureSetpoint/value> .
 
-api:PUT_ent_RadiatorThermostat_room_base_6_attr_temperatureSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_RadiatorThermostat_room_base_7_attr_temperatureSetpoint_value a http:Request ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_7/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_7/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_RadiatorThermostat_room_base_7_attr_temperatureSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_body,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_7/attrs/temperatureSetpoint/value> .
 
-api:PUT_ent_RadiatorThermostat_room_base_7_attr_temperatureSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_RadiatorThermostat_room_base_8_attr_temperatureSetpoint_value a http:Request ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_8/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_8/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_RadiatorThermostat_room_base_8_attr_temperatureSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_body,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_8/attrs/temperatureSetpoint/value> .
 
-api:PUT_ent_RadiatorThermostat_room_base_8_attr_temperatureSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_RadiatorThermostat_room_base_9_attr_temperatureSetpoint_value a http:Request ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_9/attrs/temperatureSetpoint/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_9/attrs/temperatureSetpoint/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_RadiatorThermostat_room_base_9_attr_temperatureSetpoint_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_Content_Type,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_body,
+        api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_9/attrs/temperatureSetpoint/value> .
 
-api:PUT_ent_RadiatorThermostat_room_base_9_attr_temperatureSetpoint_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_TemperatureSensor_room_base_10_attr_temperature_value a http:Request ;
+api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_10/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_10/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_TemperatureSensor_room_base_10_attr_temperature_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_Content_Type,
+        api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_body,
+        api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_10/attrs/temperature/value> .
 
-api:PUT_ent_TemperatureSensor_room_base_10_attr_temperature_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_TemperatureSensor_room_base_1_attr_temperature_value a http:Request ;
+api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_TemperatureSensor_room_base_1_attr_temperature_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_Content_Type,
+        api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_body,
+        api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value> .
 
-api:PUT_ent_TemperatureSensor_room_base_1_attr_temperature_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_TemperatureSensor_room_base_2_attr_temperature_value a http:Request ;
+api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_TemperatureSensor_room_base_2_attr_temperature_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_Content_Type,
+        api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_body,
+        api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value> .
 
-api:PUT_ent_TemperatureSensor_room_base_2_attr_temperature_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_TemperatureSensor_room_base_3_attr_temperature_value a http:Request ;
+api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_3/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_3/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_TemperatureSensor_room_base_3_attr_temperature_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_Content_Type,
+        api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_body,
+        api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_3/attrs/temperature/value> .
 
-api:PUT_ent_TemperatureSensor_room_base_3_attr_temperature_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_TemperatureSensor_room_base_4_attr_temperature_value a http:Request ;
+api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_4/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_4/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_TemperatureSensor_room_base_4_attr_temperature_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_Content_Type,
+        api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_body,
+        api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_4/attrs/temperature/value> .
 
-api:PUT_ent_TemperatureSensor_room_base_4_attr_temperature_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_TemperatureSensor_room_base_5_attr_temperature_value a http:Request ;
+api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_5/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_5/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_TemperatureSensor_room_base_5_attr_temperature_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_Content_Type,
+        api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_body,
+        api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_5/attrs/temperature/value> .
 
-api:PUT_ent_TemperatureSensor_room_base_5_attr_temperature_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_TemperatureSensor_room_base_6_attr_temperature_value a http:Request ;
+api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_6/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_6/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_TemperatureSensor_room_base_6_attr_temperature_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_Content_Type,
+        api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_body,
+        api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_6/attrs/temperature/value> .
 
-api:PUT_ent_TemperatureSensor_room_base_6_attr_temperature_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_TemperatureSensor_room_base_7_attr_temperature_value a http:Request ;
+api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_7/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_7/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_TemperatureSensor_room_base_7_attr_temperature_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_Content_Type,
+        api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_body,
+        api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_7/attrs/temperature/value> .
 
-api:PUT_ent_TemperatureSensor_room_base_7_attr_temperature_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_TemperatureSensor_room_base_8_attr_temperature_value a http:Request ;
+api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_8/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_8/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_TemperatureSensor_room_base_8_attr_temperature_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_Content_Type,
+        api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_body,
+        api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_8/attrs/temperature/value> .
 
-api:PUT_ent_TemperatureSensor_room_base_8_attr_temperature_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
 
-api:PUT_ent_TemperatureSensor_room_base_9_attr_temperature_value a http:Request ;
+api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_9/attrs/temperature/value" ;
     http:absoluteURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_9/attrs/temperature/value> ;
     http:authority "fiware.eonerc.rwth-aachen.de" ;
-    http:headers api:PUT_ent_TemperatureSensor_room_base_9_attr_temperature_value_Header_Content_Type ;
+    http:headers api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_Content_Type,
+        api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_body,
+        api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_type ;
     http:methodName "PUT" ;
     http:requestURI <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_9/attrs/temperature/value> .
 
-api:PUT_ent_TemperatureSensor_room_base_9_attr_temperature_value_Header_Content_Type a http:MessageHeader ;
+api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
     http:fieldValue "" ;
     http:hdrName headers:content-type .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_body a http:MessageHeader ;
+    http:fieldName "body" ;
+    http:fieldValue "" .
+
+api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_type a http:MessageHeader ;
+    http:fieldName "type" ;
+    http:fieldValue "" .
 
 http:requestURI a rdf:Property ;
     rdfs:label "Request URI"@en ;

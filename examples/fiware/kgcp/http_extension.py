@@ -1,3 +1,4 @@
+# http_extension.py
 import json
 import re
 from pathlib import Path
@@ -9,98 +10,110 @@ def extend_with_http(input_ttl: Path,
                      openapi_json: Path,
                      http_onto_ttl: Path,
                      out_ttl: Path):
+    """
+    Load a Turtle KG and the W3C HTTP ontology, then:
+      1) Find every existing value node (i.e. every URI that appears as the object of rdf:value).
+      2) For each of those value nodes, create http:Request nodes for supported HTTP methods (GET/PUT),
+         populating http:methodName, http:absolutePath, http:absoluteURI, http:authority, and http:requestURI.
+      3) Create shared HTTP.MessageHeader nodes for all global parameters (header, query, path).
+      4) For each request, create inline MessageHeader nodes for operation-specific parameters (any 'in').
+      5) Attach all parameter/header nodes to each request via http:headers.
+      6) Link each request to a single shared Connection instance.
+      7) Serialize the augmented graph out to Turtle.
+    """
+    # Load KG and HTTP ontology
     kg = Graph()
     kg.parse(str(input_ttl), format='turtle')
     kg.parse(str(http_onto_ttl), format='turtle')
 
+    # Load OpenAPI spec
     with open(openapi_json, 'r') as f:
         spec = json.load(f)
 
-    global_params = {
-        name: param
-        for name, param in spec.get('components', {}).get('parameters', {}).items()
-        if param.get('in') == 'header'
-    }
-
-    HTTP    = Namespace('http://www.w3.org/2011/http#')
+    # Namespaces
+    HTTP = Namespace('http://www.w3.org/2011/http#')
     HEADERS = Namespace('http://www.w3.org/2011/http-headers#')
-    API     = Namespace('http://www.example.org/api#')
+    API = Namespace('http://www.example.org/api#')
     kg.bind('http', HTTP)
     kg.bind('headers', HEADERS)
     kg.bind('api', API)
 
+    # Create or reuse a Connection node
     conn = API['Connection_Main']
     kg.add((conn, RDF.type, HTTP.Connection))
 
-    value_uris = [o for s, p, o in kg.triples((None, RDF.value, None))
-                  if isinstance(o, URIRef)]
+    # Index global parameters (all 'in' types)
+    global_params = spec.get('components', {}).get('parameters', {})
+    shared_nodes = {}
+    for name, param in global_params.items():
+        if 'in' in param:
+            clean = re.sub(r"\W+", '_', name).strip('_')
+            node = API[f"GlobalParam_{clean}"]
+            if (node, None, None) not in kg:
+                kg.add((node, RDF.type, HTTP.MessageHeader))
+                kg.add((node, HTTP.fieldName, Literal(name)))
+                kg.add((node, HTTP.fieldValue, Literal(param.get('default', ''))))
+                if param['in'] == 'header':
+                    kg.add((node, HTTP.hdrName, HEADERS[name.lower()]))
+            shared_nodes[name] = node
 
-    shared_headers = {}
-    for header_name, header_def in global_params.items():
-        clean = re.sub(r"\W+", '_', header_name).strip('_')
-        hdr_node = API[f"Header_{clean}"]
-        if (hdr_node, None, None) not in kg:
-            kg.add((hdr_node, RDF.type, HTTP.MessageHeader))
-            kg.add((hdr_node, HTTP.fieldName, Literal(header_name)))
-            kg.add((hdr_node, HTTP.fieldValue, Literal(header_def.get('default', ''))))
-            hdr_const = HEADERS[header_name.lower()]
-            kg.add((hdr_node, HTTP.hdrName, hdr_const))
-        shared_headers[header_name] = hdr_node
+    # Gather all rdf:value URIs
+    value_uris = [o for _, _, o in kg.triples((None, RDF.value, None)) if isinstance(o, URIRef)]
 
-    def compile_path_regex(template: str):
-        esc = re.escape(template)
-        esc = esc.replace(r"\{entityId\}", r"([^/]+)")
-        esc = esc.replace(r"\{attrName\}", r"([^/]+)")
-        return re.compile(f"^{esc}$")
-
+    # Prepare path-to-method mapping for GET/PUT operations
     methods_map = {}
-    for tpl, ops in spec.get('paths', {}).items():
-        if tpl.endswith('/value'):
+    for path_tpl, ops in spec.get('paths', {}).items():
+        if path_tpl.endswith('/value'):
+            # Build regex: replace {var} with capture group
+            esc = re.escape(path_tpl)
+            esc = re.sub(r"\\\{[^/]+\\\}", r"([^/]+)", esc)
+            regex = re.compile(f"^{esc}$")
             verbs = [m.upper() for m in ops if m.lower() in ('get', 'put')]
             if verbs:
-                methods_map[tpl] = (compile_path_regex(tpl), verbs)
+                methods_map[path_tpl] = (regex, verbs)
 
+    # Process each value URI
     for uri in value_uris:
         parsed = urlparse(str(uri))
         path, authority = parsed.path, parsed.netloc
 
         for tpl, (regex, verbs) in methods_map.items():
-            match = regex.match(path)
-            if not match:
+            if not regex.match(path):
                 continue
-            ent, attr = match.group(1), match.group(2)
-
             for verb in verbs:
-                ent_safe  = re.sub(r"\W+", '_', ent).strip('_')
-                attr_safe = re.sub(r"\W+", '_', attr).strip('_')
-                req_id    = f"{verb}_ent_{ent_safe}_attr_{attr_safe}_value"
-                req_node  = API[req_id]
+                # Sanitize path to generate a valid ID
+                clean_path = re.sub(r"\W+", '_', path)
+                req_id = f"{verb}_{clean_path}"
+                req = API[req_id]
+                # Create Request node
+                kg.add((req, RDF.type, HTTP.Request))
+                kg.add((req, HTTP.methodName, Literal(verb)))
+                kg.add((req, HTTP.absolutePath, Literal(path)))
+                kg.add((req, HTTP.absoluteURI, URIRef(str(uri))))
+                kg.add((req, HTTP.authority, Literal(authority)))
+                kg.add((req, HTTP.requestURI, URIRef(str(uri))))
+                kg.add((conn, HTTP.requests, req))
 
-                kg.add((req_node, RDF.type,        HTTP.Request))
-                kg.add((req_node, HTTP.methodName,  Literal(verb)))
-                kg.add((req_node, HTTP.absolutePath, Literal(path)))
-                kg.add((req_node, HTTP.absoluteURI,  URIRef(str(uri))))
-                kg.add((req_node, HTTP.authority,    Literal(authority)))
-                kg.add((req_node, HTTP.requestURI,   URIRef(str(uri))))
-                kg.add((conn,    HTTP.requests,     req_node))
+                # Attach shared global parameter nodes
+                for node in shared_nodes.values():
+                    kg.add((req, HTTP.headers, node))
 
-                for hdr in shared_headers.values():
-                    kg.add((req_node, HTTP.headers, hdr))
-
+                # Handle inline operation parameters (skip path params entityId, attrName)
                 op = spec['paths'][tpl][verb.lower()]
                 for p in op.get('parameters', []):
-                    if p.get('in') != 'header':
+                    pname = p['name']
+                    if p.get('in') == 'path' and pname in ('entityId', 'attrName'):
                         continue
-                    pname  = p['name']
-                    clean  = re.sub(r"\W+", '_', pname).strip('_')
-                    hdr_req = API[f"{req_id}_Header_{clean}"]
-                    if (hdr_req, None, None) not in kg:
-                        kg.add((hdr_req, RDF.type, HTTP.MessageHeader))
-                        kg.add((hdr_req, HTTP.fieldName,  Literal(pname)))
-                        kg.add((hdr_req, HTTP.fieldValue, Literal(p.get('default') or p.get('example', ''))))
-                        hdr_const = HEADERS[pname.lower()]
-                        kg.add((hdr_req, HTTP.hdrName, hdr_const))
-                    kg.add((req_node, HTTP.headers, hdr_req))
+                    clean_p = re.sub(r"\W+", '_', pname).strip('_')
+                    node = API[f"{req_id}_Param_{clean_p}"]
+                    if (node, None, None) not in kg:
+                        kg.add((node, RDF.type, HTTP.MessageHeader))
+                        kg.add((node, HTTP.fieldName, Literal(pname)))
+                        kg.add((node, HTTP.fieldValue, Literal(p.get('default', p.get('example', '')))))
+                        if p.get('in') == 'header':
+                            kg.add((node, HTTP.hdrName, HEADERS[pname.lower()]))
+                    kg.add((req, HTTP.headers, node))
             break
 
+    # Serialize augmented graph
     kg.serialize(destination=str(out_ttl), format='turtle')
