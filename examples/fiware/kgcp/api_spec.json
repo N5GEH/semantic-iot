@@ -28,7 +28,21 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -222,6 +236,19 @@
             ],
             "type": "string",
             "description": "Options dictionary"
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -352,6 +379,19 @@
             ],
             "type": "string",
             "description": "Options dictionary"
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -458,6 +498,19 @@
             ],
             "type": "string",
             "description": "Options dictionary"
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -524,6 +577,19 @@
             "required": false,
             "type": "string",
             "description": "Entity type, to avoid ambiguity in case there are several\nentities with the same entity id."
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -605,6 +671,19 @@
             ],
             "type": "string",
             "description": "Options dictionary"
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -701,6 +780,19 @@
             ],
             "type": "string",
             "description": "Operations options"
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -777,6 +869,19 @@
             ],
             "type": "string",
             "description": "Operations options"
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -848,6 +953,19 @@
             ],
             "type": "string",
             "description": "Operations options"
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -903,6 +1021,19 @@
             "required": false,
             "type": "string",
             "description": "A list of metadata names to include in the response.\nSee \"Filtering out attributes and metadata\" section for more detail."
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -997,6 +1128,19 @@
             "required": false,
             "type": "string",
             "description": "Entity type, to avoid ambiguity in case there are several\nentities with the same entity id."
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -1066,6 +1210,19 @@
             "required": false,
             "type": "string",
             "description": "Entity type, to avoid ambiguity in case there are several\nentities with the same entity id."
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -1133,6 +1290,19 @@
             "required": false,
             "type": "string",
             "description": "Entity type, to avoid ambiguity in case there are several\nentities with the same entity id."
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -1228,6 +1398,19 @@
             "required": false,
             "type": "string",
             "description": "Entity type, to avoid ambiguity in case there are several\nentities with the same entity id."
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -1319,6 +1502,19 @@
             ],
             "type": "string",
             "description": "Options dictionary."
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -1428,6 +1624,19 @@
             "required": true,
             "type": "string",
             "description": "Entity Type"
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -1538,6 +1747,19 @@
             ],
             "type": "string",
             "description": "Options dictionary"
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -1651,6 +1873,19 @@
             "schema": {
               "$ref": "#/definitions/CreateSubscriptionRequest"
             }
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -1710,6 +1945,19 @@
             "required": true,
             "type": "string",
             "description": "subscription Id."
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -1745,6 +1993,19 @@
             "required": true,
             "type": "string",
             "description": "subscription Id."
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -1812,6 +2073,19 @@
             "schema": {
               "$ref": "#/definitions/UpdateSubscriptionRequest"
             }
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -1898,6 +2172,19 @@
             ],
             "type": "string",
             "description": "Options dictionary"
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -1998,6 +2285,19 @@
             "schema": {
               "$ref": "#/definitions/CreateRegistrationRequest"
             }
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -2057,6 +2357,19 @@
             "required": true,
             "type": "string",
             "description": "registration Id."
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -2145,6 +2458,19 @@
             "required": true,
             "type": "string",
             "description": "registration Id."
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -2212,6 +2538,19 @@
             "schema": {
               "$ref": "#/definitions/UpdateRegistrationRequest"
             }
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -2294,6 +2633,19 @@
             ],
             "type": "string",
             "description": "Options dictionary"
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -2418,6 +2770,19 @@
             ],
             "type": "string",
             "description": "Options dictionary"
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
@@ -2542,6 +2907,19 @@
             ],
             "type": "string",
             "description": "Options dictionary"
+          },
+          {
+            "name": "fiware-service",
+            "in": "header",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "fiware-servicepath",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "default": "/"
           }
         ],
         "responses": {
