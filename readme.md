@@ -1,4 +1,9 @@
-# Semantic-IoT
+# Semantic-IoT Framework
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/N5GEH/semantic-iot/blob/main/LICENSE)
+
+### Motivation
+
 Semantic-IoT is an innovative framework for generating knowledge graphs from data provisioned in IoT platforms.
 It aims to enhance the interoperability across different IoT systems by providing a unified semantic representation of IoT data.
 Hence, service providers can utilize the generated knowledge graphs to retrieve necessary information about the underlying IoT systems and the IoT middlewares in a standardized way.
