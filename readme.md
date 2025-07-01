@@ -1,10 +1,19 @@
 # Semantic-IoT
 Semantic-IoT is an innovative framework for generating knowledge graphs from data provisioned in IoT platforms.
-It aims to enhance the interoperability across different IoT platforms.
-This framework utilizes the [RDF Mapping Language (RML)](https://rml.io/specs/rml/) to facilitate the mapping of heterogeneous IoT data into structured and expressive knowledge graphs.
+It aims to enhance the interoperability across different IoT systems by providing a unified semantic representation of IoT data.
+Hence, service providers can utilize the generated knowledge graphs to retrieve necessary information about the underlying IoT systems and the IoT middlewares in a standardized way.
 
-### Framework Overview
-Following image gives an overview of the Semantic-IoT framework.
+![](./figures/Use_Case_Overview.png)
+
+In the building sector, for example, individual building systems are often managed by different IoT platforms, such as FIWARE, OpenHAB, or Home Assistant, etc.
+The heterogeneity from both sides leads to a lack of interoperability.
+Specifically, although promising smart building applications exist, such as building automation, fault detection, and energy monitoring, the deployment of these applications is a laborious task.
+Field engineers have to explore individual systems to make applications work properly.
+Semantic-IoT addresses this challenge by significantly facilitating the generation of knowledge graphs from IoT platforms, which can be used by the application providers to retrieve information about the underlying building systems, hence enabling automated deployment processes. 
+
+### Technical Overview
+Following image gives an technical overview of the Semantic-IoT framework.
+This framework utilizes the [RDF Mapping Language (RML)](https://rml.io/specs/rml/) to facilitate the mapping of heterogeneous IoT data into structured and expressive knowledge graphs.
 
 ![](./figures/framework_overview.png)
 
