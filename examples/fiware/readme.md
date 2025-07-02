@@ -3,6 +3,8 @@
 ### Introduction
 This is a demonstration of how to use **semantic-iot** framework to build up a Knowledge Graph Construction Pipline (**KGCP**) for FIWARE platform specialized for smart hotel use cases.
 
+![](../../figures/demonstration.png)
+
 To use the **semantic-iot** framework, **data models** must be already defined. Data stored in the IoT platform must also conform with the specific data models.
 In this demonstration, we provide data models for hotel energy systems in Python using [Pydantic](https://pydantic-docs.helpmanual.io/).
 These data models can be found in [`./datamodels/pydantic_models.py`](./datamodels/pydantic_models.py).
