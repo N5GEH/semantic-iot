@@ -119,7 +119,7 @@ class MappingPreprocess:
         return unique_report_list
 
     def load_ontology(self):
-        _graph = Graph()
+        _graph = Graph(bind_namespaces="none")
         for file in self.ontology_file_paths:
             _graph.parse(file, format="ttl")
 
@@ -150,6 +150,13 @@ class MappingPreprocess:
 
         # load namespaces
         self.ontology_prefixes = {p: str(ns) for p, ns in _graph.namespaces()}
+        # rename default namespace to the ontology name
+        default_namespace = self.ontology_prefixes.pop("", None)
+        if default_namespace:
+            # use the file name as the namespace prefix
+            ontology_name = os.path.splitext(os.path.basename(self.ontology_file_paths[0]))[0]
+            self.ontology_prefixes[ontology_name] = default_namespace
+
         # self.ontology_prefixes_convert = {v: k for k, v in self.ontology_prefixes.items()}
 
         # (beta) create embedding from ontology classes
