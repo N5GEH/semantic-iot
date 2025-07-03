@@ -56,7 +56,7 @@ After understanding this, you can start the data model identification and termin
 > A **beta** functionality using the embedding-model of [sentence-transformers](https://www.sbert.net/) has been implemented, which find suitable terminologies based on the semantic similarity. 
 
 ### Step 2 validation and completion
-The last step generate a human-friendly report, i.e., **"resource node relationship document"**, which can be found as [`./kgcp/rml//brick/rdf_node_relationship_brick.json`](./kgcp/rml//brick/rdf_node_relationship_brick.json).
+The last step generate a human-friendly report, i.e., **"resource node relationship document"**, which can be found as [`./kgcp/rml//brick/intermediate_report_brick.json`](./kgcp/rml//brick/intermediate_report_brick.json).
 In this report, different **resource types** in the data models are identified and the terminology mappings to specific terms of the ontology are suggested based on the **string similarity**.
 For example, for the resource type `TemperatureSensor`:
 ````json
@@ -102,7 +102,7 @@ After that, the completed information for `TemperatureSensor` should look like t
 }
 ```
 
-A validated and completed **"resource node relationship"** document for this example is provided in [`./kgcp/rml/rdf_node_relationship_validated.json`](./kgcp/rml/rdf_node_relationship_validated.json).
+A validated and completed **"resource node relationship"** document for this example is provided in [`./kgcp/rml/intermediate_report_validated.json`](./kgcp/rml/intermediate_report_validated.json).
 
 ### Step 3 generate mapping file to build KGCP
 Based on the completed **"resource node relationship"** document, we can generate the RML mapping file for the KGCP.

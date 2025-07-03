@@ -36,7 +36,7 @@ class RMLMappingGenerator:
         with open(file_path, 'r') as file:
             return json.load(file)
 
-    def load_rdf_node_relationships(self):
+    def load_intermediate_reports(self):
         """Load RDF relationships and entities from specified files."""
         self.rdf_relationships = self.load_json_file(self.rdf_relationship_file)
 
@@ -96,7 +96,7 @@ class RMLMappingGenerator:
 #     )
 #
 #     # Load RDF relationships and entities
-#     rml_generator.load_rdf_node_relationships()
+#     rml_generator.load_intermediate_reports()
 #
 #     # Generate mapping file
 #     rml_generator.create_mapping_file()

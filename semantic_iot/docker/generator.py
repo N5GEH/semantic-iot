@@ -18,7 +18,7 @@ def main():
     )
 
     # Load RDF relationships and entities
-    rml_generator.load_rdf_node_relationships()
+    rml_generator.load_intermediate_reports()
 
     # Generate mapping file
     rml_generator.create_mapping_file()

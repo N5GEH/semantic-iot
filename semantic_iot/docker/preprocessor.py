@@ -17,7 +17,7 @@ def main():
     # Initialize the MappingPreprocess class with parsed arguments
     processor = MappingPreprocess(
         json_file_path=args.input_file,
-        rdf_node_relationship_file_path=args.output_file,
+        intermediate_report_file_path=args.output_file,
         ontology_file_paths=args.ontology_paths,
         unique_identifier_key=args.id_key,
         entity_type_keys=args.type_keys,
@@ -33,7 +33,7 @@ def main():
     processor.preprocess_extra_entities()
 
     # Generate RDF node relationship file if required
-    processor.create_rdf_node_relationship_file(overwrite=args.force)
+    processor.create_intermediate_report_file(overwrite=args.force)
 
 
 if __name__ == '__main__':

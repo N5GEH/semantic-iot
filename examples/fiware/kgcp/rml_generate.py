@@ -4,7 +4,7 @@ from pathlib import Path
 project_root_path = Path(__file__).parent.parent
 # Define Paths
 INPUT_RNR_FILE_PATH = os.path.join(project_root_path,
-                                   "kgcp\\rml\\brick\\rdf_node_relationship_validated_brick.json")
+                                   "kgcp\\rml\\brick\\intermediate_report_validated_brick.json")
 OUTPUT_RML_FILE_PATH = os.path.join(project_root_path,
                                     "kgcp\\rml\\fiware_hotel_rml.ttl")
 
@@ -15,7 +15,7 @@ rml_generator = RMLMappingGenerator(
 )
 
 # Load RDF relationships and entities
-rml_generator.load_rdf_node_relationships()
+rml_generator.load_intermediate_reports()
 
 # Generate mapping file
 rml_generator.create_mapping_file()

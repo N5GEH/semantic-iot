@@ -33,7 +33,7 @@ def rml_preprocess(json_file_path, ontology_file_paths, platform_config):
     # Initialize the MappingPreprocess class
     processor = MappingPreprocess(
         json_file_path=json_file_path,
-        rdf_node_relationship_file_path=json_file_path.replace(".json", "_node_relationship.json"),
+        intermediate_report_file_path=json_file_path.replace(".json", "_node_relationship.json"),
         ontology_file_paths=ontology_file_paths,
         platform_config=platform_config,
         # similarity_mode="string",  # levenshtein distance

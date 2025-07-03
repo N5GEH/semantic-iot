@@ -14,7 +14,7 @@ class MappingPreprocess:
     def __init__(self,
                  json_file_path: str = None,
                  ontology_file_paths: list = None,
-                 rdf_node_relationship_file_path: str = None,
+                 intermediate_report_file_path: str = None,
                  platform_config: str = None,
                  similarity_mode: str = "string",  # ["string", "semantic"]
                  patterns_splitting: list = None,
@@ -27,7 +27,7 @@ class MappingPreprocess:
         Args:
             json_file_path: Path to the JSON file containing the entities.
             ontology_file_paths: Paths of ontology  to be used for the mapping.
-            rdf_node_relationship_file_path: Path of the created node relationship file.
+            intermediate_report_file_path: Path of the created node relationship file.
             platform_config: Path to the platform configuration file, in which the
                 following parameters are defined:
                 - unique_identifier_key: unique key to identify node instances, e.g., 'id'. It
@@ -46,15 +46,15 @@ class MappingPreprocess:
                 need to be processed as additional entities during KG generation.
         """
         self.json_file_path = json_file_path
-        if not rdf_node_relationship_file_path:
+        if not intermediate_report_file_path:
             # get the path of the json file, change file name to node_relationship.json
             base_directory = os.path.dirname(
                 self.json_file_path)
-            self.rdf_node_relationship_file_path = os.path.join(
+            self.intermediate_report_file_path = os.path.join(
                 base_directory,
-                'rdf_node_relationship.json')
+                'intermediate_report.json')
         else:
-            self.rdf_node_relationship_file_path = rdf_node_relationship_file_path
+            self.intermediate_report_file_path = intermediate_report_file_path
         self.ontology_file_paths = ontology_file_paths
         self.ontology = None
         self.ontology_classes = None
@@ -547,16 +547,16 @@ class MappingPreprocess:
         # populate the report
         json_ld_data = {"@context": context, "@data": report_list}
         # Save the preprocess file
-        with open(self.rdf_node_relationship_file_path, 'w') as preprocessed_file:
+        with open(self.intermediate_report_file_path, 'w') as preprocessed_file:
             json.dump(json_ld_data, preprocessed_file, indent=2)
         print(f"RDF node relationship file generated as "
-              f"{self.rdf_node_relationship_file_path}")
+              f"{self.intermediate_report_file_path}")
 
-    def create_rdf_node_relationship_file(self, overwrite: bool = False):
+    def create_intermediate_report_file(self, overwrite: bool = False):
         # check if the file already exists
-        if os.path.exists(self.rdf_node_relationship_file_path) and not overwrite:
+        if os.path.exists(self.intermediate_report_file_path) and not overwrite:
             raise FileExistsError(f"File already exists: "
-                                  f"{self.rdf_node_relationship_file_path}. "
+                                  f"{self.intermediate_report_file_path}. "
                                   f"Set overwrite=True to overwrite the file."
                                   )
 
@@ -588,5 +588,5 @@ class MappingPreprocess:
 
     def pre_process(self, **kwargs):
         self.load_ontology()
-        self.create_rdf_node_relationship_file(**kwargs)
+        self.create_intermediate_report_file(**kwargs)
 
