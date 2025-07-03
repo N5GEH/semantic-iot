@@ -1,9 +1,5 @@
 {
   "@context": {
-    "xml": "http://www.w3.org/XML/1998/namespace",
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
     "bacnet": "http://data.ashrae.org/bacnet/2020#",
     "brick": "https://brickschema.org/schema/Brick#",
     "bsh": "https://brickschema.org/schema/BrickShape#",
@@ -11,6 +7,8 @@
     "owl": "http://www.w3.org/2002/07/owl#",
     "qudt": "http://qudt.org/schema/qudt/",
     "qudtqk": "http://qudt.org/vocab/quantitykind/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "rec": "https://w3id.org/rec#",
     "ref": "https://brickschema.org/schema/Brick/ref#",
     "s223": "http://data.ashrae.org/standard223#",
@@ -20,7 +18,8 @@
     "sosa": "http://www.w3.org/ns/sosa/",
     "tag": "https://brickschema.org/schema/BrickTag#",
     "unit": "http://qudt.org/vocab/unit/",
-    "vcard": "http://www.w3.org/2006/vcard/ns#"
+    "vcard": "http://www.w3.org/2006/vcard/ns#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
   },
   "@data": [
     {
@@ -71,6 +70,11 @@
           "relatedNodeType": "HotelRoom",
           "propertyClass": "brick:hasLocation",
           "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "fanSpeed_CoolingCoil",
+          "propertyClass": "brick:hasPoint",
+          "rawdataidentifier": "id"
         }
       ],
       "hasDataAccess": null
@@ -97,6 +101,11 @@
           "relatedNodeType": "HotelRoom",
           "propertyClass": "brick:hasLocation",
           "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "airFlowSetpoint_FreshAirVentilation",
+          "propertyClass": "brick:hasPoint",
+          "rawdataidentifier": "id"
         }
       ],
       "hasDataAccess": null
@@ -143,6 +152,11 @@
           "relatedNodeType": "HotelRoom",
           "propertyClass": "brick:hasLocation",
           "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperatureSetpoint_RadiatorThermostat",
+          "propertyClass": "brick:hasPoint",
+          "rawdataidentifier": "id"
         }
       ],
       "hasDataAccess": null
