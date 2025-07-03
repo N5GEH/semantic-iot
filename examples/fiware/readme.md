@@ -35,35 +35,33 @@ pip install -r examples/fiware/requirements.txt
 
 ### Step 1 data model identification & vocabulary mapping
 Set up the FIWARE platform specific configuration is the first step.
-In this demonstration, we provide a configuration file [`./kgcp/rml/brick/fiware_config.json`](./kgcp/rml/brick/fiware_config.json) for the specialized FIWARE platform:
+In this demonstration, we provide a configuration file [`./kgcp/rml/iware_config.json`](./kgcp/rml/fiware_config.json) for the specialized FIWARE platform:
 ```json
 {
     "ID_KEY": "id",
     "TYPE_KEYS": [
         "type"
-    ],
-    "JSONPATH_EXTRA_NODES": [
-        "$..fanSpeed",
-        "$..airFlowSetpoint",
-        "$..temperatureSetpoint"
     ]
 }
 ```
-The ``JSONPATH_EXTRA_NODES`` is used to append extra resource types, which are not directly modeled as entities in the JSON dataset. For example `fanSpeed` is modeled as a property of `CoolingCoil`, but it should be mapped to a separate resource type in the knowledge graph.
 
-After understanding this, you can start the data model identification and terminology mapping by running the script [`./kgcp/rml/rml_preprocess.py`](./kgcp/rml/rml_preprocess.py). In this case, the above configuration file and the domain ontology for building energy system, brick, are given as input.
-> **Note**: The terminology mapping is by default based on the **string similarity**.
+After understanding this, you can start the data model identification and terminology mapping by running the script [`./kgcp/rml_preprocess.py`](./kgcp/rml_preprocess.py). In this case, the above configuration file and the domain ontology for building energy system, brick, are given as input.
+> **Beta**: The terminology mapping is by default based on the **string similarity**.
 > A **beta** functionality using the embedding-model of [sentence-transformers](https://www.sbert.net/) has been implemented, which find suitable terminologies based on the semantic similarity. 
 
+Note that in  [`./kgcp/rml_preprocess.py`](./kgcp/rml_preprocess.py) there is an input that depends on the data model and the ontology used, i.e., `patterns_splitting`.
+This parameter is used to mitigate the issue of semantic difference between the data model and the ontology, for example, while the actuator setpoints are modeled as attributes of the corresponding devices, the Brick ontology requires the setpoints to be separate resources in KGs.
+This parameter contains a list of patterns, i.e., JSONPath, that are used to identify such substructures in the platform dataset.
+An initial run might be necessary to identify this semantic difference and to define the corresponding JSONPaths.
+For Brick ontology, the ``patterns_splitting`` is defined as: `["\$..fanSpeed","\$..airFlowSetpoint","\$..temperatureSetpoint"]`.
+
 ### Step 2 validation and completion
-The last step generate a human-friendly report, i.e., **"resource node relationship document"**, which can be found as [`./kgcp/rml//brick/intermediate_report_brick.json`](./kgcp/rml//brick/intermediate_report_brick.json).
+The last step generate a human-friendly report, i.e., **"intermediate report"**, which can be found as [`./kgcp/rml//brick/intermediate_report_brick.json`](./kgcp/rml//brick/intermediate_report_brick.json).
 In this report, different **resource types** in the data models are identified and the terminology mappings to specific terms of the ontology are suggested based on the **string similarity**.
 For example, for the resource type `TemperatureSensor`:
 ````json
 {
-    "identifier": "id",
     "nodetype": "TemperatureSensor",
-    "extraNode": false,
     "iterator": "$[?(@.type=='TemperatureSensor')]",
     "class": "**TODO: PLEASE CHECK** brick:Temperature_Sensor",
     "hasRelationship": [
@@ -102,10 +100,10 @@ After that, the completed information for `TemperatureSensor` should look like t
 }
 ```
 
-A validated and completed **"resource node relationship"** document for this example is provided in [`./kgcp/rml/intermediate_report_validated.json`](./kgcp/rml/intermediate_report_validated.json).
+A validated and completed **"intermediate report"** document for this example is provided in [`./kgcp/rml/brick/intermediate_report_validated_brick.json`](./kgcp/rml/brick/intermediate_report_validated_brick.json).
 
 ### Step 3 generate mapping file to build KGCP
-Based on the completed **"resource node relationship"** document, we can generate the RML mapping file for the KGCP.
+Based on the completed **"intermediate report"** document, we can generate the RML mapping file for the KGCP.
 In this demonstration, this step can be conducted by running the script [`./kgcp/rml_generate.py`](./kgcp/rml_generate.py).
 The generated RML mapping file can be found in [`./kgcp/rml/brick/fiware_hotel_rml.ttl`](kgcp/rml/brick/fiware_hotel_rml.ttl).
 
