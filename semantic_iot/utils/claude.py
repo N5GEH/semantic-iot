@@ -9,14 +9,14 @@ from memory_profiler import memory_usage
 import yaml
 from mermaid import Mermaid
 import textwrap
+import matplotlib.pyplot as plt
+import numpy as np
 import pyperclip # TODO just for offline mode, remove later
 
 from semantic_iot.utils.prompts import prompts
 
 from pathlib import Path
 root_path = Path(__file__).parent
-
-offline = True  # Set to True to use offline mode (no API calls)
 
 # Price in $ per million tokens (Base Input) (https://docs.anthropic.com/en/docs/about-claude/models/overview)
 models = {
@@ -57,9 +57,9 @@ class LLMAgent:
     def __init__(self, 
                  api_key: str = "", 
                  model: str = "4sonnet",
-                 temperature: float = 1.0,
-                 system_prompt: str = prompts.system_default,
-                 result_folder: str = "LLM_models/metrics",):
+                 temperature: float = 1.0, # must be 1.0 for thinking models
+                 system_prompt: str = prompts.cot_extraction,
+                 result_folder: str = "LLM_models/metrics"):
         """
         Initialize the Claude API processor
 
@@ -90,12 +90,13 @@ class LLMAgent:
         self.model_api = self.model["api"]
         self.thinking = self.model["thinking"]
         self.max_tokens = self.model["max_tokens"]
-        # print (f"\nUsing Claude model: {self.model_api} (Thinking Possible: {self.thinking}, Max Tokens: {self.max_tokens})")
 
         self.temperature = temperature
         self.system_prompt = system_prompt if system_prompt else "default"
 
-        self.result_folder = result_folder
+        # Ensure the result_folder ends with '/metrics' and create the directory if it doesn't exist
+        self.result_folder = str(Path(result_folder) / "metrics")
+        Path(self.result_folder).mkdir(parents=True, exist_ok=True)
 
         self.base_url = "https://api.anthropic.com/v1/messages"
         self.headers = {
@@ -122,7 +123,8 @@ class LLMAgent:
                 thinking: bool = True,
                 tools: str = "",
                 follow_up: bool = False,
-                stop_sequences: List[str] = []) -> Dict[str, Any]:
+                stop_sequences: List[str] = [],
+                offline: bool = False) -> Dict[str, Any]:
         """
         Send a query to Claude API
 
@@ -446,7 +448,7 @@ class LLMAgent:
     
         
         # END OF TERM & MAX TOKENS =========================================================
-        elif result.get("stop_reason") == "end_turn":
+        elif result.get("stop_reason") == "end_turn": # TODO compute metrics here
             output = self.extract_tag(response_text, "output")
             if output: response_text = output
             print(f"✨↪️  Model reply: {response_text}")
@@ -537,8 +539,10 @@ class LLMAgent:
         try:
             with open(path, "r", encoding="utf-8") as f:
                 existing_content = f.read()
+            print(f"📂 Appending to existing file: {path}")
         except FileNotFoundError:
             existing_content = ""
+            print(f"📂 File not found, creating new file: {path}")
 
         # Add new content
         for line in string.split("\n"):
@@ -620,7 +624,7 @@ class LLMAgent:
                         print(f"✅ Extracted valid JSON object from position 0 to {idx}")
                         return obj
                     except json.JSONDecodeError:
-                        print("ℹ️ Could not extract valid JSON, returning raw text")
+                        print("ℹ️  Could not extract valid JSON, returning raw text")
                         return text
             else:
                 return text
@@ -660,7 +664,8 @@ class LLMAgent:
         Extracts evaluation sections from text that start with 'EVALUATION:' 
         and continue until an empty line is encountered.
         """
-        evaluations = ""
+        evaluations_raw = ""
+        evaluations_data = {}
         lines = text.split('\n')
 
         i = 0
@@ -673,23 +678,235 @@ class LLMAgent:
                 
                 while i < len(lines):
                     current_line = lines[i]
-
-                    # # If line contains " - " (dash with spaces), keep only the part before it
-                    # if " - " in current_line.strip():
-                    #     current_line = current_line.split(" - ")[0]
                     
                     if current_line.strip() == "":
                         break
                     evaluation_lines.append(current_line)
                     i += 1
                 
-                evaluations += '\n'.join(evaluation_lines) + "\n\n"
+                evaluation_text = '\n'.join(evaluation_lines)
+
+                evaluations_raw += evaluation_text + "\n\n"
+
+                evaluation_data = self.parse_evaluation_data(evaluation_text)
+                if evaluation_data:
+                    evaluations_data[f"EVALUATION_{len(evaluations_data)+1}"] = evaluation_data
+
             i += 1
 
-        print(f"🔍 Found {evaluations.count('EVALUATION:')} evaluations in text")
-        print(evaluations)
+        print(f"🔍 Found {evaluations_raw.count('EVALUATION:')} evaluations in text")
 
-        return evaluations
+        if evaluations_data:
+            self._compute_metrics(evaluations_data)
+        else:
+            print("ℹ️  No evaluation data found in text")
+
+        return evaluations_raw
+    
+    
+    def parse_evaluation_data(self, text: str) -> dict:
+        """
+        Parse evaluation text and extract key-value pairs from lines with dashes.
+        """
+        result = {}
+        lines = [line.strip() for line in text.strip().split('\n') if line.strip()]
+        
+        # Parse the EVALUATION line if present
+        eval_line = next((line for line in lines if line.startswith("EVALUATION:")), "")
+        if eval_line:
+            result["evaluation_line"] = eval_line.replace("EVALUATION:", "").strip()
+        
+        # Parse key-value lines
+        for line in lines:
+            # Skip the EVALUATION line and empty lines
+            if line.startswith("EVALUATION:") or not line.strip():
+                continue
+                
+            # Look for lines with colons (key: value format)
+            if ':' in line:
+                # Remove leading dash if present
+                clean_line = line.lstrip('- ').strip()
+                
+                if ':' in clean_line:
+                    key, value_part = clean_line.split(':', 1)
+                    key = key.strip()
+                    
+                    # Split values by dashes and clean them
+                    values = [v.strip() for v in value_part.split('-') if v.strip()]
+                    
+                    # Store the parsed values
+                    if values:
+                        if key == "bloom" and len(values) >= 3:
+                            result["bloom"] = values[0]
+                            result["bloom_objective"] = values[1] 
+                            result["bloom_verb"] = values[2]
+                        elif key == "dim" and len(values) >= 2:
+                            result["dim"] = values[0]
+                            result["dim_knowledge"] = values[1]
+                        elif key == "quantity" and len(values) >= 2:
+                            result["quantity"] = values[0]
+                            result["quantity_noun"] = values[1]
+                        elif key == "human_effort" and len(values) >= 3:
+                            result["human_effort"] = values[0]
+                            result["effort_reasoning"] = values[1]
+                            result["effort_description"] = values[2]
+                        else:
+                            # Generic handling for other keys
+                            result[key] = values
+        
+        return result
+    
+    def _compute_metrics(self, evaluations_data: dict) -> dict:
+        """
+        Compute overall metrics from evaluation data.
+        
+        Args:
+            evaluations_data: Dictionary containing evaluation data
+            
+        Returns:
+            dict: Computed metrics
+        """
+
+        try:
+            # Compute total human effort
+            total_human_effort = 0
+            total_human_effort_weighted = 0
+            for key, eval_data in evaluations_data.items():
+                if "human_effort" in eval_data and eval_data["human_effort"].isdigit():
+                    total_human_effort += int(eval_data["human_effort"])
+                    total_human_effort_weighted += int(eval_data["human_effort"]) * int(eval_data.get("quantity", 1))
+
+            total_steps = len(evaluations_data)
+            heatmap = self._create_heatmap(evaluations_data)
+            heatmap_weighted = self._create_heatmap(evaluations_data, weighted=True)
+            average_human_effort = total_human_effort / total_steps if total_steps > 0 else 0
+
+            # Add computed metrics to evaluations_data
+            evaluations_data[f"COMPUTED"] = {
+                "total_steps": total_steps,
+                "total_human_effort": total_human_effort,
+                "total_human_effort_weighted": total_human_effort_weighted,
+                "average_human_effort": average_human_effort,
+                "heatmap": heatmap,
+                "heatmap_weighted": heatmap_weighted
+            }
+        except Exception as e:
+            print(f"⚠️  Error computing metrics: {e}")
+            evaluations_data[f"COMPUTED"] = {
+                "error": str(e),
+                "message": "Error computing metrics from evaluation data"
+            }
+
+        # Save evaluations data to a JSON file
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        evaluations_data_file = f"{self.result_folder}/evaluation_data_{timestamp}.json"
+        with open(evaluations_data_file, 'w', encoding='utf-8') as f:
+            json.dump(evaluations_data, f, indent=4, ensure_ascii=False)
+        print(f"⬇️  Evaluations saved to {evaluations_data_file}")
+        
+
+
+    def _create_heatmap(self, evaluations_data: dict, weighted: bool = False) -> dict:
+        """
+        Create a heatmap from evaluation data.
+        
+        Args:
+            evaluations_data: Dictionary containing evaluation data
+            
+        Returns:
+            dict: Heatmap data
+        """
+        heatmap = {
+            "Knowledge": {
+                "Factual Knowledge": 0,
+                "Conceptual Knowledge": 0,
+                "Procedural Knowledge": 0,
+                "Metacognitive Knowledge": 0,
+            },
+            "Comprehension": {
+                "Factual Knowledge": 0,
+                "Conceptual Knowledge": 0,
+                "Procedural Knowledge": 0,
+                "Metacognitive Knowledge": 0,
+            },
+            "Application": {
+                "Factual Knowledge": 0,
+                "Conceptual Knowledge": 0,
+                "Procedural Knowledge": 0,
+                "Metacognitive Knowledge": 0,
+            },
+            "Analysis": {
+                "Factual Knowledge": 0,
+                "Conceptual Knowledge": 0,
+                "Procedural Knowledge": 0,
+                "Metacognitive Knowledge": 0,
+            },
+            "Synthesis": {
+                "Factual Knowledge": 0,
+                "Conceptual Knowledge": 0,
+                "Procedural Knowledge": 0,
+                "Metacognitive Knowledge": 0,
+            },
+            "Evaluation": {
+                "Factual Knowledge": 0,
+                "Conceptual Knowledge": 0,
+                "Procedural Knowledge": 0,
+                "Metacognitive Knowledge": 0,
+            }
+        }
+        
+        for key, eval_data in evaluations_data.items():
+            if "bloom" in eval_data and "dim" in eval_data:
+                bloom = eval_data["bloom"]
+                dim = eval_data["dim"]
+                
+                if bloom not in heatmap:
+                    print(f"⚠️  Unknown Bloom level '{bloom}' in evaluation data, skipping...")
+                elif dim not in heatmap[bloom]:
+                    print(f"⚠️  Unknown Dimension '{dim}' in evaluation data, skipping...")
+                else:
+                    heatmap[bloom][dim] += 1
+                    if weighted and "quantity" in eval_data:
+                        quantity = eval_data["quantity"]
+                        try:
+                            quantity = int(quantity)
+                            heatmap[bloom][dim] += int(quantity)
+                        except (ValueError, TypeError):
+                            print(f"⚠️  Invalid quantity '{quantity}' with type '{type(quantity)}' for step '{key}', skipping...")
+
+
+        # Build the heatmap with matplotlib
+
+        # Prepare data for plotting
+        dim_levels = list(next(iter(heatmap.values())).keys())
+        bloom_levels = list(heatmap.keys())
+        data = np.array([[heatmap[bloom][dim] for bloom in bloom_levels] for dim in dim_levels])
+
+        fig, ax = plt.subplots(figsize=(10, 6))
+        im = ax.imshow(data, cmap="YlGnBu")
+
+        # Show all ticks and label them
+        ax.set_xticks(np.arange(len(bloom_levels)))
+        ax.set_yticks(np.arange(len(dim_levels)))
+        ax.set_xticklabels(bloom_levels)
+        ax.set_yticklabels(dim_levels)
+
+        # Rotate the tick labels and set alignment
+        plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+
+        # Loop over data dimensions and create text annotations
+        for i in range(len(dim_levels)):
+            for j in range(len(bloom_levels)):
+                ax.text(j, i, data[i, j], ha="center", va="center", color="black")
+
+        ax.set_title("Knowledge Dimension x Bloom Level Heatmap")
+        fig.tight_layout()
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        path = f"{self.result_folder}/heatmap{'_weighted' if weighted else ''}_{timestamp}.png"
+        plt.savefig(path)
+        plt.close(fig)
+
+        return heatmap
     
     def _parse_thinking_steps(self, thinking_text):
         """

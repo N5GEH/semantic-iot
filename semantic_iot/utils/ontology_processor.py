@@ -36,6 +36,9 @@ class OntologyProcessor:
         self.c_index = self._build_embeddings(self.classes)
         self.p_index = self._build_embeddings(self.properties)
 
+        # Initialize PropertyDependencyResolver
+        self.dependency_resolver = PropertyDependencyResolver(self.ont)
+
     def _get_shape_prefixes(self):
         shape_prefixes = set()
         for prefix, namespace in self.ont.namespaces():
@@ -164,7 +167,7 @@ class OntologyProcessor:
         property_results = []
 
         for query, type in queries.items():
-            print(f"Searching ontology {type} for '{query}'")
+            # print(f"Searching ontology {type} for '{query}'")
             if type == 'class':
                 index = self.c_index
             elif type == 'property':
@@ -174,7 +177,7 @@ class OntologyProcessor:
             
             # Embed the query
             query = self.camel_to_spaces(query)  # Convert camelCase to spaced words
-            print(f"Query after camel to spaces: {query}")
+            # print(f"Query after camel to spaces: {query}")
             query_embedding = self.embedding_model.encode(query, convert_to_tensor=True)
 
             # Calculate similarity with all indexed items
@@ -184,7 +187,10 @@ class OntologyProcessor:
                 results.append((data['prefixed'], similarity, data))
 
             # Filter top k
-            results = sorted(results, key=lambda x: x[1], reverse=True)[:top_k]
+            sort = sorted(results, key=lambda x: x[1], reverse=True)
+            if len(sort) > top_k:
+                sort = sort[:top_k]
+            results = sort
 
             if type == 'class':
                 class_results.extend(results)
@@ -234,11 +240,41 @@ class OntologyProcessor:
             String representation of the hierarchical tree structure
         """
         if term_type == "property":
-            # For properties, return a flat list as string
+            # For properties, include dependencies in the output
             tree_str = ""
             for item_id, score, info in results:
                 description = info.get("description", "")
-                tree_str += f"- {item_id}: {description}\n" if description else f"- {item_id}\n"
+                # tree_str += f"{item_id}: {description}\n" if description else f"- {item_id}\n"
+    
+                property_uri = info.get("uri")
+                
+                # Build property line
+                property_line = f"- {item_id}"
+                if description:
+                    property_line += f": {description}"
+                tree_str += property_line + "\n"
+                
+                # Get and display detailed dependencies
+                if property_uri:
+                    detailed_deps = self.dependency_resolver.get_detailed_dependencies(str(property_uri))
+                    # reverse_deps = self.dependency_resolver.get_reverse_dependencies(str(property_uri))
+                    reverse_deps = None
+                    
+                    if detailed_deps:
+                        # tree_str += "  Dependencies:"
+                        for relation_type, dep_uri in detailed_deps:
+                            dep_prefixed = self._convert_to_prefixed(dep_uri)
+                            tree_str += f"    - {relation_type}: {dep_prefixed}\n"
+                    
+                    if reverse_deps:
+                        # tree_str += "  Dependents:"
+                        for relation_type, dep_uri in reverse_deps:
+                            dep_prefixed = self._convert_to_prefixed(dep_uri)
+                            tree_str += f"    - {relation_type}: {dep_prefixed}\n"
+                    
+                    # if detailed_deps or reverse_deps:
+                    #     tree_str += "\n"
+                
             return tree_str
         
         # Build hierarchy for classes
@@ -365,10 +401,151 @@ class OntologyProcessor:
         
 
 
+class PropertyDependencyResolver:
+    def __init__(self, ontology_graph):
+        self.graph = ontology_graph
+        self.property_dependencies = self._build_dependency_map()
+    
+    def _build_dependency_map(self):
+        """Pre-compute all property dependencies"""
+        dependencies = {}
+        
+        # Query for all property relationships including both ObjectProperty and DatatypeProperty
+        query = """
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        
+        SELECT ?prop1 ?relation ?prop2 WHERE {
+            {
+                ?prop1 a owl:ObjectProperty .
+                ?prop1 ?relation ?prop2 .
+                ?prop2 a owl:ObjectProperty .
+            } UNION {
+                ?prop1 a owl:DatatypeProperty .
+                ?prop1 ?relation ?prop2 .
+                ?prop2 a owl:DatatypeProperty .
+            } UNION {
+                ?prop1 a rdf:Property .
+                ?prop1 ?relation ?prop2 .
+                ?prop2 a rdf:Property .
+            }
+            FILTER(?relation IN (
+                owl:equivalentProperty, 
+                rdfs:subPropertyOf, 
+                owl:inverseOf,
+                owl:propertyChainAxiom
+            ))
+        }
+        """
+        
+        try:
+            for prop1, relation, prop2 in self.graph.query(query):
+                if str(prop1) not in dependencies:
+                    dependencies[str(prop1)] = set()
+                dependencies[str(prop1)].add(str(prop2))
+        except Exception as e:
+            print(f"Warning: Could not build property dependency map: {e}")
+        
+        return dependencies
+    
+    def get_transitive_dependencies(self, property_uri):
+        """Get all transitive dependencies for a property"""
+        return self._dfs_dependencies(property_uri, set())
+    
+    def _dfs_dependencies(self, prop_uri, visited):
+        if prop_uri in visited:
+            return set()
+        
+        visited.add(prop_uri)
+        dependencies = set()
+        
+        if prop_uri in self.property_dependencies:
+            direct_deps = self.property_dependencies[prop_uri]
+            dependencies.update(direct_deps)
+            
+            for dep in direct_deps:
+                dependencies.update(self._dfs_dependencies(dep, visited.copy()))
+        
+        return dependencies
+
+    def get_detailed_dependencies(self, property_uri):
+        """Get detailed dependency information including relationship types"""
+        detailed_deps = []
+        
+        query = """
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        
+        SELECT ?relation ?prop2 WHERE {
+            <%s> ?relation ?prop2 .
+            {
+                ?prop2 a owl:ObjectProperty .
+            } UNION {
+                ?prop2 a owl:DatatypeProperty .
+            } UNION {
+                ?prop2 a rdf:Property .
+            }
+            FILTER(?relation IN (
+                owl:equivalentProperty, 
+                owl:inverseOf,
+                owl:propertyChainAxiom
+            ))
+        }
+        """ % property_uri 
+        # rdfs:subPropertyOf
+        
+        try:
+            for relation, prop2 in self.graph.query(query):
+                relation_name = str(relation).split('#')[-1] if '#' in str(relation) else str(relation).split('/')[-1]
+                detailed_deps.append((relation_name, str(prop2)))
+        except Exception as e:
+            print(f"Warning: Could not get detailed dependencies for {property_uri}: {e}")
+        
+        return detailed_deps
+
+    def get_reverse_dependencies(self, property_uri):
+        """Get properties that depend on the given property"""
+        reverse_deps = []
+        
+        query = """
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        
+        SELECT ?prop1 ?relation WHERE {
+            ?prop1 ?relation <%s> .
+            {
+                ?prop1 a owl:ObjectProperty .
+            } UNION {
+                ?prop1 a owl:DatatypeProperty .
+            } UNION {
+                ?prop1 a rdf:Property .
+            }
+            FILTER(?relation IN (
+                owl:equivalentProperty, 
+                owl:inverseOf,
+                owl:propertyChainAxiom
+            ))
+        }
+        """ % property_uri
+        # rdfs:subPropertyOf, 
+
+        
+        try:
+            for prop1, relation in self.graph.query(query):
+                relation_name = str(relation).split('#')[-1] if '#' in str(relation) else str(relation).split('/')[-1]
+                reverse_deps.append((relation_name, str(prop1)))
+        except Exception as e:
+            print(f"Warning: Could not get reverse dependencies for {property_uri}: {e}")
+        
+        return reverse_deps
+
     
 # Example usage:
 if __name__ == "__main__":
-    brick = OntologyProcessor("LLM_models/ontologies/DogOnt.ttl")
+    brick = OntologyProcessor("LLM_models/ontologies/brick.ttl")
 
     search_terms = {
         "Hotel": "class",
@@ -384,11 +561,11 @@ if __name__ == "__main__":
         "name": "property",
     }
 
-    # search_terms = {
-    #     "PresenceSensor": "class",
-    # }
+    search_terms = {
+        "hasLocation": "property",
+    }
 
-    results = brick.search(search_terms, top_k=20)
+    results = brick.search(search_terms, top_k=122)
 
     print("Search Results:")
     print(results)

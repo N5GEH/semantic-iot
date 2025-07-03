@@ -26,8 +26,9 @@ query_ventilation_devices = """
     WHERE {
       <room_uri> a rec:Room .
 
-      ?device a brick:Air_System .
-      ?actuation (brick:isPointOf|brick:isLocationOf) ?device .
+      ?device a ?device_type .
+      FILTER (?device_type IN (brick:Air_System, brick:Variable_Air_Volume_Box))
+      ?actuation (brick:isPointOf|brick:hasLocation|brick:isPartOf) ?device .
 
       OPTIONAL {
         ?actuation a ?actuation_type ;
@@ -38,7 +39,8 @@ query_ventilation_devices = """
       ?actuation (brick:isPointOf|brick:hasLocation|brick:isPartOf)* <room_uri> .
     }
 """
-# changes: added brick:isLocationOf option
+# changes: added ?actuation (brick:isPointOf|brick:hasLocation|brick:isPartOf) ?device option, 
+# add brick:Variable_Air_Volume_Box as option
 
 query_co2_sensor_availability = """
     PREFIX rec: <https://w3id.org/rec#>
@@ -114,11 +116,28 @@ class ControllerConfiguration:
         for room_entry in room_results:
             room_uri = room_entry['room']
 
+
+            # Query all information for the current room
+            devices_query = query_ventilation_devices.replace("<room_uri>", f"<{room_uri}>")
+            device_results = self.graph.query(devices_query)
+            self.all_query_results['devices'][str(room_uri)] = [str(row['device']) for row in device_results]
+
+            co2_query = query_co2_sensor_availability.replace("<room_uri>", f"<{room_uri}>")
+            co2_sensors = self.graph.query(co2_query)
+            self.all_query_results['co2_sensors'][str(room_uri)] = [str(row['sensor']) for row in co2_sensors]
+
+            presence_query = query_presence_sensor_availability.replace("<room_uri>", f"<{room_uri}>")
+            presence_sensors = self.graph.query(presence_query)
+            self.all_query_results['presence_sensors'][str(room_uri)] = [str(row['sensor']) for row in presence_sensors]
+
+
+
+
+
+
             # 1) Find ventilation devices for current room
             devices_query = query_ventilation_devices.replace("<room_uri>", f"<{room_uri}>")
             device_results = self.graph.query(devices_query)
-
-            self.all_query_results['devices'][str(room_uri)] = [str(row['device']) for row in device_results]
 
             # Skip if no ventilation devices found
             if not device_results:
@@ -132,8 +151,6 @@ class ControllerConfiguration:
             co2_query = query_co2_sensor_availability.replace("<room_uri>", f"<{room_uri}>")
             co2_sensors = self.graph.query(co2_query)
 
-            self.all_query_results['co2_sensors'][str(room_uri)] = [str(row['sensor']) for row in co2_sensors]
-
             if co2_sensors:
                 # If found CO2 sensor(s), pick the first for demonstration
                 sensor_access = co2_sensors.bindings[0].get('sensor_access', None)
@@ -143,14 +160,11 @@ class ControllerConfiguration:
                 # Check presence sensors for KG validation
                 presence_query = query_presence_sensor_availability.replace("<room_uri>", f"<{room_uri}>")
                 presence_sensors = self.graph.query(presence_query)
-                self.all_query_results['presence_sensors'][str(room_uri)] = [str(row['sensor']) for row in presence_sensors]
 
             else:
                 # b) Check presence sensor
                 presence_query = query_presence_sensor_availability.replace("<room_uri>", f"<{room_uri}>")
                 presence_sensors = self.graph.query(presence_query)
-
-                self.all_query_results['presence_sensors'][str(room_uri)] = [str(row['sensor']) for row in presence_sensors]
 
                 if presence_sensors:
                     # Pick the first presence sensor

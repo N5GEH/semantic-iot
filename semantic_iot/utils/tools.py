@@ -21,6 +21,49 @@ from semantic_iot.utils.prompts import prompts
 ###################################################################################
 # Tool definitions
 
+CONTEXT = [
+    {
+        "name": "term_mapper",
+        "description": "Finds all available ontology classes and properties for a list of terms.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "terms": {
+                    "type": "object",
+                    "description": "A dictionary of terms to be mapped. The keys are the terms. The terms must NOT describe a numerical property. The values are the type of the corresponding term and can only be 'class' and 'property'."
+                }
+            },
+            "required": ["terms", "ontology_path"]
+        }
+    },
+    {
+        "name": "get_endpoint_list",
+        "description": "Returns a list of all available endpoints from the API specification.",
+        "input_schema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+        }
+    },
+    {
+        "name": "get_non_numeric_classes",
+        "description": "Checks if the selected ontology classes have an (inherited) numerical property. If not, returns the class.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "target_classes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of target classes to check for numeric properties."
+                }
+            },
+            "required": ["target_classes", "ontology_path"]
+        }
+    }
+]
+
 FILE_ACCESS = [
     {
         "name": "save_to_file",
@@ -64,52 +107,7 @@ FILE_ACCESS = [
         }
     }
 ]
-CONTEXT = [
-    {
-        "name": "term_mapper",
-        "description": "Finds all available ontology classes and properties for a list of terms.",
-        "input_schema": {
-            "type": "object",
-            "properties": {
-                "terms": {
-                    "type": "object",
-                    "description": "A dictionary of terms to be mapped. The keys are the terms. The terms must NOT describe a numerical property. The values are the type of the corresponding term and can only be 'class' and 'property'."
-                },
-                "ontology_path": {
-                    "type": "string",
-                    "description": "The path to the ontology to use for mapping."
-                }
-            },
-            "required": ["terms", "ontology_path"]
-        }
-    },
-    {
-        "name": "get_endpoint_list",
-        "description": "Returns a list of all available endpoints from the API specification.",
-        "input_schema": {
-            "type": "object",
-            "properties": {},
-            "required": []
-        }
-    },
-    {
-        "name": "get_non_numeric_classes",
-        "description": "Checks if the selected ontology classes have an (inherited) numerical property. If not, returns the class.",
-        "input_schema": {
-            "type": "object",
-            "properties": {
-                "target_classes": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "A list of target classes to check for numeric properties."
-                }
-            },
-            "required": ["target_classes", "ontology_path"]
-        }
-    }
-]
+
 VALIDATION = [
     {
         "name": "reasoning",
@@ -237,6 +235,38 @@ SIOT_TOOLS = [
 ###############################################################################
 # Tool execution functions
 
+def term_mapper(terms: dict) -> str:
+    """
+    Maps the provided terms to ontology classes and properties using the ontology processor.
+    Returns a string representation of the search results.
+    """
+    brick = OntologyProcessor(prompts.ontology_path)
+    search_results = brick.search(terms, top_k=22)
+    return search_results
+
+def get_endpoint_list():
+    """
+    Retrieves a list of available API endpoints from the API specification.
+    """
+    spec = APISpecProcessor(prompts.api_spec_path)
+    return spec.get_endpoint_list()
+
+def get_non_numeric_classes(target_classes: List[str]) -> List[str]:
+    """
+    Returns a list of non-numeric classes from the ontology that match the target classes.
+    """
+    return ontology_processor.get_non_numeric_classes(target_classes)
+
+def raise_error(message: str):
+    """
+    Raises an error with the given message.
+    """
+    raise ValueError(f"❗️ Error: {message}")
+
+####################################################################################################
+# Not needed
+
+# File Access
 def save_to_file(file_path: str, content: str) -> None:
     """Saves the provided content to a file."""
     with open(file_path, 'w', encoding='utf-8') as file:
@@ -278,56 +308,6 @@ def get_file_paths () -> str:
     output.append("folder_one/")
     return "\n".join(output)
 
-def term_mapper(terms: dict, ontology_path: str, test: bool = False) -> str:
-
-    if test:
-        mapped_terms = {}
-        mapping = {
-            "Hotel": "rec:Shelter",
-            "HotelRoom": "rec:Bedroom",
-            "hasLocation": "brick:hasLocation",
-            "TemperatureSensor": "brick:Temperature_Sensor",
-            "CO2Sensor": "brick:CO2_Sensor",
-            "PresenceSensor": "brick:Occupancy_Sensor",
-            "FreshAirVentilation": "brick:Ventilation_Air_System",
-            "RadiatorThermostat": "brick:Radiator",
-            "CoolingCoil": "brick:Cooling_Coil",
-            "AmbientTemperatureSensor": "brick:Outside_Air_Temperature_Sensor",
-            "hasLocation": "brick:hasLocation",
-            "temperatureAmb": "brick:Temperature_Sensor",
-            "temperature": "bsh:TemperatureQuantityShape",
-            "co2": "bsh:CO2_ConcentrationQuantityShape",
-            "pir": "brick:PIR_Sensor",
-            "airFlowSetpoint": "brick:Air_Flow_Setpoint",
-            "temperatureSetpoint": "brick:Temperature_Setpoint",
-            "fanSpeed": "brick:Fan_Speed_Command"
-        }
-
-        for term, term_type in terms.items():
-            for to_mapped_term, mapped_class in mapping.items():
-                # print(f"Comparing {term} with {to_mapped_term}")    
-                if term == to_mapped_term:
-                    mapped_terms[term] = mapped_class
-                    break
-                # term = input(f"Enter mapping for {term}: ")
-                # mapped_terms[term] = mapped_class
-
-    else:
-        brick = OntologyProcessor(ontology_path)
-        search_results = brick.search(terms, top_k=22)
-        return search_results
-
-    # else:
-    #     from semantic_iot.utils.term_mapping import OntologyProcessor
-    #     mapped_terms = {}
-    #     for term, term_type in terms.items():
-    #         processor = OntologyProcessor(ontology_path)
-    #         result = processor.map_term(term, term_type)
-    #         mapped_terms[term] = result
-
-    
-    return mapped_terms
-    
 
 def get_endpoint_from_api_spec(api_spec_path: str, query: str):
     try:
@@ -336,16 +316,6 @@ def get_endpoint_from_api_spec(api_spec_path: str, query: str):
         processor = APISpecProcessor("LLM_models/" + api_spec_path, host_path=prompts.host_path)
     best_endpoint_path = processor.get_endpoint(query)['full_path']
     return best_endpoint_path
-
-def get_endpoint_list():
-    spec = APISpecProcessor(prompts.api_spec_path)
-    return spec.get_endpoint_list()
-
-def get_non_numeric_classes(target_classes: List[str]) -> List[str]:
-    """
-    Returns a list of non-numeric classes from the ontology that match the target classes.
-    """
-    return ontology_processor.get_non_numeric_classes(target_classes)
 
 def wait_for_sec(seconds: int = 60):
     print(f"⌚ Assistant sleeps for {seconds} sec...")
@@ -425,8 +395,27 @@ def validate_triple():
 
 def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
 
+    # For term_mapper tool
+    if tool_name == "term_mapper":
+        print (f"🔍 Mapping terms: {json.dumps(input_data['terms'], indent=2)} using ontology: {prompts.ontology_path}")
+        return {"ontology_terms": term_mapper(input_data["terms"]), "quantity": len(input_data["terms"])}
+
+    # For get_endpoint_list tool
+    elif tool_name == "get_endpoint_list":
+        endpoints = get_endpoint_list()
+        # endpoints = r"/items/{itemname}/state" # TODO remove
+        return {"endpoints": endpoints, "quantity": len(endpoints.splitlines())}
+    
+    # For get_non_numeric_classes tool
+    elif tool_name == "get_non_numeric_classes":
+        print(f"[GetNonNumericClasses] Getting non-numeric classes for: {input_data['target_classes']} using ontology: {prompts.ontology_path}")
+        non_numeric_classes = get_non_numeric_classes(input_data["target_classes"])
+        return {"non_numeric_classes": non_numeric_classes, "quantity": len(non_numeric_classes)}
+    
+    
+
     # For save_to_file tool
-    if tool_name == "save_to_file":
+    elif tool_name == "save_to_file":
         save_to_file(input_data["file_path"], input_data["content"])
         return {"message": f"Content saved to {input_data['file_path']}", "content": input_data["content"]}
     
@@ -442,24 +431,12 @@ def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
     elif tool_name == "get_file_paths":
         return {"file_paths": json.dumps(get_file_paths(), indent=2)}
     
-    # For term_mapper tool
-    elif tool_name == "term_mapper":
-        print (f"🔍 Mapping terms: {json.dumps(input_data['terms'], indent=2)} using ontology: {input_data['ontology_path']}")
-        return {"ontology_terms": term_mapper(input_data["terms"], input_data["ontology_path"])} # "quantity": len(input_data["terms"])
+
 
     # For get_endpoint_from_api_spec tool
     elif tool_name == "get_endpoint_from_api_spec":
         # return {"endpoint": r"https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/{attrName}/value"}
         return {"endpoint": get_endpoint_from_api_spec(input_data["api_spec_path"], input_data["query"])}
-    
-    # For get_endpoint_list tool
-    elif tool_name == "get_endpoint_list":
-        return {"endpoints": get_endpoint_list(), "quantity": len(get_endpoint_list().splitlines())}
-
-    # For get_non_numeric_classes tool
-    elif tool_name == "get_non_numeric_classes":
-        print(f"[GetNonNumericClasses] Getting non-numeric classes for: {input_data['target_classes']} using ontology: {prompts.ontology_path}")
-        return {"non_numeric_classes": get_non_numeric_classes(input_data["target_classes"])}
 
     elif tool_name == "wait_for_sec":
         wait_for_sec(input_data["seconds"])

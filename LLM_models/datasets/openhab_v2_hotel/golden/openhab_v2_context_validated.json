@@ -1,0 +1,42 @@
+{
+  "api_endpoint": "https://fiware.eonerc.rwth-aachen.de/rest/items/{itemname}/state",
+  "identifier_key": "name",
+  "class_keys": [
+    "category",
+    "tags"
+  ],
+  "class_mappings": {
+    "Room_Location": "rec:Room",
+    "Hotel_Location": "rec:Building",
+    "AirHandlingUnit_Equipment": "brick:Air_Handling_Unit",
+    "PresenceSensor_Equipment": "brick:Occupancy_Sensor_Equipment",
+    "Fan_Equipment": "brick:Fan",
+    "CoolingCoil_Equipment": "brick:Cooling_Coil",
+    "RadiatorThermostat_Equipment": "brick:Thermostat_Equipment",
+    "VariableAirVolumeBox_Equipment": "brick:Variable_Air_Volume_Box",
+    "temperature_Point": "brick:Temperature_Sensor",
+    "carbondioxide_Point": "brick:CO2_Sensor",
+    "presence_Point": "brick:Occupancy_Sensor",
+    "outsidetemperature_Point": "brick:Outside_Air_Temperature_Sensor",
+    "fan_Setpoint": "brick:Fan_Speed_Command",
+    "temperature_Setpoint": "brick:Temperature_Setpoint",
+    "flow_Setpoint": "brick:Air_Flow_Setpoint"
+  },
+  "numerical_properties": [
+    "temperature_Point",
+    "carbondioxide_Point",
+    "presence_Point",
+    "outsidetemperature_Point",
+    "fan_Setpoint",
+    "temperature_Setpoint",
+    "flow_Setpoint"
+  ],
+  "relational_properties": [
+    "groupNames"
+  ],
+  "relational_property_mappings": {
+    "groupNames": "brick:isPartOf"
+  },
+  "extra_nodes": [],
+  "extra_node_relation_to_parent": ""
+}

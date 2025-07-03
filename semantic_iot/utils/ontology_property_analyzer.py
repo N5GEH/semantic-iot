@@ -28,11 +28,11 @@ class OntologyPropertyAnalyzer:
             raise ValueError(f"Class string '{string}' must contain a prefix (e.g., 'brick:Temperature_Sensor')")
         
         prefix, local_name = string.split(':', 1)
-        print(f"Converting string '{string}' to URI with prefix '{prefix}' and local name '{local_name}'")
+        # print(f"Converting string '{string}' to URI with prefix '{prefix}' and local name '{local_name}'")
         
         # Get all namespace bindings from the graph
         namespaces = dict(graph.namespaces())
-        print(f"Available namespaces: {list(namespaces.keys())}")
+        # print(f"Available namespaces: {list(namespaces.keys())}")
         
         # Handle empty prefix case (e.g., ":ClassName")
         if prefix == '':
@@ -272,7 +272,7 @@ class OntologyPropertyAnalyzer:
 
 
         # Get all (inherited) properties of the target classes
-        print(f"Searching inherited properties for target classes {target_classes} using classifier {classifier}")
+        print(f"[GetNonNumericClasses] Searching inherited properties for target classes {target_classes} using classifier {classifier}")
         properties_of_classes = {}
         for target_class in target_classes:
             properties_of_classes[target_class] = self.get_inherited_properties(target_class)
@@ -283,7 +283,7 @@ class OntologyPropertyAnalyzer:
         for props in properties_of_classes.values():
             all_props_strings.update(self._uri_to_string(prop) for prop in props)
         all_props_strings = list(all_props_strings)
-        print(f"\n[GetNonNumericClasses] Total unique properties across all classes: {all_props_strings}")
+        print(f"[GetNonNumericClasses] Total unique properties across all classes: {all_props_strings}")
 
 
         # Classify properties to non numerical properties
@@ -291,7 +291,7 @@ class OntologyPropertyAnalyzer:
         # Identify unclassified properties
         classified_props = set(self.classification.get('numerical', [])) | set(self.classification.get('non_numerical', []))
         unclassified_props = [prop for prop in all_props_strings if prop not in classified_props]
-        print(f"\n[GetNonNumericClasses] Classified properties: {classified_props}")
+        print(f"[GetNonNumericClasses] Already classified properties: {classified_props}")
         print(f"[GetNonNumericClasses] Unclassified properties: {unclassified_props}")
 
         if unclassified_props:

@@ -210,7 +210,7 @@ class ScenarioExecutor:
         print (f"Selected scenarios: {self.selected_scenarios}")
 
     # GET CONTEXT ======================================================
-    def get_context(self, test=False):
+    def get_context(self):
 
         if not self.JEN_path or not self.JEX_path or not self.ontology_path or not self.endpoint_path:
             input("Please run choose_dataset() first to select the dataset, ontology, and API endpoint. Press Enter to continue...")
@@ -222,85 +222,26 @@ class ScenarioExecutor:
         context_folder = os.path.join(self.result_folder, "context")
         os.makedirs(context_folder, exist_ok=True)
 
-        if not test:
-            # Term Mapping & Extra Nodes & API Endpoint
-            client_context = LLMAgent(
-                system_prompt=prompts.cot_extraction, 
-                result_folder=context_folder
-            )
-            try:
-                self.context = client_context.extract_code(
-                    client_context.query( 
-                        prompt=prompts.context,
-                        step_name="get_context",
-                        follow_up=True,
-                        tools="context",
-                    )
+        # Term Mapping & Extra Nodes & API Endpoint
+        client_context = LLMAgent(
+            system_prompt=prompts.cot_extraction, 
+            # system_prompt=prompts.system_default,
+            result_folder=context_folder
+        )
+        try:
+            self.context = client_context.extract_code(
+                client_context.query( 
+                    prompt=prompts.context,
+                    step_name="get_context",
+                    follow_up=True,
+                    tools="context",
+                    thinking=True,
+                    # offline=True,
                 )
-            except Exception as e:
-                print(f"Error in Claude API call: {e}")
-                print("Press enter to fall back to test mode...")
-                test = True
+            )
+        except Exception as e:
+            print(f"Error in Claude API call: {e}")
 
-        if test:
-            self.context = {
-                "apiEndpoint": r"https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/{attrName}/value",
-                "numericalProperties": [
-                    "temperatureAmb",
-                    "temperature",
-                    "co2",
-                    "pir",
-                    "airFlowSetpoint",
-                    "temperatureSetpoint",
-                    "fanSpeed"
-                ],
-                "relationalProperties": [
-                    "hasLocation"
-                ],
-                "entityMappings": {
-                    "Hotel": "rec:Shelter",
-                    "HotelRoom": "rec:Room",
-                    "AmbientTemperatureSensor": "brick:Temperature_Sensor",
-                    "TemperatureSensor": "brick:Temperature_Sensor",
-                    "CO2Sensor": "brick:CO2_Sensor",
-                    "PresenceSensor": "brick:Occupancy_Sensor",
-                    "FreshAirVentilation": "brick:Ventilation_Air_System",
-                    "RadiatorThermostat": "brick:Radiator",
-                    "CoolingCoil": "brick:Cooling_Coil"
-                },
-                "propertyMappings": {
-                    "hasLocation": "brick:hasLocation"
-                },
-                "extraNodes": [
-                    {
-                    "id": "airFlowSetpoint:FreshAirVentilation:example_room",
-                    "type": "airFlowSetpoint",
-                    "value": {
-                        "type": "Number",
-                        "value": 0.0
-                    },
-                    "ontologyMapping": "brick:Air_Flow_Setpoint"
-                    },
-                    {
-                    "id": "temperatureSetpoint:RadiatorThermostat:example_room",
-                    "type": "temperatureSetpoint",
-                    "value": {
-                        "type": "Number",
-                        "value": 0.0
-                    },
-                    "ontologyMapping": "brick:Temperature_Setpoint"
-                    },
-                    {
-                    "id": "fanSpeed:CoolingCoil:example_room",
-                    "type": "fanSpeed",
-                    "value": {
-                        "type": "Number",
-                        "value": 0.0
-                    },
-                    "ontologyMapping": "brick:Fan_Speed_Command"
-                    }
-                ]
-            }
 
         print("Context prepared successfully.")
         print("Context:", json.dumps(self.context, indent=2))
@@ -326,7 +267,11 @@ class ScenarioExecutor:
             self.load_context(self.result_folder)
         if not hasattr(self, 'context') or not self.context:
             print("Load Validated Context...")
-            self.load_context("LLM_models") # get validated context
+            # Choose the parent of the result folder and then the 'golden' folder inside it
+            parent_folder = os.path.dirname(self.result_folder)
+            golden_folder = os.path.join(parent_folder, "golden")
+            if os.path.exists(golden_folder):
+                self.load_context(golden_folder) # get validated context
         if not hasattr(self, 'context') or not self.context:
             input("No context found. Please run get_context() first. Press Enter to continue...")
             print("Get context from Claude...")
@@ -334,7 +279,7 @@ class ScenarioExecutor:
 
         print(f"\nContext loaded: {json.dumps(self.context, indent=2)}")
         print("\nContext loaded successfully.")
-        # input("Press Enter to continue...")
+        input("Press Enter to continue...")
         
         print(f"\nGenerating results for selected scenarios {self.selected_scenarios}...")
 
@@ -359,7 +304,7 @@ class ScenarioExecutor:
 
         for sc in self.selected_scenarios:
             try: # handle errors in each scenario individually
-                input(f"\n\n======= Start running scenario {sc} =======")
+                # input(f"\n\n======= Start running scenario {sc} =======")
                 # Context Scenario already handled
                 if sc == 'C':
                     continue
@@ -378,43 +323,51 @@ class ScenarioExecutor:
 
                 print(f"\nRunning scenario {sc}...")
 
-                client_scenario = LLMAgent(
-                    # system_prompt=prompts.cot_extraction,
-                    system_prompt=prompts.system_default,
-                    result_folder=scenario_folder[sc]
-                )
+                try: 
+                    client_scenario = LLMAgent(
+                        system_prompt=prompts.cot_extraction,
+                        # system_prompt=prompts.system_default,
+                        result_folder=scenario_folder[sc]
+                    )
 
-                response = client_scenario.query(
-                    prompt=prompt[sc],#+prompts.cot_extraction,
-                    step_name=f"scenario_{sc}", 
-                    tools="",
-                    follow_up=False,
-                )
+                    response = client_scenario.query(
+                        prompt=prompt[sc],
+                        step_name=f"scenario_{sc}", 
+                        tools="",
+                        follow_up=False,
+                        # offline=True
+                    )
+
+                    try:
+                        response = client_scenario.extract_code(response)
+                    except Exception as extract_error:
+                        print(f"❌ Error extracting code from Claude response: {extract_error}")
+                        print(f"Raw response type: {type(response)}")
+                        if isinstance(response, str):
+                            print(f"Raw response preview: {response[:300]}...")
+                        # Try to continue with raw response
+                        print("Continuing with raw response...")
+
+                    try:
+                        # Save the response to the results folder
+                        response_file = os.path.join(scenario_folder[sc], file_name[sc])
+                        with open(response_file, 'w', encoding='utf-8') as f:
+                            if isinstance(response, dict):
+                                f.write(json.dumps(response, indent=2))
+                            else:
+                                f.write(response)
+                        print(f"Response saved to: {response_file}")
+                        # input("Press Enter to continue...")
+                    except Exception as save_error:
+                        print(response)
+                        print(f"❌ Error saving response to file: {save_error}")
+                        print("Continuing with raw response...")
+
+                except Exception as e:
+                    print(f"❌ Error in generating Claude Response: {e}")
+                    print("Continuing...")
                 
-                try:
-                    response = client_scenario.extract_code(response)
-                except Exception as extract_error:
-                    print(f"❌ Error extracting code from Claude response: {extract_error}")
-                    print(f"Raw response type: {type(response)}")
-                    if isinstance(response, str):
-                        print(f"Raw response preview: {response[:300]}...")
-                    # Try to continue with raw response
-                    print("Continuing with raw response...")
 
-                try:
-                    # Save the response to the results folder
-                    response_file = os.path.join(scenario_folder[sc], file_name[sc])
-                    with open(response_file, 'w', encoding='utf-8') as f:
-                        if isinstance(response, dict):
-                            f.write(json.dumps(response, indent=2))
-                        else:
-                            f.write(response)
-                    print(f"Response saved to: {response_file}")
-                    # input("Press Enter to continue...")
-                except Exception as save_error:
-                    print(response)
-                    print(f"❌ Error saving response to file: {save_error}")
-                    print("Continuing with raw response...")
 
 
 
@@ -604,10 +557,11 @@ def to_readable(data) -> str:
         
     return formatted
 
-def extract_evaluations(text: str) -> list[str]:
+def extract_evaluations(text: str) -> list[dict]:
     """
     Extracts evaluation sections from text that start with 'EVALUATION:' 
     and continue until an empty line is encountered.
+    Returns a list of dictionaries with parsed evaluation data.
     """
     evaluations = []
     lines = text.split('\n')
@@ -632,12 +586,73 @@ def extract_evaluations(text: str) -> list[str]:
                 evaluation_lines.append(current_line)
                 i += 1
             
-            # Join the evaluation lines and add to results
-            evaluations.append('\n'.join(evaluation_lines))
+            # Parse the evaluation data
+            evaluation_text = '\n'.join(evaluation_lines)
+            parsed_data = parse_evaluation_data(evaluation_text)
+            
+            if parsed_data:
+                evaluations.append(parsed_data)
+            else:
+                # Fallback: include raw text if parsing fails
+                print("Failed to parse evaluation data.")
+                evaluations.append({"raw_text": evaluation_text})
         
         i += 1
 
     return evaluations
+
+
+def parse_evaluation_data(text: str) -> dict:
+    """
+    Parse evaluation text and extract key-value pairs from lines with dashes.
+    """
+    result = {}
+    lines = [line.strip() for line in text.strip().split('\n') if line.strip()]
+    
+    # Parse the EVALUATION line if present
+    eval_line = next((line for line in lines if line.startswith("EVALUATION:")), "")
+    if eval_line:
+        result["evaluation_line"] = eval_line.replace("EVALUATION:", "").strip()
+    
+    # Parse key-value lines
+    for line in lines:
+        # Skip the EVALUATION line and empty lines
+        if line.startswith("EVALUATION:") or not line.strip():
+            continue
+            
+        # Look for lines with colons (key: value format)
+        if ':' in line:
+            # Remove leading dash if present
+            clean_line = line.lstrip('- ').strip()
+            
+            if ':' in clean_line:
+                key, value_part = clean_line.split(':', 1)
+                key = key.strip()
+                
+                # Split values by dashes and clean them
+                values = [v.strip() for v in value_part.split('-') if v.strip()]
+                
+                # Store the parsed values
+                if values:
+                    if key == "bloom" and len(values) >= 3:
+                        result["bloom"] = values[0]
+                        result["bloom_objective"] = values[1] 
+                        result["bloom_verb"] = values[2]
+                    elif key == "dim" and len(values) >= 2:
+                        result["dim"] = values[0]
+                        result["dim_knowledge"] = values[1]
+                    elif key == "quantity" and len(values) >= 2:
+                        result["quantity"] = values[0]
+                        result["quantity_noun"] = values[1]
+                    elif key == "human_effort" and len(values) >= 3:
+                        result["human_effort"] = values[0]
+                        result["effort_reasoning"] = values[1]
+                        result["effort_description"] = values[2]
+                    else:
+                        # Generic handling for other keys
+                        result[key] = values
+    
+    return result
 
 
 def clear_metrics():

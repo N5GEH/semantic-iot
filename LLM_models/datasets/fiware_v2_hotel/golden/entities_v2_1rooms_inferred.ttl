@@ -301,6 +301,9 @@ brick:AHU owl:equivalentClass brick:Air_Handling_Unit ;
 brick:Air_Handler_Unit owl:equivalentClass brick:Air_Handling_Unit ;
     brick:aliasOf brick:Air_Handling_Unit .
 
+brick:VAV owl:equivalentClass brick:Variable_Air_Volume_Box ;
+    brick:aliasOf brick:Variable_Air_Volume_Box .
+
 tag:AHU brick:Relationship brick:Air_Handling_Unit ;
     brick:isAssociatedWith brick:Air_Handling_Unit .
 
@@ -379,17 +382,6 @@ tag:Volume brick:Relationship brick:Variable_Air_Volume_Box ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
     rec:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
 
-<http://example.com/PresenceSensor/PresenceSensor:fiware_room_base_2_v2> a owl:Thing,
-        brick:Class,
-        brick:Entity,
-        brick:Occupancy_Count_Sensor,
-        brick:Point,
-        brick:Sensor ;
-    rdf:value <http://137.226.248.250:1026/v2/entities/PresenceSensor:fiware_room_base_2_v2/attrs/pir/value> ;
-    brick:Relationship <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> ;
-    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> ;
-    rec:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> .
-
 <http://example.com/airFlowSetpoint_VariableAirVolumeBox/airFlowSetpoint_VariableAirVolumeBox:fiware_room_base_1_v2> a owl:Thing,
         brick:Air_Flow_Setpoint,
         brick:Class,
@@ -401,18 +393,6 @@ tag:Volume brick:Relationship brick:Variable_Air_Volume_Box ;
     brick:Relationship <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> ;
     brick:isPointOf <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> ;
     rec:isPointOf <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> .
-
-<http://example.com/airFlowSetpoint_VariableAirVolumeBox/airFlowSetpoint_VariableAirVolumeBox:fiware_room_base_2_v2> a owl:Thing,
-        brick:Air_Flow_Setpoint,
-        brick:Class,
-        brick:Entity,
-        brick:Flow_Setpoint,
-        brick:Point,
-        brick:Setpoint ;
-    rdf:value <http://137.226.248.250:1026/v2/entities/VariableAirVolumeBox:fiware_room_base_2_v2/attrs/airFlowSetpoint/value> ;
-    brick:Relationship <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_2_v2> ;
-    brick:isPointOf <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_2_v2> ;
-    rec:isPointOf <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_2_v2> .
 
 <http://example.com/co2_HotelRoom/co2_HotelRoom:fiware_room_base_1_v2> a owl:Thing,
         brick:Air_Quality_Sensor,
@@ -426,18 +406,6 @@ tag:Volume brick:Relationship brick:Variable_Air_Volume_Box ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
     rec:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
 
-<http://example.com/co2_HotelRoom/co2_HotelRoom:fiware_room_base_2_v2> a owl:Thing,
-        brick:Air_Quality_Sensor,
-        brick:CO2_Sensor,
-        brick:Class,
-        brick:Entity,
-        brick:Point,
-        brick:Sensor ;
-    rdf:value <http://137.226.248.250:1026/v2/entities/HotelRoom:fiware_room_base_2_v2/attrs/co2/value> ;
-    brick:Relationship <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> ;
-    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> ;
-    rec:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> .
-
 <http://example.com/fanSpeed_Fan/fanSpeed_Fan:CoolingCoil:fiware_room_base_1_v2> a owl:Thing,
         brick:Class,
         brick:Command,
@@ -450,18 +418,6 @@ tag:Volume brick:Relationship brick:Variable_Air_Volume_Box ;
     brick:isPointOf <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_1_v2> ;
     rec:isPointOf <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_1_v2> .
 
-<http://example.com/fanSpeed_Fan/fanSpeed_Fan:CoolingCoil:fiware_room_base_2_v2> a owl:Thing,
-        brick:Class,
-        brick:Command,
-        brick:Entity,
-        brick:Fan_Command,
-        brick:Fan_Speed_Command,
-        brick:Point ;
-    rdf:value <http://137.226.248.250:1026/v2/entities/Fan:CoolingCoil:fiware_room_base_2_v2/attrs/fanSpeed/value> ;
-    brick:Relationship <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_2_v2> ;
-    brick:isPointOf <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_2_v2> ;
-    rec:isPointOf <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_2_v2> .
-
 <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:fiware_room_base_1_v2> a owl:Thing,
         brick:Class,
         brick:Entity,
@@ -472,17 +428,6 @@ tag:Volume brick:Relationship brick:Variable_Air_Volume_Box ;
     brick:Relationship <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_1_v2> ;
     brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_1_v2> ;
     rec:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_1_v2> .
-
-<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:fiware_room_base_2_v2> a owl:Thing,
-        brick:Class,
-        brick:Entity,
-        brick:Point,
-        brick:Setpoint,
-        brick:Temperature_Setpoint ;
-    rdf:value <http://137.226.248.250:1026/v2/entities/RadiatorThermostat:fiware_room_base_2_v2/attrs/temperatureSetpoint/value> ;
-    brick:Relationship <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_2_v2> ;
-    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_2_v2> ;
-    rec:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_2_v2> .
 
 <http://example.com/temperature_HotelRoom/temperature_HotelRoom:fiware_room_base_1_v2> a owl:Thing,
         brick:Air_Temperature_Sensor,
@@ -495,21 +440,6 @@ tag:Volume brick:Relationship brick:Variable_Air_Volume_Box ;
     brick:Relationship <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
     brick:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
     rec:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
-
-<http://example.com/temperature_HotelRoom/temperature_HotelRoom:fiware_room_base_2_v2> a owl:Thing,
-        brick:Air_Temperature_Sensor,
-        brick:Class,
-        brick:Entity,
-        brick:Point,
-        brick:Sensor,
-        brick:Temperature_Sensor ;
-    rdf:value <http://137.226.248.250:1026/v2/entities/HotelRoom:fiware_room_base_2_v2/attrs/temperature/value> ;
-    brick:Relationship <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> ;
-    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> ;
-    rec:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> .
-
-brick:VAV owl:equivalentClass brick:Variable_Air_Volume_Box ;
-    brick:aliasOf brick:Variable_Air_Volume_Box .
 
 tag:Fan brick:Relationship brick:Fan,
         brick:Fan_Speed_Command ;
@@ -538,23 +468,6 @@ tag:Setpoint brick:Relationship brick:Air_Flow_Setpoint,
     brick:hasPart <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_1_v2> ;
     rec:locatedIn <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
 
-<http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_2_v2> a rdfs:Resource,
-        owl:Thing,
-        brick:Class,
-        brick:Coil,
-        brick:Cooling_Coil,
-        brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:HX,
-        brick:Heat_Exchanger,
-        rec:Asset ;
-    brick:Relationship <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_2_v2>,
-        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> ;
-    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> ;
-    brick:hasPart <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_2_v2> ;
-    rec:locatedIn <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> .
-
 <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_1_v2> a rdfs:Resource,
         owl:Thing,
         brick:Class,
@@ -569,19 +482,22 @@ tag:Setpoint brick:Relationship brick:Air_Flow_Setpoint,
     brick:isPartOf <http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_1_v2> ;
     rec:hasPoint <http://example.com/fanSpeed_Fan/fanSpeed_Fan:CoolingCoil:fiware_room_base_1_v2> .
 
-<http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_2_v2> a rdfs:Resource,
+<http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware> a rdfs:Resource,
         owl:Thing,
+        brick:AHU,
+        brick:Air_Handler_Unit,
+        brick:Air_Handling_Unit,
         brick:Class,
         brick:Entity,
         brick:Equipment,
-        brick:Fan,
         brick:HVAC_Equipment,
         rec:Asset ;
-    brick:Relationship <http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_2_v2>,
-        <http://example.com/fanSpeed_Fan/fanSpeed_Fan:CoolingCoil:fiware_room_base_2_v2> ;
-    brick:hasPoint <http://example.com/fanSpeed_Fan/fanSpeed_Fan:CoolingCoil:fiware_room_base_2_v2> ;
-    brick:isPartOf <http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_2_v2> ;
-    rec:hasPoint <http://example.com/fanSpeed_Fan/fanSpeed_Fan:CoolingCoil:fiware_room_base_2_v2> .
+    brick:Relationship <http://example.com/Hotel/fiware_hotel>,
+        <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> ;
+    brick:feeds <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> ;
+    brick:hasLocation <http://example.com/Hotel/fiware_hotel> ;
+    rec:feeds <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> ;
+    rec:locatedIn <http://example.com/Hotel/fiware_hotel> .
 
 <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_1_v2> a rdfs:Resource,
         owl:Thing,
@@ -599,23 +515,6 @@ tag:Setpoint brick:Relationship brick:Air_Flow_Setpoint,
     brick:hasPoint <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:fiware_room_base_1_v2> ;
     rec:hasPoint <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:fiware_room_base_1_v2> ;
     rec:locatedIn <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
-
-<http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_2_v2> a rdfs:Resource,
-        owl:Thing,
-        brick:Class,
-        brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:ICT_Equipment,
-        brick:Sensor_Equipment,
-        brick:Thermostat,
-        rec:Asset ;
-    brick:Relationship <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2>,
-        <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:fiware_room_base_2_v2> ;
-    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> ;
-    brick:hasPoint <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:fiware_room_base_2_v2> ;
-    rec:hasPoint <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:fiware_room_base_2_v2> ;
-    rec:locatedIn <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> .
 
 tag:Temperature brick:Relationship brick:Air_Temperature_Sensor,
         brick:Outside_Air_Temperature_Sensor,
@@ -656,25 +555,20 @@ tag:Sensor brick:Relationship brick:Air_Temperature_Sensor,
         brick:Occupancy_Count_Sensor,
         brick:Outside_Air_Temperature_Sensor .
 
-<http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware> a rdfs:Resource,
+<http://example.com/Hotel/fiware_hotel> a rdfs:Resource,
         owl:Thing,
-        brick:AHU,
-        brick:Air_Handler_Unit,
-        brick:Air_Handling_Unit,
-        brick:Class,
-        brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        rec:Asset ;
-    brick:Relationship <http://example.com/Hotel/fiware_hotel>,
-        <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2>,
-        <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_2_v2> ;
-    brick:feeds <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2>,
-        <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_2_v2> ;
-    brick:hasLocation <http://example.com/Hotel/fiware_hotel> ;
-    rec:feeds <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2>,
-        <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_2_v2> ;
-    rec:locatedIn <http://example.com/Hotel/fiware_hotel> .
+        rec:Architecture,
+        rec:Building,
+        rec:Space ;
+    brick:Relationship <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware>,
+        <http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor>,
+        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    brick:hasPoint <http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> ;
+    brick:isLocationOf <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware>,
+        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    rec:hasPoint <http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> ;
+    rec:isLocationOf <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware>,
+        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
 
 <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> a rdfs:Resource,
         owl:Thing,
@@ -695,26 +589,6 @@ tag:Sensor brick:Relationship brick:Air_Temperature_Sensor,
     rec:hasPoint <http://example.com/airFlowSetpoint_VariableAirVolumeBox/airFlowSetpoint_VariableAirVolumeBox:fiware_room_base_1_v2> ;
     rec:isFedBy <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware> ;
     rec:locatedIn <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
-
-<http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_2_v2> a rdfs:Resource,
-        owl:Thing,
-        brick:Class,
-        brick:Entity,
-        brick:Equipment,
-        brick:HVAC_Equipment,
-        brick:Terminal_Unit,
-        brick:VAV,
-        brick:Variable_Air_Volume_Box,
-        rec:Asset ;
-    brick:Relationship <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware>,
-        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2>,
-        <http://example.com/airFlowSetpoint_VariableAirVolumeBox/airFlowSetpoint_VariableAirVolumeBox:fiware_room_base_2_v2> ;
-    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> ;
-    brick:hasPoint <http://example.com/airFlowSetpoint_VariableAirVolumeBox/airFlowSetpoint_VariableAirVolumeBox:fiware_room_base_2_v2> ;
-    brick:isFedBy <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware> ;
-    rec:hasPoint <http://example.com/airFlowSetpoint_VariableAirVolumeBox/airFlowSetpoint_VariableAirVolumeBox:fiware_room_base_2_v2> ;
-    rec:isFedBy <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware> ;
-    rec:locatedIn <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> .
 
 brick:Cooling_Coil a owl:Class,
         owl:Thing,
@@ -785,24 +659,6 @@ tag:Equipment brick:Relationship brick:Air_Handling_Unit,
         brick:Thermostat,
         brick:Variable_Air_Volume_Box .
 
-<http://example.com/Hotel/fiware_hotel> a rdfs:Resource,
-        owl:Thing,
-        rec:Architecture,
-        rec:Building,
-        rec:Space ;
-    brick:Relationship <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware>,
-        <http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor>,
-        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2>,
-        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> ;
-    brick:hasPoint <http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> ;
-    brick:isLocationOf <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware>,
-        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2>,
-        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> ;
-    rec:hasPoint <http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> ;
-    rec:isLocationOf <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware>,
-        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2>,
-        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> .
-
 brick:CO2_Sensor a owl:Class,
         owl:Thing,
         sh:NodeShape ;
@@ -851,21 +707,6 @@ brick:Outside_Air_Temperature_Sensor a owl:Class,
     brick:hasQuantity brick:Temperature ;
     brick:hasSubstance brick:Outside_Air .
 
-tag:Point brick:Relationship brick:Air_Flow_Setpoint,
-        brick:Air_Temperature_Sensor,
-        brick:CO2_Sensor,
-        brick:Fan_Speed_Command,
-        brick:Occupancy_Count_Sensor,
-        brick:Outside_Air_Temperature_Sensor,
-        brick:Temperature_Setpoint ;
-    brick:isAssociatedWith brick:Air_Flow_Setpoint,
-        brick:Air_Temperature_Sensor,
-        brick:CO2_Sensor,
-        brick:Fan_Speed_Command,
-        brick:Occupancy_Count_Sensor,
-        brick:Outside_Air_Temperature_Sensor,
-        brick:Temperature_Setpoint .
-
 brick:Temperature_Setpoint a owl:Class,
         owl:Thing,
         sh:NodeShape ;
@@ -884,6 +725,21 @@ brick:Temperature_Setpoint a owl:Class,
         tag:Setpoint,
         tag:Temperature ;
     brick:hasQuantity qudtqk:Temperature .
+
+tag:Point brick:Relationship brick:Air_Flow_Setpoint,
+        brick:Air_Temperature_Sensor,
+        brick:CO2_Sensor,
+        brick:Fan_Speed_Command,
+        brick:Occupancy_Count_Sensor,
+        brick:Outside_Air_Temperature_Sensor,
+        brick:Temperature_Setpoint ;
+    brick:isAssociatedWith brick:Air_Flow_Setpoint,
+        brick:Air_Temperature_Sensor,
+        brick:CO2_Sensor,
+        brick:Fan_Speed_Command,
+        brick:Occupancy_Count_Sensor,
+        brick:Outside_Air_Temperature_Sensor,
+        brick:Temperature_Setpoint .
 
 brick:Air_Flow_Setpoint a owl:Class,
         owl:Thing,
@@ -995,33 +851,6 @@ brick:Air_Temperature_Sensor a owl:Class,
     rec:isLocationOf <http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_1_v2>,
         <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_1_v2>,
         <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> ;
-    rec:locatedIn <http://example.com/Hotel/fiware_hotel> .
-
-<http://example.com/HotelRoom/HotelRoom:fiware_room_base_2_v2> a rdfs:Resource,
-        owl:Thing,
-        rec:Architecture,
-        rec:Room,
-        rec:Space ;
-    brick:Relationship <http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_2_v2>,
-        <http://example.com/Hotel/fiware_hotel>,
-        <http://example.com/PresenceSensor/PresenceSensor:fiware_room_base_2_v2>,
-        <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_2_v2>,
-        <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_2_v2>,
-        <http://example.com/co2_HotelRoom/co2_HotelRoom:fiware_room_base_2_v2>,
-        <http://example.com/temperature_HotelRoom/temperature_HotelRoom:fiware_room_base_2_v2> ;
-    brick:hasLocation <http://example.com/Hotel/fiware_hotel> ;
-    brick:hasPoint <http://example.com/PresenceSensor/PresenceSensor:fiware_room_base_2_v2>,
-        <http://example.com/co2_HotelRoom/co2_HotelRoom:fiware_room_base_2_v2>,
-        <http://example.com/temperature_HotelRoom/temperature_HotelRoom:fiware_room_base_2_v2> ;
-    brick:isLocationOf <http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_2_v2>,
-        <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_2_v2>,
-        <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_2_v2> ;
-    rec:hasPoint <http://example.com/PresenceSensor/PresenceSensor:fiware_room_base_2_v2>,
-        <http://example.com/co2_HotelRoom/co2_HotelRoom:fiware_room_base_2_v2>,
-        <http://example.com/temperature_HotelRoom/temperature_HotelRoom:fiware_room_base_2_v2> ;
-    rec:isLocationOf <http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_2_v2>,
-        <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_2_v2>,
-        <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_2_v2> ;
     rec:locatedIn <http://example.com/Hotel/fiware_hotel> .
 
 brick:Air_Handling_Unit a owl:Class,

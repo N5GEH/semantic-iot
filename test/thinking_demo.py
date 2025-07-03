@@ -16,7 +16,7 @@ Prompt: What is the capital of France?
 Thinking: <thinking>[subject: France, predicate: hasCapital, object: Paris]</thinking>
 """
 
-system_prompt="" # prompts.cot_extraction
+system_prompt = prompts.cot_extraction
 
 prompt = f"Task: Complete: 1, 2, 4, 8, ..."
 

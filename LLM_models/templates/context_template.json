@@ -1,0 +1,17 @@
+{
+    "api_endpoint": "",
+    "identifier_key": "",
+    "class_keys": [],
+    "class_mappings": {},
+    "numerical_properties": [],
+    "relational_properties": [],
+    "relational_property_mappings": {},
+    "extra_nodes": [
+        {
+            "non_numeric_parent_class": "",
+            "numeric_property": "",
+            "mapped_ontology_class": ""
+        }
+    ],
+    "extra_node_relation_to_parent": ""
+}
