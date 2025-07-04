@@ -260,7 +260,7 @@ ex:MappingfanSpeed_CoolingCoil
     rml:logicalSource [
         rml:source "placeholder.json" ;
         rml:referenceFormulation ql:JSONPath ;
-        rml:iterator '$[?(@.type=="fanSpeed_CoolingCoil")]' ;
+        rml:iterator '$[?(@.type=="CoolingCoil")]' ;
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/fanSpeed_CoolingCoil/{id}" ;
@@ -271,7 +271,7 @@ ex:MappingfanSpeed_CoolingCoil
         rr:objectMap [
             rr:parentTriplesMap ex:MappingCoolingCoil ;
             rr:joinCondition [
-                rr:child "relatedTo.value" ;
+                rr:child "id" ;
                 rr:parent "id" ;
             ] ;
         ] ;
@@ -279,7 +279,7 @@ ex:MappingfanSpeed_CoolingCoil
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/fanSpeed/value" ;
+            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/fanSpeed/value" ;
         ] ;
     ] ;
     .
@@ -290,7 +290,7 @@ ex:MappingairFlowSetpoint_FreshAirVentilation
     rml:logicalSource [
         rml:source "placeholder.json" ;
         rml:referenceFormulation ql:JSONPath ;
-        rml:iterator '$[?(@.type=="airFlowSetpoint_FreshAirVentilation")]' ;
+        rml:iterator '$[?(@.type=="FreshAirVentilation")]' ;
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/airFlowSetpoint_FreshAirVentilation/{id}" ;
@@ -301,7 +301,7 @@ ex:MappingairFlowSetpoint_FreshAirVentilation
         rr:objectMap [
             rr:parentTriplesMap ex:MappingFreshAirVentilation ;
             rr:joinCondition [
-                rr:child "relatedTo.value" ;
+                rr:child "id" ;
                 rr:parent "id" ;
             ] ;
         ] ;
@@ -309,7 +309,7 @@ ex:MappingairFlowSetpoint_FreshAirVentilation
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value" ;
+            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/airFlowSetpoint/value" ;
         ] ;
     ] ;
     .
@@ -320,7 +320,7 @@ ex:MappingtemperatureSetpoint_RadiatorThermostat
     rml:logicalSource [
         rml:source "placeholder.json" ;
         rml:referenceFormulation ql:JSONPath ;
-        rml:iterator '$[?(@.type=="temperatureSetpoint_RadiatorThermostat")]' ;
+        rml:iterator '$[?(@.type=="RadiatorThermostat")]' ;
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/temperatureSetpoint_RadiatorThermostat/{id}" ;
@@ -331,7 +331,7 @@ ex:MappingtemperatureSetpoint_RadiatorThermostat
         rr:objectMap [
             rr:parentTriplesMap ex:MappingRadiatorThermostat ;
             rr:joinCondition [
-                rr:child "relatedTo.value" ;
+                rr:child "id" ;
                 rr:parent "id" ;
             ] ;
         ] ;
@@ -339,7 +339,7 @@ ex:MappingtemperatureSetpoint_RadiatorThermostat
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value" ;
+            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureSetpoint/value" ;
         ] ;
     ] ;
     .
