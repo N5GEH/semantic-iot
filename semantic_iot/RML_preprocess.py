@@ -36,8 +36,6 @@ class MappingPreprocess:
                 - entity_type_keys: key(s) to identify node type, e.g.,['category', 'tags']. It
                     is assumed that the keys for node types are located in the root level
                     of the JSON data. Other cases are not supported yet.
-                - extra_entity_node: JSON path of specific attributes to create extra
-                    node types.
             similarity_mode: The similarity mode to be used for the mapping. It can be either
                 - "string" (default): Uses levenstein distance to compute string similarity
                 - "semantic" (beta): Use "all-MiniLM-L6-v2" embedding model to compute semantic similarity.
