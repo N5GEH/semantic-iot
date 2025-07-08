@@ -2,8 +2,7 @@ import json
 import time
 from pathlib import Path
 from memory_profiler import memory_usage
-from semantic_iot import RDFGenerator
-from http_extension import extend_with_http
+from semantic_iot import RDFGenerator, APIPostprocessor
 
 # Path to HTTP ontology and OpenAPI spec (adjust as needed)
 HTTP_ONTO = Path(__file__).parent.parent / f'ontologies/Http.ttl'
@@ -95,12 +94,15 @@ if __name__ == '__main__':
                 engine='morph-kgc'
             )
         out_ext = project_root / f'kgcp/results/{hotel}_extended.ttl'
-        extend_with_http(
-            input_ttl=dst,
-            openapi_json=OPENAPI,
-            http_onto_ttl=HTTP_ONTO,
-            out_ttl=out_ext
+
+        postprocessor = APIPostprocessor(
+            kg_path=dst,
+            api_spec_path=OPENAPI,
+            http_onto=HTTP_ONTO
         )
+        postprocessor.extend_kg()
+        postprocessor.kg.serialize(destination=str(out_ext), format='turtle')
+
 
     # Save metrics as JSON file
     time_stamp = time.strftime("%Y_%m_%d-%H_%M_%S")  # current timestamp
