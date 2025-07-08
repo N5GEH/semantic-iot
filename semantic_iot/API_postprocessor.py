@@ -1,150 +1,148 @@
-# http_extension.py
 import json
 import re
 from pathlib import Path
 from urllib.parse import urlparse
 from rdflib import Graph, Namespace, Literal, URIRef
 from rdflib.namespace import RDF
-
+from openapi3 import OpenAPI
 
 class APIPostprocessor:
     """
-    This class is responsible for post-processing the API responses.
-    It can be extended to include more complex post-processing logic.
+    Post-process API responses and extend an RDF graph using OpenAPI 3 spec via openapi3 library.
     """
+    def __init__(self, kg_path: Path, api_spec_path: Path, http_onto: Path = None):
+        self.api_spec_path = api_spec_path
+        self.kg = Graph()
+        self._load_kg_and_ontology(kg_path, http_onto)
+        self._setup_namespaces()
+        # Parse spec and instantiate OpenAPI client/parser
+        raw = json.loads(api_spec_path.read_text())
+        self.api = OpenAPI(raw)
 
-    def __init__(self, kg_path, api_spec_path, http_onto=None):
+    def _load_kg_and_ontology(self, kg_path: Path, http_onto: Path = None):
         if not http_onto:
-            http_onto = Path(__file__).parent / '_ontologies/Http.ttl'
-        # TODO load everything
-        pass
+            http_onto = Path(__file__).parent / '_ontology/Http.ttl'
+        self.kg.parse(str(kg_path), format='turtle')
+        self.kg.parse(str(http_onto), format='turtle')
 
-    def postprocess(self):
-        """This method will be called to perform post-processing."""
-        api_spec = self.parse_api_spec()
-        pass
+    def _setup_namespaces(self):
+        self.HTTP = Namespace('http://www.w3.org/2011/http#')
+        self.HEADERS = Namespace('http://www.w3.org/2011/http-headers#')
+        self.API = Namespace('http://www.example.org/api#')
+        self.kg.bind('http', self.HTTP)
+        self.kg.bind('headers', self.HEADERS)
+        self.kg.bind('api', self.API)
 
     def extend_kg(self):
-        """Populate a KG with HTTP Request nodes based on the API spec and the original KG."""
-        pass
+        conn = self._create_connection_node()
+        shared_headers, shared_queries = self._index_global_parameters()
+        uris = self._gather_value_uris()
+        methods_map = self._prepare_methods_map()
 
-    def parse_api_spec(self):
-        """
-        Load and parse the OpenAPI specification
-        Return a list of all possible endpoints (operations) and their supported parameters etc.
-        """
-        return ...
+        for uri in uris:
+            parsed = urlparse(str(uri))
+            path = parsed.path
+            for tpl, (regex, verbs) in methods_map.items():
+                if not regex.match(path):
+                    continue
+                for verb in verbs:
+                    clean_path = re.sub(r"\W+", '_', path)
+                    req_id = f"{verb}_{clean_path}"
+                    req = self.API[req_id]
+                    # Use getattr to fetch the operation for the verb
+                    op = getattr(self.api.paths[tpl], verb.lower(), None)
+                    if not op:
+                        continue
+                    self._create_request_node(
+                        req_id, req, verb, path, uri, parsed.netloc,
+                        shared_headers, shared_queries, op, conn
+                    )
+                break
 
+    def _create_connection_node(self):
+        conn = self.API['Connection_Main']
+        self.kg.add((conn, RDF.type, self.HTTP.Connection))
+        return conn
 
-
-def extend_with_http(input_ttl: Path,
-                     openapi_json: Path,
-                     http_onto_ttl: Path,
-                     out_ttl: Path):
-    """
-    Load a Turtle KG and the W3C HTTP ontology, then:
-      1) Find every existing value node (i.e. every URI that appears as the object of rdf:value).
-      2) For each of those value nodes, create http:Request nodes for supported HTTP methods (GET/PUT),
-         populating http:methodName, http:absolutePath, http:absoluteURI, http:authority, and http:requestURI.
-      3) Create shared HTTP.MessageHeader nodes for all global parameters (header, query, path).
-      4) For each request, create inline MessageHeader nodes for operation-specific parameters (any 'in').
-      5) Attach all parameter/header nodes to each request via http:headers.
-      6) Link each request to a single shared Connection instance.
-      7) Serialize the augmented graph out to Turtle.
-    """
-    # Load KG and HTTP ontology
-    kg = Graph()
-    kg.parse(str(input_ttl), format='turtle')
-    kg.parse(str(http_onto_ttl), format='turtle')
-
-    # Load OpenAPI spec
-    with open(openapi_json, 'r') as f:
-        spec = json.load(f)
-
-    # Namespaces
-    HTTP = Namespace('http://www.w3.org/2011/http#')
-    HEADERS = Namespace('http://www.w3.org/2011/http-headers#')
-    API = Namespace('http://www.example.org/api#')
-    kg.bind('http', HTTP)
-    kg.bind('headers', HEADERS)
-    kg.bind('api', API)
-
-    # Create or reuse a Connection node
-    conn = API['Connection_Main']
-    kg.add((conn, RDF.type, HTTP.Connection))
-
-    # Index global parameters (all 'in' types)
-    global_params = spec.get('components', {}).get('parameters', {})
-    shared_nodes = {}
-    for name, param in global_params.items():
-        if 'in' in param:
+    def _index_global_parameters(self) -> tuple:
+        header_nodes = {}
+        query_nodes = {}
+        global_params = getattr(self.api.components, 'parameters', {}) or {}
+        for name, param in global_params.items():
             clean = re.sub(r"\W+", '_', name).strip('_')
-            node = API[f"GlobalParam_{clean}"]
-            if (node, None, None) not in kg:
-                kg.add((node, RDF.type, HTTP.MessageHeader))
-                kg.add((node, HTTP.fieldName, Literal(name)))
-                kg.add((node, HTTP.fieldValue, Literal(param.get('default', ''))))
-                if param['in'] == 'header':
-                    kg.add((node, HTTP.hdrName, HEADERS[name.lower()]))
-            shared_nodes[name] = node
+            node = self.API[f"Param_{clean}"]
+            if param.in_ == 'header':
+                self.kg.add((node, RDF.type, self.HTTP.MessageHeader))
+                self.kg.add((node, self.HTTP.fieldName, Literal(param.name)))
+                self.kg.add((node, self.HTTP.fieldValue, Literal(getattr(param, 'default', ''))))
+                header_nodes[name] = node
+            elif param.in_ == 'query':
+                self.kg.add((node, RDF.type, self.HTTP.Parameter))
+                self.kg.add((node, self.HTTP.paramName, Literal(param.name)))
+                self.kg.add((node, self.HTTP.paramValue, Literal(getattr(param, 'default', ''))))
+                query_nodes[name] = node
+        return header_nodes, query_nodes
 
-    # Gather all rdf:value URIs
-    value_uris = [o for _, _, o in kg.triples((None, RDF.value, None)) if isinstance(o, URIRef)]
+    def _gather_value_uris(self) -> list:
+        return [ o for _, _, o in self.kg.triples((None, RDF.value, None)) if isinstance(o, URIRef) ]
 
-    # Prepare path-to-method mapping for GET/PUT operations
-    methods_map = {}
-    for path_tpl, ops in spec.get('paths', {}).items():
-        if path_tpl.endswith('/value'):
-            # Build regex: replace {var} with capture group
-            esc = re.escape(path_tpl)
+    def _prepare_methods_map(self) -> dict:
+        methods_map = {}
+        for tpl, path_item in self.api.paths.items():
+            # build regex from the template
+            esc = re.escape(tpl)
             esc = re.sub(r"\\\{[^/]+\\\}", r"([^/]+)", esc)
             regex = re.compile(f"^{esc}$")
-            verbs = [m.upper() for m in ops if m.lower() in ('get', 'put')]
+
+            verbs = []
+            for method in ("get", "put"):  # supported HTTP methods
+                op = getattr(path_item, method, None)
+                if op:
+                    verbs.append(method.upper())
+
             if verbs:
-                methods_map[path_tpl] = (regex, verbs)
+                methods_map[tpl] = (regex, verbs)
 
-    # Process each value URI
-    for uri in value_uris:
-        parsed = urlparse(str(uri))
-        path, authority = parsed.path, parsed.netloc
+        return methods_map
 
-        for tpl, (regex, verbs) in methods_map.items():
-            if not regex.match(path):
+    def _create_request_node(
+        self, req_id, req: URIRef, verb: str, path: str,
+        uri: URIRef, authority: str,
+        shared_headers: dict, shared_queries: dict,
+        op, conn: URIRef
+    ):
+        # core triples
+        self.kg.add((req, RDF.type, self.HTTP.Request))
+        self.kg.add((req, self.HTTP.methodName, Literal(verb)))
+        self.kg.add((req, self.HTTP.absolutePath, Literal(path)))
+        self.kg.add((req, self.HTTP.absoluteURI, URIRef(str(uri))))
+        self.kg.add((req, self.HTTP.authority, Literal(authority)))
+        self.kg.add((conn, self.HTTP.requests, req))
+
+        # attach shared
+        for node in shared_headers.values():
+            self.kg.add((req, self.HTTP.headers, node))
+        for node in shared_queries.values():
+            self.kg.add((req, self.HTTP.params, node))
+
+        # inline parameters
+        for p in op.parameters or []:
+            if p.in_ == 'body':
                 continue
-            for verb in verbs:
-                # Sanitize path to generate a valid ID
-                clean_path = re.sub(r"\W+", '_', path)
-                req_id = f"{verb}_{clean_path}"
-                req = API[req_id]
-                # Create Request node
-                kg.add((req, RDF.type, HTTP.Request))
-                kg.add((req, HTTP.methodName, Literal(verb)))
-                kg.add((req, HTTP.absolutePath, Literal(path)))
-                kg.add((req, HTTP.absoluteURI, URIRef(str(uri))))
-                kg.add((req, HTTP.authority, Literal(authority)))
-                kg.add((req, HTTP.requestURI, URIRef(str(uri))))
-                kg.add((conn, HTTP.requests, req))
+            if p.in_ == 'path' and p.name in ('entityId','attrName'):
+                continue
+            clean = re.sub(r"\W+", '_', p.name).strip('_')
+            node = self.API[f"{req_id}_Param_{clean}"]
+            if p.in_ == 'header':
+                self.kg.add((node, RDF.type, self.HTTP.MessageHeader))
+                self.kg.add((node, self.HTTP.fieldName, Literal(p.name)))
+                self.kg.add((node, self.HTTP.fieldValue, Literal(getattr(p, 'default', getattr(p, 'example', '')))))
+                self.kg.add((req, self.HTTP.headers, node))
+            elif p.in_ == 'query':
+                self.kg.add((node, RDF.type, self.HTTP.Parameter))
+                self.kg.add((node, self.HTTP.paramName, Literal(p.name)))
+                self.kg.add((node, self.HTTP.paramValue, Literal(getattr(p, 'default', getattr(p, 'example', '')))))
+                self.kg.add((req, self.HTTP.params, node))
 
-                # Attach shared global parameter nodes
-                for node in shared_nodes.values():
-                    kg.add((req, HTTP.headers, node))
-
-                # Handle inline operation parameters (skip path params entityId, attrName)
-                op = spec['paths'][tpl][verb.lower()]
-                for p in op.get('parameters', []):
-                    pname = p['name']
-                    if p.get('in') == 'path' and pname in ('entityId', 'attrName'):
-                        continue
-                    clean_p = re.sub(r"\W+", '_', pname).strip('_')
-                    node = API[f"{req_id}_Param_{clean_p}"]
-                    if (node, None, None) not in kg:
-                        kg.add((node, RDF.type, HTTP.MessageHeader))
-                        kg.add((node, HTTP.fieldName, Literal(pname)))
-                        kg.add((node, HTTP.fieldValue, Literal(p.get('default', p.get('example', '')))))
-                        if p.get('in') == 'header':
-                            kg.add((node, HTTP.hdrName, HEADERS[pname.lower()]))
-                    kg.add((req, HTTP.headers, node))
-            break
-
-    # Serialize augmented graph
-    kg.serialize(destination=str(out_ttl), format='turtle')
+    def serialize(self, destination: Path):
+        self.kg.serialize(destination=str(destination), format='turtle')
