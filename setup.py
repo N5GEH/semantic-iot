@@ -1,6 +1,18 @@
+from pathlib import Path
+import re
 from setuptools import setup, find_packages
 import os
 
+def get_version():
+    """Reads the version from your_package/__init__.py"""
+    init_py = Path(__file__).parent.joinpath("semantic_iot", "__init__.py")
+    with open(init_py, "r") as f:
+        content = f.read()
+    # Using a regular expression to find the version string
+    match = re.search(r"^__version__\s*=\s*['\"]([^'\"]*)['\"]", content, re.M)
+    if match:
+        return match.group(1)
+    raise RuntimeError("Unable to find version string.")
 
 # Utility function to read the README file.
 def read_long_description():
@@ -26,7 +38,7 @@ def read_requirements():
 
 setup(
     name='semantic_iot',
-    version='0.1.0',  # Update the version as needed
+    version=get_version(),
     author='Junsong Du',
     author_email='junsong.du@eonerc.rwth-aachen.de',
     description='A semantic framework to enhence interoperability cross different '
