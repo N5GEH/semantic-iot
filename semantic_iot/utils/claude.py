@@ -11,7 +11,7 @@ from mermaid import Mermaid
 import textwrap
 import matplotlib.pyplot as plt
 import numpy as np
-import pyperclip # TODO just for offline mode, remove later
+# import pyperclip # TODO just for offline mode, remove later
 
 from semantic_iot.utils.prompts import prompts
 

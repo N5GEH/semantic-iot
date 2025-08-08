@@ -11,7 +11,7 @@ from semantic_iot.utils import prompts
 from semantic_iot.utils.tools import generate_rdf_from_rml, reasoning, generate_controller_configuration, term_mapper, get_endpoint_from_api_spec, generate_rml_from_rnr, generate_rdf_from_rml, preprocess_json
 
 timestamp = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
-
+wd_path = Path(__file__).parent
 
 
 def get_file(folder, file_type, keyword=None):
@@ -83,12 +83,13 @@ def get_file(folder, file_type, keyword=None):
 class ScenarioExecutor:
     def __init__(self, 
                  test = False,
-                 dataset_folder: str = "LLM_models/datasets",
-                 ontology_folder: str = "LLM_models/ontologies",
-                 api_spec_folder: str = "LLM_models/API_specs"):
-        self.dataset_folder = dataset_folder
-        self.ontology_folder = ontology_folder
-        self.api_spec_folder = api_spec_folder
+                 dataset_folder: str = None,
+                 ontology_folder: str = None,
+                 api_spec_folder: str = None):
+
+        self.dataset_folder = dataset_folder if dataset_folder else wd_path
+        self.ontology_folder = ontology_folder if ontology_folder else Path(wd_path.parent, "ontologies")
+        self.api_spec_folder = api_spec_folder if api_spec_folder else Path(wd_path.parent, "API_specs")
 
         self.test = test
 
