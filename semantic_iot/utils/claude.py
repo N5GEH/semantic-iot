@@ -3,6 +3,7 @@ from datetime import datetime
 import requests
 import json
 import re
+import os
 import anthropic
 from typing import Dict, Any, List, Optional, Union
 from memory_profiler import memory_usage
@@ -59,7 +60,7 @@ class LLMAgent:
                  model: str = "4sonnet",
                  temperature: float = 1.0, # must be 1.0 for thinking models
                  system_prompt: str = prompts.cot_extraction,
-                 result_folder: str = "LLM_models/metrics"):
+                 result_folder: str = "LLM_eval/metrics"):
         """
         Initialize the Claude API processor
 
@@ -82,7 +83,7 @@ class LLMAgent:
                 with open(f"{root_path}/ANTHROPIC_API_KEY", "w") as f:
                     f.write(self.api_key)
                 print(f"API key saved to {root_path}/ANTHROPIC_API_KEY")
-    
+        
         if model not in models:
             raise ValueError(f"Model {model} not found. Available models: {list(models.keys())}")
         self.model = models[model]
@@ -222,7 +223,7 @@ class LLMAgent:
         # QUERY ========================================================================
 
         result = None
-        for i in range(max_retry):
+        while True:
             if offline:
                 pyperclip.copy(self.system_prompt) 
                 pyperclip.copy(prompt)  # Copy prompt to clipboard for offline use
@@ -231,6 +232,7 @@ class LLMAgent:
                 break
 
             start_time = time.time()
+            print(start_time, "Sending request to Claude API...")
             response = requests.post(
                 self.base_url,
                 headers=self.headers,
@@ -238,14 +240,16 @@ class LLMAgent:
             )
             end_time = time.time()
             elapsed_time = end_time - start_time
+            print(f"⏱️  Request took {elapsed_time:.2f} seconds")
 
             if response.status_code == 200: # Request successful
                 result = response.json()
                 break
             elif response.status_code == 429: # Too many requests
-                if i < max_retry - 1:
+                if max_retry > 0:
                     print(f"⌚ Received 429 error: Too many requests. Retrying in one minute... ({i + 1}/{max_retry})")
                     time.sleep(61)
+                    max_retry -= 1
                     continue
                 else:
                     print(f"Error: {response.status_code}")
@@ -314,7 +318,7 @@ class LLMAgent:
         }
         self.save_json_metrics(step_name)
 
-
+        print("📐 Metrics:")
 
         self._add_newline(prompt, f"{self.result_folder}/prompt.md")
         if thinking_text:
@@ -490,7 +494,7 @@ class LLMAgent:
         """, step_name="regenerate_response")
         return response
 
-    def save_json_metrics(self, step_name: str, output_file: str="LLM_models/metrics/metrics.json") -> None:
+    def save_json_metrics(self, step_name: str, output_file: str="LLM_eval/metrics/metrics.json") -> None:
         """
         Save the pipeline results to a JSON file, appending or updating the dict.
 
@@ -542,7 +546,7 @@ class LLMAgent:
             print(f"📂 Appending to existing file: {path}")
         except FileNotFoundError:
             existing_content = ""
-            print(f"📂 File not found, creating new file: {path}")
+            print(f"📂 Creating new file: {path}")
 
         # Add new content
         for line in string.split("\n"):
@@ -854,25 +858,30 @@ class LLMAgent:
                 "Metacognitive Knowledge": 0,
             }
         }
-        
-        for key, eval_data in evaluations_data.items():
-            if "bloom" in eval_data and "dim" in eval_data:
-                bloom = eval_data["bloom"]
-                dim = eval_data["dim"]
-                
-                if bloom not in heatmap:
-                    print(f"⚠️  Unknown Bloom level '{bloom}' in evaluation data, skipping...")
-                elif dim not in heatmap[bloom]:
-                    print(f"⚠️  Unknown Dimension '{dim}' in evaluation data, skipping...")
-                else:
-                    heatmap[bloom][dim] += 1
-                    if weighted and "quantity" in eval_data:
-                        quantity = eval_data["quantity"]
-                        try:
-                            quantity = int(quantity)
-                            heatmap[bloom][dim] += int(quantity)
-                        except (ValueError, TypeError):
-                            print(f"⚠️  Invalid quantity '{quantity}' with type '{type(quantity)}' for step '{key}', skipping...")
+
+        if "heatmap" in eval_data.keys():
+            heatmap = eval_data["heatmap_weighted"] if weighted else eval_data["heatmap"]
+            print(f"ℹ️  Using existing heatmap from evaluation data")
+
+        else:
+            for key, eval_data in evaluations_data.items():
+                if "bloom" in eval_data and "dim" in eval_data:
+                    bloom = eval_data["bloom"]
+                    dim = eval_data["dim"]
+                    
+                    if bloom not in heatmap:
+                        print(f"⚠️  Unknown Bloom level '{bloom}' in evaluation data, skipping...")
+                    elif dim not in heatmap[bloom]:
+                        print(f"⚠️  Unknown Dimension '{dim}' in evaluation data, skipping...")
+                    else:
+                        heatmap[bloom][dim] += 1
+                        if weighted and "quantity" in eval_data:
+                            quantity = eval_data["quantity"]
+                            try:
+                                quantity = int(quantity)
+                                heatmap[bloom][dim] += int(quantity)
+                            except (ValueError, TypeError):
+                                print(f"⚠️  Invalid quantity '{quantity}' with type '{type(quantity)}' for step '{key}', skipping...")
 
 
         # Build the heatmap with matplotlib
@@ -907,6 +916,82 @@ class LLMAgent:
         plt.close(fig)
 
         return heatmap
+    
+    def merge_evaluation_data(self, folder) -> dict:
+        """
+        Recursively load and merge evaluation data from all JSON files in the given folder and its subfolders.
+        """
+        computed_data = []
+        for root, dirs, files in os.walk(folder):
+            # Skip folders that contain "failed" in their name
+            if "failed" in root:
+                print(f"Skipping failed run: {root}")
+                continue
+            # Only process the first evaluation_data_*.json file in each folder
+            eval_files = [f for f in files if f.endswith(".json") and f.startswith("evaluation_data_")]
+            if eval_files:
+                name = eval_files[0]
+                file_path = os.path.join(root, name)
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                        computed = data.get("COMPUTED", {})
+                    if computed:
+                        computed_data.append(computed)
+                except json.JSONDecodeError as e:
+                    print(f"⚠️  Error decoding JSON from {file_path}: {e}")
+                except Exception as e:
+                    print(f"⚠️  Error reading file {file_path}: {e}")
+
+        if computed_data:
+            reps = len(computed_data)
+            print(f"🔍 Found {reps} repetitions of evaluation data for query")
+            merged = {}
+            
+            for d in computed_data:
+                self._merge_dict_recursively(merged, d, reps)
+
+            # Save heatmap
+            # merged["heatmap"] = self._create_heatmap(merged, weighted=False)
+            # merged["heatmap_weighted"] = self._create_heatmap(merged, weighted=True)
+
+            # Save compued data
+            computed_data_file = f"{folder}/computed_evaluation_data.json"
+            with open(computed_data_file, 'w', encoding='utf-8') as f:
+                json.dump(computed_data, f, indent=2, ensure_ascii=False)
+            print(f"⬇️  Computed evaluation data saved to {computed_data_file}")
+
+            # Save merged data to a JSON file
+            merged_file = f"{folder}/merged_evaluation_data.json"
+            with open(merged_file, 'w', encoding='utf-8') as f:
+                json.dump(merged, f, indent=2, ensure_ascii=False)
+            print(f"⬇️  Merged evaluation data saved to {merged_file}")
+            return merged
+        else:
+            return {}
+    
+    def _merge_dict_recursively(self, target: dict, source: dict, reps: int) -> None:
+        """
+        Recursively merge source dict into target dict, averaging numeric values.
+        
+        Args:
+            target: The target dictionary to merge into
+            source: The source dictionary to merge from
+            reps: Number of repetitions for averaging
+        """
+        for key, value in source.items():
+            if isinstance(value, dict):
+                # Recursively merge nested dictionaries
+                if key not in target:
+                    target[key] = {}
+                self._merge_dict_recursively(target[key], value, reps)
+            elif isinstance(value, (int, float)):
+                # Average numeric values
+                target[key] = target.get(key, 0) + value / reps
+            else:
+                print(f"ℹ️  Non-numeric value for key '{key}': {value} (type: {type(value)})")
+
+
     
     def _parse_thinking_steps(self, thinking_text):
         """
@@ -995,16 +1080,8 @@ class LLMAgent:
 
 if __name__ == "__main__":
 
-    thinking_text = """
-    "response": "<flowchart>\n```mermaid\nflowchart TD\n    A[Start] --> B[Read sequence terms]\n    B --> C[Calculate ratio 2/1]\n    C --> D[Calculate ratio 4/2]\n    D --> E[Calculate ratio 8/4]\n    E --> F[Identify common pattern]\n    F --> G[Generate term 5]\n    G --> H[Generate term 6]\n    H --> I[Generate term 7]\n    I --> J[End]\n```\n</flowchart>\n\n<estimation>\n9 steps total (8 process nodes + completion)\n</estimation>\n\n<steps>\n\nSTEP 1: read 4 sequence terms\n- flowchart_node: Read sequence terms\n- context: Given sequence \"1, 2, 4, 8, ...\"\n\nEXECUTING:\nReading the provided sequence terms:\n- Term 1: 1\n- Term 2: 2  \n- Term 3: 4\n- Term 4: 8\n\nVALIDATION:\n- single_bloom_check: Knowledge - only retrieving given information\n- subdivision_check: Cannot be subdivided - single reading action\n- step_validation_checklist: Single action (read), single Bloom level (Knowledge), single output (4 terms), atomic operation\n\nEVALUATION:\n- bloom: Knowledge - recall given sequence terms\n- dim: Factual Knowledge\n- quantity: 4\n- human_effort: 5 - Simple reading of provided numbers\n\nNEXT: STEP 2: Calculate ratio 2/1\n- next_flowchart_node: Calculate ratio 2/1\n\nSTEP 2: calculate 1 ratio between consecutive terms\n- flowchart_node: Calculate ratio 2/1\n- context: Term 1 = 1, Term 2 = 2\n\nEXECUTING:\nCalculating the ratio between the second and first terms:\nRatio = Term 2 ÷ Term 1 = 2 ÷ 1 = 2\n\nVALIDATION:\n- single_bloom_check: Application - applying division operation\n- subdivision_check: Cannot be subdivided - single calculation\n- step_validation_checklist: Single action (calculate), single Bloom level (Application), single output (ratio = 2), atomic operation\n\nEVALUATION:\n- bloom: Application - apply division to find ratio\n- dim: Procedural Knowledge\n- quantity: 1\n- human_effort: 10 - Basic arithmetic calculation\n\nNEXT: STEP 3: Calculate ratio 4/2\n- next_flowchart_node: Calculate ratio 4/2\n\nSTEP 3: calculate 1 ratio between consecutive terms\n- flowchart_node: Calculate ratio 4/2\n- context: Term 2 = 2, Term 3 = 4\n\nEXECUTING:\nCalculating the ratio between the third and second terms:\nRatio = Term 3 ÷ Term 2 = 4 ÷ 2 = 2\n\nVALIDATION:\n- single_bloom_check: Application - applying division operation\n- subdivision_check: Cannot be subdivided - single calculation\n- step_validation_checklist: Single action (calculate), single Bloom level (Application), single output (ratio = 2), atomic operation\n\nEVALUATION:\n- bloom: Application - apply division to find ratio\n- dim: Procedural Knowledge\n- quantity: 1\n- human_effort: 10 - Basic arithmetic calculation\n\nNEXT: STEP 4: Calculate ratio 8/4\n- next_flowchart_node: Calculate ratio 8/4\n\nSTEP 4: calculate 1 ratio between consecutive terms\n- flowchart_node: Calculate ratio 8/4\n- context: Term 3 = 4, Term 4 = 8\n\nEXECUTING:\nCalculating the ratio between the fourth and third terms:\nRatio = Term 4 ÷ Term 3 = 8 ÷ 4 = 2\n\nVALIDATION:\n- single_bloom_check: Application - applying division operation\n- subdivision_check: Cannot be subdivided - single calculation\n- step_validation_checklist: Single action (calculate), single Bloom level (Application), single output (ratio = 2), atomic operation\n\nEVALUATION:\n- bloom: Application - apply division to find ratio\n- dim: Procedural Knowledge\n- quantity: 1\n- human_effort: 10 - Basic arithmetic calculation\n\nNEXT: STEP 5: Identify common pattern\n- next_flowchart_node: Identify common pattern\n\nSTEP 5: identify 1 common pattern from ratios\n- flowchart_node: Identify common pattern\n- context: Calculated ratios are 2, 2, 2\n\nEXECUTING:\nAnalyzing the calculated ratios:\n- Ratio 1: 2\n- Ratio 2: 2  \n- Ratio 3: 2\n\nAll ratios are equal to 2, indicating this is a geometric sequence with common ratio r = 2.\nPattern identified: Each term is double the previous term.\n\nVALIDATION:\n- single_bloom_check: Analysis - examining ratios to identify pattern\n- subdivision_check: Cannot be subdivided - single pattern recognition\n- step_validation_checklist: Single action (identify), single Bloom level (Analysis), single output (pattern = geometric sequence with r=2), atomic operation\n\nEVALUATION:\n- bloom: Analysis - analyze ratios to identify pattern\n- dim: Conceptual Knowledge\n- quantity: 1\n- human_effort: 25 - Requires pattern recognition and understanding of geometric sequences\n\nNEXT: STEP 6: Generate term 5\n- next_flowchart_node: Generate term 5\n\nSTEP 6: generate 1 next sequence term\n- flowchart_node: Generate term 5\n- context: Term 4 = 8, common ratio = 2\n\nEXECUTING:\nApplying the identified pattern to generate the 5th term:\nTerm 5 = Term 4 × common ratio = 8 × 2 = 16\n\nVALIDATION:\n- single_bloom_check: Application - applying identified pattern\n- subdivision_check: Cannot be subdivided - single term generation\n- step_validation_checklist: Single action (generate), single Bloom level (Application), single output (term 5 = 16), atomic operation\n\nEVALUATION:\n- bloom: Application - apply pattern to generate term\n- dim: Procedural Knowledge\n- quantity: 1\n- human_effort: 15 - Straightforward application of identified pattern\n\nNEXT: STEP 7: Generate term 6\n- next_flowchart_node: Generate term 6\n\nSTEP 7: generate 1 next sequence term\n- flowchart_node: Generate term 6\n- context: Term 5 = 16, common ratio = 2\n\nEXECUTING:\nApplying the identified pattern to generate the 6th term:\nTerm 6 = Term 5 × common ratio = 16 × 2 = 32\n\nVALIDATION:\n- single_bloom_check: Application - applying identified pattern\n- subdivision_check: Cannot be subdivided - single term generation\n- step_validation_checklist: Single action (generate), single Bloom level (Application), single output (term 6 = 32), atomic operation\n\nEVALUATION:\n- bloom: Application - apply pattern to generate term\n- dim: Procedural Knowledge\n- quantity: 1\n- human_effort: 15 - Straightforward application of identified pattern\n\nNEXT: STEP 8: Generate term 7\n- next_flowchart_node: Generate term 7\n\nSTEP 8: generate 1 next sequence term\n- flowchart_node: Generate term 7\n- context: Term 6 = 32, common ratio = 2\n\nEXECUTING:\nApplying the identified pattern to generate the 7th term:\nTerm 7 = Term 6 × common ratio = 32 × 2 = 64\n\nVALIDATION:\n- single_bloom_check: Application - applying identified pattern\n- subdivision_check: Cannot be subdivided - single term generation\n- step_validation_checklist: Single action (generate), single Bloom level (Application), single output (term 7 = 64), atomic operation\n\nEVALUATION:\n- bloom: Application - apply pattern to generate term\n- dim: Procedural Knowledge\n- quantity: 1\n- human_effort: 15 - Straightforward application of identified pattern\n\nNEXT: Task completion\n- next_flowchart_node: End\n\n</steps>\n\n<output>\nThe completed sequence is: 1, 2, 4, 8, 16, 32, 64, ...\n\nThis is a geometric sequence where each term is obtained by multiplying the previous term by 2 (common ratio = 2).\n</output>\n\n<verification>\nEVALUATION TOTAL:\n- Total Steps: 8\n- Flowchart Compliance: yes - all steps correspond to flowchart process nodes\n- Bloom Consistency: yes - each step uses only one Bloom level (Knowledge, Application, or Analysis)\n- Granularity Check: yes - similar operations (ratio calculations, term generations) have consistent granularity\n</verification>",
-    """
-
-    # Example usage
+    # Example usage 
     claude = LLMAgent()
 
-    # Print the parsed steps
-    # result = claude._parse_thinking_steps(thinking_text)
-    result = claude._parse_steps(thinking_text, thinking_text)
-    print("\n\n")
-    print(result)
-    # print(json.dumps(result, indent=2))
+    folder = "LLM_eval/datasets/fiware_v1_hotel/run_250703_10reps/scenario_III"
+    claude.merge_evaluation_data(folder)

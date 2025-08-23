@@ -72,11 +72,11 @@ string = """
         "message": "at line 1 of <>:\nBad syntax (expected directive or statement) at ^ in:\n\"b''^b'flowchart TD\\r\\n    Start([Start]) --> A[Extract required onto'...\"",
         "traceback": "<traceback object at 0x00000214B8293040>"
     },
-    "dataset": "LLM_models/datasets\\fiware_v1_hotel",
-    "JEN": "LLM_models/datasets\\fiware_v1_hotel\\fiware_entities_2rooms.json",
-    "JEX": "LLM_models/datasets\\fiware_v1_hotel\\fiware_example.json",
-    "ontology": "LLM_models/ontologies\\Brick.ttl",
-    "api_spec": "LLM_models/API_specs\\FIWAR_ngsiV2_API_spec.json",
+    "dataset": "LLM_eval/datasets\\fiware_v1_hotel",
+    "JEN": "LLM_eval/datasets\\fiware_v1_hotel\\fiware_entities_2rooms.json",
+    "JEX": "LLM_eval/datasets\\fiware_v1_hotel\\fiware_example.json",
+    "ontology": "LLM_eval/ontologies\\Brick.ttl",
+    "api_spec": "LLM_eval/API_specs\\FIWAR_ngsiV2_API_spec.json",
     "scenarios": [
         "II"
     ],

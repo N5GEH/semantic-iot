@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 import datetime
 import json
+import time
 
 # from mermaid import
 
@@ -82,10 +83,13 @@ def get_file(folder, file_type, keyword=None):
 
 class ScenarioExecutor:
     def __init__(self, 
+                 rep: int = 1,
                  test = False,
-                 dataset_folder: str = "LLM_models/datasets",
-                 ontology_folder: str = "LLM_models/ontologies",
-                 api_spec_folder: str = "LLM_models/API_specs"):
+                 dataset_folder: str = "LLM_eval/datasets",
+                 ontology_folder: str = "LLM_eval/ontologies",
+                 api_spec_folder: str = "LLM_eval/API_specs"):
+        
+        self.rep = rep
         self.dataset_folder = dataset_folder
         self.ontology_folder = ontology_folder
         self.api_spec_folder = api_spec_folder
@@ -302,135 +306,143 @@ class ScenarioExecutor:
             "IIIf": "node_relationship_validated.json"
         }
 
-        for sc in self.selected_scenarios:
-            try: # handle errors in each scenario individually
-                # input(f"\n\n======= Start running scenario {sc} =======")
-                # Context Scenario already handled
-                if sc == 'C':
-                    continue
-                # Create result folder for each scenario
-                if sc == 'IIIf': 
-                    scenario_folder[sc] = scenario_folder['III']
-                    # print(f"Using existing results folder for scenario {sc}: {scenario_folder[sc]}")
-                else:
-                    scenario_folder[sc] = os.path.join(self.result_folder, f"scenario_{sc}")
-                    os.makedirs(scenario_folder[sc], exist_ok=True)
-                    print(f"Results subfolder created at: {scenario_folder[sc]}")
-                    # input("Press Enter to continue...")
-
-                prompts.result_folder = scenario_folder[sc]
-
-
-                print(f"\nRunning scenario {sc}...")
-
-                try: 
-                    client_scenario = LLMAgent(
-                        system_prompt=prompts.cot_extraction,
-                        # system_prompt=prompts.system_default,
-                        result_folder=scenario_folder[sc]
-                    )
-
-                    response = client_scenario.query(
-                        prompt=prompt[sc],
-                        step_name=f"scenario_{sc}", 
-                        tools="",
-                        follow_up=False,
-                        # offline=True
-                    )
-
-                    try:
-                        response = client_scenario.extract_code(response)
-                    except Exception as extract_error:
-                        print(f"❌ Error extracting code from Claude response: {extract_error}")
-                        print(f"Raw response type: {type(response)}")
-                        if isinstance(response, str):
-                            print(f"Raw response preview: {response[:300]}...")
-                        # Try to continue with raw response
-                        print("Continuing with raw response...")
-
-                    try:
-                        # Save the response to the results folder
-                        response_file = os.path.join(scenario_folder[sc], file_name[sc])
-                        with open(response_file, 'w', encoding='utf-8') as f:
-                            if isinstance(response, dict):
-                                f.write(json.dumps(response, indent=2))
-                            else:
-                                f.write(response)
-                        print(f"Response saved to: {response_file}")
+        for i in range(self.rep):
+            self.result_folder = os.path.join(self.target_folder, f"results_{timestamp}_{i+1}")
+            for sc in self.selected_scenarios:
+                try: # handle errors in each scenario individually
+                    # input(f"\n\n======= Start running scenario {sc} =======")
+                    # Context Scenario already handled
+                    if sc == 'C':
+                        continue
+                    # Create result folder for each scenario
+                    if sc == 'IIIf': 
+                        scenario_folder[sc] = scenario_folder['III']
+                        # print(f"Using existing results folder for scenario {sc}: {scenario_folder[sc]}")
+                    else:
+                        scenario_folder[sc] = os.path.join(self.result_folder, f"scenario_{sc}")
+                        os.makedirs(scenario_folder[sc], exist_ok=True)
+                        print(f"Results subfolder created at: {scenario_folder[sc]}")
                         # input("Press Enter to continue...")
-                    except Exception as save_error:
-                        print(response)
-                        print(f"❌ Error saving response to file: {save_error}")
-                        print("Continuing with raw response...")
 
+                    prompts.result_folder = scenario_folder[sc]
+
+
+                    print(f"\nRunning scenario {sc}...")
+
+                    try: 
+                        client_scenario = LLMAgent(
+                            system_prompt=prompts.cot_extraction,
+                            # system_prompt=prompts.system_default,
+                            result_folder=scenario_folder[sc]
+                        )
+
+                        response = client_scenario.query(
+                            prompt=prompt[sc],
+                            step_name=f"scenario_{sc}", 
+                            tools="",
+                            follow_up=False,
+                            offline=True
+                        )
+
+                        try:
+                            response = client_scenario.extract_code(response)
+                        except Exception as extract_error:
+                            print(f"❌ Error extracting code from Claude response: {extract_error}")
+                            print(f"Raw response type: {type(response)}")
+                            if isinstance(response, str):
+                                print(f"Raw response preview: {response[:300]}...")
+                            # Try to continue with raw response
+                            print("Continuing with raw response...")
+
+                        try:
+                            # Save the response to the results folder
+                            response_file = os.path.join(scenario_folder[sc], file_name[sc])
+                            with open(response_file, 'w', encoding='utf-8') as f:
+                                if isinstance(response, dict):
+                                    f.write(json.dumps(response, indent=2))
+                                else:
+                                    f.write(response)
+                            print(f"Response saved to: {response_file}")
+                            # input("Press Enter to continue...")
+                        except Exception as save_error:
+                            print(response)
+                            print(f"❌ Error saving response to file: {save_error}")
+                            print("Continuing with raw response...")
+
+                    except Exception as e:
+                        print(f"❌ Error in generating Claude Response: {e}")
+                        print("Continuing...")
+                    
+
+
+
+
+                    # FINISH =======================================================
+
+                    if sc == 'III':
+                        # Generate RNR from PC
+                        print("\n======= Generate RNR (from Platform Configuration) =======")
+                        preprocess_json(
+                            json_file_path=self.JEN_path,
+                            rdf_node_relationship_file_path=os.path.join(scenario_folder[sc], "node_relationship.json"),
+                            ontology_file_paths=[self.ontology_path],
+                            config_path=get_file(scenario_folder[sc], "PC")
+                        )
+                        prompts.load_RNR(get_file(scenario_folder[sc], "RNR"))
+                        prompts.load_PC(get_file(scenario_folder[sc], "PC"))
+                        prompt["IIIf"] = prompts.prompt_III
+                        # input("Press Enter to continue...")
+                        continue
+
+                    if sc == 'IIIf':
+                        # Generate RML (from RNR from config)
+                        print("\n======= Generate RML (from RNR) =======")
+                        generate_rml_from_rnr(
+                            INPUT_RNR_FILE_PATH=get_file(scenario_folder[sc], "RNRv"),
+                            OUTPUT_RML_FILE_PATH=os.path.join(scenario_folder[sc], "rml_mapping.ttl"),
+                        )
+                        # input("Press Enter to continue...")
+
+                    if sc == 'II' or sc == 'IIIf':
+                        # Generate KG (from RML)
+                        print("\n======= Generate KG (from RML) =======")
+                        generate_rdf_from_rml(
+                            json_file_path=self.JEN_path,
+                            rml_file_path=get_file(scenario_folder[sc], "RML"),
+                            output_rdf_file_path=os.path.join(scenario_folder[sc], "kg_entities.ttl"),
+                            platform_config=get_file(scenario_folder[sc], "PC") or None,
+                        )
+                        # input("Press Enter to continue...")
+
+                    print("\n======= Generate iKG (from KG) =======")
+                    reasoning(
+                        target_kg_path=get_file(scenario_folder[sc], "KG"),
+                        ontology_path=self.ontology_path,
+                        extended_kg_filename=""
+                    )
+
+                    # input("Press Enter to continue...")
+
+                    print("\n======= Generate CC (from iKG) =======")
+                    generate_controller_configuration(
+                        extended_kg_path=get_file(scenario_folder[sc], "iKG"),
+                        output_file=os.path.join(scenario_folder[sc], "controller_configuration.yml")
+                    )
+
+                    print (f"\nController configuration generated and saved to {get_file(scenario_folder[sc], 'CC')}")
+                    print(f"Scenario {sc} completed. Results saved in {scenario_folder[sc]}")
+                    # print("Cooldown for 100 seconds ...")
+                    # time.sleep(100) 
                 except Exception as e:
-                    print(f"❌ Error in generating Claude Response: {e}")
-                    print("Continuing...")
-                
-
-
-
-
-                # FINISH =======================================================
-
-                if sc == 'III':
-                    # Generate RNR from PC
-                    print("\n======= Generate RNR (from Platform Configuration) =======")
-                    preprocess_json(
-                        json_file_path=self.JEN_path,
-                        rdf_node_relationship_file_path=os.path.join(scenario_folder[sc], "node_relationship.json"),
-                        ontology_file_paths=[self.ontology_path],
-                        config_path=get_file(scenario_folder[sc], "PC")
-                    )
-                    prompts.load_RNR(get_file(scenario_folder[sc], "RNR"))
-                    prompts.load_PC(get_file(scenario_folder[sc], "PC"))
-                    prompt["IIIf"] = prompts.prompt_III
-                    # input("Press Enter to continue...")
+                    error_message = f"🛑 Error in scenario {sc}: {e}"
+                    print(error_message)
+                    error_file = os.path.join(scenario_folder[sc], "error.txt")
+                    with open(error_file, 'w', encoding='utf-8') as f:
+                        f.write(error_message)
+                    print("Continuing next scenario...")
                     continue
-
-                if sc == 'IIIf':
-                    # Generate RML (from RNR from config)
-                    print("\n======= Generate RML (from RNR) =======")
-                    generate_rml_from_rnr(
-                        INPUT_RNR_FILE_PATH=get_file(scenario_folder[sc], "RNRv"),
-                        OUTPUT_RML_FILE_PATH=os.path.join(scenario_folder[sc], "rml_mapping.ttl"),
-                    )
-                    # input("Press Enter to continue...")
-
-                if sc == 'II' or sc == 'IIIf':
-                    # Generate KG (from RML)
-                    print("\n======= Generate KG (from RML) =======")
-                    generate_rdf_from_rml(
-                        json_file_path=self.JEN_path,
-                        rml_file_path=get_file(scenario_folder[sc], "RML"),
-                        output_rdf_file_path=os.path.join(scenario_folder[sc], "kg_entities.ttl"),
-                        platform_config=get_file(scenario_folder[sc], "PC") or None,
-                    )
-                    # input("Press Enter to continue...")
-
-                print("\n======= Generate iKG (from KG) =======")
-                reasoning(
-                    target_kg_path=get_file(scenario_folder[sc], "KG"),
-                    ontology_path=self.ontology_path,
-                    extended_kg_filename=""
-                )
-
-                # input("Press Enter to continue...")
-
-                print("\n======= Generate CC (from iKG) =======")
-                generate_controller_configuration(
-                    extended_kg_path=get_file(scenario_folder[sc], "iKG"),
-                    output_file=os.path.join(scenario_folder[sc], "controller_configuration.yml")
-                )
-
-                print (f"\nController configuration generated and saved to {get_file(scenario_folder[sc], 'CC')}")
-                print(f"Scenario {sc} completed. Results saved in {scenario_folder[sc]}")
-            
-            except Exception as e:
-                print(f"Error in scenario {sc}: {e}")
-                print("Skipping this scenario due to an error.")
-                continue
-                
+            print("\nCooldown for 100 seconds ...")
+            time.sleep(100) 
         print(f"\n\n✅  All selected scenarios completed. Results saved in {self.result_folder}")
 
     def load_context(self, result_folder):
@@ -447,7 +459,7 @@ class ScenarioExecutor:
         """
         Save the metrics to a file.
         """ 
-        metrics_file = r"LLM_models/metrics/metrics.json"
+        metrics_file = r"LLM_eval/metrics/metrics.json"
         if os.path.exists(metrics_file):
             with open(metrics_file, 'r', encoding='utf-8') as f:
                 content = f.read().strip()
@@ -659,7 +671,7 @@ def clear_metrics():
     """
     Clear the metrics file if it exists.
     """
-    metrics_file = r"LLM_models\metrics\metrics.json"
+    metrics_file = r"LLM_eval\metrics\metrics.json"
     if os.path.exists(metrics_file):
         with open(metrics_file, 'w') as f:
             pass
