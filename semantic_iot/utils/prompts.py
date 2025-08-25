@@ -1,4 +1,4 @@
-
+from pathlib import Path
 import textwrap
 
 
@@ -10,11 +10,12 @@ class PromptsLoader:
     # LOAD FILES =====================================================================
     def __init__(self):
 
+        root_path = Path(__file__).parent.parent.parent
         self.template_paths = {
-            "rdf" : "LLM_eval/templates/rdf_template.ttl",
-            "RML" : "LLM_eval/templates/rml_template.ttl",
-            "config" : "LLM_eval/templates/platform_config_template.json",
-            "context" : "LLM_eval/templates/context_template.json"
+            "rdf": str(Path(root_path, "LLM_eval/templates/rdf_template.ttl")),
+            "RML": str(Path(root_path, "LLM_eval/templates/rml_template.ttl")),
+            "config": str(Path(root_path, "LLM_eval/templates/platform_config_template.json")),
+            "context": str(Path(root_path, "LLM_eval/templates/context_template.json")),
         }
         self.templates = {}
         for key, path in self.template_paths.items():
@@ -142,7 +143,7 @@ class PromptsLoader:
 
         The proportion of the score between steps should reflect the proportion of the effort required to complete the steps.
         Scores must be comparable across different KG generation tasks.
-        """) 
+        """)
         # ... rate the "cognitive" effort of this step ...?
         # and the "context" that was required.
 

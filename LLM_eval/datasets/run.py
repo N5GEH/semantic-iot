@@ -12,7 +12,7 @@ from semantic_iot.utils import prompts
 from semantic_iot.utils.tools import generate_rdf_from_rml, reasoning, generate_controller_configuration, term_mapper, get_endpoint_from_api_spec, generate_rml_from_rnr, generate_rdf_from_rml, preprocess_json
 
 timestamp = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
-
+wd_path = Path(__file__).parent
 
 
 def get_file(folder, file_type, keyword=None):
@@ -88,11 +88,11 @@ class ScenarioExecutor:
                  dataset_folder: str = "LLM_eval/datasets",
                  ontology_folder: str = "LLM_eval/ontologies",
                  api_spec_folder: str = "LLM_eval/API_specs"):
-        
+
         self.rep = rep
-        self.dataset_folder = dataset_folder
-        self.ontology_folder = ontology_folder
-        self.api_spec_folder = api_spec_folder
+        self.dataset_folder = dataset_folder if dataset_folder else wd_path
+        self.ontology_folder = ontology_folder if ontology_folder else Path(wd_path.parent, "ontologies")
+        self.api_spec_folder = api_spec_folder if api_spec_folder else Path(wd_path.parent, "API_specs")
 
         self.test = test
 
@@ -315,7 +315,7 @@ class ScenarioExecutor:
                     if sc == 'C':
                         continue
                     # Create result folder for each scenario
-                    if sc == 'IIIf': 
+                    if sc == 'IIIf':
                         scenario_folder[sc] = scenario_folder['III']
                         # print(f"Using existing results folder for scenario {sc}: {scenario_folder[sc]}")
                     else:
@@ -329,7 +329,7 @@ class ScenarioExecutor:
 
                     print(f"\nRunning scenario {sc}...")
 
-                    try: 
+                    try:
                         client_scenario = LLMAgent(
                             system_prompt=prompts.cot_extraction,
                             # system_prompt=prompts.system_default,
@@ -338,7 +338,7 @@ class ScenarioExecutor:
 
                         response = client_scenario.query(
                             prompt=prompt[sc],
-                            step_name=f"scenario_{sc}", 
+                            step_name=f"scenario_{sc}",
                             tools="",
                             follow_up=False,
                             offline=True
@@ -372,7 +372,7 @@ class ScenarioExecutor:
                     except Exception as e:
                         print(f"❌ Error in generating Claude Response: {e}")
                         print("Continuing...")
-                    
+
 
 
 
@@ -432,7 +432,7 @@ class ScenarioExecutor:
                     print (f"\nController configuration generated and saved to {get_file(scenario_folder[sc], 'CC')}")
                     print(f"Scenario {sc} completed. Results saved in {scenario_folder[sc]}")
                     # print("Cooldown for 100 seconds ...")
-                    # time.sleep(100) 
+                    # time.sleep(100)
                 except Exception as e:
                     error_message = f"🛑 Error in scenario {sc}: {e}"
                     print(error_message)
@@ -442,7 +442,7 @@ class ScenarioExecutor:
                     print("Continuing next scenario...")
                     continue
             print("\nCooldown for 100 seconds ...")
-            time.sleep(100) 
+            time.sleep(100)
         print(f"\n\n✅  All selected scenarios completed. Results saved in {self.result_folder}")
 
     def load_context(self, result_folder):
