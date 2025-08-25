@@ -1,0 +1,66 @@
+{
+  "api_endpoint": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{entityId}/attrs/{attrName}/value",
+  "identifier_key": "id",
+  "class_keys": [
+    "type"
+  ],
+  "class_mappings": {
+    "Hotel": "rec:Building",
+    "AmbientTemperatureSensor": "brick:Air_Temperature_Sensor",
+    "AirHandlingUnit": "brick:Air_Handling_Unit",
+    "HotelRoom": "rec:Room",
+    "PresenceSensor": "brick:PIR_Sensor",
+    "VariableAirVolumeBox": "brick:Variable_Air_Volume_Box",
+    "RadiatorThermostat": "rec:ThermostatEquipment",
+    "CoolingCoil": "brick:Cooling_Coil",
+    "Fan": "brick:Fan"
+  },
+  "numerical_properties": [
+    "temperatureAmb",
+    "co2",
+    "temperature",
+    "pir",
+    "airFlowSetpoint",
+    "temperatureSetpoint",
+    "fanSpeed"
+  ],
+  "relational_properties": [
+    "hasLocation",
+    "isFedBy",
+    "isPartOf"
+  ],
+
+  "relational_property_mappings": {
+    "hasLocation": "brick:hasLocation",
+    "isFedBy": "brick:isFedBy",
+    "isPartOf": "brick:isPartOf"
+  },
+  "extra_nodes": [
+    {
+      "non_numeric_parent_class": "rec:Room",
+      "numeric_property": "co2",
+      "mapped_ontology_class": "brick:CO2_Level_Sensor"
+    },
+    {
+      "non_numeric_parent_class": "rec:Room",
+      "numeric_property": "temperature",
+      "mapped_ontology_class": "brick:Air_Temperature_Sensor"
+    },
+    {
+      "non_numeric_parent_class": "brick:Variable_Air_Volume_Box",
+      "numeric_property": "airFlowSetpoint",
+      "mapped_ontology_class": "brick:Air_Flow_Setpoint"
+    },
+    {
+      "non_numeric_parent_class": "rec:ThermostatEquipment",
+      "numeric_property": "temperatureSetpoint",
+      "mapped_ontology_class": "brick:Temperature_Setpoint"
+    },
+    {
+      "non_numeric_parent_class": "brick:Fan",
+      "numeric_property": "fanSpeed",
+      "mapped_ontology_class": "brick:Fan_Speed_Command"
+    }
+  ],
+  "extra_node_relation_to_parent": "brick:isPointOf"
+}

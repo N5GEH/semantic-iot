@@ -403,7 +403,6 @@ def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
     # For get_endpoint_list tool
     elif tool_name == "get_endpoint_list":
         endpoints = get_endpoint_list()
-        # endpoints = r"/items/{itemname}/state" # TODO remove
         return {"endpoints": endpoints, "quantity": len(endpoints.splitlines())}
     
     # For get_non_numeric_classes tool

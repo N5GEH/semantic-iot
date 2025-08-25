@@ -240,8 +240,7 @@ class PromptsLoader:
         </instructions>
 
         <output> Return the Resource Node Relationship Document in JSON format.</output>
-        """) # TODO remove self.jex out of prompt?
-        # {self.jex} include again?
+        """)
     
 
 

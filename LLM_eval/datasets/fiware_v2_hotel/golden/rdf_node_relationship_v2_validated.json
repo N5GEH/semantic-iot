@@ -1,0 +1,207 @@
+{
+    "@context": {
+        "bacnet": "http://data.ashrae.org/bacnet/2020#",
+        "brick": "https://brickschema.org/schema/Brick#",
+        "bsh": "https://brickschema.org/schema/BrickShape#",
+        "dcterms": "http://purl.org/dc/terms/",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "qudt": "http://qudt.org/schema/qudt/",
+        "qudtqk": "http://qudt.org/vocab/quantitykind/",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "rec": "https://w3id.org/rec#",
+        "ref": "https://brickschema.org/schema/Brick/ref#",
+        "s223": "http://data.ashrae.org/standard223#",
+        "sdo": "http://schema.org/",
+        "sh": "http://www.w3.org/ns/shacl#",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "sosa": "http://www.w3.org/ns/sosa/",
+        "tag": "https://brickschema.org/schema/BrickTag#",
+        "unit": "http://qudt.org/vocab/unit/",
+        "vcard": "http://www.w3.org/2006/vcard/ns#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
+    },
+    "@data": [
+        {
+            "nodetype": "Hotel",
+            "iterator": "$[?(@.type=='Hotel')]",
+            "class": "rec:Building",
+            "hasRelationship": [],
+            "link": null
+        },
+        {
+            "nodetype": "AmbientTemperatureSensor",
+            "iterator": "$[?(@.type=='AmbientTemperatureSensor')]",
+            "class": "brick:Outside_Air_Temperature_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Hotel",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "link": "http://137.226.248.250:1026/v2/entities/{id}/attrs/temperatureAmb/value"
+        },
+        {
+            "nodetype": "AirHandlingUnit",
+            "iterator": "$[?(@.type=='AirHandlingUnit')]",
+            "class": "brick:Air_Handling_Unit",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Hotel",
+                    "relatedAttribute": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "HotelRoom",
+            "iterator": "$[?(@.type=='HotelRoom')]",
+            "class": "rec:Room",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Hotel",
+                    "relatedAttribute": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "PresenceSensor",
+            "iterator": "$[?(@.type=='PresenceSensor')]",
+            "class": "brick:Occupancy_Count_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "link": "http://137.226.248.250:1026/v2/entities/{id}/attrs/pir/value"
+        },
+        {
+            "nodetype": "VariableAirVolumeBox",
+            "iterator": "$[?(@.type=='VariableAirVolumeBox')]",
+            "class": "brick:Variable_Air_Volume_Box",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "relatedAttribute": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                },
+                {
+                    "relatedNodeType": "AirHandlingUnit",
+                    "relatedAttribute": "brick:isFedBy",
+                    "rawdataidentifier": "isFedBy.value"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "RadiatorThermostat",
+            "iterator": "$[?(@.type=='RadiatorThermostat')]",
+            "class": "brick:Thermostat",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "relatedAttribute": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "CoolingCoil",
+            "iterator": "$[?(@.type=='CoolingCoil')]",
+            "class": "brick:Cooling_Coil",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "relatedAttribute": "brick:hasLocation",
+                    "rawdataidentifier": "hasLocation.value"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "Fan",
+            "iterator": "$[?(@.type=='Fan')]",
+            "class": "brick:Fan",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "CoolingCoil",
+                    "relatedAttribute": "brick:isPartOf",
+                    "rawdataidentifier": "isPartOf.value"
+                }
+            ],
+            "link": null
+        },
+        {
+            "nodetype": "co2_HotelRoom",
+            "iterator": "$[?(@.type=='co2_HotelRoom')]",
+            "class": "brick:CO2_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "link": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/co2/value"
+        },
+        {
+            "nodetype": "temperature_HotelRoom",
+            "iterator": "$[?(@.type=='temperature_HotelRoom')]",
+            "class": "brick:Air_Temperature_Sensor",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "HotelRoom",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "link": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/temperature/value"
+        },
+        {
+            "nodetype": "fanSpeed_Fan",
+            "iterator": "$[?(@.type=='fanSpeed_Fan')]",
+            "class": "brick:Fan_Speed_Command",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "Fan",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "link": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
+        },
+        {
+            "nodetype": "airFlowSetpoint_VariableAirVolumeBox",
+            "iterator": "$[?(@.type=='airFlowSetpoint_VariableAirVolumeBox')]",
+            "class": "brick:Air_Flow_Setpoint",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "VariableAirVolumeBox",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "link": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
+        },
+        {
+            "nodetype": "temperatureSetpoint_RadiatorThermostat",
+            "iterator": "$[?(@.type=='temperatureSetpoint_RadiatorThermostat')]",
+            "class": "brick:Temperature_Setpoint",
+            "hasRelationship": [
+                {
+                    "relatedNodeType": "RadiatorThermostat",
+                    "relatedAttribute": "brick:isPointOf",
+                    "rawdataidentifier": "relatedTo.value"
+                }
+            ],
+            "link": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
+        }
+    ]
+}

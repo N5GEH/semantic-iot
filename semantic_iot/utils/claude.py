@@ -108,7 +108,7 @@ class LLMAgent:
 
         }
 
-        # self.client = anthropic.Client(self.api_key) # TODO replace with API instead of requests
+        # self.client = anthropic.Client(self.api_key) # replace with API instead of requests
         
         self.conversation_history = []
         self.metrics = {}
@@ -340,7 +340,7 @@ class LLMAgent:
         # TOOL USE =========================================================
 
         if tools and result.get("stop_reason") == "tool_use":
-            tool_use = result.get("content")[-1] # TODO assuming only one tool is called at a time
+            tool_use = result.get("content")[-1] # assuming only one tool is called at a time
             tool_name = tool_use.get("name")
             tool_input = tool_use.get("input")
 
@@ -452,7 +452,7 @@ class LLMAgent:
     
         
         # END OF TERM & MAX TOKENS =========================================================
-        elif result.get("stop_reason") == "end_turn": # TODO compute metrics here
+        elif result.get("stop_reason") == "end_turn": # compute metrics here
             output = self.extract_tag(response_text, "output")
             if output: response_text = output
             print(f"✨↪️  Model reply: {response_text}")

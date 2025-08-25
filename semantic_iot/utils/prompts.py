@@ -380,7 +380,7 @@ class PromptsLoader:
         <output>{self.templates['context']}</output>
         
         """)
-        # TODO improve prompt:
+        # Improve prompt:
         # Continue, if there are no more extra nodes left to add. When iterating over the same object, adjust the query 
         # adding the query: using the query '{{property_name}} (value of {{parentEntity}})'
 
@@ -478,7 +478,7 @@ class PromptsLoader:
         </instructions>
 
 
-        """)# TODO this ID is not always the same? Depends on platform config?
+        """)
 
         # PROMPTS ====================================================================
 
@@ -583,8 +583,7 @@ class PromptsLoader:
         </instructions>
 
         <output> Return the Resource Node Relationship Document in JSON format.</output>
-        """) # TODO remove self.jex out of prompt?
-        # {self.jex} include again?
+        """)
     
 
 

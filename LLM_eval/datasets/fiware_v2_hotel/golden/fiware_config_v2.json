@@ -1,0 +1,13 @@
+{
+    "ID_KEY": "id",
+    "TYPE_KEYS": [
+        "type"
+    ],
+    "JSONPATH_EXTRA_NODES": [
+        "$..co2",
+        "$..temperature",
+        "$..fanSpeed",
+        "$..airFlowSetpoint",
+        "$..temperatureSetpoint"
+    ]
+}

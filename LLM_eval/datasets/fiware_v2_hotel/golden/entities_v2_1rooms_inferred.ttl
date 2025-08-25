@@ -1,0 +1,883 @@
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix qudtqk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rec: <https://w3id.org/rec#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix tag: <https://brickschema.org/schema/BrickTag#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+rec:Building a rdfs:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "Building"^^xsd:string ;
+    rdfs:comment "A confined building structure."^^xsd:string ;
+    rdfs:subClassOf rec:Architecture .
+
+rec:Room a rdfs:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "Room"^^xsd:string ;
+    rdfs:subClassOf rec:Architecture .
+
+brick:Ablutions_Room brick:Relationship rec:Room ;
+    brick:isReplacedBy rec:Room .
+
+brick:Air_Flow_Deadband_Setpoint rdfs:subClassOf brick:Air_Flow_Setpoint .
+
+brick:Air_Flow_Demand_Setpoint rdfs:subClassOf brick:Air_Flow_Setpoint .
+
+brick:Air_Temperature_Setpoint rdfs:subClassOf brick:Temperature_Setpoint .
+
+brick:Air_Wet_Bulb_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Booster_Fan rdfs:subClassOf brick:Fan .
+
+brick:Building brick:Relationship rec:Building ;
+    brick:isReplacedBy rec:Building .
+
+brick:CO2_Differential_Sensor rdfs:subClassOf brick:CO2_Sensor .
+
+brick:CO2_Level_Sensor rdfs:subClassOf brick:CO2_Sensor .
+
+brick:Ceiling_Fan rdfs:subClassOf brick:Fan .
+
+brick:Chilled_Water_Coil rdfs:subClassOf brick:Cooling_Coil .
+
+brick:Cooling_Temperature_Setpoint rdfs:subClassOf brick:Temperature_Setpoint .
+
+brick:Cooling_Tower_Fan rdfs:subClassOf brick:Fan .
+
+brick:DDAHU rdfs:subClassOf brick:Air_Handling_Unit .
+
+brick:DOAS rdfs:subClassOf brick:Air_Handling_Unit .
+
+brick:Dedicated_Outdoor_Air_System_Unit rdfs:subClassOf brick:Air_Handling_Unit .
+
+brick:Detention_Room brick:Relationship rec:Room ;
+    brick:isReplacedBy rec:Room .
+
+brick:Direct_Expansion_Cooling_Coil rdfs:subClassOf brick:Cooling_Coil .
+
+brick:Discharge_Air_Flow_Setpoint rdfs:subClassOf brick:Air_Flow_Setpoint .
+
+brick:Discharge_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Discharge_Fan rdfs:subClassOf brick:Fan .
+
+brick:Dual_Duct_Air_Handling_Unit rdfs:subClassOf brick:Air_Handling_Unit .
+
+brick:Exhaust_Air_Flow_Setpoint rdfs:subClassOf brick:Air_Flow_Setpoint .
+
+brick:Exhaust_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Exhaust_Fan rdfs:subClassOf brick:Fan .
+
+brick:Freezer brick:Relationship rec:Room ;
+    brick:isReplacedBy rec:Room .
+
+brick:Fresh_Air_Fan rdfs:subClassOf brick:Fan .
+
+brick:Gatehouse brick:Relationship rec:Building ;
+    brick:isReplacedBy rec:Building .
+
+brick:Hazardous_Materials_Storage brick:Relationship rec:Room ;
+    brick:isReplacedBy rec:Room .
+
+brick:Heating_Temperature_Setpoint rdfs:subClassOf brick:Temperature_Setpoint .
+
+brick:Hospitality_Box brick:Relationship rec:Room ;
+    brick:isReplacedBy rec:Room .
+
+brick:Hot_Box brick:Relationship rec:Room ;
+    brick:isReplacedBy rec:Room .
+
+brick:Intake_Air_Temperature_Sensor rdfs:subClassOf brick:Outside_Air_Temperature_Sensor .
+
+brick:MAU rdfs:subClassOf brick:Air_Handling_Unit .
+
+brick:Makeup_Air_Unit rdfs:subClassOf brick:Air_Handling_Unit .
+
+brick:Mixed_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Outside_Air_CO2_Sensor rdfs:subClassOf brick:CO2_Sensor .
+
+brick:Outside_Air_Flow_Setpoint rdfs:subClassOf brick:Air_Flow_Setpoint .
+
+brick:Outside_Air_Temperature_Enable_Differential_Sensor rdfs:subClassOf brick:Outside_Air_Temperature_Sensor .
+
+brick:Outside_Air_Wet_Bulb_Temperature_Sensor rdfs:subClassOf brick:Outside_Air_Temperature_Sensor .
+
+brick:Outside_Fan rdfs:subClassOf brick:Fan .
+
+brick:PAU rdfs:subClassOf brick:Air_Handling_Unit .
+
+brick:Parking_Structure brick:Relationship rec:Building ;
+    brick:isReplacedBy rec:Building .
+
+brick:Pre-Cooling_Air_Unit rdfs:subClassOf brick:Air_Handling_Unit .
+
+brick:Pressurization_Fan rdfs:subClassOf brick:Fan .
+
+brick:RTU rdfs:subClassOf brick:Air_Handling_Unit .
+
+brick:RVAV rdfs:subClassOf brick:Variable_Air_Volume_Box .
+
+brick:Radiant_Panel_Temperature_Setpoint rdfs:subClassOf brick:Temperature_Setpoint .
+
+brick:Relief_Fan rdfs:subClassOf brick:Fan .
+
+brick:Return_Air_CO2_Sensor rdfs:subClassOf brick:CO2_Sensor .
+
+brick:Return_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Return_Fan rdfs:subClassOf brick:Fan .
+
+brick:Riser brick:Relationship rec:Room ;
+    brick:isReplacedBy rec:Room .
+
+brick:Rooftop_Unit rdfs:subClassOf brick:Air_Handling_Unit .
+
+brick:Room brick:Relationship rec:Room ;
+    brick:isReplacedBy rec:Room .
+
+brick:Schedule_Temperature_Setpoint rdfs:subClassOf brick:Temperature_Setpoint .
+
+brick:Stage_Riser brick:Relationship rec:Room ;
+    brick:isReplacedBy rec:Room .
+
+brick:Standby_Fan rdfs:subClassOf brick:Fan .
+
+brick:Supply_Air_Flow_Setpoint rdfs:subClassOf brick:Air_Flow_Setpoint .
+
+brick:Supply_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Supply_Fan rdfs:subClassOf brick:Fan .
+
+brick:Temperature_Deadband_Setpoint rdfs:subClassOf brick:Temperature_Setpoint .
+
+brick:Ticketing_Booth brick:Relationship rec:Building ;
+    brick:isReplacedBy rec:Building .
+
+brick:Transfer_Fan rdfs:subClassOf brick:Fan .
+
+brick:Tunnel brick:Relationship rec:Room ;
+    brick:isReplacedBy rec:Room .
+
+brick:Underfloor_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+brick:Variable_Air_Volume_Box_With_Reheat rdfs:subClassOf brick:Variable_Air_Volume_Box .
+
+brick:Vertical_Space brick:Relationship rec:Room ;
+    brick:isReplacedBy rec:Room .
+
+brick:Water_Temperature_Setpoint rdfs:subClassOf brick:Temperature_Setpoint .
+
+brick:Zone_Air_Temperature_Sensor rdfs:subClassOf brick:Air_Temperature_Sensor .
+
+rec:Atrium rdfs:subClassOf rec:Room .
+
+rec:Auditorium rdfs:subClassOf rec:Room .
+
+rec:BackOffice rdfs:subClassOf rec:Room .
+
+rec:Bathroom rdfs:subClassOf rec:Room .
+
+rec:Bedroom rdfs:subClassOf rec:Room .
+
+rec:Cinema rdfs:subClassOf rec:Room .
+
+rec:CleaningRoom rdfs:subClassOf rec:Room .
+
+rec:CloakRoom rdfs:subClassOf rec:Room .
+
+rec:ConferenceRoom rdfs:subClassOf rec:Room .
+
+rec:ConversationRoom rdfs:subClassOf rec:Room .
+
+rec:CopyingRoom rdfs:subClassOf rec:Room .
+
+rec:DressingRoom rdfs:subClassOf rec:Room .
+
+rec:EducationalRoom rdfs:subClassOf rec:Room .
+
+rec:ElevatorRoom rdfs:subClassOf rec:Room .
+
+rec:ElevatorShaft rdfs:subClassOf rec:Room .
+
+rec:Entrance rdfs:subClassOf rec:Room .
+
+rec:ExerciseRoom rdfs:subClassOf rec:Room .
+
+rec:ExhibitionRoom rdfs:subClassOf rec:Room .
+
+rec:FoodHandlingRoom rdfs:subClassOf rec:Room .
+
+rec:Garage rdfs:subClassOf rec:Room .
+
+rec:Hallway rdfs:subClassOf rec:Room .
+
+rec:HealthcareRoom rdfs:subClassOf rec:Room .
+
+rec:Hospital rdfs:subClassOf rec:Building .
+
+rec:Laboratory rdfs:subClassOf rec:Room .
+
+rec:LaundryRoom rdfs:subClassOf rec:Room .
+
+rec:Library rdfs:subClassOf rec:Room .
+
+rec:LivingRoom rdfs:subClassOf rec:Room .
+
+rec:LoadingReceivingRoom rdfs:subClassOf rec:Room .
+
+rec:Lobby rdfs:subClassOf rec:Room .
+
+rec:LockerRoom rdfs:subClassOf rec:Room .
+
+rec:Lounge rdfs:subClassOf rec:Room .
+
+rec:MeditationRoom rdfs:subClassOf rec:Room .
+
+rec:MothersRoom rdfs:subClassOf rec:Room .
+
+rec:MultiPurposeRoom rdfs:subClassOf rec:Room .
+
+rec:Office rdfs:subClassOf rec:Room .
+
+rec:PersonalHygiene rdfs:subClassOf rec:Room .
+
+rec:Reception rdfs:subClassOf rec:Room .
+
+rec:RecordingRoom rdfs:subClassOf rec:Room .
+
+rec:RecreationalRoom rdfs:subClassOf rec:Room .
+
+rec:RestingRoom rdfs:subClassOf rec:Room .
+
+rec:RetailRoom rdfs:subClassOf rec:Room .
+
+rec:School rdfs:subClassOf rec:Building .
+
+rec:SecurityRoom rdfs:subClassOf rec:Room .
+
+rec:ServiceShaft rdfs:subClassOf rec:Room .
+
+rec:Shelter rdfs:subClassOf rec:Room .
+
+rec:ShoppingMall rdfs:subClassOf rec:Building .
+
+rec:Stadium rdfs:subClassOf rec:Building .
+
+rec:StaffRoom rdfs:subClassOf rec:Room .
+
+rec:Stairwell rdfs:subClassOf rec:Room .
+
+rec:Storage rdfs:subClassOf rec:Room .
+
+rec:TeamRoom rdfs:subClassOf rec:Room .
+
+rec:Theater rdfs:subClassOf rec:Room .
+
+rec:ThermostatEquipment brick:Relationship brick:Thermostat ;
+    brick:isReplacedBy brick:Thermostat .
+
+rec:TreatmentRoom rdfs:subClassOf rec:Room .
+
+rec:UtilitiesRoom rdfs:subClassOf rec:Room .
+
+rec:VirtualBuilding rdfs:subClassOf rec:Building .
+
+rec:WasteManagementRoom rdfs:subClassOf rec:Room .
+
+rec:Workshop rdfs:subClassOf rec:Room .
+
+brick:AHU owl:equivalentClass brick:Air_Handling_Unit ;
+    brick:aliasOf brick:Air_Handling_Unit .
+
+brick:Air_Handler_Unit owl:equivalentClass brick:Air_Handling_Unit ;
+    brick:aliasOf brick:Air_Handling_Unit .
+
+brick:VAV owl:equivalentClass brick:Variable_Air_Volume_Box ;
+    brick:aliasOf brick:Variable_Air_Volume_Box .
+
+tag:AHU brick:Relationship brick:Air_Handling_Unit ;
+    brick:isAssociatedWith brick:Air_Handling_Unit .
+
+tag:Box brick:Relationship brick:Variable_Air_Volume_Box ;
+    brick:isAssociatedWith brick:Variable_Air_Volume_Box .
+
+tag:CO2 brick:Relationship brick:CO2_Sensor ;
+    brick:isAssociatedWith brick:CO2_Sensor .
+
+tag:Coil brick:Relationship brick:Cooling_Coil ;
+    brick:isAssociatedWith brick:Cooling_Coil .
+
+tag:Command brick:Relationship brick:Fan_Speed_Command ;
+    brick:isAssociatedWith brick:Fan_Speed_Command .
+
+tag:Cool brick:Relationship brick:Cooling_Coil ;
+    brick:isAssociatedWith brick:Cooling_Coil .
+
+tag:Count brick:Relationship brick:Occupancy_Count_Sensor ;
+    brick:isAssociatedWith brick:Occupancy_Count_Sensor .
+
+tag:Flow brick:Relationship brick:Air_Flow_Setpoint ;
+    brick:isAssociatedWith brick:Air_Flow_Setpoint .
+
+tag:Handler brick:Relationship brick:Air_Handling_Unit ;
+    brick:isAssociatedWith brick:Air_Handling_Unit .
+
+tag:Handling brick:Relationship brick:Air_Handling_Unit ;
+    brick:isAssociatedWith brick:Air_Handling_Unit .
+
+tag:Occupancy brick:Relationship brick:Occupancy_Count_Sensor ;
+    brick:isAssociatedWith brick:Occupancy_Count_Sensor .
+
+tag:Outside brick:Relationship brick:Outside_Air_Temperature_Sensor ;
+    brick:isAssociatedWith brick:Outside_Air_Temperature_Sensor .
+
+tag:Speed brick:Relationship brick:Fan_Speed_Command ;
+    brick:isAssociatedWith brick:Fan_Speed_Command .
+
+tag:Thermostat brick:Relationship brick:Thermostat ;
+    brick:isAssociatedWith brick:Thermostat .
+
+tag:Unit brick:Relationship brick:Air_Handling_Unit ;
+    brick:isAssociatedWith brick:Air_Handling_Unit .
+
+tag:VAV brick:Relationship brick:Variable_Air_Volume_Box ;
+    brick:isAssociatedWith brick:Variable_Air_Volume_Box .
+
+tag:Variable brick:Relationship brick:Variable_Air_Volume_Box ;
+    brick:isAssociatedWith brick:Variable_Air_Volume_Box .
+
+tag:Volume brick:Relationship brick:Variable_Air_Volume_Box ;
+    brick:isAssociatedWith brick:Variable_Air_Volume_Box .
+
+<http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> a owl:Thing,
+        brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Outside_Air_Temperature_Sensor,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:1026/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value> ;
+    brick:Relationship <http://example.com/Hotel/fiware_hotel> ;
+    brick:isPointOf <http://example.com/Hotel/fiware_hotel> ;
+    rec:isPointOf <http://example.com/Hotel/fiware_hotel> .
+
+<http://example.com/PresenceSensor/PresenceSensor:fiware_room_base_1_v2> a owl:Thing,
+        brick:Class,
+        brick:Entity,
+        brick:Occupancy_Count_Sensor,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <http://137.226.248.250:1026/v2/entities/PresenceSensor:fiware_room_base_1_v2/attrs/pir/value> ;
+    brick:Relationship <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    rec:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
+
+<http://example.com/airFlowSetpoint_VariableAirVolumeBox/airFlowSetpoint_VariableAirVolumeBox:fiware_room_base_1_v2> a owl:Thing,
+        brick:Air_Flow_Setpoint,
+        brick:Class,
+        brick:Entity,
+        brick:Flow_Setpoint,
+        brick:Point,
+        brick:Setpoint ;
+    rdf:value <http://137.226.248.250:1026/v2/entities/VariableAirVolumeBox:fiware_room_base_1_v2/attrs/airFlowSetpoint/value> ;
+    brick:Relationship <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> ;
+    rec:isPointOf <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> .
+
+<http://example.com/co2_HotelRoom/co2_HotelRoom:fiware_room_base_1_v2> a owl:Thing,
+        brick:Air_Quality_Sensor,
+        brick:CO2_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor ;
+    rdf:value <http://137.226.248.250:1026/v2/entities/HotelRoom:fiware_room_base_1_v2/attrs/co2/value> ;
+    brick:Relationship <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    rec:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
+
+<http://example.com/fanSpeed_Fan/fanSpeed_Fan:CoolingCoil:fiware_room_base_1_v2> a owl:Thing,
+        brick:Class,
+        brick:Command,
+        brick:Entity,
+        brick:Fan_Command,
+        brick:Fan_Speed_Command,
+        brick:Point ;
+    rdf:value <http://137.226.248.250:1026/v2/entities/Fan:CoolingCoil:fiware_room_base_1_v2/attrs/fanSpeed/value> ;
+    brick:Relationship <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_1_v2> ;
+    brick:isPointOf <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_1_v2> ;
+    rec:isPointOf <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_1_v2> .
+
+<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:fiware_room_base_1_v2> a owl:Thing,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Setpoint,
+        brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:1026/v2/entities/RadiatorThermostat:fiware_room_base_1_v2/attrs/temperatureSetpoint/value> ;
+    brick:Relationship <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_1_v2> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_1_v2> ;
+    rec:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_1_v2> .
+
+<http://example.com/temperature_HotelRoom/temperature_HotelRoom:fiware_room_base_1_v2> a owl:Thing,
+        brick:Air_Temperature_Sensor,
+        brick:Class,
+        brick:Entity,
+        brick:Point,
+        brick:Sensor,
+        brick:Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:1026/v2/entities/HotelRoom:fiware_room_base_1_v2/attrs/temperature/value> ;
+    brick:Relationship <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    rec:isPointOf <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
+
+tag:Fan brick:Relationship brick:Fan,
+        brick:Fan_Speed_Command ;
+    brick:isAssociatedWith brick:Fan,
+        brick:Fan_Speed_Command .
+
+tag:Setpoint brick:Relationship brick:Air_Flow_Setpoint,
+        brick:Temperature_Setpoint ;
+    brick:isAssociatedWith brick:Air_Flow_Setpoint,
+        brick:Temperature_Setpoint .
+
+<http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_1_v2> a rdfs:Resource,
+        owl:Thing,
+        brick:Class,
+        brick:Coil,
+        brick:Cooling_Coil,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:HX,
+        brick:Heat_Exchanger,
+        rec:Asset ;
+    brick:Relationship <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_1_v2>,
+        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    brick:hasPart <http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_1_v2> ;
+    rec:locatedIn <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
+
+<http://example.com/Fan/Fan:CoolingCoil:fiware_room_base_1_v2> a rdfs:Resource,
+        owl:Thing,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:Fan,
+        brick:HVAC_Equipment,
+        rec:Asset ;
+    brick:Relationship <http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_1_v2>,
+        <http://example.com/fanSpeed_Fan/fanSpeed_Fan:CoolingCoil:fiware_room_base_1_v2> ;
+    brick:hasPoint <http://example.com/fanSpeed_Fan/fanSpeed_Fan:CoolingCoil:fiware_room_base_1_v2> ;
+    brick:isPartOf <http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_1_v2> ;
+    rec:hasPoint <http://example.com/fanSpeed_Fan/fanSpeed_Fan:CoolingCoil:fiware_room_base_1_v2> .
+
+<http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware> a rdfs:Resource,
+        owl:Thing,
+        brick:AHU,
+        brick:Air_Handler_Unit,
+        brick:Air_Handling_Unit,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        rec:Asset ;
+    brick:Relationship <http://example.com/Hotel/fiware_hotel>,
+        <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> ;
+    brick:feeds <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> ;
+    brick:hasLocation <http://example.com/Hotel/fiware_hotel> ;
+    rec:feeds <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> ;
+    rec:locatedIn <http://example.com/Hotel/fiware_hotel> .
+
+<http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_1_v2> a rdfs:Resource,
+        owl:Thing,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:ICT_Equipment,
+        brick:Sensor_Equipment,
+        brick:Thermostat,
+        rec:Asset ;
+    brick:Relationship <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2>,
+        <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:fiware_room_base_1_v2> ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    brick:hasPoint <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:fiware_room_base_1_v2> ;
+    rec:hasPoint <http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:fiware_room_base_1_v2> ;
+    rec:locatedIn <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
+
+tag:Temperature brick:Relationship brick:Air_Temperature_Sensor,
+        brick:Outside_Air_Temperature_Sensor,
+        brick:Temperature_Setpoint ;
+    brick:isAssociatedWith brick:Air_Temperature_Sensor,
+        brick:Outside_Air_Temperature_Sensor,
+        brick:Temperature_Setpoint .
+
+brick:Thermostat a owl:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "Thermostat"@en ;
+    rdfs:subClassOf brick:HVAC_Equipment,
+        brick:Sensor_Equipment ;
+    skos:definition "An automatic control device used to maintain temperature at a fixed or adjustable setpoint."@en ;
+    sh:rule [ ],
+        [ ] ;
+    brick:Relationship tag:Equipment,
+        tag:Thermostat ;
+    brick:hasAssociatedTag tag:Equipment,
+        tag:Thermostat .
+
+tag:Air brick:Relationship brick:Air_Flow_Setpoint,
+        brick:Air_Handling_Unit,
+        brick:Air_Temperature_Sensor,
+        brick:Outside_Air_Temperature_Sensor ;
+    brick:isAssociatedWith brick:Air_Flow_Setpoint,
+        brick:Air_Handling_Unit,
+        brick:Air_Temperature_Sensor,
+        brick:Outside_Air_Temperature_Sensor .
+
+tag:Sensor brick:Relationship brick:Air_Temperature_Sensor,
+        brick:CO2_Sensor,
+        brick:Occupancy_Count_Sensor,
+        brick:Outside_Air_Temperature_Sensor ;
+    brick:isAssociatedWith brick:Air_Temperature_Sensor,
+        brick:CO2_Sensor,
+        brick:Occupancy_Count_Sensor,
+        brick:Outside_Air_Temperature_Sensor .
+
+<http://example.com/Hotel/fiware_hotel> a rdfs:Resource,
+        owl:Thing,
+        rec:Architecture,
+        rec:Building,
+        rec:Space ;
+    brick:Relationship <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware>,
+        <http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor>,
+        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    brick:hasPoint <http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> ;
+    brick:isLocationOf <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware>,
+        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    rec:hasPoint <http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> ;
+    rec:isLocationOf <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware>,
+        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
+
+<http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> a rdfs:Resource,
+        owl:Thing,
+        brick:Class,
+        brick:Entity,
+        brick:Equipment,
+        brick:HVAC_Equipment,
+        brick:Terminal_Unit,
+        brick:VAV,
+        brick:Variable_Air_Volume_Box,
+        rec:Asset ;
+    brick:Relationship <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware>,
+        <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2>,
+        <http://example.com/airFlowSetpoint_VariableAirVolumeBox/airFlowSetpoint_VariableAirVolumeBox:fiware_room_base_1_v2> ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> ;
+    brick:hasPoint <http://example.com/airFlowSetpoint_VariableAirVolumeBox/airFlowSetpoint_VariableAirVolumeBox:fiware_room_base_1_v2> ;
+    brick:isFedBy <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware> ;
+    rec:hasPoint <http://example.com/airFlowSetpoint_VariableAirVolumeBox/airFlowSetpoint_VariableAirVolumeBox:fiware_room_base_1_v2> ;
+    rec:isFedBy <http://example.com/AirHandlingUnit/AirHandlingUnitFiware:fiware> ;
+    rec:locatedIn <http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> .
+
+brick:Cooling_Coil a owl:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "Cooling Coil"@en ;
+    rdfs:subClassOf brick:Coil ;
+    skos:definition "A cooling element made of pipe or tube that removes heat from equipment, machines or airflows. Typically filled with either refrigerant or cold water."@en ;
+    sh:rule [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship tag:Coil,
+        tag:Cool,
+        tag:Equipment ;
+    brick:hasAssociatedTag tag:Coil,
+        tag:Cool,
+        tag:Equipment .
+
+brick:Fan_Speed_Command a owl:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "Fan Speed Command"@en ;
+    rdfs:subClassOf brick:Fan_Command ;
+    skos:definition "Controls the speed of fans"@en ;
+    sh:rule [ ],
+        [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship tag:Command,
+        tag:Fan,
+        tag:Point,
+        tag:Speed ;
+    brick:hasAssociatedTag tag:Command,
+        tag:Fan,
+        tag:Point,
+        tag:Speed .
+
+brick:Occupancy_Count_Sensor a owl:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "Occupancy Count Sensor"@en ;
+    qudt:hasQuantityKind brick:Occupancy_Count ;
+    rdfs:subClassOf brick:Sensor ;
+    skos:definition "Sensors measuring the number of people in an area"@en ;
+    sh:property [ ] ;
+    sh:rule [ ],
+        [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship brick:Occupancy_Count,
+        tag:Count,
+        tag:Occupancy,
+        tag:Point,
+        tag:Sensor ;
+    brick:hasAssociatedTag tag:Count,
+        tag:Occupancy,
+        tag:Point,
+        tag:Sensor ;
+    brick:hasQuantity brick:Occupancy_Count .
+
+tag:Equipment brick:Relationship brick:Air_Handling_Unit,
+        brick:Cooling_Coil,
+        brick:Fan,
+        brick:Thermostat,
+        brick:Variable_Air_Volume_Box ;
+    brick:isAssociatedWith brick:Air_Handling_Unit,
+        brick:Cooling_Coil,
+        brick:Fan,
+        brick:Thermostat,
+        brick:Variable_Air_Volume_Box .
+
+brick:CO2_Sensor a owl:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "CO2 Sensor"@en ;
+    qudt:hasQuantityKind brick:CO2_Concentration ;
+    rdfs:subClassOf brick:Air_Quality_Sensor ;
+    skos:definition "Measures properties of CO2 in air"@en ;
+    sh:rule [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship brick:Air,
+        brick:CO2_Concentration,
+        tag:CO2,
+        tag:Point,
+        tag:Sensor ;
+    brick:hasAssociatedTag tag:CO2,
+        tag:Point,
+        tag:Sensor ;
+    brick:hasQuantity brick:CO2_Concentration ;
+    brick:hasSubstance brick:Air .
+
+brick:Outside_Air_Temperature_Sensor a owl:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "Outside Air Temperature Sensor"@en ;
+    qudt:hasQuantityKind brick:Temperature ;
+    rdfs:subClassOf brick:Air_Temperature_Sensor ;
+    skos:definition "Measures the temperature of outside air"@en ;
+    sh:rule [ ],
+        [ ],
+        [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship brick:Outside_Air,
+        brick:Temperature,
+        tag:Air,
+        tag:Outside,
+        tag:Point,
+        tag:Sensor,
+        tag:Temperature ;
+    brick:hasAssociatedTag tag:Air,
+        tag:Outside,
+        tag:Point,
+        tag:Sensor,
+        tag:Temperature ;
+    brick:hasQuantity brick:Temperature ;
+    brick:hasSubstance brick:Outside_Air .
+
+brick:Temperature_Setpoint a owl:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "Temperature Setpoint"@en ;
+    qudt:hasQuantityKind qudtqk:Temperature ;
+    rdfs:subClassOf brick:Setpoint ;
+    skos:definition "Sets temperature"@en ;
+    sh:rule [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship qudtqk:Temperature,
+        tag:Point,
+        tag:Setpoint,
+        tag:Temperature ;
+    brick:hasAssociatedTag tag:Point,
+        tag:Setpoint,
+        tag:Temperature ;
+    brick:hasQuantity qudtqk:Temperature .
+
+tag:Point brick:Relationship brick:Air_Flow_Setpoint,
+        brick:Air_Temperature_Sensor,
+        brick:CO2_Sensor,
+        brick:Fan_Speed_Command,
+        brick:Occupancy_Count_Sensor,
+        brick:Outside_Air_Temperature_Sensor,
+        brick:Temperature_Setpoint ;
+    brick:isAssociatedWith brick:Air_Flow_Setpoint,
+        brick:Air_Temperature_Sensor,
+        brick:CO2_Sensor,
+        brick:Fan_Speed_Command,
+        brick:Occupancy_Count_Sensor,
+        brick:Outside_Air_Temperature_Sensor,
+        brick:Temperature_Setpoint .
+
+brick:Air_Flow_Setpoint a owl:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "Air Flow Setpoint"@en ;
+    qudt:hasQuantityKind qudtqk:VolumeFlowRate ;
+    rdfs:subClassOf brick:Flow_Setpoint ;
+    skos:definition "Sets air flow"@en ;
+    sh:rule [ ],
+        [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship qudtqk:VolumeFlowRate,
+        brick:Air,
+        tag:Air,
+        tag:Flow,
+        tag:Point,
+        tag:Setpoint ;
+    brick:hasAssociatedTag tag:Air,
+        tag:Flow,
+        tag:Point,
+        tag:Setpoint ;
+    brick:hasQuantity qudtqk:VolumeFlowRate ;
+    brick:hasSubstance brick:Air .
+
+brick:Variable_Air_Volume_Box a owl:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "Variable Air Volume Box"@en ;
+    rdfs:seeAlso <https://en.wikipedia.org/wiki/Variable_air_volume> ;
+    rdfs:subClassOf brick:Terminal_Unit ;
+    owl:equivalentClass brick:VAV ;
+    skos:definition "A device that regulates the volume and temperature of air delivered to a zone by opening or closing a damper"@en ;
+    sh:rule [ ],
+        [ ],
+        [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship tag:Box,
+        tag:Equipment,
+        tag:VAV,
+        tag:Variable,
+        tag:Volume ;
+    brick:hasAssociatedTag tag:Box,
+        tag:Equipment,
+        tag:VAV,
+        tag:Variable,
+        tag:Volume .
+
+brick:Fan a owl:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "Fan"@en ;
+    rdfs:subClassOf brick:HVAC_Equipment ;
+    skos:definition "Any device with two or more blades or vanes attached to a rotating shaft used to produce an airflow for the purpose of comfort, ventilation, exhaust, heating, cooling, or any other gaseous transport."@en ;
+    sh:rule [ ],
+        [ ] ;
+    brick:Relationship tag:Equipment,
+        tag:Fan ;
+    brick:hasAssociatedTag tag:Equipment,
+        tag:Fan .
+
+brick:Air_Temperature_Sensor a owl:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "Air Temperature Sensor"@en ;
+    qudt:hasQuantityKind brick:Temperature ;
+    rdfs:subClassOf brick:Temperature_Sensor ;
+    skos:definition "Measures the temperature of air"@en ;
+    sh:rule [ ],
+        [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship brick:Air,
+        brick:Temperature,
+        tag:Air,
+        tag:Point,
+        tag:Sensor,
+        tag:Temperature ;
+    brick:hasAssociatedTag tag:Air,
+        tag:Point,
+        tag:Sensor,
+        tag:Temperature ;
+    brick:hasQuantity brick:Temperature ;
+    brick:hasSubstance brick:Air .
+
+<http://example.com/HotelRoom/HotelRoom:fiware_room_base_1_v2> a rdfs:Resource,
+        owl:Thing,
+        rec:Architecture,
+        rec:Room,
+        rec:Space ;
+    brick:Relationship <http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_1_v2>,
+        <http://example.com/Hotel/fiware_hotel>,
+        <http://example.com/PresenceSensor/PresenceSensor:fiware_room_base_1_v2>,
+        <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_1_v2>,
+        <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2>,
+        <http://example.com/co2_HotelRoom/co2_HotelRoom:fiware_room_base_1_v2>,
+        <http://example.com/temperature_HotelRoom/temperature_HotelRoom:fiware_room_base_1_v2> ;
+    brick:hasLocation <http://example.com/Hotel/fiware_hotel> ;
+    brick:hasPoint <http://example.com/PresenceSensor/PresenceSensor:fiware_room_base_1_v2>,
+        <http://example.com/co2_HotelRoom/co2_HotelRoom:fiware_room_base_1_v2>,
+        <http://example.com/temperature_HotelRoom/temperature_HotelRoom:fiware_room_base_1_v2> ;
+    brick:isLocationOf <http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_1_v2>,
+        <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_1_v2>,
+        <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> ;
+    rec:hasPoint <http://example.com/PresenceSensor/PresenceSensor:fiware_room_base_1_v2>,
+        <http://example.com/co2_HotelRoom/co2_HotelRoom:fiware_room_base_1_v2>,
+        <http://example.com/temperature_HotelRoom/temperature_HotelRoom:fiware_room_base_1_v2> ;
+    rec:isLocationOf <http://example.com/CoolingCoil/CoolingCoil:fiware_room_base_1_v2>,
+        <http://example.com/RadiatorThermostat/RadiatorThermostat:fiware_room_base_1_v2>,
+        <http://example.com/VariableAirVolumeBox/VariableAirVolumeBox:fiware_room_base_1_v2> ;
+    rec:locatedIn <http://example.com/Hotel/fiware_hotel> .
+
+brick:Air_Handling_Unit a owl:Class,
+        owl:Thing,
+        sh:NodeShape ;
+    rdfs:label "Air Handling Unit"@en ;
+    rdfs:subClassOf brick:HVAC_Equipment ;
+    owl:equivalentClass brick:AHU,
+        brick:Air_Handler_Unit ;
+    sh:rule [ ],
+        [ ],
+        [ ],
+        [ ],
+        [ ],
+        [ ] ;
+    brick:Relationship tag:AHU,
+        tag:Air,
+        tag:Equipment,
+        tag:Handler,
+        tag:Handling,
+        tag:Unit ;
+    brick:hasAssociatedTag tag:AHU,
+        tag:Air,
+        tag:Equipment,
+        tag:Handler,
+        tag:Handling,
+        tag:Unit .
+
+[] sh:class rec:Room .
+

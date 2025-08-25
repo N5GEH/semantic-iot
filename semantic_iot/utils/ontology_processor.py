@@ -179,7 +179,6 @@ class OntologyProcessor:
         # Sort by preference: shorter namespace first, then alphabetically by prefix
         # This tends to prefer main prefixes over deprecated ones
         matching_prefixes.sort(key=lambda x: (len(x[1]), x[0]))
-        # TODO proper handling of deprecated prefixes
         
         prefix, namespace = matching_prefixes[0]
         # Handle empty prefix case
