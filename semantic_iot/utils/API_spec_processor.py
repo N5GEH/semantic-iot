@@ -161,8 +161,8 @@ class APISpecProcessor:
 if __name__ == "__main__":
 
     # INPUT
-    API_SPEC_PATH = "LLM_models/API_specs/openhab_API_spec.json"
-    API_SPEC_PATH = "LLM_models\API_specs\FIWAR_ngsiV2_API_spec.json"
+    API_SPEC_PATH = "LLM_eval/API_specs/openhab_API_spec.json"
+    API_SPEC_PATH = "LLM_eval\API_specs\FIWAR_ngsiV2_API_spec.json"
 
     # Example usage
     processor = APISpecProcessor(API_SPEC_PATH)

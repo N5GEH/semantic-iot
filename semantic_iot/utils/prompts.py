@@ -12,10 +12,10 @@ class PromptsLoader:
 
         root_path = Path(__file__).parent.parent.parent
         self.template_paths = {
-            "rdf": str(Path(root_path, "LLM_models/templates/rdf_template.ttl")),
-            "RML": str(Path(root_path, "LLM_models/templates/rml_template.ttl")),
-            "config": str(Path(root_path, "LLM_models/templates/platform_config_template.json")),
-            "context": str(Path(root_path, "LLM_models/templates/context_template.json")),
+            "rdf": str(Path(root_path, "LLM_eval/templates/rdf_template.ttl")),
+            "RML": str(Path(root_path, "LLM_eval/templates/rml_template.ttl")),
+            "config": str(Path(root_path, "LLM_eval/templates/platform_config_template.json")),
+            "context": str(Path(root_path, "LLM_eval/templates/context_template.json")),
         }
         self.templates = {}
         for key, path in self.template_paths.items():
@@ -130,7 +130,7 @@ class PromptsLoader:
         HUMAN_EFFORT_INDEX = textwrap.dedent(f"""
         # HUMAN EFFORT INDEX
         An evaluation of the effort a human expert would require to complete this step.
-        The evaluation is based on the execution of the step (challenges, difficulties, struggles, trade-offs) and the context that was required.
+        The evaluation is based on the execution of the step (challenges, difficulties, struggles, trade-offs).
         Provide a brief explanation of the challenges encountered during execution and explain the reasoning behind the score.
         Rate the effort of this step on a scale from 1 to 100, where:
         - 1-10: Trivial
@@ -143,7 +143,9 @@ class PromptsLoader:
 
         The proportion of the score between steps should reflect the proportion of the effort required to complete the steps.
         Scores must be comparable across different KG generation tasks.
-        """) # ... rate the "cognitive" effort of this step ...?
+        """)
+        # ... rate the "cognitive" effort of this step ...?
+        # and the "context" that was required.
 
         # COT EXTRACTION PROMPT ================================================================
 
@@ -236,7 +238,6 @@ class PromptsLoader:
         - decision_point: [if applicable, specify the decision point]
         - next_flowchart_node: [if applicable, specify the next node in flowchart]
 
-        
         </instructions>
 
         <output>
@@ -422,7 +423,7 @@ class PromptsLoader:
         Extra Nodes establish a connection between an entity and a numerical value when the entity's ontology class does not include a numerical property.
         These new entities should derive their names from the properties that necessitated their creation.
         In the JSON file, the numerical values of the entities that map to non_numeric ontology classes must be connected to their corresponding extra nodes.
-        If an entity has an associated extra node, link numerical values to the extra node, not to the original entity.
+        If an entity has an associated extra node, link numerical values just to the extra node, not to the original entity.
 
         Terms in brackets {{}} are placeholders for values given in the context. Strictly choose the values from the preprocessing of the JSON file, except for the variables inside API_ENDPOINT_URL, which can be adapted to match the use case.
         </instructions>
@@ -524,7 +525,7 @@ class PromptsLoader:
         - The JSONPATH_EXTRA_NODES are the JSONpath Expressions to the {{EXTRA_NODES}} that should be included in the mapping. 
                                   
         <constraints>
-        Ensure all JSONPath expressions use simple, widely supported operators.
+        Ensure all JSONPath expressions use simple, widely supported operators. Note the type of the root level object in the JSON file. 
         - Allowed: '$', '*', '.'
         - Not allowed: '?', '@', filter expressions
         </constraints>
@@ -561,8 +562,9 @@ class PromptsLoader:
 
         self.prompt_III = textwrap.dedent(f"""
         <context>
-        {self.PC}
+        {self.jex}
         # RESULTS OF PREPROCESSING OF THE JSON FILE: \n{self.context_content} \n The mapping of the relatedTo relation to the ontology property is {self.context_content['extra_node_relation_to_parent'] if self.context_content else 'value of extra_node_relation_to_parent key'}.
+        {self.PC}
         {self.RNR}
         </context>
 
@@ -575,7 +577,8 @@ class PromptsLoader:
         - For the value of every "property" key:
             - Ignore any prefilled value and replace it with the mapped {{ONTOLOGY_PROPERTY}} for the "rawdataidentifier" value of the entity.
         - For the value of every "hasdataaccess" key: 
-            - If entity has a numerical property: Ignore any prefilled value, replace it with the template {{API_ENDPOINT_URL}} and adapt its variables to match the attribute of this entity and 'id' instead of the ID_KEY for the API call.
+            - If entity has a numerical property: Ignore any prefilled value, replace it with the template {{API_ENDPOINT_URL}} and adapt its variables to match the attribute of this entity and '{id}' instead of the ID_KEY for the API call.
+            - If an entity has an associated extra node, fill out the API_ENDPOINT_URL just for the extra node, not for the original entity.
         Terms in brackets {{}} are placeholders for values given in the context. Strictly choose the values from the preprocessing of the JSON file, except for the variables inside API_ENDPOINT_URL, which can be adapted to match the use case.
         </instructions>
 

@@ -196,7 +196,7 @@ class OntologyPropertyAnalyzer:
             result_folder = inp
 
         claude = LLMAgent(
-            system_prompt=f"<role>You are an expert in semantic reasoning and ontology classification.</role>\n{prompts.OUTPUT_FORMAT}",
+            system_prompt=prompts.cot_extraction, #f"<role>You are an expert in semantic reasoning and ontology classification.</role>\n{prompts.OUTPUT_FORMAT}",
             result_folder=result_folder,
         )
         prompt = (
@@ -355,7 +355,7 @@ if __name__ == "__main__":
         "rec:Room"
     ]
 
-    ontology = "LLM_models/ontologies/DogOnt.ttl"
+    ontology = "LLM_eval/ontologies/DogOnt.ttl"
 
     target_classes = [
         ":LightSensor"

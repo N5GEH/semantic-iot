@@ -107,6 +107,8 @@ class OntologyProcessor:
             else:
                 chunk = label
 
+            print(chunk)
+
             embedding = self.embedding_model.encode(chunk, convert_to_tensor=True)
 
             index[label] = {
@@ -545,7 +547,7 @@ class PropertyDependencyResolver:
     
 # Example usage:
 if __name__ == "__main__":
-    brick = OntologyProcessor("LLM_models/ontologies/brick.ttl")
+    brick = OntologyProcessor("LLM_eval/ontologies/brick.ttl")
 
     search_terms = {
         "Hotel": "class",
@@ -561,9 +563,9 @@ if __name__ == "__main__":
         "name": "property",
     }
 
-    search_terms = {
-        "hasLocation": "property",
-    }
+    # search_terms = {
+    #     "hasLocation": "property",
+    # }
 
     results = brick.search(search_terms, top_k=122)
 

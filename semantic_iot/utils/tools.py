@@ -292,10 +292,10 @@ def get_file_paths () -> str:
     Returns a hierarchical list of all available files and folders in the project folder.
     """
     # project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    # working_directory = os.path.join(project_root, "LLM_models")
+    # working_directory = os.path.join(project_root, "LLM_eval")
     # start_path = str(Path(__file__).parent.parent)
 
-    start_path = "LLM_models"
+    start_path = "LLM_eval"
 
     output = []
     for root, dirs, files in os.walk(start_path):
@@ -313,7 +313,7 @@ def get_endpoint_from_api_spec(api_spec_path: str, query: str):
     try:
         processor = APISpecProcessor(api_spec_path, host_path=prompts.host_path)
     except FileNotFoundError:
-        processor = APISpecProcessor("LLM_models/" + api_spec_path, host_path=prompts.host_path)
+        processor = APISpecProcessor("LLM_eval/" + api_spec_path, host_path=prompts.host_path)
     best_endpoint_path = processor.get_endpoint(query)['full_path']
     return best_endpoint_path
 
@@ -424,7 +424,7 @@ def execute_tool(tool_name: str, input_data: Dict[str, Any]) -> Any:
         try: 
             content = load_from_file(input_data["file_path"])
         except FileNotFoundError: # ugly workaround
-            content= load_from_file("LLM_models/" + input_data["file_path"])
+            content= load_from_file("LLM_eval/" + input_data["file_path"])
         return {"content": content}
     
     # For get_file_paths tool
@@ -507,9 +507,9 @@ if __name__ == "__main__":
     raise Exception("Test")
 
     # generate_rdf_from_rml(
-    #     json_file_path="LLM_models/datasets/fiware_v1_hotel/fiware_entities_2rooms.json",
-    #     rml_file_path="LLM_models/2_RML/fiware_hotel_rml_mapping.ttl",
-    #     output_rdf_file_path="LLM_models/datasets/fiware_v1_hotel/fiware_entities_2rooms.ttl",
+    #     json_file_path="LLM_eval/datasets/fiware_v1_hotel/fiware_entities_2rooms.json",
+    #     rml_file_path="LLM_eval/2_RML/fiware_hotel_rml_mapping.ttl",
+    #     output_rdf_file_path="LLM_eval/datasets/fiware_v1_hotel/fiware_entities_2rooms.ttl",
     #     platform_config=None
     # )
 
@@ -517,8 +517,8 @@ if __name__ == "__main__":
 
 
     prompt = """ generate a RDF knowledge graph from a JSON Entities file.
-    Use: JSON Entities file: "LLM_models/datasets/fiware_v1_hotel/fiware_entities_2rooms.json"
-    Use: RML mapping file: "LLM_models/2_RML/fiware_hotel_rml_mapping.ttl"
+    Use: JSON Entities file: "LLM_eval/datasets/fiware_v1_hotel/fiware_entities_2rooms.json"
+    Use: RML mapping file: "LLM_eval/2_RML/fiware_hotel_rml_mapping.ttl"
     output file same as input file but with .ttl extension.
 
     """
@@ -533,7 +533,7 @@ if __name__ == "__main__":
     raise Exception("Test")
 
     # reasoning(
-    #     target_kg_path="C:\\Users\\56xsl\\Obsidian\\Compass\\Projects\\Bachelorarbeit\\Code\\semantic-iot\\LLM_models\\datasets\\fiware_v1_hotel\\fiware_entities_2rooms.ttl",
+    #     target_kg_path="C:\\Users\\56xsl\\Obsidian\\Compass\\Projects\\Bachelorarbeit\\Code\\semantic-iot\\LLM_eval\\datasets\\fiware_v1_hotel\\fiware_entities_2rooms.ttl",
     #     ontology_path="C:\\Users\\56xsl\\Obsidian\\Compass\\Projects\\Bachelorarbeit\\Code\\semantic-iot\\test\\Brick.ttl",
     #     extended_kg_filename=""
     # )
@@ -541,7 +541,7 @@ if __name__ == "__main__":
     # input("Press Enter to continue...")
 
     # generate_controller_configuration(
-    #     extended_kg_path="C:\\Users\\56xsl\\Obsidian\\Compass\\Projects\\Bachelorarbeit\\Code\\semantic-iot\\LLM_models\\datasets\\fiware_v1_hotel\\fiware_entities_2rooms_inferred.ttl",
+    #     extended_kg_path="C:\\Users\\56xsl\\Obsidian\\Compass\\Projects\\Bachelorarbeit\\Code\\semantic-iot\\LLM_eval\\datasets\\fiware_v1_hotel\\fiware_entities_2rooms_inferred.ttl",
     #     output_file="C:\\Users\\56xsl\\Obsidian\\Compass\\Projects\\Bachelorarbeit\\Code\\semantic-iot\\examples\\fiware\\kgcp\\results\\brick\\controller_configuration.yml"
     # )
 
