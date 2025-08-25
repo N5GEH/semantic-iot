@@ -4,7 +4,6 @@ from typing import List, Dict, Any, Optional
 from sentence_transformers import SentenceTransformer
 
 from semantic_iot.utils import LLMAgent
-from semantic_iot.utils.prompts import prompts
 
 
 class APISpecProcessor:
@@ -12,7 +11,7 @@ class APISpecProcessor:
     Generic processor for OpenAPI/Swagger API specification files.
     Supports OpenAPI 2.0 (Swagger) and 3.x (OpenAPI) JSON files.
     """
-    def __init__(self, spec_path: str, host_path: str = prompts.host_path) -> None:
+    def __init__(self, spec_path: str, host_path: str = "") -> None:
         print(f"[APISpecProcessor] Initializing with spec file: {spec_path}")
         self.spec_path = spec_path
         self.host_path = host_path
@@ -111,10 +110,11 @@ class APISpecProcessor:
     
     def get_endpoint(self, query: str) -> Optional[Dict[str, Any]]:
         """
-        Matches a user query to the best endpoint using Anthropic Claude API.
+        Matches a user query to the best endpoint using LLM.
         """
         print(f"[APISpecProcessor] Matching query to endpoint using LLM: '{query}'")
-        # Prepare endpoint descriptions
+        
+        # Builds Full Endpoint List
         chunks = self.build_chunks()
         endpoint_list = "\n".join([
             f"{i+1}. {chunk}" for i, chunk in enumerate(chunks)
@@ -127,12 +127,13 @@ class APISpecProcessor:
             f"Reply ONLY with the number of the best matching endpoint. If none are relevant, reply with 0."
         )
 
-        input("Press Enter to send the prompt to the LLM...")  # Wait for user input before sending
-
         print(f"[APISpecProcessor] Sending prompt to LLM:\n{prompt}")
+        input("Check the prompt and press Enter to send the prompt to the LLM...")  # Wait for user input before sending
+
+        
         claude = LLMAgent()
         response = claude.query(prompt, step_name="get_endpoint", tools="", temperature=0.0)
-        print(response)
+        print(f"[APISpecProcessor] Selected response: {response}")
 
         # Extract the number from the response
         match = re.search(r"(\d+)", str(response))
@@ -160,16 +161,27 @@ class APISpecProcessor:
 
 if __name__ == "__main__":
 
+    # Example Usage
+
     # INPUT
-    API_SPEC_PATH = "LLM_eval/API_specs/openhab_API_spec.json"
-    API_SPEC_PATH = "LLM_eval\API_specs\FIWAR_ngsiV2_API_spec.json"
+    API_SPEC_PATH = "LLM_eval/API_specs\FIWAR_ngsiV2_API_spec.json"
+    # API_SPEC_PATH = "LLM_eval/API_specs/openhab_API_spec.json"
+    HOST_PATH = "https://fiware.eonerc.rwth-aachen.de/"
 
-    # Example usage
-    processor = APISpecProcessor(API_SPEC_PATH)
+    processor = APISpecProcessor(API_SPEC_PATH, HOST_PATH)
 
+    # Get Full List of Endpoints
     endpoint_list = processor.get_endpoint_list()
+    print("\n\n\n=== Full Endpoint List ===")
     print(endpoint_list)
 
+    # Semantic Filter of Endpoints (use with large files)
+    filtered_endpoint_list = processor.semantic_prefilter("Get Sensor Value", top_n=5)
+    print("\n\n\n=== Semantic Prefilter ===")
+    print(filtered_endpoint_list)
+
+    # Get Best Matching Endpoint
     user_query = "Get Sensor Value"
     best_endpoint_path = processor.get_endpoint(user_query)
+    print("\n\n\n=== Best Matching Endpoint ===")
     print(f"\n\nBest matching endpoint path: {best_endpoint_path['full_path']}")

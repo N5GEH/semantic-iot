@@ -8,10 +8,18 @@ import json
 
 class OntologyProcessor:
     """
-    Processing large files with semantic search.
+    Handles ontology parsing, resource extraction, semantic embedding, and semantic search for ontology classes and properties.
+    Provides hierarchical tree building and dependency resolution for ontology resources.
     """
 
     def __init__(self, ontology_path, model_name='all-MiniLM-L6-v2'):
+        """
+        Initialize the OntologyProcessor by loading the ontology, extracting classes and properties,
+        building semantic embeddings, and preparing dependency resolution.
+        Args:
+            ontology_path (str): Path to the ontology file (TTL format).
+            model_name (str): Name of the SentenceTransformer model for embeddings.
+        """
         self.embedding_model = SentenceTransformer(model_name)
         self.c_index = None
         self.p_index = None
@@ -40,6 +48,11 @@ class OntologyProcessor:
         self.dependency_resolver = PropertyDependencyResolver(self.ont)
 
     def _get_shape_prefixes(self):
+        """
+        Identify and return prefixes in the ontology that contain the word 'shape'.
+        Returns:
+            set: Prefixes related to shapes.
+        """
         shape_prefixes = set()
         for prefix, namespace in self.ont.namespaces():
             if "shape" in str(namespace).lower():            
@@ -47,6 +60,14 @@ class OntologyProcessor:
         return shape_prefixes
     
     def _extract_resource(self, resources):
+        """
+        Extract resource URIs and their descriptions from the ontology, merging duplicate labels.
+        Args:
+            resources (set): Set of resource URIs.
+        Returns:
+            dict: Mapping of label (lowercase) to URI.
+            dict: Mapping of label (lowercase) to description string.
+        """
         r = {}
         descriptions = {}  # Store descriptions for merging
         
@@ -86,18 +107,35 @@ class OntologyProcessor:
         
         return r, descriptions
 
-    def _extract_classes(self):  # Extracting ontology classes
+    def _extract_classes(self):
+        """
+        Extract all ontology classes (OWL and RDFS) and their descriptions.
+        Returns:
+            tuple: (dict of class labels to URIs, dict of class labels to descriptions)
+        """
         owl_classes = set(self.ont.subjects(RDF.type, OWL.Class))
         rdfs_classes = set(self.ont.subjects(RDF.type, RDFS.Class))
         return self._extract_resource(owl_classes | rdfs_classes)
     
-    def _extract_properties(self):  # Extracting ontology properties            
+    def _extract_properties(self):
+        """
+        Extract all ontology properties (RDF, OWL ObjectProperty, OWL DatatypeProperty) and their descriptions.
+        Returns:
+            tuple: (dict of property labels to URIs, dict of property labels to descriptions)
+        """
         rdf_props = set(self.ont.subjects(RDF.type, RDF.Property))
         owl_props = set(self.ont.subjects(RDF.type, OWL.ObjectProperty))
         owl_props |= set(self.ont.subjects(RDF.type, OWL.DatatypeProperty))
         return self._extract_resource(rdf_props | owl_props)
 
     def _build_embeddings(self, resources):
+        """
+        Build semantic embeddings for each resource label and description using the embedding model.
+        Args:
+            resources (dict): Mapping of label to URI.
+        Returns:
+            dict: Mapping of label to embedding and metadata.
+        """
         index = {}
         for label, uri in resources.items():
             description = self._resource_descriptions[label]
@@ -121,8 +159,12 @@ class OntologyProcessor:
 
     def _convert_to_prefixed(self, uri):
         """
-        Convert a URI to a prefixed form using the ontology prefixes.
-        Avoid deprecated prefixes by taking the first prefix.
+        Convert a URI to a prefixed form using the ontology's known prefixes.
+        Prefers main prefixes over deprecated ones.
+        Args:
+            uri (str or URIRef): The URI to convert.
+        Returns:
+            str: Prefixed form of the URI, or the original URI string if no prefix matches.
         """
         uri_str = str(uri)
         matching_prefixes = []
@@ -146,6 +188,13 @@ class OntologyProcessor:
         return f"{prefix}:{uri_str[len(namespace):]}"
     
     def camel_to_spaces(self, text):
+        """
+        Convert camelCase or PascalCase text to a space-separated string for better semantic matching.
+        Args:
+            text (str): Input text.
+        Returns:
+            str: Space-separated version of the input text.
+        """
         # Insert space before uppercase letters that follow lowercase letters
         text = re.sub(r'([a-z])([A-Z])', r'\1 \2', text)
         # Insert space before uppercase letters that are followed by lowercase letters
@@ -156,14 +205,14 @@ class OntologyProcessor:
         text = re.sub(r'(\d)([A-Za-z])', r'\1 \2', text)
         return text
 
-    def search(self, queries: Dict[str, str], top_k=10) -> List[Tuple[str, float, URIRef]]:
+    def search(self, queries: Dict[str, str], top_k=10) -> str:
         """
-        Perform a semantic search for a query against ontology classes or properties.
-
-        :param query: The search query.
-        :param type: 'class' or 'property'
-        :param top_k: Number of top results to return.
-        :return: The most similar items and their similarity scores.
+        Perform semantic search for multiple queries against ontology classes or properties.
+        Args:
+            queries (dict): Mapping of query string to type ('class' or 'property').
+            top_k (int): Number of top results to return for each query.
+        Returns:
+            str: Hierarchical tree string of top matching classes and properties.
         """
         class_results = []
         property_results = []
@@ -211,7 +260,14 @@ class OntologyProcessor:
         return "\n".join(string_results)
 
     def get_superclasses(self, class_uri: URIRef, visited=None) -> set:
-        """Get all superclasses of a class recursively"""
+        """
+        Recursively retrieve all superclasses of a given class URI from the ontology.
+        Args:
+            class_uri (URIRef): The class URI to start from.
+            visited (set): Set of already visited URIs to avoid cycles.
+        Returns:
+            set: All superclasses of the class URI.
+        """
         if visited is None:
             visited = set()
         
@@ -232,14 +288,12 @@ class OntologyProcessor:
 
     def _build_tree(self, results: List[Tuple[str, float, Dict]], term_type: str = "class") -> str:
         """
-        Build a hierarchical tree structure from search results.
-
+        Build a hierarchical tree structure from search results for classes or properties.
         Args:
-            results: List of tuples (prefixed_id, similarity_score, info)
-            term_type: "class" or "property"
-
+            results (list): List of tuples (prefixed_id, similarity_score, info).
+            term_type (str): "class" for class hierarchy, "property" for property dependencies.
         Returns:
-            String representation of the hierarchical tree structure
+            str: String representation of the hierarchical tree structure.
         """
         if term_type == "property":
             # For properties, include dependencies in the output
@@ -405,11 +459,20 @@ class OntologyProcessor:
 
 class PropertyDependencyResolver:
     def __init__(self, ontology_graph):
+        """
+        Initialize the PropertyDependencyResolver with the ontology graph and build property dependency map.
+        Args:
+            ontology_graph (rdflib.Graph): The ontology graph to analyze.
+        """
         self.graph = ontology_graph
         self.property_dependencies = self._build_dependency_map()
     
     def _build_dependency_map(self):
-        """Pre-compute all property dependencies"""
+        """
+        Pre-compute all property dependencies by querying the ontology for property relationships.
+        Returns:
+            dict: Mapping of property URI to set of dependent property URIs.
+        """
         dependencies = {}
         
         # Query for all property relationships including both ObjectProperty and DatatypeProperty
@@ -452,10 +515,24 @@ class PropertyDependencyResolver:
         return dependencies
     
     def get_transitive_dependencies(self, property_uri):
-        """Get all transitive dependencies for a property"""
+        """
+        Get all transitive dependencies for a property using depth-first search.
+        Args:
+            property_uri (str): The property URI to analyze.
+        Returns:
+            set: All transitive dependent property URIs.
+        """
         return self._dfs_dependencies(property_uri, set())
     
     def _dfs_dependencies(self, prop_uri, visited):
+        """
+        Helper for depth-first search of property dependencies.
+        Args:
+            prop_uri (str): Property URI to start from.
+            visited (set): Set of already visited URIs.
+        Returns:
+            set: All reachable dependent property URIs.
+        """
         if prop_uri in visited:
             return set()
         
@@ -472,7 +549,13 @@ class PropertyDependencyResolver:
         return dependencies
 
     def get_detailed_dependencies(self, property_uri):
-        """Get detailed dependency information including relationship types"""
+        """
+        Get detailed dependency information for a property, including relationship types.
+        Args:
+            property_uri (str): The property URI to analyze.
+        Returns:
+            list: List of tuples (relation type, dependent property URI).
+        """
         detailed_deps = []
         
         query = """
@@ -508,7 +591,13 @@ class PropertyDependencyResolver:
         return detailed_deps
 
     def get_reverse_dependencies(self, property_uri):
-        """Get properties that depend on the given property"""
+        """
+        Get properties that depend on the given property (reverse dependencies).
+        Args:
+            property_uri (str): The property URI to analyze.
+        Returns:
+            list: List of tuples (relation type, dependent property URI).
+        """
         reverse_deps = []
         
         query = """
@@ -545,10 +634,10 @@ class PropertyDependencyResolver:
         return reverse_deps
 
     
-# Example usage:
 if __name__ == "__main__":
-    brick = OntologyProcessor("LLM_eval/ontologies/brick.ttl")
 
+    # Example Usage:
+    
     search_terms = {
         "Hotel": "class",
         "AmbientTemperatureSensor": "class",
@@ -563,11 +652,6 @@ if __name__ == "__main__":
         "name": "property",
     }
 
-    # search_terms = {
-    #     "hasLocation": "property",
-    # }
-
-    results = brick.search(search_terms, top_k=122)
-
-    print("Search Results:")
-    print(results)
+    brick = OntologyProcessor("LLM_eval/ontologies/brick.ttl")
+    results = brick.search(search_terms, top_k=22)
+    print(f"Search Results:\n{results}")

@@ -12,6 +12,10 @@ from semantic_iot.utils.prompts import prompts
 
 class OntologyPropertyAnalyzer:
     def __init__(self, ontology_path):
+        """
+        Initialize the OntologyPropertyAnalyzer with a given ontology file path.
+        Loads the ontology into an RDFLib Graph and prepares property classification storage.
+        """
         self.ontology_path = ontology_path
         self.ont = Graph()
         self.ont.parse(ontology_path, format='turtle')
@@ -21,8 +25,9 @@ class OntologyPropertyAnalyzer:
 
     def _string_to_uri(self, graph, string):
         """
-        Convert a string like 'prefix:ClassName' to a proper URI reference
-        by extracting namespace information from the loaded ontology.
+        Convert a prefixed string (e.g., 'prefix:ClassName') to a URIRef using the ontology's namespace bindings.
+        Handles empty prefixes and attempts to infer the default namespace if missing.
+        Raises ValueError if the prefix cannot be resolved.
         """
         if ':' not in string:
             raise ValueError(f"Class string '{string}' must contain a prefix (e.g., 'brick:Temperature_Sensor')")
@@ -109,7 +114,8 @@ class OntologyPropertyAnalyzer:
 
     def _uri_to_string(self, uri):
         """
-        Convert a URIRef to a string in the format 'prefix:ClassName'.
+        Convert a URIRef to a prefixed string (e.g., 'prefix:ClassName') using the ontology's namespace bindings.
+        Raises ValueError if the namespace cannot be resolved.
         """
         if not isinstance(uri, URIRef):
             raise ValueError("Input must be a URIRef")
@@ -147,6 +153,10 @@ class OntologyPropertyAnalyzer:
         raise ValueError(f"Could not find prefix for class URI: {uri}. Available namespaces: {dict(self.ont.namespaces())}")
 
     def get_inherited_properties(self, target_class):
+        """
+        Retrieve all properties (predicates) associated with a target class and its superclasses in the ontology.
+        Returns a set of property URIRefs, excluding RDF type, subPropertyOf, equivalentProperty, and SHACL properties.
+        """
 
         target_class_uri = self._string_to_uri(self.ont, target_class)
 
@@ -185,16 +195,13 @@ class OntologyPropertyAnalyzer:
         return properties
 
     def classify_props_LLM(self, inherited_properties) -> dict:
-        # TODO clean up
-        result_folder = prompts.result_folder
-
-        inp = input(f"Result folder is {prompts.result_folder}. Please provide a result folder path: ")
-        if inp:
-            result_folder = inp
+        """
+        Classify a list of property strings into 'numerical' and 'non_numerical' categories using an LLM agent.
+        Returns a dictionary with keys 'numerical' and 'non_numerical', each containing a list of property names.
+        """
 
         claude = LLMAgent(
-            system_prompt=prompts.cot_extraction, #f"<role>You are an expert in semantic reasoning and ontology classification.</role>\n{prompts.OUTPUT_FORMAT}",
-            result_folder=result_folder,
+            # system_prompt=prompts.cot_extraction, #f"<role>You are an expert in semantic reasoning and ontology classification.</role>\n{prompts.OUTPUT_FORMAT}",
         )
         prompt = (
             "I need your help to classify properties from an ontology. I want to know if the ontology would allow to connect a numerical value with a class through a property\n"
@@ -210,6 +217,10 @@ class OntologyPropertyAnalyzer:
         return claude.extract_code(response)
     
     def classify_props_inference(self, inherited_properties, target_classes) -> dict:
+        """
+        Classify properties as 'numerical' or 'non_numerical' by performing RDFS inference on a subgraph of the ontology.
+        Uses SPARQL to detect properties connecting to numerical literals. Returns a dictionary with classification results.
+        """
 
         target_kg = Graph()
         for prefix, namespace in self.ont.namespaces():
@@ -269,6 +280,10 @@ class OntologyPropertyAnalyzer:
 
 
     def get_non_numeric_classes(self, target_classes: list, classifier: str = "LLM") -> list:
+        """
+        For a list of target classes, determine which classes do NOT have any numerical properties (as classified).
+        Uses either LLM or inference-based classification. Returns a list of class names lacking numerical properties.
+        """
 
 
         # Get all (inherited) properties of the target classes
@@ -297,7 +312,7 @@ class OntologyPropertyAnalyzer:
         if unclassified_props:
             if classifier == "LLM":
                 self.classification.update(self.classify_props_LLM(unclassified_props))
-            elif classifier == "inference":
+            elif classifier == "inference": # Currently not working
                 self.classification.update(self.classify_props_inference(unclassified_props, target_classes))
             else: 
                 raise ValueError(f"Unknown classifier: {classifier}")
@@ -334,7 +349,7 @@ else:
 
 if __name__ == "__main__":
     
-    ontology = "test/Brick.ttl"
+    ontology_path = "test/Brick.ttl"
 
     target_classes = [
         "brick:Outside_Air_Temperature_Sensor",
@@ -350,13 +365,11 @@ if __name__ == "__main__":
         "rec:Building",
         "rec:Room"
     ]
+    
 
-    ontology = "LLM_eval/ontologies/DogOnt.ttl"
-
-    target_classes = [
-        ":LightSensor"
-    ]
-
-    brick_analyzer = OntologyPropertyAnalyzer(ontology)
+    brick_analyzer = OntologyPropertyAnalyzer(ontology_path)
     brick_analyzer.get_non_numeric_classes(target_classes)
+    
+    # Showcase of memory: Already classified properties are not being classified again
+    print("\n\n\n=== Repeated Run ===") 
     brick_analyzer.get_non_numeric_classes(target_classes)

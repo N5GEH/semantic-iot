@@ -12,7 +12,7 @@ from mermaid import Mermaid
 import textwrap
 import matplotlib.pyplot as plt
 import numpy as np
-import pyperclip # TODO just for offline mode, remove later
+import pyperclip
 
 from semantic_iot.utils.prompts import prompts
 
@@ -58,8 +58,8 @@ class LLMAgent:
     def __init__(self, 
                  api_key: str = "", 
                  model: str = "4sonnet",
-                 temperature: float = 1.0, # must be 1.0 for thinking models
-                 system_prompt: str = prompts.cot_extraction,
+                 temperature: float = 1.0,
+                 system_prompt: str = prompts.cot_extraction, # SET prompts.OUTPUT_FORMAT or ""
                  result_folder: str = "LLM_eval/metrics"):
         """
         Initialize the Claude API processor
@@ -121,7 +121,7 @@ class LLMAgent:
                 max_tokens: int = None,
                 conversation_history = None,
                 temperature: float = None,
-                thinking: bool = True,
+                thinking: bool = True, # SET
                 tools: str = "",
                 follow_up: bool = False,
                 stop_sequences: List[str] = [],
