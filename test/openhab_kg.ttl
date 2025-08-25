@@ -1,0 +1,1893 @@
+@prefix brick: <https://brickschema.org/schema/Brick#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rec: <https://w3id.org/rec#> .
+@prefix semantic_oh: <http://semantic-openhab.com#> .
+
+<http://example.com/AirHandlingUnit_Equipment/ahu> a brick:Air_Handling_Unit ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_10_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_10_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_10_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_11_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_11_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_11_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_12_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_12_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_12_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_13_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_13_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_13_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_14_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_14_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_14_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_15_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_15_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_15_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_16_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_16_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_16_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_17_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_17_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_17_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_18_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_18_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_18_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_19_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_19_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_19_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_1_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_1_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_1_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_20_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_20_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_20_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_2_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_2_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_2_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_3_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_3_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_3_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_4_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_4_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_4_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_5_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_5_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_5_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_6_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_6_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_6_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_7_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_7_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_7_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_8_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_8_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_8_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_base_9_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_base_9_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_9_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_co2_10_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_co2_10_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_10_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_co2_1_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_co2_1_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_1_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_co2_2_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_co2_2_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_2_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_co2_3_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_co2_3_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_3_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_co2_4_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_co2_4_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_4_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_co2_5_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_co2_5_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_5_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_co2_6_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_co2_6_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_6_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_co2_7_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_co2_7_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_7_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_co2_8_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_co2_8_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_8_v2> .
+
+<http://example.com/carbondioxide_Point/co2_openhab_room_co2_9_v2_1> a brick:CO2_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/co2_openhab_room_co2_9_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_9_v2> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_10_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_10_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_10_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_11_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_11_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_11_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_12_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_12_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_12_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_13_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_13_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_13_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_14_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_14_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_14_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_15_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_15_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_15_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_16_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_16_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_16_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_17_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_17_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_17_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_18_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_18_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_18_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_19_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_19_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_19_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_1_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_1_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_1_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_20_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_20_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_20_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_2_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_2_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_2_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_3_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_3_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_3_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_4_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_4_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_4_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_5_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_5_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_5_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_6_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_6_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_6_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_7_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_7_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_7_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_8_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_8_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_8_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_base_9_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_9_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_base_9_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_co2_10_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_10_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_co2_10_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_co2_1_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_1_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_co2_1_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_co2_2_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_2_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_co2_2_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_co2_3_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_3_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_co2_3_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_co2_4_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_4_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_co2_4_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_co2_5_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_5_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_co2_5_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_co2_6_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_6_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_co2_6_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_co2_7_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_7_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_co2_7_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_co2_8_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_8_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_co2_8_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_co2_9_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_9_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_co2_9_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_presence_10_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_10_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_presence_10_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_presence_1_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_1_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_presence_1_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_presence_2_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_2_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_presence_2_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_presence_3_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_3_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_presence_3_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_presence_4_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_4_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_presence_4_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_presence_5_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_5_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_presence_5_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_presence_6_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_6_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_presence_6_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_presence_7_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_7_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_presence_7_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_presence_8_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_8_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_presence_8_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_presence_9_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_9_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_presence_9_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_timetable_10_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_10_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_timetable_10_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_timetable_1_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_1_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_timetable_1_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_timetable_2_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_2_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_timetable_2_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_timetable_3_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_3_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_timetable_3_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_timetable_4_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_4_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_timetable_4_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_timetable_5_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_5_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_timetable_5_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_timetable_6_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_6_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_timetable_6_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_timetable_7_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_7_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_timetable_7_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_timetable_8_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_8_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_timetable_8_v2_1> .
+
+<http://example.com/fan_Setpoint/fan_speed_openhab_room_timetable_9_v2_1> a brick:Fan_Speed_Command ;
+    rdf:value <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_9_v2_1> ;
+    brick:isPointOf <http://example.com/Fan_Equipment/fan_openhab_room_timetable_9_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_10_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_10_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_10_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_11_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_11_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_11_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_12_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_12_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_12_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_13_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_13_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_13_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_14_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_14_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_14_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_15_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_15_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_15_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_16_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_16_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_16_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_17_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_17_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_17_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_18_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_18_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_18_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_19_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_19_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_19_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_1_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_1_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_1_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_20_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_20_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_20_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_2_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_2_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_2_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_3_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_3_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_3_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_4_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_4_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_4_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_5_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_5_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_5_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_6_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_6_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_6_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_7_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_7_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_7_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_8_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_8_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_8_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_base_9_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_9_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_9_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_co2_10_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_10_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_10_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_co2_1_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_1_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_1_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_co2_2_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_2_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_2_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_co2_3_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_3_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_3_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_co2_4_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_4_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_4_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_co2_5_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_5_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_5_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_co2_6_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_6_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_6_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_co2_7_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_7_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_7_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_co2_8_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_8_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_8_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_co2_9_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_9_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_9_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_presence_10_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_10_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_10_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_presence_1_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_1_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_1_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_presence_2_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_2_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_2_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_presence_3_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_3_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_3_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_presence_4_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_4_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_4_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_presence_5_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_5_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_5_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_presence_6_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_6_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_6_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_presence_7_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_7_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_7_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_presence_8_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_8_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_8_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_presence_9_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_9_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_9_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_timetable_10_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_10_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_10_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_timetable_1_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_1_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_1_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_timetable_2_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_2_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_2_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_timetable_3_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_3_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_3_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_timetable_4_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_4_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_4_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_timetable_5_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_5_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_5_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_timetable_6_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_6_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_6_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_timetable_7_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_7_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_7_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_timetable_8_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_8_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_8_v2_1> .
+
+<http://example.com/flow_Setpoint/air_flow_setpoint_openhab_room_timetable_9_v2_1> a brick:Air_Flow_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_9_v2_1> ;
+    brick:isPointOf <http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_9_v2_1> .
+
+<http://example.com/outsidetemperature_Point/outside_air_temperature> a brick:Outside_Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/outside_air_temperature/state> ;
+    brick:isPointOf <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_10_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_10_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_10_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_11_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_11_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_11_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_12_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_12_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_12_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_13_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_13_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_13_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_14_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_14_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_14_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_15_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_15_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_15_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_16_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_16_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_16_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_17_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_17_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_17_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_18_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_18_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_18_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_19_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_19_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_19_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_1_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_1_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_1_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_20_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_20_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_20_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_2_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_2_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_2_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_3_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_3_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_3_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_4_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_4_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_4_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_5_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_5_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_5_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_6_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_6_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_6_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_7_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_7_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_7_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_8_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_8_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_8_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_base_9_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_base_9_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_9_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_presence_10_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_presence_10_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_10_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_presence_1_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_presence_1_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_1_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_presence_2_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_presence_2_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_2_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_presence_3_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_presence_3_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_3_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_presence_4_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_presence_4_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_4_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_presence_5_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_presence_5_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_5_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_presence_6_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_presence_6_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_6_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_presence_7_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_presence_7_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_7_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_presence_8_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_presence_8_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_8_v2_1> .
+
+<http://example.com/presence_Point/presence_openhab_room_presence_9_v2_1> a brick:Occupancy_Count_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/presence_openhab_room_presence_9_v2_1/state> ;
+    brick:isPointOf <http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_9_v2_1> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_10_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_10_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_10_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_11_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_11_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_11_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_12_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_12_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_12_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_13_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_13_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_13_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_14_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_14_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_14_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_15_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_15_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_15_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_16_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_16_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_16_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_17_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_17_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_17_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_18_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_18_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_18_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_19_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_19_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_19_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_1_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_1_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_1_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_20_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_20_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_20_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_2_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_2_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_2_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_3_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_3_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_3_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_4_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_4_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_4_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_5_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_5_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_5_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_6_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_6_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_6_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_7_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_7_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_7_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_8_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_8_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_8_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_base_9_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_base_9_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_base_9_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_co2_10_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_co2_10_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_10_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_co2_1_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_co2_1_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_1_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_co2_2_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_co2_2_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_2_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_co2_3_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_co2_3_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_3_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_co2_4_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_co2_4_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_4_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_co2_5_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_co2_5_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_5_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_co2_6_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_co2_6_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_6_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_co2_7_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_co2_7_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_7_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_co2_8_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_co2_8_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_8_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_co2_9_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_co2_9_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_co2_9_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_presence_10_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_presence_10_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_presence_10_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_presence_1_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_presence_1_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_presence_1_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_presence_2_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_presence_2_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_presence_2_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_presence_3_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_presence_3_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_presence_3_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_presence_4_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_presence_4_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_presence_4_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_presence_5_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_presence_5_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_presence_5_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_presence_6_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_presence_6_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_presence_6_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_presence_7_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_presence_7_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_presence_7_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_presence_8_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_presence_8_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_presence_8_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_presence_9_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_presence_9_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_presence_9_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_timetable_10_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_timetable_10_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_timetable_10_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_timetable_1_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_timetable_1_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_timetable_1_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_timetable_2_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_timetable_2_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_timetable_2_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_timetable_3_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_timetable_3_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_timetable_3_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_timetable_4_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_timetable_4_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_timetable_4_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_timetable_5_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_timetable_5_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_timetable_5_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_timetable_6_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_timetable_6_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_timetable_6_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_timetable_7_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_timetable_7_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_timetable_7_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_timetable_8_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_timetable_8_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_timetable_8_v2> .
+
+<http://example.com/temperature_Point/air_temperature_openhab_room_timetable_9_v2_1> a brick:Air_Temperature_Sensor ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temperature_openhab_room_timetable_9_v2_1/state> ;
+    brick:isPointOf <http://example.com/Room_Location/openhab_room_timetable_9_v2> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_10_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_10_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_10_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_11_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_11_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_11_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_12_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_12_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_12_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_13_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_13_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_13_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_14_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_14_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_14_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_15_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_15_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_15_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_16_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_16_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_16_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_17_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_17_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_17_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_18_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_18_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_18_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_19_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_19_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_19_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_1_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_1_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_1_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_20_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_20_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_20_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_2_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_2_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_2_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_3_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_3_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_3_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_4_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_4_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_4_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_5_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_5_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_5_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_6_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_6_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_6_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_7_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_7_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_7_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_8_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_8_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_8_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_base_9_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_9_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_9_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_co2_10_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_10_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_10_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_co2_1_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_1_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_1_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_co2_2_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_2_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_2_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_co2_3_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_3_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_3_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_co2_4_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_4_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_4_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_co2_5_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_5_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_5_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_co2_6_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_6_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_6_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_co2_7_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_7_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_7_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_co2_8_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_8_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_8_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_co2_9_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_9_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_9_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_presence_10_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_10_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_10_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_presence_1_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_1_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_1_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_presence_2_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_2_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_2_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_presence_3_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_3_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_3_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_presence_4_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_4_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_4_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_presence_5_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_5_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_5_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_presence_6_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_6_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_6_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_presence_7_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_7_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_7_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_presence_8_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_8_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_8_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_presence_9_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_9_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_9_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_timetable_10_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_10_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_10_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_timetable_1_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_1_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_1_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_timetable_2_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_2_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_2_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_timetable_3_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_3_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_3_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_timetable_4_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_4_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_4_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_timetable_5_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_5_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_5_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_timetable_6_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_6_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_6_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_timetable_7_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_7_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_7_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_timetable_8_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_8_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_8_v2_1> .
+
+<http://example.com/temperature_Setpoint/air_temp_setpoint_openhab_room_timetable_9_v2_1> a brick:Temperature_Setpoint ;
+    rdf:value <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_9_v2_1> ;
+    brick:isPointOf <http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_9_v2_1> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_10_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_10_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_11_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_11_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_12_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_12_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_13_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_13_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_14_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_14_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_15_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_15_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_16_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_16_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_17_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_17_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_18_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_18_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_19_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_19_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_1_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_1_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_20_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_20_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_2_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_2_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_3_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_3_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_4_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_4_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_5_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_5_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_6_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_6_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_7_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_7_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_8_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_8_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_9_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_9_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_10_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_10_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_1_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_1_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_2_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_2_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_3_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_3_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_4_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_4_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_5_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_5_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_6_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_6_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_7_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_7_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_8_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_8_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_9_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_9_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_10_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_10_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_1_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_1_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_2_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_2_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_3_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_3_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_4_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_4_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_5_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_5_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_6_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_6_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_7_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_7_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_8_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_8_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_9_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_9_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_10_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_10_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_1_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_1_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_2_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_2_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_3_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_3_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_4_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_4_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_5_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_5_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_6_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_6_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_7_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_7_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_8_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_8_v2> .
+
+<http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_9_v2_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_9_v2> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_10_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_10_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_11_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_11_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_12_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_12_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_13_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_13_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_14_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_14_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_15_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_15_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_16_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_16_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_17_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_17_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_18_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_18_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_19_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_19_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_1_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_1_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_20_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_20_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_2_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_2_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_3_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_3_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_4_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_4_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_5_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_5_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_6_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_6_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_7_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_7_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_8_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_8_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_base_9_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_base_9_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_co2_10_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_10_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_co2_1_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_1_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_co2_2_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_2_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_co2_3_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_3_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_co2_4_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_4_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_co2_5_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_5_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_co2_6_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_6_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_co2_7_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_7_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_co2_8_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_8_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_co2_9_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_co2_9_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_presence_10_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_10_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_presence_1_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_1_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_presence_2_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_2_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_presence_3_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_3_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_presence_4_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_4_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_presence_5_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_5_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_presence_6_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_6_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_presence_7_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_7_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_presence_8_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_8_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_presence_9_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_presence_9_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_timetable_10_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_10_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_timetable_1_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_1_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_timetable_2_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_2_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_timetable_3_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_3_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_timetable_4_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_4_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_timetable_5_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_5_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_timetable_6_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_6_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_timetable_7_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_7_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_timetable_8_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_8_v2_1> .
+
+<http://example.com/Fan_Equipment/fan_openhab_room_timetable_9_v2_1> a brick:Fan ;
+    brick:isPartOf <http://example.com/CoolingCoil_Equipment/cooling_coil_openhab_room_timetable_9_v2_1> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_10_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_10_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_11_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_11_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_12_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_12_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_13_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_13_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_14_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_14_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_15_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_15_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_16_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_16_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_17_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_17_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_18_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_18_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_19_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_19_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_1_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_1_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_20_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_20_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_2_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_2_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_3_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_3_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_4_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_4_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_5_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_5_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_6_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_6_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_7_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_7_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_8_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_8_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_base_9_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_9_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_10_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_10_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_1_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_1_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_2_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_2_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_3_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_3_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_4_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_4_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_5_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_5_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_6_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_6_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_7_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_7_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_8_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_8_v2> .
+
+<http://example.com/PresenceSensor_Equipment/presence_sensor_openhab_room_presence_9_v2_1> a semantic_oh:Occupancy_Count_Sensor ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_9_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_10_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_10_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_11_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_11_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_12_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_12_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_13_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_13_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_14_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_14_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_15_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_15_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_16_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_16_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_17_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_17_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_18_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_18_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_19_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_19_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_1_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_1_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_20_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_20_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_2_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_2_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_3_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_3_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_4_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_4_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_5_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_5_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_6_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_6_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_7_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_7_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_8_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_8_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_base_9_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_9_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_10_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_10_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_1_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_1_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_2_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_2_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_3_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_3_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_4_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_4_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_5_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_5_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_6_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_6_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_7_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_7_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_8_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_8_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_co2_9_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_9_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_10_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_10_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_1_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_1_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_2_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_2_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_3_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_3_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_4_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_4_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_5_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_5_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_6_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_6_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_7_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_7_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_8_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_8_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_presence_9_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_9_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_10_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_10_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_1_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_1_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_2_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_2_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_3_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_3_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_4_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_4_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_5_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_5_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_6_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_6_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_7_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_7_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_8_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_8_v2> .
+
+<http://example.com/RadiatorThermostat_Equipment/radiator_thermostat_openhab_room_timetable_9_v2_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_9_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_10_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_10_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_11_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_11_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_12_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_12_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_13_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_13_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_14_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_14_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_15_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_15_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_16_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_16_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_17_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_17_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_18_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_18_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_19_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_19_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_1_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_1_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_20_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_20_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_2_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_2_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_3_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_3_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_4_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_4_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_5_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_5_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_6_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_6_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_7_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_7_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_8_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_8_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_base_9_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_base_9_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_10_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_10_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_1_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_1_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_2_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_2_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_3_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_3_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_4_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_4_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_5_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_5_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_6_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_6_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_7_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_7_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_8_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_8_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_co2_9_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_co2_9_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_10_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_10_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_1_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_1_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_2_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_2_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_3_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_3_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_4_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_4_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_5_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_5_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_6_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_6_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_7_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_7_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_8_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_8_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_presence_9_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_presence_9_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_10_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_10_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_1_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_1_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_2_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_2_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_3_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_3_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_4_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_4_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_5_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_5_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_6_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_6_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_7_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_7_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_8_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_8_v2> .
+
+<http://example.com/VariableAirVolumeBox_Equipment/variable_air_volume_box_openhab_room_timetable_9_v2_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/Room_Location/openhab_room_timetable_9_v2> .
+
+<http://example.com/Room_Location/openhab_room_timetable_10_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_timetable_1_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_timetable_2_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_timetable_3_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_timetable_4_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_timetable_5_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_timetable_6_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_timetable_7_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_timetable_8_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_timetable_9_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_co2_10_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_co2_1_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_co2_2_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_co2_3_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_co2_4_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_co2_5_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_co2_6_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_co2_7_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_co2_8_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_co2_9_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_presence_10_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_presence_1_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_presence_2_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_presence_3_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_presence_4_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_presence_5_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_presence_6_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_presence_7_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_presence_8_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_presence_9_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_10_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_11_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_12_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_13_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_14_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_15_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_16_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_17_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_18_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_19_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_1_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_20_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_2_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_3_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_4_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_5_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_6_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_7_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_8_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Room_Location/openhab_room_base_9_v2> a rec:Room ;
+    brick:hasLocation <http://example.com/Hotel_Location/oh_hotel> .
+
+<http://example.com/Hotel_Location/oh_hotel> a rec:Building .
