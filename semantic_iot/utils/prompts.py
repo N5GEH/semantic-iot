@@ -261,10 +261,7 @@ class PromptsLoader:
         </output>
         """)
 
-        
-      
 
-        
         # INPUT FILES ================================================================
 
         self.jen = textwrap.dedent(f"""<input>
@@ -280,10 +277,6 @@ class PromptsLoader:
         It represents the data structure of the literal entities of a building and its systematic components, available sensors and actuators, but with only one instance of each entity type.
         content: <data>\n{self.JEX_content}</data>
         </input>""")
-
-
-
-
 
         # CONTEXT PROMPTS ================================================================
 

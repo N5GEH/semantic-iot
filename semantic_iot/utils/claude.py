@@ -4,20 +4,14 @@ import requests
 import json
 import re
 import os
-import anthropic
 from typing import Dict, Any, List, Optional, Union
-from memory_profiler import memory_usage
-import yaml
 from mermaid import Mermaid
-import textwrap
 import matplotlib.pyplot as plt
 import numpy as np
 import pyperclip
-
 from semantic_iot.utils.prompts import prompts
-
 from pathlib import Path
-root_path = Path(__file__).parent
+utils_path = Path(__file__).parent
 
 # Price in $ per million tokens (Base Input) (https://docs.anthropic.com/en/docs/about-claude/models/overview)
 models = {
@@ -59,8 +53,8 @@ class LLMAgent:
                  api_key: str = "", 
                  model: str = "4sonnet",
                  temperature: float = 1.0,
-                 system_prompt: str = prompts.cot_extraction, # SET prompts.OUTPUT_FORMAT or ""
-                 result_folder: str = "LLM_eval/metrics"):
+                 system_prompt: str = prompts.system_default, # SET prompts.OUTPUT_FORMAT or ""
+                 result_folder: str = "temp"):
         """
         Initialize the Claude API processor
 
@@ -75,14 +69,14 @@ class LLMAgent:
         if api_key: self.api_key = api_key
         else:
             try:
-                with open(f"{root_path}/ANTHROPIC_API_KEY", "r") as f:
+                with open(f"{utils_path}/ANTHROPIC_API_KEY", "r") as f:
                     self.api_key = f.read().strip()
             except FileNotFoundError:
-                self.api_key = input(f"Couldn't find API key in {root_path}/ANTHROPIC_API_KEY\nEnter your Anthropic API key: ")
+                self.api_key = input(f"Couldn't find API key in {utils_path}/ANTHROPIC_API_KEY\nEnter your Anthropic API key: ")
 
-                with open(f"{root_path}/ANTHROPIC_API_KEY", "w") as f:
+                with open(f"{utils_path}/ANTHROPIC_API_KEY", "w") as f:
                     f.write(self.api_key)
-                print(f"API key saved to {root_path}/ANTHROPIC_API_KEY")
+                print(f"API key saved to {utils_path}/ANTHROPIC_API_KEY")
         
         if model not in models:
             raise ValueError(f"Model {model} not found. Available models: {list(models.keys())}")
@@ -95,8 +89,7 @@ class LLMAgent:
         self.temperature = temperature
         self.system_prompt = system_prompt if system_prompt else "default"
 
-        # Ensure the result_folder ends with '/metrics' and create the directory if it doesn't exist
-        self.result_folder = str(Path(result_folder) / "metrics")
+        self.result_folder = result_folder
         Path(self.result_folder).mkdir(parents=True, exist_ok=True)
 
         self.base_url = "https://api.anthropic.com/v1/messages"
@@ -224,6 +217,7 @@ class LLMAgent:
 
         result = None
         while True:
+            # TODO offline code need to be adapted if needed
             if offline:
                 pyperclip.copy(self.system_prompt) 
                 pyperclip.copy(prompt)  # Copy prompt to clipboard for offline use
@@ -494,11 +488,14 @@ class LLMAgent:
         """, step_name="regenerate_response")
         return response
 
-    def save_json_metrics(self, step_name: str, output_file: str="LLM_eval/metrics/metrics.json") -> None:
+    def save_json_metrics(self,
+                          step_name: str,
+                          output_file: str = "temp/metrics.json") -> None:
         """
         Save the pipeline results to a JSON file, appending or updating the dict.
 
         Args:
+            step_name: The name of the step
             output_file: Path to the output JSON file
         """
         # Try to load existing metrics
@@ -859,8 +856,8 @@ class LLMAgent:
             }
         }
 
-        if "heatmap" in eval_data.keys():
-            heatmap = eval_data["heatmap_weighted"] if weighted else eval_data["heatmap"]
+        if "heatmap" in evaluations_data.keys():
+            heatmap = evaluations_data["heatmap_weighted"] if weighted else evaluations_data["heatmap"]
             print(f"ℹ️  Using existing heatmap from evaluation data")
 
         else:

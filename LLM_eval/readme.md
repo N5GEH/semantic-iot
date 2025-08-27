@@ -4,7 +4,7 @@
 
 Put 'ANTROPIC_API' File in Code Folder 
 
-> **Note**: The ``/metrics`` folder is for saving the intermediate results necessary.
+> **Note**: The [``./datasets/temp``](./datasets/temp) folder is for saving the intermediate results necessary.
 > The final results will still be copied to the corresponding results folder under ``/datasets``.
 
 # Adding a New Dataset

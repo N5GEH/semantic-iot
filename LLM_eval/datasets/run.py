@@ -12,7 +12,7 @@ from semantic_iot.utils import prompts
 from semantic_iot.utils.tools import generate_rdf_from_rml, reasoning, generate_controller_configuration, term_mapper, get_endpoint_from_api_spec, generate_rml_from_rnr, generate_rdf_from_rml, preprocess_json
 
 timestamp = datetime.datetime.now().strftime("%y%m%d_%H%M%S")
-wd_path = Path(__file__).parent
+datasets_path = Path(__file__).parent
 
 
 def get_file(folder, file_type, keyword=None):
@@ -36,23 +36,23 @@ def get_file(folder, file_type, keyword=None):
         "CC": {"text": "controller", "ending": ".yml", "description": "Controller Configuration"},
         "CTX": {"text": "context", "ending": ".json", "description": "Context"},
     }
-    
+
     if file_type not in file_types:
         raise ValueError(f"Unknown file type: {file_type}. Available types: {list(file_types.keys())}")
     if not folder or not os.path.isdir(folder):
         print(f"Invalid folder: {folder}. Please provide a valid directory path.")
         return None
-    
+
     file = file_types[file_type]
     text = file["text"]
     ending = file["ending"]
     description = file["description"]
-    
+
     matching_files = []
     for filename in os.listdir(folder):
         if text.lower() in str(filename).lower() and str(filename).endswith(ending):
             matching_files.append(filename)
-    
+
     if len(matching_files) == 0:
         print(f"No {description} file found")
         return None
@@ -82,18 +82,16 @@ def get_file(folder, file_type, keyword=None):
 # CHOOSE DATASET ======================================================
 
 class ScenarioExecutor:
-    def __init__(self, 
+    def __init__(self,
                  rep: int = 1,
                  test = False,
-                 dataset_folder: str = "LLM_eval/datasets",
-                 ontology_folder: str = "LLM_eval/ontologies",
-                 api_spec_folder: str = "LLM_eval/API_specs"):
-
+                 dataset_folder: str = None,
+                 ontology_folder: str = None,
+                 api_spec_folder: str = None):
         self.rep = rep
-        self.dataset_folder = dataset_folder if dataset_folder else wd_path
-        self.ontology_folder = ontology_folder if ontology_folder else Path(wd_path.parent, "ontologies")
-        self.api_spec_folder = api_spec_folder if api_spec_folder else Path(wd_path.parent, "API_specs")
-
+        self.dataset_folder = dataset_folder if dataset_folder else datasets_path
+        self.ontology_folder = ontology_folder if ontology_folder else Path(datasets_path.parent, "ontologies")
+        self.api_spec_folder = api_spec_folder if api_spec_folder else Path(datasets_path.parent, "API_specs")
         self.test = test
 
     def choose_dataset(self):
@@ -151,7 +149,7 @@ class ScenarioExecutor:
                         print("Invalid selection. Please enter a valid number.")
                 except ValueError:
                     print("Invalid input. Please enter a number.")
-        print(f"Selected ontology file: {self.ontology_path}") 
+        print(f"Selected ontology file: {self.ontology_path}")
 
         prompts.load_ontology_path(self.ontology_path)
 
@@ -191,7 +189,7 @@ class ScenarioExecutor:
             prompts.host_path = self.host_path
         else:
             self.host_path = prompts.host_path
-        
+
 
         # Choose: Scenarios ======================================================
 
@@ -205,7 +203,7 @@ class ScenarioExecutor:
         self.selected_scenarios = []
 
         for x in selected_scenarios.split(','):
-            x = x.strip().upper() 
+            x = x.strip().upper()
             if x == 'C':            self.selected_scenarios.append('C')
             elif x in ['1', 'I']:   self.selected_scenarios.append('I')
             elif x in ['2', 'II']:  self.selected_scenarios.append('II')
@@ -219,7 +217,7 @@ class ScenarioExecutor:
         if not self.JEN_path or not self.JEX_path or not self.ontology_path or not self.endpoint_path:
             input("Please run choose_dataset() first to select the dataset, ontology, and API endpoint. Press Enter to continue...")
             self.choose_dataset()
-        
+
         print("\nPreparing context for scenarios...")
 
         # Create result folder first
@@ -228,13 +226,13 @@ class ScenarioExecutor:
 
         # Term Mapping & Extra Nodes & API Endpoint
         client_context = LLMAgent(
-            system_prompt=prompts.cot_extraction, 
-            # system_prompt=prompts.system_default,
+            # system_prompt=prompts.cot_extraction,  # TODO needed when evaluating the context generation
+            system_prompt=prompts.system_default,
             result_folder=context_folder
         )
         try:
             self.context = client_context.extract_code(
-                client_context.query( 
+                client_context.query(
                     prompt=prompts.context,
                     step_name="get_context",
                     follow_up=True,
@@ -249,7 +247,7 @@ class ScenarioExecutor:
 
         print("Context prepared successfully.")
         print("Context:", json.dumps(self.context, indent=2))
-        
+
         # Save context to file
         prompts.load_context(self.context)
         context_file = os.path.join(context_folder, "context.json")
@@ -284,7 +282,7 @@ class ScenarioExecutor:
         print(f"\nContext loaded: {json.dumps(self.context, indent=2)}")
         print("\nContext loaded successfully.")
         input("Press Enter to continue...")
-        
+
         print(f"\nGenerating results for selected scenarios {self.selected_scenarios}...")
 
         scenario_folder = {
@@ -331,8 +329,8 @@ class ScenarioExecutor:
 
                     try:
                         client_scenario = LLMAgent(
-                            system_prompt=prompts.cot_extraction,
-                            # system_prompt=prompts.system_default,
+                            # system_prompt=prompts.cot_extraction,  # TODO needed when evaluating the scenario generation
+                            system_prompt=prompts.system_default,
                             result_folder=scenario_folder[sc]
                         )
 
@@ -341,7 +339,7 @@ class ScenarioExecutor:
                             step_name=f"scenario_{sc}",
                             tools="",
                             follow_up=False,
-                            offline=True
+                            # offline=True
                         )
 
                         try:
@@ -458,8 +456,8 @@ class ScenarioExecutor:
     def save_metrics(self, status="completed"):
         """
         Save the metrics to a file.
-        """ 
-        metrics_file = r"LLM_eval/metrics/metrics.json"
+        """
+        metrics_file = r"temp/metrics.json"
         if os.path.exists(metrics_file):
             with open(metrics_file, 'r', encoding='utf-8') as f:
                 content = f.read().strip()
@@ -516,10 +514,10 @@ class ScenarioExecutor:
                                 "quantity": 0,
                                 "human_effort": 0
                             }
-                            
+
                             for step in v:
                                 # print(f"Processing step: {step}")
-                                
+
                                 # Extract bloom and dim values directly from the step
                                 bloom = bloom_map.get(step.get("bloom", ""), 0)
                                 dim = dim_map.get(step.get("dim", ""), 0)
@@ -533,7 +531,7 @@ class ScenarioExecutor:
                                 sum_steps["human_effort"] += human_effort
 
                             print(f"Summed sub_steps for {key}: {sum_steps}")
-                            
+
                             # Store the aggregated values for later addition
                             aggregated_data[key] = sum_steps
 
@@ -547,7 +545,7 @@ class ScenarioExecutor:
         output_file = os.path.join(self.result_folder, "metrics.json")
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(metrics, f, indent=4)
-    
+
         print(f"Metrics saved to {output_file}.")
 
 
@@ -556,22 +554,22 @@ def to_readable(data) -> str:
     Convert a dictionary or string to a more readable format.
     """
     import json
-    
+
     # # If input is a dictionary, convert to JSON string first
     # if isinstance(data, dict):
     #     text = json.dumps(data, indent=2)
     # else:
     text = str(data)
-    
+
     formatted = ""
     for line in text.split("\n"):
         formatted += line.strip() + "\n"
-        
+
     return formatted
 
 def extract_evaluations(text: str) -> list[dict]:
     """
-    Extracts evaluation sections from text that start with 'EVALUATION:' 
+    Extracts evaluation sections from text that start with 'EVALUATION:'
     and continue until an empty line is encountered.
     Returns a list of dictionaries with parsed evaluation data.
     """
@@ -581,34 +579,34 @@ def extract_evaluations(text: str) -> list[dict]:
     i = 0
     while i < len(lines):
         line = lines[i].strip()
-        
+
         # Check if line starts with "EVALUATION:"
         if line.startswith("EVALUATION:"):
             evaluation_lines = [line]
             i += 1
-            
+
             # Continue collecting lines until empty line or end of text
             while i < len(lines):
                 current_line = lines[i]
-                
+
                 # Stop if we hit an empty line
                 if current_line.strip() == "":
                     break
-                    
+
                 evaluation_lines.append(current_line)
                 i += 1
-            
+
             # Parse the evaluation data
             evaluation_text = '\n'.join(evaluation_lines)
             parsed_data = parse_evaluation_data(evaluation_text)
-            
+
             if parsed_data:
                 evaluations.append(parsed_data)
             else:
                 # Fallback: include raw text if parsing fails
                 print("Failed to parse evaluation data.")
                 evaluations.append({"raw_text": evaluation_text})
-        
+
         i += 1
 
     return evaluations
@@ -620,35 +618,35 @@ def parse_evaluation_data(text: str) -> dict:
     """
     result = {}
     lines = [line.strip() for line in text.strip().split('\n') if line.strip()]
-    
+
     # Parse the EVALUATION line if present
     eval_line = next((line for line in lines if line.startswith("EVALUATION:")), "")
     if eval_line:
         result["evaluation_line"] = eval_line.replace("EVALUATION:", "").strip()
-    
+
     # Parse key-value lines
     for line in lines:
         # Skip the EVALUATION line and empty lines
         if line.startswith("EVALUATION:") or not line.strip():
             continue
-            
+
         # Look for lines with colons (key: value format)
         if ':' in line:
             # Remove leading dash if present
             clean_line = line.lstrip('- ').strip()
-            
+
             if ':' in clean_line:
                 key, value_part = clean_line.split(':', 1)
                 key = key.strip()
-                
+
                 # Split values by dashes and clean them
                 values = [v.strip() for v in value_part.split('-') if v.strip()]
-                
+
                 # Store the parsed values
                 if values:
                     if key == "bloom" and len(values) >= 3:
                         result["bloom"] = values[0]
-                        result["bloom_objective"] = values[1] 
+                        result["bloom_objective"] = values[1]
                         result["bloom_verb"] = values[2]
                     elif key == "dim" and len(values) >= 2:
                         result["dim"] = values[0]
@@ -663,7 +661,7 @@ def parse_evaluation_data(text: str) -> dict:
                     else:
                         # Generic handling for other keys
                         result[key] = values
-    
+
     return result
 
 
@@ -671,7 +669,7 @@ def clear_metrics():
     """
     Clear the metrics file if it exists.
     """
-    metrics_file = r"LLM_eval\metrics\metrics.json"
+    metrics_file = r"temp/metrics.json"
     if os.path.exists(metrics_file):
         with open(metrics_file, 'w') as f:
             pass
@@ -688,8 +686,8 @@ if __name__ == "__main__":
 
     try:
         executor.run_scenarios()
-        executor.save_metrics()    
-    
+        executor.save_metrics()
+
     except Exception as e:
         error_info = {
             "error": True,
@@ -699,4 +697,4 @@ if __name__ == "__main__":
         }
         executor.save_metrics(status=error_info)
         print(e)
-    
+
