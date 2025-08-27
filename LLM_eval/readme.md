@@ -45,3 +45,7 @@ Put 'ANTROPIC_API' File in Code Folder
 4. Optionally, create a JSON example file for easier structure understanding
 5. Place files in the appropriate dataset directory
 6. Access files using the specified tools mentioned above
+
+
+### Information
+- Instructions and the "data model" for interacting with Antropic API can be found [here](https://docs.anthropic.com/en/docs/intro) under ``Capabilities``. For example, [how to use enable thinking](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking)
