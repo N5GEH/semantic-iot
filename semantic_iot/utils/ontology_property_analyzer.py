@@ -344,7 +344,7 @@ class OntologyPropertyAnalyzer:
         return extra_nodes
     
 if prompts.ontology_path is None:
-    ontology_processor = OntologyPropertyAnalyzer(str(Path(project_root_path, "LLM_models/ontologies/Brick.ttl")))  # Default ontology path if not set
+    ontology_processor = OntologyPropertyAnalyzer(str(Path(project_root_path, "LLM_eval/ontologies/Brick.ttl")))  # Default ontology path if not set
 else:
     ontology_processor = OntologyPropertyAnalyzer(prompts.ontology_path)
 

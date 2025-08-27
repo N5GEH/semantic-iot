@@ -41,7 +41,6 @@ class PromptsLoader:
 
         self.update_variables()
 
-
     def update_variables(self):
 
         # SYSTEM CONTEXT PROMPT ==================================================================
@@ -88,9 +87,6 @@ class PromptsLoader:
         {self.GOAL}
         {self.OUTPUT_FORMAT}
         """).strip()
-
-
-
 
         # COT EXTRACTION TEXT ================================================================
 
@@ -585,10 +581,6 @@ class PromptsLoader:
         <output> Return the Resource Node Relationship Document in JSON format.</output>
         """)
     
-
-
-
-        
 
     def load_prefixes(self, ontology_path):
         with open(ontology_path, 'r', encoding='utf-8') as f:
