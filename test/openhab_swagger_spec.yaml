@@ -68,11 +68,6 @@ paths:
           name: itemName
           required: true
           type: string
-        - description: Service identifier for multi-tenancy.
-          in: header
-          name: fiware-service
-          required: false
-          type: string
         - description: The new state value for the item.
           in: body
           name: body

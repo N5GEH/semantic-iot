@@ -4687,1651 +4687,901 @@ api:PUT__rest_items_air_flow_setpoint_openhab_room_base_10_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_10_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_10_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_10_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_10_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_11_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_11_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_11_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_11_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_11_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_12_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_12_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_12_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_12_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_12_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_13_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_13_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_13_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_13_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_13_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_14_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_14_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_14_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_14_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_14_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_15_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_15_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_15_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_15_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_15_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_16_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_16_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_16_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_16_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_16_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_17_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_17_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_17_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_17_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_17_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_18_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_18_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_18_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_18_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_18_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_19_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_19_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_19_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_19_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_19_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_1_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_1_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_1_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_1_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_1_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_20_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_20_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_20_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_20_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_20_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_2_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_2_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_2_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_2_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_2_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_3_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_3_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_3_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_3_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_3_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_4_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_4_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_4_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_4_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_4_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_5_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_5_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_5_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_5_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_5_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_6_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_6_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_6_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_6_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_6_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_7_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_7_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_7_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_7_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_7_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_8_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_8_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_8_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_8_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_8_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_base_9_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_base_9_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_base_9_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_base_9_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_base_9_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_10_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_co2_10_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_10_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_10_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_10_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_1_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_co2_1_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_1_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_1_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_1_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_2_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_co2_2_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_2_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_2_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_2_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_3_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_co2_3_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_3_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_3_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_3_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_4_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_co2_4_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_4_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_4_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_4_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_5_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_co2_5_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_5_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_5_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_5_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_6_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_co2_6_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_6_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_6_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_6_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_7_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_co2_7_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_7_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_7_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_7_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_8_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_co2_8_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_8_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_8_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_8_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_9_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_co2_9_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_co2_9_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_9_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_co2_9_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_10_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_presence_10_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_10_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_10_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_10_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_1_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_presence_1_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_1_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_1_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_1_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_2_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_presence_2_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_2_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_2_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_2_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_3_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_presence_3_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_3_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_3_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_3_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_4_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_presence_4_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_4_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_4_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_4_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_5_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_presence_5_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_5_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_5_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_5_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_6_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_presence_6_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_6_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_6_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_6_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_7_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_presence_7_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_7_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_7_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_7_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_8_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_presence_8_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_8_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_8_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_8_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_9_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_presence_9_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_presence_9_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_9_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_presence_9_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_10_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_timetable_10_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_10_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_10_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_10_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_1_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_timetable_1_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_1_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_1_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_1_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_2_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_timetable_2_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_2_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_2_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_2_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_3_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_timetable_3_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_3_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_3_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_3_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_4_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_timetable_4_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_4_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_4_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_4_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_5_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_timetable_5_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_5_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_5_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_5_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_6_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_timetable_6_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_6_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_6_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_6_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_7_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_timetable_7_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_7_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_7_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_7_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_8_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_timetable_8_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_8_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_8_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_8_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_9_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_flow_setpoint_openhab_room_timetable_9_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_flow_setpoint_openhab_room_timetable_9_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_9_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_flow_setpoint_openhab_room_timetable_9_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_10_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_10_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_10_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_10_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_10_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_11_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_11_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_11_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_11_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_11_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_12_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_12_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_12_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_12_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_12_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_13_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_13_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_13_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_13_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_13_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_14_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_14_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_14_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_14_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_14_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_15_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_15_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_15_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_15_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_15_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_16_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_16_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_16_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_16_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_16_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_17_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_17_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_17_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_17_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_17_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_18_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_18_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_18_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_18_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_18_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_19_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_19_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_19_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_19_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_19_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_1_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_1_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_1_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_1_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_1_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_20_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_20_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_20_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_20_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_20_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_2_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_2_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_2_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_2_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_2_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_3_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_3_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_3_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_3_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_3_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_4_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_4_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_4_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_4_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_4_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_5_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_5_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_5_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_5_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_5_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_6_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_6_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_6_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_6_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_6_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_7_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_7_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_7_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_7_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_7_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_8_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_8_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_8_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_8_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_8_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_base_9_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_base_9_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_base_9_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_base_9_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_base_9_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_10_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_co2_10_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_10_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_10_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_10_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_1_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_co2_1_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_1_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_1_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_1_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_2_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_co2_2_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_2_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_2_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_2_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_3_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_co2_3_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_3_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_3_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_3_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_4_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_co2_4_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_4_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_4_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_4_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_5_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_co2_5_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_5_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_5_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_5_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_6_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_co2_6_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_6_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_6_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_6_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_7_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_co2_7_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_7_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_7_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_7_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_8_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_co2_8_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_8_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_8_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_8_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_9_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_co2_9_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_co2_9_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_9_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_co2_9_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_10_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_presence_10_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_10_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_10_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_10_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_1_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_presence_1_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_1_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_1_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_1_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_2_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_presence_2_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_2_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_2_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_2_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_3_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_presence_3_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_3_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_3_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_3_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_4_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_presence_4_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_4_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_4_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_4_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_5_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_presence_5_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_5_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_5_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_5_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_6_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_presence_6_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_6_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_6_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_6_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_7_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_presence_7_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_7_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_7_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_7_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_8_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_presence_8_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_8_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_8_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_8_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_9_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_presence_9_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_presence_9_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_9_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_presence_9_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_10_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_timetable_10_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_10_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_10_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_10_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_1_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_timetable_1_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_1_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_1_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_1_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_2_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_timetable_2_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_2_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_2_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_2_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_3_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_timetable_3_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_3_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_3_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_3_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_4_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_timetable_4_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_4_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_4_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_4_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_5_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_timetable_5_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_5_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_5_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_5_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_6_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_timetable_6_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_6_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_6_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_6_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_7_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_timetable_7_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_7_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_7_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_7_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_8_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_timetable_8_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_8_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_8_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_8_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_9_v2_1 a http:Request ;
     http:absolutePath "/rest/items/air_temp_setpoint_openhab_room_timetable_9_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/air_temp_setpoint_openhab_room_timetable_9_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_9_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_air_temp_setpoint_openhab_room_timetable_9_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_10_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_10_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_10_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_10_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_10_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_11_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_11_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_11_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_11_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_11_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_12_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_12_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_12_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_12_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_12_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_13_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_13_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_13_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_13_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_13_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_14_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_14_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_14_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_14_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_14_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_15_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_15_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_15_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_15_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_15_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_16_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_16_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_16_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_16_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_16_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_17_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_17_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_17_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_17_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_17_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_18_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_18_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_18_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_18_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_18_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_19_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_19_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_19_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_19_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_19_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_1_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_1_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_1_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_1_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_1_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_20_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_20_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_20_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_20_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_20_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_2_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_2_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_2_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_2_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_2_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_3_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_3_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_3_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_3_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_3_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_4_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_4_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_4_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_4_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_4_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_5_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_5_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_5_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_5_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_5_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_6_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_6_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_6_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_6_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_6_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_7_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_7_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_7_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_7_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_7_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_8_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_8_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_8_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_8_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_8_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_base_9_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_base_9_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_base_9_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_base_9_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_base_9_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_co2_10_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_co2_10_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_10_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_co2_10_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_co2_10_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_co2_1_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_co2_1_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_1_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_co2_1_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_co2_1_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_co2_2_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_co2_2_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_2_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_co2_2_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_co2_2_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_co2_3_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_co2_3_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_3_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_co2_3_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_co2_3_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_co2_4_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_co2_4_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_4_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_co2_4_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_co2_4_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_co2_5_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_co2_5_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_5_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_co2_5_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_co2_5_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_co2_6_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_co2_6_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_6_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_co2_6_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_co2_6_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_co2_7_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_co2_7_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_7_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_co2_7_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_co2_7_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_co2_8_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_co2_8_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_8_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_co2_8_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_co2_8_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_co2_9_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_co2_9_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_co2_9_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_co2_9_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_co2_9_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_presence_10_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_presence_10_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_10_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_presence_10_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_presence_10_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_presence_1_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_presence_1_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_1_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_presence_1_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_presence_1_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_presence_2_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_presence_2_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_2_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_presence_2_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_presence_2_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_presence_3_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_presence_3_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_3_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_presence_3_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_presence_3_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_presence_4_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_presence_4_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_4_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_presence_4_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_presence_4_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_presence_5_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_presence_5_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_5_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_presence_5_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_presence_5_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_presence_6_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_presence_6_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_6_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_presence_6_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_presence_6_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_presence_7_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_presence_7_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_7_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_presence_7_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_presence_7_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_presence_8_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_presence_8_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_8_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_presence_8_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_presence_8_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_presence_9_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_presence_9_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_presence_9_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_presence_9_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_presence_9_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_timetable_10_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_timetable_10_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_10_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_timetable_10_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_timetable_10_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_timetable_1_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_timetable_1_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_1_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_timetable_1_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_timetable_1_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_timetable_2_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_timetable_2_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_2_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_timetable_2_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_timetable_2_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_timetable_3_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_timetable_3_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_3_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_timetable_3_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_timetable_3_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_timetable_4_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_timetable_4_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_4_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_timetable_4_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_timetable_4_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_timetable_5_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_timetable_5_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_5_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_timetable_5_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_timetable_5_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_timetable_6_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_timetable_6_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_6_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_timetable_6_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_timetable_6_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_timetable_7_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_timetable_7_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_7_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_timetable_7_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_timetable_7_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_timetable_8_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_timetable_8_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_8_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_timetable_8_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_timetable_8_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 api:PUT__rest_items_fan_speed_openhab_room_timetable_9_v2_1 a http:Request ;
     http:absolutePath "/rest/items/fan_speed_openhab_room_timetable_9_v2_1" ;
     http:absoluteURI <http://137.226.248.250:8080/rest/items/fan_speed_openhab_room_timetable_9_v2_1> ;
     http:authority "137.226.248.250:8080" ;
-    http:headers api:PUT__rest_items_fan_speed_openhab_room_timetable_9_v2_1_Param_fiware_service ;
     http:methodName "PUT" .
-
-api:PUT__rest_items_fan_speed_openhab_room_timetable_9_v2_1_Param_fiware_service a http:MessageHeader ;
-    http:fieldName "fiware-service" ;
-    http:fieldValue "" .
 
 http:requestURI a rdf:Property ;
     rdfs:label "Request URI"@en ;
