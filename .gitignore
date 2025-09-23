@@ -1,4 +1,9 @@
 /build/
-/examples/fiware/kgcp/rml/rdf_node_relationship.json
 local_test/
 /semantic_iot.egg-info/
+/test/test_relationship_finder/openhab_node_relationship.json
+/test/test_relationship_finder/openhab_multiple_members_node_relationship.json
+/test/test_relationship_finder/fiware_node_relationship.json
+/examples/fiware/kgcp/rml/brick/intermediate_report_brick.json
+/examples/fiware/kgcp/rml/dogont/intermediate_report_dogont.json
+/examples/fiware/kgcp/rml/saref4bldg/intermediate_report_saref4bldg.json

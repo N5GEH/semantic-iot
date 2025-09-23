@@ -128,7 +128,7 @@ class ControllerConfiguration:
 
                 if presence_sensors:
                     # Pick the first presence sensor
-                    sensor_access = presence_sensors[0].get('sensor_access', None)
+                    sensor_access = presence_sensors.bindings[0].get('sensor_access', None)
                     controller_mode = "presence"
                 else:
                     # c) Fall back to timetable-based control

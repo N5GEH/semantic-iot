@@ -1,14 +1,22 @@
 ## Demonstration with FIWARE
+
+### Introduction
 This is a demonstration of how to use **semantic-iot** framework to build up a Knowledge Graph Construction Pipline (**KGCP**) for FIWARE platform specialized for smart hotel use cases.
 
-It is assumed that data in IoT platform conforms with specific **data models**, no matter in which format.
-In this demonstration, we provide data models of hotel energy systems in Python using [Pydantic](https://pydantic-docs.helpmanual.io/).
+![](../../figures/demonstration.png)
+
+To use the **semantic-iot** framework, **data models** must be already defined. Data stored in the IoT platform must also conform with the specific data models.
+In this demonstration, we provide data models for hotel energy systems in Python using [Pydantic](https://pydantic-docs.helpmanual.io/).
 These data models can be found in [`./datamodels/pydantic_models.py`](./datamodels/pydantic_models.py).
 
-Important is that **an example data set** can be created, which fully represents the data models being used.
-In this demonstration, we provide this example data set in JSON format as [`./kgcp/rml/example_hotel.json`](./kgcp/rml/example_hotel.json), which can also be created using the data model script.
+Data models can also be defined in more conventional way, like UML, entity-relationship diagram, etc. Important is to create **an example dataset** that fully represents the data models, i.e., the naming convention, interrelational information, and the availability of data.
+In this demonstration, we provide this example dataset as [`./kgcp/rml/example_hotel.json`](./kgcp/rml/example_hotel.json), which can also be created using the data model script.
 
-Additional data sets, representing different IoT systems of the same specialized IoT platform can be provisioned to a running FIWARE platform via the script [`datamodels/hotel_provision.py`](datamodels/hotel_provision.py). For quick start, we provide a pre-provisioned data under `./hotel_dataset`. If you do like to provision the data by yourself, please deploy the FIWARE platform locally. You can use the docker configuration in `./deployment`.
+The script [`./datamodels/hotel_provision.py`](./datamodels/hotel_provision.py) provisions different hotel systems to the FIWARE platform, thus, generating different datasets as can be found in [`./hotel_dataset`](./hotel_dataset). 
+> **Note**: If you do like to provision hotel systems on FIWARE platform, please first deploy a FIWARE platform stack locally. You can use the docker configuration in [`./platform_deployment`](./platform_deployment).
+
+Currently, we have tested with multiple ontologies in the building systems domain, including [Brick](https://brickschema.org/), [SAREF4BLDG](https://saref.etsi.org/saref4bldg), and [DogOnt](https://iot-ontologies.github.io/dogont/documentation/index-en.html). For the simplicity, we will use Brick for the demonstration.
+>**Note**: For SAREF4BLDG and DogOnt, you can view the results under [`./kgcp/rml/saref4bldg`](./kgcp/rml/saref4bldg) and [`./kgcp/rml/dogont`](./kgcp/rml/dogont) respectively.
 
 ### Prerequisites
 Install the **semantic-iot** framework:
@@ -27,54 +35,53 @@ pip install -r examples/fiware/requirements.txt
 
 ### Step 1 data model identification & vocabulary mapping
 Set up the FIWARE platform specific configuration is the first step.
-In this demonstration, we provide a configuration file [`./kgcp/rml/fiware_config.json`](./kgcp/rml/fiware_config.json) for the specialized FIWARE platform:
+In this demonstration, we provide a configuration file [`./kgcp/rml/iware_config.json`](./kgcp/rml/fiware_config.json) for the specialized FIWARE platform:
 ```json
 {
     "ID_KEY": "id",
     "TYPE_KEYS": [
         "type"
-    ],
-    "JSONPATH_EXTRA_NODES": [
-        "$..fanSpeed",
-        "$..airFlowSetpoint",
-        "$..temperatureSetpoint"
     ]
 }
 ```
-The ``JSONPATH_EXTRA_NODES`` is used to append extra resource types, which are not directly modeled as entities in the JSON dataset. For example `fanSpeed` is modeled as a property of `CoolingCoil`, but it should be mapped to a separate resource type in the knowledge graph.
 
-After understanding this, you can start the data model identification and vocabulary mapping by running the script [`./kgcp/rml/rml_preprocess.py`](./kgcp/rml/rml_preprocess.py). In this case, the above configuration file and the domain ontology for building energy system, brick, are given as input.
+After understanding this, you can start the data model identification and terminology mapping by running the script [`./kgcp/rml_preprocess.py`](./kgcp/rml_preprocess.py). In this case, the above configuration file and the domain ontology for building energy system, brick, are given as input.
+> **Beta**: The terminology mapping is by default based on the **string similarity**.
+> A **beta** functionality using the embedding-model of [sentence-transformers](https://www.sbert.net/) has been implemented, which find suitable terminologies based on the semantic similarity. 
+
+Note that in  [`./kgcp/rml_preprocess.py`](./kgcp/rml_preprocess.py) there is an input that depends on the data model and the ontology used, i.e., `patterns_splitting`.
+This parameter is used to mitigate the issue of semantic difference between the data model and the ontology, for example, while the actuator setpoints are modeled as attributes of the corresponding devices, the Brick ontology requires the setpoints to be separate resources in KGs.
+This parameter contains a list of patterns, i.e., JSONPath, that are used to identify such substructures in the platform dataset.
+An initial run might be necessary to identify this semantic difference and to define the corresponding JSONPaths.
+For Brick ontology, the ``patterns_splitting`` is defined as: `["\$..fanSpeed","\$..airFlowSetpoint","\$..temperatureSetpoint"]`.
 
 ### Step 2 validation and completion
-The last step generate a pre-filled **"resource node relationship"** document, which can be found as [`./kgcp/rml/rdf_node_relationship.json`](./kgcp/rml/rdf_node_relationship.json).
-In this document, the data models are identified as different **resource types** and the terminology-mappings to specific term of the ontology are suggested based on the string similarity.
-
-Manual validation and completion are now required for:
-1. Verify the terminology-mappings. For example, the correct mapping for `PresenceSensor` should be `brick:Occupancy_Count_Sensor`.
-2. Complete the interrelationship information between resource types. For example, `TemperatureSensor` is related to `HotelRoom` via the predicate `brick:isPointOf`.
-3. Complete the "link" for accessing the data. For example, the link for `TemperatureSensor` should be `https://<host>/v2/entities/{id}/attrs/temperature/value`.
-
-For the resource type `TemperatureSensor`, this is the generated **"resource node relationship"** document:
+The last step generate a human-friendly report, i.e., **"intermediate report"**, which can be found as [`./kgcp/rml//brick/intermediate_report_brick.json`](./kgcp/rml//brick/intermediate_report_brick.json).
+In this report, different **resource types** in the data models are identified and the terminology mappings to specific terms of the ontology are suggested based on the **string similarity**.
+For example, for the resource type `TemperatureSensor`:
 ````json
 {
-    "identifier": "id",
     "nodetype": "TemperatureSensor",
-    "extraNode": false,
     "iterator": "$[?(@.type=='TemperatureSensor')]",
     "class": "**TODO: PLEASE CHECK** brick:Temperature_Sensor",
     "hasRelationship": [
         {
-            "relatedNodeType": null,
-            "relatedAttribute": null,
-            "rawdataidentifier": null
+            "relatedNodeType": "HotelRoom",
+            "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation",
+            "rawdataidentifier": "hasLocation.value"
         }
     ],
-    "link": null
+    "hasDataAccess": null
 }
 ````
 
-And after validation and completion, it should look like this:
-````json
+Manual validation and completion are now required for:
+1. Verify the terminology suggestion for **subject**. For example, the ideal ontology class for `TemperatureSensor` in our data models should be `brick:Air_Temperature_Sensor`.
+2. Verify the terminology suggestion for **predicate**. For example, the property class `brick:isPointOf` should be used to connect the `TemperatureSensor` to `HotelRoom`.
+3. Complete the field `hasDataAccess` for accessing the data (or actuation setpoints). For example, for `TemperatureSensor` the temperature can be accessed by "https://<host>/v2/entities/{id}/attrs/temperature/value" via the FIWARE API.
+
+After that, the completed information for `TemperatureSensor` should look like this:
+```json
 {
     "identifier": "id",
     "nodetype": "TemperatureSensor",
@@ -84,21 +91,21 @@ And after validation and completion, it should look like this:
     "hasRelationship": [
         {
             "relatedNodeType": "HotelRoom",
-            "relatedAttribute": "brick:isPointOf",
+            "propertyClass": "brick:isPointOf",
             "rawdataidentifier": "hasLocation.value"
         }
     ],
     
-    "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
+    "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
 }
-````
+```
 
-A validated and completed **"resource node relationship"** document for this example is provided in [`./kgcp/rml/rdf_node_relationship_validated.json`](./kgcp/rml/rdf_node_relationship_validated.json).
+A validated and completed **"intermediate report"** document for this example is provided in [`./kgcp/rml/brick/intermediate_report_validated_brick.json`](./kgcp/rml/brick/intermediate_report_validated_brick.json).
 
 ### Step 3 generate mapping file to build KGCP
-Based on the completed **"resource node relationship"** document, we can generate the RML mapping file for the KGCP.
+Based on the completed **"intermediate report"** document, we can generate the RML mapping file for the KGCP.
 In this demonstration, this step can be conducted by running the script [`./kgcp/rml_generate.py`](./kgcp/rml_generate.py).
-The generated RML mapping file can be found in [`./kgcp/rml/fiware_hotel_rml.ttl`](./kgcp/rml/fiware_hotel_rml.ttl).
+The generated RML mapping file can be found in [`./kgcp/rml/brick/fiware_hotel_rml.ttl`](kgcp/rml/brick/fiware_hotel_rml.ttl).
 
 ### Step 4 apply KGCP (including HTTP Extension)
 Now that you’ve generated your RML mappings, you can run the KGCP to produce both the base KG and the HTTP‐augmented KG:

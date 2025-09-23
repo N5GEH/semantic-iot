@@ -29,11 +29,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": null,
-                    "relatedAttribute": null,
+                    "propertyClass": null,
                     "rawdataidentifier": null
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "AmbientTemperatureSensor",
@@ -42,12 +42,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value"
+            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{id}/attrs/temperatureAmb/value"
         },
         {
             "nodetype": "HotelRoom",
@@ -56,12 +55,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "Hotel",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "TemperatureSensor",
@@ -70,12 +68,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
+            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{id}/attrs/temperature/value"
         },
         {
             "nodetype": "CO2Sensor",
@@ -84,11 +81,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value"
+            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{id}/attrs/co2/value"
         },
         {
             "nodetype": "PresenceSensor",
@@ -97,12 +94,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value"
+            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{id}/attrs/pir/value"
         },
         {
             "nodetype": "FreshAirVentilation",
@@ -111,12 +107,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "RadiatorThermostat",
@@ -125,12 +120,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "CoolingCoil",
@@ -139,11 +133,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "HotelRoom",
-                    "relatedAttribute": "brick:hasLocation",
+                    "propertyClass": "brick:hasLocation",
                     "rawdataidentifier": "hasLocation.value"
                 }
             ],
-            "link": null
+            "hasDataAccess": null
         },
         {
             "nodetype": "fanSpeed_CoolingCoil",
@@ -152,12 +146,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "CoolingCoil",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
+            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/fanSpeed/value"
         },
         {
             "nodetype": "airFlowSetpoint_FreshAirVentilation",
@@ -166,12 +159,11 @@
             "hasRelationship": [
                 {
                 "relatedNodeType": "FreshAirVentilation",
-                "relatedAttribute": "brick:isPointOf",
+                "propertyClass": "brick:isPointOf",
                 "rawdataidentifier": "relatedTo.value"
                     }
             ],
-            
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
+            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/airFlowSetpoint/value"
         },
         {
             "nodetype": "temperatureSetpoint_RadiatorThermostat",
@@ -180,12 +172,11 @@
             "hasRelationship": [
                 {
                     "relatedNodeType": "RadiatorThermostat",
-                    "relatedAttribute": "brick:isPointOf",
+                    "propertyClass": "brick:isPointOf",
                     "rawdataidentifier": "relatedTo.value"
                 }
             ],
-            
-            "link": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
+            "hasDataAccess": "http://137.226.248.250:1026/v2/entities/{relatedTo.value}/attrs/temperatureSetpoint/value"
         }
     ]
 }

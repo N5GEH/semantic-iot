@@ -20,9 +20,9 @@ ex:Mapping{{ relationship.nodetype }}
         rr:class {{ relationship.class }} ;
     ] ;
     {% for rel in relationship.hasRelationship -%}
-    {% if rel.relatedAttribute -%}
+    {% if rel.propertyClass -%}
     rr:predicateObjectMap [
-        rr:predicate {{ rel.relatedAttribute }} ;
+        rr:predicate {{ rel.propertyClass }} ;
         rr:objectMap [
             rr:parentTriplesMap ex:Mapping{{ rel.relatedNodeType }} ;
             rr:joinCondition [
@@ -33,11 +33,11 @@ ex:Mapping{{ relationship.nodetype }}
     ] ;
     {% endif -%}
     {% endfor -%}
-    {% if relationship.link -%}
+    {% if relationship.hasDataAccess -%}
     rr:predicateObjectMap [
         rr:predicate rdf:value ;
         rr:objectMap [
-            rr:template "{{ relationship.link }}" ;
+            rr:template "{{ relationship.hasDataAccess }}" ;
         ] ;
     ] ;
     {% endif -%}
