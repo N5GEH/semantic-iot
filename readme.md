@@ -30,6 +30,7 @@ The framework mainly contains:
 
 **Knowledge Graph Construction Pipeline (KGCP)**
 - **RDF Generator**: utilize the RML mapping file to generate knowledge graphs for any data provisioned in IoT platforms (most likely different platform instances).
+- **HTTP Extension**: enriches the TTL with HTTP metadata—scans for rdf:value URIs, creates GET/PUT http:Request nodes, adds http:MessageHeader instances and outputs an _extended.ttl.
 
 ### Work with Python
 
