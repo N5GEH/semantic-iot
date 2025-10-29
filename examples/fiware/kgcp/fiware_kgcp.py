@@ -4,12 +4,11 @@ from pathlib import Path
 from memory_profiler import memory_usage
 from semantic_iot import RDFGenerator, APIPostprocessor
 
-# Path to HTTP ontology and OpenAPI spec (adjust as needed)
-HTTP_ONTO = Path(__file__).parent.parent / f'ontologies/Http.ttl'
+# Path to OpenAPI spec (adjust as needed)
 OPENAPI   = Path(__file__).parent / 'api_spec.json'
 
 # Performance measurement flag
-measure_metrics = True
+measure_metrics = False
 repeat = 20
 
 
@@ -42,8 +41,8 @@ def measure_performance(rdf_gen: RDFGenerator,
 
 if __name__ == '__main__':
     project_root = Path(__file__).parent.parent
-    mapping_file = project_root / 'kgcp/rml/fiware_hotel_rml.ttl'
-    config_file  = project_root / 'kgcp/fiware_config.json'
+    mapping_file = project_root / 'kgcp/rml/brick/fiware_hotel_rml.ttl'
+    config_file  = project_root / 'kgcp/rml/fiware_config.json'
     metrics = dict()
 
     rdf_gen = RDFGenerator(
@@ -60,7 +59,7 @@ if __name__ == '__main__':
             'fiware_entities_1000rooms'
     ):
         src = project_root / f'hotel_dataset/{hotel}.json'
-        dst = project_root / f'kgcp/results/{hotel}.ttl'
+        dst = project_root / f'kgcp/results/brick/{hotel}.ttl'
 
         if measure_metrics:
             mem, elapsed = measure_performance(
@@ -97,8 +96,7 @@ if __name__ == '__main__':
 
         postprocessor = APIPostprocessor(
             kg_path=dst,
-            api_spec_path=OPENAPI,
-            http_onto=HTTP_ONTO
+            api_spec_path=OPENAPI
         )
         postprocessor.extend_kg()
         postprocessor.kg.serialize(destination=str(out_ext), format='turtle')
