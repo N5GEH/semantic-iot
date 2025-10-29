@@ -15,7 +15,10 @@ class APIPostprocessor:
     def __init__(self, kg_path: Path, api_spec_path: Path, http_onto: Path = None):
         self.api_spec_path = api_spec_path
         self.kg = Graph()
-        self._load_kg_and_ontology(kg_path, http_onto)
+        self._load_kg_and_ontology(kg_path)
+        if http_onto is None:
+            http_onto = Path(__file__).parent / 'ontology' / 'Http.ttl'
+        self.http_onto = http_onto
         self._setup_namespaces()
 
         # Parse and validate spec
@@ -29,11 +32,9 @@ class APIPostprocessor:
 
         self.base_paths = self._get_server_base_paths()
 
-    def _load_kg_and_ontology(self, kg_path: Path, http_onto: Path = None):
-        if not http_onto:
-            http_onto = Path(__file__).parent / '_ontology' / 'Http.ttl'
+    def _load_kg_and_ontology(self, kg_path: Path):
         self.kg.parse(str(kg_path), format='turtle')
-        self.kg.parse(str(http_onto), format='turtle')
+
 
     def _setup_namespaces(self):
         self.HTTP = Namespace('http://www.w3.org/2011/http#')
@@ -74,7 +75,10 @@ class APIPostprocessor:
         # If nothing explicit, match “no base”
         return sorted(bases) or [""]
 
-    def extend_kg(self):
+    def extend_kg(self, add_http_ontology: bool = False):
+        if add_http_ontology:
+            # Optionally load HTTP ontology
+            self.kg.parse(str(self.http_onto), format='turtle')
         conn = self._create_connection_node()
         shared_headers, shared_queries = self._index_global_parameters()
         uris = self._gather_value_uris()
