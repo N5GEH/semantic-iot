@@ -1,0 +1,174 @@
+swagger: '2.0'
+info:
+  description: >-
+    This API provides endpoints to manage and retrieve information about various
+    items and their states, based on the provided cURL commands.
+  title: Item Interaction API
+  version: 1.0.0
+host: '137.226.248.250:8080'
+basePath: /rest
+schemes:
+  - http
+paths:
+  /items:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: Specifies the preferred language for the response.
+          in: header
+          name: Accept-Language
+          required: false
+          type: string
+      responses:
+        '200':
+          description: A successful response returning an array of item objects.
+          schema:
+            items:
+              $ref: '#/definitions/Item'
+            type: array
+        '500':
+          description: Internal Server Error.
+      description: Fetches a complete list of all available items.
+      operationId: getAllItems
+      summary: Retrieve a list of all items
+  '/items/{itemName}':
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: The unique name of the item to retrieve.
+          in: path
+          name: itemName
+          required: true
+          type: string
+        - description: Specifies the preferred language for the response.
+          in: header
+          name: Accept-Language
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved the item details.
+          schema:
+            $ref: '#/definitions/Item'
+        '404':
+          description: Item not found.
+      description: Retrieves the details of a single item identified by its name.
+      operationId: getItemByName
+      summary: Get a specific item by name
+    put:
+      consumes:
+        - text/plain
+      produces:
+        - text/plain
+      parameters:
+        - description: The unique name of the item to update.
+          in: path
+          name: itemName
+          required: true
+          type: string
+        - description: The new state value for the item.
+          in: body
+          name: body
+          required: true
+          schema:
+            example: '25.5'
+            type: string
+      responses:
+        '200':
+          description: The item state was successfully updated.
+          schema:
+            example: OK
+            type: string
+        '400':
+          description: 'Bad request, e.g., invalid state value provided.'
+        '404':
+          description: Item not found.
+      description: >-
+        Sets or updates the state of a specific item. The new state is sent as a
+        plain text body.
+      operationId: updateItemState
+      summary: Update the state of an item
+  '/items/{itemName}/state':
+    get:
+      produces:
+        - text/plain
+      parameters:
+        - description: The unique name of the item whose state is to be retrieved.
+          in: path
+          name: itemName
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The current state of the item.
+          schema:
+            example: '25.5'
+            type: string
+        '404':
+          description: Item not found.
+      description: Retrieves just the state of a specific item as a plain text value.
+      operationId: getItemState
+      summary: Get the current state of an item
+definitions:
+  Item:
+    description: Represents a single item in the system.
+    properties:
+      tags:
+        example:
+          - Sensor
+        items:
+          type: string
+        type: array
+      category:
+        example: Temperature
+        type: string
+      editable:
+        example: true
+        type: boolean
+      groupNames:
+        example:
+          - gIndoor
+          - gFirstFloor
+        items:
+          type: string
+        type: array
+      label:
+        example: Core Temperature Sensor
+        type: string
+      link:
+        example: 'http://137.226.248.250:8080/rest/items/Temperature_Sensor_1'
+        format: uri
+        type: string
+      name:
+        example: Temperature_Sensor_1
+        type: string
+      state:
+        example: '25.5'
+        type: string
+      stateDescription:
+        properties:
+          options:
+            example: []
+            items:
+              properties:
+                label:
+                  type: string
+                value:
+                  type: string
+              type: object
+            type: array
+          pattern:
+            example: '%.1f °C'
+            type: string
+          readOnly:
+            example: false
+            type: boolean
+        type: object
+      type:
+        example: Number
+        type: string
+    type: object
+x-components: {}
+
