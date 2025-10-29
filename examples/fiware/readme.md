@@ -114,10 +114,10 @@ Now that you’ve generated your RML mappings, you can run the KGCP to produce b
 **What happens under the hood:**
 
 - **RDF Generation**  
-  - Uses `fiware_hotel_rml.ttl` and your JSON dataset to create `hotel_name.ttl` with all entities and relationships.
+  - Uses generated `fiware_hotel_rml.ttl` and your JSON dataset to create `<hotel_name>.ttl` with all entities and relationships.
 
 - **HTTP Extension**  
-  - Loads the newly created `hotel_name.ttl`, the OpenAPI spec (`api_spec.json`), and the HTTP ontology (`Http.ttl`).  
+  - Loads the newly created `<hotel_name>.ttl` and the OpenAPI spec of FIWARE platform (`api_spec.json`).  
   - Scans for every `rdf:value` URI in the base KG.  
   - For each matching `/…/value` endpoint, creates `http:Request` nodes (GET & PUT) with properties:  
     - `http:methodName`  
@@ -129,13 +129,18 @@ Now that you’ve generated your RML mappings, you can run the KGCP to produce b
     - **Inline headers** (operation-specific, e.g. `Content-Type`)  
   - Links each header via `http:fieldName`, `http:fieldValue`, and `http:hdrName`.  
   - Attaches all headers to the corresponding requests via `http:headers` and groups requests under a shared `http:Connection`.  
-  - Writes out `hotel_name_extended.ttl`.  
+  - Writes out `<hotel_name>_extended.ttl`.  
+
+> **Note**: The official ontology for HTTP is not available in a serialization format.
+> Therefore, we provide a serialized version and include it in the semantic-iot framework.
+> Please refer to [HTTP vocabulary for RDF](https://www.w3.org/TR/HTTP-in-RDF10/) for more information.
 
 After running, you’ll find in `kgcp/results/` for each hotel dataset:  
 - `fiware_entities_N.ttl`  
-- `fiware_entities_N_extended.ttl`  
-- _(and, if enabled)_ `metrics_*.json`  
+- `fiware_entities_N_extended.ttl`
 
+> **Note**: by default, the ``measure_metrics`` flag is set to `False`.
+> If you want to measure the performance of the KGCP, please set this flag to `True` and you will get a performance measurement similar to [``metrics_2025_06_23-14_17_21.json``](./kgcp/results/metrics_2025_06_23-14_17_21.json)
 
 ### Step 5 automated service deployment
 The generated knowledge graph of a hotel IoT system can be used to deploy services, for example a building automation program, automatically.
