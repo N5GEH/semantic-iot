@@ -1,317 +1,252 @@
 @prefix api: <http://www.example.org/api#> .
-@prefix cnt: <http://www.w3.org/2011/content#> .
+@prefix brick: <https://brickschema.org/schema/Brick#> .
 @prefix http: <http://www.w3.org/2011/http#> .
-@prefix ns1: <https://brickschema.org/schema/Brick#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix rec: <https://w3id.org/rec#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-http:Connection a rdfs:Class ;
-    rdfs:label "Connection"@en ;
-    rdfs:comment "A connection used for HTTP transfer."@en .
-
-http:EntityHeader a rdfs:Class ;
-    rdfs:label "Entity Header"@en ;
-    rdfs:comment "An entity header in an HTTP message."@en ;
-    rdfs:subClassOf http:MessageHeader .
-
-http:GeneralHeader a rdfs:Class ;
-    rdfs:label "General Header"@en ;
-    rdfs:comment "A general header in an HTTP message."@en ;
-    rdfs:subClassOf http:MessageHeader .
-
-http:HeaderElement a rdfs:Class ;
-    rdfs:label "Header Element"@en ;
-    rdfs:comment "An element in a header value, if a Message Header value can be decomposed into several parts."@en .
-
-http:HeaderName a rdfs:Class ;
-    rdfs:label "Header Name"@en ;
-    rdfs:comment "The header name."@en .
-
-http:Message a rdfs:Class ;
-    rdfs:label "Message"@en ;
-    rdfs:comment "An HTTP message."@en .
-
-http:MessageHeader a rdfs:Class ;
-    rdfs:label "Message Header"@en ;
-    rdfs:comment "A header in an HTTP message."@en .
-
-http:Method a rdfs:Class ;
-    rdfs:label "Method"@en ;
-    rdfs:comment "The HTTP method used for a request."@en .
-
-http:Parameter a rdfs:Class ;
-    rdfs:label "Parameter"@en ;
-    rdfs:comment "A parameter in a Header Element."@en .
-
-http:Request a rdfs:Class ;
-    rdfs:label "Request"@en ;
-    rdfs:comment "An HTTP request."@en ;
-    rdfs:subClassOf http:Message .
-
-http:RequestHeader a rdfs:Class ;
-    rdfs:label "Request Header"@en ;
-    rdfs:comment "A header in an HTTP request message."@en ;
-    rdfs:subClassOf http:MessageHeader .
-
-http:Response a rdfs:Class ;
-    rdfs:label "Response"@en ;
-    rdfs:comment "An HTTP response."@en ;
-    rdfs:subClassOf http:Message .
-
-http:ResponseHeader a rdfs:Class ;
-    rdfs:label "Response Header"@en ;
-    rdfs:comment "A header in an HTTP response message."@en ;
-    rdfs:subClassOf http:MessageHeader .
-
-http:StatusCode a rdfs:Class ;
-    rdfs:label "Status Code"@en ;
-    rdfs:comment "The status code of an HTTP response."@en .
-
-<http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> a ns1:Outside_Air_Temperature_Sensor ;
+<http://example.com/AmbientTemperatureSensor/AmbientTemperatureSensor> a brick:Outside_Air_Temperature_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value> ;
-    ns1:isPointOf <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+    brick:isPointOf <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
-<http://example.com/CO2Sensor/CO2Sensor:room_base_1> a ns1:CO2_Sensor ;
+<http://example.com/CO2Sensor/CO2Sensor:room_base_1> a brick:CO2_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_1/attrs/co2/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
 
-<http://example.com/CO2Sensor/CO2Sensor:room_base_10> a ns1:CO2_Sensor ;
+<http://example.com/CO2Sensor/CO2Sensor:room_base_10> a brick:CO2_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_10/attrs/co2/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_10> .
 
-<http://example.com/CO2Sensor/CO2Sensor:room_base_2> a ns1:CO2_Sensor ;
+<http://example.com/CO2Sensor/CO2Sensor:room_base_2> a brick:CO2_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_2/attrs/co2/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
 
-<http://example.com/CO2Sensor/CO2Sensor:room_base_3> a ns1:CO2_Sensor ;
+<http://example.com/CO2Sensor/CO2Sensor:room_base_3> a brick:CO2_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_3/attrs/co2/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_3> .
 
-<http://example.com/CO2Sensor/CO2Sensor:room_base_4> a ns1:CO2_Sensor ;
+<http://example.com/CO2Sensor/CO2Sensor:room_base_4> a brick:CO2_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_4/attrs/co2/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_4> .
 
-<http://example.com/CO2Sensor/CO2Sensor:room_base_5> a ns1:CO2_Sensor ;
+<http://example.com/CO2Sensor/CO2Sensor:room_base_5> a brick:CO2_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_5/attrs/co2/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_5> .
 
-<http://example.com/CO2Sensor/CO2Sensor:room_base_6> a ns1:CO2_Sensor ;
+<http://example.com/CO2Sensor/CO2Sensor:room_base_6> a brick:CO2_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_6/attrs/co2/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_6> .
 
-<http://example.com/CO2Sensor/CO2Sensor:room_base_7> a ns1:CO2_Sensor ;
+<http://example.com/CO2Sensor/CO2Sensor:room_base_7> a brick:CO2_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_7/attrs/co2/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_7> .
 
-<http://example.com/CO2Sensor/CO2Sensor:room_base_8> a ns1:CO2_Sensor ;
+<http://example.com/CO2Sensor/CO2Sensor:room_base_8> a brick:CO2_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_8/attrs/co2/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_8> .
 
-<http://example.com/CO2Sensor/CO2Sensor:room_base_9> a ns1:CO2_Sensor ;
+<http://example.com/CO2Sensor/CO2Sensor:room_base_9> a brick:CO2_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_9/attrs/co2/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_9> .
 
-<http://example.com/PresenceSensor/PresenceSensor:room_base_1> a ns1:Occupancy_Count_Sensor ;
+<http://example.com/PresenceSensor/PresenceSensor:room_base_1> a brick:Occupancy_Count_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_1/attrs/pir/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
 
-<http://example.com/PresenceSensor/PresenceSensor:room_base_10> a ns1:Occupancy_Count_Sensor ;
+<http://example.com/PresenceSensor/PresenceSensor:room_base_10> a brick:Occupancy_Count_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_10/attrs/pir/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_10> .
 
-<http://example.com/PresenceSensor/PresenceSensor:room_base_2> a ns1:Occupancy_Count_Sensor ;
+<http://example.com/PresenceSensor/PresenceSensor:room_base_2> a brick:Occupancy_Count_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_2/attrs/pir/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
 
-<http://example.com/PresenceSensor/PresenceSensor:room_base_3> a ns1:Occupancy_Count_Sensor ;
+<http://example.com/PresenceSensor/PresenceSensor:room_base_3> a brick:Occupancy_Count_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_3/attrs/pir/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_3> .
 
-<http://example.com/PresenceSensor/PresenceSensor:room_base_4> a ns1:Occupancy_Count_Sensor ;
+<http://example.com/PresenceSensor/PresenceSensor:room_base_4> a brick:Occupancy_Count_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_4/attrs/pir/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_4> .
 
-<http://example.com/PresenceSensor/PresenceSensor:room_base_5> a ns1:Occupancy_Count_Sensor ;
+<http://example.com/PresenceSensor/PresenceSensor:room_base_5> a brick:Occupancy_Count_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_5/attrs/pir/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_5> .
 
-<http://example.com/PresenceSensor/PresenceSensor:room_base_6> a ns1:Occupancy_Count_Sensor ;
+<http://example.com/PresenceSensor/PresenceSensor:room_base_6> a brick:Occupancy_Count_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_6/attrs/pir/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_6> .
 
-<http://example.com/PresenceSensor/PresenceSensor:room_base_7> a ns1:Occupancy_Count_Sensor ;
+<http://example.com/PresenceSensor/PresenceSensor:room_base_7> a brick:Occupancy_Count_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_7/attrs/pir/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_7> .
 
-<http://example.com/PresenceSensor/PresenceSensor:room_base_8> a ns1:Occupancy_Count_Sensor ;
+<http://example.com/PresenceSensor/PresenceSensor:room_base_8> a brick:Occupancy_Count_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_8/attrs/pir/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_8> .
 
-<http://example.com/PresenceSensor/PresenceSensor:room_base_9> a ns1:Occupancy_Count_Sensor ;
+<http://example.com/PresenceSensor/PresenceSensor:room_base_9> a brick:Occupancy_Count_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/PresenceSensor:room_base_9/attrs/pir/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_9> .
 
-<http://example.com/TemperatureSensor/TemperatureSensor:room_base_1> a ns1:Air_Temperature_Sensor ;
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_1> a brick:Air_Temperature_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_1> .
 
-<http://example.com/TemperatureSensor/TemperatureSensor:room_base_10> a ns1:Air_Temperature_Sensor ;
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_10> a brick:Air_Temperature_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_10/attrs/temperature/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_10> .
 
-<http://example.com/TemperatureSensor/TemperatureSensor:room_base_2> a ns1:Air_Temperature_Sensor ;
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_2> a brick:Air_Temperature_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_2> .
 
-<http://example.com/TemperatureSensor/TemperatureSensor:room_base_3> a ns1:Air_Temperature_Sensor ;
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_3> a brick:Air_Temperature_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_3/attrs/temperature/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_3> .
 
-<http://example.com/TemperatureSensor/TemperatureSensor:room_base_4> a ns1:Air_Temperature_Sensor ;
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_4> a brick:Air_Temperature_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_4/attrs/temperature/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_4> .
 
-<http://example.com/TemperatureSensor/TemperatureSensor:room_base_5> a ns1:Air_Temperature_Sensor ;
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_5> a brick:Air_Temperature_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_5/attrs/temperature/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_5> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_5> .
 
-<http://example.com/TemperatureSensor/TemperatureSensor:room_base_6> a ns1:Air_Temperature_Sensor ;
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_6> a brick:Air_Temperature_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_6/attrs/temperature/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_6> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_6> .
 
-<http://example.com/TemperatureSensor/TemperatureSensor:room_base_7> a ns1:Air_Temperature_Sensor ;
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_7> a brick:Air_Temperature_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_7/attrs/temperature/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_7> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_7> .
 
-<http://example.com/TemperatureSensor/TemperatureSensor:room_base_8> a ns1:Air_Temperature_Sensor ;
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_8> a brick:Air_Temperature_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_8/attrs/temperature/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_8> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_8> .
 
-<http://example.com/TemperatureSensor/TemperatureSensor:room_base_9> a ns1:Air_Temperature_Sensor ;
+<http://example.com/TemperatureSensor/TemperatureSensor:room_base_9> a brick:Air_Temperature_Sensor ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/TemperatureSensor:room_base_9/attrs/temperature/value> ;
-    ns1:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+    brick:isPointOf <http://example.com/HotelRoom/HotelRoom:room_base_9> .
 
-<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_1> a ns1:Air_Flow_Setpoint ;
+<http://example.com/airFlowSetpoint_FreshAirVentilation/FreshAirVentilation:room_base_1> a brick:Air_Flow_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value> ;
-    ns1:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_1> .
+    brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_1> .
 
-<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_10> a ns1:Air_Flow_Setpoint ;
+<http://example.com/airFlowSetpoint_FreshAirVentilation/FreshAirVentilation:room_base_10> a brick:Air_Flow_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value> ;
-    ns1:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_10> .
+    brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_10> .
 
-<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_2> a ns1:Air_Flow_Setpoint ;
+<http://example.com/airFlowSetpoint_FreshAirVentilation/FreshAirVentilation:room_base_2> a brick:Air_Flow_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value> ;
-    ns1:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_2> .
+    brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_2> .
 
-<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_3> a ns1:Air_Flow_Setpoint ;
+<http://example.com/airFlowSetpoint_FreshAirVentilation/FreshAirVentilation:room_base_3> a brick:Air_Flow_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value> ;
-    ns1:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_3> .
+    brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_3> .
 
-<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_4> a ns1:Air_Flow_Setpoint ;
+<http://example.com/airFlowSetpoint_FreshAirVentilation/FreshAirVentilation:room_base_4> a brick:Air_Flow_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value> ;
-    ns1:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_4> .
+    brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_4> .
 
-<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_5> a ns1:Air_Flow_Setpoint ;
+<http://example.com/airFlowSetpoint_FreshAirVentilation/FreshAirVentilation:room_base_5> a brick:Air_Flow_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value> ;
-    ns1:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_5> .
+    brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_5> .
 
-<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_6> a ns1:Air_Flow_Setpoint ;
+<http://example.com/airFlowSetpoint_FreshAirVentilation/FreshAirVentilation:room_base_6> a brick:Air_Flow_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value> ;
-    ns1:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_6> .
+    brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_6> .
 
-<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_7> a ns1:Air_Flow_Setpoint ;
+<http://example.com/airFlowSetpoint_FreshAirVentilation/FreshAirVentilation:room_base_7> a brick:Air_Flow_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value> ;
-    ns1:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_7> .
+    brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_7> .
 
-<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_8> a ns1:Air_Flow_Setpoint ;
+<http://example.com/airFlowSetpoint_FreshAirVentilation/FreshAirVentilation:room_base_8> a brick:Air_Flow_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value> ;
-    ns1:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_8> .
+    brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_8> .
 
-<http://example.com/airFlowSetpoint_FreshAirVentilation/airFlowSetpoint_FreshAirVentilation:room_base_9> a ns1:Air_Flow_Setpoint ;
+<http://example.com/airFlowSetpoint_FreshAirVentilation/FreshAirVentilation:room_base_9> a brick:Air_Flow_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value> ;
-    ns1:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_9> .
+    brick:isPointOf <http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_9> .
 
-<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_1> a ns1:Fan_Speed_Command ;
+<http://example.com/fanSpeed_CoolingCoil/CoolingCoil:room_base_1> a brick:Fan_Speed_Command ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_1/attrs/fanSpeed/value> ;
-    ns1:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_1> .
+    brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_1> .
 
-<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_10> a ns1:Fan_Speed_Command ;
+<http://example.com/fanSpeed_CoolingCoil/CoolingCoil:room_base_10> a brick:Fan_Speed_Command ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_10/attrs/fanSpeed/value> ;
-    ns1:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_10> .
+    brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_10> .
 
-<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_2> a ns1:Fan_Speed_Command ;
+<http://example.com/fanSpeed_CoolingCoil/CoolingCoil:room_base_2> a brick:Fan_Speed_Command ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_2/attrs/fanSpeed/value> ;
-    ns1:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_2> .
+    brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_2> .
 
-<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_3> a ns1:Fan_Speed_Command ;
+<http://example.com/fanSpeed_CoolingCoil/CoolingCoil:room_base_3> a brick:Fan_Speed_Command ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_3/attrs/fanSpeed/value> ;
-    ns1:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_3> .
+    brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_3> .
 
-<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_4> a ns1:Fan_Speed_Command ;
+<http://example.com/fanSpeed_CoolingCoil/CoolingCoil:room_base_4> a brick:Fan_Speed_Command ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_4/attrs/fanSpeed/value> ;
-    ns1:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_4> .
+    brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_4> .
 
-<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_5> a ns1:Fan_Speed_Command ;
+<http://example.com/fanSpeed_CoolingCoil/CoolingCoil:room_base_5> a brick:Fan_Speed_Command ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_5/attrs/fanSpeed/value> ;
-    ns1:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_5> .
+    brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_5> .
 
-<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_6> a ns1:Fan_Speed_Command ;
+<http://example.com/fanSpeed_CoolingCoil/CoolingCoil:room_base_6> a brick:Fan_Speed_Command ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_6/attrs/fanSpeed/value> ;
-    ns1:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_6> .
+    brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_6> .
 
-<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_7> a ns1:Fan_Speed_Command ;
+<http://example.com/fanSpeed_CoolingCoil/CoolingCoil:room_base_7> a brick:Fan_Speed_Command ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_7/attrs/fanSpeed/value> ;
-    ns1:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_7> .
+    brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_7> .
 
-<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_8> a ns1:Fan_Speed_Command ;
+<http://example.com/fanSpeed_CoolingCoil/CoolingCoil:room_base_8> a brick:Fan_Speed_Command ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_8/attrs/fanSpeed/value> ;
-    ns1:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_8> .
+    brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_8> .
 
-<http://example.com/fanSpeed_CoolingCoil/fanSpeed_CoolingCoil:room_base_9> a ns1:Fan_Speed_Command ;
+<http://example.com/fanSpeed_CoolingCoil/CoolingCoil:room_base_9> a brick:Fan_Speed_Command ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/CoolingCoil:room_base_9/attrs/fanSpeed/value> ;
-    ns1:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_9> .
+    brick:isPointOf <http://example.com/CoolingCoil/CoolingCoil:room_base_9> .
 
-<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_1> a ns1:Temperature_Setpoint ;
+<http://example.com/temperatureSetpoint_RadiatorThermostat/RadiatorThermostat:room_base_1> a brick:Temperature_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_1/attrs/temperatureSetpoint/value> ;
-    ns1:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_1> .
+    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_1> .
 
-<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_10> a ns1:Temperature_Setpoint ;
+<http://example.com/temperatureSetpoint_RadiatorThermostat/RadiatorThermostat:room_base_10> a brick:Temperature_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_10/attrs/temperatureSetpoint/value> ;
-    ns1:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_10> .
+    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_10> .
 
-<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_2> a ns1:Temperature_Setpoint ;
+<http://example.com/temperatureSetpoint_RadiatorThermostat/RadiatorThermostat:room_base_2> a brick:Temperature_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_2/attrs/temperatureSetpoint/value> ;
-    ns1:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_2> .
+    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_2> .
 
-<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_3> a ns1:Temperature_Setpoint ;
+<http://example.com/temperatureSetpoint_RadiatorThermostat/RadiatorThermostat:room_base_3> a brick:Temperature_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_3/attrs/temperatureSetpoint/value> ;
-    ns1:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_3> .
+    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_3> .
 
-<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_4> a ns1:Temperature_Setpoint ;
+<http://example.com/temperatureSetpoint_RadiatorThermostat/RadiatorThermostat:room_base_4> a brick:Temperature_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_4/attrs/temperatureSetpoint/value> ;
-    ns1:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_4> .
+    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_4> .
 
-<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_5> a ns1:Temperature_Setpoint ;
+<http://example.com/temperatureSetpoint_RadiatorThermostat/RadiatorThermostat:room_base_5> a brick:Temperature_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_5/attrs/temperatureSetpoint/value> ;
-    ns1:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_5> .
+    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_5> .
 
-<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_6> a ns1:Temperature_Setpoint ;
+<http://example.com/temperatureSetpoint_RadiatorThermostat/RadiatorThermostat:room_base_6> a brick:Temperature_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_6/attrs/temperatureSetpoint/value> ;
-    ns1:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_6> .
+    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_6> .
 
-<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_7> a ns1:Temperature_Setpoint ;
+<http://example.com/temperatureSetpoint_RadiatorThermostat/RadiatorThermostat:room_base_7> a brick:Temperature_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_7/attrs/temperatureSetpoint/value> ;
-    ns1:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_7> .
+    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_7> .
 
-<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_8> a ns1:Temperature_Setpoint ;
+<http://example.com/temperatureSetpoint_RadiatorThermostat/RadiatorThermostat:room_base_8> a brick:Temperature_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_8/attrs/temperatureSetpoint/value> ;
-    ns1:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_8> .
+    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_8> .
 
-<http://example.com/temperatureSetpoint_RadiatorThermostat/temperatureSetpoint_RadiatorThermostat:room_base_9> a ns1:Temperature_Setpoint ;
+<http://example.com/temperatureSetpoint_RadiatorThermostat/RadiatorThermostat:room_base_9> a brick:Temperature_Setpoint ;
     rdf:value <https://fiware.eonerc.rwth-aachen.de/v2/entities/RadiatorThermostat:room_base_9/attrs/temperatureSetpoint/value> ;
-    ns1:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_9> .
+    brick:isPointOf <http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_9> .
 
 api:Connection_Main a http:Connection ;
     http:requests api:GET__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value,
@@ -437,242 +372,95 @@ api:Connection_Main a http:Connection ;
         api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value,
         api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value .
 
-http:absolutePath a rdf:Property ;
-    rdfs:label "Request URI"@en ;
-    rdfs:comment "Request URI that is an absolute path."@en ;
-    rdfs:domain http:Request ;
-    rdfs:range rdfs:Literal ;
-    rdfs:subPropertyOf http:requestURI .
+<http://example.com/CoolingCoil/CoolingCoil:room_base_1> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_1> .
 
-http:absoluteURI a rdf:Property ;
-    rdfs:label "Request URI"@en ;
-    rdfs:comment "Request URI that is an absolute URI."@en ;
-    rdfs:domain http:Request ;
-    rdfs:range rdfs:Literal ;
-    rdfs:subPropertyOf http:requestURI .
+<http://example.com/CoolingCoil/CoolingCoil:room_base_10> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_10> .
 
-http:authority a rdf:Property ;
-    rdfs:label "Request URI"@en ;
-    rdfs:comment "Request URI that is an authority."@en ;
-    rdfs:domain http:Request ;
-    rdfs:range rdfs:Literal ;
-    rdfs:subPropertyOf http:requestURI .
+<http://example.com/CoolingCoil/CoolingCoil:room_base_2> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_2> .
 
-http:body a rdf:Property ;
-    rdfs:label "Entity body"@en ;
-    rdfs:comment "The entity body of an HTTP message."@en ;
-    rdfs:domain http:Message ;
-    rdfs:range cnt:ContentAsBase64 .
+<http://example.com/CoolingCoil/CoolingCoil:room_base_3> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_3> .
 
-http:connectionAuthority a rdf:Property ;
-    rdfs:label "Connection authority"@en ;
-    rdfs:comment "The authority of a connection used for the HTTP transfer."@en ;
-    rdfs:domain http:Connection ;
-    rdfs:range rdfs:Literal .
+<http://example.com/CoolingCoil/CoolingCoil:room_base_4> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_4> .
 
-http:elementName a rdf:Property ;
-    rdfs:label "Header element name"@en ;
-    rdfs:comment "The name of a header element."@en ;
-    rdfs:domain http:HeaderElement ;
-    rdfs:range rdfs:Literal .
+<http://example.com/CoolingCoil/CoolingCoil:room_base_5> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_5> .
 
-http:elementValue a rdf:Property ;
-    rdfs:label "Header element value"@en ;
-    rdfs:comment "The value of a header element."@en ;
-    rdfs:domain http:HeaderElement ;
-    rdfs:range rdfs:Literal .
+<http://example.com/CoolingCoil/CoolingCoil:room_base_6> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_6> .
 
-http:fieldName a rdf:Property ;
-    rdfs:label "Field name"@en ;
-    rdfs:comment "The name of an HTTP header field."@en ;
-    rdfs:domain http:MessageHeader ;
-    rdfs:range rdfs:Literal .
+<http://example.com/CoolingCoil/CoolingCoil:room_base_7> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_7> .
 
-http:fieldValue a rdf:Property ;
-    rdfs:label "Field value"@en ;
-    rdfs:comment "The value of an HTTP header field."@en ;
-    rdfs:domain http:MessageHeader ;
-    rdfs:range rdfs:Literal .
+<http://example.com/CoolingCoil/CoolingCoil:room_base_8> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_8> .
 
-http:hdrName a rdf:Property ;
-    rdfs:label "Header name"@en ;
-    rdfs:comment "The name of an HTTP header."@en ;
-    rdfs:domain http:MessageHeader ;
-    rdfs:range http:HeaderName .
+<http://example.com/CoolingCoil/CoolingCoil:room_base_9> a brick:Cooling_Coil ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_9> .
 
-http:headerElements a rdf:Property ;
-    rdfs:label "Header elements"@en ;
-    rdfs:comment "The deconstructed parts of an HTTP header value."@en ;
-    rdfs:domain http:MessageHeader ;
-    rdfs:range http:HeaderElement .
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_1> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_1> .
 
-http:headers a rdf:Property ;
-    rdfs:label "Headers"@en ;
-    rdfs:comment "The headers in an HTTP message."@en ;
-    rdfs:domain http:Message ;
-    rdfs:range http:MessageHeader .
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_10> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_10> .
 
-http:httpVersion a rdf:Property ;
-    rdfs:label "HTTP Version"@en ;
-    rdfs:comment "The HTTP version of an HTTP message."@en ;
-    rdfs:domain http:Message ;
-    rdfs:range rdfs:Literal .
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_2> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_2> .
 
-http:methodName a rdf:Property ;
-    rdfs:label "Method name"@en ;
-    rdfs:comment "The HTTP method name used for the HTTP request."@en ;
-    rdfs:domain http:Request ;
-    rdfs:range rdfs:Literal .
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_3> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_3> .
 
-http:mthd a rdf:Property ;
-    rdfs:label "Method"@en ;
-    rdfs:comment "The HTTP method used for the HTTP request."@en ;
-    rdfs:domain http:Request ;
-    rdfs:range http:Method .
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_4> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_4> .
 
-http:paramName a rdf:Property ;
-    rdfs:label "Parameter name"@en ;
-    rdfs:comment "The name of a parameter in a part of a deconstructed HTTP header value."@en ;
-    rdfs:domain http:Parameter ;
-    rdfs:range rdfs:Literal .
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_5> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_5> .
 
-http:paramValue a rdf:Property ;
-    rdfs:label "Parameter value"@en ;
-    rdfs:comment "The value of a parameter in a part of a deconstructed HTTP header value."@en ;
-    rdfs:domain http:Parameter ;
-    rdfs:range rdfs:Literal .
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_6> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_6> .
 
-http:params a rdf:Property ;
-    rdfs:label "Parameters"@en ;
-    rdfs:comment "The parameters in a part of a deconstructed HTTP header value."@en ;
-    rdfs:domain http:HeaderElement ;
-    rdfs:range http:Parameter .
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_7> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_7> .
 
-http:reasonPhrase a rdf:Property ;
-    rdfs:label "Reason phrase"@en ;
-    rdfs:comment "The reason phrase (status text) of an HTTP response."@en ;
-    rdfs:domain http:Response ;
-    rdfs:range rdfs:Literal .
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_8> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_8> .
 
-http:requests a rdf:Property ;
-    rdfs:label "Requests"@en ;
-    rdfs:comment "The HTTP requests made via a connection."@en ;
-    rdfs:domain http:Connection ;
-    rdfs:range http:Request .
+<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_9> a brick:Ventilation_Air_System ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_9> .
 
-http:resp a rdf:Property ;
-    rdfs:label "Response"@en ;
-    rdfs:comment "The HTTP response sent in answer to an HTTP request."@en ;
-    rdfs:domain http:Request ;
-    rdfs:range http:Response .
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_1> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_1> .
 
-http:sc a rdf:Property ;
-    rdfs:label "Status code"@en ;
-    rdfs:comment "The status code of an HTTP response."@en ;
-    rdfs:domain http:Response ;
-    rdfs:range http:StatusCode .
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_10> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_10> .
 
-http:statusCodeNumber a rdf:Property ;
-    rdfs:label "Status code number"@en ;
-    rdfs:comment "The standardized status code number."@en ;
-    rdfs:domain http:StatusCode ;
-    rdfs:range xsd:int .
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_2> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_2> .
 
-http:statusCodeValue a rdf:Property ;
-    rdfs:label "Status code value"@en ;
-    rdfs:comment "The status code value of an HTTP response."@en ;
-    rdfs:domain http:Response ;
-    rdfs:range rdfs:Literal .
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_3> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_3> .
 
-<http://example.com/CoolingCoil/CoolingCoil:room_base_1> a ns1:Cooling_Coil ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_1> .
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_4> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_4> .
 
-<http://example.com/CoolingCoil/CoolingCoil:room_base_10> a ns1:Cooling_Coil ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_10> .
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_5> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_5> .
 
-<http://example.com/CoolingCoil/CoolingCoil:room_base_2> a ns1:Cooling_Coil ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_2> .
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_6> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_6> .
 
-<http://example.com/CoolingCoil/CoolingCoil:room_base_3> a ns1:Cooling_Coil ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_3> .
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_7> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_7> .
 
-<http://example.com/CoolingCoil/CoolingCoil:room_base_4> a ns1:Cooling_Coil ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_4> .
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_8> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_8> .
 
-<http://example.com/CoolingCoil/CoolingCoil:room_base_5> a ns1:Cooling_Coil ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_5> .
-
-<http://example.com/CoolingCoil/CoolingCoil:room_base_6> a ns1:Cooling_Coil ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_6> .
-
-<http://example.com/CoolingCoil/CoolingCoil:room_base_7> a ns1:Cooling_Coil ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_7> .
-
-<http://example.com/CoolingCoil/CoolingCoil:room_base_8> a ns1:Cooling_Coil ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_8> .
-
-<http://example.com/CoolingCoil/CoolingCoil:room_base_9> a ns1:Cooling_Coil ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_9> .
-
-<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_1> a ns1:Ventilation_Air_System ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_1> .
-
-<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_10> a ns1:Ventilation_Air_System ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_10> .
-
-<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_2> a ns1:Ventilation_Air_System ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_2> .
-
-<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_3> a ns1:Ventilation_Air_System ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_3> .
-
-<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_4> a ns1:Ventilation_Air_System ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_4> .
-
-<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_5> a ns1:Ventilation_Air_System ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_5> .
-
-<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_6> a ns1:Ventilation_Air_System ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_6> .
-
-<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_7> a ns1:Ventilation_Air_System ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_7> .
-
-<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_8> a ns1:Ventilation_Air_System ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_8> .
-
-<http://example.com/FreshAirVentilation/FreshAirVentilation:room_base_9> a ns1:Ventilation_Air_System ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_9> .
-
-<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_1> a ns1:Thermostat ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_1> .
-
-<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_10> a ns1:Thermostat ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_10> .
-
-<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_2> a ns1:Thermostat ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_2> .
-
-<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_3> a ns1:Thermostat ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_3> .
-
-<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_4> a ns1:Thermostat ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_4> .
-
-<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_5> a ns1:Thermostat ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_5> .
-
-<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_6> a ns1:Thermostat ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_6> .
-
-<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_7> a ns1:Thermostat ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_7> .
-
-<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_8> a ns1:Thermostat ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_8> .
-
-<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_9> a ns1:Thermostat ;
-    ns1:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_9> .
+<http://example.com/RadiatorThermostat/RadiatorThermostat:room_base_9> a brick:Thermostat ;
+    brick:hasLocation <http://example.com/HotelRoom/HotelRoom:room_base_9> .
 
 api:GET__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value a http:Request ;
     http:absolutePath "/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value" ;
@@ -685,15 +473,15 @@ api:GET__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value a http:
 
 api:GET__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_10_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_10/attrs/co2/value" ;
@@ -706,15 +494,15 @@ api:GET__v2_entities_CO2Sensor_room_base_10_attrs_co2_value a http:Request ;
 
 api:GET__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_1_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_1/attrs/co2/value" ;
@@ -727,15 +515,15 @@ api:GET__v2_entities_CO2Sensor_room_base_1_attrs_co2_value a http:Request ;
 
 api:GET__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_2_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_2/attrs/co2/value" ;
@@ -748,15 +536,15 @@ api:GET__v2_entities_CO2Sensor_room_base_2_attrs_co2_value a http:Request ;
 
 api:GET__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_3_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_3/attrs/co2/value" ;
@@ -769,15 +557,15 @@ api:GET__v2_entities_CO2Sensor_room_base_3_attrs_co2_value a http:Request ;
 
 api:GET__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_4_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_4/attrs/co2/value" ;
@@ -790,15 +578,15 @@ api:GET__v2_entities_CO2Sensor_room_base_4_attrs_co2_value a http:Request ;
 
 api:GET__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_5_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_5/attrs/co2/value" ;
@@ -811,15 +599,15 @@ api:GET__v2_entities_CO2Sensor_room_base_5_attrs_co2_value a http:Request ;
 
 api:GET__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_6_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_6/attrs/co2/value" ;
@@ -832,15 +620,15 @@ api:GET__v2_entities_CO2Sensor_room_base_6_attrs_co2_value a http:Request ;
 
 api:GET__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_7_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_7/attrs/co2/value" ;
@@ -853,15 +641,15 @@ api:GET__v2_entities_CO2Sensor_room_base_7_attrs_co2_value a http:Request ;
 
 api:GET__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_8_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_8/attrs/co2/value" ;
@@ -874,15 +662,15 @@ api:GET__v2_entities_CO2Sensor_room_base_8_attrs_co2_value a http:Request ;
 
 api:GET__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_9_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_9/attrs/co2/value" ;
@@ -895,15 +683,15 @@ api:GET__v2_entities_CO2Sensor_room_base_9_attrs_co2_value a http:Request ;
 
 api:GET__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_10/attrs/fanSpeed/value" ;
@@ -916,15 +704,15 @@ api:GET__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value a http:Reques
 
 api:GET__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_1/attrs/fanSpeed/value" ;
@@ -937,15 +725,15 @@ api:GET__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value a http:Request
 
 api:GET__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_2/attrs/fanSpeed/value" ;
@@ -958,15 +746,15 @@ api:GET__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value a http:Request
 
 api:GET__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_3/attrs/fanSpeed/value" ;
@@ -979,15 +767,15 @@ api:GET__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value a http:Request
 
 api:GET__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_4/attrs/fanSpeed/value" ;
@@ -1000,15 +788,15 @@ api:GET__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value a http:Request
 
 api:GET__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_5/attrs/fanSpeed/value" ;
@@ -1021,15 +809,15 @@ api:GET__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value a http:Request
 
 api:GET__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_6/attrs/fanSpeed/value" ;
@@ -1042,15 +830,15 @@ api:GET__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value a http:Request
 
 api:GET__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_7/attrs/fanSpeed/value" ;
@@ -1063,15 +851,15 @@ api:GET__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value a http:Request
 
 api:GET__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_8/attrs/fanSpeed/value" ;
@@ -1084,15 +872,15 @@ api:GET__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value a http:Request
 
 api:GET__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_9/attrs/fanSpeed/value" ;
@@ -1105,15 +893,15 @@ api:GET__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value a http:Request
 
 api:GET__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value" ;
@@ -1126,15 +914,15 @@ api:GET__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_valu
 
 api:GET__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value" ;
@@ -1147,15 +935,15 @@ api:GET__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value
 
 api:GET__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value" ;
@@ -1168,15 +956,15 @@ api:GET__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value
 
 api:GET__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value" ;
@@ -1189,15 +977,15 @@ api:GET__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value
 
 api:GET__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value" ;
@@ -1210,15 +998,15 @@ api:GET__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value
 
 api:GET__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value" ;
@@ -1231,15 +1019,15 @@ api:GET__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value
 
 api:GET__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value" ;
@@ -1252,15 +1040,15 @@ api:GET__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value
 
 api:GET__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value" ;
@@ -1273,15 +1061,15 @@ api:GET__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value
 
 api:GET__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value" ;
@@ -1294,15 +1082,15 @@ api:GET__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value
 
 api:GET__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value" ;
@@ -1315,15 +1103,15 @@ api:GET__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value
 
 api:GET__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_10_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_10/attrs/pir/value" ;
@@ -1336,15 +1124,15 @@ api:GET__v2_entities_PresenceSensor_room_base_10_attrs_pir_value a http:Request 
 
 api:GET__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_1_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_1/attrs/pir/value" ;
@@ -1357,15 +1145,15 @@ api:GET__v2_entities_PresenceSensor_room_base_1_attrs_pir_value a http:Request ;
 
 api:GET__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_2_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_2/attrs/pir/value" ;
@@ -1378,15 +1166,15 @@ api:GET__v2_entities_PresenceSensor_room_base_2_attrs_pir_value a http:Request ;
 
 api:GET__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_3_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_3/attrs/pir/value" ;
@@ -1399,15 +1187,15 @@ api:GET__v2_entities_PresenceSensor_room_base_3_attrs_pir_value a http:Request ;
 
 api:GET__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_4_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_4/attrs/pir/value" ;
@@ -1420,15 +1208,15 @@ api:GET__v2_entities_PresenceSensor_room_base_4_attrs_pir_value a http:Request ;
 
 api:GET__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_5_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_5/attrs/pir/value" ;
@@ -1441,15 +1229,15 @@ api:GET__v2_entities_PresenceSensor_room_base_5_attrs_pir_value a http:Request ;
 
 api:GET__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_6_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_6/attrs/pir/value" ;
@@ -1462,15 +1250,15 @@ api:GET__v2_entities_PresenceSensor_room_base_6_attrs_pir_value a http:Request ;
 
 api:GET__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_7_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_7/attrs/pir/value" ;
@@ -1483,15 +1271,15 @@ api:GET__v2_entities_PresenceSensor_room_base_7_attrs_pir_value a http:Request ;
 
 api:GET__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_8_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_8/attrs/pir/value" ;
@@ -1504,15 +1292,15 @@ api:GET__v2_entities_PresenceSensor_room_base_8_attrs_pir_value a http:Request ;
 
 api:GET__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_9_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_9/attrs/pir/value" ;
@@ -1525,15 +1313,15 @@ api:GET__v2_entities_PresenceSensor_room_base_9_attrs_pir_value a http:Request ;
 
 api:GET__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_10/attrs/temperatureSetpoint/value" ;
@@ -1546,15 +1334,15 @@ api:GET__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_v
 
 api:GET__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_1/attrs/temperatureSetpoint/value" ;
@@ -1567,15 +1355,15 @@ api:GET__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_va
 
 api:GET__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_2/attrs/temperatureSetpoint/value" ;
@@ -1588,15 +1376,15 @@ api:GET__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_va
 
 api:GET__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_3/attrs/temperatureSetpoint/value" ;
@@ -1609,15 +1397,15 @@ api:GET__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_va
 
 api:GET__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_4/attrs/temperatureSetpoint/value" ;
@@ -1630,15 +1418,15 @@ api:GET__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_va
 
 api:GET__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_5/attrs/temperatureSetpoint/value" ;
@@ -1651,15 +1439,15 @@ api:GET__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_va
 
 api:GET__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_6/attrs/temperatureSetpoint/value" ;
@@ -1672,15 +1460,15 @@ api:GET__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_va
 
 api:GET__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_7/attrs/temperatureSetpoint/value" ;
@@ -1693,15 +1481,15 @@ api:GET__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_va
 
 api:GET__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_8/attrs/temperatureSetpoint/value" ;
@@ -1714,15 +1502,15 @@ api:GET__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_va
 
 api:GET__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_9/attrs/temperatureSetpoint/value" ;
@@ -1735,15 +1523,15 @@ api:GET__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_va
 
 api:GET__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_10/attrs/temperature/value" ;
@@ -1756,15 +1544,15 @@ api:GET__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value a ht
 
 api:GET__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value" ;
@@ -1777,15 +1565,15 @@ api:GET__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value a htt
 
 api:GET__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value" ;
@@ -1798,15 +1586,15 @@ api:GET__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value a htt
 
 api:GET__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_3/attrs/temperature/value" ;
@@ -1819,15 +1607,15 @@ api:GET__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value a htt
 
 api:GET__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_4/attrs/temperature/value" ;
@@ -1840,15 +1628,15 @@ api:GET__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value a htt
 
 api:GET__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_5/attrs/temperature/value" ;
@@ -1861,15 +1649,15 @@ api:GET__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value a htt
 
 api:GET__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_6/attrs/temperature/value" ;
@@ -1882,15 +1670,15 @@ api:GET__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value a htt
 
 api:GET__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_7/attrs/temperature/value" ;
@@ -1903,15 +1691,15 @@ api:GET__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value a htt
 
 api:GET__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_8/attrs/temperature/value" ;
@@ -1924,15 +1712,15 @@ api:GET__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value a htt
 
 api:GET__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_9/attrs/temperature/value" ;
@@ -1945,15 +1733,15 @@ api:GET__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value a htt
 
 api:GET__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:GET__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value a http:Request ;
     http:absolutePath "/v2/entities/AmbientTemperatureSensor/attrs/temperatureAmb/value" ;
@@ -1967,19 +1755,19 @@ api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value a http:
 
 api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_AmbientTemperatureSensor_attrs_temperatureAmb_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_10/attrs/co2/value" ;
@@ -1993,19 +1781,19 @@ api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value a http:Request ;
 
 api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_10_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_1/attrs/co2/value" ;
@@ -2019,19 +1807,19 @@ api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value a http:Request ;
 
 api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_1_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_2/attrs/co2/value" ;
@@ -2045,19 +1833,19 @@ api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value a http:Request ;
 
 api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_2_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_3/attrs/co2/value" ;
@@ -2071,19 +1859,19 @@ api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value a http:Request ;
 
 api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_3_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_4/attrs/co2/value" ;
@@ -2097,19 +1885,19 @@ api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value a http:Request ;
 
 api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_4_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_5/attrs/co2/value" ;
@@ -2123,19 +1911,19 @@ api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value a http:Request ;
 
 api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_5_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_6/attrs/co2/value" ;
@@ -2149,19 +1937,19 @@ api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value a http:Request ;
 
 api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_6_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_7/attrs/co2/value" ;
@@ -2175,19 +1963,19 @@ api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value a http:Request ;
 
 api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_7_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_8/attrs/co2/value" ;
@@ -2201,19 +1989,19 @@ api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value a http:Request ;
 
 api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_8_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value a http:Request ;
     http:absolutePath "/v2/entities/CO2Sensor:room_base_9/attrs/co2/value" ;
@@ -2227,19 +2015,19 @@ api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value a http:Request ;
 
 api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CO2Sensor_room_base_9_attrs_co2_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_10/attrs/fanSpeed/value" ;
@@ -2253,19 +2041,19 @@ api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value a http:Reques
 
 api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_10_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_1/attrs/fanSpeed/value" ;
@@ -2279,19 +2067,19 @@ api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value a http:Request
 
 api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_1_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_2/attrs/fanSpeed/value" ;
@@ -2305,19 +2093,19 @@ api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value a http:Request
 
 api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_2_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_3/attrs/fanSpeed/value" ;
@@ -2331,19 +2119,19 @@ api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value a http:Request
 
 api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_3_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_4/attrs/fanSpeed/value" ;
@@ -2357,19 +2145,19 @@ api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value a http:Request
 
 api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_4_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_5/attrs/fanSpeed/value" ;
@@ -2383,19 +2171,19 @@ api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value a http:Request
 
 api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_5_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_6/attrs/fanSpeed/value" ;
@@ -2409,19 +2197,19 @@ api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value a http:Request
 
 api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_6_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_7/attrs/fanSpeed/value" ;
@@ -2435,19 +2223,19 @@ api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value a http:Request
 
 api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_7_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_8/attrs/fanSpeed/value" ;
@@ -2461,19 +2249,19 @@ api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value a http:Request
 
 api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_8_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value a http:Request ;
     http:absolutePath "/v2/entities/CoolingCoil:room_base_9/attrs/fanSpeed/value" ;
@@ -2487,19 +2275,19 @@ api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value a http:Request
 
 api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_CoolingCoil_room_base_9_attrs_fanSpeed_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value" ;
@@ -2513,19 +2301,19 @@ api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_valu
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value" ;
@@ -2539,19 +2327,19 @@ api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value" ;
@@ -2565,19 +2353,19 @@ api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value" ;
@@ -2591,19 +2379,19 @@ api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value" ;
@@ -2617,19 +2405,19 @@ api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value" ;
@@ -2643,19 +2431,19 @@ api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value" ;
@@ -2669,19 +2457,19 @@ api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value" ;
@@ -2695,19 +2483,19 @@ api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value" ;
@@ -2721,19 +2509,19 @@ api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value" ;
@@ -2747,19 +2535,19 @@ api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_10/attrs/pir/value" ;
@@ -2773,19 +2561,19 @@ api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value a http:Request 
 
 api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_10_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_1/attrs/pir/value" ;
@@ -2799,19 +2587,19 @@ api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value a http:Request ;
 
 api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_1_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_2/attrs/pir/value" ;
@@ -2825,19 +2613,19 @@ api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value a http:Request ;
 
 api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_2_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_3/attrs/pir/value" ;
@@ -2851,19 +2639,19 @@ api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value a http:Request ;
 
 api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_3_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_4/attrs/pir/value" ;
@@ -2877,19 +2665,19 @@ api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value a http:Request ;
 
 api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_4_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_5/attrs/pir/value" ;
@@ -2903,19 +2691,19 @@ api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value a http:Request ;
 
 api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_5_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_6/attrs/pir/value" ;
@@ -2929,19 +2717,19 @@ api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value a http:Request ;
 
 api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_6_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_7/attrs/pir/value" ;
@@ -2955,19 +2743,19 @@ api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value a http:Request ;
 
 api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_7_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_8/attrs/pir/value" ;
@@ -2981,19 +2769,19 @@ api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value a http:Request ;
 
 api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_8_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value a http:Request ;
     http:absolutePath "/v2/entities/PresenceSensor:room_base_9/attrs/pir/value" ;
@@ -3007,19 +2795,19 @@ api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value a http:Request ;
 
 api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_PresenceSensor_room_base_9_attrs_pir_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_10/attrs/temperatureSetpoint/value" ;
@@ -3033,19 +2821,19 @@ api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_v
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_10_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_1/attrs/temperatureSetpoint/value" ;
@@ -3059,19 +2847,19 @@ api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_va
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_1_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_2/attrs/temperatureSetpoint/value" ;
@@ -3085,19 +2873,19 @@ api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_va
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_2_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_3/attrs/temperatureSetpoint/value" ;
@@ -3111,19 +2899,19 @@ api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_va
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_3_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_4/attrs/temperatureSetpoint/value" ;
@@ -3137,19 +2925,19 @@ api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_va
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_4_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_5/attrs/temperatureSetpoint/value" ;
@@ -3163,19 +2951,19 @@ api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_va
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_5_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_6/attrs/temperatureSetpoint/value" ;
@@ -3189,19 +2977,19 @@ api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_va
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_6_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_7/attrs/temperatureSetpoint/value" ;
@@ -3215,19 +3003,19 @@ api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_va
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_7_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_8/attrs/temperatureSetpoint/value" ;
@@ -3241,19 +3029,19 @@ api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_va
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_8_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value a http:Request ;
     http:absolutePath "/v2/entities/RadiatorThermostat:room_base_9/attrs/temperatureSetpoint/value" ;
@@ -3267,19 +3055,19 @@ api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_va
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_RadiatorThermostat_room_base_9_attrs_temperatureSetpoint_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_10/attrs/temperature/value" ;
@@ -3293,19 +3081,19 @@ api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value a ht
 
 api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_10_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_1/attrs/temperature/value" ;
@@ -3319,19 +3107,19 @@ api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value a htt
 
 api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_1_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_2/attrs/temperature/value" ;
@@ -3345,19 +3133,19 @@ api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value a htt
 
 api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_2_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_3/attrs/temperature/value" ;
@@ -3371,19 +3159,19 @@ api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value a htt
 
 api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_3_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_4/attrs/temperature/value" ;
@@ -3397,19 +3185,19 @@ api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value a htt
 
 api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_4_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_5/attrs/temperature/value" ;
@@ -3423,19 +3211,19 @@ api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value a htt
 
 api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_5_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_6/attrs/temperature/value" ;
@@ -3449,19 +3237,19 @@ api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value a htt
 
 api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_6_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_7/attrs/temperature/value" ;
@@ -3475,19 +3263,19 @@ api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value a htt
 
 api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_7_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_8/attrs/temperature/value" ;
@@ -3501,19 +3289,19 @@ api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value a htt
 
 api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_8_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
+    http:paramValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value a http:Request ;
     http:absolutePath "/v2/entities/TemperatureSensor:room_base_9/attrs/temperature/value" ;
@@ -3527,55 +3315,49 @@ api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value a htt
 
 api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_Content_Type a http:MessageHeader ;
     http:fieldName "Content-Type" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_fiware_service a http:MessageHeader ;
     http:fieldName "fiware-service" ;
-    http:fieldValue "None" .
+    http:fieldValue "" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_fiware_servicepath a http:MessageHeader ;
     http:fieldName "fiware-servicepath" ;
-    http:fieldValue "None" .
+    http:fieldValue "/" .
 
 api:PUT__v2_entities_TemperatureSensor_room_base_9_attrs_temperature_value_Param_type a http:Parameter ;
     http:paramName "type" ;
-    http:paramValue "None" .
-
-http:requestURI a rdf:Property ;
-    rdfs:label "Request URI"@en ;
-    rdfs:comment "The request URI of an HTTP request."@en ;
-    rdfs:domain http:Request ;
-    rdfs:range rdfs:Literal .
+    http:paramValue "" .
 
 <http://example.com/HotelRoom/HotelRoom:room_base_1> a rec:Room ;
-    ns1:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
 <http://example.com/HotelRoom/HotelRoom:room_base_10> a rec:Room ;
-    ns1:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
 <http://example.com/HotelRoom/HotelRoom:room_base_2> a rec:Room ;
-    ns1:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
 <http://example.com/HotelRoom/HotelRoom:room_base_3> a rec:Room ;
-    ns1:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
 <http://example.com/HotelRoom/HotelRoom:room_base_4> a rec:Room ;
-    ns1:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
 <http://example.com/HotelRoom/HotelRoom:room_base_5> a rec:Room ;
-    ns1:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
 <http://example.com/HotelRoom/HotelRoom:room_base_6> a rec:Room ;
-    ns1:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
 <http://example.com/HotelRoom/HotelRoom:room_base_7> a rec:Room ;
-    ns1:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
 <http://example.com/HotelRoom/HotelRoom:room_base_8> a rec:Room ;
-    ns1:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
 <http://example.com/HotelRoom/HotelRoom:room_base_9> a rec:Room ;
-    ns1:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
+    brick:hasLocation <http://example.com/Hotel/Hotel:hotel:aachen:001> .
 
 <http://example.com/Hotel/Hotel:hotel:aachen:001> a rec:Building .
 
