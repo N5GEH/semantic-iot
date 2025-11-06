@@ -2,59 +2,289 @@
   controller_mode: co2
   inputs:
     sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_1/attrs/co2/value
+    sensor_http:
+      method: GET
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_1/attrs/co2/value
+      path: /v2/entities/CO2Sensor:room_base_1/attrs/co2/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#GET__v2_entities_CO2Sensor_room_base_1_attrs_co2_value
   outputs:
     actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value
+    actuation_http:
+      method: PUT
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value
+      path: /v2/entities/FreshAirVentilation:room_base_1/attrs/airFlowSetpoint/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        Content-Type: null
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#PUT__v2_entities_FreshAirVentilation_room_base_1_attrs_airFlowSetpoint_value
 - controller_function: Ventilation
   controller_mode: co2
   inputs:
     sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_10/attrs/co2/value
+    sensor_http:
+      method: GET
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_10/attrs/co2/value
+      path: /v2/entities/CO2Sensor:room_base_10/attrs/co2/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#GET__v2_entities_CO2Sensor_room_base_10_attrs_co2_value
   outputs:
     actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value
+    actuation_http:
+      method: PUT
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value
+      path: /v2/entities/FreshAirVentilation:room_base_10/attrs/airFlowSetpoint/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        Content-Type: null
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#PUT__v2_entities_FreshAirVentilation_room_base_10_attrs_airFlowSetpoint_value
 - controller_function: Ventilation
   controller_mode: co2
   inputs:
     sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_2/attrs/co2/value
+    sensor_http:
+      method: GET
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_2/attrs/co2/value
+      path: /v2/entities/CO2Sensor:room_base_2/attrs/co2/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#GET__v2_entities_CO2Sensor_room_base_2_attrs_co2_value
   outputs:
     actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value
+    actuation_http:
+      method: PUT
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value
+      path: /v2/entities/FreshAirVentilation:room_base_2/attrs/airFlowSetpoint/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        Content-Type: null
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#PUT__v2_entities_FreshAirVentilation_room_base_2_attrs_airFlowSetpoint_value
 - controller_function: Ventilation
   controller_mode: co2
   inputs:
     sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_3/attrs/co2/value
+    sensor_http:
+      method: GET
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_3/attrs/co2/value
+      path: /v2/entities/CO2Sensor:room_base_3/attrs/co2/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#GET__v2_entities_CO2Sensor_room_base_3_attrs_co2_value
   outputs:
     actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value
+    actuation_http:
+      method: PUT
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value
+      path: /v2/entities/FreshAirVentilation:room_base_3/attrs/airFlowSetpoint/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        Content-Type: null
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#PUT__v2_entities_FreshAirVentilation_room_base_3_attrs_airFlowSetpoint_value
 - controller_function: Ventilation
   controller_mode: co2
   inputs:
     sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_4/attrs/co2/value
+    sensor_http:
+      method: GET
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_4/attrs/co2/value
+      path: /v2/entities/CO2Sensor:room_base_4/attrs/co2/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#GET__v2_entities_CO2Sensor_room_base_4_attrs_co2_value
   outputs:
     actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value
+    actuation_http:
+      method: PUT
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value
+      path: /v2/entities/FreshAirVentilation:room_base_4/attrs/airFlowSetpoint/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        Content-Type: null
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#PUT__v2_entities_FreshAirVentilation_room_base_4_attrs_airFlowSetpoint_value
 - controller_function: Ventilation
   controller_mode: co2
   inputs:
     sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_5/attrs/co2/value
+    sensor_http:
+      method: GET
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_5/attrs/co2/value
+      path: /v2/entities/CO2Sensor:room_base_5/attrs/co2/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#GET__v2_entities_CO2Sensor_room_base_5_attrs_co2_value
   outputs:
     actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value
+    actuation_http:
+      method: PUT
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value
+      path: /v2/entities/FreshAirVentilation:room_base_5/attrs/airFlowSetpoint/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        Content-Type: null
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#PUT__v2_entities_FreshAirVentilation_room_base_5_attrs_airFlowSetpoint_value
 - controller_function: Ventilation
   controller_mode: co2
   inputs:
     sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_6/attrs/co2/value
+    sensor_http:
+      method: GET
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_6/attrs/co2/value
+      path: /v2/entities/CO2Sensor:room_base_6/attrs/co2/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#GET__v2_entities_CO2Sensor_room_base_6_attrs_co2_value
   outputs:
     actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value
+    actuation_http:
+      method: PUT
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value
+      path: /v2/entities/FreshAirVentilation:room_base_6/attrs/airFlowSetpoint/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        Content-Type: null
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#PUT__v2_entities_FreshAirVentilation_room_base_6_attrs_airFlowSetpoint_value
 - controller_function: Ventilation
   controller_mode: co2
   inputs:
     sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_7/attrs/co2/value
+    sensor_http:
+      method: GET
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_7/attrs/co2/value
+      path: /v2/entities/CO2Sensor:room_base_7/attrs/co2/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#GET__v2_entities_CO2Sensor_room_base_7_attrs_co2_value
   outputs:
     actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value
+    actuation_http:
+      method: PUT
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value
+      path: /v2/entities/FreshAirVentilation:room_base_7/attrs/airFlowSetpoint/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        Content-Type: null
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#PUT__v2_entities_FreshAirVentilation_room_base_7_attrs_airFlowSetpoint_value
 - controller_function: Ventilation
   controller_mode: co2
   inputs:
     sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_8/attrs/co2/value
+    sensor_http:
+      method: GET
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_8/attrs/co2/value
+      path: /v2/entities/CO2Sensor:room_base_8/attrs/co2/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#GET__v2_entities_CO2Sensor_room_base_8_attrs_co2_value
   outputs:
     actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value
+    actuation_http:
+      method: PUT
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value
+      path: /v2/entities/FreshAirVentilation:room_base_8/attrs/airFlowSetpoint/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        Content-Type: null
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#PUT__v2_entities_FreshAirVentilation_room_base_8_attrs_airFlowSetpoint_value
 - controller_function: Ventilation
   controller_mode: co2
   inputs:
     sensor_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_9/attrs/co2/value
+    sensor_http:
+      method: GET
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/CO2Sensor:room_base_9/attrs/co2/value
+      path: /v2/entities/CO2Sensor:room_base_9/attrs/co2/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#GET__v2_entities_CO2Sensor_room_base_9_attrs_co2_value
   outputs:
     actuation_access: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value
+    actuation_http:
+      method: PUT
+      url: https://fiware.eonerc.rwth-aachen.de/v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value
+      path: /v2/entities/FreshAirVentilation:room_base_9/attrs/airFlowSetpoint/value
+      authority: fiware.eonerc.rwth-aachen.de
+      headers:
+        Content-Type: null
+        fiware-service: null
+        fiware-servicepath: /
+      params:
+        type: null
+      request_node: http://www.example.org/api#PUT__v2_entities_FreshAirVentilation_room_base_9_attrs_airFlowSetpoint_value
