@@ -275,8 +275,7 @@ class MappingPreprocess:
                 # Corresponds to: 8: AvgScore(pair.subject, pair.object)
                 avg_score = (s_score + o_score) / 2
 
-                #  if AvgScore(...) < THRESHOLD then
-                # TODO maybe remove this part
+                #  Check if the average score meets the threshold
                 if avg_score < self.threshold_property:
                     continue
 
