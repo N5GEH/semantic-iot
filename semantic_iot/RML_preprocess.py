@@ -410,6 +410,8 @@ class MappingPreprocess:
         n: number of top matches to consider
         mappings: list of tuples (iri, score)
         """
+        if not mappings:
+            return {}
         # sort the mappings by score
         mappings.sort(key=lambda x: x[1], reverse=True)
 
