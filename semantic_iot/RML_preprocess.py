@@ -364,11 +364,17 @@ class MappingPreprocess:
             ?propShape sh:path ?property_iri .
 
             # Get the target class defined in the shape (e.g., brick:Point)
-            ?propShape sh:class ?target_class .
+            {
+                # Pattern 1: Range via sh:class
+                ?propShape sh:class ?target_class .
+            }
+            UNION
+            {
+                # Pattern 2: Range via sh:or list
+                ?propShape sh:or/rdf:rest*/rdf:first/sh:class ?target_class .
+            }
 
-            # ?obj is our input object_iri (e.g., brick:Temperature_Sensor)
             # Check if our ?obj is a subclass of that target_class
-            # (e.g., brick:Temperature_Sensor is a subclass of brick:Point)
             ?obj rdfs:subClassOf* ?target_class .
         }
         """
@@ -476,12 +482,14 @@ class MappingPreprocess:
             raise ValueError(f"Invalid similarity mode: {self.similarity_mode}. "
                              f"Choose either 'string' or 'semantic'.")
         # mappings has the form of [(iri, score), ...]
-        res = self.suggestion_condition_top_matches(n=3, mappings=mappings)
+        res_str = self.suggestion_condition_top_matches(n=3, mappings=mappings)
 
-        if max(res.values()) >= self.threshold_property:
-            return res
-        else:
-            return self.property_suggestion_with_so(subjects, objects)
+        # prepare final results
+        res = {}
+        if max(res_str.values()) >= self.threshold_property:
+            res.update(res_str)
+        res.update(self.property_suggestion_with_so(subjects, objects))
+        return res
 
     def get_candidate_property_classes(self,
                                        subject_c: List[str],
