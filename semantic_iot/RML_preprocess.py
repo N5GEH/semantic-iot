@@ -18,6 +18,7 @@ class MappingPreprocess:
                  platform_config: str = None,
                  similarity_mode: str = "string",  # ["string", "semantic"]
                  patterns_splitting: list = None,
+                 threshold_property: int = None
                  ):
         """
         Preprocess the JSON data to create an "RDF node relationship" file in JSON-LD
@@ -42,6 +43,7 @@ class MappingPreprocess:
                               More information in https://github.com/UKPLab/sentence-transformers
             patterns_splitting: List of patterns (JSONpath) to split a substructure of entities that
                 need to be processed as additional entities during KG generation.
+            threshold_property: Threshold for property suggestion (in percentage).
         """
         self.json_file_path = json_file_path
         if not intermediate_report_file_path:
@@ -64,7 +66,10 @@ class MappingPreprocess:
         self.ontology_property_classes_semantic_info = None
 
         # set threshold for property suggestion
-        self.threshold_property = 70  # in % TODO need to fine tune
+        if threshold_property is not None:
+            self.threshold_property = threshold_property
+        else:
+            self.threshold_property = 60
 
         if similarity_mode not in ["string", "semantic"]:
             logging.warning(f"Invalid similarity mode: {similarity_mode}. "
@@ -213,28 +218,28 @@ class MappingPreprocess:
         score = fuzz.ratio(str1.lower(), str2.lower())
         return score
 
-    def semantic_similarity_mappings(self, semantic_info: dict, string: str) -> dict:
+    def semantic_similarity_mappings(self, semantic_info: dict, string: str) -> List[tuple]:
         """
         Compute the semantic similarity between the string and all ontology classes.
         """
-        mappings = {}
+        mappings = []
         embeddings_string = self.embedding_model.encode(string)
         for label, info in semantic_info.items():
             # Compute the cosine similarity
             similarity = util.cos_sim(embeddings_string, info["embedding"]).item()
             # Convert to percentage
             similarity = similarity * 100
-            mappings[semantic_info[label]["iri"], similarity] = similarity
+            mappings.append((semantic_info[label]["iri"], similarity))
         return mappings
 
-    def class_semantic_similarity_mappings(self, resource_type: str) -> dict:
+    def class_semantic_similarity_mappings(self, resource_type: str) -> List[tuple]:
         """
         (Beta) Compute the semantic similarity between the resource type and all ontology classes.
         """
         return self.semantic_similarity_mappings(semantic_info=self.ontology_classes_semantic_info,
                                                  string=resource_type)
 
-    def property_semantic_similarity_mappings(self, property_str: str) -> dict:
+    def property_semantic_similarity_mappings(self, property_str: str) -> List[tuple]:
         """
         (Beta) Compute the semantic similarity between the property string and all ontology property classes.
         """
@@ -248,11 +253,6 @@ class MappingPreprocess:
         """
         Property suggestion with subject and object pairs based on the ontology.
         This implementation directly follows the provided pseudocode.
-
-        It assumes the existence of two other class members:
-        1.  self.threshold_property (float): A minimum average score to consider a pair.
-        2.  self._find_properties(subject_name: str, object_name: str) -> list[str]:
-            A method that returns a list of property names connecting the two classes.
 
         subjects: dict of subject classes with scores, e.g., {"room": 0.8, "building": 0.6, ...}
         objects: dict of object classes with scores, e.g., {"sensor": 0.8, "equipment": 0.6, ...}
@@ -486,8 +486,9 @@ class MappingPreprocess:
 
         # prepare final results
         res = {}
-        if max(res_str.values()) >= self.threshold_property:
-            res.update(res_str)
+        for iri, score in res_str.items():
+            if score >= self.threshold_property:
+                res.update({iri: score})
         res.update(self.property_suggestion_with_so(subjects, objects))
         return res
 
