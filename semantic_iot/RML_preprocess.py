@@ -249,7 +249,7 @@ class MappingPreprocess:
     def property_suggestion_with_so(self,
                                     subjects: dict = None,
                                     objects: dict = None
-                                    ) -> dict:
+                                    ) -> List[tuple[str, float]]:
         """
         Property suggestion with subject and object pairs based on the ontology.
         This implementation directly follows the provided pseudocode.
@@ -264,7 +264,6 @@ class MappingPreprocess:
             objects = {}
 
         # This dictionary will store the final suggested properties and their scores.
-        # Corresponds to: 13: ... suggestedProperties
         suggestedProperties: dict[str, float] = {}
 
         # We iterate through all combinations of subjects and objects
@@ -297,7 +296,9 @@ class MappingPreprocess:
                             (avg_score > suggestedProperties[prop_iri]):
                         suggestedProperties[prop_iri] = avg_score
 
-        return suggestedProperties
+        # turn the dict to list of tuples in form of (iri, score)
+        suggestedProperties_list = [(iri, score) for iri, score in suggestedProperties.items()]
+        return suggestedProperties_list
 
     def _find_properties(self, subject_iri, object_iri) -> List[str]:
         """
@@ -485,12 +486,9 @@ class MappingPreprocess:
         res_str = self.suggestion_condition_top_matches(n=3, mappings=mappings)
 
         # prepare final results
-        res = {}
-        for iri, score in res_str.items():
-            if score >= self.threshold_property:
-                res.update({iri: score})
-        res.update(self.property_suggestion_with_so(subjects, objects))
-        return res
+        res = [(iri, score) for iri, score in res_str.items() if score >= self.threshold_property]
+        res.extend(self.property_suggestion_with_so(subjects, objects))
+        return self.suggestion_condition_top_matches(n=10, mappings=res)
 
     def get_candidate_property_classes(self,
                                        subject_c: List[str],
