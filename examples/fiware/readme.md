@@ -172,9 +172,11 @@ By applying this approach to extract information about the presence of sensors a
 - controller_function: Ventilation  # Control function Ventilation/Heating/Cooling
   controller_mode: <...>  # co2/presence/timetable
   inputs:
-    sensor_access: <...>  # URL to access the sensor data
+    sensor_access:
+      ...  # API details, including URL, method, headers, etc.
   outputs:
-    actuation_access: <...>  # URL to access the actuation function
+    actuation_access:
+      ...  # API details, including URL, method, headers, etc.
 ```
 
 An example of such automated configuration is provided in [`./application_deployment/controller_configuration.py`](./application_deployment/controller_configuration.py). 

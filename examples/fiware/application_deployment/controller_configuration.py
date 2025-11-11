@@ -1,4 +1,6 @@
 import os
+from typing import List, Union
+
 import yaml
 import rdflib
 from pathlib import Path
@@ -158,22 +160,26 @@ class ControllerConfiguration:
                 params[n] = v
         return params
 
-    def _resolve_http_by_method(self, abs_uri_term, want_method: str):
-        rows = self._query_http_by_uri_and_method(abs_uri_term, want_method)
-        if not rows:
-            return None
-        req, method, absPath, absUri, authority = rows[0]
-        headers = self._collect_http_headers(req)
-        params = self._collect_http_params(req)
-        return {
-            "method": self._clean(method),
-            "url": self._clean(absUri),
-            "path": self._clean(absPath),
-            "authority": self._clean(authority),
-            "headers": headers or None,
-            "params": params or None,
-            "request_node": str(req),
-        }
+    def _resolve_http_by_method(self, abs_uri_term, want_method: Union[str, List[str]]):
+        if isinstance(want_method, str):
+            want_method = [want_method]
+        for method in want_method:
+            rows = self._query_http_by_uri_and_method(abs_uri_term, method)
+            if not rows:
+                return None
+            req, method, absPath, absUri, authority = rows[0]
+            headers = self._collect_http_headers(req)
+            params = self._collect_http_params(req)
+            return {
+                "method": self._clean(method),
+                "url": self._clean(absUri),
+                # "path": self._clean(absPath),
+                # "authority": self._clean(authority),
+                "headers": headers or None,
+                "params": params or None,
+                "request_node": str(req),
+            }
+        return None
 
     def _query_sensor(self, room_uri, sensor_type_iri):
         """Runs the parameterized sensor query."""
@@ -235,19 +241,19 @@ class ControllerConfiguration:
 
             # 3) Resolve HTTP metadata from KG (GET for sensors, PUT for actuators)
             sensor_http = self._resolve_http_by_method(sensor_access, "GET") if sensor_access else None
-            actuation_http = self._resolve_http_by_method(actuation_access, "PUT") if actuation_access else None
+            actuation_http = self._resolve_http_by_method(actuation_access,
+                                                          ["PUT", "POST", "PATCH"]
+                                                          ) if actuation_access else None
 
             # 4) Assemble config entry
             config_entry = {
                 "controller_function": "Ventilation",
                 "controller_mode": controller_mode,
                 "inputs": {
-                    "sensor_access": self._clean(sensor_access),
-                    "sensor_http": sensor_http,
+                    "sensor_access": sensor_http,
                 },
                 "outputs": {
-                    "actuation_access": self._clean(actuation_access),
-                    "actuation_http": actuation_http,
+                    "actuation_access": actuation_http,
                 },
             }
 
