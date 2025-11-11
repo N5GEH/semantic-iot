@@ -52,7 +52,7 @@ def rml_preprocess(json_file_path, ontology_file_paths, platform_config, pattern
 
 if __name__ == '__main__':
     ONTOLOGY_PATHS = [
-        "../examples/fiware/ontologies/Brick.ttl"
+        "../examples/fiware/ontologies/brick.ttl"
     ]
     test_datasets = load_example_datasets()
     for dataset_name, dataset in test_datasets.items():

@@ -32116,10 +32116,8 @@ bsh:isLocationOfShape a sh:PropertyShape ;
 
 bsh:isPointOfShape a sh:PropertyShape ;
     sh:message "A Point can be a Point of Equipment, Location or Space." ;
-    sh:or ( [ sh:class brick:Equipment ] [ sh:class brick:Location ] ),
-        ( [ sh:class brick:Equipment ] [ sh:class brick:Location ] [ sh:class rec:Space ] ) ;
-    sh:path brick:isPointOf ;
-    sh:targetClass brick:Point .
+    sh:or ( [ sh:class brick:Equipment ] [ sh:class brick:Location ] [ sh:class rec:Space ] ) ;
+    sh:path brick:isPointOf .
 
 bsh:isReplacedByShape a sh:PropertyShape ;
     sh:class brick:Entity ;
