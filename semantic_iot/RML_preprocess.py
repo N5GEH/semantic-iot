@@ -4,7 +4,7 @@ import os
 import time
 from typing import List, Any
 from rapidfuzz import fuzz
-from rdflib import Graph, RDF, RDFS, OWL, SKOS, DC
+from rdflib import Graph, RDF, RDFS, OWL, SKOS, DC, URIRef
 from sentence_transformers import SentenceTransformer, util
 from semantic_iot.JSON_preprocess import JSONPreprocessorHandler
 from jsonpath_ng import parse
@@ -62,6 +62,9 @@ class MappingPreprocess:
         # only for semantic mode
         self.ontology_classes_semantic_info = None
         self.ontology_property_classes_semantic_info = None
+
+        # set threshold for property suggestion
+        self.threshold_property = 70  # in % TODO need to fine tune
 
         if similarity_mode not in ["string", "semantic"]:
             logging.warning(f"Invalid similarity mode: {similarity_mode}. "
@@ -210,35 +213,197 @@ class MappingPreprocess:
         score = fuzz.ratio(str1.lower(), str2.lower())
         return score
 
-    def semantic_similarity_mappings(self, semantic_info: dict, string: str) -> List[tuple]:
+    def semantic_similarity_mappings(self, semantic_info: dict, string: str) -> dict:
         """
         Compute the semantic similarity between the string and all ontology classes.
         """
-        mappings = []
+        mappings = {}
         embeddings_string = self.embedding_model.encode(string)
         for label, info in semantic_info.items():
             # Compute the cosine similarity
             similarity = util.cos_sim(embeddings_string, info["embedding"]).item()
             # Convert to percentage
             similarity = similarity * 100
-            mappings.append((semantic_info[label]["iri"], similarity))
+            mappings[semantic_info[label]["iri"], similarity] = similarity
         return mappings
 
-    def class_semantic_similarity_mappings(self, resource_type: str) -> List[tuple]:
+    def class_semantic_similarity_mappings(self, resource_type: str) -> dict:
         """
         (Beta) Compute the semantic similarity between the resource type and all ontology classes.
         """
         return self.semantic_similarity_mappings(semantic_info=self.ontology_classes_semantic_info,
                                                  string=resource_type)
 
-    def property_semantic_similarity_mappings(self, property_str: str) -> List[tuple]:
+    def property_semantic_similarity_mappings(self, property_str: str) -> dict:
         """
         (Beta) Compute the semantic similarity between the property string and all ontology property classes.
         """
         return self.semantic_similarity_mappings(semantic_info=self.ontology_property_classes_semantic_info,
                                                  string=property_str)
 
-    def suggestion_condition_top_matches(self, n: int, mappings: List[tuple]) -> List[str]:
+    def property_suggestion_with_so(self,
+                                    subjects: dict = None,
+                                    objects: dict = None
+                                    ) -> dict:
+        """
+        Property suggestion with subject and object pairs based on the ontology.
+        This implementation directly follows the provided pseudocode.
+
+        It assumes the existence of two other class members:
+        1.  self.threshold_property (float): A minimum average score to consider a pair.
+        2.  self._find_properties(subject_name: str, object_name: str) -> list[str]:
+            A method that returns a list of property names connecting the two classes.
+
+        subjects: dict of subject classes with scores, e.g., {"room": 0.8, "building": 0.6, ...}
+        objects: dict of object classes with scores, e.g., {"sensor": 0.8, "equipment": 0.6, ...}
+        """
+        # Use empty dicts if None is provided to avoid errors
+        if subjects is None:
+            subjects = {}
+        if objects is None:
+            objects = {}
+
+        # This dictionary will store the final suggested properties and their scores.
+        # Corresponds to: 13: ... suggestedProperties
+        suggestedProperties: dict[str, float] = {}
+
+        # We iterate through all combinations of subjects and objects
+        for s_iri, s_score in subjects.items():
+            for o_iri, o_score in objects.items():
+
+                # Calculate the average score for the (subject, object) pair
+                # Corresponds to: 8: AvgScore(pair.subject, pair.object)
+                avg_score = (s_score + o_score) / 2
+
+                #  Check if the average score meets the threshold
+                if avg_score < self.threshold_property:
+                    continue
+
+                # FindProperties(pair.subject, pair.object)
+                # dynamic switch between SHACL and non-SHACL method
+                foundProps = self._find_properties(s_iri, o_iri)
+                foundProps.extend(self._find_properties_SH(s_iri, o_iri))
+
+                # if foundProps is empty then
+                if not foundProps:
+                    # continue
+                    continue
+
+                # Add foundProps to suggestedProperties
+                # We update the dictionary, keeping the *highest* score
+                # for any given property.
+                for prop_iri in foundProps:
+                    if (prop_iri not in suggestedProperties) or \
+                            (avg_score > suggestedProperties[prop_iri]):
+                        suggestedProperties[prop_iri] = avg_score
+
+        return suggestedProperties
+
+    def _find_properties(self, subject_iri, object_iri) -> List[str]:
+        """
+        Find properties in the ontology that connect the given subject and object classes.
+        This function checks for properties where the domain includes the subject class
+        and the range includes the object class.
+
+        Returns a list of property IRIs that connect the subject and object.
+        """
+        connecting_properties = []
+        for prop_label, prop_iri in self.ontology_property_classes.items():
+            # Check if the property's domain includes the subject class
+            domains = list(self.ontology.objects(subject=prop_iri, predicate=RDFS.domain))
+            ranges = list(self.ontology.objects(subject=prop_iri, predicate=RDFS.range))
+
+            if subject_iri in domains and object_iri in ranges:
+                connecting_properties.append(prop_iri)
+
+        return connecting_properties
+
+    def _find_properties_SH(self, subject_iri: str, object_iri: str) -> List[str]:
+        """
+        Find properties connecting subject and object classes by querying SHACL shapes.
+
+        This implementation assumes:
+        1. 'self.ontology' is an rdflib.Graph.
+        2. The ontology uses sh:NodeShape on classes (e.g., brick:Point).
+        3. Connecting properties are defined via sh:property -> sh:PropertyShape.
+        4. The PropertyShape specifies the property with sh:path and the
+           range class with sh:class.
+
+        subject_iri: The IRI (as a string) of the domain class (e.g., "http://...#Point")
+        object_iri: The IRI (as a string) of the range class (e.g., "http://...#Quantity")
+
+        Returns a list of property IRIs (as strings) that connect the subject and object.
+        """
+
+        # Convert string IRIs to URIRef objects for the query
+        try:
+            subject_node = URIRef(subject_iri)
+            object_node = URIRef(object_iri)
+        except Exception as e:
+            print(f"Error: Invalid IRIs provided: {subject_iri}, {object_iri}. {e}")
+            return []
+
+        # This SPARQL query looks for the SHACL pattern:
+        # That Property Shape -> has sh:path -> The Property (what we want)
+        # That Property Shape -> has sh:class -> The Object Class (our range)
+        # it also includes checking superclasses using rdfs:subClassOf*
+        # (The * means "zero or more times," so it includes the class itself)
+        query_str = """
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX sh: <http://www.w3.org/ns/shacl#>
+
+        SELECT DISTINCT ?property_iri
+        WHERE {
+            # ?subj is our input subject_iri (e.g., brick:VAV)
+            # Find any superclass of ?subj (e.g., brick:Equipment)
+            # where the property shape is defined.
+            ?subj rdfs:subClassOf* ?subj_shape_holder .
+            ?subj_shape_holder sh:property ?propShape .
+
+            # Get the property itself from the shape
+            ?propShape sh:path ?property_iri .
+
+            # Get the target class defined in the shape (e.g., brick:Point)
+            {
+                # Pattern 1: Range via sh:class
+                ?propShape sh:class ?target_class .
+            }
+            UNION
+            {
+                # Pattern 2: Range via sh:or list
+                ?propShape sh:or/rdf:rest*/rdf:first/sh:class ?target_class .
+            }
+
+            # Check if our ?obj is a subclass of that target_class
+            ?obj rdfs:subClassOf* ?target_class .
+        }
+        """
+
+        connecting_properties = []
+        try:
+            # Execute the query, binding our function arguments to the variables
+            results = self.ontology.query(
+                query_str,
+                initBindings={
+                    'subj': subject_node,
+                    'obj': object_node
+                }
+            )
+
+            # Collect the results
+            for row in results:
+                # row.property_iri is the rdflib.term.URIRef object
+                # We convert it to a string to match the List[str] return type
+                prop_iri_str = str(row.property_iri)
+                connecting_properties.append(prop_iri_str)
+
+        except Exception as e:
+            print(f"Error during SHACL query for ({subject_iri}, {object_iri}): {e}")
+            return []
+
+        return connecting_properties
+
+    def suggestion_condition_top_matches(self, n: int, mappings: List[tuple]) -> dict:
         """
         Suggest a class for the given entity type based on the ontology classes.
         n: number of top matches to consider
@@ -258,11 +423,11 @@ class MappingPreprocess:
 
         # return condition
         if highest_score > 90:
-            return [top_matches_prefixed[0][0]]
+            return {best_match: highest_score}
         elif highest_score - third_highest_score <= 10:
-            return [match[0] for match in top_matches_prefixed]
+            return {iri: score for iri, score in top_matches_prefixed}
         else:
-            return [top_matches_prefixed[0][0]]
+            return {best_match: highest_score}
 
     def convert_to_prefixed(self, iri):
         """
@@ -274,7 +439,7 @@ class MappingPreprocess:
         # If no prefix matches, return the original IRI
         return iri
 
-    def suggest_class(self, entity_type) -> List[str]:
+    def suggest_class(self, entity_type):
         """
         Suggest a class for the given entity type based on the ontology classes.
         """
@@ -292,14 +457,20 @@ class MappingPreprocess:
 
         return self.suggestion_condition_top_matches(n=3, mappings=mappings)
 
-    def suggest_property_class(self, attribute_path:str, property_classes: dict = None) -> List[str]:
+    def suggest_property_class(self,
+                               attribute_path:str,
+                               subjects: dict = None,
+                               objects: dict = None
+                               ):
         """
         Suggest a property class for the given attribute path based on the ontology classes.
+        attribute_path: the attribute path in the JSON data
+        subjects: dict of subject classes with scores
+        objects: dict of object classes with scores
         """
         keyword = attribute_path.replace("_", " ").replace(".", " ")
 
-        if property_classes is None:
-            property_classes = self.ontology_property_classes
+        property_classes = self.ontology_property_classes
 
         # compute similarity scores for all ontology property classes
         if self.similarity_mode == "string":
@@ -310,8 +481,15 @@ class MappingPreprocess:
         else:
             raise ValueError(f"Invalid similarity mode: {self.similarity_mode}. "
                              f"Choose either 'string' or 'semantic'.")
+        # mappings has the form of [(iri, score), ...]
+        res_str = self.suggestion_condition_top_matches(n=3, mappings=mappings)
 
-        return self.suggestion_condition_top_matches(n=3, mappings=mappings)
+        # prepare final results
+        res = {}
+        if max(res_str.values()) >= self.threshold_property:
+            res.update(res_str)
+        res.update(self.property_suggestion_with_so(subjects, objects))
+        return res
 
     def get_candidate_property_classes(self,
                                        subject_c: List[str],
@@ -490,7 +668,8 @@ class MappingPreprocess:
         for resource in report_list:
             resource_type = resource['nodetype']
             suggested_class = self.suggest_class(resource_type)
-            resource["class"] = suggested_class
+            resource["class"] = list(suggested_class.keys())
+            resource["class_with_score"] = suggested_class
 
     def terminology_mapping_relationships(self, report_list: List[dict]) -> None:
         """
@@ -498,22 +677,20 @@ class MappingPreprocess:
         This function will suggest property classes for the relationships based on the ontology.
         """
         for resource in report_list:
-            subject_class = resource["class"]
+            subject_class_score = resource["class_with_score"]
             for relationship in resource["hasRelationship"]:
                 object_type = relationship["relatedNodeType"]
                 # get the object class from the report_list, where resource['nodetype'] == object_type
-                object_class = next((r["class"] for r in report_list if r["nodetype"] == object_type), None)
-                if object_class is None:
+                object_class_score = next((r["class_with_score"] for r in report_list if r["nodetype"] == object_type), None)
+                if object_class_score is None:
                     logging.warning(f"Object class for related node type '{object_type}' not found. ")
-                # get possible predicate classes based on the ontology
-                candidate_property_classes = self.get_candidate_property_classes(
-                    subject_c=subject_class,
-                    object_c=object_class
-                )
                 attribute_path = relationship["rawdataidentifier"]
-                suggested_property_class = self.suggest_property_class(attribute_path,
-                                                                       property_classes=candidate_property_classes)
-                relationship["propertyClass"] = suggested_property_class
+                suggested_property_class = self.suggest_property_class(
+                    attribute_path,
+                    subjects=subject_class_score,
+                    objects=object_class_score
+                )
+                relationship["propertyClass"] = list(suggested_property_class.keys())
 
     def highlight_terminology_mapping(self, report_list: List[dict]) -> None:
         """
@@ -529,6 +706,15 @@ class MappingPreprocess:
                 property_classes = relationship["propertyClass"]
                 property_classes = [self.convert_to_prefixed(p_c) for p_c in property_classes]
                 relationship["propertyClass"] = f"**TODO: PLEASE CHECK** {' '.join(property_classes)}"
+
+    def clean_report(self, report_list: List[dict]) -> None:
+        """
+        Clean up the report lists by removing unused keys.
+        This function will remove the 'class_with_score' key from the report lists.
+        """
+        for resource in report_list:
+            if 'class_with_score' in resource:
+                del resource['class_with_score']
 
     def save_report(self, report_list: List[dict]) -> None:
         """ Save the report lists to the RDF node relationship file in JSON-LD format."""
@@ -580,6 +766,9 @@ class MappingPreprocess:
 
         # Highlight subject class and property class before output
         self.highlight_terminology_mapping(report_list)
+
+        # Clean up, remove unused keys
+        self.clean_report(report_list)
 
         # output report lists
         self.save_report(report_list)

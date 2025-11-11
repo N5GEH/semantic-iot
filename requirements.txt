@@ -6,3 +6,5 @@ Requests==2.32.3
 jsonpath-ng==1.7.0
 morph_kgc==2.8.1
 sentence-transformers==4.1.0
+prance[http]>=0.22.14.2
+openapi-spec-validator>=0.6.0

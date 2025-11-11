@@ -107,9 +107,40 @@ Based on the completed **"intermediate report"** document, we can generate the R
 In this demonstration, this step can be conducted by running the script [`./kgcp/rml_generate.py`](./kgcp/rml_generate.py).
 The generated RML mapping file can be found in [`./kgcp/rml/brick/fiware_hotel_rml.ttl`](kgcp/rml/brick/fiware_hotel_rml.ttl).
 
-### Step 4 apply KGCP
-So far, we have collected all required information to build the KGCP.
-[``./kgcp/fiware_kgcp.py``](./kgcp/fiware_kgcp.py) showcases how to apply the KGCP and generate knowledge graphs for different volumes of data sets (range from 2 to 1000 rooms) in [``./hotel_dataset``](./hotel_dataset).
+### Step 4 apply KGCP (including HTTP Extension)
+Now that you’ve generated your RML mappings, you can run the KGCP to produce both the base KG and the HTTP‐augmented KG:
+[``./kgcp/fiware_kgcp.py``](./kgcp/fiware_kgcp.py) 
+
+**What happens under the hood:**
+
+- **RDF Generation**  
+  - Uses generated `fiware_hotel_rml.ttl` and your JSON dataset to create `<hotel_name>.ttl` with all entities and relationships.
+
+- **HTTP Extension**  
+  - Loads the newly created `<hotel_name>.ttl` and the OpenAPI spec of FIWARE platform (`api_spec.json`).  
+  - Scans for every `rdf:value` URI in the base KG.  
+  - For each matching `/…/value` endpoint, creates `http:Request` nodes (GET & PUT) with properties:  
+    - `http:methodName`  
+    - `http:absolutePath`  
+    - `http:absoluteURI`  
+    - `http:authority`  
+  - Builds `http:MessageHeader` instances for:  
+    - **Global headers** (e.g. `fiware-service`)  
+    - **Inline headers** (operation-specific, e.g. `Content-Type`)  
+  - Links each header via `http:fieldName`, `http:fieldValue`, and `http:hdrName`.  
+  - Attaches all headers to the corresponding requests via `http:headers` and groups requests under a shared `http:Connection`.  
+  - Writes out `<hotel_name>_extended.ttl`.  
+
+> **Note**: The official ontology for HTTP is not available in a serialization format.
+> Therefore, we provide a serialized version and include it in the semantic-iot framework.
+> Please refer to [HTTP vocabulary for RDF](https://www.w3.org/TR/HTTP-in-RDF10/) for more information.
+
+After running, you’ll find in `kgcp/results/` for each hotel dataset:  
+- `fiware_entities_N.ttl`  
+- `fiware_entities_N_extended.ttl`
+
+> **Note**: by default, the ``measure_metrics`` flag is set to `False`.
+> If you want to measure the performance of the KGCP, please set this flag to `True` and you will get a performance measurement similar to [``metrics_2025_06_23-14_17_21.json``](./kgcp/results/metrics_2025_06_23-14_17_21.json)
 
 ### Step 5 automated service deployment
 The generated knowledge graph of a hotel IoT system can be used to deploy services, for example a building automation program, automatically.
@@ -141,9 +172,11 @@ By applying this approach to extract information about the presence of sensors a
 - controller_function: Ventilation  # Control function Ventilation/Heating/Cooling
   controller_mode: <...>  # co2/presence/timetable
   inputs:
-    sensor_access: <...>  # URL to access the sensor data
+    sensor_access:
+      ...  # API details, including URL, method, headers, etc.
   outputs:
-    actuation_access: <...>  # URL to access the actuation function
+    actuation_access:
+      ...  # API details, including URL, method, headers, etc.
 ```
 
 An example of such automated configuration is provided in [`./application_deployment/controller_configuration.py`](./application_deployment/controller_configuration.py). 

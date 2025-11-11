@@ -5,7 +5,7 @@ project_root_path = Path(__file__).parent
 if __name__ == "__main__":
     # Example usage:
     targ_kg = Path(project_root_path).joinpath(
-        "../kgcp/results/brick/fiware_entities_10rooms.ttl")
+        "../kgcp/results/fiware_entities_10rooms_extended.ttl")
     ontology = Path(project_root_path).joinpath("../ontologies/brick.ttl")
     extended_kg = targ_kg.name.replace(".ttl", "_inferred.ttl").split("/")[-1]
 

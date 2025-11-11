@@ -1,7 +1,28 @@
 import rdflib
 import owlrl
+from rdflib.term import Literal
 from pathlib import Path
 from typing import Union
+
+def remove_redundant_triples(g: rdflib.Graph) -> rdflib.Graph:
+    """
+    Removes redundant triples from the given RDF graph.
+
+    - Triples that have rdfs:Literal type in subject position
+    """
+#     # --- START: Updated block to remove redundant triples ---
+    triples_to_remove = []
+    for s, p, o in g:
+        # Check for triples where the subject is a Literal
+        if isinstance(s, Literal):
+            # Find explicit rdfs:Literal types (e.g., "..." a rdfs:Literal)
+            triples_to_remove.append((s, p, o))
+
+    if triples_to_remove:
+        for t in triples_to_remove:
+            g.remove(t)
+        print(f"Triples number after cleanup: {len(g)}")
+    return g
 
 
 def inference_owlrl(
@@ -60,7 +81,8 @@ def inference_owlrl(
 
     # Perform RDFS inference
     # owlrl.RDFS_Semantics(g, axioms=True, daxioms=False, rdfs=True).closure()
-    owlrl.DeductiveClosure(owlrl.OWLRL_Semantics).expand(g)
+    # owlrl.DeductiveClosure(owlrl.OWLRL_Semantics).expand(g)
+    owlrl.DeductiveClosure(owlrl.RDFS_Semantics).expand(g)
 
     print(f"Triples number after reasoning: {len(g)}")
 
@@ -70,6 +92,9 @@ def inference_owlrl(
         if s in nodes_in_original or o in nodes_in_original:
             g_filtered.add((s, p, o))
     print(f"Triples number in filtered graph: {len(g_filtered)}")
+
+    # Remove redundant triples
+    g_filtered = remove_redundant_triples(g_filtered)
 
     # Bind namespaces from the combined graph to the filtered graph
     for prefix, namespace_uri in g.namespaces():

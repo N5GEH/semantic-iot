@@ -8,6 +8,11 @@ def load_example_datasets():
         "fiware": {
             "path": "./test_relationship_finder/fiware.json",
             "config": "./test_relationship_finder/fiware_config.json",
+            "pattern_splitting": [
+                        "$..fanSpeed",
+                        "$..airFlowSetpoint",
+                        "$..temperatureSetpoint"
+                    ]
         },
         "openhab": {
             "path": "./test_relationship_finder/openhab.json",
@@ -28,7 +33,7 @@ def load_example_datasets():
     return files
 
 
-def rml_preprocess(json_file_path, ontology_file_paths, platform_config):
+def rml_preprocess(json_file_path, ontology_file_paths, platform_config, patterns_splitting):
     from semantic_iot import MappingPreprocess
     # Initialize the MappingPreprocess class
     processor = MappingPreprocess(
@@ -36,8 +41,9 @@ def rml_preprocess(json_file_path, ontology_file_paths, platform_config):
         intermediate_report_file_path=json_file_path.replace(".json", "_node_relationship.json"),
         ontology_file_paths=ontology_file_paths,
         platform_config=platform_config,
-        # similarity_mode="string",  # levenshtein distance
-        similarity_mode="semantic",  # embedding model "sentence-transformers/all-MiniLM-L6-v2"
+        patterns_splitting=patterns_splitting,
+        similarity_mode="string",  # levenshtein distance
+        # similarity_mode="semantic",  # embedding model "sentence-transformers/all-MiniLM-L6-v2"
     )
     # Load JSON and ontologies
     processor.pre_process(overwrite=True)
@@ -46,11 +52,12 @@ def rml_preprocess(json_file_path, ontology_file_paths, platform_config):
 
 if __name__ == '__main__':
     ONTOLOGY_PATHS = [
-        "../examples/fiware/ontologies/Brick.ttl"
+        "../examples/fiware/ontologies/brick.ttl"
     ]
     test_datasets = load_example_datasets()
     for dataset_name, dataset in test_datasets.items():
         print(f"Processing {dataset_name} dataset...")
         json_file_path = dataset["path"]
         platform_config = dataset["config"]
-        rml_preprocess(json_file_path, ONTOLOGY_PATHS, platform_config)
+        patterns = dataset.get("pattern_splitting", None)
+        rml_preprocess(json_file_path, ONTOLOGY_PATHS, platform_config, patterns)
