@@ -17,7 +17,7 @@ class MappingPreprocess:
                  intermediate_report_file_path: str = None,
                  platform_config: str = None,
                  similarity_mode: str = "string",  # ["string", "semantic"]
-                 patterns_splitting: list = None,
+                 patterns_splitting: list[str] = None,
                  threshold_property: int = None
                  ):
         """
@@ -612,7 +612,7 @@ class MappingPreprocess:
                     extra_items.append(
                         {
                         "nodetype": extra_type,
-                        "iterator": f"$[?(@.type=='{entity['type']}')]",
+                        "iterator": f"$[?(@.type=='{entity['type']}' && @{pattern.removeprefix('$')})]",
                         "class": None,
                         "hasRelationship": [
                             {
