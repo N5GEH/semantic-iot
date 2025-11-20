@@ -24,7 +24,7 @@
   "@data": [
     {
       "nodetype": "airFlowSetpoint_FreshAirVentilation",
-      "iterator": "$[?(@.type=='FreshAirVentilation')]",
+      "iterator": "$[?(@.type=='FreshAirVentilation' && @..airFlowSetpoint)]",
       "class": "brick:Air_Flow_Setpoint",
       "hasRelationship": [
         {
@@ -81,7 +81,7 @@
     },
     {
       "nodetype": "fanSpeed_CoolingCoil",
-      "iterator": "$[?(@.type=='CoolingCoil')]",
+      "iterator": "$[?(@.type=='CoolingCoil' && @..fanSpeed)]",
       "class": "brick:Fan_Speed_Command",
       "hasRelationship": [
         {
@@ -176,7 +176,7 @@
     },
     {
       "nodetype": "temperatureSetpoint_RadiatorThermostat",
-      "iterator": "$[?(@.type=='RadiatorThermostat')]",
+      "iterator": "$[?(@.type=='RadiatorThermostat' && @..temperatureSetpoint)]",
       "class": "brick:Temperature_Setpoint",
       "hasRelationship": [
         {
