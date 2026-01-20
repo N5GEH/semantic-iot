@@ -612,7 +612,7 @@ class MappingPreprocess:
                     extra_items.append(
                         {
                         "nodetype": extra_type,
-                        "iterator": f"$[?(@.type=='{entity['type']}')]",
+                        "iterator": f"$[?(@.type==\"{entity['type']}\" and @{pattern.removeprefix('$')})]",
                         "class": None,
                         "hasRelationship": [
                             {

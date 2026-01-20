@@ -60,8 +60,8 @@ class RMLMappingGenerator:
         #  finally replace the Temp_quote to double quotes
         for relationship in relationships:
             if 'iterator' in relationship:
-                relationship['iterator'] = (relationship['iterator'].replace("'", "TEMP_QUOTE").replace('"', "'").
-                                            replace("TEMP_QUOTE", '"'))
+                # Replace any single quotes with double quotes
+                relationship['iterator'] = relationship['iterator'].replace("'", '"')
 
         # Jinja template definition
         mapping_template = self.jinja2_rml_template()
