@@ -20,6 +20,8 @@ class RDFGenerator:
                 JSONPreprocessor for more details.
         """
         self.mapping_file = mapping_file
+        # TODO use this path to save the processed mapping file for morph-kgc and then delete it after use
+        self.temp_mapping_file = os.path.dirname(__file__) + "\\temp_mapping.ttl"
         self.preprocess_file = os.path.dirname(__file__) + "\\preprocessed.json"
 
         self.json_processor: JSONPreprocessor = JSONPreprocessorHandler(
@@ -34,6 +36,7 @@ class RDFGenerator:
     def clean_up(self):
         # remove file self.preprocess_file
         os.remove(self.preprocess_file)
+        os.remove(self.temp_mapping_file)
 
     def generate_rdf(self,
                      source_file: str,
@@ -50,6 +53,11 @@ class RDFGenerator:
 
     def morph_kgc_mapper(self,
                          destination_file: str):
+        # TODO add temp file to adapt following patters for morph-kgc/jsonpath-python
+        #  1. replace all ".." with "."
+        #  2. replace all "&&" with "and"
+        #  3. check whether single quotes are used in iterator field, if so, replace them with double quotes
+
         config = f"""
                  [DataSourceJSON]
                  mappings: {self.mapping_file}
