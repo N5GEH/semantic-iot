@@ -238,7 +238,7 @@ class ScenarioExecutor:
                     follow_up=True,
                     tools="context",
                     thinking=True,
-                    # offline=True,
+                    offline=True,
                 )
             )
         except Exception as e:
@@ -339,7 +339,7 @@ class ScenarioExecutor:
                             step_name=f"scenario_{sc}",
                             tools="",
                             follow_up=False,
-                            # offline=True
+                            offline=True
                         )
 
                         try:
