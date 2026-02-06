@@ -1,4 +1,5 @@
 import os
+import re
 
 import morph_kgc
 import rdflib
@@ -20,6 +21,7 @@ class RDFGenerator:
                 JSONPreprocessor for more details.
         """
         self.mapping_file = mapping_file
+        self.temp_mapping_file = os.path.dirname(__file__) + "\\temp_mapping.ttl"
         self.preprocess_file = os.path.dirname(__file__) + "\\preprocessed.json"
 
         self.json_processor: JSONPreprocessor = JSONPreprocessorHandler(
@@ -34,6 +36,7 @@ class RDFGenerator:
     def clean_up(self):
         # remove file self.preprocess_file
         os.remove(self.preprocess_file)
+        os.remove(self.temp_mapping_file)
 
     def generate_rdf(self,
                      source_file: str,
@@ -48,11 +51,70 @@ class RDFGenerator:
         else:
             raise ValueError("Invalid engine. Please use 'morph-kgc'")
 
+    def _create_temp_mapping(self):
+        """
+        Reads the original mapping file and applies fixes for morph-kgc compatibility:
+        1. Fix recursive descent (.. -> .)
+        2. Fix logical operator (&& -> and)
+        3. Fix quotes: Outer "" and Inner ''
+        """
+
+        with open(self.mapping_file, 'r', encoding='utf-8') as f:
+            lines = f.readlines()
+
+        new_lines = []
+        for line in lines:
+            original_line = line.strip()
+
+            line = line.replace("..", ".")
+            line = line.replace("&&", "and")
+
+            if "rml:iterator" in line:
+                # Locate the iterator string, handling either single or double quote delimiters
+                match = re.search(r'rml:iterator\s*(?P<q>[\'"])(.*?)(?P=q)', line)
+
+                if match:
+                    # Extract the raw JSONPath query found inside the quotes
+                    content = match.group(2)
+
+                    # Convert inner double quotes to single quotes to prevent syntax errors
+                    content = content.replace('"', "'")
+
+                    # Capture the original indentation to maintain file formatting
+                    prefix = line[:line.find('rml:iterator')]
+
+                    # Detect if the line terminates the statement (.) or continues it (;)
+                    suffix = " ;"
+                    if line.strip().endswith("."):
+                        suffix = " ."
+
+                    # Reconstruct the line using standard double outer quotes
+                    new_line = f'{prefix}rml:iterator "{content}"{suffix}\n'
+
+                    new_lines.append(new_line)
+
+                    # --- DEBUG PRINT ---
+                    print(f"Original: {original_line}")
+                    print(f"Modified: {new_line.strip()}")
+                    print("-" * 60)
+                    # -------------------
+                else:
+                    # Fallback if regex fails but keyword exists
+                    new_lines.append(line)
+            else:
+                new_lines.append(line)
+
+        with open(self.temp_mapping_file, 'w', encoding='utf-8') as f:
+            f.writelines(new_lines)
+
     def morph_kgc_mapper(self,
                          destination_file: str):
+
+        self._create_temp_mapping()
+
         config = f"""
                  [DataSourceJSON]
-                 mappings: {self.mapping_file}
+                 mappings: {self.temp_mapping_file}
                  file_path: {self.preprocess_file}
              """
         g = morph_kgc.materialize(config)

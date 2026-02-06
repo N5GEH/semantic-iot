@@ -38,7 +38,8 @@ The framework mainly contains:
 ```bash
 git clone https://github.com/N5GEH/semantic-iot.git
 cd semantic-iot
-pip install .
+pip install uv
+uv pip install .
 ```
 
 #### Usage

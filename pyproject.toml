@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "semantic_iot"
+# We mark version as dynamic so it reads from your __init__.py
+dynamic = ["version"]
+authors = [
+  { name="Junsong Du", email="junsong.du@eonerc.rwth-aachen.de" },
+]
+description = "A semantic framework to enhance interoperability across different IoT platforms"
+readme = "test/readme.md"
+requires-python = ">=3.9"
+urls = { Homepage = "https://github.com/N5GEH/semantic-iot" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+# Primary dependencies exactly as per your requirements.txt
+dependencies = [
+    "Jinja2==3.1.3",
+    "pydantic>2.8,<=2.10.4",
+    "rdflib>=6.2.0,<=7.1.1",
+    "rapidfuzz==3.4.0",
+    "Requests==2.32.3",
+    "jsonpath-ng==1.7.0",
+    "morph_kgc==2.8.1",
+    "jsonpath-python==1.1.4",  # Your override version
+    "sentence-transformers==4.1.0",
+    "prance[http]>=0.22.14.2",
+    "openapi-spec-validator>=0.6.0",
+]
+
+[tool.setuptools.dynamic]
+# This replaces your get_version() function in setup.py
+version = {attr = "semantic_iot.__version__"}
+
+[tool.setuptools]
+packages = { find = { exclude = ["tests", "test", "docker", "Dockerfile", "examples"] } }
+include-package-data = true
+
+[tool.setuptools.package-data]
+semantic_iot = ["*.ttl.jinja2"]
+
+[tool.uv]
+# The "force" mechanism to solve the morph_kgc conflict
+override-dependencies = [
+    "jsonpath-python==1.1.4"
+]

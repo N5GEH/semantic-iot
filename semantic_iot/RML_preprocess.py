@@ -17,7 +17,7 @@ class MappingPreprocess:
                  intermediate_report_file_path: str = None,
                  platform_config: str = None,
                  similarity_mode: str = "string",  # ["string", "semantic"]
-                 patterns_splitting: list = None,
+                 patterns_splitting: list[str] = None,
                  threshold_property: int = None
                  ):
         """
@@ -612,7 +612,7 @@ class MappingPreprocess:
                     extra_items.append(
                         {
                         "nodetype": extra_type,
-                        "iterator": f"$[?(@.type=='{entity['type']}')]",
+                        "iterator": f"$[?(@.type=='{entity['type']}' && @{pattern.removeprefix('$')})]",
                         "class": None,
                         "hasRelationship": [
                             {
@@ -718,7 +718,7 @@ class MappingPreprocess:
                 del resource['class_with_score']
 
     def save_report(self, report_list: List[dict]) -> None:
-        """ Save the report lists to the RDF node relationship file in JSON-LD format."""
+        """ Save the report lists to the intermediate report in JSON-LD format."""
         # drop the entity key from the report_list
         for item in report_list:
             if 'entity' in item:
@@ -734,7 +734,7 @@ class MappingPreprocess:
         # Save the preprocess file
         with open(self.intermediate_report_file_path, 'w') as preprocessed_file:
             json.dump(json_ld_data, preprocessed_file, indent=2)
-        print(f"RDF node relationship file generated as "
+        print(f"Intermediate report generated as "
               f"{self.intermediate_report_file_path}")
 
     def create_intermediate_report_file(self, overwrite: bool = False):
