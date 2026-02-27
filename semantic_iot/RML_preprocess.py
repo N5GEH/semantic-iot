@@ -113,7 +113,8 @@ class MappingPreprocess:
         unique_report_list = []
         for unique_node_type in list(unique_node_types):
             # find all items with the same nodetype
-            matched_items = [item for item in report_list if item["nodetype"] == unique_node_type]
+            matched_items = [{_k: _v for _k, _v in item.items() if _k != "entity"}
+                             for item in report_list if item["nodetype"] == unique_node_type]
             if matched_items:
                 # get the first matched item
                 unique_report_list.append(matched_items[0])
