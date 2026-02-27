@@ -4,4 +4,4 @@ from .RDF_generator import RDFGenerator
 from .API_postprocessor import  APIPostprocessor
 
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
