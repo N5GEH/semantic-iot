@@ -282,7 +282,7 @@ class MappingPreprocess:
                 # FindProperties(pair.subject, pair.object)
                 # dynamic switch between SHACL and non-SHACL method
                 foundProps = self._find_properties(s_iri, o_iri)
-                foundProps.extend(self._find_properties_SH(s_iri, o_iri))
+                foundProps.extend(self._find_properties_shacl(s_iri, o_iri))
 
                 # if foundProps is empty then
                 if not foundProps:
@@ -310,17 +310,24 @@ class MappingPreprocess:
         Returns a list of property IRIs that connect the subject and object.
         """
         connecting_properties = []
-        for prop_label, prop_iri in self.ontology_property_classes.items():
-            # Check if the property's domain includes the subject class
-            domains = list(self.ontology.objects(subject=prop_iri, predicate=RDFS.domain))
-            ranges = list(self.ontology.objects(subject=prop_iri, predicate=RDFS.range))
+        # capture properties defined on superclasses
+        subject_ancestors = set(self.ontology.transitive_objects(subject_iri, RDFS.subClassOf))
+        object_ancestors = set(self.ontology.transitive_objects(object_iri, RDFS.subClassOf))
 
-            if subject_iri in domains and object_iri in ranges:
+        for prop_label, prop_iri in self.ontology_property_classes.items():
+            # get the domains and ranges of the property
+            domains = set(self.ontology.objects(subject=prop_iri, predicate=RDFS.domain))
+            ranges = set(self.ontology.objects(subject=prop_iri, predicate=RDFS.range))
+
+            # check if any of the domains match the subject or its ancestors
+            has_valid_domain = not domains or any(d in subject_ancestors for d in domains)
+            has_valid_range = not ranges or any(r in object_ancestors for r in ranges)
+            if has_valid_domain and has_valid_range:
                 connecting_properties.append(prop_iri)
 
         return connecting_properties
 
-    def _find_properties_SH(self, subject_iri: str, object_iri: str) -> List[str]:
+    def _find_properties_shacl(self, subject_iri: str, object_iri: str) -> List[str]:
         """
         Find properties connecting subject and object classes by querying SHACL shapes.
 
