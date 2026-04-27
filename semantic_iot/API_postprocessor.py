@@ -1,3 +1,4 @@
+import hashlib
 import re
 from pathlib import Path
 from urllib.parse import urlparse
@@ -99,9 +100,7 @@ class APIPostprocessor:
                         continue
 
                     for verb in verbs:
-                        clean_path = re.sub(r"\W+", '_', orig_path)
-                        clean_source = re.sub(r"\W+", '_', str(source_node)).strip('_')
-                        req_id = f"{clean_source}_{verb}_{clean_path}"
+                        req_id = self._build_request_id(source_node, verb, uri)
                         req = self.API[req_id]
 
                         op = self._get_operation(tpl, verb.lower())
@@ -119,6 +118,13 @@ class APIPostprocessor:
                     break
                 if matched:
                     break
+
+    @staticmethod
+    def _build_request_id(source_node: URIRef, verb: str, uri: URIRef) -> str:
+        """Create a short deterministic request identifier from stable request inputs."""
+        key = f"{str(source_node)}|{verb.upper()}|{str(uri)}"
+        digest = hashlib.blake2s(key.encode("utf-8"), digest_size=8).hexdigest()
+        return f"req_{verb.lower()}_{digest}"
 
     def _get_operation(self, tpl: str, method: str) -> dict:
         """
