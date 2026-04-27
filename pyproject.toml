@@ -39,11 +39,14 @@ dependencies = [
 version = {attr = "semantic_iot.__version__"}
 
 [tool.setuptools]
-packages = { find = { exclude = ["tests", "test", "docker", "Dockerfile", "examples"] } }
-include-package-data = true
+include-package-data = false
+packages = ["semantic_iot", "semantic_iot.utils"]
 
 [tool.setuptools.package-data]
-semantic_iot = ["*.ttl.jinja2"]
+semantic_iot = ["*.ttl.jinja2", "ontology/*", "ontology/**/*"]
+
+[tool.setuptools.exclude-package-data]
+semantic_iot = ["docker/*", "docker/**/*"]
 
 [tool.uv]
 # The "force" mechanism to solve the morph_kgc conflict
