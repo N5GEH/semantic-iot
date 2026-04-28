@@ -29,6 +29,12 @@ class RMLMappingGenerator:
         self.rdf_relationships = None
         if entities_file is None:
             self.entities_file = "placeholder.json"
+        self.default_context = {
+            "rr": "http://www.w3.org/ns/r2rml#",
+            "rml": "http://semweb.mmlab.be/ns/rml#",
+            "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+            "ql": "http://semweb.mmlab.be/ns/ql#",
+        }
 
     @staticmethod
     def load_json_file(file_path):
@@ -53,6 +59,8 @@ class RMLMappingGenerator:
     def create_mapping_file(self):
         """Generate RML Mapping file based on RDF relationships and entities."""
         context = self.rdf_relationships.get('@context', {})
+        # update with default context
+        context.update(self.default_context)
         relationships = self.rdf_relationships.get('@data', [])
 
         # Preprocess iterator field: swap single and double quotes -> The RML Mapping Engine requires the format
