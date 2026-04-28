@@ -1,10 +1,11 @@
+@prefix rml-mapping: <http://example.com/rml-mapping#> .
 {% for prefix, uri in context.items() -%}
 @prefix {{ prefix }}: <{{ uri }}> .
 {% endfor -%}
 
 {% for relationship in relationships %}
 # Mapping for {{ relationship.nodetype }}
-ex:Mapping{{ relationship.nodetype }}
+rml-mapping:Mapping{{ relationship.nodetype }}
     a rr:TriplesMap ;
     rml:logicalSource [
         rml:source "{{ entities_file }}" ;
@@ -20,7 +21,7 @@ ex:Mapping{{ relationship.nodetype }}
     rr:predicateObjectMap [
         rr:predicate {{ rel.propertyClass }} ;
         rr:objectMap [
-            rr:parentTriplesMap ex:Mapping{{ rel.relatedNodeType }} ;
+            rr:parentTriplesMap rml-mapping:Mapping{{ rel.relatedNodeType }} ;
             rr:joinCondition [
                 rr:child "{{ rel.rawdataidentifier }}" ;
                 rr:parent "id" ;
