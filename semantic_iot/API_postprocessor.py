@@ -1,4 +1,4 @@
-import json
+import hashlib
 import re
 from pathlib import Path
 from urllib.parse import urlparse
@@ -18,7 +18,7 @@ class APIPostprocessor:
         self._load_kg_and_ontology(kg_path)
         if http_onto is None:
             http_onto = Path(__file__).parent / 'ontology' / 'Http.ttl'
-        self.http_onto = http_onto
+        self.HTTP_VOC_onto = http_onto
         self._setup_namespaces()
 
         # Parse and validate spec
@@ -37,10 +37,10 @@ class APIPostprocessor:
 
 
     def _setup_namespaces(self):
-        self.HTTP = Namespace('http://www.w3.org/2011/http#')
+        self.HTTP_VOC = Namespace('http://www.w3.org/2011/http#')
         self.HEADERS = Namespace('http://www.w3.org/2011/http-headers#')
         self.API = Namespace('http://www.example.org/api#')
-        self.kg.bind('http', self.HTTP)
+        self.kg.bind('http_voc', self.HTTP_VOC)
         self.kg.bind('headers', self.HEADERS)
         self.kg.bind('api', self.API)
 
@@ -78,10 +78,9 @@ class APIPostprocessor:
     def extend_kg(self, add_http_ontology: bool = False):
         if add_http_ontology:
             # Optionally load HTTP ontology
-            self.kg.parse(str(self.http_onto), format='turtle')
-        conn = self._create_connection_node()
+            self.kg.parse(str(self.HTTP_VOC_onto), format='turtle')
         shared_headers, shared_queries = self._index_global_parameters()
-        uris = self._gather_value_uris()
+        value_links = self._gather_value_links()
         methods_map = self._prepare_methods_map()
 
         if not methods_map:
@@ -90,7 +89,7 @@ class APIPostprocessor:
                 "Check servers/basePath and that paths contain supported HTTP methods."
             )
 
-        for uri in uris:
+        for source_node, uri in value_links:
             parsed = urlparse(str(uri))
             orig_path = re.sub(r'/+', '/', parsed.path or '/')
 
@@ -101,8 +100,7 @@ class APIPostprocessor:
                         continue
 
                     for verb in verbs:
-                        clean_path = re.sub(r"\W+", '_', orig_path)
-                        req_id = f"{verb}_{clean_path}"
+                        req_id = self._build_request_id(source_node, verb, uri)
                         req = self.API[req_id]
 
                         op = self._get_operation(tpl, verb.lower())
@@ -112,12 +110,21 @@ class APIPostprocessor:
                         self._create_request_node(
                             req_id, req, verb, orig_path, uri,
                             parsed.netloc, shared_headers,
-                            shared_queries, op, conn
+                            shared_queries, op
                         )
+                        self.kg.remove((source_node, RDF.value, uri))
+                        self.kg.add((source_node, RDF.value, req))
                     matched = True
                     break
                 if matched:
                     break
+
+    @staticmethod
+    def _build_request_id(source_node: URIRef, verb: str, uri: URIRef) -> str:
+        """Create a short deterministic request identifier from stable request inputs."""
+        key = f"{str(source_node)}|{verb.upper()}|{str(uri)}"
+        digest = hashlib.blake2s(key.encode("utf-8"), digest_size=8).hexdigest()
+        return f"req_{verb.lower()}_{digest}"
 
     def _get_operation(self, tpl: str, method: str) -> dict:
         """
@@ -166,15 +173,15 @@ class APIPostprocessor:
             node = self.API[f"Param_{clean}"]
 
             if p.get('in') == 'header':
-                self.kg.add((node, RDF.type, self.HTTP.MessageHeader))
-                self.kg.add((node, self.HTTP.fieldName, Literal(p.get('name', name))))
-                self.kg.add((node, self.HTTP.fieldValue, Literal(self._param_default_value(p))))
+                self.kg.add((node, RDF.type, self.HTTP_VOC.MessageHeader))
+                self.kg.add((node, self.HTTP_VOC.fieldName, Literal(p.get('name', name))))
+                self.kg.add((node, self.HTTP_VOC.fieldValue, Literal(self._param_default_value(p))))
                 header_nodes[name] = node
 
             elif p.get('in') == 'query':
-                self.kg.add((node, RDF.type, self.HTTP.Parameter))
-                self.kg.add((node, self.HTTP.paramName, Literal(p.get('name', name))))
-                self.kg.add((node, self.HTTP.paramValue, Literal(self._param_default_value(p))))
+                self.kg.add((node, RDF.type, self.HTTP_VOC.Parameter))
+                self.kg.add((node, self.HTTP_VOC.paramName, Literal(p.get('name', name))))
+                self.kg.add((node, self.HTTP_VOC.paramValue, Literal(self._param_default_value(p))))
                 query_nodes[name] = node
 
         return header_nodes, query_nodes
@@ -193,9 +200,9 @@ class APIPostprocessor:
             or ""
         )
 
-    def _gather_value_uris(self) -> list:
+    def _gather_value_links(self) -> list:
         return [
-            o for _, _, o in self.kg.triples((None, RDF.value, None))
+            (s, o) for s, _, o in self.kg.triples((None, RDF.value, None))
             if isinstance(o, URIRef)
         ]
 
@@ -257,30 +264,24 @@ class APIPostprocessor:
 
         return True
 
-    def _create_connection_node(self):
-        conn = self.API['Connection_Main']
-        self.kg.add((conn, RDF.type, self.HTTP.Connection))
-        return conn
-
     def _create_request_node(
         self, req_id, req: URIRef, verb: str, path: str,
         uri: URIRef, authority: str,
         shared_headers: dict, shared_queries: dict,
-        op: dict, conn: URIRef
+        op: dict
     ):
         # core triples
-        self.kg.add((req, RDF.type, self.HTTP.Request))
-        self.kg.add((req, self.HTTP.methodName, Literal(verb)))
-        self.kg.add((req, self.HTTP.absolutePath, Literal(path)))
-        self.kg.add((req, self.HTTP.absoluteURI, URIRef(str(uri))))
-        self.kg.add((req, self.HTTP.authority, Literal(authority)))
-        self.kg.add((conn, self.HTTP.requests, req))
+        self.kg.add((req, RDF.type, self.HTTP_VOC.Request))
+        self.kg.add((req, self.HTTP_VOC.methodName, Literal(verb)))
+        self.kg.add((req, self.HTTP_VOC.absolutePath, Literal(path)))
+        self.kg.add((req, self.HTTP_VOC.absoluteURI, URIRef(str(uri))))
+        self.kg.add((req, self.HTTP_VOC.authority, Literal(authority)))
 
         # attach shared
         for node in shared_headers.values():
-            self.kg.add((req, self.HTTP.headers, node))
+            self.kg.add((req, self.HTTP_VOC.headers, node))
         for node in shared_queries.values():
-            self.kg.add((req, self.HTTP.params, node))
+            self.kg.add((req, self.HTTP_VOC.params, node))
 
         # inline parameters (ignore body)
         for p in op.get('parameters', []) or []:
@@ -294,18 +295,18 @@ class APIPostprocessor:
             node = self.API[f"{req_id}_Param_{clean}"]
 
             if p.get('in') == 'header':
-                self.kg.add((node, RDF.type, self.HTTP.MessageHeader))
-                self.kg.add((node, self.HTTP.fieldName, Literal(p.get('name', ''))))
-                self.kg.add((node, self.HTTP.fieldValue,
+                self.kg.add((node, RDF.type, self.HTTP_VOC.MessageHeader))
+                self.kg.add((node, self.HTTP_VOC.fieldName, Literal(p.get('name', ''))))
+                self.kg.add((node, self.HTTP_VOC.fieldValue,
                              Literal(self._param_default_value(p))))
-                self.kg.add((req, self.HTTP.headers, node))
+                self.kg.add((req, self.HTTP_VOC.headers, node))
 
             elif p.get('in') == 'query':
-                self.kg.add((node, RDF.type, self.HTTP.Parameter))
-                self.kg.add((node, self.HTTP.paramName, Literal(p.get('name', ''))))
-                self.kg.add((node, self.HTTP.paramValue,
+                self.kg.add((node, RDF.type, self.HTTP_VOC.Parameter))
+                self.kg.add((node, self.HTTP_VOC.paramName, Literal(p.get('name', ''))))
+                self.kg.add((node, self.HTTP_VOC.paramValue,
                              Literal(self._param_default_value(p))))
-                self.kg.add((req, self.HTTP.params, node))
+                self.kg.add((req, self.HTTP_VOC.params, node))
 
 
     def serialize(self, destination: Path):
