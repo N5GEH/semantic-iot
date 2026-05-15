@@ -1,5 +1,6 @@
 import json
 import logging
+from jsonpath_ng import parse
 
 class JSONPreprocessor:
     def __init__(self,
@@ -15,12 +16,14 @@ class JSONPreprocessor:
         Args:
             json_file_path: Path to the JSON file containing the entities.
             preprocessed_file_path: Path to the preprocessed JSON file.
-            unique_identifier_key: unique key to identify node instances, e.g., 'id'. It
-                    is assumed that the keys for id are located in the root level of the
-                    JSON data. Other cases are not supported yet.
-            entity_type_keys: key(s) to identify node type, e.g.,['category', 'tags']. It
-                    is assumed that the keys for node types are located in the root level
-                    of the JSON data. Other cases are not supported yet.
+            unique_identifier_key: unique key to identify node instances, e.g., 'id'. 
+                    Can be a simple key name or a JSONPath expression (e.g., '$.metadata.id').
+                    It is assumed that the keys for id are located in the root level of the
+                    JSON data by default, but JSONPath expressions allow nested access.
+            entity_type_keys: key(s) to identify node type, e.g., ['category', 'tags']. 
+                    Each key can be a simple key name or a JSONPath expression (e.g., '$.metadata.type').
+                    It is assumed that the keys for node types are located in the root level
+                    of the JSON data by default, but JSONPath expressions allow nested access.
         """
 
         self.json_file_path = json_file_path
@@ -33,9 +36,32 @@ class JSONPreprocessor:
 
     @staticmethod
     def get_value(entity, key):
-        """Get the value of a key, return the first element if the value is a list."""
-        value = entity.get(key)
-        return value[0] if isinstance(value, list) and len(value) > 0 else value
+        """
+        Get the value of a key from an entity. Supports both simple keys and JSONPath expressions.
+        
+        Args:
+            entity: The entity dict to extract the value from
+            key: Either a simple key name (e.g., 'id') or a JSONPath expression (e.g., '$.metadata.id')
+            
+        Returns:
+            The extracted value, or the first element if the value is a list, or None if not found.
+        """
+        try:
+            # Check if key is a JSONPath expression (starts with $ or contains .)
+            if isinstance(key, str) and key.startswith('$'):
+                jsonpath_expr = parse(key)
+                matches = jsonpath_expr.find(entity)
+                if matches:
+                    value = matches[0].value
+                    return value[0] if isinstance(value, list) and len(value) > 0 else value
+                return None
+            else:
+                # Simple key access
+                value = entity.get(key)
+                return value[0] if isinstance(value, list) and len(value) > 0 else value
+        except Exception as e:
+            logging.debug(f"Error extracting value for key '{key}': {e}")
+            return None
 
     def load_json_data(self):
         """Load and process JSON data."""
@@ -46,15 +72,15 @@ class JSONPreprocessor:
         entity_types = set()
 
         for entity in entities:
-            unique_identifier = entity.get(self.unique_identifier_key)
+            unique_identifier = self.get_value(entity, self.unique_identifier_key)
             entity_type_values = [self.get_value(entity, key) for key in
                                   self.entity_type_keys if self.get_value(entity, key)]
 
             # unify the ID and Type of the JSON data
             if entity_type_values:
                 if unique_identifier != 'id':
-                    entity['id'] = entity[self.unique_identifier_key]
-                entity_type = '_'.join(entity_type_values)
+                    entity['id'] = unique_identifier
+                entity_type = '_'.join(str(val) for val in entity_type_values)
                 entity['type'] = entity_type
                 entities_for_mapping.append(entity)
                 entity_types.add(entity_type)
