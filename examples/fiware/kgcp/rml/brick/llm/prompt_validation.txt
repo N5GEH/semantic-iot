@@ -1,0 +1,314 @@
+<system>
+You are an expert in semantic web technologies and IoT ontologies.You validate and correct RDF term mappings for a Knowledge Graph Construction pipeline.
+</system>
+
+You must validate and correct an intermediate report that maps IoT platform entity types to ontology classes and properties.
+
+Fields marked with **TODO: PLEASE CHECK** contain auto-generated candidates — pick exactly ONE correct value for each.
+
+<ontology_name>brick</ontology_name>
+
+<ontology_context>
+CLASS brick:Air_Flow_Setpoint_Limit (label: 'Air Flow Setpoint Limit')
+description: A parameter that places a lower or upper bound on the range of permitted values of a Air_Flow_Setpoint.
+subClassOf: Limit
+CLASS brick:Max_Air_Flow_Setpoint_Limit (label: 'Max Air Flow Setpoint Limit')
+description: A parameter that places an upper bound on the range of permitted values of a Air_Flow_Setpoint.
+subClassOf: Air_Flow_Setpoint_Limit, Max_Limit
+CLASS brick:Min_Air_Flow_Setpoint_Limit (label: 'Min Air Flow Setpoint Limit')
+description: A parameter that places a lower bound on the range of permitted values of a Air_Flow_Setpoint.
+subClassOf: Air_Flow_Setpoint_Limit, Min_Limit
+PROPERTY brick:isPointOf (label: 'Is point of')
+description: The subject is a source of telemetry related to the object. In some systems the source of telemetry may be represented as a digital/analog input/output point
+CLASS brick:Air_Temperature_Sensor (label: 'Air Temperature Sensor')
+description: Measures the temperature of air
+subClassOf: Temperature_Sensor
+CLASS brick:Temperature_Sensor (label: 'Temperature Sensor')
+description: Measures temperature: the physical property of matter that quantitatively expresses the common notions of hot and cold
+subClassOf: Sensor
+CLASS brick:Water_Temperature_Sensor (label: 'Water Temperature Sensor')
+description: Measures the temperature of water
+subClassOf: Temperature_Sensor
+PROPERTY brick:hasLocation (label: 'Has location')
+description: Subject is physically located in the location given by the object
+PROPERTY brick:isReplacedBy (label: 'Is replaced by')
+CLASS brick:CO2_Sensor (label: 'CO2 Sensor')
+description: Measures properties of CO2 in air
+subClassOf: Air_Quality_Sensor
+CLASS brick:Cooling_Coil (label: 'Cooling Coil')
+description: A cooling element made of pipe or tube that removes heat from equipment, machines or airflows. Typically filled with either refrigerant or cold water.
+subClassOf: Coil
+PROPERTY brick:feeds (label: 'Feeds')
+description: The subject is upstream of the object in the context of some sequential process; some media is passed between them
+PROPERTY rec:locatedIn (label: 'locatedIn')
+PROPERTY brick:value (label: 'Value')
+description: The basic value of an entity property
+PROPERTY brick:hasPart (label: 'Has part')
+description: The subject is composed in part of the entity given by the object
+PROPERTY brick:isPartOf (label: 'Is part of')
+PROPERTY rec:hasPart (label: 'hasPart')
+PROPERTY rec:isPartOf (label: 'isPartOf')
+PROPERTY brick:hasPoint (label: 'Has point')
+description: The subject has a source of telemetry identified by the object. In some systems the source of telemetry may be represented as a digital/analog input/output point
+PROPERTY rec:hasPoint (label: 'hasPoint')
+CLASS brick:Fan_Speed_Command (label: 'Fan Speed Command')
+description: Controls the speed of fans
+subClassOf: Fan_Command
+CLASS brick:Direct_Expansion_Cooling_Coil (label: 'Direct Expansion Cooling Coil')
+subClassOf: Cooling_Coil
+CLASS brick:Fresh_Air_Fan (label: 'Fresh Air Fan')
+subClassOf: Fan
+CLASS brick:Fresh_Air_Setpoint_Limit (label: 'Fresh Air Setpoint Limit')
+description: A parameter that places a lower or upper bound on the range of permitted values of a Fresh_Air_Setpoint.
+subClassOf: Limit
+CLASS brick:Max_Fresh_Air_Setpoint_Limit (label: 'Max Fresh Air Setpoint Limit')
+description: A parameter that places an upper bound on the range of permitted values of a Fresh_Air_Setpoint.
+subClassOf: Fresh_Air_Setpoint_Limit, Max_Limit
+CLASS brick:Hot_Deck (label: 'Hot Deck')
+description: Part of a dual duct air handling unit that supplies heating to a building
+subClassOf: HVAC_Equipment
+CLASS brick:Shower (label: 'Shower')
+description: A space containing showers, usually adjacent to an athletic or execise area
+subClassOf: Room
+CLASS brick:Tunnel (label: 'Tunnel')
+description: An enclosed space that connects buildings. Often underground
+subClassOf: Space
+CLASS brick:Control_Room (label: 'Control Room')
+description: A space from which operations are managed
+subClassOf: Room
+CLASS brick:Team_Room (label: 'Team Room')
+description: An office used by multiple team members for specific work tasks. Distinct from Conference Room
+subClassOf: Enclosed_Office
+CLASS brick:Telecom_Room (label: 'Telecom Room')
+description: A class of spaces used to support telecommuncations and IT equipment
+subClassOf: Room
+CLASS brick:Pressure_Sensor (label: 'Pressure Sensor')
+description: Measure the amount of force acting on a unit area
+subClassOf: Sensor
+CLASS brick:Frequency_Sensor (label: 'Frequency Sensor')
+description: Measures the frequency of a phenomenon or aspect of a phenomenon, e.g. the frequency of a fan turning
+subClassOf: Sensor
+CLASS brick:Speed_Sensor (label: 'Speed Sensor')
+description: Measures the magnitude of velocity of some form of movement
+subClassOf: Sensor
+CLASS brick:Thermostat (label: 'Thermostat')
+description: An automatic control device used to maintain temperature at a fixed or adjustable setpoint.
+subClassOf: HVAC_Equipment, Sensor_Equipment
+CLASS brick:Air_Temperature_Setpoint_Limit (label: 'Air Temperature Setpoint Limit')
+description: A parameter that places a lower or upper bound on the range of permitted values of a Air_Temperature_Setpoint.
+subClassOf: Limit, Temperature_Parameter
+CLASS brick:Max_Temperature_Setpoint_Limit (label: 'Max Temperature Setpoint Limit')
+description: A parameter that places an upper bound on the range of permitted values of a Temperature_Setpoint.
+subClassOf: Max_Limit, Temperature_Parameter
+CLASS brick:Min_Temperature_Setpoint_Limit (label: 'Min Temperature Setpoint Limit')
+description: A parameter that places a lower bound on the range of permitted values of a Temperature_Setpoint.
+subClassOf: Min_Limit, Temperature_Parameter
+</ontology_context>
+
+<intermediate_report>
+{
+  "@context": {
+    "bacnet": "http://data.ashrae.org/bacnet/2020#",
+    "brick": "https://brickschema.org/schema/Brick#",
+    "bsh": "https://brickschema.org/schema/BrickShape#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "qudtqk": "http://qudt.org/vocab/quantitykind/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "rec": "https://w3id.org/rec#",
+    "ref": "https://brickschema.org/schema/Brick/ref#",
+    "s223": "http://data.ashrae.org/standard223#",
+    "sdo": "http://schema.org/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "tag": "https://brickschema.org/schema/BrickTag#",
+    "unit": "http://qudt.org/vocab/unit/",
+    "vcard": "http://www.w3.org/2006/vcard/ns#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@data": [
+    {
+      "nodetype": "airFlowSetpoint_FreshAirVentilation",
+      "iterator": "$[?(@.type=='FreshAirVentilation' && @..airFlowSetpoint)]",
+      "class": "**TODO: PLEASE CHECK** brick:Air_Flow_Setpoint_Limit brick:Max_Air_Flow_Setpoint_Limit brick:Min_Air_Flow_Setpoint_Limit",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "FreshAirVentilation",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:isPointOf",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "AmbientTemperatureSensor",
+      "iterator": "$[?(@.type=='AmbientTemperatureSensor')]",
+      "class": "**TODO: PLEASE CHECK** brick:Air_Temperature_Sensor brick:Temperature_Sensor brick:Water_Temperature_Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "Hotel",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation brick:isPointOf brick:isReplacedBy brick:hasLocation",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "CO2Sensor",
+      "iterator": "$[?(@.type=='CO2Sensor')]",
+      "class": "**TODO: PLEASE CHECK** brick:CO2_Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:isPointOf brick:hasLocation brick:isReplacedBy brick:hasLocation",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "CoolingCoil",
+      "iterator": "$[?(@.type=='CoolingCoil')]",
+      "class": "**TODO: PLEASE CHECK** brick:Cooling_Coil",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:feeds brick:hasLocation brick:isReplacedBy rec:locatedIn brick:value brick:hasLocation",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "fanSpeed_CoolingCoil",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasPart brick:feeds brick:isPartOf brick:isReplacedBy rec:hasPart rec:isPartOf brick:value brick:hasPoint rec:hasPoint",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "fanSpeed_CoolingCoil",
+      "iterator": "$[?(@.type=='CoolingCoil' && @..fanSpeed)]",
+      "class": "**TODO: PLEASE CHECK** brick:Cooling_Coil brick:Fan_Speed_Command brick:Direct_Expansion_Cooling_Coil",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "CoolingCoil",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasPart brick:feeds brick:isPartOf brick:isReplacedBy rec:hasPart rec:isPartOf brick:value brick:isPointOf",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "FreshAirVentilation",
+      "iterator": "$[?(@.type=='FreshAirVentilation')]",
+      "class": "**TODO: PLEASE CHECK** brick:Fresh_Air_Fan brick:Fresh_Air_Setpoint_Limit brick:Max_Fresh_Air_Setpoint_Limit",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "airFlowSetpoint_FreshAirVentilation",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasPoint brick:isReplacedBy rec:hasPoint",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "Hotel",
+      "iterator": "$[?(@.type=='Hotel')]",
+      "class": "**TODO: PLEASE CHECK** brick:Hot_Deck brick:Shower brick:Tunnel",
+      "hasRelationship": [],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "HotelRoom",
+      "iterator": "$[?(@.type=='HotelRoom')]",
+      "class": "**TODO: PLEASE CHECK** brick:Control_Room brick:Team_Room brick:Telecom_Room",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "Hotel",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "PresenceSensor",
+      "iterator": "$[?(@.type=='PresenceSensor')]",
+      "class": "**TODO: PLEASE CHECK** brick:Pressure_Sensor brick:Frequency_Sensor brick:Speed_Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation brick:isPointOf brick:hasLocation brick:isReplacedBy",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "RadiatorThermostat",
+      "iterator": "$[?(@.type=='RadiatorThermostat')]",
+      "class": "**TODO: PLEASE CHECK** brick:Thermostat",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation brick:feeds brick:hasLocation brick:isReplacedBy rec:locatedIn brick:value",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperatureSetpoint_RadiatorThermostat",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasPoint brick:isReplacedBy rec:hasPoint",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "TemperatureSensor",
+      "iterator": "$[?(@.type=='TemperatureSensor')]",
+      "class": "**TODO: PLEASE CHECK** brick:Temperature_Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:isPointOf brick:hasLocation brick:isReplacedBy brick:hasLocation",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperatureSetpoint_RadiatorThermostat",
+      "iterator": "$[?(@.type=='RadiatorThermostat' && @..temperatureSetpoint)]",
+      "class": "**TODO: PLEASE CHECK** brick:Air_Temperature_Setpoint_Limit brick:Max_Temperature_Setpoint_Limit brick:Min_Temperature_Setpoint_Limit",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "RadiatorThermostat",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:isPointOf",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    }
+  ]
+}
+</intermediate_report>
+
+<instructions>
+For EACH entry in @data:
+1. "class" — select the single best-matching ontology class from the candidates listed after **TODO: PLEASE CHECK**. Use prefixed form (e.g. "brick:Temperature_Sensor"). If none of the candidates fits, choose the most appropriate class from the ontology.
+2. "hasRelationship[].propertyClass" — select the single correct object property. Consider semantic direction: the property domain must match the subject node class and range must match the object node class.
+3. Keep all other fields (nodetype, iterator, hasDataAccess, rawdataidentifier, relatedNodeType) unchanged.
+4. Do NOT add or remove node types or relationships.
+</instructions>
+
+<constraints>
+- Return ONLY a valid JSON object with the same structure (@context + @data).
+- Every "class" and "propertyClass" must be a single prefixed string — no TODO markers, no multiple values, no nulls.
+- No explanation text outside the JSON.
+</constraints>
