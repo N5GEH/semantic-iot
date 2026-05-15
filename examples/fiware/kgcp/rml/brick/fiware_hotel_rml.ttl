@@ -1,7 +1,4 @@
-@prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
-@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
-@prefix ex: <http://example.com#> .
+@prefix rml-mapping: <http://example.com/rml-mapping#> .
 @prefix bacnet: <http://data.ashrae.org/bacnet/2020#> .
 @prefix brick: <https://brickschema.org/schema/Brick#> .
 @prefix bsh: <https://brickschema.org/schema/BrickShape#> .
@@ -22,12 +19,15 @@
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
 
 # Mapping for airFlowSetpoint_FreshAirVentilation
-ex:MappingairFlowSetpoint_FreshAirVentilation
+rml-mapping:MappingairFlowSetpoint_FreshAirVentilation
     a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "placeholder.json" ;
+        rml:source "example_hotel.json" ;
         rml:referenceFormulation ql:JSONPath ;
         rml:iterator '$[?(@.type=="FreshAirVentilation" && @..airFlowSetpoint)]' ;
     ] ;
@@ -38,7 +38,7 @@ ex:MappingairFlowSetpoint_FreshAirVentilation
     rr:predicateObjectMap [
         rr:predicate brick:isPointOf ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingFreshAirVentilation ;
+            rr:parentTriplesMap rml-mapping:MappingFreshAirVentilation ;
             rr:joinCondition [
                 rr:child "id" ;
                 rr:parent "id" ;
@@ -54,10 +54,10 @@ ex:MappingairFlowSetpoint_FreshAirVentilation
     .
 
 # Mapping for AmbientTemperatureSensor
-ex:MappingAmbientTemperatureSensor
+rml-mapping:MappingAmbientTemperatureSensor
     a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "placeholder.json" ;
+        rml:source "example_hotel.json" ;
         rml:referenceFormulation ql:JSONPath ;
         rml:iterator '$[?(@.type=="AmbientTemperatureSensor")]' ;
     ] ;
@@ -68,7 +68,7 @@ ex:MappingAmbientTemperatureSensor
     rr:predicateObjectMap [
         rr:predicate brick:isPointOf ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingHotel ;
+            rr:parentTriplesMap rml-mapping:MappingHotel ;
             rr:joinCondition [
                 rr:child "hasLocation.value" ;
                 rr:parent "id" ;
@@ -84,10 +84,10 @@ ex:MappingAmbientTemperatureSensor
     .
 
 # Mapping for CO2Sensor
-ex:MappingCO2Sensor
+rml-mapping:MappingCO2Sensor
     a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "placeholder.json" ;
+        rml:source "example_hotel.json" ;
         rml:referenceFormulation ql:JSONPath ;
         rml:iterator '$[?(@.type=="CO2Sensor")]' ;
     ] ;
@@ -98,7 +98,7 @@ ex:MappingCO2Sensor
     rr:predicateObjectMap [
         rr:predicate brick:isPointOf ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingHotelRoom ;
+            rr:parentTriplesMap rml-mapping:MappingHotelRoom ;
             rr:joinCondition [
                 rr:child "hasLocation.value" ;
                 rr:parent "id" ;
@@ -114,10 +114,10 @@ ex:MappingCO2Sensor
     .
 
 # Mapping for CoolingCoil
-ex:MappingCoolingCoil
+rml-mapping:MappingCoolingCoil
     a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "placeholder.json" ;
+        rml:source "example_hotel.json" ;
         rml:referenceFormulation ql:JSONPath ;
         rml:iterator '$[?(@.type=="CoolingCoil")]' ;
     ] ;
@@ -128,7 +128,7 @@ ex:MappingCoolingCoil
     rr:predicateObjectMap [
         rr:predicate brick:hasLocation ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingHotelRoom ;
+            rr:parentTriplesMap rml-mapping:MappingHotelRoom ;
             rr:joinCondition [
                 rr:child "hasLocation.value" ;
                 rr:parent "id" ;
@@ -138,7 +138,7 @@ ex:MappingCoolingCoil
     rr:predicateObjectMap [
         rr:predicate brick:hasPoint ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingfanSpeed_CoolingCoil ;
+            rr:parentTriplesMap rml-mapping:MappingfanSpeed_CoolingCoil ;
             rr:joinCondition [
                 rr:child "id" ;
                 rr:parent "id" ;
@@ -148,10 +148,10 @@ ex:MappingCoolingCoil
     .
 
 # Mapping for fanSpeed_CoolingCoil
-ex:MappingfanSpeed_CoolingCoil
+rml-mapping:MappingfanSpeed_CoolingCoil
     a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "placeholder.json" ;
+        rml:source "example_hotel.json" ;
         rml:referenceFormulation ql:JSONPath ;
         rml:iterator '$[?(@.type=="CoolingCoil" && @..fanSpeed)]' ;
     ] ;
@@ -162,7 +162,7 @@ ex:MappingfanSpeed_CoolingCoil
     rr:predicateObjectMap [
         rr:predicate brick:isPointOf ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingCoolingCoil ;
+            rr:parentTriplesMap rml-mapping:MappingCoolingCoil ;
             rr:joinCondition [
                 rr:child "id" ;
                 rr:parent "id" ;
@@ -178,10 +178,10 @@ ex:MappingfanSpeed_CoolingCoil
     .
 
 # Mapping for FreshAirVentilation
-ex:MappingFreshAirVentilation
+rml-mapping:MappingFreshAirVentilation
     a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "placeholder.json" ;
+        rml:source "example_hotel.json" ;
         rml:referenceFormulation ql:JSONPath ;
         rml:iterator '$[?(@.type=="FreshAirVentilation")]' ;
     ] ;
@@ -192,7 +192,7 @@ ex:MappingFreshAirVentilation
     rr:predicateObjectMap [
         rr:predicate brick:hasLocation ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingHotelRoom ;
+            rr:parentTriplesMap rml-mapping:MappingHotelRoom ;
             rr:joinCondition [
                 rr:child "hasLocation.value" ;
                 rr:parent "id" ;
@@ -202,7 +202,7 @@ ex:MappingFreshAirVentilation
     rr:predicateObjectMap [
         rr:predicate brick:hasPoint ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingairFlowSetpoint_FreshAirVentilation ;
+            rr:parentTriplesMap rml-mapping:MappingairFlowSetpoint_FreshAirVentilation ;
             rr:joinCondition [
                 rr:child "id" ;
                 rr:parent "id" ;
@@ -212,10 +212,10 @@ ex:MappingFreshAirVentilation
     .
 
 # Mapping for Hotel
-ex:MappingHotel
+rml-mapping:MappingHotel
     a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "placeholder.json" ;
+        rml:source "example_hotel.json" ;
         rml:referenceFormulation ql:JSONPath ;
         rml:iterator '$[?(@.type=="Hotel")]' ;
     ] ;
@@ -226,10 +226,10 @@ ex:MappingHotel
     .
 
 # Mapping for HotelRoom
-ex:MappingHotelRoom
+rml-mapping:MappingHotelRoom
     a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "placeholder.json" ;
+        rml:source "example_hotel.json" ;
         rml:referenceFormulation ql:JSONPath ;
         rml:iterator '$[?(@.type=="HotelRoom")]' ;
     ] ;
@@ -240,7 +240,7 @@ ex:MappingHotelRoom
     rr:predicateObjectMap [
         rr:predicate brick:hasLocation ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingHotel ;
+            rr:parentTriplesMap rml-mapping:MappingHotel ;
             rr:joinCondition [
                 rr:child "hasLocation.value" ;
                 rr:parent "id" ;
@@ -250,10 +250,10 @@ ex:MappingHotelRoom
     .
 
 # Mapping for PresenceSensor
-ex:MappingPresenceSensor
+rml-mapping:MappingPresenceSensor
     a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "placeholder.json" ;
+        rml:source "example_hotel.json" ;
         rml:referenceFormulation ql:JSONPath ;
         rml:iterator '$[?(@.type=="PresenceSensor")]' ;
     ] ;
@@ -264,7 +264,7 @@ ex:MappingPresenceSensor
     rr:predicateObjectMap [
         rr:predicate brick:isPointOf ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingHotelRoom ;
+            rr:parentTriplesMap rml-mapping:MappingHotelRoom ;
             rr:joinCondition [
                 rr:child "hasLocation.value" ;
                 rr:parent "id" ;
@@ -280,10 +280,10 @@ ex:MappingPresenceSensor
     .
 
 # Mapping for RadiatorThermostat
-ex:MappingRadiatorThermostat
+rml-mapping:MappingRadiatorThermostat
     a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "placeholder.json" ;
+        rml:source "example_hotel.json" ;
         rml:referenceFormulation ql:JSONPath ;
         rml:iterator '$[?(@.type=="RadiatorThermostat")]' ;
     ] ;
@@ -294,7 +294,7 @@ ex:MappingRadiatorThermostat
     rr:predicateObjectMap [
         rr:predicate brick:hasLocation ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingHotelRoom ;
+            rr:parentTriplesMap rml-mapping:MappingHotelRoom ;
             rr:joinCondition [
                 rr:child "hasLocation.value" ;
                 rr:parent "id" ;
@@ -304,7 +304,7 @@ ex:MappingRadiatorThermostat
     rr:predicateObjectMap [
         rr:predicate brick:hasPoint ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingtemperatureSetpoint_RadiatorThermostat ;
+            rr:parentTriplesMap rml-mapping:MappingtemperatureSetpoint_RadiatorThermostat ;
             rr:joinCondition [
                 rr:child "id" ;
                 rr:parent "id" ;
@@ -314,10 +314,10 @@ ex:MappingRadiatorThermostat
     .
 
 # Mapping for TemperatureSensor
-ex:MappingTemperatureSensor
+rml-mapping:MappingTemperatureSensor
     a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "placeholder.json" ;
+        rml:source "example_hotel.json" ;
         rml:referenceFormulation ql:JSONPath ;
         rml:iterator '$[?(@.type=="TemperatureSensor")]' ;
     ] ;
@@ -328,7 +328,7 @@ ex:MappingTemperatureSensor
     rr:predicateObjectMap [
         rr:predicate brick:isPointOf ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingHotelRoom ;
+            rr:parentTriplesMap rml-mapping:MappingHotelRoom ;
             rr:joinCondition [
                 rr:child "hasLocation.value" ;
                 rr:parent "id" ;
@@ -344,10 +344,10 @@ ex:MappingTemperatureSensor
     .
 
 # Mapping for temperatureSetpoint_RadiatorThermostat
-ex:MappingtemperatureSetpoint_RadiatorThermostat
+rml-mapping:MappingtemperatureSetpoint_RadiatorThermostat
     a rr:TriplesMap ;
     rml:logicalSource [
-        rml:source "placeholder.json" ;
+        rml:source "example_hotel.json" ;
         rml:referenceFormulation ql:JSONPath ;
         rml:iterator '$[?(@.type=="RadiatorThermostat" && @..temperatureSetpoint)]' ;
     ] ;
@@ -358,7 +358,7 @@ ex:MappingtemperatureSetpoint_RadiatorThermostat
     rr:predicateObjectMap [
         rr:predicate brick:isPointOf ;
         rr:objectMap [
-            rr:parentTriplesMap ex:MappingRadiatorThermostat ;
+            rr:parentTriplesMap rml-mapping:MappingRadiatorThermostat ;
             rr:joinCondition [
                 rr:child "id" ;
                 rr:parent "id" ;
