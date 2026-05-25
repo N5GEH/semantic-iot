@@ -5,10 +5,10 @@ LLM-supported RML generation pipeline:
   3. RMLMappingGenerator ->  rml_mapping.ttl
 
 Offline workflow (no API key):
-  python -m LLM_eval.run --step preprocess
+  python -m semantic_iot.assisted_mapping.pipeline --step preprocess
     generates intermediate_report.json and saves prompt to prompt_validation.txt
-  [paste prompt_validation.txt into LLM, save the JSON response to llm_response.txt]
-  python -m LLM_eval.run --step finish
+  [paste prompt_validation.txt into LLMs manually, save the JSON response to llm_response.txt]
+  python -m semantic_iot.assisted_mapping.pipeline --step finish
     reads llm_response.txt, validates it, generates rml_mapping.ttl
 """
 
@@ -18,9 +18,9 @@ from pathlib import Path
 
 from semantic_iot.RML_preprocess import MappingPreprocess
 from semantic_iot.RML_generator import RMLMappingGenerator
-from LLM_eval.utils.ontology_processor import OntologyContext
-from LLM_eval.utils.prompts import SYSTEM_PROMPT, build_validation_prompt
-from LLM_eval.utils.claude import LLMAgent
+from .utils.ontology_processor import OntologyContext
+from .utils.prompts import SYSTEM_PROMPT, build_validation_prompt
+from .utils.claude import LLMAgent
 
 
 class LLMRMLPipeline:
@@ -54,7 +54,6 @@ class LLMRMLPipeline:
         self.response_path = self.output_dir / "llm_response.txt"
         self.validated_report_path = self.output_dir / f"intermediate_report_validated_{self.ontology_name}.json"
         self.rml_output_path = self.output_dir / "rml_mapping.ttl"
-
 
     def run_preprocessing(self, overwrite: bool = True):
         print("Step 1: Generating term mapping candidates via MappingPreprocess...")
@@ -139,7 +138,7 @@ Next steps:
   1. Open {self.prompt_path}
   2. Paste the content into Claude.ai (or another LLM)
   3. Save the JSON response to: {self.response_path}
-  4. Run:  python -m LLM_eval.run --step finish
+  4. Run:  python -m semantic_iot.assisted_mapping.pipeline --step finish
 """)
 
     def run_finish(self):

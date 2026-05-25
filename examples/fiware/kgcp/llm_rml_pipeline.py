@@ -1,14 +1,10 @@
-import sys
 import argparse
 from pathlib import Path
 
-
-from LLM_eval.run import LLMRMLPipeline
+from semantic_iot import LLMRMLPipeline
 
 
 project_root_path = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root_path.parent.parent))  # makes LLM_eval importable
-
 
 domain_ontology = "brick"  # "brick" "saref4bldg" "dogont"
 

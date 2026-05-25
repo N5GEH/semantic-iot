@@ -12,7 +12,7 @@ class LLMAgent:
 
     @staticmethod
     def _read_key_file() -> str | None:
-        key_file = os.path.join(os.path.dirname(__file__), "..", "..", "semantic_iot", "utils", "ANTHROPIC_API_KEY")
+        key_file = os.path.join(os.path.dirname(__file__), "..", "..", "utils", "ANTHROPIC_API_KEY")
         try:
             with open(os.path.normpath(key_file)) as f:
                 key = f.read().strip()
