@@ -142,6 +142,24 @@ class MappingPreprocess:
             else:
                 local_name = s.split("#")[-1] if "#" in s else s.split("/")[-1]
                 ontology_classes[local_name.lower()] = s
+
+        # Also include ancestor classes reachable via rdfs:subClassOf that are not
+        # explicitly typed as owl:Class - common in RDFS-based and mixed ontologies
+        known_iris = set(ontology_classes.values())
+        for class_iri in list(ontology_classes.values()):
+            for ancestor in _graph.transitive_objects(class_iri, RDFS.subClassOf):
+                if not isinstance(ancestor, URIRef) or ancestor in known_iris:
+                    continue
+                label = _graph.value(subject=ancestor, predicate=RDFS.label)
+                if label:
+                    key = str(label).lower()
+                else:
+                    local = str(ancestor).split("#")[-1] if "#" in str(ancestor) else str(ancestor).split("/")[-1]
+                    key = local.lower()
+                if key not in ontology_classes:
+                    ontology_classes[key] = ancestor
+                    known_iris.add(ancestor)
+
         self.ontology_classes = ontology_classes
 
         # Extracting property classes
