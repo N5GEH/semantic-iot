@@ -36,6 +36,24 @@ if __name__ == "__main__":
              "finish: read llm_response.txt and produce RML; "
              "full: run entire pipeline via API (requires ANTHROPIC_API_KEY)",
     )
+    parser.add_argument(
+        "--similarity-mode",
+        choices=["string", "semantic"],
+        default="string",
+        help="Similarity matching mode: 'string' (Levenshtein) or 'semantic' (embeddings). Default: string.",
+    )
+    parser.add_argument(
+        "--bind-all-classes",
+        action="store_true",
+        default=False,
+        help="Include ALL ontology classes/properties in the LLM prompt, not just candidates.",
+    )
+    parser.add_argument(
+        "--level-depth",
+        type=int,
+        default=None,
+        help="When --bind-all-classes is set, only include classes with at most this many superclasses.",
+    )
     args = parser.parse_args()
 
     pipeline = LLMRMLPipeline(
@@ -47,6 +65,9 @@ if __name__ == "__main__":
         ontology_name=domain_ontology,
         use_thinking=True,
         thinking_budget=6000,
+        similarity_mode=args.similarity_mode,
+        bind_all_classes=args.bind_all_classes,
+        level_depth=args.level_depth,
     )
 
     if args.step == "preprocess":

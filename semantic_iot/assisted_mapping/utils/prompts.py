@@ -10,7 +10,7 @@ SYSTEM_PROMPT = (
 def build_validation_prompt(report: dict, ontology_context: str, ontology_name: str) -> str:
     return f"""You must validate and correct an intermediate report that maps IoT platform entity types to ontology classes and properties.
 
-Fields marked with **TODO: PLEASE CHECK** contain auto-generated candidates — pick exactly ONE correct value for each.
+Fields marked with **TODO: PLEASE CHECK** contain auto-generated candidates — pick exactly ONE correct value for each. You may also choose a class or property from the full ontology list below if none of the candidates fit.
 
 <ontology_name>{ontology_name}</ontology_name>
 

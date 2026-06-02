@@ -36,6 +36,9 @@ class LLMRMLPipeline:
         model: str = "claude-sonnet-4-6",
         use_thinking: bool = True,
         thinking_budget: int = 6000,
+        similarity_mode: str = "string",
+        bind_all_classes: bool = False,
+        level_depth: int = None,
     ):
         self.json_file_path = json_file_path
         self.ontology_path = ontology_path
@@ -48,6 +51,9 @@ class LLMRMLPipeline:
         self.thinking_budget = thinking_budget
         self._api_key = api_key
         self._model = model
+        self.similarity_mode = similarity_mode
+        self.bind_all_classes = bind_all_classes
+        self.level_depth = level_depth
 
         self.intermediate_report_path = self.output_dir / f"intermediate_report_{self.ontology_name}.json"
         self.prompt_path = self.output_dir / "prompt_validation.txt"
@@ -63,6 +69,7 @@ class LLMRMLPipeline:
             intermediate_report_file_path=str(self.intermediate_report_path),
             platform_config=self.platform_config,
             patterns_splitting=self.patterns_splitting,
+            similarity_mode=self.similarity_mode,
         )
         preprocessor.pre_process(overwrite=overwrite)
         print(f"Saved: {self.intermediate_report_path}")
@@ -70,7 +77,9 @@ class LLMRMLPipeline:
     def build_and_save_prompt(self):
         with open(self.intermediate_report_path) as f:
             report = json.load(f)
-        context_str = OntologyContext(self.ontology_path).build_context_string(report)
+        context_str = OntologyContext(self.ontology_path).build_context_string(
+            report, bind_all=self.bind_all_classes, max_depth=self.level_depth
+        )
         prompt = f"<system>\n{SYSTEM_PROMPT}\n</system>\n\n" + build_validation_prompt(
             report, context_str, self.ontology_name
         )
@@ -83,7 +92,9 @@ class LLMRMLPipeline:
         print("Step 2: LLM validation (online mode)...")
         with open(self.intermediate_report_path) as f:
             report = json.load(f)
-        context_str = OntologyContext(self.ontology_path).build_context_string(report)
+        context_str = OntologyContext(self.ontology_path).build_context_string(
+            report, bind_all=self.bind_all_classes, max_depth=self.level_depth
+        )
         prompt = build_validation_prompt(report, context_str, self.ontology_name)
         llm = LLMAgent(model=self._model, api_key=self._api_key)
         print(f"Calling {llm.model}...")
