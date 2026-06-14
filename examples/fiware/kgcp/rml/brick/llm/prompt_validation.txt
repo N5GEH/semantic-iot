@@ -4,105 +4,950 @@ You are an expert in semantic web technologies and IoT ontologies.You validate a
 
 You must validate and correct an intermediate report that maps IoT platform entity types to ontology classes and properties.
 
-Fields marked with **TODO: PLEASE CHECK** contain auto-generated candidates — pick exactly ONE correct value for each.
+Fields marked with **TODO: PLEASE CHECK** contain auto-generated candidates — pick exactly ONE correct value for each. You may also choose a class or property from the full ontology list below if none of the candidates fit.
 
 <ontology_name>brick</ontology_name>
 
 <ontology_context>
-CLASS brick:Air_Flow_Setpoint_Limit (label: 'Air Flow Setpoint Limit')
-description: A parameter that places a lower or upper bound on the range of permitted values of a Air_Flow_Setpoint.
-subClassOf: Limit
-CLASS brick:Max_Air_Flow_Setpoint_Limit (label: 'Max Air Flow Setpoint Limit')
-description: A parameter that places an upper bound on the range of permitted values of a Air_Flow_Setpoint.
-subClassOf: Air_Flow_Setpoint_Limit, Max_Limit
-CLASS brick:Min_Air_Flow_Setpoint_Limit (label: 'Min Air Flow Setpoint Limit')
-description: A parameter that places a lower bound on the range of permitted values of a Air_Flow_Setpoint.
-subClassOf: Air_Flow_Setpoint_Limit, Min_Limit
-PROPERTY brick:isPointOf (label: 'Is point of')
-description: The subject is a source of telemetry related to the object. In some systems the source of telemetry may be represented as a digital/analog input/output point
-CLASS brick:Air_Temperature_Sensor (label: 'Air Temperature Sensor')
-description: Measures the temperature of air
-subClassOf: Temperature_Sensor
-CLASS brick:Temperature_Sensor (label: 'Temperature Sensor')
-description: Measures temperature: the physical property of matter that quantitatively expresses the common notions of hot and cold
+ENTITY TYPES from platform data model:
+  - AmbientTemperatureSensor
+  - CO2Sensor
+  - CoolingCoil
+  - FreshAirVentilation
+  - Hotel
+  - HotelRoom
+  - PresenceSensor
+  - RadiatorThermostat
+  - TemperatureSensor
+  - airFlowSetpoint_FreshAirVentilation
+  - fanSpeed_CoolingCoil
+  - temperatureSetpoint_RadiatorThermostat
+
+ALL ONTOLOGY CLASSES:
+CLASS brick:Availability_Status (label: 'Availability Status')
+description: Indicates if a piece of equipment, system, or functionality is available for operation
+subClassOf: Status
+CLASS brick:Boiler_Command (label: 'Boiler Command')
+description: A command to control a boiler
+subClassOf: Command
+CLASS brick:Bypass_Command (label: 'Bypass Command')
+subClassOf: Command
+CLASS brick:Capacity_Sensor (label: 'Capacity Sensor')
 subClassOf: Sensor
-CLASS brick:Water_Temperature_Sensor (label: 'Water Temperature Sensor')
-description: Measures the temperature of water
-subClassOf: Temperature_Sensor
-PROPERTY brick:hasLocation (label: 'Has location')
-description: Subject is physically located in the location given by the object
-PROPERTY brick:isReplacedBy (label: 'Is replaced by')
-CLASS brick:CO2_Sensor (label: 'CO2 Sensor')
-description: Measures properties of CO2 in air
-subClassOf: Air_Quality_Sensor
-CLASS brick:Cooling_Coil (label: 'Cooling Coil')
-description: A cooling element made of pipe or tube that removes heat from equipment, machines or airflows. Typically filled with either refrigerant or cold water.
-subClassOf: Coil
-PROPERTY brick:feeds (label: 'Feeds')
-description: The subject is upstream of the object in the context of some sequential process; some media is passed between them
-PROPERTY rec:locatedIn (label: 'locatedIn')
-PROPERTY brick:value (label: 'Value')
-description: The basic value of an entity property
-PROPERTY brick:hasPart (label: 'Has part')
-description: The subject is composed in part of the entity given by the object
-PROPERTY brick:isPartOf (label: 'Is part of')
-PROPERTY rec:hasPart (label: 'hasPart')
-PROPERTY rec:isPartOf (label: 'isPartOf')
-PROPERTY brick:hasPoint (label: 'Has point')
-description: The subject has a source of telemetry identified by the object. In some systems the source of telemetry may be represented as a digital/analog input/output point
-PROPERTY rec:hasPoint (label: 'hasPoint')
-CLASS brick:Fan_Speed_Command (label: 'Fan Speed Command')
-description: Controls the speed of fans
-subClassOf: Fan_Command
-CLASS brick:Direct_Expansion_Cooling_Coil (label: 'Direct Expansion Cooling Coil')
-subClassOf: Cooling_Coil
-CLASS brick:Fresh_Air_Fan (label: 'Fresh Air Fan')
-subClassOf: Fan
-CLASS brick:Fresh_Air_Setpoint_Limit (label: 'Fresh Air Setpoint Limit')
-description: A parameter that places a lower or upper bound on the range of permitted values of a Fresh_Air_Setpoint.
-subClassOf: Limit
-CLASS brick:Max_Fresh_Air_Setpoint_Limit (label: 'Max Fresh Air Setpoint Limit')
-description: A parameter that places an upper bound on the range of permitted values of a Fresh_Air_Setpoint.
-subClassOf: Fresh_Air_Setpoint_Limit, Max_Limit
-CLASS brick:Hot_Deck (label: 'Hot Deck')
-description: Part of a dual duct air handling unit that supplies heating to a building
-subClassOf: HVAC_Equipment
-CLASS brick:Shower (label: 'Shower')
-description: A space containing showers, usually adjacent to an athletic or execise area
-subClassOf: Room
-CLASS brick:Tunnel (label: 'Tunnel')
-description: An enclosed space that connects buildings. Often underground
-subClassOf: Space
-CLASS brick:Control_Room (label: 'Control Room')
-description: A space from which operations are managed
-subClassOf: Room
-CLASS brick:Team_Room (label: 'Team Room')
-description: An office used by multiple team members for specific work tasks. Distinct from Conference Room
-subClassOf: Enclosed_Office
-CLASS brick:Telecom_Room (label: 'Telecom Room')
-description: A class of spaces used to support telecommuncations and IT equipment
-subClassOf: Room
-CLASS brick:Pressure_Sensor (label: 'Pressure Sensor')
-description: Measure the amount of force acting on a unit area
+CLASS brick:Change_Filter_Alarm (label: 'Change Filter Alarm')
+description: An alarm that indicates that a filter must be changed
+subClassOf: Alarm
+CLASS brick:Communication_Loss_Alarm (label: 'Communication Loss Alarm')
+description: An alarm that indicates a loss of communication e.g. with a device or controller
+subClassOf: Alarm
+CLASS brick:Contact_Sensor (label: 'Contact Sensor')
+description: Senses or detects contact, such as for determining if a door is closed.
 subClassOf: Sensor
+CLASS brick:Cooling_Command (label: 'Cooling Command')
+description: Controls the amount of cooling to be delivered (typically as a proportion of total cooling output)
+subClassOf: Command
+CLASS brick:Current_Ratio_Setpoint (label: 'Current Ratio Setpoint')
+description: Sets the ratio of currents in a transformer
+subClassOf: Setpoint
+CLASS brick:Damper_Position_Setpoint (label: 'Damper Position Setpoint')
+description: Sets the position of damper
+subClassOf: Setpoint
+CLASS brick:Damper_Position_Status (label: 'Damper Position Status')
+subClassOf: Status
+CLASS brick:Dehumidify_Command (label: 'Dehumidify Command')
+description: Triggers the dehumidification process, actively removing moisture from the air to achieve desired humidity levels
+subClassOf: Command
+CLASS brick:Dewpoint_Setpoint (label: 'Dewpoint Setpoint')
+description: Sets dew point
+subClassOf: Setpoint
+CLASS brick:Direction_Command (label: 'Direction Command')
+description: Commands that affect the direction of some phenomenon
+subClassOf: Command
+CLASS brick:Disable_Status (label: 'Disable Status')
+description: Indicates if functionality has been disabled
+subClassOf: Status
+CLASS brick:Drive_Ready_Status (label: 'Drive Ready Status')
+description: Indicates if a hard drive or other storage device is ready to be used, e.g. in the context of RAID
+subClassOf: Status
+CLASS brick:ElectricVehicleChargingDirectionalityShape (label: 'ElectricVehicleChargingDirectionalityShape')
+subClassOf: ValueShape
+CLASS brick:ElectricVehicleChargingTypeShape (label: 'ElectricVehicleChargingTypeShape')
+subClassOf: ValueShape
+CLASS brick:ElectricVehicleConnectorTypeShape (label: 'ElectricVehicleConnectorTypeShape')
+subClassOf: ValueShape
+CLASS brick:Elevator (label: 'Elevator')
+description: A device that provides vertical transportation between floors, levels or decks of a building, vessel or other structure
+subClassOf: Equipment
+CLASS brick:Emergency_Generator_Status (label: 'Emergency Generator Status')
+description: Indicates if an emergency generator is active
+subClassOf: Status
+CLASS brick:Emergency_Push_Button_Status (label: 'Emergency Push Button Status')
+description: Indicates if an emergency button has been pushed
+subClassOf: Status
+CLASS brick:Enthalpy_Setpoint (label: 'Enthalpy Setpoint')
+description: Sets enthalpy
+subClassOf: Setpoint
+CLASS brick:Even_Month_Status (label: 'Even Month Status')
+subClassOf: Status
+CLASS brick:Exhaust_Fan_Disable_Command (label: 'Exhaust Fan Disable Command')
+subClassOf: Command
+CLASS brick:Fire_Sensor (label: 'Fire Sensor')
+description: Measures the presence of fire
+subClassOf: Sensor
+CLASS brick:Freeze_Status (label: 'Freeze Status')
+description: Indicates if a substance contained within a vessel has frozen
+subClassOf: Status
+CLASS brick:Frequency_Setpoint (label: 'Frequency Setpoint')
+description: Sets frequency
+subClassOf: Setpoint
+CLASS brick:Gas_Distribution (label: 'Gas Distribution')
+description: Utilize a gas distribution source to represent how gas is distributed across multiple destinations
+subClassOf: Equipment
+CLASS brick:Gas_Sensor (label: 'Gas Sensor')
+description: Measures gas concentration (other than CO2)
+subClassOf: Sensor
+CLASS brick:Hail_Sensor (label: 'Hail Sensor')
+description: Measures hail in terms of its size and damage potential
+subClassOf: Sensor
+CLASS brick:Heat_Sensor (label: 'Heat Sensor')
+subClassOf: Sensor
+CLASS brick:Heating_Command (label: 'Heating Command')
+description: Controls the amount of heating to be delivered (typically as a proportion of total heating output)
+subClassOf: Command
+CLASS brick:Hold_Status (label: 'Hold Status')
+subClassOf: Status
+CLASS brick:Humidify_Command (label: 'Humidify Command')
+subClassOf: Command
+CLASS brick:Illuminance_Setpoint (label: 'Illuminance Setpoint')
+description: Target Illuminance of the zone.
+subClassOf: Setpoint
+CLASS brick:Lead_Lag_Command (label: 'Lead Lag Command')
+description: Enables lead/lag operation
+subClassOf: Command
+CLASS brick:Lead_Lag_Status (label: 'Lead Lag Status')
+description: Indicates if lead/lag operation is enabled
+subClassOf: Status
+CLASS brick:Level_Command (label: 'Level Command')
+description: Adjusts the operational state to a specific level within a predefined range.
+subClassOf: Command
+CLASS brick:Level_Status (label: 'Level Status')
+description: The current operational state of a specific level within a predefined range.
+subClassOf: Status
+CLASS brick:Light_Command (label: 'Light Command')
+subClassOf: Command
+CLASS brick:Lighting_Correlated_Color_Temperature_Command (label: 'Lighting Correlated Color Temperature Command')
+description: A command to set correlated color temperature (CCT) which is the temperature of the Planckian radiator whose perceived color most closely resembles that of a given stimulus at the 
+subClassOf: Command
+CLASS brick:Lighting_Correlated_Color_Temperature_Sensor (label: 'Lighting Correlated Color Temperature Sensor')
+description: A sensor to measure correlated color temperature (CCT) which is the temperature of the Planckian radiator whose perceived color most closely resembles that of a given stimulus at t
+subClassOf: Sensor
+CLASS brick:Liquid_Detection_Alarm (label: 'Liquid Detection Alarm')
+subClassOf: Alarm
+CLASS brick:Lockout_Status (label: 'Lockout Status')
+description: Indicates if a piece of equipment, system, or functionality has been locked out from operation
+subClassOf: Status
+CLASS brick:Low_Battery_Alarm (label: 'Low Battery Alarm')
+description: An alarm that indicates the battery is low.
+subClassOf: Alarm
+CLASS brick:Luminance_Alarm (label: 'Luminance Alarm')
+subClassOf: Alarm
+CLASS brick:Luminance_Command (label: 'Luminance Command')
+description: Controls the amount of luminance delivered by a lighting system
+subClassOf: Command
+CLASS brick:Luminance_Sensor (label: 'Luminance Sensor')
+description: Measures the luminous intensity per unit area of light travelling in a given direction
+subClassOf: Sensor
+CLASS brick:Luminance_Setpoint (label: 'Luminance Setpoint')
+description: Sets luminance
+subClassOf: Setpoint
+CLASS brick:Maintenance_Required_Alarm (label: 'Maintenance Required Alarm')
+description: An alarm that indicates that repair/maintenance is required on an associated device or equipment
+subClassOf: Alarm
+CLASS brick:Manual_Auto_Status (label: 'Manual Auto Status')
+description: Indicates if a system is under manual or automatic operation
+subClassOf: Status
+CLASS brick:Occupancy_Command (label: 'Occupancy Command')
+description: Controls whether or not a device or controller is operating in "Occupied" mode
+subClassOf: Command
+CLASS brick:Occupancy_Count_Sensor (label: 'Occupancy Count Sensor')
+description: Sensors measuring the number of people in an area
+subClassOf: Sensor
+CLASS brick:Occupancy_Sensor (label: 'Occupancy Sensor')
+description: Detects occupancy of some space or area
+subClassOf: Sensor
+CLASS brick:Open_Close_Status (label: 'Open Close Status')
+description: Indicates the open/close status of a device such as a damper or valve
+subClassOf: Status
+CLASS brick:Outside (label: 'Outside')
+subClassOf: Location
+CLASS brick:Overload_Alarm (label: 'Overload Alarm')
+description: An alarm that can indicate when a full-load current is exceeded.
+subClassOf: Alarm
+CLASS brick:Piezoelectric_Sensor (label: 'Piezoelectric Sensor')
+description: Senses changes pressure, acceleration, temperature, force or strain via the piezoelectric effect
+subClassOf: Sensor
+CLASS brick:Portfolio (label: 'Portfolio')
+description: A collection of sites
+subClassOf: Collection
+CLASS brick:Power_Factor_Sensor (label: 'Power Factor Sensor')
+description: Sensors measuring power Factor, under periodic conditions, is the ratio of the absolute value of the active power (P) to the apparent power (S).
+subClassOf: Sensor
+CLASS brick:Preheat_Command (label: 'Preheat Command')
+description: A command to activate preheating. Typically used to preheat cool air coming from a mixing box or economizer
+subClassOf: Command
+CLASS brick:Pump_Command (label: 'Pump Command')
+description: Controls or reports the speed of a pump (typically as a proportion of its full pumping capacity)
+subClassOf: Command
+CLASS brick:Pump_Status (label: 'Pump Status')
+description: Status of a pump
+subClassOf: Status
+CLASS brick:Rain_Level_Sensor (label: 'Rain Level Sensor')
+description: Measures the amount of precipitation fallen
+subClassOf: Sensor
+CLASS brick:Refrigerant_Level_Sensor (label: 'Refrigerant Level Sensor')
+subClassOf: Sensor
+CLASS brick:Reheat_Command (label: 'Reheat Command')
+description: A command to activate reheating, which is used for either heating or for dehumidification purposes
+subClassOf: Command
+CLASS brick:Relay (label: 'Relay')
+description: an electrically operated switch
+subClassOf: Equipment
+CLASS brick:Relay_Command (label: 'Relay Command')
+description: Commands to switch the relay
+subClassOf: Command
+CLASS brick:Solar_Radiance_Sensor (label: 'Solar Radiance Sensor')
+subClassOf: Sensor
+CLASS brick:Speed_Command (label: 'Speed Command')
+description: A command to set speed to a certain degree.
+subClassOf: Command
+CLASS brick:Speed_Status (label: 'Speed Status')
+subClassOf: Status
+CLASS brick:Stages_Status (label: 'Stages Status')
+description: Indicates which stage a control loop or equipment is in
+subClassOf: Status
+CLASS brick:Steam_Distribution (label: 'Steam Distribution')
+description: Utilize a steam distribution source to represent how steam is distributed across multiple destinations
+subClassOf: Equipment
+CLASS brick:Switch_Status (label: 'Switch Status')
+description: Status of a switch
+subClassOf: Status
+CLASS brick:Thermostat_Status (label: 'Thermostat Status')
+description: Status of a thermostat
+subClassOf: Status
+CLASS brick:Tint_Command (label: 'Tint Command')
+description: The target level of window tint.
+subClassOf: Command
+CLASS brick:Tint_Status (label: 'Tint Status')
+description: The current level of window tint, errors, or transient states.
+subClassOf: Status
+CLASS brick:Valve_Position_Alarm (label: 'Valve Position Alarm')
+description: An alarm that indicates that the valve position is not in a normal state.
+subClassOf: Alarm
+CLASS brick:Valve_Status (label: 'Valve Status')
+description: The current status of the valve.
+subClassOf: Status
+CLASS brick:Voltage_Ratio_Setpoint (label: 'Voltage Ratio Setpoint')
+description: Sets the ratio of voltage in a transformer
+subClassOf: Setpoint
+CLASS brick:Waste_Amount_Sensor (label: 'Waste Amount Sensor')
+description: A metric used for measuring the quantity of waste generated in a building.
+subClassOf: Sensor
+CLASS brick:Water_Distribution (label: 'Water Distribution')
+description: Utilize a water distribution source to represent how water is distributed across multiple destinations (pipes)
+subClassOf: Equipment
+CLASS brick:Weather_Station (label: 'Weather Station')
+description: A dedicated weather measurement station
+subClassOf: Equipment
+CLASS bsh:Active_EnergyQuantityShape (label: 'Active_EnergyQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Alternating_Current_FrequencyQuantityShape (label: 'Alternating_Current_FrequencyQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Ammonia_ConcentrationQuantityShape (label: 'Ammonia_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Apparent_EnergyQuantityShape (label: 'Apparent_EnergyQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Atmospheric_PressureQuantityShape (label: 'Atmospheric_PressureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:CO2_ConcentrationQuantityShape (label: 'CO2_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:CO_ConcentrationQuantityShape (label: 'CO_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Current_AngleQuantityShape (label: 'Current_AngleQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Current_ImbalanceQuantityShape (label: 'Current_ImbalanceQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Current_Total_Harmonic_DistortionQuantityShape (label: 'Current_Total_Harmonic_DistortionQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Differential_CO2_ConcentrationQuantityShape (label: 'Differential_CO2_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Differential_CO_ConcentrationQuantityShape (label: 'Differential_CO_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Differential_Dynamic_PressureQuantityShape (label: 'Differential_Dynamic_PressureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Differential_Static_PressureQuantityShape (label: 'Differential_Static_PressureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Differential_TemperatureQuantityShape (label: 'Differential_TemperatureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Dry_Bulb_TemperatureQuantityShape (label: 'Dry_Bulb_TemperatureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Electric_EnergyQuantityShape (label: 'Electric_EnergyQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Formaldehyde_ConcentrationQuantityShape (label: 'Formaldehyde_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:FrequencyQuantityShape (label: 'FrequencyQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Gauge_PressureQuantityShape (label: 'Gauge_PressureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:GrainsOfMoistureQuantityShape (label: 'GrainsOfMoistureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:IrradianceQuantityShape (label: 'IrradianceQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:LastKnownBooleanShape (label: 'LastKnownBooleanShape')
+subClassOf: LastKnownValueShape
+CLASS bsh:LastKnownDurationShape (label: 'LastKnownDurationShape')
+subClassOf: LastKnownValueShape
+CLASS bsh:LastKnownIntegerShape (label: 'LastKnownIntegerShape')
+subClassOf: LastKnownValueShape
+CLASS bsh:LevelQuantityShape (label: 'LevelQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Linear_SpeedQuantityShape (label: 'Linear_SpeedQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Methane_ConcentrationQuantityShape (label: 'Methane_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:NO2_ConcentrationQuantityShape (label: 'NO2_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Occupancy_PercentageQuantityShape (label: 'Occupancy_PercentageQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Operative_TemperatureQuantityShape (label: 'Operative_TemperatureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Ozone_ConcentrationQuantityShape (label: 'Ozone_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:PM10_ConcentrationQuantityShape (label: 'PM10_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:PM1_ConcentrationQuantityShape (label: 'PM1_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:PM2.5_ConcentrationQuantityShape (label: 'PM2.5_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Phasor_AngleQuantityShape (label: 'Phasor_AngleQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Phasor_MagnitudeQuantityShape (label: 'Phasor_MagnitudeQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:PositionQuantityShape (label: 'PositionQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Power_FactorQuantityShape (label: 'Power_FactorQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:PrecipitationQuantityShape (label: 'PrecipitationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:PressureQuantityShape (label: 'PressureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:RadianceQuantityShape (label: 'RadianceQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Radiant_TemperatureQuantityShape (label: 'Radiant_TemperatureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Radon_ConcentrationQuantityShape (label: 'Radon_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Reactive_EnergyQuantityShape (label: 'Reactive_EnergyQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Rotational_SpeedQuantityShape (label: 'Rotational_SpeedQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Solar_IrradianceQuantityShape (label: 'Solar_IrradianceQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Solar_RadianceQuantityShape (label: 'Solar_RadianceQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:SpeedQuantityShape (label: 'SpeedQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Static_PressureQuantityShape (label: 'Static_PressureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:TVOC_ConcentrationQuantityShape (label: 'TVOC_ConcentrationQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:TemperatureQuantityShape (label: 'TemperatureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Thermal_EnergyQuantityShape (label: 'Thermal_EnergyQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:TimeQuantityShape (label: 'TimeQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Velocity_PressureQuantityShape (label: 'Velocity_PressureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Voltage_AngleQuantityShape (label: 'Voltage_AngleQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Voltage_ImbalanceQuantityShape (label: 'Voltage_ImbalanceQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:VolumeQuantityShape (label: 'VolumeQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Wet_Bulb_TemperatureQuantityShape (label: 'Wet_Bulb_TemperatureQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:Wind_DirectionQuantityShape (label: 'Wind_DirectionQuantityShape')
+subClassOf: ValueShape
+CLASS vcard:Address (label: 'Address')
+CLASS sosa:FeatureOfInterest (label: 'FeatureOfInterest')
+CLASS sosa:ObservableProperty (label: 'ObservableProperty')
+CLASS brick:CO2_Alarm (label: 'CO2 Alarm')
+description: An alarm that indicates the off-normal conditions associated with the presence of carbon dioxide.
+subClassOf: Alarm
+CLASS brick:CO2_Setpoint (label: 'CO2 Setpoint')
+description: Sets some property of CO2
+subClassOf: Setpoint
+CLASS brick:Camera (label: 'Camera')
+subClassOf: Equipment
+CLASS brick:Conductivity_Sensor (label: 'Conductivity Sensor')
+description: Measures electrical conductance
+subClassOf: Sensor
+CLASS brick:Cycle_Alarm (label: 'Cycle Alarm')
+description: An alarm that indicates off-normal conditions associated with HVAC cycles
+subClassOf: Alarm
+CLASS brick:Damper_Command (label: 'Damper Command')
+description: Controls properties of dampers
+subClassOf: Command
+CLASS brick:Delay_Parameter (label: 'Delay Parameter')
+description: A parameter determining how long to delay a subsequent action to take place after a received signal
+subClassOf: Parameter
+CLASS brick:DeprecationShape (label: 'DeprecationShape')
+subClassOf: ValueShape
+CLASS brick:Direction_Sensor (label: 'Direction Sensor')
+description: Measures the direction in degrees in which a phenomenon is occuring
+subClassOf: Sensor
+CLASS brick:Direction_Status (label: 'Direction Status')
+description: Indicates which direction a device is operating in
+subClassOf: Status
+CLASS brick:EV_Charging_Hub (label: 'EV Charging Hub')
+subClassOf: Collection
+CLASS brick:Emergency_Alarm (label: 'Emergency Alarm')
+description: Alarms that indicate off-normal conditions associated with emergency systems
+subClassOf: Alarm
+CLASS brick:Enable_Status (label: 'Enable Status')
+description: Indicates if a system or piece of functionality has been enabled
+subClassOf: Status
+CLASS brick:Enthalpy_Sensor (label: 'Enthalpy Sensor')
+description: Measures the total heat content of some substance
+subClassOf: Sensor
+CLASS brick:Fan_Command (label: 'Fan Command')
+description: Controls properties of fans
+subClassOf: Command
+CLASS brick:Fan_Status (label: 'Fan Status')
+description: Indicates properties of fans
+subClassOf: Status
+CLASS brick:Filter_Status (label: 'Filter Status')
+description: Indicates if a filter needs to be replaced
+subClassOf: Status
 CLASS brick:Frequency_Sensor (label: 'Frequency Sensor')
 description: Measures the frequency of a phenomenon or aspect of a phenomenon, e.g. the frequency of a fan turning
 subClassOf: Sensor
+CLASS brick:Furniture (label: 'Furniture')
+description: Movable objects intended to support various human activities such as seating, eating and sleeping
+subClassOf: Equipment
+CLASS brick:Generation_Sensor (label: 'Generation Sensor')
+description: A sensor measuring how much something has been generated.
+subClassOf: Sensor
+CLASS brick:Illuminance_Sensor (label: 'Illuminance Sensor')
+description: Measures the total luminous flux incident on a surface, per unit area
+subClassOf: Sensor
+CLASS brick:Leak_Alarm (label: 'Leak Alarm')
+description: An alarm that indicates leaks occured in systems containing fluids
+subClassOf: Alarm
+CLASS brick:Lighting_Level_Command (label: 'Lighting Level Command')
+description: Controls the amount of the light provided by the device typically in percentages.
+subClassOf: Command
+CLASS brick:Load_Setpoint (label: 'Load Setpoint')
+subClassOf: Setpoint
+CLASS brick:Motion_Sensor (label: 'Motion Sensor')
+description: Detects the presence of motion in some area
+subClassOf: Sensor
+CLASS brick:Occupancy_Status (label: 'Occupancy Status')
+description: Indicates if a room or space is occupied
+subClassOf: Status
+CLASS brick:Override_Command (label: 'Override Command')
+description: Controls or reports whether or not a device or control loop is in 'override'
+subClassOf: Command
+CLASS brick:Power_Alarm (label: 'Power Alarm')
+description: An alarm that indicates the off-normal conditions associated with electrical power.
+subClassOf: Alarm
+CLASS brick:Region (label: 'Region')
+description: A unit of geographic space, usually contigious or somehow related to a geopolitical feature
+subClassOf: Location
+CLASS brick:Smoke_Alarm (label: 'Smoke Alarm')
+description: An alarm that indicates the off-normal conditions associated with smoke.
+subClassOf: Alarm
+CLASS brick:Solar_Irradiance_Sensor (label: 'Solar Irradiance Sensor')
+description: Measures solar irradiance levels for photovoltaic systems
+subClassOf: Sensor
+CLASS brick:Solar_Thermal_Collector (label: 'Solar Thermal Collector')
+description: A type of solar panels that converts solar radiation into thermal energy.
+subClassOf: Equipment
+CLASS brick:Speed_Setpoint (label: 'Speed Setpoint')
+description: Sets speed
+subClassOf: Setpoint
+CLASS brick:Storey (label: 'Storey')
+subClassOf: Location
+CLASS brick:Torque_Sensor (label: 'Torque Sensor')
+description: Measures torque, the tendency of a force to rotate an object about some axis
+subClassOf: Sensor
+CLASS brick:Valve_Command (label: 'Valve Command')
+description: Controls or reports the openness of a valve (typically as a proportion of its full range of motion)
+subClassOf: Command
+CLASS brick:Voltage_Alarm (label: 'Voltage Alarm')
+description: An alarm that indicates the voltage is not in a normal state.
+subClassOf: Alarm
+CLASS ref:ifcProject (label: 'IfcProject')
+CLASS bsh:AggregationShape (label: 'AggregationShape')
+subClassOf: ValueShape
+CLASS bsh:AzimuthShape (label: 'AzimuthShape')
+subClassOf: ValueShape
+CLASS bsh:BuildingPrimaryFunctionShape (label: 'BuildingPrimaryFunctionShape')
+subClassOf: ValueShape
+CLASS bsh:CoolingCapacityShape (label: 'CoolingCapacityShape')
+subClassOf: ValueShape
+CLASS bsh:CoordinateShape (label: 'CoordinateShape')
+subClassOf: ValueShape
+CLASS bsh:CurrentFlowTypeShape (label: 'CurrentFlowTypeShape')
+subClassOf: ValueShape
+CLASS bsh:ElectricalComplexPowerShape (label: 'ElectricalComplexPowerShape')
+subClassOf: ValueShape
+CLASS bsh:ElectricalFlowShape (label: 'ElectricalFlowShape')
+subClassOf: ValueShape
+CLASS bsh:PhaseCountShape (label: 'PhaseCountShape')
+subClassOf: ValueShape
+CLASS bsh:PhasesShape (label: 'PhasesShape')
+subClassOf: ValueShape
+CLASS bsh:TemperatureCoefficientPerDegreeCelsiusShape (label: 'TemperatureCoefficientPerDegreeCelsiusShape')
+subClassOf: ValueShape
+CLASS bsh:TiltShape (label: 'TiltShape')
+subClassOf: ValueShape
+CLASS bsh:VirtualMeterShape (label: 'VirtualMeterShape')
+subClassOf: ValueShape
+CLASS bsh:VolumeShape (label: 'VolumeShape')
+subClassOf: ValueShape
+CLASS bsh:YearBuiltShape (label: 'YearBuiltShape')
+subClassOf: ValueShape
+CLASS brick:Adjust_Sensor (label: 'Adjust Sensor')
+description: Measures user-provided adjustment of some value
+subClassOf: Sensor
+CLASS brick:Air_Grains_Sensor (label: 'Air Grains Sensor')
+description: Measures the mass of water vapor in air
+subClassOf: Sensor
+CLASS brick:Alarm_Sensitivity_Parameter (label: 'Alarm Sensitivity Parameter')
+description: A parameter indicates the sensitivity to activate an alarm.
+subClassOf: Parameter
+CLASS brick:Angle_Sensor (label: 'Angle Sensor')
+description: Measues the planar angle of some phenomenon
+subClassOf: Sensor
+CLASS brick:Electric_Vehicle_Charging_Hub (label: 'Electric Vehicle Charging Hub')
+description: A collection of charging stations for charging electric vehicles. A hub may be located in a parking lot, for example
+subClassOf: Collection
+CLASS brick:Energy_Sensor (label: 'Energy Sensor')
+description: Measures energy consumption
+subClassOf: Sensor
+CLASS brick:Failure_Alarm (label: 'Failure Alarm')
+description: Alarms that indicate the failure of devices, equipment, systems and control loops
+subClassOf: Alarm
+CLASS brick:Fault_Status (label: 'Fault Status')
+description: Indicates the presence of a fault in a device, system or control loop
+subClassOf: Status
+CLASS brick:Flow_Setpoint (label: 'Flow Setpoint')
+description: Sets flow
+subClassOf: Setpoint
+CLASS brick:Frequency_Command (label: 'Frequency Command')
+description: Controls the frequency of a device's operation (e.g. rotational frequency)
+subClassOf: Command
+CLASS brick:Humidity_Alarm (label: 'Humidity Alarm')
+description: An alarm that indicates the off-normal conditions associated with the concentration of water vapor in the air.
+subClassOf: Alarm
+CLASS brick:Humidity_Sensor (label: 'Humidity Sensor')
+description: Measures the concentration of water vapor in air
+subClassOf: Sensor
+CLASS brick:Imbalance_Sensor (label: 'Imbalance Sensor')
+description: A sensor which measures difference (imbalance) between phases of an electrical system
+subClassOf: Sensor
+CLASS brick:Load_Parameter (label: 'Load Parameter')
+subClassOf: Parameter
+CLASS brick:Measurable (label: 'Measurable')
+subClassOf: Class, Entity
+CLASS brick:Motor (label: 'Motor')
+description: A machine in which power is applied to do work by the conversion of various forms of energy into mechanical force and motion.
+subClassOf: Equipment
+CLASS brick:On_Status (label: 'On Status')
+description: Indicates if a control loop, relay or equipment is on
+subClassOf: Status
+CLASS brick:Overridden_Status (label: 'Overridden Status')
+description: Indicates if the expected operating status of an equipment or control loop has been overridden
+subClassOf: Status
+CLASS brick:PV_Array (label: 'PV Array')
+subClassOf: Collection, Collection
+CLASS brick:Photovoltaic_Array (label: 'Photovoltaic Array')
+description: A collection of photovoltaic panels
+subClassOf: Collection
+CLASS brick:Position_Command (label: 'Position Command')
+description: Controls or reports the position of some object
+subClassOf: Command
+CLASS brick:Power_Sensor (label: 'Power Sensor')
+description: Measures the amount of instantaneous power consumed
+subClassOf: Sensor
+CLASS brick:Pressure_Alarm (label: 'Pressure Alarm')
+description: An alarm that indicates the off-normal conditions associated with pressure.
+subClassOf: Alarm
+CLASS brick:Shading_Equipment (label: 'Shading Equipment')
+subClassOf: Equipment
+CLASS brick:Site (label: 'Site')
+description: A geographic region containing 0 or more buildings. Typically used as the encapsulating location for a collection of Brick entities through the hasPart/isPartOf relationships
+subClassOf: Location
+CLASS brick:Time_Setpoint (label: 'Time Setpoint')
+subClassOf: Setpoint
+CLASS brick:Tolerance_Parameter (label: 'Tolerance Parameter')
+description: difference between upper and lower limits of size for a given nominal dimension or value.
+subClassOf: Parameter
+CLASS brick:Water_Heater (label: 'Water Heater')
+description: An apparatus for heating and usually storing hot water
+subClassOf: Equipment
+CLASS brick:Water_Level_Sensor (label: 'Water Level Sensor')
+description: Measures the height/level of water in some container
+subClassOf: Sensor
+CLASS brick:Wing (label: 'Wing')
+description: A wing is part of a building – or any feature of a building – that is subordinate to the main, central structure.
+subClassOf: Location
+CLASS ref:BACnetReference (label: 'BACnet Reference')
+description: A reference to the BACnet object represented by this entity.
+subClassOf: ExternalReference
+CLASS ref:IFCReference (label: 'Industry Foundation Classes Reference')
+description: A reference to an entity in an IFC project which may contain additional metadata about this entity.
+subClassOf: ExternalReference
+CLASS bsh:StageShape (label: 'StageShape')
+subClassOf: ValueShape
+CLASS bsh:ThermalTransmittanceShape (label: 'ThermalTransmittanceShape')
+subClassOf: ValueShape
+CLASS brick:Building (label: 'Building')
+description: An independent unit of the built environment with a characteristic spatial structure, intended to serve at least one function or user activity [ISO 12006-2:2013]
+subClassOf: Location
+CLASS brick:Current_Sensor (label: 'Current Sensor')
+description: Senses the amperes of electrical current passing through the sensor
+subClassOf: Sensor
+CLASS brick:Demand_Sensor (label: 'Demand Sensor')
+description: Measures the amount of power consumed by the use of some process; typically found by multiplying the tonnage of a unit (e.g. RTU) by the efficiency rating in kW/ton
+subClassOf: Sensor
+CLASS brick:Duration_Sensor (label: 'Duration Sensor')
+description: Measures the duration of a phenomenon or event
+subClassOf: Sensor
+CLASS brick:Flow_Sensor (label: 'Flow Sensor')
+description: Measures the rate of flow of some substance
+subClassOf: Sensor
+CLASS brick:Humidity_Parameter (label: 'Humidity Parameter')
+description: Parameters relevant to humidity-related systems and points
+subClassOf: Parameter
+CLASS brick:Load_Shed_Command (label: 'Load Shed Command')
+description: Controls load shedding behavior provided by a control system
+subClassOf: Command
+CLASS brick:Load_Shed_Status (label: 'Load Shed Status')
+description: Indicates if a load shedding policy is in effect
+subClassOf: Status
+CLASS brick:Loop (label: 'Loop')
+description: A collection of connected equipment; part of a System
+subClassOf: Collection, Collection
+CLASS brick:Mode_Command (label: 'Mode Command')
+description: Controls the operating mode of a device or controller
+subClassOf: Command
+CLASS brick:Off_Status (label: 'Off Status')
+description: Indicates if a control loop, relay or equipment is off
+subClassOf: Status
+CLASS brick:PV_Panel (label: 'PV Panel')
+description: An integrated assembly of interconnected photovoltaic cells designed to deliver a selected level of working voltage and current at its output terminals packaged for protection agai
+subClassOf: Equipment
+CLASS brick:Position_Sensor (label: 'Position Sensor')
+description: Measures the current position of a component in terms of a fraction of its full range of motion
+subClassOf: Sensor
+CLASS brick:Pressure_Status (label: 'Pressure Status')
+description: Indicates if pressure is within expected bounds
+subClassOf: Status
+CLASS brick:Reset_Command (label: 'Reset Command')
+description: Commands that reset a flag, property or value to its default
+subClassOf: Command
 CLASS brick:Speed_Sensor (label: 'Speed Sensor')
 description: Measures the magnitude of velocity of some form of movement
 subClassOf: Sensor
-CLASS brick:Thermostat (label: 'Thermostat')
-description: An automatic control device used to maintain temperature at a fixed or adjustable setpoint.
-subClassOf: HVAC_Equipment, Sensor_Equipment
-CLASS brick:Air_Temperature_Setpoint_Limit (label: 'Air Temperature Setpoint Limit')
-description: A parameter that places a lower or upper bound on the range of permitted values of a Air_Temperature_Setpoint.
-subClassOf: Limit, Temperature_Parameter
-CLASS brick:Max_Temperature_Setpoint_Limit (label: 'Max Temperature Setpoint Limit')
-description: A parameter that places an upper bound on the range of permitted values of a Temperature_Setpoint.
-subClassOf: Max_Limit, Temperature_Parameter
-CLASS brick:Min_Temperature_Setpoint_Limit (label: 'Min Temperature Setpoint Limit')
-description: A parameter that places a lower bound on the range of permitted values of a Temperature_Setpoint.
-subClassOf: Min_Limit, Temperature_Parameter
+CLASS brick:Tank (label: 'Tank')
+description: A container designed to hold or store fluids for various applications within a system.
+subClassOf: Equipment
+CLASS brick:Voltage_Sensor (label: 'Voltage Sensor')
+description: Measures the voltage of an electrical device or object
+subClassOf: Sensor
+CLASS ref:TimeseriesReference (label: 'Timeseries Reference')
+description: A reference to a stream of timeseries data in a database. Contains the data for this entity
+subClassOf: ExternalReference
+CLASS bsh:EfficiencyShape (label: 'EfficiencyShape')
+subClassOf: ValueShape
+CLASS bsh:LastKnownDoubleShape (label: 'LastKnownDoubleShape')
+subClassOf: LastKnownValueShape
+CLASS bsh:TemperatureShape (label: 'TemperatureShape')
+subClassOf: ValueShape
+CLASS brick:Air_Alarm (label: 'Air Alarm')
+subClassOf: Alarm
+CLASS brick:Deadband_Setpoint (label: 'Deadband Setpoint')
+description: Sets the size of a deadband
+subClassOf: Setpoint
+CLASS brick:Demand_Setpoint (label: 'Demand Setpoint')
+description: Sets the rate required for a process
+subClassOf: Setpoint
+CLASS brick:Lighting_Equipment (label: 'Lighting Equipment')
+subClassOf: Equipment
+CLASS brick:Outdoor_Area (label: 'Outdoor Area')
+description: A class of spaces that exist outside of a building
+subClassOf: Location
+CLASS brick:PID_Parameter (label: 'PID Parameter')
+subClassOf: Parameter
+CLASS brick:Pressure_Setpoint (label: 'Pressure Setpoint')
+description: Sets pressure
+subClassOf: Setpoint
+CLASS brick:Reset_Setpoint (label: 'Reset Setpoint')
+description: Setpoints used in reset strategies
+subClassOf: Setpoint
+CLASS brick:Safety_Equipment (label: 'Safety Equipment')
+subClassOf: Equipment
+CLASS brick:Security_Equipment (label: 'Security Equipment')
+subClassOf: Equipment
+CLASS brick:System_Status (label: 'System Status')
+description: Indicates properties of the activity of a system
+subClassOf: Status
+CLASS brick:Temperature_Alarm (label: 'Temperature Alarm')
+description: An alarm that indicates the off-normal conditions associated with temperature.
+subClassOf: Alarm
+CLASS brick:Usage_Sensor (label: 'Usage Sensor')
+description: Measures the amount of some substance that is consumed or used, over some period of time
+subClassOf: Sensor
+CLASS ref:ExternalReference (label: 'External reference')
+description: The parent class of all external reference types
+subClassOf: ExternalReference
+CLASS bsh:AreaShape (label: 'AreaShape')
+subClassOf: ValueShape
+CLASS bsh:PowerQuantityShape (label: 'PowerQuantityShape')
+subClassOf: ValueShape
+CLASS brick:Class (label: 'Class')
+CLASS brick:Disable_Command (label: 'Disable Command')
+description: Commands that disable functionality
+subClassOf: Command
+CLASS brick:Water_Alarm (label: 'Water Alarm')
+description: Alarm that indicates an undesirable event with a pipe, container, or equipment carrying water e.g. water leak
+subClassOf: Alarm
+CLASS brick:Dewpoint_Sensor (label: 'Dewpoint Sensor')
+description: Senses the dewpoint temperature . Dew point is the temperature to which air must be cooled to become saturated with water vapor
+subClassOf: Sensor
+CLASS brick:Differential_Setpoint (label: 'Differential Setpoint')
+description: A type of Setpoints that is related to the difference between two measurements
+subClassOf: Setpoint
+CLASS brick:Fire_Safety_Equipment (label: 'Fire Safety Equipment')
+subClassOf: Equipment
+CLASS brick:On_Off_Command (label: 'On Off Command')
+description: An On/Off Command controls or reports the binary status of a control loop, relay or equipment activity
+subClassOf: Command
+CLASS brick:Pressure_Sensor (label: 'Pressure Sensor')
+description: Measure the amount of force acting on a unit area
+subClassOf: Sensor
+CLASS brick:Zone (label: 'Zone')
+description: (1) a separately controlled heated or cooled space. (2) one occupied space or several occupied spaces with similar occupancy category, occupant density, zone air distribution effec
+subClassOf: Location
+CLASS bsh:Electric_CurrentQuantityShape (label: 'Electric_CurrentQuantityShape')
+subClassOf: ValueShape
+CLASS bsh:LastKnownValueShape (label: 'LastKnownValueShape')
+subClassOf: ValueShape
+CLASS bsh:VoltageQuantityShape (label: 'VoltageQuantityShape')
+subClassOf: ValueShape
+CLASS brick:Floor (label: 'Floor')
+description: A level, typically representing a horizontal aggregation of spaces that are vertically bound. (referring to IFC)
+subClassOf: Location
+CLASS brick:Mode_Status (label: 'Mode Status')
+description: Indicates which mode a system, device or control loop is currently in
+subClassOf: Status
+CLASS brick:Temperature_Setpoint (label: 'Temperature Setpoint')
+description: Sets temperature
+subClassOf: Setpoint
+CLASS brick:ICT_Equipment (label: 'ICT Equipment')
+description: Information and Communications Technology (ICT) equipment operates with a processor to process data or logic and create digital signals.
+subClassOf: Equipment
+CLASS brick:Air_Quality_Sensor (label: 'Air Quality Sensor')
+description: A sensor which provides a measure of air quality
+subClassOf: Sensor
+CLASS brick:Temperature_Sensor (label: 'Temperature Sensor')
+description: Measures temperature: the physical property of matter that quantitatively expresses the common notions of hot and cold
+subClassOf: Sensor
+CLASS brick:Electrical_Equipment (label: 'Electrical Equipment')
+subClassOf: Equipment
+CLASS brick:Enable_Command (label: 'Enable Command')
+description: Commands that enable functionality
+subClassOf: Command
+CLASS brick:Humidity_Setpoint (label: 'Humidity Setpoint')
+description: Sets humidity
+subClassOf: Setpoint
+CLASS brick:Limit (label: 'Limit')
+description: A parameter that places an upper or lower bound on the range of permitted values of another point
+subClassOf: Parameter
+CLASS brick:System (label: 'System')
+description: A System is a combination of equipment and auxiliary devices (e.g., controls, accessories, interconnecting means, and termi­nal elements) by which energy is transformed so it perfo
+subClassOf: Collection
+CLASS brick:Parameter (label: 'Parameter')
+description: Parameter points are configuration settings used to guide the operation of equipment and control systems; for example they may provide bounds on valid setpoint values
+subClassOf: Point
+CLASS brick:Valve (label: 'Valve')
+description: A device that regulates, directs or controls the flow of a fluid by opening, closing or partially obstructing various passageways
+subClassOf: Equipment
+CLASS brick:Entity (label: 'Entity')
+CLASS brick:Space (label: 'Space')
+description: A part of the physical world or a virtual world whose 3D spatial extent is bounded actually or theoretically, and provides for certain functions within the zone it is contained in.
+subClassOf: Location
+CLASS brick:Collection (label: 'Collection')
+subClassOf: Class, Entity, Collection
+CLASS brick:Meter (label: 'Meter')
+description: A device that measure usage or consumption of some media --- typically a form energy or power.
+subClassOf: Equipment
+CLASS brick:Temperature_Parameter (label: 'Temperature Parameter')
+description: Parameters relevant to temperature-related systems and points
+subClassOf: Parameter
+CLASS brick:Point (label: 'Point')
+subClassOf: Class, Entity
+CLASS brick:Location (label: 'Location')
+subClassOf: Class, Entity, Space
+CLASS brick:Setpoint (label: 'Setpoint')
+description: A Setpoint is an input value at which the desired property is set
+subClassOf: Point
+CLASS brick:Alarm (label: 'Alarm')
+description: Alarm points are signals (either audible or visual) that alert an operator to an off-normal condition which requires some form of corrective action
+subClassOf: Point
+CLASS brick:Command (label: 'Command')
+description: A Command is an output point that directly determines the behavior of equipment and/or affects relevant operational points.
+subClassOf: Point
+CLASS brick:HVAC_Equipment (label: 'HVAC Equipment')
+description: See Heating_Ventilation_Air_Conditioning_System
+subClassOf: Equipment
+CLASS brick:Equipment (label: 'Equipment')
+description: devices that serve all or part of the building and may include electric power, lighting, transportation, or service water heating, including, but not limited to, furnaces, boilers,
+subClassOf: Class, Entity, Asset
+CLASS brick:Status (label: 'Status')
+description: A Status is input point that reports the current operating mode, state, position, or condition of an item. Statuses are observations and should be considered 'read-only'
+subClassOf: Point
+CLASS brick:EntityProperty (label: 'EntityProperty')
+subClassOf: ObjectProperty
+CLASS brick:Sensor (label: 'Sensor')
+description: A Sensor is an input point that represents the value of a device or instrument designed to detect and measure a variable (ASHRAE Dictionary).
+subClassOf: Point
+CLASS brick:Substance (label: 'Substance')
+subClassOf: FeatureOfInterest, Measurable
+CLASS brick:Quantity (label: 'Quantity')
+subClassOf: QuantityKind, Concept, ObservableProperty, Measurable
+CLASS brick:EntityPropertyValue (label: 'EntityPropertyValue')
+CLASS bsh:ValueShape (label: 'ValueShape')
+CLASS brick:Tag (label: 'Tag')
+CLASS rec:Asset (label: 'Asset')
+description: Something which is placed inside of a building, but is not an integral part of that building's structure; e.g., furniture, equipment, systems, etc.
+subClassOf: Resource
+CLASS rdfs:Resource (label: 'Resource')
+CLASS rec:Space (label: 'Space')
+description: A contiguous part of the physical world that contains or can contain sub-spaces. E.g., a Region can contain many Sites, which in turn can contain many Buildings.
+subClassOf: Resource
+CLASS rec:Collection (label: 'Collection')
+description: An administrative grouping of entities that are adressed and treated as a unit for some purpose. These entities may have some spatial arrangement (e.g., an apartment is typically c
+subClassOf: Resource
+CLASS s223:ExternalReference (label: 'ExternalReference')
+CLASS owl:ObjectProperty (label: 'ObjectProperty')
+CLASS qudt:QuantityKind (label: 'QuantityKind')
+CLASS skos:Concept (label: 'Concept')
+
+ALL ONTOLOGY OBJECT PROPERTIES:
+PROPERTY ref:hasTimeseriesReference (label: 'hasTimeseriesReference')
+description: Metadata for accessing related timeseries data: Relates a data source (such as a Brick Point or 223 Property) to the TimeseriesReference that indicates where and how the data for t
+range: TimeseriesReference
+PROPERTY bacnet:objectOf (label: 'objectOf')
+description: The 'parent' BACnet device that hosts this BACnet object.
+range: BACnetDevice
+PROPERTY vcard:hasAddress (label: 'hasAddress')
+PROPERTY brick:connectedTo (label: 'Connected To')
+PROPERTY brick:hasAmbientTemperature (label: 'hasAmbientTemperature')
+PROPERTY brick:hasInputSubstance (label: 'Has input substance')
+description: The subject receives the given substance as an input to its internal process
+PROPERTY brick:hasOutputSubstance (label: 'Has output substance')
+description: The subject produces or exports the given substance from its internal process
+PROPERTY brick:hasQUDTReference (label: 'Has QUDT reference')
+description: Points to the relevant QUDT definition
+PROPERTY brick:isReplacedBy (label: 'Is replaced by')
+PROPERTY ref:hasIfcProjectReference (label: 'hasIfcProjectReference')
+description: A reference to the IFC Project that defines this entity
+PROPERTY rec:acknowledgedBy (label: 'acknowledgedBy')
+PROPERTY rec:address (label: 'address')
+PROPERTY rec:adjacentElement (label: 'adjacentElement')
+PROPERTY rec:architectedBy (label: 'architectedBy')
+PROPERTY rec:area (label: 'area')
+PROPERTY rec:capacity (label: 'capacity')
+PROPERTY rec:closedBy (label: 'closedBy')
+PROPERTY rec:commissionedBy (label: 'commissionedBy')
+PROPERTY rec:constructedBy (label: 'constructedBy')
+PROPERTY rec:containsElement (label: 'containsElement')
+PROPERTY rec:coordinateSystem (label: 'coordinateSystem')
+PROPERTY rec:createdBy (label: 'createdBy')
+PROPERTY rec:documentTopic (label: 'documentTopic')
+PROPERTY rec:georeference (label: 'georeference')
+PROPERTY rec:hasMember (label: 'hasMember')
+PROPERTY rec:initialCost (label: 'initialCost')
+PROPERTY rec:installedBy (label: 'installedBy')
+PROPERTY rec:intersectingElement (label: 'intersectingElement')
+PROPERTY rec:isMemberOf (label: 'isMemberOf')
+PROPERTY rec:leaseOf (label: 'leaseOf')
+PROPERTY rec:leasee (label: 'leasee')
+PROPERTY rec:leasor (label: 'leasor')
+PROPERTY rec:manufacturedBy (label: 'manufacturedBy')
+PROPERTY rec:mountedOn (label: 'mountedOn')
+PROPERTY rec:objectOfInterest (label: 'objectOfInterest')
+PROPERTY rec:operatedBy (label: 'operatedBy')
+PROPERTY rec:ownedBy (label: 'ownedBy')
+PROPERTY rec:owns (label: 'owns')
+PROPERTY rec:producedBy (label: 'producedBy')
+PROPERTY rec:regulatedBy (label: 'regulatedBy')
+PROPERTY rec:regulates (label: 'regulates')
+PROPERTY rec:relatedTo (label: 'relatedTo')
+PROPERTY rec:servicedBy (label: 'servicedBy')
+PROPERTY rec:targetPoint (label: 'targetPoint')
+PROPERTY rec:url (label: 'url')
+PROPERTY brick:hasAssociatedTag (label: 'Has associated tag')
+description: The class is associated with the given tag
+PROPERTY brick:hasSubMeter (label: 'has sub-meter')
+description: Indicates a submeter of this meter
+PROPERTY brick:isAssociatedWith (label: 'Is associated with')
+description: The tag is associated with the given class
+PROPERTY brick:isLocationOf (label: 'Is location of')
+description: Subject is the physical location encapsulating the object
+PROPERTY brick:isSubMeterOf (label: 'is sub-meter of')
+description: Indicates the parent for which this meter is a submeter
+PROPERTY brick:isTagOf (label: 'Is tag of')
+PROPERTY brick:latitude (label: 'Latitude')
+PROPERTY brick:longitude (label: 'Longitude')
+PROPERTY rec:isLocationOf (label: 'isLocationOf')
+PROPERTY rec:sourcePoint (label: 'sourcePoint')
+PROPERTY brick:deprecationMitigationRule (label: 'deprecationMitigationRule')
+PROPERTY brick:isFedBy (label: 'Is fed by')
+PROPERTY brick:isMeteredBy (label: 'is metered by')
+description: Indicates the meter measuring the consumption/production of some substance by the subject entity
+PROPERTY brick:isPointOf (label: 'Is point of')
+description: The subject is a source of telemetry related to the object. In some systems the source of telemetry may be represented as a digital/analog input/output point
+PROPERTY rec:hasPoint (label: 'hasPoint')
+PROPERTY rec:locatedIn (label: 'locatedIn')
+PROPERTY brick:ambientTemperatureOfMeasurement (label: 'ambientTemperatureOfMeasurement')
+PROPERTY brick:hasLocation (label: 'Has location')
+description: Subject is physically located in the location given by the object
+PROPERTY brick:hasPoint (label: 'Has point')
+description: The subject has a source of telemetry identified by the object. In some systems the source of telemetry may be represented as a digital/analog input/output point
+PROPERTY brick:meters (label: 'meters')
+description: Indicates the entity whose consumption/production of some substance is measured by this meter.
+PROPERTY rec:documentation (label: 'documentation')
+PROPERTY rec:hasPart (label: 'hasPart')
+PROPERTY rec:isFedBy (label: 'isFedBy')
+PROPERTY rec:isPartOf (label: 'isPartOf')
+PROPERTY brick:feeds (label: 'Feeds')
+description: The subject is upstream of the object in the context of some sequential process; some media is passed between them
+PROPERTY brick:isPartOf (label: 'Is part of')
+PROPERTY ref:hasExternalReference (label: 'hasExternalReference')
+description: Points to the external reference for this entity, which contains additional metadata/data not included in this graph.
+PROPERTY rec:includes (label: 'includes')
+PROPERTY brick:hasPart (label: 'Has part')
+description: The subject is composed in part of the entity given by the object
+PROPERTY brick:Relationship (label: 'Relationship')
+description: Super-property of all Brick relationships between entities (Equipment, Location, Point)
+PROPERTY brick:hasUnit (label: 'Has unit')
+description: The QUDT unit associated with this Brick entity (usually a Brick Point instance or Entity Property)
+PROPERTY brick:hasTag (label: 'Has tag')
+description: The subject has the given tag
 </ontology_context>
 
 <intermediate_report>

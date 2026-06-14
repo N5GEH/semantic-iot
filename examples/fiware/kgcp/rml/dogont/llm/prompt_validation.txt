@@ -1,0 +1,2676 @@
+<system>
+You are an expert in semantic web technologies and IoT ontologies.You validate and correct RDF term mappings for a Knowledge Graph Construction pipeline.
+</system>
+
+You must validate and correct an intermediate report that maps IoT platform entity types to ontology classes and properties.
+
+Fields marked with **TODO: PLEASE CHECK** contain auto-generated candidates — pick exactly ONE correct value for each. You may also choose a class or property from the full ontology list below if none of the candidates fit.
+
+<ontology_name>dogont</ontology_name>
+
+<ontology_context>
+ENTITY TYPES from platform data model:
+  - AmbientTemperatureSensor
+  - CO2Sensor
+  - CoolingCoil
+  - FreshAirVentilation
+  - Hotel
+  - HotelRoom
+  - PresenceSensor
+  - RadiatorThermostat
+  - TemperatureSensor
+  - airFlowSetpoint_FreshAirVentilation
+  - co2_CO2Sensor
+  - fanSpeed_CoolingCoil
+  - pir_PresenceSensor
+  - temperatureAmb_AmbientTemperatureSensor
+  - temperatureSetpoint_RadiatorThermostat
+  - temperature_TemperatureSensor
+
+ALL ONTOLOGY CLASSES:
+CLASS dogont:AccelerationStateValue (label: 'AccelerationStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:AccessControlSystem (label: 'AccessControlSystem')
+description: System that provides security about access
+subClassOf: SecuritySystem
+CLASS dogont:Acoustic (label: 'Acoustic')
+subClassOf: Actuator
+CLASS dogont:ActiveDiscoveryStateValue (label: 'ActiveDiscoveryStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:ActiveEnergyMeasurementFunctionality (label: 'ActiveEnergyMeasurementFunctionality')
+subClassOf: EnergyMeasurementFunctionality
+CLASS dogont:ActiveEnergyMeasurementNotificationFunctionality (label: 'ActiveEnergyMeasurementNotificationFunctionality')
+subClassOf: EnergyMeasurementNotificationFunctionality
+CLASS dogont:ActiveEnergyStateValue (label: 'ActiveEnergyStateValue')
+subClassOf: EnergyStateValue
+CLASS dogont:ActivePowerMeasurementFunctionality (label: 'ActivePowerMeasurementFunctionality')
+subClassOf: PowerMeasurementFunctionality
+CLASS dogont:ActivePowerMeasurementNotificationFunctionality (label: 'ActivePowerMeasurementNotificationFunctionality')
+subClassOf: PowerMeasurementNotificationFunctionality
+CLASS dogont:ActivePowerMeasurementState (label: 'ActivePowerMeasurementState')
+subClassOf: PowerMeasurementState
+CLASS dogont:ActivePowerMeter (label: 'ActivePowerMeter')
+subClassOf: PowerMeter
+CLASS dogont:ActivePowerStateValue (label: 'ActivePowerStateValue')
+subClassOf: PowerStateValue
+CLASS dogont:ActivePushLinkAuthenticationStateValue (label: 'ActivePushLinkAuthenticationStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:Actuator (label: 'Actuator')
+description: A mechanism that puts something into automatic action
+subClassOf: Controllable
+CLASS dogont:AirConditioningSystem (label: 'AirConditioningSystem')
+description: A system that keeps air cool and dry
+subClassOf: Actuator
+CLASS dogont:AlarmClock (label: 'AlarmClock')
+description: A clock that wakes sleeper at preset time
+subClassOf: Clock
+CLASS dogont:AlertNotification (label: 'AlertNotification')
+subClassOf: ParametricNotification
+CLASS dogont:AlertNotificationFunctionality (label: 'AlertNotificationFunctionality')
+subClassOf: SingleValuedNotificationFunctionality
+CLASS dogont:AnsweringMachine (label: 'AnsweringMachine')
+description: Electronic device that answers the telephone and records messages
+subClassOf: Communication
+CLASS dogont:AntiIntrusionSystem (label: 'AntiIntrusionSystem')
+description: System that provides security about intrusion
+subClassOf: AccessControlSystem
+CLASS dogont:ApparentEnergyMeasurementFunctionality (label: 'ApparentEnergyMeasurementFunctionality')
+subClassOf: EnergyMeasurementFunctionality
+CLASS dogont:ApparentEnergyMeasurementNotificationFunctionality (label: 'ApparentEnergyMeasurementNotificationFunctionality')
+subClassOf: EnergyMeasurementNotificationFunctionality
+CLASS dogont:ApparentEnergyStateValue (label: 'ApparentEnergyStateValue')
+subClassOf: EnergyStateValue
+CLASS dogont:ApparentPowerMeasurementFunctionality (label: 'ApparentPowerMeasurementFunctionality')
+subClassOf: PowerMeasurementFunctionality
+CLASS dogont:ApparentPowerMeasurementNotificationFunctionality (label: 'ApparentPowerMeasurementNotificationFunctionality')
+subClassOf: PowerMeasurementNotificationFunctionality
+CLASS dogont:ApparentPowerMeasurementState (label: 'ApparentPowerMeasurementState')
+subClassOf: PowerMeasurementState
+CLASS dogont:ApparentPowerMeter (label: 'ApparentPowerMeter')
+subClassOf: PowerMeter
+CLASS dogont:ApparentPowerStateValue (label: 'ApparentPowerStateValue')
+subClassOf: PowerStateValue
+CLASS dogont:ApplianceCycleTimingNotification (label: 'ApplianceCycleTimingNotification')
+subClassOf: ParametricNotification
+CLASS dogont:ApplianceManagementFunctionality (label: 'ApplianceManagementFunctionality')
+subClassOf: NetworkFunctionality
+CLASS dogont:ApplianceRunNotification (label: 'ApplianceRunNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:Appliances (label: 'Appliances')
+description: Durable goods for home or office use
+subClassOf: Controllable
+CLASS dogont:Architectural (label: 'Architectural')
+description: All the architectural elements that compose the environment
+subClassOf: BuildingThing
+CLASS dogont:Armchair (label: 'Armchair')
+description: Chair with a support on each side for arms
+subClassOf: Furniture
+CLASS dogont:AssociateCommand (label: 'AssociateCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:AssociateFunctionality (label: 'AssociateFunctionality')
+subClassOf: NetworkFunctionality
+CLASS dogont:AssociatingDeviceNotification (label: 'AssociatingDeviceNotification')
+subClassOf: ZWaveNotification
+CLASS dogont:AssociatingStateValue (label: 'AssociatingStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:AssociationNotificationFunctionality (label: 'AssociationNotificationFunctionality')
+subClassOf: NetworkNotificationFunctionality
+CLASS dogont:AttentiveWasteBin (label: 'AttentiveWasteBin')
+subClassOf: ColorDimmableLight, SmartWasteBin
+CLASS dogont:AuthenticatedStateValue (label: 'AuthenticatedStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:AutoRegulationStateValue (label: 'AutoRegulationStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:AuxStateValue (label: 'AuxStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:Awning (label: 'Awning')
+description: A canopy made of canvas to shelter people or things from rain or sun.
+subClassOf: Furniture
+CLASS dogont:AwningActuator (label: 'AwningActuator')
+description: A mechanism that allow automatic control about awning
+subClassOf: Actuator
+CLASS dogont:BTicinoComponent (label: 'BTicinoComponent')
+description: Components manufactured by Bticino
+subClassOf: NetworkComponent
+CLASS dogont:BTicinoGateway (label: 'BTicinoGateway')
+description: A BTIcino Gateway
+subClassOf: BTicinoComponent
+CLASS dogont:Balcony (label: 'Balcony')
+description: A platform projecting from the wall of a building and surrounded by a balustrade or railing or parapet
+subClassOf: Horizontal
+CLASS dogont:Bathroom (label: 'Bathroom')
+description: A room containing a bath or shower and usually a washbasin and toilet
+subClassOf: Room
+CLASS dogont:Bathtub (label: 'Bathtub')
+description: A relatively large open container that you fill with water and use to wash the body
+subClassOf: SanitaryFixtures
+CLASS dogont:BatteryLevelNotification (label: 'BatteryLevelNotification')
+subClassOf: ParametricNotification
+CLASS dogont:BatteryLevelNotificationFunctionality (label: 'BatteryLevelNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:Bed (label: 'Bed')
+description: Piece of furniture that provides a place to sleep.
+subClassOf: Furniture
+CLASS dogont:Bedroom (label: 'Bedroom')
+description: A room used primarily for sleeping
+subClassOf: Room
+CLASS dogont:Bidet (label: 'Bidet')
+description: A basin for washing genitals and anal area
+subClassOf: SanitaryFixtures
+CLASS dogont:BlueStateValue (label: 'BlueStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:BluetoothAdapter (label: 'BluetoothAdapter')
+subClassOf: BluetoothComponent
+CLASS dogont:BluetoothCommand (label: 'BluetoothCommand')
+subClassOf: NetworkSpecificCommand
+CLASS dogont:BluetoothComponent (label: 'BluetoothComponent')
+subClassOf: NetworkComponent
+CLASS dogont:BluetoothNotification (label: 'BluetoothNotification')
+subClassOf: NetworkSpecificNotification
+CLASS dogont:Boiler (label: 'Boiler')
+description: Sealed vessel where water is warm up
+subClassOf: WhiteGoods
+CLASS dogont:BrightnessStateValue (label: 'BrightnessStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:BrownGoods (label: 'BrownGoods')
+description: Small household electrical entertainment appliances
+subClassOf: Appliances
+CLASS dogont:Building (label: 'Building')
+subClassOf: BuildingEnvironment
+CLASS dogont:BuildingEnvironment (label: 'BuildingEnvironment')
+description: A physical environment in which people lives, e.g. kitchen, bathroom
+subClassOf: Environment
+CLASS dogont:BuildingThing (label: 'BuildingThing')
+description: All things that creates a Building, it is intended as root of all building components
+subClassOf: UnControllable
+CLASS dogont:Button (label: 'Button')
+description: A monostable electrical switch operated by pressing a button
+subClassOf: Control
+CLASS dogont:ButtonMNotificationFunctionality (label: 'ButtonMNotificationFunctionality')
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:ButtonNotificationFunctionality (label: 'ButtonNotificationFunctionality')
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:Buzzer (label: 'Buzzer')
+description: An electric signaling device, such as a doorbell, that makes a buzzing sound.
+subClassOf: Acoustic
+CLASS dogont:CC2650HumiditySensor (label: 'CC2650HumiditySensor')
+subClassOf: TemperatureAndHumiditySensor
+CLASS dogont:CC2650IRSensor (label: 'CC2650IRSensor')
+subClassOf: MultipleTemperatureSensor
+CLASS dogont:CC2650SensorTag (label: 'CC2650SensorTag')
+subClassOf: Wearable
+CLASS dogont:CDStateValue (label: 'CDStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:CameraPictureImageControlFunctionality (label: 'CameraPictureImageControlFunctionality')
+subClassOf: ContinuousControlFunctionality
+CLASS dogont:CameraPictureQualityControlFunctionality (label: 'CameraPictureQualityControlFunctionality')
+subClassOf: ContinuousControlFunctionality
+CLASS dogont:CameraPictureZoomPanControlFunctionality (label: 'CameraPictureZoomPanControlFunctionality')
+subClassOf: ContinuousControlFunctionality
+CLASS dogont:CardiacPulseMeter (label: 'CardiacPulseMeter')
+subClassOf: Meter
+CLASS dogont:Ceiling (label: 'Ceiling')
+description: The overhead upper surface of a room
+subClassOf: Horizontal
+CLASS dogont:Chair (label: 'Chair')
+description: A seat for one person, with a support for the back.
+subClassOf: Furniture
+CLASS dogont:ChangedDesiredTemperatureNotification (label: 'ChangedDesiredTemperatureNotification')
+subClassOf: ParametricNotification
+CLASS dogont:ChannelControlNotification (label: 'ChannelControlNotification')
+subClassOf: ParametricLevelNotification
+CLASS dogont:ChannelStateValue (label: 'ChannelStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:ClimateScheduleFunctionality (label: 'ClimateScheduleFunctionality')
+subClassOf: DoubleValuedFunctionality
+CLASS dogont:ClimateScheduleNotification (label: 'ClimateScheduleNotification')
+subClassOf: ParametricNotification
+CLASS dogont:ClimateScheduleNotificationFunctionality (label: 'ClimateScheduleNotificationFunctionality')
+subClassOf: DiscreteNotificationFunctionality
+CLASS dogont:ClimateScheduleQueryFunctionality (label: 'ClimateScheduleQueryFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:ClimateScheduleState (label: 'ClimateScheduleState')
+subClassOf: DiscreteState
+CLASS dogont:ClimateScheduleStateValue (label: 'ClimateScheduleStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:Clock (label: 'Clock')
+subClassOf: BrownGoods
+CLASS dogont:CloseCommand (label: 'CloseCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:CloseNetworkCommand (label: 'CloseNetworkCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:CloseNotification (label: 'CloseNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:CloseStateValue (label: 'CloseStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:Closet (label: 'Closet')
+description: Confine to a small space.
+subClassOf: Furniture
+CLASS dogont:Co2MeasurementFunctionality (label: 'Co2MeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:Co2MeasurementNotification (label: 'Co2MeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:Co2MeasurementNotificationFunctionality (label: 'Co2MeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:Co2MeasurementState (label: 'Co2MeasurementState')
+subClassOf: ContinuousState
+CLASS dogont:Co2MeasurementStateValue (label: 'Co2MeasurementStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:Co2Sensor (label: 'Co2Sensor')
+subClassOf: Sensor
+CLASS dogont:CoffeeMaker (label: 'CoffeeMaker')
+description: A kitchen appliance for brewing coffee automatically
+subClassOf: BrownGoods
+CLASS dogont:ColdWaterM3MeasurementNotification (label: 'ColdWaterM3MeasurementNotification')
+subClassOf: SubstanceVolumeMeasurementNotification
+CLASS dogont:ColorControlFunctionality (label: 'ColorControlFunctionality')
+subClassOf: ContinuousControlFunctionality
+CLASS dogont:ColorDimmableLight (label: 'ColorDimmableLight')
+description: The Color Dimmable Light device can be switched on and off, and its luminance, hue and saturation levels may be controlled, derives from ZigBee HA specifications
+subClassOf: DimmableLight
+CLASS dogont:ColorDimmerSwitch (label: 'ColorDimmerSwitch')
+description: The Color Dimmer Switch device can turn a light on and off, and control the luminance, hue and saturation levels of a multicolor light, derives from ZigBee HA specifications
+subClassOf: DimmerSwitch
+CLASS dogont:ColorHSBNotification (label: 'ColorHSBNotification')
+subClassOf: ParametricNotification
+CLASS dogont:ColorNotificationFunctionality (label: 'ColorNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:ColorRGBNotification (label: 'ColorRGBNotification')
+subClassOf: ParametricNotification
+CLASS dogont:ColorState (label: 'ColorState')
+subClassOf: ContinuousState
+CLASS dogont:ColorStateHSB (label: 'ColorStateHSB')
+subClassOf: ColorState
+CLASS dogont:ColorStateRGB (label: 'ColorStateRGB')
+subClassOf: ColorState
+CLASS dogont:Command (label: 'Command')
+subClassOf: Thing
+CLASS dogont:Communication (label: 'Communication')
+description: Appliances for communicate
+subClassOf: BrownGoods
+CLASS dogont:CompositeThermostat (label: 'CompositeThermostat')
+subClassOf: Thermostat
+CLASS dogont:Computer (label: 'Computer')
+description: A machine for performing calculations automatically, work and play
+subClassOf: BrownGoods
+CLASS dogont:ConfigurationFunctionality (label: 'ConfigurationFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:ConnectedStateValue (label: 'ConnectedStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:ConnectionState (label: 'ConnectionState')
+subClassOf: DoubleValuedState
+CLASS dogont:ConsumedWaterStateValue (label: 'ConsumedWaterStateValue')
+subClassOf: SubstanceVolumeStateValue
+CLASS dogont:ContinuousControlFunctionality (label: 'ContinuousFunctionality')
+description: Functionalities continuous in time or space
+subClassOf: ControlFunctionality
+CLASS dogont:ContinuousNotificationFunctionality (label: 'ContinuousNotificationFunctionality')
+description: Notification of continuous values
+subClassOf: NotificationFunctionality
+CLASS dogont:ContinuousState (label: 'ContinuousState')
+description: States continuous in time or space
+subClassOf: State
+CLASS dogont:ContinuousValue (label: 'ContinuousValue')
+subClassOf: StateValue
+CLASS dogont:Control (label: 'Control')
+description: A mechanism that controls the interaction with the electrical system
+subClassOf: Controllable
+CLASS dogont:ControlFunctionality (label: 'ControlFunctionality')
+description: Capability of a controllable building thing that can receive commands
+subClassOf: Functionality
+CLASS dogont:Controllable (label: 'Controllable')
+description: All building things that can be controlled by domotic system
+subClassOf: Thing
+CLASS dogont:Cooker (label: 'Cooker')
+description: A utensil for cooking
+subClassOf: WhiteGoods
+CLASS dogont:CoolCommand (label: 'CoolCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:CoolNotification (label: 'CoolNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:CoolingApplianceState (label: 'CoolingApplianceState')
+subClassOf: GenericApplianceState
+CLASS dogont:CoolingStateValue (label: 'CoolingStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:Cupboard (label: 'Cupboard')
+description: A small room (or recess) or cabinet used for storage space
+subClassOf: Furniture
+CLASS dogont:CurrentMeasurementFunctionality (label: 'CurrentMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:CurrentMeasurementNotificationFunctionality (label: 'CurrentMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:CurrentMeasurementState (label: 'CurrentMeasurementState')
+subClassOf: ContinuousState
+CLASS dogont:CurrentMeter (label: 'CurrentMeter')
+subClassOf: ElectricityMeter
+CLASS dogont:CurrentStateValue (label: 'CurrentStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:CycleTimingControlFunctionality (label: 'CycleTimingControlFunctionality')
+subClassOf: TripleValuedFunctionality
+CLASS dogont:CycleTimingNotificationFunctionality (label: 'CycleTimingNotificationFunctionality')
+subClassOf: TripleValuedNotificationFunctionality
+CLASS dogont:CycleTimingQueryFunctionality (label: 'CycleTimingQueryFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:DailyClimateScheduleNotification (label: 'DailyClimateScheduleNotification')
+subClassOf: ClimateScheduleNotification
+CLASS dogont:DecreaseColorCommand (label: 'DecreaseColorCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:DecreaseContrastCommand (label: 'DecreaseContrastCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:DecreaseLuminosityCommand (label: 'DecreaseLuminosityCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:DecreaseQualityCommand (label: 'DecreaseQualityCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:DecreaseVolumeCommand (label: 'DecreaseVolumeCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:DeepFreezer (label: 'DeepFreezer')
+description: Electric refrigerator in which food is frozen and stored for long periods of time
+subClassOf: WhiteGoods
+CLASS dogont:DeleteApplianceCommand (label: 'DeleteApplianceCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:DeleteGroupCommand (label: 'DeleteGroupCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:DeleteSceneCommand (label: 'DeleteSceneCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:DeleteSceneNotification (label: 'DeleteSceneNotification')
+subClassOf: NetworkNotification, ParametricNotification
+CLASS dogont:Desk (label: 'Desk')
+description: A piece of furniture with a writing surface and usually drawers or other compartments
+subClassOf: Furniture
+CLASS dogont:DetectedNotification (label: 'DetectedNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:DetectedStateValue (label: 'DetectedStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:DeviceAssociationState (label: 'DeviceAssociationState')
+subClassOf: TripleValuedState
+CLASS dogont:DeviceDiscoveredNotification (label: 'DeviceDiscoveredNotification')
+subClassOf: BluetoothNotification, ParametricNotification
+CLASS dogont:DeviceDiscoveryNotificationFunctionality (label: 'DeviceDiscoveryNotificationFunctionality')
+subClassOf: DiscoveryNotificationFunctionality
+CLASS dogont:DeviceTeachInFunctionality (label: 'DeviceTeachInFunctionality')
+subClassOf: NetworkFunctionality
+CLASS dogont:DimmableLight (label: 'DimmableLight')
+description: The Dimmable Light device is a light that can be switched on and off, and whose luminance level may be controlled, derives from ZigBee HA specifications
+subClassOf: DimmerLamp
+CLASS dogont:DimmerLamp (label: 'DimmerLamp')
+description: Lamp that varies the level of illumination
+subClassOf: Lamp
+CLASS dogont:DimmerSwitch (label: 'DimmerSwitch')
+description: Switch for controlling dimmable lights, derives from ZigBee HA specifications
+subClassOf: LevelControlSwitch
+CLASS dogont:DiningRoom (label: 'DiningRoom')
+description: A room used for dining
+subClassOf: Room
+CLASS dogont:DisableGasCommand (label: 'DisableGasCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:DisassociateCommand (label: 'DisassociateCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:DisassociatingDeviceNotification (label: 'DisassociatingDeviceNotification')
+subClassOf: ZWaveNotification
+CLASS dogont:DisassociatingStateValue (label: 'DisassociatingStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:DisconnectedStateValue (label: 'DisconnectedStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:DiscoveryActiveNotification (label: 'DiscoveryActiveNotification')
+subClassOf: HueNotification
+CLASS dogont:DiscoveryFunctionality (label: 'DiscoveryFunctionality')
+subClassOf: NetworkFunctionality
+CLASS dogont:DiscoveryIdleNotification (label: 'DiscoveryIdleNotification')
+subClassOf: HueNotification
+CLASS dogont:DiscoveryNotificationFunctionality (label: 'DiscoveryNotificationFunctionality')
+subClassOf: NetworkNotificationFunctionality
+CLASS dogont:DiscoveryState (label: 'DiscoveryState')
+subClassOf: DiscreteState
+CLASS dogont:DiscreteControlFunctionality (label: 'DiscreteFunctionality')
+description: Functionalities not continuous, with fixed values
+subClassOf: ControlFunctionality
+CLASS dogont:DiscreteNotificationFunctionality (label: 'DiscreteNotificationFunctionality')
+description: Notification of fixed values
+subClassOf: NotificationFunctionality
+CLASS dogont:DiscreteOutputFunctionality (label: 'DiscreteOutputFunctionality')
+subClassOf: DiscreteControlFunctionality
+CLASS dogont:DiscreteState (label: 'DiscreteState')
+description: States not continuous, with fixed values
+subClassOf: State
+CLASS dogont:DiscreteValue (label: 'DiscreteValue')
+subClassOf: StateValue
+CLASS dogont:Dishwasher (label: 'Dishwasher')
+description: A machine for washing dishes
+subClassOf: WhiteGoods
+CLASS dogont:DisplayCommand (label: 'DisplayCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:DisplayFunctionality (label: 'DisplayFunctionality')
+subClassOf: DiscreteOutputFunctionality
+CLASS dogont:Door (label: 'Door')
+description: A swinging or sliding barrier that will close the entrance to a room or building.
+subClassOf: WallOpening
+CLASS dogont:DoorActuator (label: 'DoorActuator')
+description: A mechanism that allow automatic opening and closing about door
+subClassOf: Actuator
+CLASS dogont:DoorSensor (label: 'DoorSensor')
+description: Sensor that controls if a door is closed
+subClassOf: Sensor
+CLASS dogont:DoubleBed (label: 'DoubleBed')
+subClassOf: Bed
+CLASS dogont:DoubleValuedFunctionality (label: 'DoubleValuedFunctionality')
+description: Discrete functionalities with exactly two values
+subClassOf: DiscreteControlFunctionality
+CLASS dogont:DoubleValuedNotificationFunctionality (label: 'DoubleValuedNotificationFunctionality')
+description: Discrete notification with exactly two values
+subClassOf: DiscreteNotificationFunctionality
+CLASS dogont:DoubleValuedState (label: 'DoubleValuedState')
+description: Discrete states with exactly two values
+subClassOf: DiscreteState
+CLASS dogont:DownCommand (label: 'DownCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:DownTripleStateValue (label: 'DownTripleStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:Drawer (label: 'Drawer')
+description: A boxlike container in a piece of furniture; made so as to slide in and out
+subClassOf: Furniture
+CLASS dogont:Dvd (label: 'Dvd')
+description: Appliance thar read dvd
+subClassOf: Entertainment
+CLASS dogont:EchelonCommand (label: 'EchelonCommand')
+subClassOf: NetworkSpecificCommand
+CLASS dogont:EchelonIlon100Gateway (label: 'EchelonIlon100Gateway')
+subClassOf: EchelonNetworkComponent
+CLASS dogont:EchelonNetworkComponent (label: 'EchelonNetworkComponent')
+subClassOf: NetworkComponent
+CLASS dogont:EchelonNotification (label: 'EchelonNotification')
+subClassOf: NetworkSpecificNotification
+CLASS dogont:ElectricalCooker (label: 'ElectricalCooker')
+description: Electrical Cooker
+subClassOf: Cooker
+CLASS dogont:ElectricalOven (label: 'ElectricalOven')
+description: Electrical oven
+subClassOf: Oven
+CLASS dogont:ElectricalSystem (label: 'ElectricalSystem')
+description: Utility that provides electricity
+subClassOf: TechnicalSystem
+CLASS dogont:ElectricityMeter (label: 'ElectricityMeter')
+subClassOf: Meter
+CLASS dogont:EliteComponent (label: 'EliteComponent')
+description: Emulated component
+subClassOf: NetworkComponent
+CLASS dogont:EliteGateway (label: 'EliteGateway')
+description: A software emulator of a network level to be used for simulating devices not available in the real world
+subClassOf: EliteComponent
+CLASS dogont:EmittingMicrowavesNotification (label: 'EmittingMicrowavesNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:EmittingMicrowavesStateValue (label: 'EmittingMicrowavesStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:EnOceanComponent (label: 'EnOceanComponent')
+subClassOf: NetworkComponent
+CLASS dogont:EnOceanGateway (label: 'EnOceanGateway')
+subClassOf: EnOceanComponent
+CLASS dogont:EnOceanNotification (label: 'EnOceanNotification')
+subClassOf: NetworkSpecificNotification
+CLASS dogont:EnableDisableGasFunctionality (label: 'EnableDisableGasFunctionality')
+subClassOf: DoubleValuedFunctionality
+CLASS dogont:EnableGasCommand (label: 'EnableGasCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:EndProgrammedStateValue (label: 'EndProgrammedStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:EndTimeChangedNotification (label: 'EndTimeChangedNotification')
+subClassOf: ApplianceCycleTimingNotification
+CLASS dogont:EnergyAndPowerMeter (label: 'EnergyAndPowerMeter')
+subClassOf: SinglePhaseActivePowerMeter, SinglePhaseEnergyMeter
+CLASS dogont:EnergyAndPowerMeteringLevelControllableOutput (label: 'EnergyAndPowerMeteringLevelControllableOutput')
+subClassOf: LevelControllableOutput, SinglePhaseActiveEnergyMeter, SinglePhaseActivePowerMeter
+CLASS dogont:EnergyMeasurementFunctionality (label: 'EnergyMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:EnergyMeasurementNotification (label: 'EnergyMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:EnergyMeasurementNotificationFunctionality (label: 'EnergyMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:EnergyMeasurementState (label: 'EnergyMeasurementState')
+subClassOf: ContinuousState
+CLASS dogont:EnergyMeter (label: 'EnergyMeter')
+subClassOf: ElectricityMeter
+CLASS dogont:EnergyMeteringPowerOutlet (label: 'EnergyMeteringPowerOutlet')
+subClassOf: MainsPowerOutlet, SinglePhaseEnergyMeter
+CLASS dogont:EnergyStateValue (label: 'EnergyStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:Entertainment (label: 'Entertainment')
+description: A diversion that holds the attention
+subClassOf: BrownGoods
+CLASS dogont:Entrance (label: 'Entrance')
+subClassOf: Door
+CLASS dogont:Environment (label: 'Environment')
+CLASS dogont:EventNotification (label: 'EventNotification')
+subClassOf: ParametricNotification
+CLASS dogont:EventNotificationFunctionality (label: 'EventNotificationFunctionality')
+subClassOf: SingleValuedNotificationFunctionality
+CLASS dogont:EventsAndAlertsNotificationFunctionality (label: 'EventsAndAlertsNotificationFunctionality')
+subClassOf: MultipleAlertNotificationFunctionality, MultipleEventNotificationFunctionality
+CLASS dogont:EventsAndAlertsQueryFunctionality (label: 'EventsAndAlertsQueryFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:ExplicitTeachIn (label: 'ExplicitTeachIn')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:FailureStateValue (label: 'FailureStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:Fan (label: 'Fan')
+description: A device for creating a current of air
+subClassOf: BrownGoods
+CLASS dogont:FanControlFunctionality (label: 'FanControlFunctionality')
+description: Models the capability of controlling the speed of a cooling/heating fan. Derives from ZigBee HA
+subClassOf: ContinuousControlFunctionality
+CLASS dogont:FaultState (label: 'FaultState')
+subClassOf: DoubleValuedState
+CLASS dogont:Fax (label: 'Fax')
+description: Appliance that send text and document
+subClassOf: Communication
+CLASS dogont:Fence (label: 'Fence')
+description: A barrier that serves to enclose an area
+subClassOf: Vertical
+CLASS dogont:FenceOpening (label: 'FenceOpening')
+description: An opening in a Fence
+subClassOf: Vertical
+CLASS dogont:FillLevelMeasurementFunctionality (label: 'FillLevelMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:FillLevelSensor (label: 'FillLevelSensor')
+subClassOf: Sensor
+CLASS dogont:FillLevelState (label: 'FillLevelState')
+subClassOf: LevelState
+CLASS dogont:FireHeatCoolNotificationFunctionality (label: 'FireHeatCoolNotificationFunctionality')
+subClassOf: TripleValuedNotificationFunctionality
+CLASS dogont:FireSystem (label: 'FireSystem')
+description: System that detects the presence of fire
+subClassOf: SecuritySystem
+CLASS dogont:FireUpStateValue (label: 'FireUpStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:FiringUpNotification (label: 'FiringUpNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:FlashingLamp (label: 'FlashingLamp')
+description: Lamp that emits light in sudden short or intermittent bursts
+subClassOf: SimpleLamp
+CLASS dogont:Flat (label: 'Flat')
+subClassOf: BuildingEnvironment
+CLASS dogont:FloodSensor (label: 'FloodSensor')
+description: Sensor that detects the presence of flood
+subClassOf: Sensor
+CLASS dogont:FloodSystem (label: 'FloodSystem')
+description: System that detects the presence of flood
+subClassOf: SecuritySystem
+CLASS dogont:Floor (label: 'Floor')
+description: The inside lower horizontal surface of a room
+subClassOf: Horizontal
+CLASS dogont:FlowMeasurementFunctionality (label: 'FlowMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:FlowMeasurementNotificationFunctionality (label: 'FlowMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:FlowRateMeasurementMNotification (label: 'FlowRateMeasurementMNotification')
+subClassOf: ParametricNotification
+CLASS dogont:FlowRateMeasurementNotification (label: 'FlowRateMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:FlowRateState (label: 'FlowRateState')
+subClassOf: ContinuousState
+CLASS dogont:FlowRateStateValue (label: 'FlowRateStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:FlowSensor (label: 'FlowSensor')
+subClassOf: Sensor
+CLASS dogont:ForwardCommand (label: 'ForwardCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:ForwardNotification (label: 'ForwardNotification')
+subClassOf: PlaybackNotification
+CLASS dogont:ForwardStateValue (label: 'ForwardStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:FreeStateValue (label: 'FreeStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:FreezingApplianceState (label: 'FreezingApplianceState')
+subClassOf: GenericApplianceState
+CLASS dogont:FrequencyMeasurementFunctionality (label: 'FrequencyMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:FrequencyMeasurementNotification (label: 'FrequencyMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:FrequencyMeasurementNotificationFunctionality (label: 'FrequencyMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:FrequencyMeasurementState (label: 'FrequencyMeasurementState')
+subClassOf: ContinuousState
+CLASS dogont:FrequencyMeter (label: 'FrequencyMeter')
+subClassOf: ElectricityMeter
+CLASS dogont:FrequencyStateValue (label: 'FrequencyStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:Fridge (label: 'Fridge')
+description: A refrigerator in which the coolant is pumped around by an electric motor
+subClassOf: WhiteGoods
+CLASS dogont:Functionality (label: 'Functionality')
+description: Capability of a controllable building thing
+CLASS dogont:Furniture (label: 'Furniture')
+description: Furnishings that make a room or other area ready for occupancy
+subClassOf: BuildingThing
+CLASS dogont:Garage (label: 'Garage')
+description: The garage of the buinding
+subClassOf: BuildingEnvironment
+CLASS dogont:Garden (label: 'Garden')
+description: The garden of the building
+subClassOf: BuildingEnvironment
+CLASS dogont:GasCooker (label: 'GasCooker')
+description: Gas Cooker
+subClassOf: Cooker
+CLASS dogont:GasHeater (label: 'GasHeater')
+description: Heater that combusts gas
+subClassOf: Heater
+CLASS dogont:GasM3MeasurementNotification (label: 'GasM3MeasurementNotification')
+subClassOf: SubstanceVolumeMeasurementNotification
+CLASS dogont:GasMeasurementFunctionality (label: 'GasMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:GasMeasurementNotificationFunctionality (label: 'GasMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:GasMeasurementState (label: 'GasMeasurementState')
+subClassOf: ContinuousState
+CLASS dogont:GasMeter (label: 'GasMeter')
+subClassOf: Meter
+CLASS dogont:GasSensor (label: 'GasSensor')
+description: Sensor that detects the presence of gas
+subClassOf: Sensor
+CLASS dogont:GasStateValue (label: 'GasStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:GasSystem (label: 'GasSystem')
+description: System that detects the presence of gas
+subClassOf: SecuritySystem
+CLASS dogont:GasoilHeater (label: 'GasoilHeater')
+description: Heater that combusts gasoil
+subClassOf: Heater
+CLASS dogont:Gate (label: 'Gate')
+description: A door-like movable barrier in a fence
+subClassOf: FenceOpening
+CLASS dogont:GateActuator (label: 'GateActuator')
+description: A mechanism that allow automatic opening and closing about gate
+subClassOf: Actuator
+CLASS dogont:GenericApplianceState (label: 'GenericApplianceState')
+subClassOf: DiscreteState
+CLASS dogont:GenericContinuousState (label: 'GenericContinuousState')
+subClassOf: ContinuousState
+CLASS dogont:GenericDiscreteState (label: 'GenericDiscreteState')
+subClassOf: DiscreteState
+CLASS dogont:GenericSensor (label: 'GenericSensor')
+subClassOf: Sensor
+CLASS dogont:GenericValueNotificationFunctionality (label: 'GenericValueNotificationFunctionality')
+subClassOf: NotificationFunctionality
+CLASS dogont:Get1PhaseActiveEnergyCommand (label: 'Get1PhaseActiveEnergyCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:Get1PhaseActivePowerCommand (label: 'Get1PhaseActivePowerCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:Get1PhaseApparentEnergyCommand (label: 'Get1PhaseApparentEnergyCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:Get1PhaseApparentPowerCommand (label: 'Get1PhaseApparentPowerCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:Get1PhaseCurrentCommand (label: 'Get1PhaseCurrentCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:Get1PhasePowerFactorCommand (label: 'Get1PhasePowerFactorCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:Get1PhaseReactiveEnergyCommand (label: 'Get1PhaseReactiveEnergyCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:Get1PhaseReactivePowerCommand (label: 'Get1PhaseReactivePowerCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:Get1PhaseVoltageCommand (label: 'Get1PhaseVoltageCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:Get3PhaseActiveEnergyCommand (label: 'Get3PhaseActiveEnergyCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:Get3PhaseActivePowerCommand (label: 'Get3PhaseActivePowerCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:Get3PhaseApparentPowerCommand (label: 'Get3PhaseApparentPowerCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:Get3PhaseCurrentCommand (label: 'Get3PhaseCurrentCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:Get3PhaseLLVoltageCommand (label: 'Get3PhaseLLVoltageCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:Get3PhaseLNVoltageCommand (label: 'Get3PhaseLNVoltageCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:Get3PhasePowerFactorCommand (label: 'Get3PhasePowerFactorCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:Get3PhaseReactiveEnergyCommand (label: 'Get3PhaseReactiveEnergyCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:Get3PhaseReactivePowerCommand (label: 'Get3PhaseReactivePowerCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:GetClimateScheduleCommand (label: 'GetClimateScheduleCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:GetCo2ConcentrationCommand (label: 'GetCo2ConcentrationCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetColdWaterM3Command (label: 'GetColdWaterM3Command')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetCommand (label: 'GetCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetConfigurationCommand (label: 'GetConfigurationCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:GetConsumedM3Gas (label: 'GetConsumedM3Gas')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetEndTimeCommand (label: 'GetEndTimeCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetEventsAndAlertsCommand (label: 'GetEventsAndAlertsCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetFillLevelCommand (label: 'GetFillLevelCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetFlowRateCommand (label: 'GetFlowRateCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetFlowRateMCommand (label: 'GetFlowRateMCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:GetFrequencyCommand (label: 'GetFrequencyCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetGenericValue (label: 'GetGenericValue')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetHeatingEnergyCommand (label: 'GetHeatingEnergyCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetHotWaterM3Command (label: 'GetHotWaterM3Command')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetLuminanceCommand (label: 'GetLuminanceCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetMultiTariff1PhaseActiveEnergyCommand (label: 'GetMultiTariff1PhaseActiveEnergyCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:GetMultiTariff1PhaseReactiveEnergyCommand (label: 'GetMultiTariff1PhaseReactiveEnergyCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:GetMultiTariff3PhaseActiveEnergyCommand (label: 'GetMultiTariff3PhaseActiveEnergyCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:GetMultiTariff3PhaseReactiveEnergyCommand (label: 'GetMultiTariff3PhaseReactiveEnergyCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:GetMultipleEnergyCommand (label: 'GetMultipleEnergyCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:GetOccupancyCommand (label: 'GetOccupancyCommand')
+description: the command for getting the occupancy state of a given room/environment
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetOxygenSaturationCommand (label: 'GetOxygenSaturationCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetPhCommand (label: 'GetPhCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetPowerCommand (label: 'GetPowerCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetPressureCommand (label: 'GetPressureCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetPressureMCommand (label: 'GetPressureMCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:GetPulseFrequencyCommand (label: 'GetPulseFrequencyCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetRelativeHumidityCommand (label: 'GetRelativeHumidityCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetRelativeHumidityMCommand (label: 'GetRelativeHumidityMCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:GetRemainingTimeCommand (label: 'GetRemainingTimeCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetSetpointTemperatureCommand (label: 'GetSetpointTemperatureCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetStartTimeCommand (label: 'GetStartTimeCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetSubstanceVolumeMCommand (label: 'GetSubstanceVolumeMCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:GetTemperatureCommand (label: 'GetTemperatureCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GetTemperatureMCommand (label: 'GetTemperatureMCommand')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:GetXYZLocationCommand (label: 'GetXYZLocationCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GoToTrackCommand (label: 'GoToTrackCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:GrabPictureCommand (label: 'GrabPictureCommand')
+subClassOf: NonParametricCommand, NonVoidCommand
+CLASS dogont:GreenStateValue (label: 'GreenStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:GroupFunctionality (label: 'GroupFunctionality')
+description: Derives from the general cluster functionalities defined in ZigBee HA specifications
+subClassOf: NetworkFunctionality
+CLASS dogont:GroupNotificationFunctionality (label: 'GroupNotificationFunctionality')
+description: Derives from the general cluster functionalities defined in ZigBee HA specifications
+subClassOf: NetworkNotificationFunctionality
+CLASS dogont:GyroscopeStateValue (label: 'GyroscopeStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:HVACSystem (label: 'HVACSystem')
+description: Heating Ventilating and Air Conditioning system
+subClassOf: TechnicalSystem
+CLASS dogont:HealthTemperatureSensor (label: 'HealthTemperatureSensor')
+subClassOf: SingleTemperatureSensor
+CLASS dogont:HeatCommand (label: 'HeatCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:HeatEnergyCalculator (label: 'HeatEnergyCalculator')
+subClassOf: Meter
+CLASS dogont:HeatNotification (label: 'HeatNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:Heater (label: 'Heater')
+description: Device that heats water or supplies warmth
+subClassOf: Actuator
+CLASS dogont:HeaterState (label: 'HeaterState')
+subClassOf: TripleValuedState
+CLASS dogont:HeatingAndCoolingUnit (label: 'HeatingAndCoolingUnit')
+description: The Heating and Cooling Unit device can heat or cool a space in a house. It is not mandatory to provide both functionalities. It may be an indoor air handler. Derives from ZigBee H
+subClassOf: Actuator, Control
+CLASS dogont:HeatingAndCoolingUnitState (label: 'HeatingAndCoolingUnitState')
+subClassOf: DiscreteState
+CLASS dogont:HeatingApplianceState (label: 'HeatingApplianceState')
+subClassOf: GenericApplianceState
+CLASS dogont:HeatingCycleNotificationFunctionality (label: 'HeatingCycleNotificationFunctionality')
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:HeatingEnergyMeasurementFunctionality (label: 'HeatingEnergyMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:HeatingEnergyMeasurementNotification (label: 'HeatingEnergyMeasurementNotification')
+subClassOf: EnergyMeasurementNotification
+CLASS dogont:HeatingEnergyMeasurementNotificationFunctionality (label: 'HeatingEnergyMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:HeatingEnergyMeter (label: 'HeatingEnergyMeter')
+subClassOf: Meter
+CLASS dogont:HeatingStateValue (label: 'HeatingStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:HeatingSystem (label: 'HeatingSystem')
+description: Utility to warm a building
+subClassOf: HVACSystem
+CLASS dogont:HiFi (label: 'HiFi')
+description: Equipment for the reproduction of sound with high fidelity
+subClassOf: Entertainment
+CLASS dogont:Horizontal (label: 'Horizontal')
+description: The horizontal architectural component of a building
+subClassOf: Architectural
+CLASS dogont:HotWaterM3MeasurementNotification (label: 'HotWaterM3MeasurementNotification')
+subClassOf: SubstanceVolumeMeasurementNotification
+CLASS dogont:Hotplate (label: 'Hotplate')
+description: A portable electric appliance for heating or cooking or keeping food warm
+subClassOf: Cooker
+CLASS dogont:HueBridge (label: 'HueBridge')
+subClassOf: HueComponent
+CLASS dogont:HueComponent (label: 'HueComponent')
+subClassOf: NetworkComponent
+CLASS dogont:HueManager (label: 'HueManager')
+subClassOf: HueComponent
+CLASS dogont:HueNotification (label: 'HueNotification')
+subClassOf: NetworkSpecificNotification
+CLASS dogont:HueStateValue (label: 'HueStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:HumidityMeasurementFunctionality (label: 'HumidityMeasurementFunctionality')
+description: The capability of measuring the humidity of a room
+subClassOf: QueryFunctionality
+CLASS dogont:HumidityMeasurementMNotification (label: 'HumidityMeasurementMNotification')
+subClassOf: ParametricNotification
+CLASS dogont:HumidityMeasurementNotification (label: 'HumidityMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:HumidityMeasurementNotificationFunctionality (label: 'HumidityMeasurementNotificationFunctionality')
+description: The notification for requesting humidity measurment...
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:HumidityMeasurementState (label: 'HumidityMeasurementState')
+subClassOf: ContinuousState
+CLASS dogont:HumiditySensor (label: 'HumiditySensor')
+subClassOf: Sensor
+CLASS dogont:HumidityStateValue (label: 'HumidityStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:HybridGenericControlFunctionality (label: 'HybridGenericControlFunctionality')
+description: A generic control functionality which allowsto either handle continuous or discrete commands, provide means to "bypass" the dogont abstraction and treat protocol-specific cases whe
+subClassOf: ControlFunctionality
+CLASS dogont:ISMBUwbGateway (label: 'ISMBUwbGateway')
+subClassOf: ISMBUwbLocalizationComponent
+CLASS dogont:ISMBUwbLocalizationComponent (label: 'ISMBUwbLocalizationComponent')
+subClassOf: NetworkComponent
+CLASS dogont:IdentificationFunctionality (label: 'IdentificationFunctionality')
+description: Derives from the general cluster functionalities defined in ZigBee HA specifications
+subClassOf: NetworkFunctionality
+CLASS dogont:IdentificationNotificationFunctionality (label: 'IdentificationNotificationFunctionality')
+description: Derives from the general cluster functionalities defined in ZigBee HA specifications
+subClassOf: NetworkNotificationFunctionality
+CLASS dogont:IdentifyNotification (label: 'IdentifyNotification')
+subClassOf: NetworkNotification, NonParametricNotification
+CLASS dogont:IdleNotification (label: 'IdleNotification')
+subClassOf: ZWaveNotification
+CLASS dogont:IdleStateValue (label: 'IdleStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:IncreaseColorCommand (label: 'IncreaseColorCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:IncreaseContrastCommand (label: 'IncreaseContrastCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:IncreaseLuminosityCommand (label: 'IncreaseLuminosityCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:IncreaseQualityCommand (label: 'IncreaseQualityCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:IncreaseVolumeCommand (label: 'IncreaseVolumeCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:InfraredSensor (label: 'InfraredSensor')
+description: Sensor that detects the presence of a living entity in the sensor's range
+subClassOf: Sensor
+CLASS dogont:InstallApplianceCommand (label: 'InstallApplianceCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:Interphone (label: 'Interphone')
+description: A telephonic intercommunication system linking different rooms in a building
+subClassOf: Communication
+CLASS dogont:IsPresentNotification (label: 'IsPresentNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:Jacuzzi (label: 'Jacuzzi')
+description: A large whirlpool bathtub with underwater jets that massage the body
+subClassOf: Bathtub
+CLASS dogont:JoinGroupNotification (label: 'JoinGroupNotification')
+subClassOf: NetworkNotification, ParametricNotification
+CLASS dogont:KNXNetIPComponent (label: 'KNXNetIPComponent')
+subClassOf: NetworkComponent
+CLASS dogont:KNXNetIPGateway (label: 'KNXNetIPGateway')
+subClassOf: KNXNetIPComponent
+CLASS dogont:Kitchen (label: 'Kitchen')
+description: A room equipped for preparing meals
+subClassOf: Room
+CLASS dogont:Knob (label: 'Knob')
+description: A round handle used to adjust continuous amplitude, e.g. volume
+subClassOf: Control
+CLASS dogont:KonnexCommand (label: 'KonnexCommand')
+subClassOf: NetworkSpecificCommand
+CLASS dogont:KonnexComponent (label: 'KonnexComponent')
+description: Components manufactured by Konnex
+subClassOf: NetworkComponent
+CLASS dogont:KonnexGateway (label: 'KonnexGateway')
+description: A Konnex Gateway
+subClassOf: KonnexComponent
+CLASS dogont:KonnexNotification (label: 'KonnexNotification')
+subClassOf: NetworkSpecificNotification
+CLASS dogont:Lamp (label: 'Lamp')
+description: An artificial source of visible illumination
+subClassOf: Lighting
+CLASS dogont:LampHolder (label: 'LampHolder')
+subClassOf: OnOffOutput
+CLASS dogont:LeaveGroupNotification (label: 'LeaveGroupNotification')
+subClassOf: NetworkNotification, ParametricNotification
+CLASS dogont:LevelControlFunctionality (label: 'LevelControlFunctionality')
+description: Level control functionality, used for allowing devices to be controlled in a continuous manner, derives from ZigBee Home Automation specifications
+subClassOf: ContinuousControlFunctionality
+CLASS dogont:LevelControlNotification (label: 'LevelControlNotification')
+subClassOf: ParametricLevelNotification
+CLASS dogont:LevelControlNotificationFunctionality (label: 'LevelControlNotificationFunctionality')
+subClassOf: LevelNotificationFunctionality
+CLASS dogont:LevelControlSwitch (label: 'LevelControlSwitch')
+description: Level control switch, derives from the ZigBee Home Automation specification
+subClassOf: Switch
+CLASS dogont:LevelControllableOutput (label: 'LevelControllableOutput')
+description: Output device whose output level can be controlled continuously, by means of a level-control command (notification), derives from ZigBee HA specifications
+subClassOf: PowerDelivery
+CLASS dogont:LevelNotificationFunctionality (label: 'LevelNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:LevelState (label: 'LevelState')
+subClassOf: ContinuousState
+CLASS dogont:LevelStateValue (label: 'LevelStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:LevelStepDownNotification (label: 'LevelStepDownNotification')
+subClassOf: NonParametricLevelNotification
+CLASS dogont:LevelStepUpNotification (label: 'LevelStepUpNotification')
+subClassOf: NonParametricLevelNotification
+CLASS dogont:LightIntensityState (label: 'LightIntensityState')
+description: Models the state of the object that illuminates
+subClassOf: LevelState
+CLASS dogont:LightRegulationFunctionality (label: 'LightRegulationFunctionality')
+description: Functionalities for the regulation of ligth
+subClassOf: LevelControlFunctionality
+CLASS dogont:LightSensingFunctionality (label: 'LightSensingFunctionality')
+description: The capability of sensing the luminance of the environment in which a device is located accepts only the get command, with 1 parameter, i.e. the luminance value. Derives from ZigBe
+subClassOf: QueryFunctionality
+CLASS dogont:LightSensor (label: 'LightSensor')
+description: The Light Sensor device reports the illuminance of an area
+subClassOf: Sensor
+CLASS dogont:Lighting (label: 'Lighting')
+description: System that provides artificial light
+subClassOf: Actuator
+CLASS dogont:LivingRoom (label: 'LivingRoom')
+description: A room where people can sit and talk and relax
+subClassOf: Room
+CLASS dogont:Lobby (label: 'Lobby')
+description: A large entrance
+subClassOf: Room
+CLASS dogont:LocalizationTag (label: 'LocalizationTag')
+subClassOf: Wearable
+CLASS dogont:LoweringStateValue (label: 'LoweringStateValue')
+subClassOf: MovingStateValue
+CLASS dogont:LuminosityMeasurementNotification (label: 'LuminosityMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:LuminosityNotificationFunctionality (label: 'LuminosityNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:MagnetometerStateValue (label: 'MagnetometerStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:MainsPowerOutlet (label: 'MainsPowerOutlet')
+subClassOf: OnOffOutput
+CLASS dogont:Meter (label: 'Meter')
+subClassOf: Controllable
+CLASS dogont:MeteringPowerOutlet (label: 'MeteringPowerOutlet')
+subClassOf: EnergyMeteringPowerOutlet, PowerFactorMeter, PowerMeteringPowerOutlet
+CLASS dogont:MicrowaveEmissionNotificationFunctionality (label: 'MicrowaveEmissionNotificationFunctionality')
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:MicrowaveEmissionState (label: 'MicrowaveEmissionState')
+subClassOf: DoubleValuedState
+CLASS dogont:MicrowaveOven (label: 'MicrowaveOven')
+description: Microwave oven
+subClassOf: Oven
+CLASS dogont:ModBusStateValue (label: 'ModBusStateValue')
+subClassOf: NetworkSpecificStateValue
+CLASS dogont:ModbusCommand (label: 'ModbusCommand')
+subClassOf: NetworkSpecificCommand
+CLASS dogont:ModbusComponent (label: 'ModbusComponent')
+subClassOf: NetworkComponent
+CLASS dogont:ModbusGateway (label: 'ModbusGateway')
+subClassOf: ModbusComponent
+CLASS dogont:ModbusNotification (label: 'ModbusNotification')
+subClassOf: NetworkSpecificNotification
+CLASS dogont:MovementAndTemperatureSensor (label: 'MovementAndTemperatureSensor')
+subClassOf: MovementSensor, SingleTemperatureSensor
+CLASS dogont:MovementNotification (label: 'MovementNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:MovementNotificationFunctionality (label: 'MovementNotificationFunctionality')
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:MovementSensor (label: 'MovementSensor')
+subClassOf: Sensor
+CLASS dogont:MovementState (label: 'MovementState')
+subClassOf: DoubleValuedState
+CLASS dogont:MovingDownNotification (label: 'MovingDownNotification')
+subClassOf: MovementNotification
+CLASS dogont:MovingStateValue (label: 'MovingStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:MovingUpDownState (label: 'MovingUpDownState')
+subClassOf: MovementState
+CLASS dogont:MovingUpNotification (label: 'MovingUpNotification')
+subClassOf: MovementNotification
+CLASS dogont:MultiTariffActiveEnergyStateValue (label: 'MultiTariffActiveEnergyStateValue')
+subClassOf: EnergyStateValue
+CLASS dogont:MultiTariffEnergyMeter (label: 'MultiTariffEnergyMeter')
+subClassOf: EnergyMeter
+CLASS dogont:MultiTariffReactiveEnergyStateValue (label: 'MultiTariffReactiveEnergyStateValue')
+subClassOf: EnergyStateValue
+CLASS dogont:MultiTariffSinglePhaseActiveEnergyMeasurementFunctionality (label: 'MultiTariffSinglePhaseActiveEnergyMeasurementFunctionality')
+subClassOf: ActiveEnergyMeasurementFunctionality
+CLASS dogont:MultiTariffSinglePhaseActiveEnergyMeasurementNotification (label: 'MultiTariffSinglePhaseActiveEnergyMeasurementNotification')
+subClassOf: EnergyMeasurementNotification
+CLASS dogont:MultiTariffSinglePhaseActiveEnergyMeasurementNotificationFunctionality (label: 'MultiTariffSinglePhaseActiveEnergyMeasurementNotificationFunctionality')
+subClassOf: ActiveEnergyMeasurementNotificationFunctionality
+CLASS dogont:MultiTariffSinglePhaseActiveEnergyState (label: 'MultiTariffSinglePhaseActiveEnergyState')
+subClassOf: MultipleEnergyMeasurementState
+CLASS dogont:MultiTariffSinglePhaseEnergyMeter (label: 'MultiTariffSinglePhaseEnergyMeter')
+subClassOf: MultiTariffEnergyMeter
+CLASS dogont:MultiTariffSinglePhaseReactiveEnergyMeasurementFunctionality (label: 'MultiTariffSinglePhaseReactiveEnergyMeasurementFunctionality')
+subClassOf: ReactiveEnergyMeasurementFunctionality
+CLASS dogont:MultiTariffSinglePhaseReactiveEnergyMeasurementNotification (label: 'MultiTariffSinglePhaseReactiveEnergyMeasurementNotification')
+subClassOf: EnergyMeasurementNotification
+CLASS dogont:MultiTariffSinglePhaseReactiveEnergyMeasurementNotificationFunctionality (label: 'MultiTariffSinglePhaseReactiveEnergyMeasurementNotificationFunctionality')
+subClassOf: ReactiveEnergyMeasurementNotificationFunctionality
+CLASS dogont:MultiTariffSinglePhaseReactiveEnergyState (label: 'MultiTariffSinglePhaseReactiveEnergyState')
+subClassOf: MultipleEnergyMeasurementState
+CLASS dogont:MultiTariffThreePhaseActiveEnergyMeasurementFunctionality (label: 'MultiTariffThreePhaseActiveEnergyMeasurementFunctionality')
+subClassOf: ActiveEnergyMeasurementFunctionality
+CLASS dogont:MultiTariffThreePhaseActiveEnergyMeasurementNotification (label: 'MultiTariffThreePhaseActiveEnergyMeasurementNotification')
+subClassOf: EnergyMeasurementNotification
+CLASS dogont:MultiTariffThreePhaseActiveEnergyMeasurementNotificationFunctionality (label: 'MultiTariffThreePhaseActiveEnergyMeasurementNotificationFunctionality')
+subClassOf: ActiveEnergyMeasurementNotificationFunctionality
+CLASS dogont:MultiTariffThreePhaseActiveEnergyState (label: 'MultiTariffThreePhaseActiveEnergyState')
+subClassOf: MultipleEnergyMeasurementState
+CLASS dogont:MultiTariffThreePhaseEnergyMeter (label: 'MultiTariffThreePhaseEnergyMeter')
+subClassOf: MultiTariffEnergyMeter
+CLASS dogont:MultiTariffThreePhaseReactiveEnergyMeasurementFunctionality (label: 'MultiTariffThreePhaseReactiveEnergyMeasurementFunctionality')
+subClassOf: ReactiveEnergyMeasurementFunctionality
+CLASS dogont:MultiTariffThreePhaseReactiveEnergyMeasurementNotification (label: 'MultiTariffThreePhaseReactiveEnergyMeasurementNotification')
+subClassOf: EnergyMeasurementNotification
+CLASS dogont:MultiTariffThreePhaseReactiveEnergyMeasurementNotificationFunctionality (label: 'MultiTariffThreePhaseReactiveEnergyMeasurementNotificationFunctionality')
+subClassOf: ReactiveEnergyMeasurementNotificationFunctionality
+CLASS dogont:MultiTariffThreePhaseReactiveEnergyState (label: 'MultiTariffThreePhaseReactiveEnergyState')
+subClassOf: MultipleEnergyMeasurementState
+CLASS dogont:MultipleAlertNotification (label: 'MultipleAlertNotification')
+subClassOf: ParametricNotification
+CLASS dogont:MultipleAlertNotificationFunctionality (label: 'MultipleAlertNotificationFunctionality')
+subClassOf: SingleValuedNotificationFunctionality
+CLASS dogont:MultipleEnergyMeasurementFunctionality (label: 'MultipleEnergyMeasurementFunctionality')
+subClassOf: EnergyMeasurementFunctionality
+CLASS dogont:MultipleEnergyMeasurementNotification (label: 'MultipleEnergyMeasurementNotification')
+subClassOf: EnergyMeasurementNotification
+CLASS dogont:MultipleEnergyMeasurementNotificationFunctionality (label: 'MultipleEnergyMeasurementNotificationFunctionality')
+subClassOf: EnergyMeasurementNotificationFunctionality
+CLASS dogont:MultipleEnergyMeasurementState (label: 'MultipleEnergyMeasurementState')
+subClassOf: EnergyMeasurementState
+CLASS dogont:MultipleEventNotification (label: 'MultipleEventNotification')
+subClassOf: ParametricNotification
+CLASS dogont:MultipleEventNotificationFunctionality (label: 'MultipleEventNotificationFunctionality')
+subClassOf: SingleValuedNotificationFunctionality
+CLASS dogont:MultipleFlowMeasurementFunctionality (label: 'MultipleFlowMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:MultipleFlowMeasurementNotificationFunctionality (label: 'MultipleFlowMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:MultipleFlowRateState (label: 'MultipleFlowRateState')
+subClassOf: ContinuousState
+CLASS dogont:MultipleFlowRateStateValue (label: 'MultipleFlowRateStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:MultipleFlowSensor (label: 'MultipleFlowSensor')
+description: The Flow  Sensor device measures and periodically reports the flow rate of a liquid (typically water)
+subClassOf: FlowSensor
+CLASS dogont:MultipleHumidityMeasurementFunctionality (label: 'MultipleHumidityMeasurementFunctionality')
+description: The capability of measuring the humidity of a room
+subClassOf: QueryFunctionality
+CLASS dogont:MultipleHumidityMeasurementNotificationFunctionality (label: 'MultipleHumidityMeasurementNotificationFunctionality')
+description: The notification for requesting humidity measurment...
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:MultipleOnOffState (label: 'MultipleOnOffState')
+subClassOf: DiscreteState
+CLASS dogont:MultiplePowerMeasurementNotification (label: 'MultiplePowerMeasurementNotification')
+subClassOf: PowerMeasurementNotification
+CLASS dogont:MultiplePressureMeasurementFunctionality (label: 'MultiplePressureMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:MultiplePressureMeasurementNotificationFunctionality (label: 'MultiplePressureMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:MultiplePressureSensor (label: 'MultiplePressureSensor')
+description: The Pressure Sensor device measures and periodically reports the pressure of a liquid (typically water)
+subClassOf: Sensor
+CLASS dogont:MultiplePressureState (label: 'MultiplePressureState')
+subClassOf: ContinuousState
+CLASS dogont:MultiplePressureStateValue (label: 'MultiplePressureStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:MultipleTemperatureMeasurementFunctionality (label: 'MultipleTemperatureMeasurementFunctionality')
+description: The capability of measuring temperatures
+subClassOf: QueryFunctionality
+CLASS dogont:MultipleTemperatureMeasurementNotificationFunctionality (label: 'MultipleTemperatureMeasurementNotificationFunctionality')
+description: Notifies the measurment of a temperature, through a proper temperature sensor
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:MultipleTemperatureSensor (label: 'MultipleTemperatureSensor')
+description: Sensor that detects the temperature of the atmosphere
+subClassOf: TemperatureSensor
+CLASS dogont:MultipleTemperatureState (label: 'MultipleTemperatureState')
+description: Models the temperature value
+subClassOf: ContinuousState
+CLASS dogont:MultipleTemperatureStateValue (label: 'MultipleTemperatureStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:MultipleWaterVolumeMeasurementFunctionality (label: 'MultipleWaterVolumeMeasurementFunctionality')
+description: Measures volumes of substances flowing through duct or pipes (originally inserted for modeling the Kamstrup Multical 602)
+subClassOf: SubstanceVolumeMeasurementFunctionality
+CLASS dogont:MultipleWaterVolumeMeasurementNotificationFunctionality (label: 'MultipleWaterVolumeMeasurementNotificationFunctionality')
+subClassOf: SubstanceVolumeMeasurementNotificationFunctionality
+CLASS dogont:MultipleWaterVolumeMeasurementState (label: 'MultipleWaterVolumeMeasurementState')
+subClassOf: SubstanceVolumeMeasurementState
+CLASS dogont:MultipleWaterVolumeStateValue (label: 'MultipleWaterVolumeStateValue')
+subClassOf: SubstanceVolumeStateValue
+CLASS dogont:NeedingAuthenticationStateValue (label: 'NeedingAuthenticationStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:NetatmoComponent (label: 'NetatmoComponent')
+subClassOf: NetworkComponent
+CLASS dogont:NetatmoGateway (label: 'NetatmoGateway')
+subClassOf: NetatmoComponent
+CLASS dogont:NetworkClosedNotification (label: 'NetworkClosedNotification')
+subClassOf: ZigBeeNotification
+CLASS dogont:NetworkComponent (label: 'NetworkComponent')
+description: The manufacturers of the domotic component
+subClassOf: Controllable
+CLASS dogont:NetworkFunctionality (label: 'NetworkFunctionality')
+description: Derives from the general cluster functionalities defined in ZigBee HA specifications
+subClassOf: DiscreteControlFunctionality
+CLASS dogont:NetworkManagementFunctionality (label: 'NetworkManagementFunctionality')
+subClassOf: NetworkFunctionality
+CLASS dogont:NetworkManagementNotificationFunctionality (label: 'NetworkManagementNotificationFunctionality')
+subClassOf: NetworkNotificationFunctionality
+CLASS dogont:NetworkManagementState (label: 'NetworkManagementState')
+subClassOf: DoubleValuedState
+CLASS dogont:NetworkNotification (label: 'NetworkNotification')
+subClassOf: Notification
+CLASS dogont:NetworkNotificationFunctionality (label: 'NetworkNotificationFunctionality')
+description: Derives from the general cluster functionalities defined in ZigBee HA specifications
+subClassOf: DiscreteNotificationFunctionality
+CLASS dogont:NetworkOpenedNotification (label: 'NetworkOpenedNotification')
+subClassOf: ZigBeeNotification
+CLASS dogont:NetworkSpecificCommand (label: 'NetworkSpecificCommand')
+subClassOf: Command
+CLASS dogont:NetworkSpecificNotification (label: 'NetworkSpecificNotification')
+subClassOf: Notification
+CLASS dogont:NetworkSpecificStateValue (label: 'NetworkSpecificStateValue')
+subClassOf: StateValue
+CLASS dogont:NextTrackCommand (label: 'NextTrackCommand')
+subClassOf: NonParametricCommand
+CLASS dogont:Nightstand (label: 'Nightstand')
+description: A small table or stand placed at a bedside.
+subClassOf: Furniture
+CLASS dogont:NoFailureStateValue (label: 'NoFailureStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:NoMovementNotification (label: 'NoMovementNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:NonParametricCommand (label: 'NonParametricCommand')
+subClassOf: Command
+CLASS dogont:NonParametricLevelNotification (label: 'NonParametricLevelNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:NonParametricNotification (label: 'NonParametricNotification')
+subClassOf: Notification
+CLASS dogont:NonVoidCommand (label: 'NonVoidCommand')
+subClassOf: Command
+CLASS dogont:NotDetectedNotification (label: 'NotDetectedNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:NotDetectedStateValue (label: 'NotDetectedStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:NotEmittingMicrowavesNotification (label: 'NotEmittingMicrowavesNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:NotEmittingMicrowavesStateValue (label: 'NotEmittingMicrowavesStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:NotMovingStateValue (label: 'NotMovingStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:NotPresentNotification (label: 'NotPresentNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:NotPresentState (label: 'NotPresentState')
+subClassOf: DiscreteValue
+CLASS dogont:NotProgrammedStateValue (label: 'NotProgrammedStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:Notification (label: 'Notification')
+subClassOf: Thing
+CLASS dogont:NotificationFunctionality (label: 'NotificationFunctionality')
+description: Capability of a controllable building thing that notifies information,e.g.door sensor notifies "open"-"close"
+subClassOf: Functionality
+CLASS dogont:OccupancySensingFunctionality (label: 'OccupancySensingFunctionality')
+description: Functionality for getting the occupancy state of a given room
+subClassOf: QueryFunctionality
+CLASS dogont:OccupancySensor (label: 'OccupancySensor')
+description: The Occupancy Sensor device reports the occupancy state of an area. Derives from ZigBee HA specifications
+subClassOf: Sensor
+CLASS dogont:OccupancyState (label: 'OccupancyState')
+subClassOf: DoubleValuedState
+CLASS dogont:OccupiedStateValue (label: 'OccupiedStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:OffCommand (label: 'OffCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:OffFlashingCommand (label: 'OffFlashingCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:OffNotification (label: 'OffNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:OffStateValue (label: 'OffStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:OnCommand (label: 'OnCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:OnFlashingCommand (label: 'OnFlashingCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:OnNotification (label: 'OnNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:OnOffFlashingFunctionality (label: 'OnOffFlashingFunctionality')
+description: Functionality to switch on and off an object with a given switching period
+subClassOf: DoubleValuedFunctionality
+CLASS dogont:OnOffFunctionality (label: 'OnOffFunctionality')
+description: Functionality: turn on - turn off
+subClassOf: DoubleValuedFunctionality
+CLASS dogont:OnOffLight (label: 'OnOffLiight')
+description: Simple lamp that can be just turn on or turn off
+subClassOf: SimpleLamp
+CLASS dogont:OnOffLightSwitch (label: 'OnOffLightSwitch')
+description: OnOffSwitch for Lights only, derives from ZigBee HA specifications
+subClassOf: OnOffSwitch
+CLASS dogont:OnOffNotificationFunctionality (label: 'OnOffNotificationFunctionality')
+description: Notification: on - off
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:OnOffOutput (label: 'OnOffOutput')
+description: Models a binary output which can be only in on or off state (OnOffState), compatible with the ZigBee HA specifications
+subClassOf: PowerDelivery
+CLASS dogont:OnOffStandByFunctionality (label: 'OnOffStandByFunctionality')
+subClassOf: TripleValuedFunctionality
+CLASS dogont:OnOffStandbyNotificationFunctionality (label: 'OnOffStandbyNotificationFunctionality')
+subClassOf: TripleValuedNotificationFunctionality
+CLASS dogont:OnOffState (label: 'OnOffState')
+description: State: on - off
+subClassOf: DoubleValuedState
+CLASS dogont:OnOffSwitch (label: 'OnOffSwitch')
+description: Generic OnOff switch, derives from the ZigBee Home Automation specification
+subClassOf: Switch
+CLASS dogont:OnStateValue (label: 'OnStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:OpenCloseFunctionality (label: 'OpenCloseFunctionality')
+description: Functionality: open - close
+subClassOf: DoubleValuedFunctionality
+CLASS dogont:OpenCloseNotificationFunctionality (label: 'OpenCloseNotification')
+description: Notification: open - close
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:OpenCloseState (label: 'OpenCloseState')
+description: State: open - close
+subClassOf: DoubleValuedState
+CLASS dogont:OpenCommand (label: 'OpenCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:OpenNetworkCommand (label: 'OpenNetworkCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:OpenNotification (label: 'OpenNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:OpenStateValue (label: 'OpenStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:Oven (label: 'Oven')
+description: Kitchen appliance used for baking or roasting
+subClassOf: WhiteGoods
+CLASS dogont:OverloadControlFunctionality (label: 'OverloadControlFunctionality')
+subClassOf: TripleValuedFunctionality
+CLASS dogont:OverloadPauseCommand (label: 'OverloadPauseCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:OverloadPauseResumeCommand (label: 'OverloadPauseResumeCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:OverloadWarningCommand (label: 'OverloadWarningCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:OxyMeter (label: 'OxyMeter')
+subClassOf: Meter
+CLASS dogont:OxygenSaturationMeasurementFunctionality (label: 'OxygenSaturationMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:OxygenSaturationMeasurementNotification (label: 'OxygenSaturationMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:OxygenSaturationMeasurementNotificationFunctionality (label: 'OxygenSaturationMeasurementNotificationFunctionality')
+subClassOf: NotificationFunctionality
+CLASS dogont:OxygenSaturationMeasurementState (label: 'OxygenSaturationMeasurementState')
+subClassOf: ContinuousState
+CLASS dogont:OxygenSaturationStateValue (label: 'OxygenSaturationStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:PanDownCommand (label: 'PanDownCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:PanLeftCommand (label: 'PanLeftCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:PanRightCommand (label: 'PanRightCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:PanUpCommand (label: 'PanUpCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:ParametricCommand (label: 'ParametricCommand')
+subClassOf: Command
+CLASS dogont:ParametricLevelNotification (label: 'ParametricLevelNotification')
+subClassOf: ParametricNotification
+CLASS dogont:ParametricNotification (label: 'ParametricNotification')
+subClassOf: Notification
+CLASS dogont:Partition (label: 'Partition')
+description: A vertical structure that divides or separates
+subClassOf: Wall
+CLASS dogont:PauseApplianceNotification (label: 'PauseApplianceNotification')
+subClassOf: ApplianceRunNotification
+CLASS dogont:PauseCommand (label: 'PauseCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:PausePlaybackNotification (label: 'PausePlaybackNotification')
+subClassOf: PlaybackNotification
+CLASS dogont:PauseStateValue (label: 'PauseStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:PelletHeater (label: 'PelletHeater')
+description: Heater that combusts wood-pellet
+subClassOf: Heater
+CLASS dogont:PhMeasurementFunctionality (label: 'PhMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:PhMeasurementNotification (label: 'PhMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:PhMeasurementNotificationFunctionality (label: 'PhMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:PhMeasurementState (label: 'PhMeasurementState')
+subClassOf: ContinuousState
+CLASS dogont:PhMeter (label: 'PhMeter')
+subClassOf: Meter
+CLASS dogont:PhStateValue (label: 'PhStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:Phone (label: 'Phone')
+description: Appliance to comunicate with other person
+subClassOf: Communication
+CLASS dogont:PhonoStateValue (label: 'PhonoStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:PictureGrabFunctionality (label: 'PictureGrabFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:PlayCommand (label: 'PlayCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:PlayFunctionality (label: 'PlayFunctionality')
+subClassOf: DiscreteControlFunctionality
+CLASS dogont:PlayNotification (label: 'PlayNotification')
+subClassOf: PlaybackNotification
+CLASS dogont:PlayNotificationFunctionality (label: 'PlayNotificationFunctionality')
+subClassOf: LevelNotificationFunctionality
+CLASS dogont:PlayState (label: 'PlayState')
+subClassOf: DiscreteState
+CLASS dogont:PlayStateValue (label: 'PlayStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:PlaybackNotification (label: 'PlaybackNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:PlugwiseComponent (label: 'PlugwiseComponent')
+subClassOf: NetworkComponent
+CLASS dogont:PlugwiseGateway (label: 'PlugwiseGateway')
+subClassOf: PlugwiseComponent
+CLASS dogont:PowerDelivery (label: 'PowerDelivery')
+subClassOf: Actuator
+CLASS dogont:PowerFactorMeasurementFunctionality (label: 'PowerFactorMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:PowerFactorMeasurementNotification (label: 'PowerFactorMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:PowerFactorMeasurementNotificationFunctionality (label: 'PowerFactorMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:PowerFactorMeasurementState (label: 'PowerFactorMeasurementState')
+subClassOf: ContinuousState
+CLASS dogont:PowerFactorMeter (label: 'PowerFactorMeter')
+subClassOf: ElectricityMeter
+CLASS dogont:PowerFactorStateValue (label: 'PowerFactorStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:PowerMeasurementFunctionality (label: 'PowerMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:PowerMeasurementNotification (label: 'PowerMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:PowerMeasurementNotificationFunctionality (label: 'PowerMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:PowerMeasurementState (label: 'PowerMeasurementState')
+subClassOf: ContinuousState
+CLASS dogont:PowerMeter (label: 'PowerMeter')
+subClassOf: ElectricityMeter
+CLASS dogont:PowerMeteringLevelControllableOutput (label: 'PowerMeteringLevelControllableOutput')
+subClassOf: LevelControllableOutput, SinglePhaseActivePowerMeter
+CLASS dogont:PowerMeteringPowerOutlet (label: 'PowerMeteringPowerOutlet')
+subClassOf: MainsPowerOutlet, SinglePhaseActivePowerMeter
+CLASS dogont:PowerStateValue (label: 'PowerStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:PresenceAndMovementSensor (label: 'PresenceAndMovementSensor')
+subClassOf: MovementSensor, PresenceSensor
+CLASS dogont:PresenceNotificationFunctionality (label: 'PresenceNotificationFunctionality')
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:PresenceSensor (label: 'PresenceSensor')
+subClassOf: Sensor
+CLASS dogont:PresenceState (label: 'PresenceState')
+subClassOf: DoubleValuedState
+CLASS dogont:PresentStateValue (label: 'PresentStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:PressedDownNotification (label: 'PressedDownNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:PressedMNotification (label: 'PressedMNotification')
+subClassOf: ParametricNotification
+CLASS dogont:PressedNotification (label: 'PressedNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:PressedUpNotification (label: 'PressedUpNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:PressureMeasurementFunctionality (label: 'PressureMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:PressureMeasurementMNotification (label: 'PressureMeasurementMNotification')
+subClassOf: ParametricNotification
+CLASS dogont:PressureMeasurementNotification (label: 'PressureMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:PressureMeasurementNotificationFunctionality (label: 'PressureMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:PressureSensor (label: 'PressureSensor')
+description: The Pressure Sensor device measures and periodically reports the pressure of a liquid (typically water)
+subClassOf: Sensor
+CLASS dogont:PressureState (label: 'PressureState')
+subClassOf: ContinuousState
+CLASS dogont:PressureStateValue (label: 'PressureStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:PreviousTrackCommand (label: 'PreviousTrackCommand')
+subClassOf: NonParametricCommand
+CLASS dogont:Printer (label: 'Printer')
+description: Output device that prints
+subClassOf: BrownGoods
+CLASS dogont:ProgramInterruptedStateValue (label: 'ProgramInterruptedStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:ProgramState (label: 'ProgramState')
+subClassOf: DiscreteState
+CLASS dogont:ProgrammedAndWaitingToStartStateValue (label: 'ProgrammedAndWaitingToStartStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:ProgrammedStateValue (label: 'ProgrammedStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:PulseFrequencyMeasurementFunctionality (label: 'PulseFrequencyMeasurementFunctionality')
+subClassOf: FrequencyMeasurementFunctionality
+CLASS dogont:PulseFrequencyMeasurementNotification (label: 'PulseFrequencyMeasurementNotification')
+subClassOf: FrequencyMeasurementNotification
+CLASS dogont:PulseFrequencyMeasurementNotificationFunctionality (label: 'PulseFrequencyMeasurementNotificationFunctionality')
+subClassOf: FrequencyMeasurementNotificationFunctionality
+CLASS dogont:PulseFrequencyMeasurementState (label: 'PulseFrequencyMeasurementState')
+subClassOf: FrequencyMeasurementState
+CLASS dogont:Pump (label: 'Pump')
+description: The Pump device is a pump that may have variable speed. It may have optional built-in sensors and a regulation mechanism. It is typically used for pumping water. Derives from ZigBe
+subClassOf: Actuator
+CLASS dogont:PumpController (label: 'PumpController')
+description: The Pump device controller can control a Pump device
+subClassOf: Control
+CLASS dogont:PushLinkAuthenticationActiveNotification (label: 'PushLinkAuthenticationActiveNotification')
+subClassOf: HueNotification
+CLASS dogont:PushLinkAuthenticationIdleNotification (label: 'PushLinkAuthenticationIdleNotification')
+subClassOf: HueNotification
+CLASS dogont:PushLinkAuthenticationState (label: 'PushLinkAuthenticationState')
+subClassOf: DiscreteState
+CLASS dogont:PushLinkFunctionality (label: 'PushLinkFunctionality')
+subClassOf: NetworkFunctionality
+CLASS dogont:PushLinkNotificationFunctionality (label: 'PushLinkNotificationFunctionality')
+subClassOf: NetworkNotificationFunctionality
+CLASS dogont:QuadSensor (label: 'QuadSensor')
+subClassOf: HumiditySensor, LightSensor, MovementSensor, SingleTemperatureSensor
+CLASS dogont:QueryFunctionality (label: 'QueryFunctionality')
+description: Capability of a controllable building thing that must reply to an interrogation about its state
+subClassOf: Functionality
+CLASS dogont:Radio (label: 'Radio')
+description: A communication system based on broadcasting electromagnetic waves
+subClassOf: Entertainment
+CLASS dogont:RaisingStateValue (label: 'RaisingStateValue')
+subClassOf: MovingStateValue
+CLASS dogont:ReactiveEnergyMeasurementFunctionality (label: 'ReactiveEnergyMeasurementFunctionality')
+subClassOf: EnergyMeasurementFunctionality
+CLASS dogont:ReactiveEnergyMeasurementNotificationFunctionality (label: 'ReactiveEnergyMeasurementNotificationFunctionality')
+subClassOf: EnergyMeasurementNotificationFunctionality
+CLASS dogont:ReactiveEnergyStateValue (label: 'ReactiveEnergyStateValue')
+subClassOf: EnergyStateValue
+CLASS dogont:ReactivePowerMeasurementFunctionality (label: 'ReactivePowerMeasurementFunctionality')
+subClassOf: PowerMeasurementFunctionality
+CLASS dogont:ReactivePowerMeasurementNotificationFunctionality (label: 'ReactivePowerMeasurementNotificationFunctionality')
+subClassOf: PowerMeasurementNotificationFunctionality
+CLASS dogont:ReactivePowerMeasurementState (label: 'ReactivePowerMeasurementState')
+subClassOf: PowerMeasurementState
+CLASS dogont:ReactivePowerMeter (label: 'ReactivePowerMeter')
+subClassOf: PowerMeter
+CLASS dogont:ReactivePowerStateValue (label: 'ReactivePowerStateValue')
+subClassOf: PowerStateValue
+CLASS dogont:RedStateValue (label: 'RedStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:ReleasedMNotification (label: 'ReleasedMNotification')
+subClassOf: ParametricNotification
+CLASS dogont:ReleasedNotification (label: 'ReleasedNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:RemainingTimeChangedNotification (label: 'RemainingTimeChangedNotification')
+subClassOf: ApplianceCycleTimingNotification
+CLASS dogont:RemoteControl (label: 'RemoteControl')
+subClassOf: Control
+CLASS dogont:RestCommand (label: 'RestCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:RestDownNotification (label: 'RestDownNotification')
+subClassOf: NoMovementNotification
+CLASS dogont:RestNotification (label: 'RestNotification')
+subClassOf: NoMovementNotification
+CLASS dogont:RestTripleStateValue (label: 'RestTripleStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:RestUpNotification (label: 'RestUpNotification')
+subClassOf: NoMovementNotification
+CLASS dogont:RewindCommand (label: 'RewindCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:RewindNotification (label: 'RewindNotification')
+subClassOf: PlaybackNotification
+CLASS dogont:RewindStateValue (label: 'RewindStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:RinseHoldStateValue (label: 'RinseHoldStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:RockerSwitch (label: 'RockerSwitch')
+subClassOf: Switch
+CLASS dogont:Room (label: 'Room')
+description: A room of the building
+subClassOf: BuildingEnvironment
+CLASS dogont:RunState (label: 'RunState')
+subClassOf: TripleValuedState
+CLASS dogont:RunningStateValue (label: 'RunningStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:SanitaryFixtures (label: 'SanitaryFixtures')
+description: All the fixtures of a bathroom
+subClassOf: Furniture
+CLASS dogont:SaturationStateValue (label: 'SaturationStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:SceneFunctionality (label: 'SceneFunctionality')
+description: Derives from the general cluster functionalities defined in ZigBee HA specifications
+subClassOf: NetworkFunctionality
+CLASS dogont:SceneNotificationFunctionality (label: 'SceneNotificationFunctionality')
+description: Derives from the general cluster functionalities defined in ZigBee HA specifications
+subClassOf: NetworkNotificationFunctionality
+CLASS dogont:SceneSelector (label: 'SceneSelector')
+description: The Scene Selector device is capable of setting up and selecting scenes on other devices, including group of devices. It derives from ZigBee HA specifications.
+subClassOf: Control
+CLASS dogont:SecuritySystem (label: 'SecuritySystem')
+description: Security system for detecting dangerous situation and intrusion
+subClassOf: TechnicalSystem
+CLASS dogont:SelectSourceCommand (label: 'SelectSourceCommand')
+subClassOf: ParametricCommand
+CLASS dogont:SelfClosingDoorActuator (label: 'SelfClosingDoorActuator')
+subClassOf: DoorActuator
+CLASS dogont:SensingNotificationFunctionality (label: 'SensingNotificationFunctionality')
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:SensingState (label: 'SensingState')
+subClassOf: DoubleValuedState
+CLASS dogont:Sensor (label: 'Sensor')
+description: Class for grouping all electrically powered sensors
+subClassOf: Controllable
+CLASS dogont:SetChannelCommand (label: 'SetChannelCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetClimateScheduleCommand (label: 'SetClimateScheduleCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetColorHSBCommand (label: 'SetColorHSBCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetColorRGBCommand (label: 'SetColorRGBCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetCommand (label: 'SetCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetDailyClimateScheduleCommand (label: 'SetDailyClimateScheduleCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetDesiredTemperature (label: 'SetDesiredTemperature')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetEndTimeCommand (label: 'SetEndTimeCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetGenericValue (label: 'SetGenericValue')
+subClassOf: NonVoidCommand, ParametricCommand
+CLASS dogont:SetHourCommand (label: 'SetHourCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetMinutesCommand (label: 'SetMinutesCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetRemainingTimeCommand (label: 'SetRemainingTimeCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetSecondsCommand (label: 'SetSecondsCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetSpeedCommand (label: 'SetSpeedCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetStartTimeCommand (label: 'SetStartTimeCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetTimeoutCommand (label: 'SetTimeoutCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:SetVolumeCommand (label: 'SetVolumeCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:Shade (label: 'Shade')
+description: Shade object, the name includes an underscore sign only for distinguishing the name from the shade actuator, whose name is directly mapped from ZigBee
+subClassOf: Furniture
+CLASS dogont:ShadeActuator (label: 'Shade')
+description: The Shade Actuator device provides the ability to open or close window coverings, including setting partially open or partially closed states. This device type includes roller shad
+subClassOf: Actuator
+CLASS dogont:ShadeController (label: 'ShadeController')
+description: The Shade Controller device can control the level of a shade, derives from ZigBee HA specifications
+subClassOf: Control
+CLASS dogont:ShadeState (label: 'ShadeState')
+subClassOf: ContinuousState
+CLASS dogont:ShadeStateValue (label: 'ShadeStateValue')
+description: Value for the Shade position state, the shade position can be expressed as position=closedLimitx(255-level)/255, where with level 0 the shade is closed and with level 255 the shade
+subClassOf: ContinuousValue
+CLASS dogont:Shower (label: 'Shower')
+description: A plumbing fixture that sprays water over you
+subClassOf: SanitaryFixtures
+CLASS dogont:Shutter (label: 'Shutter')
+description: A hinged cover or screen for a window, usually fitted with louvers.
+subClassOf: WallOpening
+CLASS dogont:ShutterActuator (label: 'ShutterActuator')
+description: A mechanism that allow automatic control about shutter
+subClassOf: Actuator
+CLASS dogont:ShutterButton (label: 'ShutterButton')
+subClassOf: Control
+CLASS dogont:ShutterRegulationFunctionality (label: 'ShutterRegulationFunctionality')
+description: Functionalities for the regulation of shutter
+subClassOf: ContinuousControlFunctionality
+CLASS dogont:ShutterState (label: 'ShutterState')
+subClassOf: DiscreteState
+CLASS dogont:SimpleFrequencyMeasurementFunctionality (label: 'SimpleFrequencyMeasurementFunctionality')
+subClassOf: FrequencyMeasurementFunctionality
+CLASS dogont:SimpleFrequencyMeasurementNotification (label: 'SimpleFrequencyMeasurementNotification')
+subClassOf: FrequencyMeasurementNotification
+CLASS dogont:SimpleFrequencyMeasurementNotificationFunctionality (label: 'SimpleFrequencyMeasurementNotificationFunctionality')
+subClassOf: FrequencyMeasurementNotificationFunctionality
+CLASS dogont:SimpleLamp (label: 'SimpleLamp')
+description: Simple lamp that can be just turn on or turn off
+subClassOf: Lamp
+CLASS dogont:SimpleLevelNotificationFunctionality (label: 'SimpleLevelNotificationFunctionality')
+description: Notification functionality for controlling continuously adjustable device, e.g. dimmers, derives from ZigBee Home Automation specifications
+subClassOf: LevelNotificationFunctionality
+CLASS dogont:SimpleMovementNotification (label: 'SimpleMovementNotification')
+subClassOf: MovementNotification
+CLASS dogont:SimpleNoMovementNotification (label: 'SimpleNoMovementNotification')
+subClassOf: NoMovementNotification
+CLASS dogont:SingleBed (label: 'SingleBed')
+subClassOf: Bed
+CLASS dogont:SingleFlowSensor (label: 'SingleFlowSensor')
+description: The Flow  Sensor device measures and periodically reports the flow rate of a liquid (typically water)
+subClassOf: FlowSensor
+CLASS dogont:SinglePhaseActiveEnergyMeasurementFunctionality (label: 'SinglePhaseActiveEnergyMeasurementFunctionality')
+subClassOf: ActiveEnergyMeasurementFunctionality
+CLASS dogont:SinglePhaseActiveEnergyMeasurementNotification (label: 'SinglePhaseActiveEnergyMeasurementNotification')
+subClassOf: EnergyMeasurementNotification
+CLASS dogont:SinglePhaseActiveEnergyMeasurementNotificationFunctionality (label: 'SinglePhaseActiveEnergyMeasurementNotificationFunctionality')
+subClassOf: ActiveEnergyMeasurementNotificationFunctionality
+CLASS dogont:SinglePhaseActiveEnergyMeter (label: 'SinglePhaseActiveEnergyMeter')
+subClassOf: SingleTariffEnergyMeter
+CLASS dogont:SinglePhaseActiveEnergyState (label: 'SinglePhaseActiveEnergyState')
+subClassOf: EnergyMeasurementState
+CLASS dogont:SinglePhaseActivePowerMeasurementFunctionality (label: 'SinglePhaseActivePowerMeasurementFunctionality')
+subClassOf: ActivePowerMeasurementFunctionality
+CLASS dogont:SinglePhaseActivePowerMeasurementNotification (label: 'SinglePhaseActivePowerMeasurementNotification')
+subClassOf: PowerMeasurementNotification
+CLASS dogont:SinglePhaseActivePowerMeasurementNotificationFunctionality (label: 'SinglePhaseActivePowerMeasurementNotificationFunctionality')
+subClassOf: ActivePowerMeasurementNotificationFunctionality
+CLASS dogont:SinglePhaseActivePowerMeasurementState (label: 'SinglePhaseActivePowerMeasurementState')
+subClassOf: ActivePowerMeasurementState
+CLASS dogont:SinglePhaseActivePowerMeter (label: 'SinglePhaseActivePowerMeter')
+subClassOf: ActivePowerMeter
+CLASS dogont:SinglePhaseApparentEnergyMeasurementFunctionality (label: 'SinglePhaseApparentEnergyMeasurementFunctionality')
+subClassOf: ApparentEnergyMeasurementFunctionality
+CLASS dogont:SinglePhaseApparentEnergyMeasurementNotification (label: 'SinglePhaseApparentEnergyMeasurementNotification')
+subClassOf: EnergyMeasurementNotification
+CLASS dogont:SinglePhaseApparentEnergyMeasurementNotificationFunctionality (label: 'SinglePhaseApparentEnergyMeasurementNotificationFunctionality')
+subClassOf: ApparentEnergyMeasurementNotificationFunctionality
+CLASS dogont:SinglePhaseApparentEnergyMeter (label: 'SinglePhaseApparentEnergyMeter')
+subClassOf: SingleTariffEnergyMeter
+CLASS dogont:SinglePhaseApparentEnergyState (label: 'SinglePhaseApparentEnergyState')
+subClassOf: EnergyMeasurementState
+CLASS dogont:SinglePhaseApparentPowerMeasurementFunctionality (label: 'SinglePhaseApparentPowerMeasurementFunctionality')
+subClassOf: ApparentPowerMeasurementFunctionality
+CLASS dogont:SinglePhaseApparentPowerMeasurementNotification (label: 'SinglePhaseApparentPowerMeasurementNotification')
+subClassOf: PowerMeasurementNotification
+CLASS dogont:SinglePhaseApparentPowerMeasurementNotificationFunctionality (label: 'SinglePhaseApparentPowerMeasurementNotificationFunctionality')
+subClassOf: ApparentPowerMeasurementNotificationFunctionality
+CLASS dogont:SinglePhaseApparentPowerMeasurementState (label: 'SinglePhaseApparentPowerMeasurementState')
+subClassOf: ApparentPowerMeasurementState
+CLASS dogont:SinglePhaseApparentPowerMeter (label: 'SinglePhaseApparentPowerMeter')
+subClassOf: ApparentPowerMeter
+CLASS dogont:SinglePhaseCurrentMeasurementFunctionality (label: 'SinglePhaseCurrentMeasurementFunctionality')
+subClassOf: CurrentMeasurementFunctionality
+CLASS dogont:SinglePhaseCurrentMeasurementNotification (label: 'SinglePhaseCurrentMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:SinglePhaseCurrentMeasurementNotificationFunctionality (label: 'SinglePhaseCurrentMeasurementNotificationFunctionality')
+subClassOf: CurrentMeasurementNotificationFunctionality
+CLASS dogont:SinglePhaseCurrentMeter (label: 'SinglePhaseCurrentMeter')
+subClassOf: CurrentMeter
+CLASS dogont:SinglePhaseCurrentState (label: 'SinglePhaseCurrentState')
+subClassOf: CurrentMeasurementState
+CLASS dogont:SinglePhaseElectricityMeter (label: 'SinglePhaseElectricityMeter')
+subClassOf: FrequencyMeter, PowerFactorMeter, SinglePhaseActivePowerMeter, SinglePhaseApparentPowerMeter
+CLASS dogont:SinglePhaseEnergyMeter (label: 'SinglePhaseEnergyMeter')
+subClassOf: SingleTariffEnergyMeter
+CLASS dogont:SinglePhasePowerFactorMeasurementFunctionality (label: 'SinglePhasePowerFactorMeasurementFunctionality')
+subClassOf: PowerFactorMeasurementFunctionality
+CLASS dogont:SinglePhasePowerFactorMeasurementNotification (label: 'SinglePhasePowerFactorMeasurementNotification')
+subClassOf: PowerFactorMeasurementNotification
+CLASS dogont:SinglePhasePowerFactorMeasurementNotificationFunctionality (label: 'SinglePhasePowerFactorMeasurementNotificationFunctionality')
+subClassOf: PowerFactorMeasurementNotificationFunctionality
+CLASS dogont:SinglePhasePowerFactorMeasurementState (label: 'SinglePhasePowerFactorMeasurementState')
+subClassOf: PowerFactorMeasurementState
+CLASS dogont:SinglePhaseReactiveEnergyMeasurementFunctionality (label: 'SinglePhaseReactiveEnergyMeasurementFunctionality')
+subClassOf: ReactiveEnergyMeasurementFunctionality
+CLASS dogont:SinglePhaseReactiveEnergyMeasurementNotification (label: 'SinglePhaseReactiveEnergyMeasurementNotification')
+subClassOf: EnergyMeasurementNotification
+CLASS dogont:SinglePhaseReactiveEnergyMeasurementNotificationFunctionality (label: 'SinglePhaseReactiveEnergyMeasurementNotificationFunctionality')
+subClassOf: ReactiveEnergyMeasurementNotificationFunctionality
+CLASS dogont:SinglePhaseReactiveEnergyState (label: 'SinglePhaseReactiveEnergyState')
+subClassOf: EnergyMeasurementState
+CLASS dogont:SinglePhaseReactivePowerMeasurementFunctionality (label: 'SinglePhaseReactivePowerMeasurementFunctionality')
+subClassOf: ReactivePowerMeasurementFunctionality
+CLASS dogont:SinglePhaseReactivePowerMeasurementNotification (label: 'SinglePhaseReactivePowerMeasurementNotification')
+subClassOf: PowerMeasurementNotification
+CLASS dogont:SinglePhaseReactivePowerMeasurementNotificationFunctionality (label: 'SinglePhaseReactivePowerMeasurementNotificationFunctionality')
+subClassOf: ReactivePowerMeasurementNotificationFunctionality
+CLASS dogont:SinglePhaseReactivePowerMeasurementState (label: 'SinglePhaseReactivePowerMeasurementState')
+subClassOf: ReactivePowerMeasurementState
+CLASS dogont:SinglePhaseReactivePowerMeter (label: 'SinglePhaseReactivePowerMeter')
+subClassOf: ReactivePowerMeter
+CLASS dogont:SinglePhaseVoltageMeasurementFunctionality (label: 'SinglePhaseVoltageMeasurementFunctionality')
+subClassOf: VoltageMeasurementFunctionality
+CLASS dogont:SinglePhaseVoltageMeasurementNotification (label: 'SinglePhaseVoltageMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:SinglePhaseVoltageMeasurementNotificationFunctionality (label: 'SinglePhaseVoltageMeasurementNotificationFunctionality')
+subClassOf: VoltageMeasurementNotificationFunctionality
+CLASS dogont:SinglePhaseVoltageMeter (label: 'SinglePhaseVoltageMeter')
+subClassOf: VoltageMeter
+CLASS dogont:SinglePhaseVoltageState (label: 'SinglePhaseVoltageState')
+subClassOf: VoltageMeasurementState
+CLASS dogont:SinglePowerMeasurementFunctionality (label: 'SinglePowerMeasurementFunctionality')
+subClassOf: PowerMeasurementFunctionality
+CLASS dogont:SinglePowerMeasurementNotification (label: 'SinglePowerMeasurementNotification')
+subClassOf: PowerMeasurementNotification
+CLASS dogont:SinglePowerMeasurementNotificationFuncionality (label: 'SinglePowerMeasurementNotificationFuncionality')
+subClassOf: PowerMeasurementNotificationFunctionality
+CLASS dogont:SingleScenarioControl (label: 'SingleScenarioControl')
+subClassOf: Control
+CLASS dogont:SingleTariffEnergyMeter (label: 'SingleTariffEnergyMeter')
+subClassOf: EnergyMeter
+CLASS dogont:SingleTemperatureSensor (label: 'TemperatureSensor')
+description: Sensor that detects the temperature of the atmosphere
+subClassOf: TemperatureSensor
+CLASS dogont:SingleValuedFunctionality (label: 'SingleValuedFunctionality')
+description: Discrete functionalities with exactly one value
+subClassOf: DiscreteControlFunctionality
+CLASS dogont:SingleValuedNotificationFunctionality (label: 'SingleValuedNotificationFunctionality')
+description: Discrete notification with exactly one values
+subClassOf: DiscreteNotificationFunctionality
+CLASS dogont:Siren (label: 'Siren
+')
+description: A device in which compressed air or steam is driven against a rotating perforated disk to create a loud, often wailing sound as a signal or warning.
+
+An electronic device producing
+subClassOf: Acoustic
+CLASS dogont:SmartTeachInCommand (label: 'SmartTeachInCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:SmartWasteBin (label: 'SmartWasteBin')
+subClassOf: FillLevelSensor, SingleTemperatureSensor
+CLASS dogont:SmokeSensor (label: 'SmokeSensor')
+description: Sensor that detects the presence of smoke
+subClassOf: Sensor
+CLASS dogont:SnapshotCamera (label: 'SnapshotCamera')
+subClassOf: SurveillanceCamera
+CLASS dogont:Sofa (label: 'Sofa')
+description: An upholstered seat for more than one person
+subClassOf: Furniture
+CLASS dogont:SoundFunctionality (label: 'SoundFunctionality')
+description: Plays a Sound (default, or selected through a goTotrack, or...)
+subClassOf: DiscreteOutputFunctionality
+CLASS dogont:SourceSelectionFunctionality (label: 'SourceSelectionFunctionality')
+subClassOf: SingleValuedFunctionality
+CLASS dogont:SourceSelectionNotification (label: 'SourceSelectionNotification')
+subClassOf: ParametricNotification
+CLASS dogont:SourceSelectionNotificationFunctionality (label: 'SourceSelectionNotificationFunctionality')
+subClassOf: SingleValuedNotificationFunctionality
+CLASS dogont:SourceSelectionState (label: 'SourceSelectionState')
+subClassOf: DiscreteState
+CLASS dogont:SpeedControlNotification (label: 'SpeedControlNotification')
+subClassOf: ParametricLevelNotification
+CLASS dogont:SpeedDownCommand (label: 'SpeedDownCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:SpeedNotificationFunctionality (label: 'SpeedNotificationFunctionality')
+subClassOf: LevelNotificationFunctionality
+CLASS dogont:SpeedStepDownNotification (label: 'SpeedStepDownNotification')
+subClassOf: NonParametricLevelNotification
+CLASS dogont:SpeedStepUpNotification (label: 'SpeedStepUpNotification')
+subClassOf: NonParametricLevelNotification
+CLASS dogont:SpeedUpCommand (label: 'SpeedUpCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StandBy (label: 'StandBy')
+subClassOf: NonParametricCommand
+CLASS dogont:StandByNotification (label: 'StandByNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:StandByOnOffState (label: 'StandByOnOffState')
+subClassOf: TripleValuedState
+CLASS dogont:StandByStateValue (label: 'StandByStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:StartApplianceNotification (label: 'StartApplianceNotification')
+subClassOf: ApplianceRunNotification
+CLASS dogont:StartCommand (label: 'StartCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StartDiscoveryCommand (label: 'StartDiscoveryCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StartPushLinkAuthenticationCommand (label: 'StartPushLinkAuthenticationCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StartStopPauseFunctionality (label: 'StartStopPauseFunctionality')
+description: A functionality describing the ability of a device, tipically an appliance, to start, stop or pause its current cycle.
+subClassOf: TripleValuedFunctionality
+CLASS dogont:StartStopPauseNotificationFunctionality (label: 'StartStopPauseNotificationFunctionality')
+subClassOf: TripleValuedNotificationFunctionality
+CLASS dogont:StartSuperFreezingCommand (label: 'StartSuperFreezingCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StartSuperHeatingCommand (label: 'StartSuperHeatingCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StartSupercoolingCommand (label: 'StartSupercoolingCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StartTimeChangedNotification (label: 'StartTimeChangedNotification')
+subClassOf: ApplianceCycleTimingNotification
+CLASS dogont:StartedHeatingCycleNotification (label: 'StartedHeatingCycleNotification')
+subClassOf: WashingNotification
+CLASS dogont:StartedSuperCoolingNotification (label: 'StartedSuperCoolingNotification')
+subClassOf: SuperCoolingNotification
+CLASS dogont:StartedSuperFreezingNotification (label: 'StartedSuperFreezingNotification')
+subClassOf: SuperFreezingNotification
+CLASS dogont:StartedSuperHeatingNotification (label: 'StartedSuperHeatingNotification')
+subClassOf: SuperHeatingNotification
+CLASS dogont:StartedWashingNotification (label: 'StartedWashingNotification')
+subClassOf: WashingNotification
+CLASS dogont:State (label: 'State')
+description: Models the states of the controllable objects
+CLASS dogont:StateValue (label: 'StateValue')
+subClassOf: Thing
+CLASS dogont:StepDownCommand (label: 'StepDownCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StepFunctionality (label: 'StepFunctionality')
+subClassOf: DoubleValuedFunctionality
+CLASS dogont:StepShutterActuator (label: 'StepShutterActuator')
+subClassOf: ShutterActuator
+CLASS dogont:StepUpCommand (label: 'StepUpCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StopApplianceNotification (label: 'StopApplianceNotification')
+subClassOf: ApplianceRunNotification
+CLASS dogont:StopCommand (label: 'StopCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StopDiscoveryCommand (label: 'StopDiscoveryCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StopHeatingCoolingCommand (label: 'StopHeatingCoolingCommand')
+subClassOf: NonParametricCommand
+CLASS dogont:StopHeatingCoolingNotification (label: 'StopHeatingCoolingNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:StopPlaybackNotification (label: 'StopPlaybackNotification')
+subClassOf: PlaybackNotification
+CLASS dogont:StopPlayingCommand (label: 'StopPlayingCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StopPushLinkAuthenticationCommand (label: 'StopPushLinkAuthenticationCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StopStateValue (label: 'StopStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:StopSuperFreezingCommand (label: 'StopSuperFreezingCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StopSuperHeatingCommand (label: 'StopSuperHeatingCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StopSupercoolingCommand (label: 'StopSupercoolingCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:StoppedHeatingCycleNotification (label: 'StoppedHeatingCycleNotification')
+subClassOf: WashingNotification
+CLASS dogont:StoppedSuperCoolingNotification (label: 'StoppedSuperCoolingNotification')
+subClassOf: SuperCoolingNotification
+CLASS dogont:StoppedSuperFreezingNotification (label: 'StoppedSuperFreezingNotification')
+subClassOf: SuperFreezingNotification
+CLASS dogont:StoppedSuperHeatingNotification (label: 'StoppedSuperHeatingNotification')
+subClassOf: SuperHeatingNotification
+CLASS dogont:StoppedWashingNotification (label: 'StoppedWashingNotification')
+subClassOf: WashingNotification
+CLASS dogont:StorageRoom (label: 'StorageRoom')
+description: Little Room for storage of things in the house
+subClassOf: Room
+CLASS dogont:StoreGroupCommand (label: 'StoreGroupCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:StoreSceneCommand (label: 'StoreSceneCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:StoreSceneNotification (label: 'StoreSceneNotification')
+subClassOf: NetworkNotification, ParametricNotification
+CLASS dogont:Storey (label: 'Storey')
+subClassOf: BuildingEnvironment
+CLASS dogont:Stove (label: 'Stove')
+description: Heating apparatus
+subClassOf: WhiteGoods
+CLASS dogont:SubstanceVolumeMeasurementFunctionality (label: 'SubstanceVolumeMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:SubstanceVolumeMeasurementNotification (label: 'SubstanceVolumeMeasurementNotification')
+description: The total volume either in liters or cubic meters of a substance typically flowing through some ducts (or pipes).
+subClassOf: ParametricNotification
+CLASS dogont:SubstanceVolumeMeasurementNotificationFunctionality (label: 'SubstanceVolumeMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:SubstanceVolumeMeasurementState (label: 'SubstanceVolumeMeasurementState')
+subClassOf: ContinuousState
+CLASS dogont:SubstanceVolumeStateValue (label: 'SubstanceVolumeStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:SuperCoolingFunctionality (label: 'SuperCoolingFunctionality')
+description: A functionality describing the ability of the device to start/stop a super cooling cycle (typical of fridges, freezers and refrigerators). This functionality is defined in the ener
+subClassOf: DoubleValuedFunctionality
+CLASS dogont:SuperCoolingNotification (label: 'SuperCoolingNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:SuperCoolingNotificationFunctionality (label: 'SuperCoolingNotificationFunctionality')
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:SuperCoolingStateValue (label: 'SuperCoolingStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:SuperFreezingFunctionality (label: 'SuperFreezingFunctionality')
+description: Describes the ability of a device to start/stop a super freezing cycle, tipically defined for fridges, refrigerators and freezers. Derives from the energy@home zigbee extension and
+subClassOf: DoubleValuedFunctionality
+CLASS dogont:SuperFreezingNotification (label: 'SuperFreezingNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:SuperFreezingNotificationFunctionality (label: 'SuperFreezingNotificationFunctionality')
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:SuperFreezingStateValue (label: 'SuperFreezingStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:SuperHeatingFunctionality (label: 'SuperHeatingFunctionality')
+subClassOf: DoubleValuedFunctionality
+CLASS dogont:SuperHeatingNotification (label: 'SuperHeatingNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:SuperHeatingNotificationFunctionality (label: 'SuperHeatingNotificationFunctionality')
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:SuperHeatingStateValue (label: 'SuperHeatingStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:SurveillanceCamera (label: 'SurveillanceCamera')
+description: Camera of video surveillance
+subClassOf: Sensor
+CLASS dogont:Switch (label: 'Switch')
+description: Bi-stable control consisting of a mechanical or electrical or electronic device for making or breaking or changing the connections in a circuit
+subClassOf: Control
+CLASS dogont:Table (label: 'Table')
+description: A piece of furniture having a smooth flat top that is usually supported by one or more vertical legs
+subClassOf: Furniture
+CLASS dogont:Tape1StateValue (label: 'Tape1StateValue')
+subClassOf: DiscreteValue
+CLASS dogont:Tape2StateValue (label: 'Tape2StateValue')
+subClassOf: DiscreteValue
+CLASS dogont:TeachInActiveNotification (label: 'TeachInActiveNotification')
+subClassOf: EnOceanNotification
+CLASS dogont:TeachInCommand (label: 'TeachInCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:TeachInEndedNotification (label: 'TeachInEndedNotification')
+subClassOf: EnOceanNotification
+CLASS dogont:TeachInNotificationFunctionality (label: 'TeachInNotificationFunctionality')
+subClassOf: NetworkNotificationFunctionality
+CLASS dogont:TeachInState (label: 'TeachInState')
+subClassOf: DoubleValuedState
+CLASS dogont:TeachingInStateValue (label: 'TeachingInStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:TechnicalSystem (label: 'TechnicalSystem')
+description: All technical systems including,  e.g., Electrical system, Hydraulic system
+subClassOf: Thing
+CLASS dogont:TemperatureAndHumiditySensor (label: 'TemperatureAndHumiditySensor')
+subClassOf: HumiditySensor, SingleTemperatureSensor
+CLASS dogont:TemperatureMeasurementFunctionality (label: 'TemperatureMeasurementFunctionality')
+description: The capability of measuring temperatures
+subClassOf: QueryFunctionality
+CLASS dogont:TemperatureMeasurementMNotification (label: 'TemperatureMeasurementMNotification')
+subClassOf: ParametricNotification
+CLASS dogont:TemperatureMeasurementNotification (label: 'TemperatureMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:TemperatureMeasurementNotificationFunctionality (label: 'TemperatureMeasurementNotificationFunctionality')
+description: Notifies the measurment of a temperature, through a proper temperature sensor
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:TemperatureSensor (label: 'TemperatureSensor')
+subClassOf: Sensor
+CLASS dogont:TemperatureState (label: 'TemperatureState')
+description: Models the temperature value
+subClassOf: ContinuousState
+CLASS dogont:TemperatureStateValue (label: 'TemperatureStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:Terrace (label: 'Terrace')
+description: Outdoor area adjoining a residence
+subClassOf: Horizontal
+CLASS dogont:TexasInstrumentsComponent (label: 'TexasInstrumentsComponent')
+subClassOf: NetworkComponent
+CLASS dogont:TexasInstrumentsGateway (label: 'TexasInstrumentsGateway')
+subClassOf: TexasInstrumentsComponent
+CLASS dogont:Thermostat (label: 'Thermostat')
+subClassOf: Control
+CLASS dogont:ThermostatControlFunctionality (label: 'TemperatureRegulationFunctionality')
+description: Functionalities for the regulation of temperature
+subClassOf: ContinuousControlFunctionality
+CLASS dogont:ThermostatNotificationFunctionality (label: 'ThermostatNotificationFunctionality')
+description: The thermostat request notification, requires a device having the thermostat control functionality to increase, set or decrease the current temperature. Derives from ZigBee HA (sli
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:ThermostatQueryFunctionality (label: 'ThermostatQueryFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:ThermostatTemperatureSensor (label: 'ThermostatTemperatureSensor')
+subClassOf: SingleTemperatureSensor, Thermostat
+CLASS dogont:ThermostaticRadiatorValve (label: 'ThermostaticRadiatorValve')
+subClassOf: Actuator, Thermostat
+CLASS dogont:ThreePhaseActiveEnergyMeasurementFunctionality (label: 'ThreePhaseActiveEnergyMeasurementFunctionality')
+subClassOf: ActiveEnergyMeasurementFunctionality
+CLASS dogont:ThreePhaseActiveEnergyMeasurementNotification (label: 'ThreePhaseActiveEnergyMeasurementNotification')
+subClassOf: EnergyMeasurementNotification
+CLASS dogont:ThreePhaseActiveEnergyMeasurementNotificationFunctionality (label: 'ThreePhaseActiveEnergyMeasurementNotificationFunctionality')
+subClassOf: ActiveEnergyMeasurementNotificationFunctionality
+CLASS dogont:ThreePhaseActiveEnergyState (label: 'ThreePhaseActiveEnergyState')
+subClassOf: EnergyMeasurementState
+CLASS dogont:ThreePhaseActivePowerMeasurementFunctionality (label: 'ThreePhaseActivePowerMeasurementFunctionality')
+subClassOf: ActivePowerMeasurementFunctionality
+CLASS dogont:ThreePhaseActivePowerMeasurementNotification (label: 'ThreePhaseActivePowerMeasurementNotification')
+subClassOf: PowerMeasurementNotification
+CLASS dogont:ThreePhaseActivePowerMeasurementNotificationFunctionality (label: 'ThreePhaseActivePowerMeasurementNotificationFunctionality')
+subClassOf: ActivePowerMeasurementNotificationFunctionality
+CLASS dogont:ThreePhaseActivePowerMeasurementState (label: 'ThreePhaseActivePowerMeasurementState')
+subClassOf: ActivePowerMeasurementState
+CLASS dogont:ThreePhaseActivePowerMeter (label: 'ThreePhaseActivePowerMeter')
+subClassOf: ActivePowerMeter
+CLASS dogont:ThreePhaseApparentPowerMeasurementFunctionality (label: 'ThreePhaseApparentPowerMeasurementFunctionality')
+subClassOf: ApparentPowerMeasurementFunctionality
+CLASS dogont:ThreePhaseApparentPowerMeasurementNotification (label: 'ThreePhaseApparentPowerMeasurementNotification')
+subClassOf: PowerMeasurementNotification
+CLASS dogont:ThreePhaseApparentPowerMeasurementNotificationFunctionality (label: 'ThreePhaseApparentPowerMeasurementNotificationFunctionality')
+subClassOf: ApparentPowerMeasurementNotificationFunctionality
+CLASS dogont:ThreePhaseApparentPowerMeasurementState (label: 'ThreePhaseApparentPowerMeasurementState')
+subClassOf: ApparentPowerMeasurementState
+CLASS dogont:ThreePhaseApparentPowerMeter (label: 'ThreePhaseApparentPowerMeter')
+subClassOf: ApparentPowerMeter
+CLASS dogont:ThreePhaseCurrentMeasurementFunctionality (label: 'ThreePhaseCurrentMeasurementFunctionality')
+subClassOf: CurrentMeasurementFunctionality
+CLASS dogont:ThreePhaseCurrentMeasurementNotification (label: 'ThreePhaseCurrentMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:ThreePhaseCurrentMeasurementNotificationFunctionality (label: 'ThreePhaseCurrentMeasurementNotificationFunctionality')
+subClassOf: CurrentMeasurementNotificationFunctionality
+CLASS dogont:ThreePhaseCurrentMeter (label: 'ThreePhaseCurrentMeter')
+subClassOf: CurrentMeter
+CLASS dogont:ThreePhaseCurrentState (label: 'ThreePhaseCurrentState')
+subClassOf: CurrentMeasurementState
+CLASS dogont:ThreePhaseElectricityMeter (label: 'ThreePhaseElectricityMeter')
+subClassOf: FrequencyMeter, PowerFactorMeter, SinglePhaseEnergyMeter, ThreePhaseActivePowerMeter
+CLASS dogont:ThreePhaseEnergyMeter (label: 'ThreePhaseEnergyMeter')
+subClassOf: SingleTariffEnergyMeter
+CLASS dogont:ThreePhaseFrequencyMeasurementNotification (label: 'ThreePhaseFrequencyMeasurementNotification')
+subClassOf: FrequencyMeasurementNotification
+CLASS dogont:ThreePhaseFrequencyMeasurementNotificationFunctionality (label: 'ThreePhaseFrequencyMeasurementNotificationFunctionality')
+subClassOf: FrequencyMeasurementNotificationFunctionality
+CLASS dogont:ThreePhaseFrequencyMeasurementState (label: 'ThreePhaseFrequencyMeasurementState')
+subClassOf: FrequencyMeasurementState
+CLASS dogont:ThreePhaseLLVoltageMeasurementNotification (label: 'ThreePhaseLLVoltageMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:ThreePhaseLNVoltageMeasurementNotification (label: 'ThreePhaseLNVoltageMeasurementNotification')
+subClassOf: ParametricNotification
+CLASS dogont:ThreePhasePowerFactorMeasurementFunctionality (label: 'ThreePhasePowerFactorMeasurementFunctionality')
+subClassOf: PowerFactorMeasurementFunctionality
+CLASS dogont:ThreePhasePowerFactorMeasurementNotification (label: 'ThreePhasePowerFactorMeasurementNotification')
+subClassOf: PowerFactorMeasurementNotification
+CLASS dogont:ThreePhasePowerFactorMeasurementNotificationFunctionality (label: 'ThreePhasePowerFactorMeasurementNotificationFunctionality')
+subClassOf: PowerFactorMeasurementNotificationFunctionality
+CLASS dogont:ThreePhasePowerFactorMeasurementState (label: 'ThreePhasePowerFactorMeasurementState')
+subClassOf: PowerFactorMeasurementState
+CLASS dogont:ThreePhaseReactiveEnergyMeasurementFunctionality (label: 'ThreePhaseReactiveEnergyMeasurementFunctionality')
+subClassOf: ReactiveEnergyMeasurementFunctionality
+CLASS dogont:ThreePhaseReactiveEnergyMeasurementNotification (label: 'ThreePhaseReactiveEnergyMeasurementNotification')
+subClassOf: EnergyMeasurementNotification
+CLASS dogont:ThreePhaseReactiveEnergyMeasurementNotificationFunctionality (label: 'ThreePhaseReactiveEnergyMeasurementNotificationFunctionality')
+subClassOf: ReactiveEnergyMeasurementNotificationFunctionality
+CLASS dogont:ThreePhaseReactiveEnergyState (label: 'ThreePhaseReactiveEnergyState')
+subClassOf: EnergyMeasurementState
+CLASS dogont:ThreePhaseReactivePowerMeasurementFunctionality (label: 'ThreePhaseReactivePowerMeasurementFunctionality')
+subClassOf: ReactivePowerMeasurementFunctionality
+CLASS dogont:ThreePhaseReactivePowerMeasurementNotification (label: 'ThreePhaseReactivePowerMeasurementNotification')
+subClassOf: PowerMeasurementNotification
+CLASS dogont:ThreePhaseReactivePowerMeasurementNotificationFunctionality (label: 'ThreePhaseReactivePowerMeasurementNotificationFunctionality')
+subClassOf: ReactivePowerMeasurementNotificationFunctionality
+CLASS dogont:ThreePhaseReactivePowerMeasurementState (label: 'ThreePhaseReactivePowerMeasurementState')
+subClassOf: ReactivePowerMeasurementState
+CLASS dogont:ThreePhaseReactivePowerMeter (label: 'ThreePhaseReactivePowerMeter')
+subClassOf: ReactivePowerMeter
+CLASS dogont:ThreePhaseVoltageMeasurementFunctionality (label: 'ThreePhaseVoltageMeasurementFunctionality')
+subClassOf: VoltageMeasurementFunctionality
+CLASS dogont:ThreePhaseVoltageMeasurementNotificationFunctionality (label: 'ThreePhaseVoltageMeasurementNotificationFunctionality')
+subClassOf: VoltageMeasurementNotificationFunctionality
+CLASS dogont:ThreePhaseVoltageMeter (label: 'ThreePhaseVoltageMeter')
+subClassOf: VoltageMeter
+CLASS dogont:ThreePhaseVoltageState (label: 'ThreePhaseVoltageState')
+subClassOf: VoltageMeasurementState
+CLASS dogont:TimeRegulationFunctionality (label: 'TimeRegulationFunctionality')
+description: Functionalities for the regulation of timer
+subClassOf: ContinuousControlFunctionality
+CLASS dogont:TimedOnCommand (label: 'TimedOnCommand')
+subClassOf: ParametricCommand, VoidCommand
+CLASS dogont:TimedOnFunctionality (label: 'TimedOnFunctionality')
+description: Functionality to switch on an object for a given period of time
+subClassOf: SingleValuedFunctionality
+CLASS dogont:ToggleCommand (label: 'ToggleCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:ToggleFunctionality (label: 'ToggleFunctionality')
+subClassOf: SingleValuedFunctionality
+CLASS dogont:ToggleRelay (label: 'ToggleRelay')
+subClassOf: Control
+CLASS dogont:TrackControlNotification (label: 'TrackControlNotification')
+subClassOf: ParametricLevelNotification
+CLASS dogont:TridimensionalAccelerationNotification (label: 'TridimensionalAccelerationNotification')
+subClassOf: ParametricNotification
+CLASS dogont:TridimensionalAccelerationNotificationFunctionality (label: 'TridimensionalAccelerationNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:TridimensionalAccelerationState (label: 'TridimensionalAccelerationState')
+subClassOf: ContinuousState
+CLASS dogont:TridimensionalGyroscopeNotification (label: 'TridimensionalGyroscopeNotification')
+subClassOf: ParametricNotification
+CLASS dogont:TridimensionalGyroscopeNotificationFunctionality (label: 'TridimensionalGyroscopeNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:TridimensionalGyroscopeState (label: 'TridimensionalGyroscopeState')
+subClassOf: ContinuousState
+CLASS dogont:TridimensionalLocalizationState (label: 'TridimensionalLocalizationState')
+subClassOf: ContinuousState
+CLASS dogont:TridimensionalMagnetometerNotification (label: 'TridimensionalMagnetometerNotification')
+subClassOf: ParametricNotification
+CLASS dogont:TridimensionalMagnetometerNotificationFunctionality (label: 'TridimensionalMagnetometerNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:TridimensionalMagnetometerState (label: 'TridimensionalMagnetometerState')
+subClassOf: ContinuousState
+CLASS dogont:TripleSensor (label: 'TripleSensor')
+subClassOf: LightSensor, MovementSensor, SingleTemperatureSensor
+CLASS dogont:TripleValuedFunctionality (label: 'TripleValuedFunctionality')
+description: Discrete functionalities with exactly three values
+subClassOf: DiscreteControlFunctionality
+CLASS dogont:TripleValuedNotificationFunctionality (label: 'TripleValuedNotificationFunctionality')
+subClassOf: DiscreteNotificationFunctionality
+CLASS dogont:TripleValuedState (label: 'TripleValuedState')
+description: Discrete states with exactly three values
+subClassOf: DiscreteState
+CLASS dogont:TunerFunctionality (label: 'TunerFunctionality')
+subClassOf: ContinuousControlFunctionality
+CLASS dogont:TunerNotificationFunctionality (label: 'TunerNotificationFunctionality')
+subClassOf: LevelNotificationFunctionality
+CLASS dogont:TunerState (label: 'TunerState')
+subClassOf: ContinuousState
+CLASS dogont:TunerStateValue (label: 'TunerStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:TuningStepDownNotification (label: 'TuningStepDownNotification')
+subClassOf: NonParametricLevelNotification
+CLASS dogont:TuningStepUpNotification (label: 'TuningStepUpNotification')
+subClassOf: NonParametricLevelNotification
+CLASS dogont:Tv (label: 'Tv')
+description: A receiver that displays television images
+subClassOf: Entertainment
+CLASS dogont:UnControllable (label: 'UnControllable')
+description: Anything that cannot be interfaces by a domotic, Iot or ICT system
+subClassOf: Thing
+CLASS dogont:UpCommand (label: 'UpCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:UpDownFunctionality (label: 'UpDownFunctionality')
+description: Functionality: up - down
+subClassOf: DoubleValuedFunctionality
+CLASS dogont:UpDownNotificationFunctionality (label: 'UpDownNotificationFunctionality')
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:UpDownRestFunctionality (label: 'UpDownRestFunctionality')
+description: Functionality: up - down - rest
+subClassOf: TripleValuedFunctionality
+CLASS dogont:UpDownRestState (label: 'UpDownRestState')
+description: State: up - down - rest
+subClassOf: TripleValuedState
+CLASS dogont:UpTripleStateValue (label: 'UpTripleStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:VentilatingSystem (label: 'VentilatingSystem')
+subClassOf: HVACSystem
+CLASS dogont:Ventilator (label: 'Ventilator')
+description: A device that circulates fresh air and expels stale or foul air.
+subClassOf: Actuator
+CLASS dogont:Vertical (label: 'Vertical')
+description: The vertical architectural component of a building
+subClassOf: Architectural
+CLASS dogont:VerticalMovementNotificationFunctionality (label: 'VerticalMovementNotificationFunctionality')
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:VerticalNoMovementNotificationFunctionality (label: 'VerticalNoMovementNotificationFunctionality')
+subClassOf: TripleValuedNotificationFunctionality
+CLASS dogont:VoidCommand (label: 'VoidCommand')
+subClassOf: Command
+CLASS dogont:VoltageMeasurementFunctionality (label: 'VoltageMeasurementFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:VoltageMeasurementNotificationFunctionality (label: 'VoltageMeasurementNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:VoltageMeasurementState (label: 'VoltageMeasurementState')
+subClassOf: ContinuousState
+CLASS dogont:VoltageMeter (label: 'VoltageMeter')
+subClassOf: ElectricityMeter
+CLASS dogont:VoltageStateValue (label: 'VoltageStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:VolumeLevelState (label: 'VolumeLevel')
+description: Models the volume value
+subClassOf: LevelState
+CLASS dogont:VolumeRegulationFunctionality (label: 'VolumeRegulationFunctionality')
+description: Functionalities for the regulation of volume
+subClassOf: ContinuousControlFunctionality
+CLASS dogont:WMBusComponent (label: 'WMBusComponent')
+subClassOf: NetworkComponent
+CLASS dogont:WMBusGateway (label: 'WMBusGateway')
+subClassOf: WMBusComponent
+CLASS dogont:Wall (label: 'Wall')
+description: An architectural partition used to divide or enclose an area or to support another structure.
+subClassOf: Vertical
+CLASS dogont:WallOpening (label: 'WallOpening')
+description: An opening in a Wall
+subClassOf: Vertical
+CLASS dogont:Wardrobe (label: 'Wardrobe')
+description: A tall piece of furniture that provides storage space for clothes
+subClassOf: Furniture
+CLASS dogont:WashRinseStateValue (label: 'WashRinseStateValue')
+subClassOf: DiscreteValue
+CLASS dogont:Washbasin (label: 'Washbasin')
+description: A basin for washing the hands
+subClassOf: SanitaryFixtures
+CLASS dogont:WashingApplianceState (label: 'WashingApplianceState')
+subClassOf: GenericApplianceState
+CLASS dogont:WashingCycleNotificationFunctionality (label: 'WashingCycleNotificationFunctionality')
+subClassOf: DoubleValuedNotificationFunctionality
+CLASS dogont:WashingMachine (label: 'WashingMachine')
+description: A home appliance for washing clothes and linens automatically
+subClassOf: WhiteGoods
+CLASS dogont:WashingNotification (label: 'WashingNotification')
+subClassOf: NonParametricNotification
+CLASS dogont:WaterCloset (label: 'WaterCloset')
+description: A plumbing fixture for defecation and urination
+subClassOf: SanitaryFixtures
+CLASS dogont:WaterConsumptionMeasurementFuctionality (label: 'WaterConsumptionMeasurementFuctionality')
+subClassOf: SubstanceVolumeMeasurementFunctionality
+CLASS dogont:WaterConsumptionMeasurementNotificationFunctionality (label: 'WaterConsumptionMeasurementNotificationFunctionality')
+subClassOf: SubstanceVolumeMeasurementNotificationFunctionality
+CLASS dogont:WaterConsumptionMeter (label: 'WaterConsumptionMeter')
+subClassOf: Meter
+CLASS dogont:WaterMeasurementState (label: 'WaterMeasurementState')
+subClassOf: SubstanceVolumeMeasurementState
+CLASS dogont:WaterVolumeMeasurementMNotification (label: 'WaterVolumeMeasurementMNotification')
+description: Ideally would be better as subclass of WaterVolumeMeasurementNotification but it makes code generation more difficult
+subClassOf: SubstanceVolumeMeasurementNotification
+CLASS dogont:WaterVolumeMeasurementNotification (label: 'WaterVolumeMeasurementNotification')
+subClassOf: SubstanceVolumeMeasurementNotification
+CLASS dogont:Wearable (label: 'Wearable')
+subClassOf: Controllable
+CLASS dogont:WeeklyClimateScheduleNotification (label: 'WeeklyClimateScheduleNotification')
+subClassOf: ClimateScheduleNotification
+CLASS dogont:WhiteGoods (label: 'WhiteGoods')
+description: Major household appliances.
+
+It mus be noticed that the functionality modeling uses existential quantifiers for functionalities that can be optional, this is only for the sake of e
+subClassOf: Appliances
+CLASS dogont:Window (label: 'Window')
+description: A framework that contains a glass windowpane and is built into a wall or roof to admit light or air
+subClassOf: WallOpening
+CLASS dogont:WindowActuator (label: 'WindowActuator')
+description: A mechanism that allow automatic opening and closing about window
+subClassOf: Actuator
+CLASS dogont:WindowSensor (label: 'WindowSensor')
+description: Sensor that controls if a window is closed
+subClassOf: Sensor
+CLASS dogont:WirelessPhone (label: 'WirelessPhone')
+description: Phone with no wire
+subClassOf: Phone
+CLASS dogont:XYZLocationNotification (label: 'XYZLocationNotification')
+subClassOf: ParametricNotification
+CLASS dogont:XYZLocationNotificationFunctionality (label: 'XYZLocationNotificationFunctionality')
+subClassOf: ContinuousNotificationFunctionality
+CLASS dogont:XYZLocationSensingFunctionality (label: 'XYZLocationSensingFunctionality')
+subClassOf: QueryFunctionality
+CLASS dogont:XYZLocationState (label: 'XYZLocationState')
+subClassOf: ContinuousState
+CLASS dogont:XYZLocationStateValue (label: 'XYZLocationStateValue')
+subClassOf: ContinuousValue
+CLASS dogont:ZWaveComponent (label: 'ZWaveComponent')
+subClassOf: NetworkComponent
+CLASS dogont:ZWaveGateway (label: 'ZWaveGateway')
+subClassOf: ZWaveComponent
+CLASS dogont:ZWaveNotification (label: 'ZWaveNotification')
+subClassOf: NetworkSpecificNotification
+CLASS dogont:ZigBeeComponent (label: 'ZigBeeComponent')
+subClassOf: NetworkComponent
+CLASS dogont:ZigBeeGateway (label: 'ZigBeeGateway')
+subClassOf: ZigBeeComponent
+CLASS dogont:ZigBeeNotification (label: 'ZigBeeNotification')
+subClassOf: NetworkSpecificNotification
+CLASS dogont:ZoomInCommand (label: 'ZoomInCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:ZoomOutCommand (label: 'ZoomOutCommand')
+subClassOf: NonParametricCommand, VoidCommand
+CLASS dogont:eZ430Chronos (label: 'eZ430Chronos')
+subClassOf: Wearable
+CLASS owl:Thing (label: 'Thing')
+
+ALL ONTOLOGY OBJECT PROPERTIES:
+PROPERTY dogont:actuatorOf (label: 'actuatorOf')
+domain: Actuator
+PROPERTY dogont:belongsTo (label: 'belongsTo')
+domain: Controllable
+range: TechnicalSystem
+PROPERTY dogont:ceilingOf (label: 'ceilingOf')
+domain: Ceiling
+PROPERTY dogont:commandOf (label: 'commandOf')
+domain: Command
+PROPERTY dogont:contains (label: 'contains')
+description: Indicates which object are contained in a building environment, e.g. the kitchen contains Lamp1,Lamp2...
+domain: BuildingEnvironment
+PROPERTY dogont:controlledObject (label: 'controlledObject')
+description: Association between a controller and the controlled object
+domain: Control
+PROPERTY dogont:floorOf (label: 'floorOf')
+domain: Floor
+PROPERTY dogont:generateCommand (label: 'generateCommand')
+domain: Notification
+range: Command
+PROPERTY dogont:hasActuator (label: 'hasActuator')
+description: Association between a mobile uncontrollable object and its actuator
+range: Actuator
+PROPERTY dogont:hasCeiling (label: 'hasCeiling')
+range: Ceiling
+PROPERTY dogont:hasCommand (label: 'hasCommand')
+range: Command
+PROPERTY dogont:hasControl (label: 'hasControl')
+description: Association between an object and its controller,e.g.switch,button,knob
+range: Control
+PROPERTY dogont:hasFloor (label: 'hasFloor')
+range: Floor
+PROPERTY dogont:hasFunctionality (label: 'hasFunctionality')
+description: Provide functionalities to controllable things
+domain: Controllable
+range: Functionality
+PROPERTY dogont:hasGateway (label: 'hasGateway')
+description: Relates a given domotic component with the network level gateway used to control it
+domain: Controllable
+PROPERTY dogont:hasMeter (label: 'hasMeter')
+domain: Controllable
+range: Meter
+PROPERTY dogont:hasNotification (label: 'hasNotification')
+domain: NotificationFunctionality
+range: Notification
+PROPERTY dogont:hasSensor (label: 'hasSensor')
+description: Association between an object and its sensor
+PROPERTY dogont:hasState (label: 'hasState')
+description: Provide the actual state to controllable things
+domain: Controllable
+range: State
+PROPERTY dogont:hasStateValue (label: 'hasStateValue')
+domain: State
+range: StateValue
+PROPERTY dogont:hasWall (label: 'hasWall')
+description: Association between a room and its walls
+domain: Room
+range: Wall
+PROPERTY dogont:hasWallOpening (label: 'hasWallOpening')
+description: Association between a wall and its opening like door,window
+domain: Wall
+range: WallOpening
+PROPERTY dogont:isIn (label: 'isIn')
+description: Indicates in which building environment is contained an object, e.g. the lamp5 isIn Kitchen
+range: BuildingEnvironment
+PROPERTY dogont:isInWall (label: 'isInWall')
+description: Association between a wallopening(door or window) and the wall opening where it is
+domain: WallOpening
+range: Wall
+PROPERTY dogont:meterOf (label: 'meterOf')
+domain: Meter
+range: Controllable
+PROPERTY dogont:notificationOf (label: 'notificationOf')
+domain: Notification
+range: NotificationFunctionality
+PROPERTY dogont:plugOf (label: 'plugOf')
+domain: PowerDelivery
+range: Appliances
+PROPERTY dogont:pluggedIn (label: 'pluggedIn')
+domain: Appliances
+range: PowerDelivery
+PROPERTY dogont:sensorOf (label: 'isSensorOf')
+description: Association between a sensor and its sensed object
+PROPERTY dogont:statevalueOf (label: 'statevalueOf')
+domain: StateValue
+range: State
+PROPERTY dogont:unitOfMeasure (label: 'unitOfMeasure')
+range: UnitOfMeasurement
+PROPERTY owl:topObjectProperty (label: 'topObjectProperty')
+</ontology_context>
+
+<intermediate_report>
+{
+  "@context": {
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "xml": "http://www.w3.org/XML/1998/namespace",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dogont": "http://elite.polito.it/ontologies/dogont.owl#"
+  },
+  "@data": [
+    {
+      "nodetype": "airFlowSetpoint_FreshAirVentilation",
+      "iterator": "$[?(@.type=='FreshAirVentilation' && @..airFlowSetpoint)]",
+      "class": "**TODO: PLEASE CHECK** dogont:IsPresentNotification dogont:NotPresentNotification dogont:StoreSceneNotification",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "FreshAirVentilation",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "AmbientTemperatureSensor",
+      "iterator": "$[?(@.type=='AmbientTemperatureSensor')]",
+      "class": "**TODO: PLEASE CHECK** dogont:TemperatureSensor dogont:MultipleTemperatureSensor dogont:HealthTemperatureSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "Hotel",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperatureAmb_AmbientTemperatureSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "co2_CO2Sensor",
+      "iterator": "$[?(@.type=='CO2Sensor' && @..co2)]",
+      "class": "**TODO: PLEASE CHECK** dogont:Co2Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "CO2Sensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "CO2Sensor",
+      "iterator": "$[?(@.type=='CO2Sensor')]",
+      "class": "**TODO: PLEASE CHECK** dogont:Co2Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "co2_CO2Sensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "CoolingCoil",
+      "iterator": "$[?(@.type=='CoolingCoil')]",
+      "class": "**TODO: PLEASE CHECK** dogont:CoolingStateValue dogont:Ceiling dogont:Control",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "fanSpeed_CoolingCoil",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "fanSpeed_CoolingCoil",
+      "iterator": "$[?(@.type=='CoolingCoil' && @..fanSpeed)]",
+      "class": "**TODO: PLEASE CHECK** dogont:StartSupercoolingCommand dogont:SuperCoolingFunctionality dogont:StopSupercoolingCommand",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "CoolingCoil",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "FreshAirVentilation",
+      "iterator": "$[?(@.type=='FreshAirVentilation')]",
+      "class": "**TODO: PLEASE CHECK** dogont:TeachInActiveNotification dogont:ForwardNotification dogont:PressedNotification",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "airFlowSetpoint_FreshAirVentilation",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "Hotel",
+      "iterator": "$[?(@.type=='Hotel')]",
+      "class": "**TODO: PLEASE CHECK** dogont:Hotplate dogont:Phone dogont:Heater",
+      "hasRelationship": [],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "HotelRoom",
+      "iterator": "$[?(@.type=='HotelRoom')]",
+      "class": "**TODO: PLEASE CHECK** dogont:Bedroom dogont:Room dogont:StorageRoom",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "Hotel",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "pir_PresenceSensor",
+      "iterator": "$[?(@.type=='PresenceSensor' && @..pir)]",
+      "class": "**TODO: PLEASE CHECK** dogont:PresenceSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "PresenceSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "PresenceSensor",
+      "iterator": "$[?(@.type=='PresenceSensor')]",
+      "class": "**TODO: PLEASE CHECK** dogont:PresenceSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "pir_PresenceSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "RadiatorThermostat",
+      "iterator": "$[?(@.type=='RadiatorThermostat')]",
+      "class": "**TODO: PLEASE CHECK** dogont:Thermostat",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperatureSetpoint_RadiatorThermostat",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperature_TemperatureSensor",
+      "iterator": "$[?(@.type=='TemperatureSensor' && @..temperature)]",
+      "class": "**TODO: PLEASE CHECK** dogont:ThermostatTemperatureSensor dogont:HealthTemperatureSensor dogont:MultipleTemperatureSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "TemperatureSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperatureAmb_AmbientTemperatureSensor",
+      "iterator": "$[?(@.type=='AmbientTemperatureSensor' && @..temperatureAmb)]",
+      "class": "**TODO: PLEASE CHECK** dogont:ThermostatTemperatureSensor dogont:MovementAndTemperatureSensor dogont:MultipleTemperatureSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "AmbientTemperatureSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "TemperatureSensor",
+      "iterator": "$[?(@.type=='TemperatureSensor')]",
+      "class": "**TODO: PLEASE CHECK** dogont:TemperatureSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperature_TemperatureSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperatureSetpoint_RadiatorThermostat",
+      "iterator": "$[?(@.type=='RadiatorThermostat' && @..temperatureSetpoint)]",
+      "class": "**TODO: PLEASE CHECK** dogont:TemperatureState dogont:TemperatureSensor dogont:TemperatureStateValue",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "RadiatorThermostat",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    }
+  ]
+}
+</intermediate_report>
+
+<instructions>
+For EACH entry in @data:
+1. "class" — select the single best-matching ontology class from the candidates listed after **TODO: PLEASE CHECK**. Use prefixed form (e.g. "brick:Temperature_Sensor"). If none of the candidates fits, choose the most appropriate class from the ontology.
+2. "hasRelationship[].propertyClass" — select the single correct object property. Consider semantic direction: the property domain must match the subject node class and range must match the object node class.
+3. Keep all other fields (nodetype, iterator, hasDataAccess, rawdataidentifier, relatedNodeType) unchanged.
+4. Do NOT add or remove node types or relationships.
+</instructions>
+
+<constraints>
+- Return ONLY a valid JSON object with the same structure (@context + @data).
+- Every "class" and "propertyClass" must be a single prefixed string — no TODO markers, no multiple values, no nulls.
+- No explanation text outside the JSON.
+</constraints>

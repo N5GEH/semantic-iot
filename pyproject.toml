@@ -40,7 +40,7 @@ version = {attr = "semantic_iot.__version__"}
 
 [tool.setuptools]
 include-package-data = false
-packages = ["semantic_iot", "semantic_iot.utils"]
+packages = ["semantic_iot", "semantic_iot.utils", "semantic_iot.assisted_mapping", "semantic_iot.assisted_mapping.utils"]
 
 [tool.setuptools.package-data]
 semantic_iot = ["*.ttl.jinja2", "ontology/*", "ontology/**/*"]
