@@ -116,23 +116,19 @@ class OntologyContext:
         to a root (a class with no superclasses). Returns {iri_str: depth}.
         """
         depths = {}
+        in_progress = set()
 
-        def _depth(iri: URIRef, visited: set = None) -> int:
+        def _depth(iri: URIRef) -> int:
             key = str(iri)
             if key in depths:
                 return depths[key]
-            if visited is None:
-                visited = set()
-            if key in visited:
+            if key in in_progress:
                 return 0  # cycle detection
-            visited.add(key)
+            in_progress.add(key)
             parents = [p for p in self.graph.objects(iri, RDFS.subClassOf)
                        if isinstance(p, URIRef)]
-            if not parents:
-                depths[key] = 0
-                return 0
-            max_parent_depth = max(_depth(p, visited.copy()) for p in parents)
-            depths[key] = 1 + max_parent_depth
+            depths[key] = 0 if not parents else 1 + max(_depth(p) for p in parents)
+            in_progress.discard(key)
             return depths[key]
 
         for s, _, _ in self.graph.triples((None, RDF.type, OWL.Class)):

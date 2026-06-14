@@ -121,7 +121,12 @@ class LLMRMLPipeline:
         return self._parse_and_save_validated(response)
 
     def _parse_and_save_validated(self, response: str) -> dict:
-        validated = LLMAgent.extract_json(response)
+        try:
+            validated = LLMAgent.extract_json(response)
+        except ValueError as e:
+            print(f"\nERROR: Could not parse JSON from LLM response: {e}")
+            print(f"The raw response was saved to: {self.response_path}")
+            sys.exit(1)
         with open(self.validated_report_path, "w") as f:
             json.dump(validated, f, indent=2)
         print(f"Saved: {self.validated_report_path}")

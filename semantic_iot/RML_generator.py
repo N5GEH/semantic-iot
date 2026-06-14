@@ -80,7 +80,7 @@ class RMLMappingGenerator:
         mapping_content = mapping_template.render(
             context=context,
             relationships=relationships,
-            entities_file=os.path.basename(self.entities_file)
+            entities_file=self.entities_file
         )
 
         # Save file

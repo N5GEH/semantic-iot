@@ -36,6 +36,8 @@ class LLMAgent:
         if system:
             kwargs["system"] = system
         if use_thinking:
+            if thinking_budget >= max_tokens:
+                raise ValueError(f"thinking_budget ({thinking_budget}) must be less than max_tokens ({max_tokens})")
             kwargs["thinking"] = {"type": "enabled", "budget_tokens": thinking_budget}
             kwargs["temperature"] = 1.0  # API requires temperature=1 when thinking is enabled
 
@@ -58,10 +60,11 @@ class LLMAgent:
                 return json.loads(match.group(1))
             except json.JSONDecodeError:
                 pass
-        match = re.search(r"\{[\s\S]+\}", text)
-        if match:
+        start = text.find("{")
+        if start != -1:
             try:
-                return json.loads(match.group(0))
+                obj, _ = json.JSONDecoder().raw_decode(text, start)
+                return obj
             except json.JSONDecodeError:
                 pass
         raise ValueError(f"Could not extract JSON from LLM response: {text[:300]}")
