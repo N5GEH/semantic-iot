@@ -1,0 +1,253 @@
+{
+  "@context": {
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "xml": "http://www.w3.org/XML/1998/namespace",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "vann": "http://purl.org/vocab/vann/",
+    "s4bldg": "https://saref.etsi.org/saref4bldg/",
+    "saref": "https://saref.etsi.org/core/",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@data": [
+    {
+      "nodetype": "airFlowSetpoint_FreshAirVentilation",
+      "iterator": "$[?(@.type=='FreshAirVentilation' && @..airFlowSetpoint)]",
+      "class": "saref:Measurement",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "FreshAirVentilation",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "AmbientTemperatureSensor",
+      "iterator": "$[?(@.type=='AmbientTemperatureSensor')]",
+      "class": "s4bldg:Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "Hotel",
+          "propertyClass": "s4bldg:isContainedIn",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperatureAmb_AmbientTemperatureSensor",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "co2_CO2Sensor",
+      "iterator": "$[?(@.type=='CO2Sensor' && @..co2)]",
+      "class": "saref:Measurement",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "CO2Sensor",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "CO2Sensor",
+      "iterator": "$[?(@.type=='CO2Sensor')]",
+      "class": "s4bldg:Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "s4bldg:isContainedIn",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "co2_CO2Sensor",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "CoolingCoil",
+      "iterator": "$[?(@.type=='CoolingCoil')]",
+      "class": "s4bldg:EnergyConversionDevice",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "s4bldg:isContainedIn",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "fanSpeed_CoolingCoil",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "fanSpeed_CoolingCoil",
+      "iterator": "$[?(@.type=='CoolingCoil' && @..fanSpeed)]",
+      "class": "saref:Measurement",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "CoolingCoil",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "FreshAirVentilation",
+      "iterator": "$[?(@.type=='FreshAirVentilation')]",
+      "class": "s4bldg:FlowTerminal",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "s4bldg:isContainedIn",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "airFlowSetpoint_FreshAirVentilation",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "Hotel",
+      "iterator": "$[?(@.type=='Hotel')]",
+      "class": "s4bldg:Building",
+      "hasRelationship": [],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "HotelRoom",
+      "iterator": "$[?(@.type=='HotelRoom')]",
+      "class": "s4bldg:BuildingSpace",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "Hotel",
+          "propertyClass": "s4bldg:isSpaceOf",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "pir_PresenceSensor",
+      "iterator": "$[?(@.type=='PresenceSensor' && @..pir)]",
+      "class": "saref:Measurement",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "PresenceSensor",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "PresenceSensor",
+      "iterator": "$[?(@.type=='PresenceSensor')]",
+      "class": "s4bldg:Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "s4bldg:isContainedIn",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "pir_PresenceSensor",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "RadiatorThermostat",
+      "iterator": "$[?(@.type=='RadiatorThermostat')]",
+      "class": "s4bldg:UnitaryControlElement",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "s4bldg:isContainedIn",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperatureSetpoint_RadiatorThermostat",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperature_TemperatureSensor",
+      "iterator": "$[?(@.type=='TemperatureSensor' && @..temperature)]",
+      "class": "saref:Measurement",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "TemperatureSensor",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperatureAmb_AmbientTemperatureSensor",
+      "iterator": "$[?(@.type=='AmbientTemperatureSensor' && @..temperatureAmb)]",
+      "class": "saref:Measurement",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "AmbientTemperatureSensor",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "TemperatureSensor",
+      "iterator": "$[?(@.type=='TemperatureSensor')]",
+      "class": "s4bldg:Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "s4bldg:isContainedIn",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperature_TemperatureSensor",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperatureSetpoint_RadiatorThermostat",
+      "iterator": "$[?(@.type=='RadiatorThermostat' && @..temperatureSetpoint)]",
+      "class": "saref:Measurement",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "RadiatorThermostat",
+          "propertyClass": "saref:relatesToProperty",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    }
+  ]
+}

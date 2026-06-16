@@ -33,7 +33,7 @@ rml-mapping:MappingairFlowSetpoint_FreshAirVentilation
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/airFlowSetpoint_FreshAirVentilation/{id}" ;
-        rr:class brick:Air_Flow_Setpoint ;
+        rr:class brick:Air_Flow_Setpoint_Limit ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate brick:isPointOf ;
@@ -43,12 +43,6 @@ rml-mapping:MappingairFlowSetpoint_FreshAirVentilation
                 rr:child "id" ;
                 rr:parent "id" ;
             ] ;
-        ] ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/airFlowSetpoint/value" ;
         ] ;
     ] ;
     .
@@ -63,22 +57,16 @@ rml-mapping:MappingAmbientTemperatureSensor
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/AmbientTemperatureSensor/{id}" ;
-        rr:class brick:Outside_Air_Temperature_Sensor ;
+        rr:class brick:Air_Temperature_Sensor ;
     ] ;
     rr:predicateObjectMap [
-        rr:predicate brick:isPointOf ;
+        rr:predicate brick:hasLocation ;
         rr:objectMap [
             rr:parentTriplesMap rml-mapping:MappingHotel ;
             rr:joinCondition [
                 rr:child "hasLocation.value" ;
                 rr:parent "id" ;
             ] ;
-        ] ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureAmb/value" ;
         ] ;
     ] ;
     .
@@ -103,12 +91,6 @@ rml-mapping:MappingCO2Sensor
                 rr:child "hasLocation.value" ;
                 rr:parent "id" ;
             ] ;
-        ] ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/co2/value" ;
         ] ;
     ] ;
     .
@@ -169,12 +151,6 @@ rml-mapping:MappingfanSpeed_CoolingCoil
             ] ;
         ] ;
     ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/fanSpeed/value" ;
-        ] ;
-    ] ;
     .
 
 # Mapping for FreshAirVentilation
@@ -187,7 +163,7 @@ rml-mapping:MappingFreshAirVentilation
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/FreshAirVentilation/{id}" ;
-        rr:class brick:Ventilation_Air_System ;
+        rr:class brick:Fresh_Air_Fan ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate brick:hasLocation ;
@@ -221,7 +197,7 @@ rml-mapping:MappingHotel
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/Hotel/{id}" ;
-        rr:class rec:Building ;
+        rr:class brick:Building ;
     ] ;
     .
 
@@ -235,7 +211,7 @@ rml-mapping:MappingHotelRoom
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/HotelRoom/{id}" ;
-        rr:class rec:Room ;
+        rr:class brick:Room ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate brick:hasLocation ;
@@ -259,7 +235,7 @@ rml-mapping:MappingPresenceSensor
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/PresenceSensor/{id}" ;
-        rr:class brick:Occupancy_Count_Sensor ;
+        rr:class brick:Occupancy_Sensor ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate brick:isPointOf ;
@@ -269,12 +245,6 @@ rml-mapping:MappingPresenceSensor
                 rr:child "hasLocation.value" ;
                 rr:parent "id" ;
             ] ;
-        ] ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/pir/value" ;
         ] ;
     ] ;
     .
@@ -323,7 +293,7 @@ rml-mapping:MappingTemperatureSensor
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/TemperatureSensor/{id}" ;
-        rr:class brick:Air_Temperature_Sensor ;
+        rr:class brick:Temperature_Sensor ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate brick:isPointOf ;
@@ -333,12 +303,6 @@ rml-mapping:MappingTemperatureSensor
                 rr:child "hasLocation.value" ;
                 rr:parent "id" ;
             ] ;
-        ] ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value" ;
         ] ;
     ] ;
     .
@@ -353,7 +317,7 @@ rml-mapping:MappingtemperatureSetpoint_RadiatorThermostat
     ] ;
     rr:subjectMap [
         rr:template "http://example.com/temperatureSetpoint_RadiatorThermostat/{id}" ;
-        rr:class brick:Temperature_Setpoint ;
+        rr:class brick:Air_Temperature_Setpoint_Limit ;
     ] ;
     rr:predicateObjectMap [
         rr:predicate brick:isPointOf ;
@@ -363,12 +327,6 @@ rml-mapping:MappingtemperatureSetpoint_RadiatorThermostat
                 rr:child "id" ;
                 rr:parent "id" ;
             ] ;
-        ] ;
-    ] ;
-    rr:predicateObjectMap [
-        rr:predicate rdf:value ;
-        rr:objectMap [
-            rr:template "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperatureSetpoint/value" ;
         ] ;
     ] ;
     .

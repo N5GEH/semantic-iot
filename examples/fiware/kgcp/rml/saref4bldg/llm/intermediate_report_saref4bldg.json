@@ -1,0 +1,253 @@
+{
+  "@context": {
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "xml": "http://www.w3.org/XML/1998/namespace",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "vann": "http://purl.org/vocab/vann/",
+    "s4bldg": "https://saref.etsi.org/saref4bldg/",
+    "saref": "https://saref.etsi.org/core/",
+    "dcterms": "http://purl.org/dc/terms/"
+  },
+  "@data": [
+    {
+      "nodetype": "airFlowSetpoint_FreshAirVentilation",
+      "iterator": "$[?(@.type=='FreshAirVentilation' && @..airFlowSetpoint)]",
+      "class": "**TODO: PLEASE CHECK** s4bldg:AirToAirHeatRecovery s4bldg:FlowInstrument s4bldg:FlowTreatmentDevice",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "FreshAirVentilation",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "AmbientTemperatureSensor",
+      "iterator": "$[?(@.type=='AmbientTemperatureSensor')]",
+      "class": "**TODO: PLEASE CHECK** s4bldg:Compressor s4bldg:Interceptor saref:Measurement",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "Hotel",
+          "propertyClass": "**TODO: PLEASE CHECK** http://www.w3.org/2003/01/geo/wgs84_pos#location",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperatureAmb_AmbientTemperatureSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "co2_CO2Sensor",
+      "iterator": "$[?(@.type=='CO2Sensor' && @..co2)]",
+      "class": "**TODO: PLEASE CHECK** saref:Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "CO2Sensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "CO2Sensor",
+      "iterator": "$[?(@.type=='CO2Sensor')]",
+      "class": "**TODO: PLEASE CHECK** saref:Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** http://www.w3.org/2003/01/geo/wgs84_pos#location",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "co2_CO2Sensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "CoolingCoil",
+      "iterator": "$[?(@.type=='CoolingCoil')]",
+      "class": "**TODO: PLEASE CHECK** s4bldg:CoolingTower",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** http://www.w3.org/2003/01/geo/wgs84_pos#location",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "fanSpeed_CoolingCoil",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "fanSpeed_CoolingCoil",
+      "iterator": "$[?(@.type=='CoolingCoil' && @..fanSpeed)]",
+      "class": "**TODO: PLEASE CHECK** s4bldg:CoolingTower s4bldg:EvaporativeCooler s4bldg:FlowController",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "CoolingCoil",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "FreshAirVentilation",
+      "iterator": "$[?(@.type=='FreshAirVentilation')]",
+      "class": "**TODO: PLEASE CHECK** s4bldg:VibrationIsolator s4bldg:FireSuppressionTerminal s4bldg:SanitaryTerminal",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** http://www.w3.org/2003/01/geo/wgs84_pos#location",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "airFlowSetpoint_FreshAirVentilation",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "Hotel",
+      "iterator": "$[?(@.type=='Hotel')]",
+      "class": "**TODO: PLEASE CHECK** s4bldg:Outlet",
+      "hasRelationship": [],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "HotelRoom",
+      "iterator": "$[?(@.type=='HotelRoom')]",
+      "class": "**TODO: PLEASE CHECK** s4bldg:FlowTerminal s4bldg:ElectricMotor s4bldg:Alarm",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "Hotel",
+          "propertyClass": "**TODO: PLEASE CHECK** http://www.w3.org/2003/01/geo/wgs84_pos#location",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "pir_PresenceSensor",
+      "iterator": "$[?(@.type=='PresenceSensor' && @..pir)]",
+      "class": "**TODO: PLEASE CHECK** s4bldg:Compressor saref:Sensor s4bldg:FireSuppressionTerminal",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "PresenceSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "PresenceSensor",
+      "iterator": "$[?(@.type=='PresenceSensor')]",
+      "class": "**TODO: PLEASE CHECK** saref:Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** http://www.w3.org/2003/01/geo/wgs84_pos#location",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "pir_PresenceSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "RadiatorThermostat",
+      "iterator": "$[?(@.type=='RadiatorThermostat')]",
+      "class": "**TODO: PLEASE CHECK** s4bldg:SanitaryTerminal s4bldg:TransportElement s4bldg:AirToAirHeatRecovery",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** http://www.w3.org/2003/01/geo/wgs84_pos#location",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperatureSetpoint_RadiatorThermostat",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperature_TemperatureSensor",
+      "iterator": "$[?(@.type=='TemperatureSensor' && @..temperature)]",
+      "class": "**TODO: PLEASE CHECK** s4bldg:ElectricGenerator saref:Measurement s4bldg:ElectricTimeControl",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "TemperatureSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperatureAmb_AmbientTemperatureSensor",
+      "iterator": "$[?(@.type=='AmbientTemperatureSensor' && @..temperatureAmb)]",
+      "class": "**TODO: PLEASE CHECK** s4bldg:ElectricGenerator saref:Measurement s4bldg:AirToAirHeatRecovery",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "AmbientTemperatureSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "TemperatureSensor",
+      "iterator": "$[?(@.type=='TemperatureSensor')]",
+      "class": "**TODO: PLEASE CHECK** s4bldg:Compressor saref:Measurement saref:Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** http://www.w3.org/2003/01/geo/wgs84_pos#location",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperature_TemperatureSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperatureSetpoint_RadiatorThermostat",
+      "iterator": "$[?(@.type=='RadiatorThermostat' && @..temperatureSetpoint)]",
+      "class": "**TODO: PLEASE CHECK** s4bldg:FireSuppressionTerminal s4bldg:TransportElement s4bldg:ElectricGenerator",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "RadiatorThermostat",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    }
+  ]
+}

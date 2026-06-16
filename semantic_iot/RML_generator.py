@@ -29,6 +29,8 @@ class RMLMappingGenerator:
         self.rdf_relationships = None
         if entities_file is None:
             self.entities_file = "placeholder.json"
+        else:
+            self.entities_file = entities_file
         self.default_context = {
             "rr": "http://www.w3.org/ns/r2rml#",
             "rml": "http://semweb.mmlab.be/ns/rml#",
@@ -78,7 +80,7 @@ class RMLMappingGenerator:
         mapping_content = mapping_template.render(
             context=context,
             relationships=relationships,
-            entities_file=os.path.basename(self.entities_file)
+            entities_file=self.entities_file
         )
 
         # Save file

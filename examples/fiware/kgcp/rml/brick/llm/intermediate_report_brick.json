@@ -1,0 +1,191 @@
+{
+  "@context": {
+    "bacnet": "http://data.ashrae.org/bacnet/2020#",
+    "brick": "https://brickschema.org/schema/Brick#",
+    "bsh": "https://brickschema.org/schema/BrickShape#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "qudtqk": "http://qudt.org/vocab/quantitykind/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "rec": "https://w3id.org/rec#",
+    "ref": "https://brickschema.org/schema/Brick/ref#",
+    "s223": "http://data.ashrae.org/standard223#",
+    "sdo": "http://schema.org/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "tag": "https://brickschema.org/schema/BrickTag#",
+    "unit": "http://qudt.org/vocab/unit/",
+    "vcard": "http://www.w3.org/2006/vcard/ns#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@data": [
+    {
+      "nodetype": "airFlowSetpoint_FreshAirVentilation",
+      "iterator": "$[?(@.type=='FreshAirVentilation' && @..airFlowSetpoint)]",
+      "class": "**TODO: PLEASE CHECK** brick:Air_Flow_Setpoint_Limit brick:Max_Air_Flow_Setpoint_Limit brick:Min_Air_Flow_Setpoint_Limit",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "FreshAirVentilation",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:isPointOf",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "AmbientTemperatureSensor",
+      "iterator": "$[?(@.type=='AmbientTemperatureSensor')]",
+      "class": "**TODO: PLEASE CHECK** brick:Air_Temperature_Sensor brick:Temperature_Sensor brick:Water_Temperature_Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "Hotel",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation brick:isPointOf brick:isReplacedBy brick:hasLocation",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "CO2Sensor",
+      "iterator": "$[?(@.type=='CO2Sensor')]",
+      "class": "**TODO: PLEASE CHECK** brick:CO2_Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:isPointOf brick:hasLocation brick:isReplacedBy brick:hasLocation",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "CoolingCoil",
+      "iterator": "$[?(@.type=='CoolingCoil')]",
+      "class": "**TODO: PLEASE CHECK** brick:Cooling_Coil",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:feeds brick:hasLocation brick:isReplacedBy rec:locatedIn brick:value brick:hasLocation",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "fanSpeed_CoolingCoil",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasPart brick:feeds brick:isPartOf brick:isReplacedBy rec:hasPart rec:isPartOf brick:value brick:hasPoint rec:hasPoint",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "fanSpeed_CoolingCoil",
+      "iterator": "$[?(@.type=='CoolingCoil' && @..fanSpeed)]",
+      "class": "**TODO: PLEASE CHECK** brick:Cooling_Coil brick:Fan_Speed_Command brick:Direct_Expansion_Cooling_Coil",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "CoolingCoil",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasPart brick:feeds brick:isPartOf brick:isReplacedBy rec:hasPart rec:isPartOf brick:value brick:isPointOf",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "FreshAirVentilation",
+      "iterator": "$[?(@.type=='FreshAirVentilation')]",
+      "class": "**TODO: PLEASE CHECK** brick:Fresh_Air_Fan brick:Fresh_Air_Setpoint_Limit brick:Max_Fresh_Air_Setpoint_Limit",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "airFlowSetpoint_FreshAirVentilation",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasPoint brick:isReplacedBy rec:hasPoint",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "Hotel",
+      "iterator": "$[?(@.type=='Hotel')]",
+      "class": "**TODO: PLEASE CHECK** brick:Hot_Deck brick:Shower brick:Tunnel",
+      "hasRelationship": [],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "HotelRoom",
+      "iterator": "$[?(@.type=='HotelRoom')]",
+      "class": "**TODO: PLEASE CHECK** brick:Control_Room brick:Team_Room brick:Telecom_Room",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "Hotel",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "PresenceSensor",
+      "iterator": "$[?(@.type=='PresenceSensor')]",
+      "class": "**TODO: PLEASE CHECK** brick:Pressure_Sensor brick:Frequency_Sensor brick:Speed_Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation brick:isPointOf brick:hasLocation brick:isReplacedBy",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "RadiatorThermostat",
+      "iterator": "$[?(@.type=='RadiatorThermostat')]",
+      "class": "**TODO: PLEASE CHECK** brick:Thermostat",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasLocation brick:feeds brick:hasLocation brick:isReplacedBy rec:locatedIn brick:value",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperatureSetpoint_RadiatorThermostat",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:hasPoint brick:isReplacedBy rec:hasPoint",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "TemperatureSensor",
+      "iterator": "$[?(@.type=='TemperatureSensor')]",
+      "class": "**TODO: PLEASE CHECK** brick:Temperature_Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:isPointOf brick:hasLocation brick:isReplacedBy brick:hasLocation",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperatureSetpoint_RadiatorThermostat",
+      "iterator": "$[?(@.type=='RadiatorThermostat' && @..temperatureSetpoint)]",
+      "class": "**TODO: PLEASE CHECK** brick:Air_Temperature_Setpoint_Limit brick:Max_Temperature_Setpoint_Limit brick:Min_Temperature_Setpoint_Limit",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "RadiatorThermostat",
+          "propertyClass": "**TODO: PLEASE CHECK** brick:isPointOf",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "@context": {
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "xml": "http://www.w3.org/XML/1998/namespace",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "dogont": "http://elite.polito.it/ontologies/dogont.owl#"
+  },
+  "@data": [
+    {
+      "nodetype": "airFlowSetpoint_FreshAirVentilation",
+      "iterator": "$[?(@.type=='FreshAirVentilation' && @..airFlowSetpoint)]",
+      "class": "**TODO: PLEASE CHECK** dogont:IsPresentNotification dogont:NotPresentNotification dogont:StoreSceneNotification",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "FreshAirVentilation",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "AmbientTemperatureSensor",
+      "iterator": "$[?(@.type=='AmbientTemperatureSensor')]",
+      "class": "**TODO: PLEASE CHECK** dogont:TemperatureSensor dogont:MultipleTemperatureSensor dogont:HealthTemperatureSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "Hotel",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperatureAmb_AmbientTemperatureSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "co2_CO2Sensor",
+      "iterator": "$[?(@.type=='CO2Sensor' && @..co2)]",
+      "class": "**TODO: PLEASE CHECK** dogont:Co2Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "CO2Sensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "CO2Sensor",
+      "iterator": "$[?(@.type=='CO2Sensor')]",
+      "class": "**TODO: PLEASE CHECK** dogont:Co2Sensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "co2_CO2Sensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "CoolingCoil",
+      "iterator": "$[?(@.type=='CoolingCoil')]",
+      "class": "**TODO: PLEASE CHECK** dogont:CoolingStateValue dogont:Ceiling dogont:Control",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "fanSpeed_CoolingCoil",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "fanSpeed_CoolingCoil",
+      "iterator": "$[?(@.type=='CoolingCoil' && @..fanSpeed)]",
+      "class": "**TODO: PLEASE CHECK** dogont:StartSupercoolingCommand dogont:SuperCoolingFunctionality dogont:StopSupercoolingCommand",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "CoolingCoil",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "FreshAirVentilation",
+      "iterator": "$[?(@.type=='FreshAirVentilation')]",
+      "class": "**TODO: PLEASE CHECK** dogont:TeachInActiveNotification dogont:ForwardNotification dogont:PressedNotification",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "airFlowSetpoint_FreshAirVentilation",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "Hotel",
+      "iterator": "$[?(@.type=='Hotel')]",
+      "class": "**TODO: PLEASE CHECK** dogont:Hotplate dogont:Phone dogont:Heater",
+      "hasRelationship": [],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "HotelRoom",
+      "iterator": "$[?(@.type=='HotelRoom')]",
+      "class": "**TODO: PLEASE CHECK** dogont:Bedroom dogont:Room dogont:StorageRoom",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "Hotel",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "pir_PresenceSensor",
+      "iterator": "$[?(@.type=='PresenceSensor' && @..pir)]",
+      "class": "**TODO: PLEASE CHECK** dogont:PresenceSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "PresenceSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "PresenceSensor",
+      "iterator": "$[?(@.type=='PresenceSensor')]",
+      "class": "**TODO: PLEASE CHECK** dogont:PresenceSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "pir_PresenceSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "RadiatorThermostat",
+      "iterator": "$[?(@.type=='RadiatorThermostat')]",
+      "class": "**TODO: PLEASE CHECK** dogont:Thermostat",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperatureSetpoint_RadiatorThermostat",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperature_TemperatureSensor",
+      "iterator": "$[?(@.type=='TemperatureSensor' && @..temperature)]",
+      "class": "**TODO: PLEASE CHECK** dogont:ThermostatTemperatureSensor dogont:HealthTemperatureSensor dogont:MultipleTemperatureSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "TemperatureSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperatureAmb_AmbientTemperatureSensor",
+      "iterator": "$[?(@.type=='AmbientTemperatureSensor' && @..temperatureAmb)]",
+      "class": "**TODO: PLEASE CHECK** dogont:ThermostatTemperatureSensor dogont:MovementAndTemperatureSensor dogont:MultipleTemperatureSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "AmbientTemperatureSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "TemperatureSensor",
+      "iterator": "$[?(@.type=='TemperatureSensor')]",
+      "class": "**TODO: PLEASE CHECK** dogont:TemperatureSensor",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "HotelRoom",
+          "propertyClass": "**TODO: PLEASE CHECK** dogont:hasStateValue dogont:hasNotification dogont:hasFunctionality",
+          "rawdataidentifier": "hasLocation.value"
+        },
+        {
+          "relatedNodeType": "temperature_TemperatureSensor",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    },
+    {
+      "nodetype": "temperatureSetpoint_RadiatorThermostat",
+      "iterator": "$[?(@.type=='RadiatorThermostat' && @..temperatureSetpoint)]",
+      "class": "**TODO: PLEASE CHECK** dogont:TemperatureState dogont:TemperatureSensor dogont:TemperatureStateValue",
+      "hasRelationship": [
+        {
+          "relatedNodeType": "RadiatorThermostat",
+          "propertyClass": "**TODO: PLEASE CHECK** ",
+          "rawdataidentifier": "id"
+        }
+      ],
+      "hasDataAccess": null
+    }
+  ]
+}
