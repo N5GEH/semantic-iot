@@ -1,9 +1,10 @@
 import hashlib
+import json
 import re
 from pathlib import Path
 from urllib.parse import urlparse
 from rdflib import Graph, Namespace, Literal, URIRef
-from rdflib.namespace import RDF
+from rdflib.namespace import RDF, DCTERMS
 from prance import ResolvingParser, ValidationError
 
 
@@ -21,14 +22,20 @@ class APIPostprocessor:
         self.HTTP_VOC_onto = http_onto
         self._setup_namespaces()
 
-        # Parse and validate spec
+        self._parse_spec(api_spec_path)
+
+    def _parse_spec(self, api_spec_path):
         try:
-            self.parser = ResolvingParser(str(api_spec_path), lazy=False, strict=True)
+            self.parser = ResolvingParser(str(api_spec_path), lazy=False, strict=False)
         except ValidationError as e:
             raise RuntimeError(f"Spec validation failed: {e}")
 
-        # Raw spec dict
         self.spec = self.parser.specification
+
+        if 'swagger' in self.spec:
+            self._spec_version = 'swagger2'
+        else:
+            self._spec_version = 'openapi3'
 
         self.base_paths = self._get_server_base_paths()
 
@@ -40,28 +47,31 @@ class APIPostprocessor:
         self.HTTP_VOC = Namespace('http://www.w3.org/2011/http#')
         self.HEADERS = Namespace('http://www.w3.org/2011/http-headers#')
         self.API = Namespace('http://www.example.org/api#')
+        self.SCHEMA = Namespace('http://www.example.org/schema#')
+        self.DCTERMS = DCTERMS
         self.kg.bind('http_voc', self.HTTP_VOC)
         self.kg.bind('headers', self.HEADERS)
         self.kg.bind('api', self.API)
+        self.kg.bind('api_schema', self.SCHEMA)
+        self.kg.bind('dcterms', self.DCTERMS)
 
     def _get_server_base_paths(self) -> list[str]:
-        """
-        Collect base paths from Swagger 2.0 (basePath) and OAS3 (servers[*].url).
-        Returns a list like ["", "/rest"] (no trailing slash; "" means no base).
-        """
+        if self._spec_version == 'swagger2':
+            return self._swagger2_base_paths()
+        return self._openapi3_base_paths()
+
+    def _swagger2_base_paths(self) -> list[str]:
         bases = set()
+        bp = (self.spec.get('basePath') or '').strip()
+        if bp:
+            bp = '/' + bp.lstrip('/')
+            bp = bp.rstrip('/')
+            if bp != '/':
+                bases.add(bp)
+        return sorted(bases) or [""]
 
-        # Swagger 2.0
-        if 'swagger' in self.spec:
-            bp = (self.spec.get('basePath') or '').strip()
-            if bp:
-                # ensure exactly one leading slash, no trailing slash
-                bp = '/' + bp.lstrip('/')
-                bp = bp.rstrip('/')
-                if bp != '/':
-                    bases.add(bp)
-
-        # OpenAPI 3.x
+    def _openapi3_base_paths(self) -> list[str]:
+        bases = set()
         for s in (self.spec.get('servers') or []):
             url = (s or {}).get('url', '')
             try:
@@ -71,8 +81,6 @@ class APIPostprocessor:
                     bases.add(bp)
             except Exception:
                 pass
-
-        # If nothing explicit, match “no base”
         return sorted(bases) or [""]
 
     def extend_kg(self, add_http_ontology: bool = False):
@@ -108,7 +116,7 @@ class APIPostprocessor:
                             continue
 
                         self._create_request_node(
-                            req_id, req, verb, orig_path, uri,
+                            req_id, req, verb, orig_path, tpl, uri,
                             parsed.netloc, shared_headers,
                             shared_queries, op
                         )
@@ -152,38 +160,54 @@ class APIPostprocessor:
         Index globally-declared parameters and materialize them as shared header/query nodes.
         Handles Swagger2 (spec['parameters']) and OAS3 (spec['components']['parameters']).
         """
+        return (
+            self._swagger2_global_params()
+            if self._spec_version == 'swagger2'
+            else self._openapi3_global_params()
+        )
+
+    def _swagger2_global_params(self) -> tuple:
         header_nodes = {}
         query_nodes = {}
-
-        # Swagger2: spec['parameters'], OAS3: spec['components']['parameters']
-        if 'swagger' in self.spec:
-            global_params = self.spec.get('parameters', {}) or {}
-        else:
-            global_params = (
-                (self.spec.get('components') or {}).get('parameters', {}) or {}
-            )
-
+        global_params = self.spec.get('parameters', {}) or {}
         for name, p in global_params.items():
-            # Resolve $ref if any (Prance ResolvingParser should already do it)
             if isinstance(p, dict) and '$ref' in p:
-                # In practice, ResolvingParser dereferences already; keep fallback just in case
                 continue
-
             clean = re.sub(r"\W+", '_', name).strip('_')
             node = self.API[f"Param_{clean}"]
-
             if p.get('in') == 'header':
                 self.kg.add((node, RDF.type, self.HTTP_VOC.MessageHeader))
                 self.kg.add((node, self.HTTP_VOC.fieldName, Literal(p.get('name', name))))
                 self.kg.add((node, self.HTTP_VOC.fieldValue, Literal(self._param_default_value(p))))
                 header_nodes[name] = node
-
             elif p.get('in') == 'query':
                 self.kg.add((node, RDF.type, self.HTTP_VOC.Parameter))
                 self.kg.add((node, self.HTTP_VOC.paramName, Literal(p.get('name', name))))
                 self.kg.add((node, self.HTTP_VOC.paramValue, Literal(self._param_default_value(p))))
                 query_nodes[name] = node
+        return header_nodes, query_nodes
 
+    def _openapi3_global_params(self) -> tuple:
+        header_nodes = {}
+        query_nodes = {}
+        global_params = (
+            (self.spec.get('components') or {}).get('parameters', {}) or {}
+        )
+        for name, p in global_params.items():
+            if isinstance(p, dict) and '$ref' in p:
+                continue
+            clean = re.sub(r"\W+", '_', name).strip('_')
+            node = self.API[f"Param_{clean}"]
+            if p.get('in') == 'header':
+                self.kg.add((node, RDF.type, self.HTTP_VOC.MessageHeader))
+                self.kg.add((node, self.HTTP_VOC.fieldName, Literal(p.get('name', name))))
+                self.kg.add((node, self.HTTP_VOC.fieldValue, Literal(self._param_default_value(p))))
+                header_nodes[name] = node
+            elif p.get('in') == 'query':
+                self.kg.add((node, RDF.type, self.HTTP_VOC.Parameter))
+                self.kg.add((node, self.HTTP_VOC.paramName, Literal(p.get('name', name))))
+                self.kg.add((node, self.HTTP_VOC.paramValue, Literal(self._param_default_value(p))))
+                query_nodes[name] = node
         return header_nodes, query_nodes
 
     def _param_default_value(self, p: dict):
@@ -214,34 +238,24 @@ class APIPostprocessor:
         """
         ALL = {'get', 'put', 'post', 'delete', 'patch', 'head', 'options', 'trace'}
         methods_map = {}
-
         paths = self.spec.get('paths') or {}
 
-        # Swagger 2: has "swagger" key and optional "basePath"
-        base_path = ""
-        if "swagger" in self.spec:
+        if self._spec_version == 'swagger2':
             base_path = self.spec.get("basePath", "").strip("/")
-        # OAS3: you already collected self.base_paths elsewhere
-        elif getattr(self, "base_paths", None):
-            # Take the first server/basePath as canonical
+        else:
             base_path = self.base_paths[0].strip("/") if self.base_paths else ""
 
         for tpl, path_item in paths.items():
             if not isinstance(path_item, dict):
                 continue
-
             keys_lower = {k.lower() for k in path_item.keys()}
             verbs = [m.upper() for m in ALL if m in keys_lower]
             if not verbs:
                 continue
-
-            # Combine basePath + tpl
             full_tpl = "/".join(s for s in [base_path, tpl.strip("/")] if s)
             norm = re.sub(r'/+', '/', full_tpl).strip('/')
             segments = norm.split('/') if norm else []
-
             methods_map[tpl] = (segments, verbs)
-
         return methods_map
 
     def _match_path_to_template(self, uri_path: str, tpl_segments: list) -> bool:
@@ -265,7 +279,7 @@ class APIPostprocessor:
         return True
 
     def _create_request_node(
-        self, req_id, req: URIRef, verb: str, path: str,
+        self, req_id, req: URIRef, verb: str, path: str, tpl: str,
         uri: URIRef, authority: str,
         shared_headers: dict, shared_queries: dict,
         op: dict
@@ -308,6 +322,101 @@ class APIPostprocessor:
                              Literal(self._param_default_value(p))))
                 self.kg.add((req, self.HTTP_VOC.params, node))
 
+        # attach schema conformance
+        self._attach_schema_conformance(req, op, tpl, verb)
+
+
+    def _attach_schema_conformance(self, req: URIRef, op: dict, tpl: str, verb: str) -> None:
+        verb_lower = verb.lower()
+        is_read = verb_lower in ('get', 'head', 'options', 'trace')
+        is_write = verb_lower in ('put', 'post', 'patch')
+
+        if self._spec_version == 'swagger2':
+            if is_read:
+                self._swagger2_response_schemas(req, op, tpl, verb)
+            if is_write:
+                self._swagger2_request_schemas(req, op, tpl, verb)
+        else:
+            if is_read:
+                self._openapi3_response_schemas(req, op, tpl, verb)
+            if is_write:
+                self._openapi3_request_schemas(req, op, tpl, verb)
+
+    def _swagger2_response_schemas(self, req, op, tpl, verb):
+        prod = op.get('produces') or self.spec.get('produces') or ['application/json']
+        tpl_safe = re.sub(r'\W+', '_', tpl.strip('/'))
+        seen = set()
+        for status_code, response in (op.get('responses') or {}).items():
+            if not self._is_success_status(status_code):
+                continue
+            schema = response.get('schema')
+            for media_type in prod:
+                label = f"{verb}_{tpl_safe}_response_{status_code}_{media_type.replace('/', '_')}"
+                if label in seen:
+                    continue
+                seen.add(label)
+                if schema:
+                    self.kg.add((req, self.SCHEMA["responseSchema"], Literal(json.dumps(schema))))
+                self._attach_media_header(req, "Accept", media_type, verb, tpl_safe)
+
+    def _openapi3_response_schemas(self, req, op, tpl, verb):
+        tpl_safe = re.sub(r'\W+', '_', tpl.strip('/'))
+        seen = set()
+        for status_code, response in (op.get('responses') or {}).items():
+            if not self._is_success_status(status_code):
+                continue
+            for media_type, content in (response.get('content') or {}).items():
+                label = f"{verb}_{tpl_safe}_response_{status_code}_{media_type.replace('/', '_')}"
+                if label in seen:
+                    continue
+                seen.add(label)
+                schema = content.get('schema')
+                if schema:
+                    self.kg.add((req, self.SCHEMA["responseSchema"], Literal(json.dumps(schema))))
+                self._attach_media_header(req, "Accept", media_type, verb, tpl_safe)
+
+    def _swagger2_request_schemas(self, req, op, tpl, verb):
+        cons = op.get('consumes') or self.spec.get('consumes') or ['application/json']
+        tpl_safe = re.sub(r'\W+', '_', tpl.strip('/'))
+        seen = set()
+        for p in (op.get('parameters') or []):
+            if p.get('in') != 'body':
+                continue
+            schema = p.get('schema')
+            for media_type in cons:
+                label = f"{verb}_{tpl_safe}_request_{media_type.replace('/', '_')}"
+                if label in seen:
+                    continue
+                seen.add(label)
+                if schema:
+                    self.kg.add((req, self.SCHEMA["bodySchema"], Literal(json.dumps(schema))))
+                self._attach_media_header(req, "Content-Type", media_type, verb, tpl_safe)
+
+    def _openapi3_request_schemas(self, req, op, tpl, verb):
+        tpl_safe = re.sub(r'\W+', '_', tpl.strip('/'))
+        seen = set()
+        request_body = op.get('requestBody') or {}
+        for media_type, content in (request_body.get('content') or {}).items():
+            schema = content.get('schema')
+            label = f"{verb}_{tpl_safe}_request_{media_type.replace('/', '_')}"
+            if label in seen:
+                continue
+            seen.add(label)
+            if schema:
+                self.kg.add((req, self.SCHEMA["bodySchema"], Literal(json.dumps(schema))))
+            self._attach_media_header(req, "Content-Type", media_type, verb, tpl_safe)
+
+    @staticmethod
+    def _is_success_status(status_code: str) -> bool:
+        return status_code.lower().startswith('2')
+
+    def _attach_media_header(self, req, header_name, media_type, verb, tpl_safe):
+        clean = re.sub(r"\W+", '_', header_name).strip('_')
+        node = self.API[f"Header_{clean}_{verb}_{tpl_safe}"]
+        self.kg.add((node, RDF.type, self.HTTP_VOC.MessageHeader))
+        self.kg.add((node, self.HTTP_VOC.fieldName, Literal(header_name)))
+        self.kg.add((node, self.HTTP_VOC.fieldValue, Literal(media_type)))
+        self.kg.add((req, self.HTTP_VOC.headers, node))
 
     def serialize(self, destination: Path):
         self.kg.serialize(destination=str(destination), format='turtle')
