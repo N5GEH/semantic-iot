@@ -7,7 +7,7 @@ from rapidfuzz import fuzz
 from rdflib import Graph, RDF, RDFS, OWL, SKOS, DC, URIRef
 from sentence_transformers import SentenceTransformer, util
 from semantic_iot.JSON_preprocess import JSONPreprocessorHandler
-from jsonpath_ng import parse
+from jsonpath_ng.ext import parse
 
 
 class MappingPreprocess:
@@ -609,7 +609,13 @@ class MappingPreprocess:
                 # preserve the original entity in the new list
                 matches = jsonpath_expr.find(entity)
                 for match in matches:
-                    extra_type = f"{match.path.fields[0]}_{entity['type']}"
+                    if isinstance(match.value, dict):
+                        # if value is an object, get the path as prefix
+                        type_prefix = match.path.fields[0]
+                    else:
+                        # else the value is the prefix
+                        type_prefix = match.value
+                    extra_type = f"{type_prefix}_{entity['type']}"
                     extra_items.append(
                         {
                         "nodetype": extra_type,
