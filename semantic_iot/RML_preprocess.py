@@ -18,7 +18,8 @@ class MappingPreprocess:
                  platform_config: str = None,
                  similarity_mode: str = "string",  # ["string", "semantic"]
                  patterns_splitting: list[str] = None,
-                 threshold_property: int = None
+                 strict_splitting: bool = False,
+                 threshold_property: int = None,
                  ):
         """
         Preprocess the JSON data to create an "RDF node relationship" file in JSON-LD
@@ -43,6 +44,10 @@ class MappingPreprocess:
                               More information in https://github.com/UKPLab/sentence-transformers
             patterns_splitting: List of patterns (JSONpath) to split a substructure of entities that
                 need to be processed as additional entities during KG generation.
+            strict_splitting: If true, it is assumed that the substructure of the same entity type is
+                strictly consistent. For example, for "Room" entities, some might not have specific sensors,
+                but if strict_splitting is true, it is assumed that all "Room" entities have the same
+                substructure, i.e., sensor availability.
             threshold_property: Threshold for property suggestion (in percentage).
         """
         self.json_file_path = json_file_path
@@ -92,6 +97,7 @@ class MappingPreprocess:
         ).json_preprocessor
 
         self.patterns_splitting = patterns_splitting if patterns_splitting else []
+        self.strict_splitting = bool(strict_splitting) if strict_splitting else False
 
     @staticmethod
     def get_value(entity, key):
@@ -635,10 +641,14 @@ class MappingPreprocess:
                         # else the value is the prefix
                         type_prefix = match.value
                     extra_type = f"{type_prefix}_{entity['type']}"
+                    if self.strict_splitting:
+                        splitting_iterator = f"$[?(@.type=='{entity['type']}'"
+                    else:
+                        splitting_iterator = f"$[?(@.type=='{entity['type']}' && @{pattern.removeprefix('$')})]"
                     extra_items.append(
                         {
                         "nodetype": extra_type,
-                        "iterator": f"$[?(@.type=='{entity['type']}' && @{pattern.removeprefix('$')})]",
+                        "iterator": splitting_iterator,
                         "class": None,
                         "hasRelationship": [
                             {
