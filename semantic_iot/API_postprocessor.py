@@ -355,7 +355,7 @@ class APIPostprocessor:
                 if label in seen:
                     continue
                 seen.add(label)
-                if schema:
+                if schema is not None:
                     self.kg.add((req, self.SCHEMA["responseSchema"], Literal(json.dumps(schema))))
                 self._attach_media_header(req, "Accept", media_type, verb, tpl_safe)
 
@@ -371,7 +371,7 @@ class APIPostprocessor:
                     continue
                 seen.add(label)
                 schema = content.get('schema')
-                if schema:
+                if schema is not None:
                     self.kg.add((req, self.SCHEMA["responseSchema"], Literal(json.dumps(schema))))
                 self._attach_media_header(req, "Accept", media_type, verb, tpl_safe)
 
@@ -388,7 +388,7 @@ class APIPostprocessor:
                 if label in seen:
                     continue
                 seen.add(label)
-                if schema:
+                if schema is not None:
                     self.kg.add((req, self.SCHEMA["bodySchema"], Literal(json.dumps(schema))))
                 self._attach_media_header(req, "Content-Type", media_type, verb, tpl_safe)
 
@@ -402,7 +402,7 @@ class APIPostprocessor:
             if label in seen:
                 continue
             seen.add(label)
-            if schema:
+            if schema is not None:
                 self.kg.add((req, self.SCHEMA["bodySchema"], Literal(json.dumps(schema))))
             self._attach_media_header(req, "Content-Type", media_type, verb, tpl_safe)
 
