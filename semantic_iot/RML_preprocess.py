@@ -7,7 +7,7 @@ from rapidfuzz import fuzz
 from rdflib import Graph, RDF, RDFS, OWL, SKOS, DC, URIRef
 from sentence_transformers import SentenceTransformer, util
 from semantic_iot.JSON_preprocess import JSONPreprocessorHandler
-from jsonpath_ng import parse
+from jsonpath_ng.ext import parse
 
 
 class MappingPreprocess:
@@ -18,7 +18,8 @@ class MappingPreprocess:
                  platform_config: str = None,
                  similarity_mode: str = "string",  # ["string", "semantic"]
                  patterns_splitting: list[str] = None,
-                 threshold_property: int = None
+                 strict_splitting: bool = False,
+                 threshold_property: int = None,
                  ):
         """
         Preprocess the JSON data to create an "RDF node relationship" file in JSON-LD
@@ -43,6 +44,10 @@ class MappingPreprocess:
                               More information in https://github.com/UKPLab/sentence-transformers
             patterns_splitting: List of patterns (JSONpath) to split a substructure of entities that
                 need to be processed as additional entities during KG generation.
+            strict_splitting: If true, it is assumed that the substructure of the same entity type is
+                strictly consistent. For example, for "Room" entities, some might not have specific sensors,
+                but if strict_splitting is true, it is assumed that all "Room" entities have the same
+                substructure, i.e., sensor availability.
             threshold_property: Threshold for property suggestion (in percentage).
         """
         self.json_file_path = json_file_path
@@ -92,6 +97,7 @@ class MappingPreprocess:
         ).json_preprocessor
 
         self.patterns_splitting = patterns_splitting if patterns_splitting else []
+        self.strict_splitting = bool(strict_splitting) if strict_splitting else False
 
     @staticmethod
     def get_value(entity, key):
@@ -108,21 +114,40 @@ class MappingPreprocess:
     def drop_duplicates(report_list: List[dict]):
         """
         Drop duplicated resource types in node relationship file.
+        The relationships of all items sharing the same nodetype are merged, so that
+        relationships present in only some instances of a resource type are kept.
         """
-        unique_node_types = set([item["nodetype"] for item in report_list])
         unique_report_list = []
+        unique_node_types = set([item["nodetype"] for item in report_list])
         for unique_node_type in list(unique_node_types):
             # find all items with the same nodetype
             matched_items = [{_k: _v for _k, _v in item.items() if _k != "entity"}
                              for item in report_list if item["nodetype"] == unique_node_type]
-            if matched_items:
-                # get the first matched item
-                unique_report_list.append(matched_items[0])
-            # assert that all matched items are the same
-            if not all(d == matched_items[0] for d in matched_items):
-                logging.warning("Differences are found for the same resource type")
-                for d in matched_items:
-                    print(json.dumps(d, indent=2))
+            if not matched_items:
+                continue
+            # take the first matched item as the base
+            merged_item = matched_items[0]
+            # merge the relationships of all matched items, keeping one entry per
+            # (relatedNodeType, rawdataidentifier) pair
+            merged_relationships = {}
+            for item in matched_items:
+                for relationship in item.get("hasRelationship", []) or []:
+                    key = (relationship.get("relatedNodeType"),
+                           relationship.get("rawdataidentifier"))
+                    merged_relationships[key] = relationship
+            merged_item["hasRelationship"] = list(merged_relationships.values())
+            # warn if the non-relationship fields differ across items
+            base_fields = {_k: _v for _k, _v in matched_items[0].items()
+                           if _k != "hasRelationship"}
+            for item in matched_items[1:]:
+                other_fields = {_k: _v for _k, _v in item.items()
+                                if _k != "hasRelationship"}
+                if base_fields != other_fields:
+                    logging.warning("Differences are found for the same resource type")
+                    for d in matched_items:
+                        print(json.dumps(d, indent=2))
+                    break
+            unique_report_list.append(merged_item)
         return unique_report_list
 
     def load_ontology(self):
@@ -609,11 +634,21 @@ class MappingPreprocess:
                 # preserve the original entity in the new list
                 matches = jsonpath_expr.find(entity)
                 for match in matches:
-                    extra_type = f"{match.path.fields[0]}_{entity['type']}"
+                    if isinstance(match.value, dict):
+                        # if value is an object, get the path as prefix
+                        type_prefix = match.path.fields[0]
+                    else:
+                        # else the value is the prefix
+                        type_prefix = match.value
+                    extra_type = f"{type_prefix}_{entity['type']}"
+                    if self.strict_splitting:
+                        splitting_iterator = f"$[?(@.type=='{entity['type']}'"
+                    else:
+                        splitting_iterator = f"$[?(@.type=='{entity['type']}' && @{pattern.removeprefix('$')})]"
                     extra_items.append(
                         {
                         "nodetype": extra_type,
-                        "iterator": f"$[?(@.type=='{entity['type']}' && @{pattern.removeprefix('$')})]",
+                        "iterator": splitting_iterator,
                         "class": None,
                         "hasRelationship": [
                             {
