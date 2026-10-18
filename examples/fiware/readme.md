@@ -56,8 +56,9 @@ An initial run might be necessary to identify this semantic difference and to de
 For Brick ontology, the ``patterns_splitting`` is defined as: `["\$..fanSpeed","\$..airFlowSetpoint","\$..temperatureSetpoint"]`.
 
 ### Step 2 validation and completion
-The last step generate a human-friendly report, i.e., **"intermediate report"**, which can be found as [`./kgcp/rml//brick/intermediate_report_brick.json`](./kgcp/rml//brick/intermediate_report_brick.json).
-In this report, different **resource types** in the data models are identified and the terminology mappings to specific terms of the ontology are suggested based on the **string similarity**.
+
+Step 1 produces a human-friendly report — the **"intermediate report"** — at [`./kgcp/rml/brick/intermediate_report_brick.json`](./kgcp/rml/brick/intermediate_report_brick.json).
+In this report, different **resource types** in the data models are identified and terminology mappings to specific ontology terms are suggested based on **string similarity**.
 For example, for the resource type `TemperatureSensor`:
 ````json
 {
@@ -75,12 +76,51 @@ For example, for the resource type `TemperatureSensor`:
 }
 ````
 
-Manual validation and completion are now required for:
-1. Verify the terminology suggestion for **subject**. For example, the ideal ontology class for `TemperatureSensor` in our data models should be `brick:Air_Temperature_Sensor`.
-2. Verify the terminology suggestion for **predicate**. For example, the property class `brick:isPointOf` should be used to connect the `TemperatureSensor` to `HotelRoom`.
-3. Complete the field `hasDataAccess` for accessing the data (or actuation setpoints). For example, for `TemperatureSensor` the temperature can be accessed by "https://<host>/v2/entities/{id}/attrs/temperature/value" via the FIWARE API.
+Validation and completion can be done **manually** or **automatically via LLM**.
 
-After that, the completed information for `TemperatureSensor` should look like this:
+#### Option A — LLM-assisted (recommended)
+
+The script [`./kgcp/llm_rml_pipeline.py`](./kgcp/llm_rml_pipeline.py) runs the full pipeline using Claude to validate and complete the intermediate report automatically.
+
+**Online mode** (requires `ANTHROPIC_API_KEY`):
+```bash
+export ANTHROPIC_API_KEY=<your-key>
+python examples/fiware/kgcp/llm_rml_pipeline.py --step full
+```
+
+**Offline mode** (no API key required — paste the prompt into Claude.ai or any LLM):
+```bash
+# Step 1: generate candidates and save the prompt to a file
+python examples/fiware/kgcp/llm_rml_pipeline.py --step preprocess
+
+# Open kgcp/rml/brick/llm/prompt_validation.txt, paste into Claude.ai,
+# and save the JSON response to kgcp/rml/brick/llm/llm_response.txt
+
+# Step 2: parse the response and generate the RML mapping
+python examples/fiware/kgcp/llm_rml_pipeline.py --step finish
+```
+
+Both modes write their outputs to `kgcp/rml/brick/llm/`:
+- `intermediate_report_brick.json` — raw candidates
+- `intermediate_report_validated_brick.json` — LLM-validated report
+- `rml_mapping.ttl` — final RML mapping
+
+**Additional options:**
+
+| Flag | Description |
+|---|---|
+| `--similarity-mode string\|semantic` | Candidate matching: Levenshtein (default) or sentence-embedding similarity |
+| `--bind-all-classes` | Include **all** ontology classes/properties in the LLM prompt instead of only the top candidates. Useful when string similarity produces poor matches. |
+| `--level-depth N` | When used with `--bind-all-classes`, limits classes to those with at most N superclass levels, keeping the prompt focused. |
+
+#### Option B — Manual validation
+
+Validate and complete the intermediate report by hand:
+1. Verify the terminology suggestion for **subject**. For example, the ideal ontology class for `TemperatureSensor` is `brick:Air_Temperature_Sensor`.
+2. Verify the terminology suggestion for **predicate**. For example, `brick:isPointOf` should connect `TemperatureSensor` to `HotelRoom`.
+3. Complete the `hasDataAccess` field with the API endpoint for reading/writing data. For example: `"https://<host>/v2/entities/{id}/attrs/temperature/value"`.
+
+After manual editing, the entry for `TemperatureSensor` should look like:
 ```json
 {
     "identifier": "id",
@@ -95,12 +135,11 @@ After that, the completed information for `TemperatureSensor` should look like t
             "rawdataidentifier": "hasLocation.value"
         }
     ],
-    
     "hasDataAccess": "https://fiware.eonerc.rwth-aachen.de/v2/entities/{id}/attrs/temperature/value"
 }
 ```
 
-A validated and completed **"intermediate report"** document for this example is provided in [`./kgcp/rml/brick/intermediate_report_validated_brick.json`](./kgcp/rml/brick/intermediate_report_validated_brick.json).
+A pre-validated **"intermediate report"** for this example is provided in [`./kgcp/rml/brick/intermediate_report_validated_brick.json`](./kgcp/rml/brick/intermediate_report_validated_brick.json).
 
 ### Step 3 generate mapping file to build KGCP
 Based on the completed **"intermediate report"** document, we can generate the RML mapping file for the KGCP.

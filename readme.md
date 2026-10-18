@@ -26,7 +26,8 @@ The framework mainly contains:
 
 **RML Generation**
 - **RML Preprocessor**: processes example dataset of an IoT platform to generate an intermediate document for further usage. This document need to be manually validated and completed.
-- **RML Generator**: generate RML mapping file based on the manual validated document.
+- **LLM RML Pipeline**: uses a Large Language Model (Claude) to automatically validate and complete the intermediate report, eliminating the need for manual term mapping. Supports an online mode (direct Claude API) and an offline mode (copy-paste prompt into any LLM).
+- **RML Generator**: generate RML mapping file based on the validated document.
 
 **Knowledge Graph Construction Pipeline (KGCP)**
 - **RDF Generator**: utilize the RML mapping file to generate knowledge graphs for any data provisioned in IoT platforms (most likely different platform instances).
