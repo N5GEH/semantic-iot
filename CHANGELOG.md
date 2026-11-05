@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.6.1
+- Fix invalid JSONPath iterator (missing closing ``)]``) generated for ``strict_splitting`` in ``MappingPreprocess``
+- Write intermediate files (``preprocessed.json``, ``temp_mapping.ttl``) of ``RDFGenerator`` to a temporary folder of the OS instead of the package directory, and always clean them up, even if materialization fails
+
 ## v0.6.0
 - Add support of value only slitting in rml preprocessor
 - Add option ``strict_splitting`` to bypass conditional iterator after
