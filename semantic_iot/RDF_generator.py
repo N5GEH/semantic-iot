@@ -1,6 +1,7 @@
 import os
 import re
-
+import shutil
+import tempfile
 import morph_kgc
 import rdflib
 from rdflib import URIRef, Namespace
@@ -21,8 +22,10 @@ class RDFGenerator:
                 JSONPreprocessor for more details.
         """
         self.mapping_file = mapping_file
-        self.temp_mapping_file = os.path.dirname(__file__) + "\\temp_mapping.ttl"
-        self.preprocess_file = os.path.dirname(__file__) + "\\preprocessed.json"
+        # intermediate files are kept in a unique directory in the OS temp folder
+        self.temp_dir = tempfile.mkdtemp(prefix="semantic_iot_")
+        self.temp_mapping_file = os.path.join(self.temp_dir, "temp_mapping.ttl")
+        self.preprocess_file = os.path.join(self.temp_dir, "preprocessed.json")
 
         self.json_processor: JSONPreprocessor = JSONPreprocessorHandler(
             preprocessed_file_path=self.preprocess_file,
@@ -34,9 +37,8 @@ class RDFGenerator:
         self.json_processor.save_preprocessed_data()
 
     def clean_up(self):
-        # remove file self.preprocess_file
-        os.remove(self.preprocess_file)
-        os.remove(self.temp_mapping_file)
+        # remove the temp directory with all intermediate files
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
 
     def generate_rdf(self,
                      source_file: str,
@@ -45,9 +47,13 @@ class RDFGenerator:
                      ):
         self.json_processor.json_file_path = source_file
         if engine == "morph-kgc":
-            self.pre_process()
-            self.morph_kgc_mapper(destination_file=destination_file)
-            self.clean_up()
+            # (re)create temp dir in case clean_up() was called before
+            os.makedirs(self.temp_dir, exist_ok=True)
+            try:
+                self.pre_process()
+                self.morph_kgc_mapper(destination_file=destination_file)
+            finally:
+                self.clean_up()
         else:
             raise ValueError("Invalid engine. Please use 'morph-kgc'")
 
