@@ -642,7 +642,7 @@ class MappingPreprocess:
                         type_prefix = match.value
                     extra_type = f"{type_prefix}_{entity['type']}"
                     if self.strict_splitting:
-                        splitting_iterator = f"$[?(@.type=='{entity['type']}'"
+                        splitting_iterator = f"$[?(@.type=='{entity['type']}')]"
                     else:
                         splitting_iterator = f"$[?(@.type=='{entity['type']}' && @{pattern.removeprefix('$')})]"
                     extra_items.append(
